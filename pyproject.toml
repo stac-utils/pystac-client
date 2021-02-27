@@ -1,0 +1,51 @@
+[tool.poetry]
+name = "pystac-api"
+version = "0.1.0"
+description = "A Python client for the STAC API spec."
+homepage = "https://github.com/duckontheweb/pystac-api"
+repository = "https://github.com/duckontheweb/pystac-api"
+authors = ["Jon Duckworth <duckontheweb@gmail.com>"]
+
+classifiers = [
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Operating System :: OS Independent",
+    "Natural Language :: English",
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Scientific/Engineering :: GIS",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Libraries :: Python Modules"
+]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+pystac = "^0.5.4"
+requests = "^2.25.1"
+pyRFC3339 = "^1.1"
+typing-extensions = "^3.7.4"
+"backports.cached-property" = "^1.0.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+flake8 = "^3.8.4"
+Sphinx = "^3.5.1"
+bump2version = "^1.0.1"
+tox = "^3.22.0"
+invoke = "^1.5.0"
+pytest-cov = "^2.11.1"
+pytest-recording = "^0.11.0"
+isort = "^5.7.0"
+vulture = "^2.3"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.vulture]
+paths = ["pystac_api"]
