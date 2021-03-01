@@ -26,7 +26,6 @@ classifiers = [
 [tool.poetry.dependencies]
 python = "^3.8"
 pystac = "^0.5.4"
-requests = "^2.25.1"
 pyRFC3339 = "^1.1"
 typing-extensions = "^3.7.4"
 "backports.cached-property" = "^1.0.1"
