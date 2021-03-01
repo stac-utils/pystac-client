@@ -65,6 +65,17 @@ with ``stac_api_client``.
 
    api
 
+Design Decisions
+----------------
+
+We document significant design decisions using Architectural Design Records (ADRs), as described by Michael Nygard
+`here <https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions>`__.
+
+.. toctree::
+   :maxdepth: 2
+
+   design_decisions
+
 
 Indices and tables
 ==================

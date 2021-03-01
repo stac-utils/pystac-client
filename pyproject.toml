@@ -41,6 +41,7 @@ pytest-cov = "^2.11.1"
 pytest-recording = "^0.11.0"
 isort = "^5.7.0"
 vulture = "^2.3"
+recommonmark = "^0.7.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
