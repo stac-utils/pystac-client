@@ -1,0 +1,94 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Connection:
+      - close
+      Host:
+      - eod-catalog-svc-prod.astraea.earth
+      User-Agent:
+      - Python-urllib/3.8
+    method: GET
+    uri: https://eod-catalog-svc-prod.astraea.earth/collections/landsat8_l1tp
+  response:
+    body:
+      string: '{"allowed":true,"assets":{"B5":{"bundleable":true,"eo:bands":[{"common_name":"nir","name":"B5"}],"eo:common_name":"nir","eo:gsd":30.0,"gsd":30.0,"roles":["data"],"title":"Band
+        5 - Near Infrared (NIR) - 851-879nm (30m)","type":"image/tiff; application=geotiff;
+        profile=cloud-optimized"},"thumb_large":{"bundleable":true,"roles":["overview","preview"],"title":"Thumbnail
+        - Large","type":"image/jpeg"},"B6":{"bundleable":true,"eo:bands":[{"common_name":"swir16","name":"B6"}],"eo:common_name":"swir16","eo:gsd":30.0,"gsd":30.0,"roles":["data"],"title":"Band
+        6 - Shortwave Infrared (SWIR) 1 - 1566-1651nm (30m)","type":"image/tiff; application=geotiff;
+        profile=cloud-optimized"},"B3":{"bundleable":true,"eo:bands":[{"common_name":"green","name":"B3"}],"eo:common_name":"green","eo:gsd":30.0,"gsd":30.0,"roles":["data"],"title":"Band
+        3 - Green - 533-590nm (30m)","type":"image/tiff; application=geotiff; profile=cloud-optimized"},"B2":{"bundleable":true,"eo:bands":[{"common_name":"blue","name":"B2"}],"eo:common_name":"blue","eo:gsd":30.0,"gsd":30.0,"roles":["data"],"title":"Band
+        2 - Blue - 452-512nm (30m)","type":"image/tiff; application=geotiff; profile=cloud-optimized"},"BQA":{"bundleable":true,"eo:gsd":30.0,"gsd":30.0,"roles":["qa"],"title":"Band
+        QA","type":"image/tiff; application=geotiff; profile=cloud-optimized"},"B4":{"bundleable":true,"eo:bands":[{"common_name":"red","name":"B4"}],"eo:common_name":"red","eo:gsd":30.0,"gsd":30.0,"roles":["data"],"title":"Band
+        4 - Red - 636-673nm (30m)","type":"image/tiff; application=geotiff; profile=cloud-optimized"},"B1":{"bundleable":true,"eo:bands":[{"common_name":"coastal","name":"B1"}],"eo:common_name":"coastal","eo:gsd":30.0,"gsd":30.0,"roles":["data"],"title":"Band
+        1 - Ultra Blue (coastal/aerosol) - 435-451nm (30m)","type":"image/tiff; application=geotiff;
+        profile=cloud-optimized"},"B11":{"bundleable":true,"eo:bands":[{"common_name":"lwir12","name":"B11"}],"eo:common_name":"lwir12","eo:gsd":30.0,"gsd":30.0,"roles":["data"],"title":"Band
+        11 - Thermal Infrared (TIRS) 2 - 11500-12510nm (30m)","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized"},"MTL":{"bundleable":true,"roles":["metadata"],"title":"Product
+        Metadata","type":"text/plain"},"thumb_small":{"bundleable":true,"roles":["thumbnail"],"title":"Thumbnail
+        - Small","type":"image/jpeg"},"B9":{"bundleable":true,"eo:bands":[{"common_name":"cirrus","name":"B9"}],"eo:common_name":"cirrus","eo:gsd":30.0,"gsd":30.0,"roles":["data"],"title":"Band
+        9 - Cirrus - 1363-1384nm (30m)","type":"image/tiff; application=geotiff; profile=cloud-optimized"},"B7":{"bundleable":true,"eo:bands":[{"common_name":"swir22","name":"B7"}],"eo:common_name":"swir22","eo:gsd":30.0,"gsd":30.0,"roles":["data"],"title":"Band
+        7 - Shortwave Infrared (SWIR) 2 - 2107-2294nm (30m)","type":"image/tiff; application=geotiff;
+        profile=cloud-optimized"},"B10":{"bundleable":true,"eo:bands":[{"common_name":"lwir11","name":"B10"}],"eo:common_name":"lwir11","eo:gsd":30.0,"gsd":30.0,"roles":["data"],"title":"Band
+        10 - Thermal Infrared (TIRS) 1 - 10600-11190nm (30m)","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized"},"B8":{"bundleable":true,"eo:bands":[{"common_name":"pan","name":"B8"}],"eo:common_name":"pan","eo:gsd":15.0,"gsd":15.0,"roles":["data"],"title":"Band
+        8 - Panchromatic - 503-676nm (15m)","type":"image/tiff; application=geotiff;
+        profile=cloud-optimized"},"ANG":{"bundleable":true,"roles":["metadata"],"title":"Angle
+        Coefficient Metadata","type":"text/plain"}},"description":"Landsat 8 Collection
+        1 Tier 1 Precision Terrain from Landsat 8 Operational Land Imager (OLI) and
+        Thermal Infrared Sensor (TIRS) data","extent":{"spatial":{"bbox":[[-180.0,-90.0,180.0,90.0]]},"temporal":{"interval":[["2013-03-18T15:59:02.333Z",null]]}},"familyId":"landsat8","familyTitle":"Landsat
+        8","id":"landsat8_l1tp","item_assets":{"B5":{"bundleable":true,"eo:bands":[{"common_name":"nir","name":"B5"}],"eo:common_name":"nir","eo:gsd":30.0,"gsd":30.0,"roles":["data"],"title":"Band
+        5 - Near Infrared (NIR) - 851-879nm (30m)","type":"image/tiff; application=geotiff;
+        profile=cloud-optimized"},"thumb_large":{"bundleable":true,"roles":["overview","preview"],"title":"Thumbnail
+        - Large","type":"image/jpeg"},"B6":{"bundleable":true,"eo:bands":[{"common_name":"swir16","name":"B6"}],"eo:common_name":"swir16","eo:gsd":30.0,"gsd":30.0,"roles":["data"],"title":"Band
+        6 - Shortwave Infrared (SWIR) 1 - 1566-1651nm (30m)","type":"image/tiff; application=geotiff;
+        profile=cloud-optimized"},"B3":{"bundleable":true,"eo:bands":[{"common_name":"green","name":"B3"}],"eo:common_name":"green","eo:gsd":30.0,"gsd":30.0,"roles":["data"],"title":"Band
+        3 - Green - 533-590nm (30m)","type":"image/tiff; application=geotiff; profile=cloud-optimized"},"B2":{"bundleable":true,"eo:bands":[{"common_name":"blue","name":"B2"}],"eo:common_name":"blue","eo:gsd":30.0,"gsd":30.0,"roles":["data"],"title":"Band
+        2 - Blue - 452-512nm (30m)","type":"image/tiff; application=geotiff; profile=cloud-optimized"},"BQA":{"bundleable":true,"eo:gsd":30.0,"gsd":30.0,"roles":["qa"],"title":"Band
+        QA","type":"image/tiff; application=geotiff; profile=cloud-optimized"},"B4":{"bundleable":true,"eo:bands":[{"common_name":"red","name":"B4"}],"eo:common_name":"red","eo:gsd":30.0,"gsd":30.0,"roles":["data"],"title":"Band
+        4 - Red - 636-673nm (30m)","type":"image/tiff; application=geotiff; profile=cloud-optimized"},"B1":{"bundleable":true,"eo:bands":[{"common_name":"coastal","name":"B1"}],"eo:common_name":"coastal","eo:gsd":30.0,"gsd":30.0,"roles":["data"],"title":"Band
+        1 - Ultra Blue (coastal/aerosol) - 435-451nm (30m)","type":"image/tiff; application=geotiff;
+        profile=cloud-optimized"},"B11":{"bundleable":true,"eo:bands":[{"common_name":"lwir12","name":"B11"}],"eo:common_name":"lwir12","eo:gsd":30.0,"gsd":30.0,"roles":["data"],"title":"Band
+        11 - Thermal Infrared (TIRS) 2 - 11500-12510nm (30m)","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized"},"MTL":{"bundleable":true,"roles":["metadata"],"title":"Product
+        Metadata","type":"text/plain"},"thumb_small":{"bundleable":true,"roles":["thumbnail"],"title":"Thumbnail
+        - Small","type":"image/jpeg"},"B9":{"bundleable":true,"eo:bands":[{"common_name":"cirrus","name":"B9"}],"eo:common_name":"cirrus","eo:gsd":30.0,"gsd":30.0,"roles":["data"],"title":"Band
+        9 - Cirrus - 1363-1384nm (30m)","type":"image/tiff; application=geotiff; profile=cloud-optimized"},"B7":{"bundleable":true,"eo:bands":[{"common_name":"swir22","name":"B7"}],"eo:common_name":"swir22","eo:gsd":30.0,"gsd":30.0,"roles":["data"],"title":"Band
+        7 - Shortwave Infrared (SWIR) 2 - 2107-2294nm (30m)","type":"image/tiff; application=geotiff;
+        profile=cloud-optimized"},"B10":{"bundleable":true,"eo:bands":[{"common_name":"lwir11","name":"B10"}],"eo:common_name":"lwir11","eo:gsd":30.0,"gsd":30.0,"roles":["data"],"title":"Band
+        10 - Thermal Infrared (TIRS) 1 - 10600-11190nm (30m)","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized"},"B8":{"bundleable":true,"eo:bands":[{"common_name":"pan","name":"B8"}],"eo:common_name":"pan","eo:gsd":15.0,"gsd":15.0,"roles":["data"],"title":"Band
+        8 - Panchromatic - 503-676nm (15m)","type":"image/tiff; application=geotiff;
+        profile=cloud-optimized"},"ANG":{"bundleable":true,"roles":["metadata"],"title":"Angle
+        Coefficient Metadata","type":"text/plain"}},"license":"PDDL-1.0","links":[{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/landsat8_l1tp","rel":"self","title":"Landsat
+        8 C1 T1 Self","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth","rel":"parent","title":"Parent","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth","rel":"root","title":"Root","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/landsat8_l1tp/items","operations":["get"],"rel":"items","title":"Landsat
+        8 C1 T1 Items","type":"application/json"},{"href":"https://spdx.org/licenses/PDDL-1.0.html","rel":"license","title":"License","type":"text/html"}],"presentable":true,"providers":[{"attribution":"USGS/NASA
+        Landsat","name":"USGS","roles":["producer","licensor"],"url":"https://landsat.usgs.gov/"},{"attribution":"Planet
+        Labs","name":"Planet Labs","roles":["processor"],"url":"https://www.planet.com/products/satellite-imagery/files/1610.06_Spec%20Sheet_Combined_Imagery_Product_Letter_ENGv1.pdf"},{"attribution":"Amazon
+        Web Services","name":"AWS","roles":["host"],"url":"https://landsatonaws.com/"}],"sortableFields":["properties.datetime","properties.eo:cloud_cover","id","collection","properties.created"],"stac_extensions":["item-assets"],"stac_version":"1.0.0-beta.2","title":"Landsat
+        8 C1 T1"}'
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - X-Astraea-Catalog-Client
+      - Authorization, Content-Type, X-Requested-With
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - no-cache
+      Connection:
+      - close
+      Content-Length:
+      - '8634'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 28 Feb 2021 20:15:27 GMT
+      Server:
+      - akka-http/10.2.3
+    status:
+      code: 200
+      message: OK
+version: 1

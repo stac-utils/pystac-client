@@ -24,15 +24,15 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.6"
 pystac = "^0.5.4"
 pyRFC3339 = "^1.1"
 typing-extensions = "^3.7.4"
 "backports.cached-property" = "^1.0.1"
+flake8 = "^3.8.4"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
-flake8 = "^3.8.4"
 Sphinx = "^3.5.1"
 bump2version = "^1.0.1"
 tox = "^3.22.0"
@@ -47,4 +47,9 @@ requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.vulture]
-paths = ["pystac_api"]
+paths = ["pystac_api", "vulture_allow.py"]
+exclude = ["pystac_api/__init__.py"]
+
+[tool.isort]
+skip = ["pystac_api/__init__.py"]
+profile = "black"

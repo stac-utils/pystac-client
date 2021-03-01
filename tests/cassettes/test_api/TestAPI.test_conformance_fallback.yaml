@@ -1,0 +1,47 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - pystac_api/0.1.0 (Darwin)
+    method: GET
+    uri: https://eod-catalog-svc-prod.astraea.earth/conformance
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAJzQwQ7CIAwG4HfhLLDpbc/hzRjDsGOYjSKtmYnx3QV3MPG07cKJ72//voTF0GEa
+        6YiiOYmeOTZaT9OkMEJwnlQA1hTBanTWRC87MPxIQLLWtap08flJIHZbNRo6VNu5A7wRhkUBF4vj
+        iEHuvzzBPUcMA1j2GOiXQGxsUQqTm3m2hahKtsBG1X+VF4AyrHyTBCbZfpvN1WPedP3kzsNwXddw
+        vk5gePL6ZTGxOL8/AAAA//8DACWSEvZfAgAA
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - X-Astraea-Catalog-Client
+      - Authorization, Content-Type, X-Requested-With
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 28 Feb 2021 01:58:07 GMT
+      Server:
+      - akka-http/10.2.3
+      Transfer-Encoding:
+      - chunked
+    status:
+      code: 200
+      message: OK
+version: 1
