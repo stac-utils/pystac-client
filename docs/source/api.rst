@@ -24,6 +24,14 @@ Conformance
     :undoc-members:
     :show-inheritance:
 
+Paging
+----------
+
+.. automodule:: pystac_api.paging
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 Exceptions
 ----------
 

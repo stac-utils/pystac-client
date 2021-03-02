@@ -1,0 +1,42 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Connection:
+      - close
+      Host:
+      - api.radiant.earth
+      User-Agent:
+      - Python-urllib/3.8
+    method: GET
+    uri: https://api.radiant.earth/mlhub/v1//search
+  response:
+    body:
+      string: '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+        <title>401 Unauthorized</title>
+
+        <h1>Unauthorized</h1>
+
+        <p>The server could not verify that you are authorized to access the URL requested.
+        You either supplied the wrong credentials (e.g. a bad password), or your browser
+        doesn''t understand how to supply the credentials required.</p>
+
+        '
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Connection:
+      - close
+      Content-Length:
+      - '338'
+      Content-Type:
+      - text/html; charset=utf-8
+      Date:
+      - Tue, 02 Mar 2021 02:19:49 GMT
+      Server:
+      - gunicorn/20.0.4
+    status:
+      code: 401
+      message: UNAUTHORIZED
+version: 1
