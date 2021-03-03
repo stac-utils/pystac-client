@@ -16,6 +16,14 @@ Main Interface
     :undoc-members:
     :show-inheritance:
 
+Item Search
+-----------
+
+.. automodule:: pystac_api.item_search
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 Conformance
 -----------
 

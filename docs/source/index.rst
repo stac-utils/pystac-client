@@ -37,8 +37,12 @@ This library is intended to work with services that implement 1 or more of the f
 
 * `STAC API - Core <https://github.com/radiantearth/stac-api-spec/tree/master/core>`__
 * `STAC API - Item Search <https://github.com/radiantearth/stac-api-spec/tree/master/item-search>`__
+   * `Fields Extension <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/fields>`__ (**COMING SOON**)
+   * `Query Extension <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/query>`__ (**COMING SOON**)
+   * `Sort Extension <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/sort>`__ (**COMING SOON**)
+   * `Context Extension <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/context>`__ (**COMING SOON**)
 * `STAC API - Features <https://github.com/radiantearth/stac-api-spec/tree/master/ogcapi-features>`__ (based on
-  `OGC API - Features <https://www.ogc.org/standards/ogcapi-features>`__)
+  `OGC API - Features <https://www.ogc.org/standards/ogcapi-features>`__) (**COMING SOON**)
 
 User Guide
 ----------
@@ -51,7 +55,7 @@ includes user guides for working with paginated responses (from the ``/collectio
 .. toctree::
    :maxdepth: 2
 
-   usage/stac
+   usage/stac_index
 
 API Documentation
 -----------------

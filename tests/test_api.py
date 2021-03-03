@@ -1,17 +1,20 @@
+from datetime import datetime
+
 import pystac
 import pytest
 
 from pystac_api import API, ConformanceClasses
 from pystac_api.exceptions import ConformanceError
 
-from .helpers import ASTRAEA_URL, read_data_file
+from .helpers import ASTRAEA_URL, TEST_DATA, read_data_file
 
 
 class TestAPI:
 
+    ASTRAEA_API_PATH = str(TEST_DATA / 'astraea_api.json')
+
     def test_instance(self):
-        api_content = read_data_file('astraea_api.json', parse_json=True)
-        api = API.from_dict(api_content)
+        api = API.from_file(TestAPI.ASTRAEA_API_PATH)
 
         # An API instance is also a Catalog instance
         assert isinstance(api, pystac.Catalog)
@@ -20,8 +23,7 @@ class TestAPI:
 
     @pytest.mark.vcr
     def test_links(self):
-        api_content = read_data_file('astraea_api.json', parse_json=True)
-        api = API.from_dict(api_content)
+        api = API.from_file(TestAPI.ASTRAEA_API_PATH)
 
         # Should be able to get collections via links as with a typical PySTAC Catalog
         collection_links = api.get_links('child')
@@ -97,3 +99,49 @@ class TestAPI:
         api = API.from_file(ASTRAEA_URL)
 
         assert api.title == 'Astraea Earth OnDemand'
+
+
+class TestAPISearch:
+
+    @pytest.fixture(scope='function')
+    def api(self):
+        return API.from_file(str(TEST_DATA / 'astraea_api.json'))
+
+    def test_search_conformance_error(self, api):
+        """Should raise a NotImplementedError if the API doesn't conform to the Item Search spec. Message should
+        include information about the spec that was not conformed to."""
+        # Set the conformance to only STAC API - Core
+        api.conformance = [
+            ConformanceClasses.STAC_API_CORE.uri
+        ]
+
+        with pytest.raises(NotImplementedError) as excinfo:
+            api.search(limit=10, max_items=10, collections='naip')
+
+        assert ConformanceClasses.STAC_API_ITEM_SEARCH.name in str(excinfo.value)
+        assert all(uri in str(excinfo.value) for uri in ConformanceClasses.STAC_API_ITEM_SEARCH.all_uris)
+
+    def test_no_search_link(self, api):
+        # Remove the search link
+        api.remove_links('search')
+
+        with pytest.raises(NotImplementedError) as excinfo:
+            api.search(limit=10, max_items=10, collections='naip')
+
+        assert 'No link with a "rel" type of "search"' in str(excinfo.value)
+
+    def test_search(self, api):
+        results = api.search(
+            bbox=[-73.21, 43.99, -73.12, 44.05],
+            collections='naip',
+            limit=10,
+            max_items=20,
+            datetime=[datetime(2020, 1, 1, 0, 0, 0), None]
+        )
+
+        assert results.search_parameters_post == {
+            'bbox': (-73.21, 43.99, -73.12, 44.05),
+            'collections': ('naip',),
+            'limit': 10,
+            'datetime': ('2020-01-01T00:00:00Z', '..')
+        }

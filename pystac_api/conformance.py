@@ -89,7 +89,15 @@ STAC_API_CORE = ConformanceClass(
 )
 """Used to test conformance with the STAC API - Core spec."""
 
+STAC_API_ITEM_SEARCH = ConformanceClass(
+    name='STAC API - Item Search',
+    uri=f'{STAC_PREFIX}/item-search',
+    alternative_uris={f'{STAC_PREFIX_LEGACY}/req/stac-search'}
+)
+"""Used to test conformance with the STAC API - Item Search spec."""
+
 
 class ConformanceClasses:
     """Enumerates the conformance classes used by this package."""
     STAC_API_CORE = STAC_API_CORE
+    STAC_API_ITEM_SEARCH = STAC_API_ITEM_SEARCH

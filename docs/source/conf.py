@@ -6,6 +6,7 @@
 
 import re
 import sys
+import toml
 from pathlib import Path
 
 # -- Path setup --------------------------------------------------------------
@@ -22,6 +23,18 @@ from pystac_api import __version__  # noqa: E402
 project = 'pystac-api'
 copyright = '2021, Jon Duckworth'
 author = 'Jon Duckworth'
+github_user = 'duckontheweb'
+github_repo = 'pystac-api'
+
+# Get the package description
+try:
+    pyproject_file = Path(__file__).parent.parent.parent / 'pyproject.toml'
+    with pyproject_file.open('r') as src:
+        pyproject = toml.load(src)
+
+    package_description = pyproject.get('tool', {}).get('poetry', {}).get('description', '')
+except Exception:
+    package_description = ''
 
 # The full version, including alpha/beta/rc tags
 version = re.fullmatch(r'^(\d+\.\d+\.\d).*$', __version__).group(1)
@@ -57,6 +70,14 @@ exclude_patterns = []
 #
 html_theme = 'alabaster'
 
+html_theme_options = {
+    'sidebar_collapse': False,
+    'fixed_sidebar': True,
+    'github_button': True,
+    'github_user': github_user,
+    'github_repo': github_repo,
+    'description': package_description
+}
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
@@ -69,3 +90,7 @@ intersphinx_mapping = {
     'requests': ('https://requests.readthedocs.io/en/master', None),
     'pystac': ('https://pystac.readthedocs.io/en/latest', None),
 }
+
+# -- Options for autodoc extension -------------------------------------------
+
+autodoc_typehints = "none"
