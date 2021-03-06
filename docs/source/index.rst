@@ -55,7 +55,9 @@ includes user guides for working with paginated responses (from the ``/collectio
 .. toctree::
    :maxdepth: 2
 
-   usage/stac_index
+   usage/stac_api
+   usage/stac_api_extensions
+   usage/ogc_features
 
 API Documentation
 -----------------

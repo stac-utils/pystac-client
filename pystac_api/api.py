@@ -1,11 +1,11 @@
 from copy import deepcopy
-from typing import Callable, Optional, Union
+from typing import Callable, Optional
 
 import pystac
 import pystac.stac_object
 import pystac.validation
 
-from pystac_api.conformance import ConformanceClass, ConformanceClasses
+from pystac_api.conformance import ConformanceClasses
 from pystac_api.exceptions import ConformanceError
 from pystac_api.item_search import (
     BBoxLike,
@@ -15,9 +15,10 @@ from pystac_api.item_search import (
     IntersectsLike,
     ItemSearch,
 )
+from pystac_api.stac_api_object import STACAPIObjectMixin
 
 
-class API(pystac.Catalog):
+class API(pystac.Catalog, STACAPIObjectMixin):
     """Instances of the ``API`` class inherit from :class:`pystac.Catalog` and provide a convenient way of interacting
     with APIs that conform to the `STAC API spec <https://github.com/radiantearth/stac-api-spec>`_. In addition to being
     a valid `STAC Catalog <https://github.com/radiantearth/stac-spec/blob/master/catalog-spec/catalog-spec.md>`_ the
@@ -116,30 +117,6 @@ class API(pystac.Catalog):
                 api.add_link(pystac.Link.from_dict(link))
 
         return api
-
-    def conforms_to(self, spec: Union[str, ConformanceClass]) -> bool:
-        """Whether the API conforms to the given standard. This method only checks against the ``"conformsTo"``
-        property from the API landing page and does not make any additional calls to a ``/conformance`` endpoint
-        even if the API provides such an endpoint.
-
-        Parameters
-        ----------
-        spec : str or ConformanceClass
-            Either a :class:`~pystac_api.conformance.ConformanceClass` instance or the URI string for the spec.
-
-        Returns
-        -------
-        bool
-            Indicates if the API conforms to the given spec or URI.
-        """
-        if not self.conformance:
-            return False
-        for conformance_uri in self.conformance:
-            if isinstance(spec, str) and conformance_uri == spec:
-                return True
-            if conformance_uri in spec:
-                return True
-        return False
 
     def search(
         self,
@@ -240,4 +217,5 @@ class API(pystac.Catalog):
             max_items=max_items,
             method=method,
             next_resolver=next_resolver,
+            conformance=list(self.conformance)
         )

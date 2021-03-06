@@ -1,12 +1,15 @@
+STAC API
+========
+
 Core API
-=========
+--------
 
 The most basic implementation of a STAC API is simply an endpoint that returns a valid STAC Catalog. Besides being a
 valid STAC Catalog, the JSON object must contain a ``"conformsTo"`` attribute that is a list of conformance URIs for
 the standards that the service conforms to.
 
 API Interface
--------------
++++++++++++++
 
 The :class:`pystac_api.API` class is the main interface for working with services that conform to the STAC API spec.
 This class inherits from the :class:`pystac.Catalog` class and in addition to the methods and attributes implemented by
@@ -16,7 +19,7 @@ a Catalog, it also includes convenience methods and attributes for:
 * Querying a search endpoint (if the API conforms to the STAC API - Item Search spec)
 
 Create an Instance
-++++++++++++++++++
+__________________
 
 The easiest way to create an :class:`~pystac_api.API` instance is using the ``pystac_api.API.from_file`` method (inherited
 from :meth:`pystac.STACObject.from_file`). The following code creates an instance by making a call to the Astraea Earth
@@ -30,7 +33,7 @@ OnDemand landing page.
     'Astraea Earth OnDemand'
 
 Check Conformance
-+++++++++++++++++
+_________________
 
 You can use the :meth:`pystac_api.API.conforms_to` method to check conformance against conformance classes (specs)
 commonly used in STAC APIs. This method provides the ability to check both against a single conformance URI (e.g.
@@ -59,7 +62,7 @@ class as these represent the official conformance URIs defined in the STAC API s
     'https://api.stacspec.org/v1.0.0-beta.1/item-search'
 
 Collections
------------
++++++++++++
 
 STAC APIs may provide a curated list of catalogs and collections via their ``"links"`` attribute. Links with a ``"rel"``
 type of ``"child"`` represent catalogs or collections provided by the API. Since :class:`~pystac_api.API` instances are
@@ -75,3 +78,48 @@ also :class:`pystac.Catalog` instances, we can use the methods defined on that c
     >>> first_collection = first_child_link.target
     >>> first_collection.title
     'Landsat 8 C1 T1'
+
+Item Search
+-----------
+
+STAC API services may optionally implement a ``/search`` endpoint as describe in the  `STAC API - Item Search spec
+<https://github.com/radiantearth/stac-api-spec/tree/master/item-search>`__. This endpoint allows clients to query
+STAC Items across the entire service using a variety of filter parameters. See the `Query Parameter Table
+<https://github.com/radiantearth/stac-api-spec/tree/master/item-search#query-parameter-table>`__ from that spec for
+details on the meaning of each parameter.
+
+The :meth:`pystac_api.API.search` method provides an interface for making requests to a service's
+"search" endpoint. This method returns a :class:`pystac_api.ItemSearch` instance.
+
+.. code-block:: python
+
+    >>> from pystac_api import API
+    >>> api = API.from_file('https://eod-catalog-svc-prod.astraea.earth')
+    >>> results = api.search(
+    ...     bbox=[-73.21, 43.99, -73.12, 44.05],
+    ...     datetime=['2019-01-01T00:00:00Z', '2019-01-02T00:00:00Z'],
+    ...     max_items=5
+    ... )
+
+Instances of :class:`~pystac_api.ItemSearch` have 2 methods for iterating over results:
+
+* :meth:`ItemSearch.item_collections <pystac_api.ItemSearch.item_collections>`: iterates over *pages* of results,
+  yielding an :class:`~pystac_api.ItemCollection` for each page of results.
+* :meth:`ItemSearch.items <pystac_api.ItemSearch.items>`: iterate over individual results, yielding a
+  :class:`pystac.Item` instance for all items that match the search criteria.
+
+.. code-block:: python
+
+    >>> for item in results.items():
+    ...     print(item.id)
+    S2B_OPER_MSI_L2A_TL_SGS__20190101T200120_A009518_T18TXP_N02.11
+    MCD43A4.A2019010.h12v04.006.2019022234410
+    MCD43A4.A2019009.h12v04.006.2019022222645
+    MYD11A1.A2019002.h12v04.006.2019003174703
+    MYD11A1.A2019001.h12v04.006.2019002165238
+
+The :meth:`~pystac_api.ItemSearch.items` method handles retrieval of successive pages of results by finding any links
+with a ``"rel"`` type of ``"next"`` and parsing them to construct the next request. The default implementation of this
+``"next"`` link parsing assumes that the link follows the spec for an extended STAC link as described in the
+`STAC API - Item Search: Paging <https://github.com/radiantearth/stac-api-spec/tree/master/item-search#paging>`__
+section. See the :mod:`Paging <pystac_api.paging>` docs for details on how to customize this behavior.

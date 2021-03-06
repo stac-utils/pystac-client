@@ -71,7 +71,7 @@ exclude_patterns = []
 html_theme = 'alabaster'
 
 html_theme_options = {
-    'sidebar_collapse': False,
+    # 'sidebar_collapse': False,
     'fixed_sidebar': True,
     'github_button': True,
     'github_user': github_user,

@@ -11,7 +11,9 @@ from urllib.request import Request
 import pystac
 import pytz
 
+from pystac_api.item_collection import ItemCollection
 from pystac_api.paging import paginate, simple_stac_resolver
+from pystac_api.stac_api_object import STACAPIObjectMixin
 
 DatetimeOrTimestamp = Optional[Union[datetime_, str]]
 Datetime = Union[Tuple[str], Tuple[str, str]]
@@ -40,27 +42,35 @@ Intersects = dict
 IntersectsLike = Union[str, Intersects, object]
 
 
-class ItemSearch:
-    """Represents a query to an Item Search endpoint as described in the `STAC API - Item Search spec
-    <https://github.com/radiantearth/stac-api-spec/tree/master/item-search>`__.
-
-    Instances of this class are iterators that will yield :class:`pystac.Item` instances for each item matched
-    by the search parameters. The instance handles paging through responses from the API until either all matched items
-    have been yielded or the specified maximum number of items has been reached.
+class ItemSearch(STACAPIObjectMixin):
+    """Represents a deferred query to an Item Search endpoint as described in the `STAC API - Item Search spec
+    <https://github.com/radiantearth/stac-api-spec/tree/master/item-search>`__. No request is sent to the API until
+    either the :meth:`ItemSearch.item_collections` or :meth:`ItemSearch.items` method is called and iterated over.
 
     If ``intersects`` is included in the search parameters, then the instance will first try to make a ``POST`` request.
     If server responds with a ``405 - Method Not Allowed`` status code, then the instance will fall back to using
     ``GET`` requests for all subsequent requests.
 
-    All parameters, with the exception of ``max_items`` map to the corresponding query parameters describes in the
-    `STAC API - Item Search: Query Parameters Table
+    All "Parameters", with the exception of ``max_items``, ``method``, and ``url`` correspond to query parameters
+    described in the `STAC API - Item Search: Query Parameters Table
     <https://github.com/radiantearth/stac-api-spec/tree/master/item-search#query-parameter-table>`__ docs. Please refer
     to those docs for details on how these parameters filter search results.
+
+    "Other Parameters" are other keyword arguments specific to this library's implementation and do not correspond to
+    concepts in the STAC API spec.
 
     Parameters
     ----------
     url : str
         The URL to the item-search endpoint
+    method : str or None, optional
+        The HTTP method to use when making a request to the service. This must be either ``"GET"``, ``"POST"``, or
+        ``None``. If ``None``, this will default to ``"POST"`` if the ``intersects`` argument is present and ``"GET"``
+        if not. If a ``"POST"`` request receives a ``405`` status for the response, it will automatically retry with a
+        ``"GET"`` request for all subsequent requests.
+    max_items : int or None, optional
+        The maximum number of items to return from the search. *Note that this is not a STAC API - Item Search parameter
+        and is instead used by the client to limit the total number of returned items*.
     limit : int, optional
         The maximum number of items to return *per page*. Defaults to ``None``, which falls back to the limit set by the
         service.
@@ -85,36 +95,33 @@ class ItemSearch:
     collections: list, optional
         List of one or more Collection IDs or :class:`pystac.Collection` instances. Only Items in one of the provided
         Collections will be searched
-    max_items : int or None, optional
-        The maximum number of items to return from the search. *Note that this is not a STAC API - Item Search parameter
-        and is instead used by the client to limit the total number of returned items*.
-    method : str or None, optional
-        The HTTP method to use when making a request to the service. This must be either ``"GET"``, ``"POST"``, or
-        ``None``. If ``None``, this will default to ``"POST"`` if the ``intersects`` argument is present and ``"GET"``
-        if not. If a ``"POST"`` request receives a ``405`` status for the response, it will automatically retry with a
-        ``"GET"`` request for all subsequent requests.
-    next_resolver: Callable, optional
+
+    Other Parameters
+    ----------------
+    next_resolver : Callable, optional
         A callable that will be used to construct the next request based on a "next" link and the previous request.
         Defaults to using the :func:`~pystac_api.paging.simple_stac_resolver`.
-
-    Yields
-    ------
-    item : pystac.Item
+    conformance : list, optional
+        A list of conformance URIs indicating the specs that this service conforms to. Note that these are *not*
+        published as part of the ``"search"`` endpoint and must be obtained from the service's landing page.
     """
     def __init__(
         self,
         url: str,
         *,
+        method: Optional[str] = None,
+        max_items: Optional[int] = None,
         limit: Optional[int] = None,
         bbox: Optional[BBoxLike] = None,
         datetime: Optional[DatetimeLike] = None,
         intersects: Optional[IntersectsLike] = None,
         ids: Optional[IDsLike] = None,
         collections: Optional[CollectionsLike] = None,
-        max_items: Optional[int] = None,
-        method: Optional[str] = None,
-        next_resolver: Callable = simple_stac_resolver
+        next_resolver: Callable = simple_stac_resolver,
+        conformance: List[str] = []
     ):
+        self.conformance = conformance
+
         # If method is not provided, determine based on presence of "intersects" argument
         if method is None:
             method = 'POST' if intersects is not None else 'GET'
@@ -134,6 +141,8 @@ class ItemSearch:
 
     @property
     def url(self):
+        """The base URL to which search requests will be made. This may include query string parameters, but any
+        parameters that overlap with initialization arguments will be overwritten."""
         return str(self._url)
 
     @property
@@ -214,10 +223,6 @@ class ItemSearch:
         return deepcopy(getattr(value, '__geo_interface__', value))
 
     @property
-    def search_parameters(self) -> dict:
-        return deepcopy(self._search_parameters)
-
-    @property
     def search_parameters_get(self) -> dict:
         """A dictionary containing all parameters associated with this search, formatted to be passed as query string
         parameters in a ``"GET"`` request according to the requirements in the `Query Parameters and Fields
@@ -226,7 +231,7 @@ class ItemSearch:
             param: '/'.join(map(str, value)) if param == 'datetime'
                    else ','.join(map(str, value)) if type(value) is tuple
                    else value
-            for param, value in self.search_parameters.items()
+            for param, value in self._search_parameters.items()
             if value is not None
         }
 
@@ -235,19 +240,19 @@ class ItemSearch:
         """A dictionary containing all parameters associated with this search, formatted to be passed in the body of a
         ``POST`` request."""
         return {
-            key: value
-            for key, value in self.search_parameters.items()
+            key: deepcopy(value)
+            for key, value in self._search_parameters.items()
             if value is not None
         }
 
-    def item_collections(self) -> Iterator[dict]:
+    def item_collections(self) -> Iterator[ItemCollection]:
         """Iterator that yields dictionaries matching the `ItemCollection
         <https://github.com/radiantearth/stac-api-spec/blob/master/fragments/itemcollection/README.md>`__ spec. Each of
         these items represents a "page" or results for the search.
 
         Yields
         -------
-        page : dict
+        item_collection : pystac_api.ItemCollection
         """
         if self.method == 'GET':
             parsed = urlsplit(self.url)
@@ -270,15 +275,20 @@ class ItemSearch:
             request=request,
             next_resolver=self._next_resolver
         ):
-            self._current_page = page
-            yield page
+            yield ItemCollection.from_dict(page, conformance=self.conformance)
 
-    def __iter__(self) -> Iterator[pystac.Item]:
-        """Iterates over the search results by paging through the responses and yielding items
-        from each."""
+    def items(self) -> Iterator[pystac.Item]:
+        """Iterator that yields :class:`pystac.Item` instances for each item matching the given search parameters. Calls
+        :meth:`ItemSearch.item_collections()` internally and yields from
+        :attr:`ItemCollection.features <pystac_api.ItemCollection.features>` for each page of results.
+
+        Yields
+        ------
+        item : pystac.Item
+        """
         def _paginate():
-            for page in self.item_collections():
-                yield from map(pystac.Item.from_dict, page.get('features'))
+            for item_collection in self.item_collections():
+                yield from item_collection.features
 
         try:
             yield from it.islice(_paginate(), self._max_items)

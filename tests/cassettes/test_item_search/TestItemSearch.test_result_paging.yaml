@@ -500,7 +500,7 @@ interactions:
       Content-Type:
       - application/geo+json
       Date:
-      - Tue, 02 Mar 2021 15:57:00 GMT
+      - Sat, 06 Mar 2021 00:12:54 GMT
       Server:
       - akka-http/10.2.3
     status:
@@ -1007,7 +1007,539 @@ interactions:
       Content-Type:
       - application/geo+json
       Date:
-      - Tue, 02 Mar 2021 15:57:01 GMT
+      - Sat, 06 Mar 2021 00:12:55 GMT
+      Server:
+      - akka-http/10.2.3
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Connection:
+      - close
+      Host:
+      - eod-catalog-svc-prod.astraea.earth
+      User-Agent:
+      - Python-urllib/3.8
+    method: GET
+    uri: http://eod-catalog-svc-prod.astraea.earth/search?next=1606823457521,m_4307307_nw_18_1_20120711,naip&limit=10&bbox=-73.21,43.99,-73.12,44.05&collections=naip
+  response:
+    body:
+      string: '{"context":{"limit":10,"matched":30,"returned":10},"features":[{"assets":{"analytic_rgbir_cog":{"bundleable":true,"eo:bands":[{"common_name":"red","name":"B1"},{"common_name":"green","name":"B2"},{"common_name":"blue","name":"B3"},{"common_name":"nir","name":"B4"}],"eo:common_name":"red","eo:gsd":0.1,"gsd":0.1,"href":"s3://naip-analytic/vt/2012/100cm/rgbir_cog/43073/m_4307308_nw_18_1_20120712.tif","roles":["data"],"size":199749362,"title":"Analytic
+        RGBIR COG","type":"image/tiff; application=geotiff; profile=cloud-optimized"},"analytic_rgbir":{"bundleable":true,"eo:bands":[{"common_name":"red","name":"B1"},{"common_name":"green","name":"B2"},{"common_name":"blue","name":"B3"},{"common_name":"nir","name":"B4"}],"eo:common_name":"red","eo:gsd":0.1,"gsd":0.1,"href":"s3://naip-analytic/vt/2012/100cm/rgbir/43073/m_4307308_nw_18_1_20120712.mrf","roles":["data"],"size":197595674,"title":"Analytic
+        RGBIR","type":"application/x.mrf"},"source_rgbir":{"bundleable":true,"eo:bands":[{"common_name":"red","name":"B1"},{"common_name":"green","name":"B2"},{"common_name":"blue","name":"B3"},{"common_name":"nir","name":"B4"}],"eo:common_name":"red","eo:gsd":0.1,"gsd":0.1,"href":"s3://naip-source/vt/2012/100cm/rgbir/43073/m_4307308_nw_18_1_20120712.tif","roles":["data"],"size":176984737,"title":"Source
+        RGBIR","type":"image/tiff; application=geotiff"},"visual_rgb":{"bundleable":true,"eo:bands":[{"common_name":"red","name":"B1"},{"common_name":"green","name":"B2"},{"common_name":"blue","name":"B3"}],"eo:common_name":"red","eo:gsd":0.1,"gsd":0.1,"href":"s3://naip-visualization/vt/2012/100cm/rgb/43073/m_4307308_nw_18_1_20120712.tif","roles":["overview","preview"],"size":17861729,"title":"Visualization
+        RGB","type":"image/tiff; application=geotiff"}},"bbox":[-73.13079104633407,43.93368564811301,-73.05663292850241,44.00380647128213],"collection":"naip","geometry":{"coordinates":[[[[-73.13079104633407,43.934885020585405],[-73.09483472940761,43.93429098792297],[-73.05887952572388,43.93368564811301],[-73.05775722670653,43.9681450535484],[-73.05663292850241,44.00260422746782],[-73.0926296836562,44.00321101646918],[-73.12862755681881,44.00380647128213],[-73.12971026424444,43.96934586086986],[-73.13079104633407,43.934885020585405]]]],"type":"MultiPolygon"},"id":"m_4307308_nw_18_1_20120712","links":[{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4307308_nw_18_1_20120712","operations":["get"],"rel":"self","title":"Self","type":"application/geo+json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip","rel":"parent","title":"Parent","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip","rel":"collection","title":"Collection","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth","rel":"root","title":"Root","type":"application/json"},{"capabilities":{"parameters":[{"name":"composite","values":[{"description":"Default
+        View.","name":"default","title":"Default View"},{"description":"True Color
+        Composite.","name":"true_color","title":"True Color Composite"},{"description":"Normalized
+        Difference Vegetation Index.","name":"ndvi","title":"NDVI"},{"description":"Normalized
+        Difference Water Index using Green and NIR per McFeeters(1997).","name":"ndwi","title":"NDWI
+        (Green & NIR)"},{"description":"Color Infrared (Vegetation) consisting of
+        Near-infrared, Red, and Green bands.","name":"color_infrared_veg1","title":"Color
+        Infrared Vegetation (NRG)"},{"description":"Color Infrared (Vegetation) consisting
+        of Near-infrared, Green, and Blue bands.","name":"color_infrared_veg2","title":"Color
+        Infrared Vegetation 2 (NGB)"}]}]},"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4307308_nw_18_1_20120712/preview","rel":"preview","title":"Preview
+        Image","type":"image/jpeg"},{"capabilities":{"parameters":[{"name":"composite","values":[{"description":"Default
+        View.","name":"default","title":"Default View"},{"description":"True Color
+        Composite.","name":"true_color","title":"True Color Composite"},{"description":"Normalized
+        Difference Vegetation Index.","name":"ndvi","title":"NDVI"},{"description":"Normalized
+        Difference Water Index using Green and NIR per McFeeters(1997).","name":"ndwi","title":"NDWI
+        (Green & NIR)"},{"description":"Color Infrared (Vegetation) consisting of
+        Near-infrared, Red, and Green bands.","name":"color_infrared_veg1","title":"Color
+        Infrared Vegetation (NRG)"},{"description":"Color Infrared (Vegetation) consisting
+        of Near-infrared, Green, and Blue bands.","name":"color_infrared_veg2","title":"Color
+        Infrared Vegetation 2 (NGB)"}]}]},"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4307308_nw_18_1_20120712/maplayer?format=zxyratio","rel":"maplayer","title":"TMS
+        Map Layer with Ratio","type":"application/json"},{"capabilities":{"parameters":[{"name":"composite","values":[{"description":"Default
+        View.","name":"default","title":"Default View"},{"description":"True Color
+        Composite.","name":"true_color","title":"True Color Composite"},{"description":"Normalized
+        Difference Vegetation Index.","name":"ndvi","title":"NDVI"},{"description":"Normalized
+        Difference Water Index using Green and NIR per McFeeters(1997).","name":"ndwi","title":"NDWI
+        (Green & NIR)"},{"description":"Color Infrared (Vegetation) consisting of
+        Near-infrared, Red, and Green bands.","name":"color_infrared_veg1","title":"Color
+        Infrared Vegetation (NRG)"},{"description":"Color Infrared (Vegetation) consisting
+        of Near-infrared, Green, and Blue bands.","name":"color_infrared_veg2","title":"Color
+        Infrared Vegetation 2 (NGB)"}]}]},"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4307308_nw_18_1_20120712/maplayer?format=zxy","rel":"maplayer-zxy","title":"TMS
+        Map Layer without Ratio","type":"application/json"},{"capabilities":{"parameters":[{"name":"composite","values":[{"description":"Default
+        View.","name":"default","title":"Default View"},{"description":"True Color
+        Composite.","name":"true_color","title":"True Color Composite"},{"description":"Normalized
+        Difference Vegetation Index.","name":"ndvi","title":"NDVI"},{"description":"Normalized
+        Difference Water Index using Green and NIR per McFeeters(1997).","name":"ndwi","title":"NDWI
+        (Green & NIR)"},{"description":"Color Infrared (Vegetation) consisting of
+        Near-infrared, Red, and Green bands.","name":"color_infrared_veg1","title":"Color
+        Infrared Vegetation (NRG)"},{"description":"Color Infrared (Vegetation) consisting
+        of Near-infrared, Green, and Blue bands.","name":"color_infrared_veg2","title":"Color
+        Infrared Vegetation 2 (NGB)"}]}]},"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4307308_nw_18_1_20120712/maplayer/leaflet","rel":"leaflet","title":"Minimal
+        Leaflet Viewer","type":"text/html"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4307308_nw_18_1_20120712/maplayer/statistics","rel":"statistics","title":"Scene-level
+        Statistics","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4307308_nw_18_1_20120712/maplayer/tileinfo","rel":"tileinfo","title":"Map
+        Layer Metadata","type":"application/json"},{"href":"https://spdx.org/licenses/CC-PDDC.html","rel":"license","title":"License","type":"text/html"}],"properties":{"aac:collection_attribution":"USDA","aac:collection_display_name":"NAIP","aac:collection_family_display_name":"NAIP","aac:item_attribution":"USDA","aac:item_family":"naip","constellation":"naip","created":"2020-12-01T06:50:59.751264-05:00","datetime":"2012-07-12T12:00:00Z","eo:constellation":"naip","license":"CC-PDDC","providers":[{"attribution":"USDA","name":"USDA","roles":["producer","licensor"],"url":"https://www.fsa.usda.gov/programs-and-services/aerial-photography/imagery-programs/naip-imagery/"},{"attribution":"ESRI","name":"ESRI","roles":["processor"],"url":"https://www.esri.com/en-us/home"},{"attribution":"Amazon
+        Web Services","name":"AWS","roles":["host"],"url":"https://aws.amazon.com/"}]},"stac_extensions":["aac"],"stac_version":"1.0.0-beta.2","type":"Feature"},{"assets":{"analytic_rgbir_cog":{"bundleable":true,"eo:bands":[{"common_name":"red","name":"B1"},{"common_name":"green","name":"B2"},{"common_name":"blue","name":"B3"},{"common_name":"nir","name":"B4"}],"eo:common_name":"red","eo:gsd":0.1,"gsd":0.1,"href":"s3://naip-analytic/vt/2012/100cm/rgbir_cog/44073/m_4407363_se_18_1_20120712.tif","roles":["data"],"size":197587888,"title":"Analytic
+        RGBIR COG","type":"image/tiff; application=geotiff; profile=cloud-optimized"},"analytic_rgbir":{"bundleable":true,"eo:bands":[{"common_name":"red","name":"B1"},{"common_name":"green","name":"B2"},{"common_name":"blue","name":"B3"},{"common_name":"nir","name":"B4"}],"eo:common_name":"red","eo:gsd":0.1,"gsd":0.1,"href":"s3://naip-analytic/vt/2012/100cm/rgbir/44073/m_4407363_se_18_1_20120712.mrf","roles":["data"],"size":194056828,"title":"Analytic
+        RGBIR","type":"application/x.mrf"},"source_rgbir":{"bundleable":true,"eo:bands":[{"common_name":"red","name":"B1"},{"common_name":"green","name":"B2"},{"common_name":"blue","name":"B3"},{"common_name":"nir","name":"B4"}],"eo:common_name":"red","eo:gsd":0.1,"gsd":0.1,"href":"s3://naip-source/vt/2012/100cm/rgbir/44073/m_4407363_se_18_1_20120712.tif","roles":["data"],"size":176586099,"title":"Source
+        RGBIR","type":"image/tiff; application=geotiff"},"visual_rgb":{"bundleable":true,"eo:bands":[{"common_name":"red","name":"B1"},{"common_name":"green","name":"B2"},{"common_name":"blue","name":"B3"}],"eo:common_name":"red","eo:gsd":0.1,"gsd":0.1,"href":"s3://naip-visualization/vt/2012/100cm/rgb/44073/m_4407363_se_18_1_20120712.tif","roles":["overview","preview"],"size":16239035,"title":"Visualization
+        RGB","type":"image/tiff; application=geotiff"}},"bbox":[-73.19323529912697,43.996223578086486,-73.11919249659778,44.066270043827096],"collection":"naip","geometry":{"coordinates":[[[[-73.19323529912697,43.997382927914096],[-73.15730231363035,43.99680889986175],[-73.12137040423835,43.996223578086486],[-73.1202824196076,44.030665864029494],[-73.11919249659778,44.065107920070254],[-73.15516600396205,44.06569464230765],[-73.19114059204351,44.066270043827096],[-73.19218887779874,44.0318266000263],[-73.19323529912697,43.997382927914096]]]],"type":"MultiPolygon"},"id":"m_4407363_se_18_1_20120712","links":[{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4407363_se_18_1_20120712","operations":["get"],"rel":"self","title":"Self","type":"application/geo+json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip","rel":"parent","title":"Parent","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip","rel":"collection","title":"Collection","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth","rel":"root","title":"Root","type":"application/json"},{"capabilities":{"parameters":[{"name":"composite","values":[{"description":"Default
+        View.","name":"default","title":"Default View"},{"description":"True Color
+        Composite.","name":"true_color","title":"True Color Composite"},{"description":"Normalized
+        Difference Vegetation Index.","name":"ndvi","title":"NDVI"},{"description":"Normalized
+        Difference Water Index using Green and NIR per McFeeters(1997).","name":"ndwi","title":"NDWI
+        (Green & NIR)"},{"description":"Color Infrared (Vegetation) consisting of
+        Near-infrared, Red, and Green bands.","name":"color_infrared_veg1","title":"Color
+        Infrared Vegetation (NRG)"},{"description":"Color Infrared (Vegetation) consisting
+        of Near-infrared, Green, and Blue bands.","name":"color_infrared_veg2","title":"Color
+        Infrared Vegetation 2 (NGB)"}]}]},"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4407363_se_18_1_20120712/preview","rel":"preview","title":"Preview
+        Image","type":"image/jpeg"},{"capabilities":{"parameters":[{"name":"composite","values":[{"description":"Default
+        View.","name":"default","title":"Default View"},{"description":"True Color
+        Composite.","name":"true_color","title":"True Color Composite"},{"description":"Normalized
+        Difference Vegetation Index.","name":"ndvi","title":"NDVI"},{"description":"Normalized
+        Difference Water Index using Green and NIR per McFeeters(1997).","name":"ndwi","title":"NDWI
+        (Green & NIR)"},{"description":"Color Infrared (Vegetation) consisting of
+        Near-infrared, Red, and Green bands.","name":"color_infrared_veg1","title":"Color
+        Infrared Vegetation (NRG)"},{"description":"Color Infrared (Vegetation) consisting
+        of Near-infrared, Green, and Blue bands.","name":"color_infrared_veg2","title":"Color
+        Infrared Vegetation 2 (NGB)"}]}]},"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4407363_se_18_1_20120712/maplayer?format=zxyratio","rel":"maplayer","title":"TMS
+        Map Layer with Ratio","type":"application/json"},{"capabilities":{"parameters":[{"name":"composite","values":[{"description":"Default
+        View.","name":"default","title":"Default View"},{"description":"True Color
+        Composite.","name":"true_color","title":"True Color Composite"},{"description":"Normalized
+        Difference Vegetation Index.","name":"ndvi","title":"NDVI"},{"description":"Normalized
+        Difference Water Index using Green and NIR per McFeeters(1997).","name":"ndwi","title":"NDWI
+        (Green & NIR)"},{"description":"Color Infrared (Vegetation) consisting of
+        Near-infrared, Red, and Green bands.","name":"color_infrared_veg1","title":"Color
+        Infrared Vegetation (NRG)"},{"description":"Color Infrared (Vegetation) consisting
+        of Near-infrared, Green, and Blue bands.","name":"color_infrared_veg2","title":"Color
+        Infrared Vegetation 2 (NGB)"}]}]},"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4407363_se_18_1_20120712/maplayer?format=zxy","rel":"maplayer-zxy","title":"TMS
+        Map Layer without Ratio","type":"application/json"},{"capabilities":{"parameters":[{"name":"composite","values":[{"description":"Default
+        View.","name":"default","title":"Default View"},{"description":"True Color
+        Composite.","name":"true_color","title":"True Color Composite"},{"description":"Normalized
+        Difference Vegetation Index.","name":"ndvi","title":"NDVI"},{"description":"Normalized
+        Difference Water Index using Green and NIR per McFeeters(1997).","name":"ndwi","title":"NDWI
+        (Green & NIR)"},{"description":"Color Infrared (Vegetation) consisting of
+        Near-infrared, Red, and Green bands.","name":"color_infrared_veg1","title":"Color
+        Infrared Vegetation (NRG)"},{"description":"Color Infrared (Vegetation) consisting
+        of Near-infrared, Green, and Blue bands.","name":"color_infrared_veg2","title":"Color
+        Infrared Vegetation 2 (NGB)"}]}]},"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4407363_se_18_1_20120712/maplayer/leaflet","rel":"leaflet","title":"Minimal
+        Leaflet Viewer","type":"text/html"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4407363_se_18_1_20120712/maplayer/statistics","rel":"statistics","title":"Scene-level
+        Statistics","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4407363_se_18_1_20120712/maplayer/tileinfo","rel":"tileinfo","title":"Map
+        Layer Metadata","type":"application/json"},{"href":"https://spdx.org/licenses/CC-PDDC.html","rel":"license","title":"License","type":"text/html"}],"properties":{"aac:collection_attribution":"USDA","aac:collection_display_name":"NAIP","aac:collection_family_display_name":"NAIP","aac:item_attribution":"USDA","aac:item_family":"naip","constellation":"naip","created":"2020-12-01T07:31:42.62316-05:00","datetime":"2012-07-12T12:00:00Z","eo:constellation":"naip","license":"CC-PDDC","providers":[{"attribution":"USDA","name":"USDA","roles":["producer","licensor"],"url":"https://www.fsa.usda.gov/programs-and-services/aerial-photography/imagery-programs/naip-imagery/"},{"attribution":"ESRI","name":"ESRI","roles":["processor"],"url":"https://www.esri.com/en-us/home"},{"attribution":"Amazon
+        Web Services","name":"AWS","roles":["host"],"url":"https://aws.amazon.com/"}]},"stac_extensions":["aac"],"stac_version":"1.0.0-beta.2","type":"Feature"},{"assets":{"analytic_rgbir_cog":{"bundleable":true,"eo:bands":[{"common_name":"red","name":"B1"},{"common_name":"green","name":"B2"},{"common_name":"blue","name":"B3"},{"common_name":"nir","name":"B4"}],"eo:common_name":"red","eo:gsd":0.1,"gsd":0.1,"href":"s3://naip-analytic/vt/2012/100cm/rgbir_cog/44073/m_4407363_sw_18_1_20120711.tif","roles":["data"],"size":187816656,"title":"Analytic
+        RGBIR COG","type":"image/tiff; application=geotiff; profile=cloud-optimized"},"analytic_rgbir":{"bundleable":true,"eo:bands":[{"common_name":"red","name":"B1"},{"common_name":"green","name":"B2"},{"common_name":"blue","name":"B3"},{"common_name":"nir","name":"B4"}],"eo:common_name":"red","eo:gsd":0.1,"gsd":0.1,"href":"s3://naip-analytic/vt/2012/100cm/rgbir/44073/m_4407363_sw_18_1_20120711.mrf","roles":["data"],"size":180608470,"title":"Analytic
+        RGBIR","type":"application/x.mrf"},"source_rgbir":{"bundleable":true,"eo:bands":[{"common_name":"red","name":"B1"},{"common_name":"green","name":"B2"},{"common_name":"blue","name":"B3"},{"common_name":"nir","name":"B4"}],"eo:common_name":"red","eo:gsd":0.1,"gsd":0.1,"href":"s3://naip-source/vt/2012/100cm/rgbir/44073/m_4407363_sw_18_1_20120711.tif","roles":["data"],"size":176310203,"title":"Source
+        RGBIR","type":"image/tiff; application=geotiff"},"visual_rgb":{"bundleable":true,"eo:bands":[{"common_name":"red","name":"B1"},{"common_name":"green","name":"B2"},{"common_name":"blue","name":"B3"}],"eo:common_name":"red","eo:gsd":0.1,"gsd":0.1,"href":"s3://naip-visualization/vt/2012/100cm/rgb/44073/m_4407363_sw_18_1_20120711.tif","roles":["overview","preview"],"size":14814133,"title":"Visualization
+        RGB","type":"image/tiff; application=geotiff"}},"bbox":[-73.25565815527433,43.99626197501967,-73.18176117126207,44.066234328156014],"collection":"naip","geometry":{"coordinates":[[[[-73.25565815527433,43.99738087563103],[-73.21976133549032,43.99682706103038],[-73.18386555322157,43.99626197501967],[-73.18281429825564,44.03068747749993],[-73.18176117126207,44.065112751704554],[-73.21769849231958,44.06567918910049],[-73.25363685533739,44.066234328156014],[-73.254648404411,44.03180771526439],[-73.25565815527433,43.99738087563103]]]],"type":"MultiPolygon"},"id":"m_4407363_sw_18_1_20120711","links":[{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4407363_sw_18_1_20120711","operations":["get"],"rel":"self","title":"Self","type":"application/geo+json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip","rel":"parent","title":"Parent","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip","rel":"collection","title":"Collection","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth","rel":"root","title":"Root","type":"application/json"},{"capabilities":{"parameters":[{"name":"composite","values":[{"description":"Default
+        View.","name":"default","title":"Default View"},{"description":"True Color
+        Composite.","name":"true_color","title":"True Color Composite"},{"description":"Normalized
+        Difference Vegetation Index.","name":"ndvi","title":"NDVI"},{"description":"Normalized
+        Difference Water Index using Green and NIR per McFeeters(1997).","name":"ndwi","title":"NDWI
+        (Green & NIR)"},{"description":"Color Infrared (Vegetation) consisting of
+        Near-infrared, Red, and Green bands.","name":"color_infrared_veg1","title":"Color
+        Infrared Vegetation (NRG)"},{"description":"Color Infrared (Vegetation) consisting
+        of Near-infrared, Green, and Blue bands.","name":"color_infrared_veg2","title":"Color
+        Infrared Vegetation 2 (NGB)"}]}]},"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4407363_sw_18_1_20120711/preview","rel":"preview","title":"Preview
+        Image","type":"image/jpeg"},{"capabilities":{"parameters":[{"name":"composite","values":[{"description":"Default
+        View.","name":"default","title":"Default View"},{"description":"True Color
+        Composite.","name":"true_color","title":"True Color Composite"},{"description":"Normalized
+        Difference Vegetation Index.","name":"ndvi","title":"NDVI"},{"description":"Normalized
+        Difference Water Index using Green and NIR per McFeeters(1997).","name":"ndwi","title":"NDWI
+        (Green & NIR)"},{"description":"Color Infrared (Vegetation) consisting of
+        Near-infrared, Red, and Green bands.","name":"color_infrared_veg1","title":"Color
+        Infrared Vegetation (NRG)"},{"description":"Color Infrared (Vegetation) consisting
+        of Near-infrared, Green, and Blue bands.","name":"color_infrared_veg2","title":"Color
+        Infrared Vegetation 2 (NGB)"}]}]},"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4407363_sw_18_1_20120711/maplayer?format=zxyratio","rel":"maplayer","title":"TMS
+        Map Layer with Ratio","type":"application/json"},{"capabilities":{"parameters":[{"name":"composite","values":[{"description":"Default
+        View.","name":"default","title":"Default View"},{"description":"True Color
+        Composite.","name":"true_color","title":"True Color Composite"},{"description":"Normalized
+        Difference Vegetation Index.","name":"ndvi","title":"NDVI"},{"description":"Normalized
+        Difference Water Index using Green and NIR per McFeeters(1997).","name":"ndwi","title":"NDWI
+        (Green & NIR)"},{"description":"Color Infrared (Vegetation) consisting of
+        Near-infrared, Red, and Green bands.","name":"color_infrared_veg1","title":"Color
+        Infrared Vegetation (NRG)"},{"description":"Color Infrared (Vegetation) consisting
+        of Near-infrared, Green, and Blue bands.","name":"color_infrared_veg2","title":"Color
+        Infrared Vegetation 2 (NGB)"}]}]},"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4407363_sw_18_1_20120711/maplayer?format=zxy","rel":"maplayer-zxy","title":"TMS
+        Map Layer without Ratio","type":"application/json"},{"capabilities":{"parameters":[{"name":"composite","values":[{"description":"Default
+        View.","name":"default","title":"Default View"},{"description":"True Color
+        Composite.","name":"true_color","title":"True Color Composite"},{"description":"Normalized
+        Difference Vegetation Index.","name":"ndvi","title":"NDVI"},{"description":"Normalized
+        Difference Water Index using Green and NIR per McFeeters(1997).","name":"ndwi","title":"NDWI
+        (Green & NIR)"},{"description":"Color Infrared (Vegetation) consisting of
+        Near-infrared, Red, and Green bands.","name":"color_infrared_veg1","title":"Color
+        Infrared Vegetation (NRG)"},{"description":"Color Infrared (Vegetation) consisting
+        of Near-infrared, Green, and Blue bands.","name":"color_infrared_veg2","title":"Color
+        Infrared Vegetation 2 (NGB)"}]}]},"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4407363_sw_18_1_20120711/maplayer/leaflet","rel":"leaflet","title":"Minimal
+        Leaflet Viewer","type":"text/html"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4407363_sw_18_1_20120711/maplayer/statistics","rel":"statistics","title":"Scene-level
+        Statistics","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4407363_sw_18_1_20120711/maplayer/tileinfo","rel":"tileinfo","title":"Map
+        Layer Metadata","type":"application/json"},{"href":"https://spdx.org/licenses/CC-PDDC.html","rel":"license","title":"License","type":"text/html"}],"properties":{"aac:collection_attribution":"USDA","aac:collection_display_name":"NAIP","aac:collection_family_display_name":"NAIP","aac:item_attribution":"USDA","aac:item_family":"naip","constellation":"naip","created":"2020-12-01T07:31:43.170595-05:00","datetime":"2012-07-11T12:00:00Z","eo:constellation":"naip","license":"CC-PDDC","providers":[{"attribution":"USDA","name":"USDA","roles":["producer","licensor"],"url":"https://www.fsa.usda.gov/programs-and-services/aerial-photography/imagery-programs/naip-imagery/"},{"attribution":"ESRI","name":"ESRI","roles":["processor"],"url":"https://www.esri.com/en-us/home"},{"attribution":"Amazon
+        Web Services","name":"AWS","roles":["host"],"url":"https://aws.amazon.com/"}]},"stac_extensions":["aac"],"stac_version":"1.0.0-beta.2","type":"Feature"},{"assets":{"analytic_rgbir_cog":{"bundleable":true,"eo:bands":[{"common_name":"red","name":"B1"},{"common_name":"green","name":"B2"},{"common_name":"blue","name":"B3"},{"common_name":"nir","name":"B4"}],"eo:common_name":"red","eo:gsd":0.1,"gsd":0.1,"href":"s3://naip-analytic/vt/2012/100cm/rgbir_cog/44073/m_4407364_sw_18_1_20120712.tif","roles":["data"],"size":198005895,"title":"Analytic
+        RGBIR COG","type":"image/tiff; application=geotiff; profile=cloud-optimized"},"analytic_rgbir":{"bundleable":true,"eo:bands":[{"common_name":"red","name":"B1"},{"common_name":"green","name":"B2"},{"common_name":"blue","name":"B3"},{"common_name":"nir","name":"B4"}],"eo:common_name":"red","eo:gsd":0.1,"gsd":0.1,"href":"s3://naip-analytic/vt/2012/100cm/rgbir/44073/m_4407364_sw_18_1_20120712.mrf","roles":["data"],"size":195484549,"title":"Analytic
+        RGBIR","type":"application/x.mrf"},"source_rgbir":{"bundleable":true,"eo:bands":[{"common_name":"red","name":"B1"},{"common_name":"green","name":"B2"},{"common_name":"blue","name":"B3"},{"common_name":"nir","name":"B4"}],"eo:common_name":"red","eo:gsd":0.1,"gsd":0.1,"href":"s3://naip-source/vt/2012/100cm/rgbir/44073/m_4407364_sw_18_1_20120712.tif","roles":["data"],"size":176831555,"title":"Source
+        RGBIR","type":"image/tiff; application=geotiff"},"visual_rgb":{"bundleable":true,"eo:bands":[{"common_name":"red","name":"B1"},{"common_name":"green","name":"B2"},{"common_name":"blue","name":"B3"}],"eo:common_name":"red","eo:gsd":0.1,"gsd":0.1,"href":"s3://naip-visualization/vt/2012/100cm/rgb/44073/m_4407364_sw_18_1_20120712.tif","roles":["overview","preview"],"size":17542503,"title":"Visualization
+        RGB","type":"image/tiff; application=geotiff"}},"bbox":[-73.13079999195163,43.996186976992554,-73.05662385213859,44.066307346714105],"collection":"naip","geometry":{"coordinates":[[[[-73.13079999195163,43.99738665241695],[-73.09483711800551,43.996792470751664],[-73.05887535851956,43.996186976992554],[-73.05775060775751,44.03064600402379],[-73.05662385213859,44.06510479947623],[-73.09262726139409,44.065711742667204],[-73.12863178988891,44.066307346714105],[-73.12971685631203,44.03184711453106],[-73.13079999195163,43.99738665241695]]]],"type":"MultiPolygon"},"id":"m_4407364_sw_18_1_20120712","links":[{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4407364_sw_18_1_20120712","operations":["get"],"rel":"self","title":"Self","type":"application/geo+json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip","rel":"parent","title":"Parent","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip","rel":"collection","title":"Collection","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth","rel":"root","title":"Root","type":"application/json"},{"capabilities":{"parameters":[{"name":"composite","values":[{"description":"Default
+        View.","name":"default","title":"Default View"},{"description":"True Color
+        Composite.","name":"true_color","title":"True Color Composite"},{"description":"Normalized
+        Difference Vegetation Index.","name":"ndvi","title":"NDVI"},{"description":"Normalized
+        Difference Water Index using Green and NIR per McFeeters(1997).","name":"ndwi","title":"NDWI
+        (Green & NIR)"},{"description":"Color Infrared (Vegetation) consisting of
+        Near-infrared, Red, and Green bands.","name":"color_infrared_veg1","title":"Color
+        Infrared Vegetation (NRG)"},{"description":"Color Infrared (Vegetation) consisting
+        of Near-infrared, Green, and Blue bands.","name":"color_infrared_veg2","title":"Color
+        Infrared Vegetation 2 (NGB)"}]}]},"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4407364_sw_18_1_20120712/preview","rel":"preview","title":"Preview
+        Image","type":"image/jpeg"},{"capabilities":{"parameters":[{"name":"composite","values":[{"description":"Default
+        View.","name":"default","title":"Default View"},{"description":"True Color
+        Composite.","name":"true_color","title":"True Color Composite"},{"description":"Normalized
+        Difference Vegetation Index.","name":"ndvi","title":"NDVI"},{"description":"Normalized
+        Difference Water Index using Green and NIR per McFeeters(1997).","name":"ndwi","title":"NDWI
+        (Green & NIR)"},{"description":"Color Infrared (Vegetation) consisting of
+        Near-infrared, Red, and Green bands.","name":"color_infrared_veg1","title":"Color
+        Infrared Vegetation (NRG)"},{"description":"Color Infrared (Vegetation) consisting
+        of Near-infrared, Green, and Blue bands.","name":"color_infrared_veg2","title":"Color
+        Infrared Vegetation 2 (NGB)"}]}]},"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4407364_sw_18_1_20120712/maplayer?format=zxyratio","rel":"maplayer","title":"TMS
+        Map Layer with Ratio","type":"application/json"},{"capabilities":{"parameters":[{"name":"composite","values":[{"description":"Default
+        View.","name":"default","title":"Default View"},{"description":"True Color
+        Composite.","name":"true_color","title":"True Color Composite"},{"description":"Normalized
+        Difference Vegetation Index.","name":"ndvi","title":"NDVI"},{"description":"Normalized
+        Difference Water Index using Green and NIR per McFeeters(1997).","name":"ndwi","title":"NDWI
+        (Green & NIR)"},{"description":"Color Infrared (Vegetation) consisting of
+        Near-infrared, Red, and Green bands.","name":"color_infrared_veg1","title":"Color
+        Infrared Vegetation (NRG)"},{"description":"Color Infrared (Vegetation) consisting
+        of Near-infrared, Green, and Blue bands.","name":"color_infrared_veg2","title":"Color
+        Infrared Vegetation 2 (NGB)"}]}]},"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4407364_sw_18_1_20120712/maplayer?format=zxy","rel":"maplayer-zxy","title":"TMS
+        Map Layer without Ratio","type":"application/json"},{"capabilities":{"parameters":[{"name":"composite","values":[{"description":"Default
+        View.","name":"default","title":"Default View"},{"description":"True Color
+        Composite.","name":"true_color","title":"True Color Composite"},{"description":"Normalized
+        Difference Vegetation Index.","name":"ndvi","title":"NDVI"},{"description":"Normalized
+        Difference Water Index using Green and NIR per McFeeters(1997).","name":"ndwi","title":"NDWI
+        (Green & NIR)"},{"description":"Color Infrared (Vegetation) consisting of
+        Near-infrared, Red, and Green bands.","name":"color_infrared_veg1","title":"Color
+        Infrared Vegetation (NRG)"},{"description":"Color Infrared (Vegetation) consisting
+        of Near-infrared, Green, and Blue bands.","name":"color_infrared_veg2","title":"Color
+        Infrared Vegetation 2 (NGB)"}]}]},"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4407364_sw_18_1_20120712/maplayer/leaflet","rel":"leaflet","title":"Minimal
+        Leaflet Viewer","type":"text/html"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4407364_sw_18_1_20120712/maplayer/statistics","rel":"statistics","title":"Scene-level
+        Statistics","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4407364_sw_18_1_20120712/maplayer/tileinfo","rel":"tileinfo","title":"Map
+        Layer Metadata","type":"application/json"},{"href":"https://spdx.org/licenses/CC-PDDC.html","rel":"license","title":"License","type":"text/html"}],"properties":{"aac:collection_attribution":"USDA","aac:collection_display_name":"NAIP","aac:collection_family_display_name":"NAIP","aac:item_attribution":"USDA","aac:item_family":"naip","constellation":"naip","created":"2020-12-01T07:31:45.743305-05:00","datetime":"2012-07-12T12:00:00Z","eo:constellation":"naip","license":"CC-PDDC","providers":[{"attribution":"USDA","name":"USDA","roles":["producer","licensor"],"url":"https://www.fsa.usda.gov/programs-and-services/aerial-photography/imagery-programs/naip-imagery/"},{"attribution":"ESRI","name":"ESRI","roles":["processor"],"url":"https://www.esri.com/en-us/home"},{"attribution":"Amazon
+        Web Services","name":"AWS","roles":["host"],"url":"https://aws.amazon.com/"}]},"stac_extensions":["aac"],"stac_version":"1.0.0-beta.2","type":"Feature"},{"assets":{"analytic_rgbir_cog":{"bundleable":true,"eo:bands":[{"common_name":"red","name":"B1"},{"common_name":"green","name":"B2"},{"common_name":"blue","name":"B3"},{"common_name":"nir","name":"B4"}],"eo:common_name":"red","eo:gsd":0.1,"gsd":0.1,"href":"s3://naip-analytic/vt/2011/100cm/rgbir_cog/43073/m_4307307_ne_18_1_20110818.tif","roles":["data"],"size":185254312,"title":"Analytic
+        RGBIR COG","type":"image/tiff; application=geotiff; profile=cloud-optimized"},"analytic_rgbir":{"bundleable":true,"eo:bands":[{"common_name":"red","name":"B1"},{"common_name":"green","name":"B2"},{"common_name":"blue","name":"B3"},{"common_name":"nir","name":"B4"}],"eo:common_name":"red","eo:gsd":0.1,"gsd":0.1,"href":"s3://naip-analytic/vt/2011/100cm/rgbir/43073/m_4307307_ne_18_1_20110818.mrf","roles":["data"],"size":184061029,"title":"Analytic
+        RGBIR","type":"application/x.mrf"}},"bbox":[-73.19328650663202,43.93368529437344,-73.11914685343534,44.00381502267297],"collection":"naip","geometry":{"coordinates":[[[[-73.19328650663202,43.93484615690622],[-73.15730402872809,43.93427138765593],[-73.12132262910671,43.93368529437344],[-73.12023571002084,43.96816845191722],[-73.11914685343534,44.0026513790764],[-73.15516986648784,44.003238876441685],[-73.19119396244258,44.00381502267297],[-73.19224116627782,43.969330704185275],[-73.19328650663202,43.93484615690622]]]],"type":"MultiPolygon"},"id":"m_4307307_ne_18_1_20110818","links":[{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4307307_ne_18_1_20110818","operations":["get"],"rel":"self","title":"Self","type":"application/geo+json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip","rel":"parent","title":"Parent","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip","rel":"collection","title":"Collection","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth","rel":"root","title":"Root","type":"application/json"},{"capabilities":{"parameters":[{"name":"composite","values":[{"description":"Default
+        View.","name":"default","title":"Default View"},{"description":"True Color
+        Composite.","name":"true_color","title":"True Color Composite"},{"description":"Normalized
+        Difference Vegetation Index.","name":"ndvi","title":"NDVI"},{"description":"Normalized
+        Difference Water Index using Green and NIR per McFeeters(1997).","name":"ndwi","title":"NDWI
+        (Green & NIR)"},{"description":"Color Infrared (Vegetation) consisting of
+        Near-infrared, Red, and Green bands.","name":"color_infrared_veg1","title":"Color
+        Infrared Vegetation (NRG)"},{"description":"Color Infrared (Vegetation) consisting
+        of Near-infrared, Green, and Blue bands.","name":"color_infrared_veg2","title":"Color
+        Infrared Vegetation 2 (NGB)"}]}]},"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4307307_ne_18_1_20110818/preview","rel":"preview","title":"Preview
+        Image","type":"image/jpeg"},{"capabilities":{"parameters":[{"name":"composite","values":[{"description":"Default
+        View.","name":"default","title":"Default View"},{"description":"True Color
+        Composite.","name":"true_color","title":"True Color Composite"},{"description":"Normalized
+        Difference Vegetation Index.","name":"ndvi","title":"NDVI"},{"description":"Normalized
+        Difference Water Index using Green and NIR per McFeeters(1997).","name":"ndwi","title":"NDWI
+        (Green & NIR)"},{"description":"Color Infrared (Vegetation) consisting of
+        Near-infrared, Red, and Green bands.","name":"color_infrared_veg1","title":"Color
+        Infrared Vegetation (NRG)"},{"description":"Color Infrared (Vegetation) consisting
+        of Near-infrared, Green, and Blue bands.","name":"color_infrared_veg2","title":"Color
+        Infrared Vegetation 2 (NGB)"}]}]},"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4307307_ne_18_1_20110818/maplayer?format=zxyratio","rel":"maplayer","title":"TMS
+        Map Layer with Ratio","type":"application/json"},{"capabilities":{"parameters":[{"name":"composite","values":[{"description":"Default
+        View.","name":"default","title":"Default View"},{"description":"True Color
+        Composite.","name":"true_color","title":"True Color Composite"},{"description":"Normalized
+        Difference Vegetation Index.","name":"ndvi","title":"NDVI"},{"description":"Normalized
+        Difference Water Index using Green and NIR per McFeeters(1997).","name":"ndwi","title":"NDWI
+        (Green & NIR)"},{"description":"Color Infrared (Vegetation) consisting of
+        Near-infrared, Red, and Green bands.","name":"color_infrared_veg1","title":"Color
+        Infrared Vegetation (NRG)"},{"description":"Color Infrared (Vegetation) consisting
+        of Near-infrared, Green, and Blue bands.","name":"color_infrared_veg2","title":"Color
+        Infrared Vegetation 2 (NGB)"}]}]},"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4307307_ne_18_1_20110818/maplayer?format=zxy","rel":"maplayer-zxy","title":"TMS
+        Map Layer without Ratio","type":"application/json"},{"capabilities":{"parameters":[{"name":"composite","values":[{"description":"Default
+        View.","name":"default","title":"Default View"},{"description":"True Color
+        Composite.","name":"true_color","title":"True Color Composite"},{"description":"Normalized
+        Difference Vegetation Index.","name":"ndvi","title":"NDVI"},{"description":"Normalized
+        Difference Water Index using Green and NIR per McFeeters(1997).","name":"ndwi","title":"NDWI
+        (Green & NIR)"},{"description":"Color Infrared (Vegetation) consisting of
+        Near-infrared, Red, and Green bands.","name":"color_infrared_veg1","title":"Color
+        Infrared Vegetation (NRG)"},{"description":"Color Infrared (Vegetation) consisting
+        of Near-infrared, Green, and Blue bands.","name":"color_infrared_veg2","title":"Color
+        Infrared Vegetation 2 (NGB)"}]}]},"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4307307_ne_18_1_20110818/maplayer/leaflet","rel":"leaflet","title":"Minimal
+        Leaflet Viewer","type":"text/html"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4307307_ne_18_1_20110818/maplayer/statistics","rel":"statistics","title":"Scene-level
+        Statistics","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4307307_ne_18_1_20110818/maplayer/tileinfo","rel":"tileinfo","title":"Map
+        Layer Metadata","type":"application/json"},{"href":"https://spdx.org/licenses/CC-PDDC.html","rel":"license","title":"License","type":"text/html"}],"properties":{"aac:collection_attribution":"USDA","aac:collection_display_name":"NAIP","aac:collection_family_display_name":"NAIP","aac:item_attribution":"USDA","aac:item_family":"naip","constellation":"naip","created":"2020-12-03T00:00:56.933384-05:00","datetime":"2011-08-18T12:00:00Z","eo:constellation":"naip","license":"CC-PDDC","providers":[{"attribution":"USDA","name":"USDA","roles":["producer","licensor"],"url":"https://www.fsa.usda.gov/programs-and-services/aerial-photography/imagery-programs/naip-imagery/"},{"attribution":"ESRI","name":"ESRI","roles":["processor"],"url":"https://www.esri.com/en-us/home"},{"attribution":"Amazon
+        Web Services","name":"AWS","roles":["host"],"url":"https://aws.amazon.com/"}]},"stac_extensions":["aac"],"stac_version":"1.0.0-beta.2","type":"Feature"},{"assets":{"analytic_rgbir_cog":{"bundleable":true,"eo:bands":[{"common_name":"red","name":"B1"},{"common_name":"green","name":"B2"},{"common_name":"blue","name":"B3"},{"common_name":"nir","name":"B4"}],"eo:common_name":"red","eo:gsd":0.1,"gsd":0.1,"href":"s3://naip-analytic/vt/2011/100cm/rgbir_cog/43073/m_4307307_nw_18_1_20110818.tif","roles":["data"],"size":189245469,"title":"Analytic
+        RGBIR COG","type":"image/tiff; application=geotiff; profile=cloud-optimized"},"analytic_rgbir":{"bundleable":true,"eo:bands":[{"common_name":"red","name":"B1"},{"common_name":"green","name":"B2"},{"common_name":"blue","name":"B3"},{"common_name":"nir","name":"B4"}],"eo:common_name":"red","eo:gsd":0.1,"gsd":0.1,"href":"s3://naip-analytic/vt/2011/100cm/rgbir/43073/m_4307307_nw_18_1_20110818.mrf","roles":["data"],"size":187606161,"title":"Analytic
+        RGBIR","type":"application/x.mrf"}},"bbox":[-73.2557185958848,43.933723583050465,-73.18171214728159,44.00377934362214],"collection":"naip","geometry":{"coordinates":[[[[-73.2557185958848,43.93484413858371],[-73.21976601604881,43.934289513633665],[-73.18381447619161,43.933723583050465],[-73.1827642473294,43.96818995835303],[-73.18171214728159,44.00265610489795],[-73.2177052486927,44.00322339059981],[-73.25369939453607,44.00377934362214],[-73.25470989385484,43.9693118547135],[-73.2557185958848,43.93484413858371]]]],"type":"MultiPolygon"},"id":"m_4307307_nw_18_1_20110818","links":[{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4307307_nw_18_1_20110818","operations":["get"],"rel":"self","title":"Self","type":"application/geo+json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip","rel":"parent","title":"Parent","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip","rel":"collection","title":"Collection","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth","rel":"root","title":"Root","type":"application/json"},{"capabilities":{"parameters":[{"name":"composite","values":[{"description":"Default
+        View.","name":"default","title":"Default View"},{"description":"True Color
+        Composite.","name":"true_color","title":"True Color Composite"},{"description":"Normalized
+        Difference Vegetation Index.","name":"ndvi","title":"NDVI"},{"description":"Normalized
+        Difference Water Index using Green and NIR per McFeeters(1997).","name":"ndwi","title":"NDWI
+        (Green & NIR)"},{"description":"Color Infrared (Vegetation) consisting of
+        Near-infrared, Red, and Green bands.","name":"color_infrared_veg1","title":"Color
+        Infrared Vegetation (NRG)"},{"description":"Color Infrared (Vegetation) consisting
+        of Near-infrared, Green, and Blue bands.","name":"color_infrared_veg2","title":"Color
+        Infrared Vegetation 2 (NGB)"}]}]},"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4307307_nw_18_1_20110818/preview","rel":"preview","title":"Preview
+        Image","type":"image/jpeg"},{"capabilities":{"parameters":[{"name":"composite","values":[{"description":"Default
+        View.","name":"default","title":"Default View"},{"description":"True Color
+        Composite.","name":"true_color","title":"True Color Composite"},{"description":"Normalized
+        Difference Vegetation Index.","name":"ndvi","title":"NDVI"},{"description":"Normalized
+        Difference Water Index using Green and NIR per McFeeters(1997).","name":"ndwi","title":"NDWI
+        (Green & NIR)"},{"description":"Color Infrared (Vegetation) consisting of
+        Near-infrared, Red, and Green bands.","name":"color_infrared_veg1","title":"Color
+        Infrared Vegetation (NRG)"},{"description":"Color Infrared (Vegetation) consisting
+        of Near-infrared, Green, and Blue bands.","name":"color_infrared_veg2","title":"Color
+        Infrared Vegetation 2 (NGB)"}]}]},"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4307307_nw_18_1_20110818/maplayer?format=zxyratio","rel":"maplayer","title":"TMS
+        Map Layer with Ratio","type":"application/json"},{"capabilities":{"parameters":[{"name":"composite","values":[{"description":"Default
+        View.","name":"default","title":"Default View"},{"description":"True Color
+        Composite.","name":"true_color","title":"True Color Composite"},{"description":"Normalized
+        Difference Vegetation Index.","name":"ndvi","title":"NDVI"},{"description":"Normalized
+        Difference Water Index using Green and NIR per McFeeters(1997).","name":"ndwi","title":"NDWI
+        (Green & NIR)"},{"description":"Color Infrared (Vegetation) consisting of
+        Near-infrared, Red, and Green bands.","name":"color_infrared_veg1","title":"Color
+        Infrared Vegetation (NRG)"},{"description":"Color Infrared (Vegetation) consisting
+        of Near-infrared, Green, and Blue bands.","name":"color_infrared_veg2","title":"Color
+        Infrared Vegetation 2 (NGB)"}]}]},"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4307307_nw_18_1_20110818/maplayer?format=zxy","rel":"maplayer-zxy","title":"TMS
+        Map Layer without Ratio","type":"application/json"},{"capabilities":{"parameters":[{"name":"composite","values":[{"description":"Default
+        View.","name":"default","title":"Default View"},{"description":"True Color
+        Composite.","name":"true_color","title":"True Color Composite"},{"description":"Normalized
+        Difference Vegetation Index.","name":"ndvi","title":"NDVI"},{"description":"Normalized
+        Difference Water Index using Green and NIR per McFeeters(1997).","name":"ndwi","title":"NDWI
+        (Green & NIR)"},{"description":"Color Infrared (Vegetation) consisting of
+        Near-infrared, Red, and Green bands.","name":"color_infrared_veg1","title":"Color
+        Infrared Vegetation (NRG)"},{"description":"Color Infrared (Vegetation) consisting
+        of Near-infrared, Green, and Blue bands.","name":"color_infrared_veg2","title":"Color
+        Infrared Vegetation 2 (NGB)"}]}]},"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4307307_nw_18_1_20110818/maplayer/leaflet","rel":"leaflet","title":"Minimal
+        Leaflet Viewer","type":"text/html"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4307307_nw_18_1_20110818/maplayer/statistics","rel":"statistics","title":"Scene-level
+        Statistics","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4307307_nw_18_1_20110818/maplayer/tileinfo","rel":"tileinfo","title":"Map
+        Layer Metadata","type":"application/json"},{"href":"https://spdx.org/licenses/CC-PDDC.html","rel":"license","title":"License","type":"text/html"}],"properties":{"aac:collection_attribution":"USDA","aac:collection_display_name":"NAIP","aac:collection_family_display_name":"NAIP","aac:item_attribution":"USDA","aac:item_family":"naip","constellation":"naip","created":"2020-12-03T00:00:59.563108-05:00","datetime":"2011-08-18T12:00:00Z","eo:constellation":"naip","license":"CC-PDDC","providers":[{"attribution":"USDA","name":"USDA","roles":["producer","licensor"],"url":"https://www.fsa.usda.gov/programs-and-services/aerial-photography/imagery-programs/naip-imagery/"},{"attribution":"ESRI","name":"ESRI","roles":["processor"],"url":"https://www.esri.com/en-us/home"},{"attribution":"Amazon
+        Web Services","name":"AWS","roles":["host"],"url":"https://aws.amazon.com/"}]},"stac_extensions":["aac"],"stac_version":"1.0.0-beta.2","type":"Feature"},{"assets":{"analytic_rgbir_cog":{"bundleable":true,"eo:bands":[{"common_name":"red","name":"B1"},{"common_name":"green","name":"B2"},{"common_name":"blue","name":"B3"},{"common_name":"nir","name":"B4"}],"eo:common_name":"red","eo:gsd":0.1,"gsd":0.1,"href":"s3://naip-analytic/vt/2011/100cm/rgbir_cog/43073/m_4307308_nw_18_1_20110820.tif","roles":["data"],"size":186469470,"title":"Analytic
+        RGBIR COG","type":"image/tiff; application=geotiff; profile=cloud-optimized"},"analytic_rgbir":{"bundleable":true,"eo:bands":[{"common_name":"red","name":"B1"},{"common_name":"green","name":"B2"},{"common_name":"blue","name":"B3"},{"common_name":"nir","name":"B4"}],"eo:common_name":"red","eo:gsd":0.1,"gsd":0.1,"href":"s3://naip-analytic/vt/2011/100cm/rgbir/43073/m_4307308_nw_18_1_20110820.mrf","roles":["data"],"size":189495908,"title":"Analytic
+        RGBIR","type":"application/x.mrf"}},"bbox":[-73.13085443716697,43.93364880795079,-73.05658159436256,44.00385248600922],"collection":"naip","geometry":{"coordinates":[[[[-73.13085443716697,43.93485004415189],[-73.09484210507118,43.93425509725336],[-73.05883088968456,43.93364880795079],[-73.05770724399345,43.96814870531668],[-73.05658159436256,44.002648370620996],[-73.0926344748843,44.00325611309569],[-73.12868847690179,44.00385248600922],[-73.12977242193436,43.969351380286234],[-73.13085443716697,43.93485004415189]]]],"type":"MultiPolygon"},"id":"m_4307308_nw_18_1_20110820","links":[{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4307308_nw_18_1_20110820","operations":["get"],"rel":"self","title":"Self","type":"application/geo+json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip","rel":"parent","title":"Parent","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip","rel":"collection","title":"Collection","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth","rel":"root","title":"Root","type":"application/json"},{"capabilities":{"parameters":[{"name":"composite","values":[{"description":"Default
+        View.","name":"default","title":"Default View"},{"description":"True Color
+        Composite.","name":"true_color","title":"True Color Composite"},{"description":"Normalized
+        Difference Vegetation Index.","name":"ndvi","title":"NDVI"},{"description":"Normalized
+        Difference Water Index using Green and NIR per McFeeters(1997).","name":"ndwi","title":"NDWI
+        (Green & NIR)"},{"description":"Color Infrared (Vegetation) consisting of
+        Near-infrared, Red, and Green bands.","name":"color_infrared_veg1","title":"Color
+        Infrared Vegetation (NRG)"},{"description":"Color Infrared (Vegetation) consisting
+        of Near-infrared, Green, and Blue bands.","name":"color_infrared_veg2","title":"Color
+        Infrared Vegetation 2 (NGB)"}]}]},"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4307308_nw_18_1_20110820/preview","rel":"preview","title":"Preview
+        Image","type":"image/jpeg"},{"capabilities":{"parameters":[{"name":"composite","values":[{"description":"Default
+        View.","name":"default","title":"Default View"},{"description":"True Color
+        Composite.","name":"true_color","title":"True Color Composite"},{"description":"Normalized
+        Difference Vegetation Index.","name":"ndvi","title":"NDVI"},{"description":"Normalized
+        Difference Water Index using Green and NIR per McFeeters(1997).","name":"ndwi","title":"NDWI
+        (Green & NIR)"},{"description":"Color Infrared (Vegetation) consisting of
+        Near-infrared, Red, and Green bands.","name":"color_infrared_veg1","title":"Color
+        Infrared Vegetation (NRG)"},{"description":"Color Infrared (Vegetation) consisting
+        of Near-infrared, Green, and Blue bands.","name":"color_infrared_veg2","title":"Color
+        Infrared Vegetation 2 (NGB)"}]}]},"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4307308_nw_18_1_20110820/maplayer?format=zxyratio","rel":"maplayer","title":"TMS
+        Map Layer with Ratio","type":"application/json"},{"capabilities":{"parameters":[{"name":"composite","values":[{"description":"Default
+        View.","name":"default","title":"Default View"},{"description":"True Color
+        Composite.","name":"true_color","title":"True Color Composite"},{"description":"Normalized
+        Difference Vegetation Index.","name":"ndvi","title":"NDVI"},{"description":"Normalized
+        Difference Water Index using Green and NIR per McFeeters(1997).","name":"ndwi","title":"NDWI
+        (Green & NIR)"},{"description":"Color Infrared (Vegetation) consisting of
+        Near-infrared, Red, and Green bands.","name":"color_infrared_veg1","title":"Color
+        Infrared Vegetation (NRG)"},{"description":"Color Infrared (Vegetation) consisting
+        of Near-infrared, Green, and Blue bands.","name":"color_infrared_veg2","title":"Color
+        Infrared Vegetation 2 (NGB)"}]}]},"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4307308_nw_18_1_20110820/maplayer?format=zxy","rel":"maplayer-zxy","title":"TMS
+        Map Layer without Ratio","type":"application/json"},{"capabilities":{"parameters":[{"name":"composite","values":[{"description":"Default
+        View.","name":"default","title":"Default View"},{"description":"True Color
+        Composite.","name":"true_color","title":"True Color Composite"},{"description":"Normalized
+        Difference Vegetation Index.","name":"ndvi","title":"NDVI"},{"description":"Normalized
+        Difference Water Index using Green and NIR per McFeeters(1997).","name":"ndwi","title":"NDWI
+        (Green & NIR)"},{"description":"Color Infrared (Vegetation) consisting of
+        Near-infrared, Red, and Green bands.","name":"color_infrared_veg1","title":"Color
+        Infrared Vegetation (NRG)"},{"description":"Color Infrared (Vegetation) consisting
+        of Near-infrared, Green, and Blue bands.","name":"color_infrared_veg2","title":"Color
+        Infrared Vegetation 2 (NGB)"}]}]},"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4307308_nw_18_1_20110820/maplayer/leaflet","rel":"leaflet","title":"Minimal
+        Leaflet Viewer","type":"text/html"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4307308_nw_18_1_20110820/maplayer/statistics","rel":"statistics","title":"Scene-level
+        Statistics","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4307308_nw_18_1_20110820/maplayer/tileinfo","rel":"tileinfo","title":"Map
+        Layer Metadata","type":"application/json"},{"href":"https://spdx.org/licenses/CC-PDDC.html","rel":"license","title":"License","type":"text/html"}],"properties":{"aac:collection_attribution":"USDA","aac:collection_display_name":"NAIP","aac:collection_family_display_name":"NAIP","aac:item_attribution":"USDA","aac:item_family":"naip","constellation":"naip","created":"2020-12-03T00:01:09.603152-05:00","datetime":"2011-08-20T12:00:00Z","eo:constellation":"naip","license":"CC-PDDC","providers":[{"attribution":"USDA","name":"USDA","roles":["producer","licensor"],"url":"https://www.fsa.usda.gov/programs-and-services/aerial-photography/imagery-programs/naip-imagery/"},{"attribution":"ESRI","name":"ESRI","roles":["processor"],"url":"https://www.esri.com/en-us/home"},{"attribution":"Amazon
+        Web Services","name":"AWS","roles":["host"],"url":"https://aws.amazon.com/"}]},"stac_extensions":["aac"],"stac_version":"1.0.0-beta.2","type":"Feature"},{"assets":{"analytic_rgbir_cog":{"bundleable":true,"eo:bands":[{"common_name":"red","name":"B1"},{"common_name":"green","name":"B2"},{"common_name":"blue","name":"B3"},{"common_name":"nir","name":"B4"}],"eo:common_name":"red","eo:gsd":0.1,"gsd":0.1,"href":"s3://naip-analytic/vt/2011/100cm/rgbir_cog/44073/m_4407363_se_18_1_20110818.tif","roles":["data"],"size":192868256,"title":"Analytic
+        RGBIR COG","type":"image/tiff; application=geotiff; profile=cloud-optimized"},"analytic_rgbir":{"bundleable":true,"eo:bands":[{"common_name":"red","name":"B1"},{"common_name":"green","name":"B2"},{"common_name":"blue","name":"B3"},{"common_name":"nir","name":"B4"}],"eo:common_name":"red","eo:gsd":0.1,"gsd":0.1,"href":"s3://naip-analytic/vt/2011/100cm/rgbir/44073/m_4407363_se_18_1_20110818.mrf","roles":["data"],"size":193358162,"title":"Analytic
+        RGBIR","type":"application/x.mrf"}},"bbox":[-73.19328625608293,43.99618676332797,-73.11914115237427,44.066315828989765],"collection":"naip","geometry":{"coordinates":[[[[-73.19328625608293,43.997347720516466],[-73.15730342793869,43.9967729044596],[-73.12132167888532,43.99618676332797],[-73.12023238712561,44.03066954226435],[-73.11914115237427,44.06515209075644],[-73.15516460610597,44.06573963596141],[-73.19118914355933,44.066315828989765],[-73.19223863420247,44.03183188917686],[-73.19328625608293,43.997347720516466]]]],"type":"MultiPolygon"},"id":"m_4407363_se_18_1_20110818","links":[{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4407363_se_18_1_20110818","operations":["get"],"rel":"self","title":"Self","type":"application/geo+json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip","rel":"parent","title":"Parent","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip","rel":"collection","title":"Collection","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth","rel":"root","title":"Root","type":"application/json"},{"capabilities":{"parameters":[{"name":"composite","values":[{"description":"Default
+        View.","name":"default","title":"Default View"},{"description":"True Color
+        Composite.","name":"true_color","title":"True Color Composite"},{"description":"Normalized
+        Difference Vegetation Index.","name":"ndvi","title":"NDVI"},{"description":"Normalized
+        Difference Water Index using Green and NIR per McFeeters(1997).","name":"ndwi","title":"NDWI
+        (Green & NIR)"},{"description":"Color Infrared (Vegetation) consisting of
+        Near-infrared, Red, and Green bands.","name":"color_infrared_veg1","title":"Color
+        Infrared Vegetation (NRG)"},{"description":"Color Infrared (Vegetation) consisting
+        of Near-infrared, Green, and Blue bands.","name":"color_infrared_veg2","title":"Color
+        Infrared Vegetation 2 (NGB)"}]}]},"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4407363_se_18_1_20110818/preview","rel":"preview","title":"Preview
+        Image","type":"image/jpeg"},{"capabilities":{"parameters":[{"name":"composite","values":[{"description":"Default
+        View.","name":"default","title":"Default View"},{"description":"True Color
+        Composite.","name":"true_color","title":"True Color Composite"},{"description":"Normalized
+        Difference Vegetation Index.","name":"ndvi","title":"NDVI"},{"description":"Normalized
+        Difference Water Index using Green and NIR per McFeeters(1997).","name":"ndwi","title":"NDWI
+        (Green & NIR)"},{"description":"Color Infrared (Vegetation) consisting of
+        Near-infrared, Red, and Green bands.","name":"color_infrared_veg1","title":"Color
+        Infrared Vegetation (NRG)"},{"description":"Color Infrared (Vegetation) consisting
+        of Near-infrared, Green, and Blue bands.","name":"color_infrared_veg2","title":"Color
+        Infrared Vegetation 2 (NGB)"}]}]},"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4407363_se_18_1_20110818/maplayer?format=zxyratio","rel":"maplayer","title":"TMS
+        Map Layer with Ratio","type":"application/json"},{"capabilities":{"parameters":[{"name":"composite","values":[{"description":"Default
+        View.","name":"default","title":"Default View"},{"description":"True Color
+        Composite.","name":"true_color","title":"True Color Composite"},{"description":"Normalized
+        Difference Vegetation Index.","name":"ndvi","title":"NDVI"},{"description":"Normalized
+        Difference Water Index using Green and NIR per McFeeters(1997).","name":"ndwi","title":"NDWI
+        (Green & NIR)"},{"description":"Color Infrared (Vegetation) consisting of
+        Near-infrared, Red, and Green bands.","name":"color_infrared_veg1","title":"Color
+        Infrared Vegetation (NRG)"},{"description":"Color Infrared (Vegetation) consisting
+        of Near-infrared, Green, and Blue bands.","name":"color_infrared_veg2","title":"Color
+        Infrared Vegetation 2 (NGB)"}]}]},"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4407363_se_18_1_20110818/maplayer?format=zxy","rel":"maplayer-zxy","title":"TMS
+        Map Layer without Ratio","type":"application/json"},{"capabilities":{"parameters":[{"name":"composite","values":[{"description":"Default
+        View.","name":"default","title":"Default View"},{"description":"True Color
+        Composite.","name":"true_color","title":"True Color Composite"},{"description":"Normalized
+        Difference Vegetation Index.","name":"ndvi","title":"NDVI"},{"description":"Normalized
+        Difference Water Index using Green and NIR per McFeeters(1997).","name":"ndwi","title":"NDWI
+        (Green & NIR)"},{"description":"Color Infrared (Vegetation) consisting of
+        Near-infrared, Red, and Green bands.","name":"color_infrared_veg1","title":"Color
+        Infrared Vegetation (NRG)"},{"description":"Color Infrared (Vegetation) consisting
+        of Near-infrared, Green, and Blue bands.","name":"color_infrared_veg2","title":"Color
+        Infrared Vegetation 2 (NGB)"}]}]},"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4407363_se_18_1_20110818/maplayer/leaflet","rel":"leaflet","title":"Minimal
+        Leaflet Viewer","type":"text/html"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4407363_se_18_1_20110818/maplayer/statistics","rel":"statistics","title":"Scene-level
+        Statistics","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4407363_se_18_1_20110818/maplayer/tileinfo","rel":"tileinfo","title":"Map
+        Layer Metadata","type":"application/json"},{"href":"https://spdx.org/licenses/CC-PDDC.html","rel":"license","title":"License","type":"text/html"}],"properties":{"aac:collection_attribution":"USDA","aac:collection_display_name":"NAIP","aac:collection_family_display_name":"NAIP","aac:item_attribution":"USDA","aac:item_family":"naip","constellation":"naip","created":"2020-12-03T01:12:55.06107-05:00","datetime":"2011-08-18T12:00:00Z","eo:constellation":"naip","license":"CC-PDDC","providers":[{"attribution":"USDA","name":"USDA","roles":["producer","licensor"],"url":"https://www.fsa.usda.gov/programs-and-services/aerial-photography/imagery-programs/naip-imagery/"},{"attribution":"ESRI","name":"ESRI","roles":["processor"],"url":"https://www.esri.com/en-us/home"},{"attribution":"Amazon
+        Web Services","name":"AWS","roles":["host"],"url":"https://aws.amazon.com/"}]},"stac_extensions":["aac"],"stac_version":"1.0.0-beta.2","type":"Feature"},{"assets":{"analytic_rgbir_cog":{"bundleable":true,"eo:bands":[{"common_name":"red","name":"B1"},{"common_name":"green","name":"B2"},{"common_name":"blue","name":"B3"},{"common_name":"nir","name":"B4"}],"eo:common_name":"red","eo:gsd":0.1,"gsd":0.1,"href":"s3://naip-analytic/vt/2011/100cm/rgbir_cog/44073/m_4407363_sw_18_1_20110818.tif","roles":["data"],"size":184092549,"title":"Analytic
+        RGBIR COG","type":"image/tiff; application=geotiff; profile=cloud-optimized"},"analytic_rgbir":{"bundleable":true,"eo:bands":[{"common_name":"red","name":"B1"},{"common_name":"green","name":"B2"},{"common_name":"blue","name":"B3"},{"common_name":"nir","name":"B4"}],"eo:common_name":"red","eo:gsd":0.1,"gsd":0.1,"href":"s3://naip-analytic/vt/2011/100cm/rgbir/44073/m_4407363_sw_18_1_20110818.mrf","roles":["data"],"size":181968207,"title":"Analytic
+        RGBIR","type":"application/x.mrf"}},"bbox":[-73.25572180639489,43.99621618727923,-73.18170987266247,44.06628027835921],"collection":"naip","geometry":{"coordinates":[[[[-73.25572180639489,43.997336830805565],[-73.21976891425396,43.99678216236709],[-73.18381706286708,43.99621618727923],[-73.18276440625266,44.03068668373534],[-73.18170987266247,44.0651569513176],[-73.21770338212788,44.065724281688034],[-73.2536979368121,44.06628027835921],[-73.25471077302835,44.031808668249155],[-73.25572180639489,43.997336830805565]]]],"type":"MultiPolygon"},"id":"m_4407363_sw_18_1_20110818","links":[{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4407363_sw_18_1_20110818","operations":["get"],"rel":"self","title":"Self","type":"application/geo+json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip","rel":"parent","title":"Parent","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip","rel":"collection","title":"Collection","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth","rel":"root","title":"Root","type":"application/json"},{"capabilities":{"parameters":[{"name":"composite","values":[{"description":"Default
+        View.","name":"default","title":"Default View"},{"description":"True Color
+        Composite.","name":"true_color","title":"True Color Composite"},{"description":"Normalized
+        Difference Vegetation Index.","name":"ndvi","title":"NDVI"},{"description":"Normalized
+        Difference Water Index using Green and NIR per McFeeters(1997).","name":"ndwi","title":"NDWI
+        (Green & NIR)"},{"description":"Color Infrared (Vegetation) consisting of
+        Near-infrared, Red, and Green bands.","name":"color_infrared_veg1","title":"Color
+        Infrared Vegetation (NRG)"},{"description":"Color Infrared (Vegetation) consisting
+        of Near-infrared, Green, and Blue bands.","name":"color_infrared_veg2","title":"Color
+        Infrared Vegetation 2 (NGB)"}]}]},"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4407363_sw_18_1_20110818/preview","rel":"preview","title":"Preview
+        Image","type":"image/jpeg"},{"capabilities":{"parameters":[{"name":"composite","values":[{"description":"Default
+        View.","name":"default","title":"Default View"},{"description":"True Color
+        Composite.","name":"true_color","title":"True Color Composite"},{"description":"Normalized
+        Difference Vegetation Index.","name":"ndvi","title":"NDVI"},{"description":"Normalized
+        Difference Water Index using Green and NIR per McFeeters(1997).","name":"ndwi","title":"NDWI
+        (Green & NIR)"},{"description":"Color Infrared (Vegetation) consisting of
+        Near-infrared, Red, and Green bands.","name":"color_infrared_veg1","title":"Color
+        Infrared Vegetation (NRG)"},{"description":"Color Infrared (Vegetation) consisting
+        of Near-infrared, Green, and Blue bands.","name":"color_infrared_veg2","title":"Color
+        Infrared Vegetation 2 (NGB)"}]}]},"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4407363_sw_18_1_20110818/maplayer?format=zxyratio","rel":"maplayer","title":"TMS
+        Map Layer with Ratio","type":"application/json"},{"capabilities":{"parameters":[{"name":"composite","values":[{"description":"Default
+        View.","name":"default","title":"Default View"},{"description":"True Color
+        Composite.","name":"true_color","title":"True Color Composite"},{"description":"Normalized
+        Difference Vegetation Index.","name":"ndvi","title":"NDVI"},{"description":"Normalized
+        Difference Water Index using Green and NIR per McFeeters(1997).","name":"ndwi","title":"NDWI
+        (Green & NIR)"},{"description":"Color Infrared (Vegetation) consisting of
+        Near-infrared, Red, and Green bands.","name":"color_infrared_veg1","title":"Color
+        Infrared Vegetation (NRG)"},{"description":"Color Infrared (Vegetation) consisting
+        of Near-infrared, Green, and Blue bands.","name":"color_infrared_veg2","title":"Color
+        Infrared Vegetation 2 (NGB)"}]}]},"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4407363_sw_18_1_20110818/maplayer?format=zxy","rel":"maplayer-zxy","title":"TMS
+        Map Layer without Ratio","type":"application/json"},{"capabilities":{"parameters":[{"name":"composite","values":[{"description":"Default
+        View.","name":"default","title":"Default View"},{"description":"True Color
+        Composite.","name":"true_color","title":"True Color Composite"},{"description":"Normalized
+        Difference Vegetation Index.","name":"ndvi","title":"NDVI"},{"description":"Normalized
+        Difference Water Index using Green and NIR per McFeeters(1997).","name":"ndwi","title":"NDWI
+        (Green & NIR)"},{"description":"Color Infrared (Vegetation) consisting of
+        Near-infrared, Red, and Green bands.","name":"color_infrared_veg1","title":"Color
+        Infrared Vegetation (NRG)"},{"description":"Color Infrared (Vegetation) consisting
+        of Near-infrared, Green, and Blue bands.","name":"color_infrared_veg2","title":"Color
+        Infrared Vegetation 2 (NGB)"}]}]},"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4407363_sw_18_1_20110818/maplayer/leaflet","rel":"leaflet","title":"Minimal
+        Leaflet Viewer","type":"text/html"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4407363_sw_18_1_20110818/maplayer/statistics","rel":"statistics","title":"Scene-level
+        Statistics","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4407363_sw_18_1_20110818/maplayer/tileinfo","rel":"tileinfo","title":"Map
+        Layer Metadata","type":"application/json"},{"href":"https://spdx.org/licenses/CC-PDDC.html","rel":"license","title":"License","type":"text/html"}],"properties":{"aac:collection_attribution":"USDA","aac:collection_display_name":"NAIP","aac:collection_family_display_name":"NAIP","aac:item_attribution":"USDA","aac:item_family":"naip","constellation":"naip","created":"2020-12-03T01:12:57.574312-05:00","datetime":"2011-08-18T12:00:00Z","eo:constellation":"naip","license":"CC-PDDC","providers":[{"attribution":"USDA","name":"USDA","roles":["producer","licensor"],"url":"https://www.fsa.usda.gov/programs-and-services/aerial-photography/imagery-programs/naip-imagery/"},{"attribution":"ESRI","name":"ESRI","roles":["processor"],"url":"https://www.esri.com/en-us/home"},{"attribution":"Amazon
+        Web Services","name":"AWS","roles":["host"],"url":"https://aws.amazon.com/"}]},"stac_extensions":["aac"],"stac_version":"1.0.0-beta.2","type":"Feature"},{"assets":{"analytic_rgbir_cog":{"bundleable":true,"eo:bands":[{"common_name":"red","name":"B1"},{"common_name":"green","name":"B2"},{"common_name":"blue","name":"B3"},{"common_name":"nir","name":"B4"}],"eo:common_name":"red","eo:gsd":0.1,"gsd":0.1,"href":"s3://naip-analytic/vt/2011/100cm/rgbir_cog/44073/m_4407364_sw_18_1_20110820.tif","roles":["data"],"size":186398643,"title":"Analytic
+        RGBIR COG","type":"image/tiff; application=geotiff; profile=cloud-optimized"},"analytic_rgbir":{"bundleable":true,"eo:bands":[{"common_name":"red","name":"B1"},{"common_name":"green","name":"B2"},{"common_name":"blue","name":"B3"},{"common_name":"nir","name":"B4"}],"eo:common_name":"red","eo:gsd":0.1,"gsd":0.1,"href":"s3://naip-analytic/vt/2011/100cm/rgbir/44073/m_4407364_sw_18_1_20110820.mrf","roles":["data"],"size":188771673,"title":"Analytic
+        RGBIR","type":"application/x.mrf"}},"bbox":[-73.13086345055899,43.996150136275205,-73.056572462351,44.06635336208661],"collection":"naip","geometry":{"coordinates":[[[[-73.13086345055899,43.99735167751521],[-73.09484450270733,43.9967565805934],[-73.05882667278907,43.996150136275205],[-73.05770057238176,44.03064965479126],[-73.056572462351,44.06514894118278],[-73.09263205602909,44.06575683891618],[-73.12869277244027,44.06635336208661],[-73.12977907912963,44.03185263503609],[-73.13086345055899,43.99735167751521]]]],"type":"MultiPolygon"},"id":"m_4407364_sw_18_1_20110820","links":[{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4407364_sw_18_1_20110820","operations":["get"],"rel":"self","title":"Self","type":"application/geo+json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip","rel":"parent","title":"Parent","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip","rel":"collection","title":"Collection","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth","rel":"root","title":"Root","type":"application/json"},{"capabilities":{"parameters":[{"name":"composite","values":[{"description":"Default
+        View.","name":"default","title":"Default View"},{"description":"True Color
+        Composite.","name":"true_color","title":"True Color Composite"},{"description":"Normalized
+        Difference Vegetation Index.","name":"ndvi","title":"NDVI"},{"description":"Normalized
+        Difference Water Index using Green and NIR per McFeeters(1997).","name":"ndwi","title":"NDWI
+        (Green & NIR)"},{"description":"Color Infrared (Vegetation) consisting of
+        Near-infrared, Red, and Green bands.","name":"color_infrared_veg1","title":"Color
+        Infrared Vegetation (NRG)"},{"description":"Color Infrared (Vegetation) consisting
+        of Near-infrared, Green, and Blue bands.","name":"color_infrared_veg2","title":"Color
+        Infrared Vegetation 2 (NGB)"}]}]},"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4407364_sw_18_1_20110820/preview","rel":"preview","title":"Preview
+        Image","type":"image/jpeg"},{"capabilities":{"parameters":[{"name":"composite","values":[{"description":"Default
+        View.","name":"default","title":"Default View"},{"description":"True Color
+        Composite.","name":"true_color","title":"True Color Composite"},{"description":"Normalized
+        Difference Vegetation Index.","name":"ndvi","title":"NDVI"},{"description":"Normalized
+        Difference Water Index using Green and NIR per McFeeters(1997).","name":"ndwi","title":"NDWI
+        (Green & NIR)"},{"description":"Color Infrared (Vegetation) consisting of
+        Near-infrared, Red, and Green bands.","name":"color_infrared_veg1","title":"Color
+        Infrared Vegetation (NRG)"},{"description":"Color Infrared (Vegetation) consisting
+        of Near-infrared, Green, and Blue bands.","name":"color_infrared_veg2","title":"Color
+        Infrared Vegetation 2 (NGB)"}]}]},"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4407364_sw_18_1_20110820/maplayer?format=zxyratio","rel":"maplayer","title":"TMS
+        Map Layer with Ratio","type":"application/json"},{"capabilities":{"parameters":[{"name":"composite","values":[{"description":"Default
+        View.","name":"default","title":"Default View"},{"description":"True Color
+        Composite.","name":"true_color","title":"True Color Composite"},{"description":"Normalized
+        Difference Vegetation Index.","name":"ndvi","title":"NDVI"},{"description":"Normalized
+        Difference Water Index using Green and NIR per McFeeters(1997).","name":"ndwi","title":"NDWI
+        (Green & NIR)"},{"description":"Color Infrared (Vegetation) consisting of
+        Near-infrared, Red, and Green bands.","name":"color_infrared_veg1","title":"Color
+        Infrared Vegetation (NRG)"},{"description":"Color Infrared (Vegetation) consisting
+        of Near-infrared, Green, and Blue bands.","name":"color_infrared_veg2","title":"Color
+        Infrared Vegetation 2 (NGB)"}]}]},"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4407364_sw_18_1_20110820/maplayer?format=zxy","rel":"maplayer-zxy","title":"TMS
+        Map Layer without Ratio","type":"application/json"},{"capabilities":{"parameters":[{"name":"composite","values":[{"description":"Default
+        View.","name":"default","title":"Default View"},{"description":"True Color
+        Composite.","name":"true_color","title":"True Color Composite"},{"description":"Normalized
+        Difference Vegetation Index.","name":"ndvi","title":"NDVI"},{"description":"Normalized
+        Difference Water Index using Green and NIR per McFeeters(1997).","name":"ndwi","title":"NDWI
+        (Green & NIR)"},{"description":"Color Infrared (Vegetation) consisting of
+        Near-infrared, Red, and Green bands.","name":"color_infrared_veg1","title":"Color
+        Infrared Vegetation (NRG)"},{"description":"Color Infrared (Vegetation) consisting
+        of Near-infrared, Green, and Blue bands.","name":"color_infrared_veg2","title":"Color
+        Infrared Vegetation 2 (NGB)"}]}]},"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4407364_sw_18_1_20110820/maplayer/leaflet","rel":"leaflet","title":"Minimal
+        Leaflet Viewer","type":"text/html"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4407364_sw_18_1_20110820/maplayer/statistics","rel":"statistics","title":"Scene-level
+        Statistics","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip/items/m_4407364_sw_18_1_20110820/maplayer/tileinfo","rel":"tileinfo","title":"Map
+        Layer Metadata","type":"application/json"},{"href":"https://spdx.org/licenses/CC-PDDC.html","rel":"license","title":"License","type":"text/html"}],"properties":{"aac:collection_attribution":"USDA","aac:collection_display_name":"NAIP","aac:collection_family_display_name":"NAIP","aac:item_attribution":"USDA","aac:item_family":"naip","constellation":"naip","created":"2020-12-03T01:12:58.768909-05:00","datetime":"2011-08-20T12:00:00Z","eo:constellation":"naip","license":"CC-PDDC","providers":[{"attribution":"USDA","name":"USDA","roles":["producer","licensor"],"url":"https://www.fsa.usda.gov/programs-and-services/aerial-photography/imagery-programs/naip-imagery/"},{"attribution":"ESRI","name":"ESRI","roles":["processor"],"url":"https://www.esri.com/en-us/home"},{"attribution":"Amazon
+        Web Services","name":"AWS","roles":["host"],"url":"https://aws.amazon.com/"}]},"stac_extensions":["aac"],"stac_version":"1.0.0-beta.2","type":"Feature"}],"links":[{"href":"http://eod-catalog-svc-prod.astraea.earth/search?next=1606975978768,m_4407364_sw_18_1_20110820,naip&limit=10&bbox=-73.21,43.99,-73.12,44.05&collections=naip","method":"GET","rel":"next","title":"Next","type":"application/json"}],"search:metadata":{"limit":10,"next":"1606975978768,m_4407364_sw_18_1_20110820,naip","numberMatched":30,"numberReturned":10,"queryMetadata":null},"stac_extensions":[],"stac_version":"1.0.0-beta.2","type":"FeatureCollection"}'
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - X-Astraea-Catalog-Client
+      - Authorization, Content-Type, X-Requested-With
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Connection:
+      - close
+      Content-Length:
+      - '75937'
+      Content-Type:
+      - application/geo+json
+      Date:
+      - Sat, 06 Mar 2021 00:12:55 GMT
+      Server:
+      - akka-http/10.2.3
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Connection:
+      - close
+      Host:
+      - eod-catalog-svc-prod.astraea.earth
+      User-Agent:
+      - Python-urllib/3.8
+    method: GET
+    uri: http://eod-catalog-svc-prod.astraea.earth/search?next=1606975978768,m_4407364_sw_18_1_20110820,naip&limit=10&bbox=-73.21,43.99,-73.12,44.05&collections=naip
+  response:
+    body:
+      string: '{"context":{"limit":10,"matched":30,"returned":0},"features":[],"links":[],"search:metadata":{"limit":10,"next":"","numberMatched":30,"numberReturned":0,"queryMetadata":null},"stac_extensions":[],"stac_version":"1.0.0-beta.2","type":"FeatureCollection"}'
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - X-Astraea-Catalog-Client
+      - Authorization, Content-Type, X-Requested-With
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Connection:
+      - close
+      Content-Length:
+      - '253'
+      Content-Type:
+      - application/geo+json
+      Date:
+      - Sat, 06 Mar 2021 00:12:55 GMT
       Server:
       - akka-http/10.2.3
     status:
