@@ -40,7 +40,7 @@ This library is intended to work with services that implement 1 or more of the f
    * `Fields Extension <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/fields>`__ (**COMING SOON**)
    * `Query Extension <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/query>`__ (**COMING SOON**)
    * `Sort Extension <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/sort>`__ (**COMING SOON**)
-   * `Context Extension <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/context>`__ (**COMING SOON**)
+   * `Context Extension <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/context>`__
 * `STAC API - Features <https://github.com/radiantearth/stac-api-spec/tree/master/ogcapi-features>`__ (based on
   `OGC API - Features <https://www.ogc.org/standards/ogcapi-features>`__) (**COMING SOON**)
 
