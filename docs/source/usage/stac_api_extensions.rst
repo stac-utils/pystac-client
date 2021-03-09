@@ -34,7 +34,7 @@ Items and Collections API Version   Planned
 Check Conformance
 +++++++++++++++++
 
-:class:`~pystac_api.API`, :class:`~pystac_api.ItemSearch`, and :class`~pystac_api.ItemCollection` instances all have
+:class:`~pystac_api.API`, :class:`~pystac_api.ItemSearch`, and :class:`~pystac_api.ItemCollection` instances all have
 an ``api_ext`` property that is an :class:`~pystac_api.stac_api_object.APIExtensionIndex` instance. You can use the
 :meth:`~pystac_api.stac_api_object.APIExtensionIndex.implements` method to check whether the service implements the
 given extension using a context identifier:

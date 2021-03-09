@@ -18,10 +18,8 @@ Installation
 
 ``pystac_api`` requires `Python >=3.6 <https://www.python.org/>`__.
 
-This will also install the following Python packages as dependencies:
-
-* :doc:`PySTAC <pystac:index>`: For working with STAC objects in Python
-* :doc:`requests <requests:index>`: For making HTTP requests
+This will also install :doc:`PySTAC <pystac:index>` as its only direct external dependency. Like PySTAC, this library
+aims to keep its dependencies to a minimum.
 
 Acknowledgements
 ----------------
@@ -29,6 +27,9 @@ Acknowledgements
 This package builds upon the great work of the PySTAC library for working with STAC objects in Python. It also uses
 concepts from the `sat-search <https://github.com/sat-utils/sat-search>`__ library for working with STAC API - Item
 Search endpoints.
+
+*While this library builds on the work of the PySTAC library and tries to follow the patterns of that project as much
+as possible, `pystac-api` is a separate project not in any way associated with that library.*
 
 Supported Specifications
 ------------------------
