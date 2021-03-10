@@ -133,9 +133,9 @@ class API(pystac.Catalog, STACAPIObjectMixin):
     ) -> ItemSearch:
         """Query the ``/search`` endpoint using the given parameters.
 
-        This method returns an :class:`~stac_api_client.item_search.ItemSearch` instance, see that class's documentation
+        This method returns an :class:`~pystac_api.ItemSearch` instance, see that class's documentation
         for details on how to get the number of matches and iterate over results. All keyword arguments are passed
-        directly to the :class:`~stac_api_client.item_search.ItemSearch` instance.
+        directly to the :class:`~pystac_api.ItemSearch` instance.
 
         .. warning::
 

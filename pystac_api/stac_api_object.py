@@ -58,7 +58,7 @@ class APIExtensionIndex:
         ----------
         extension_id : str
             The extension ID to check. This must be an ID corresponding to one of the IDs in
-            :obj:`stac_api_client.STAC_EXTENSIONS`.
+            :obj:`pystac_api.API_STAC_EXTENSIONS`.
 
         Returns
         -------
