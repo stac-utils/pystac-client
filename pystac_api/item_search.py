@@ -117,7 +117,7 @@ class ItemSearch(STACAPIObjectMixin):
         intersects: Optional[IntersectsLike] = None,
         ids: Optional[IDsLike] = None,
         collections: Optional[CollectionsLike] = None,
-        next_resolver: Callable = simple_stac_resolver,
+        next_resolver: Callable = None,
         conformance: List[str] = []
     ):
         self.conformance = conformance
@@ -126,7 +126,7 @@ class ItemSearch(STACAPIObjectMixin):
         if method is None:
             method = 'POST' if intersects is not None else 'GET'
         self._method = method
-        self._next_resolver = next_resolver
+        self._next_resolver = next_resolver or simple_stac_resolver
         self._url = url
         self._max_items = max_items
 
