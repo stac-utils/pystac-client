@@ -64,8 +64,27 @@ class API(pystac.Catalog, STACAPIObjectMixin):
                 f'URIs to conform (preferably the first):\n\t{allowed_uris}.'
             )
 
+        self.headers = {}
+
     def __repr__(self):
         return '<API id={}>'.format(self.id)
+
+    @classmethod
+    def open(cls, url, headers={}):
+        """Alias for PySTAC's STAC Obkect `from_file` method
+
+        Parameters
+        ----------
+        url : str
+            The URL of a STAC API Catalog
+
+        Returns
+        -------
+        api : API
+        """
+        api = cls.from_file(url)
+        api.headers = headers
+        return api
 
     @classmethod
     def from_dict(
