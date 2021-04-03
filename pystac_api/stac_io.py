@@ -1,15 +1,17 @@
+import logging
 from urllib.parse import urlparse
-from urllib.request import Request, urlopen
+
+import requests
+
+logger = logging.getLogger(__name__)
 
 
-def read_text_method(request):
+def read_text_method(uri):
     """Overwrites the default method for reading text from a URL or file to allow :class:`urllib.request.Request`
     instances as input. This method also raises any :exc:`urllib.error.HTTPError` exceptions rather than catching
     them to allow us to handle different response status codes as needed."""
-    use_http = isinstance(request, Request) or urlparse(request).scheme != ''
-    if use_http:
-        with urlopen(request) as f:
-            return f.read().decode('utf-8')
+    if bool(urlparse(uri).scheme):
+        logger.debug(f"Requesting {uri}")
+        return requests.get(uri).content
     else:
-        with open(request) as f:
-            return f.read()
+        return STAC_IO.default_read_text_method(uri)
