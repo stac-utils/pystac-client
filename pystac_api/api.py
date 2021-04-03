@@ -46,18 +46,18 @@ class API(pystac.Catalog, STACAPIObjectMixin):
         description,
         title=None,
         stac_extensions=None,
-        conformance=None,
         extra_fields=None,
         href=None,
         catalog_type=None,
+        conformance=None
     ):
         super().__init__(id=id, description=description, title=title, stac_extensions=stac_extensions,
                          extra_fields=extra_fields, href=href, catalog_type=catalog_type)
 
         self.conformance = conformance
 
-        # Check that the API conforms to the STAC API - Core spec
-        if not self.conforms_to(ConformanceClasses.STAC_API_CORE):
+        # Check that the API conforms to the STAC API - Core spec (or ignore if None)
+        if conformance is not None and not self.conforms_to(ConformanceClasses.STAC_API_CORE):
             allowed_uris = "\n\t".join(ConformanceClasses.STAC_API_CORE.all_uris)
             raise ConformanceError(
                 'API does not conform to {ConformanceClasses.STAC_API_CORE}. Must contain one of the following '
@@ -93,7 +93,8 @@ class API(pystac.Catalog, STACAPIObjectMixin):
         title = d.pop('title', None)
         stac_extensions = d.pop('stac_extensions', None)
         links = d.pop('links')
-        conformance = d.pop('conformsTo')
+        # allow for no conformance, for now
+        conformance = d.pop('conformsTo', None)
 
         d.pop('stac_version')
 
@@ -193,7 +194,7 @@ class API(pystac.Catalog, STACAPIObjectMixin):
             <https://github.com/radiantearth/stac-api-spec/tree/master/item-search>`__ or does not have a link with
             a ``"rel"`` type of ``"search"``.
         """
-        if not self.conforms_to(ConformanceClasses.STAC_API_ITEM_SEARCH):
+        if self.conformance is not None and not self.conforms_to(ConformanceClasses.STAC_API_ITEM_SEARCH):
             spec_name = ConformanceClasses.STAC_API_ITEM_SEARCH.name
             spec_uris = '\n\t'.join(ConformanceClasses.STAC_API_ITEM_SEARCH.all_uris)
             msg = f'This service does not conform to the {spec_name} spec and therefore the search method is not ' \
@@ -217,5 +218,5 @@ class API(pystac.Catalog, STACAPIObjectMixin):
             max_items=max_items,
             method=method,
             next_resolver=next_resolver,
-            conformance=list(self.conformance)
+            conformance=self.conformance
         )
