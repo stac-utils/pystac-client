@@ -2,9 +2,9 @@
 name = "pystac-api"
 version = "0.1.0"
 description = "A Python client for the STAC API spec."
-homepage = "https://github.com/duckontheweb/pystac-api"
-repository = "https://github.com/duckontheweb/pystac-api"
-authors = ["Jon Duckworth <duckontheweb@gmail.com>"]
+homepage = "https://github.com/stac-utils/pystac-api-client"
+repository = "https://github.com/stac-utils/pystac-api-client"
+authors = ["Jon Duckworth <duckontheweb@gmail.com>", "Matthew Hanson <matt.a.hanson@gmail.com>"]
 
 classifiers = [
     "Programming Language :: Python",
@@ -23,9 +23,13 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules"
 ]
 
+[tool.poetry.scripts]
+pystac-api-client = "pystac_api.cli:cli"
+
 [tool.poetry.dependencies]
 python = "^3.6"
-pystac = "^0.5.4"
+pystac = "~0.5.4"
+requests = "^2.25.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
