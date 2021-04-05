@@ -235,6 +235,13 @@ class ItemSearch(STACAPIObjectMixin):
             return json.loads(value)
         return deepcopy(getattr(value, '__geo_interface__', value))
 
+    def matched(self) -> int:
+        resp = make_request(self.session, self.request, {"limit": 0})
+        found = resp.get('numberMatched')
+        if found is None:
+            raise APIError('Unexpected response')
+        return resp['numberMatched']
+
     def item_collections(self) -> Iterator[ItemCollection]:
         """Iterator that yields dictionaries matching the `ItemCollection
         <https://github.com/radiantearth/stac-api-spec/blob/master/fragments/itemcollection/README.md>`__ spec. Each of
