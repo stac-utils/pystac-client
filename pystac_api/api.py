@@ -4,6 +4,7 @@ from typing import Callable, Optional
 import pystac
 import pystac.stac_object
 import pystac.validation
+import requests
 
 from pystac_api.conformance import ConformanceClasses
 from pystac_api.exceptions import ConformanceError
@@ -155,7 +156,7 @@ class API(pystac.Catalog, STACAPIObjectMixin):
         ids: Optional[IDsLike] = None,
         collections: Optional[CollectionsLike] = None,
         max_items: Optional[int] = None,
-        method: Optional[str] = None,
+        method: Optional[str] = 'POST',
         next_resolver: Optional[Callable] = None
     ) -> ItemSearch:
         """Query the ``/search`` endpoint using the given parameters.
@@ -235,6 +236,7 @@ class API(pystac.Catalog, STACAPIObjectMixin):
 
         return ItemSearch(
             search_link.target,
+            method=method,
             limit=limit,
             bbox=bbox,
             datetime=datetime,
@@ -242,7 +244,6 @@ class API(pystac.Catalog, STACAPIObjectMixin):
             ids=ids,
             collections=collections,
             max_items=max_items,
-            method=method,
-            next_resolver=next_resolver,
-            conformance=self.conformance
+            conformance=self.conformance,
+            next_resolver=next_resolver
         )

@@ -1,18 +1,19 @@
 import itertools as it
 import json
+import logging
 from collections.abc import Iterable
 from copy import deepcopy
 from datetime import datetime as datetime_
 from typing import Callable, Iterator, List, Optional, Tuple, Union
 from urllib.error import HTTPError
-from urllib.parse import parse_qs, urlencode, urlsplit, urlunsplit
-from urllib.request import Request
 
 import pystac
 import pytz
+from requests import Request, Session
 
+from pystac_api.exceptions import APIError
 from pystac_api.item_collection import ItemCollection
-from pystac_api.paging import paginate, simple_stac_resolver
+from pystac_api.stac_io import make_request, get_pages, simple_stac_resolver
 from pystac_api.stac_api_object import STACAPIObjectMixin
 
 DatetimeOrTimestamp = Optional[Union[datetime_, str]]
@@ -40,6 +41,9 @@ IDsLike = Union[IDs, str, List[str], Iterator[str]]
 
 Intersects = dict
 IntersectsLike = Union[str, Intersects, object]
+
+
+logger = logging.getLogger(__name__)
 
 
 class ItemSearch(STACAPIObjectMixin):
@@ -100,7 +104,7 @@ class ItemSearch(STACAPIObjectMixin):
     ----------------
     next_resolver : Callable, optional
         A callable that will be used to construct the next request based on a "next" link and the previous request.
-        Defaults to using the :func:`~pystac_api.paging.simple_stac_resolver`.
+        Defaults to using the :func:`~pystac_api.stac_io.simple_stac_resolver`.
     conformance : list, optional
         A list of conformance URIs indicating the specs that this service conforms to. Note that these are *not*
         published as part of the ``"search"`` endpoint and must be obtained from the service's landing page.
@@ -109,28 +113,31 @@ class ItemSearch(STACAPIObjectMixin):
         self,
         url: str,
         *,
-        method: Optional[str] = None,
-        max_items: Optional[int] = None,
         limit: Optional[int] = None,
         bbox: Optional[BBoxLike] = None,
         datetime: Optional[DatetimeLike] = None,
         intersects: Optional[IntersectsLike] = None,
         ids: Optional[IDsLike] = None,
         collections: Optional[CollectionsLike] = None,
+
+        max_items: Optional[int] = None,
+        method: Optional[str] = 'POST',
+        headers: Optional[dict] = {},
+        conformance: List[str] = [],
         next_resolver: Callable = None,
-        conformance: List[str] = []
     ):
         self.conformance = conformance
+        self.session = Session()
+        self.session.headers.update(headers)
+        self.request = Request(
+            method = method,
+            url = url
+        )
 
-        # If method is not provided, determine based on presence of "intersects" argument
-        if method is None:
-            method = 'POST' if intersects is not None else 'GET'
-        self._method = method
         self._next_resolver = next_resolver or simple_stac_resolver
-        self._url = url
         self._max_items = max_items
 
-        self._search_parameters = {
+        params = {
             'limit': int(limit) if limit is not None else None,
             'bbox': self._format_bbox(bbox),
             'datetime': self._format_datetime(datetime),
@@ -138,17 +145,23 @@ class ItemSearch(STACAPIObjectMixin):
             'collections': self._format_collections(collections),
             'intersects': self._format_intersects(intersects)
         }
+        self._search_parameters = {k: v for k, v in params.items() if v is not None}
+
+        if method == 'POST':
+            self.request.json = self._search_parameters
+        else:
+            self.request.params = self._search_parameters
 
     @property
     def url(self):
         """The base URL to which search requests will be made. This may include query string parameters, but any
         parameters that overlap with initialization arguments will be overwritten."""
-        return str(self._url)
+        return str(self.request.url)
 
     @property
     def method(self):
         """The HTTP method/verb that will be used when making requests."""
-        return str(self._method)
+        return str(self.request.method)
 
     @staticmethod
     def _format_bbox(value: Optional[BBoxLike]) -> Optional[BBox]:
@@ -179,9 +192,9 @@ class ItemSearch(STACAPIObjectMixin):
         if value is None:
             return None
         if isinstance(value, str):
-            return tuple(map(_format, value.split('/')))
+            return '/'.join((map(_format, value.split('/'))))
         if isinstance(value, Iterable):
-            return tuple(map(_format, value))
+            return '/'.join((map(_format, value)))
 
         return _format(value),
 
@@ -222,29 +235,6 @@ class ItemSearch(STACAPIObjectMixin):
             return json.loads(value)
         return deepcopy(getattr(value, '__geo_interface__', value))
 
-    @property
-    def search_parameters_get(self) -> dict:
-        """A dictionary containing all parameters associated with this search, formatted to be passed as query string
-        parameters in a ``"GET"`` request according to the requirements in the `Query Parameters and Fields
-        <https://github.com/radiantearth/stac-api-spec/tree/master/item-search#query-parameters-and-fields>`__ docs."""
-        return {
-            param: '/'.join(map(str, value)) if param == 'datetime'
-                   else ','.join(map(str, value)) if type(value) is tuple
-                   else value
-            for param, value in self._search_parameters.items()
-            if value is not None
-        }
-
-    @property
-    def search_parameters_post(self) -> dict:
-        """A dictionary containing all parameters associated with this search, formatted to be passed in the body of a
-        ``POST`` request."""
-        return {
-            key: deepcopy(value)
-            for key, value in self._search_parameters.items()
-            if value is not None
-        }
-
     def item_collections(self) -> Iterator[ItemCollection]:
         """Iterator that yields dictionaries matching the `ItemCollection
         <https://github.com/radiantearth/stac-api-spec/blob/master/fragments/itemcollection/README.md>`__ spec. Each of
@@ -254,24 +244,10 @@ class ItemSearch(STACAPIObjectMixin):
         -------
         item_collection : pystac_api.ItemCollection
         """
-        if self.method == 'GET':
-            parsed = urlsplit(self.url)
+        request = deepcopy(self.request)
 
-            # Format search params as query parameters
-            params = {
-                **parse_qs(parsed.query),
-                **self.search_parameters_get
-            }
-            url = urlunsplit((parsed.scheme, parsed.netloc, parsed.path, urlencode(params), None))
-            request = Request(method='GET', url=url)
-        else:
-            request = Request(
-                method='POST',
-                url=self.url,
-                data=json.dumps(self.search_parameters_post).encode('utf-8'),
-                headers={'Content-Type': 'application/json'}
-            )
-        for page in paginate(
+        for page in get_pages(
+            session=self.session,
             request=request,
             next_resolver=self._next_resolver
         ):
