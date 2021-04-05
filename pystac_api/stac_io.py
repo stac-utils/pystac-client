@@ -6,6 +6,8 @@ from urllib.parse import urlparse
 
 import requests
 
+from .exceptions import APIError
+
 logger = logging.getLogger(__name__)
 
 
@@ -18,6 +20,22 @@ def read_text_method(uri):
         return requests.get(uri).content
     else:
         return STAC_IO.default_read_text_method(uri)
+
+
+def make_request(session, request, additional_parameters = {}):
+    _request = deepcopy(request)
+    if _request.method == 'POST':
+        _request.json.update(additional_parameters)
+        logger.debug(f"Requesting {_request.url}, Payload: {json.dumps(_request.json)}")
+    else:
+        _request.params.update(additional_parameters)
+        logger.debug(f"Requesting {_request.url}, Payload: {json.dumps(_request.params)}")
+    prepped = session.prepare_request(_request)
+    resp = session.send(prepped).json()
+    if resp.get('code', 200) != 200:
+        raise APIError(resp.get('message', 'Unknown error'))
+
+    return resp
 
 
 """The functions in this module are designed to work with paginated responses that follow the
@@ -135,33 +153,6 @@ def simple_stac_resolver(link: dict, original_request: requests.Request) -> requ
 
     return request
 
-
-def make_request(session, request, additional_parameters={}):
-    request = deep
-
-
-
-
-def get_page(session: requests.Session, request: requests.Request):
-    """Query for a single page
-
-    Parameters
-    ----------
-    url : string
-        The URL to request
-    parameters: dict)
-        Parameters to include
-    headers: dict
-        Headers to include in request
-    """
-    prepped = session.prepare_request(request)
-    if request.method == 'POST':
-        logging.debug(f"Requesting {request.url}, Payload: {json.dumps(request.json)}")
-    else:
-        logging.debug(f"Requesting {request.url}")
-    resp = session.send(prepped)
-    return resp.json()
-
 def get_pages(
     session: requests.Session,
     request: requests.Request,
@@ -181,7 +172,8 @@ def get_pages(
     """
     while True:
         # Yield all items
-        yield get_page(session, request)
+        page = make_request(session, request)
+        yield page
 
         # Get the next link and make the next request
         next_link = next((link for link in page.get('links', []) if link['rel'] == 'next'), None)
