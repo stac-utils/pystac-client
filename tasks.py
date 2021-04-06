@@ -9,7 +9,7 @@ unit_tests_help = {
 @task(help=unit_tests_help)
 def unit_tests(c, coverage=False, record_mode='once'):
     """Runs the unit tests and, optionally, generates a coverage report."""
-    cmd = f'pytest --record-mode {record_mode} --block-network'
+    cmd = f'pytest --record-mode {record_mode} --block-network -rs'
     if coverage:
         cmd += ' --cov=pystac_api --cov-report=term-missing'
     c.run(cmd)
