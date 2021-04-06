@@ -6,6 +6,7 @@ from urllib.parse import urlparse
 
 import requests
 from pystac import STAC_IO
+
 from .exceptions import APIError
 
 logger = logging.getLogger(__name__)
@@ -22,7 +23,7 @@ def read_text_method(uri):
         return STAC_IO.default_read_text_method(uri)
 
 
-def make_request(session, request, additional_parameters = {}):
+def make_request(session, request, additional_parameters={}):
     _request = deepcopy(request)
     if _request.method == 'POST':
         _request.json.update(additional_parameters)
@@ -38,18 +39,6 @@ def make_request(session, request, additional_parameters = {}):
     return resp
 
 
-"""The functions in this module are designed to work with paginated responses that follow the
-`STAC Item Search - Paging spec
-<https://github.com/radiantearth/stac-api-spec/tree/master/item-search#paging>`_. The spec leaves many details of
-paging up to the service itself, which makes standardizing the handling of response pages difficult on the client
-side. This module provides a :func:`simple_stac_resolver` function for working with the most basic implementation of
-next links described in the STAC Item Search - Paging spec. This function will also handle ``"next"`` links that simply
-provide an ``"href"`` attributes.
-
-For paging implementations not covered by this function, developers can write their own functions (or any callable)
-that takes a link and the original request and returns the next request (see the :func:`simple_stac_resolver` for the
-required signature and example implementation).
-"""
 def simple_stac_resolver(link: dict, original_request: requests.Request) -> requests.Request:
     """Handles implementations of the extended STAC ``link`` object as described in the `STAC API - Item Search: Paging
     <https://github.com/radiantearth/stac-api-spec/tree/master/item-search#paging>`_ documentation. All properties
@@ -138,20 +127,21 @@ def simple_stac_resolver(link: dict, original_request: requests.Request) -> requ
         link_body = link.get('body', {})
         parameters = {**parameters, **link_body} if merge else link_body
         request = requests.Request(
-            method = method,
-            url = original_request.url,
-            headers = headers,
-            json = parameters
+            method=method,
+            url=original_request.url,
+            headers=headers,
+            json=parameters
         )
-    else:   
+    else:
         request = requests.Request(
-            method = method,
-            url = original_request.url,
-            headers = headers,
-            params = parameters
+            method=method,
+            url=original_request.url,
+            headers=headers,
+            params=parameters
         )
 
     return request
+
 
 def get_pages(
     session: requests.Session,
