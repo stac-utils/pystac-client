@@ -31,12 +31,8 @@ class TestItemSearch:
         return API.from_dict(api_content)
 
     def test_method(self):
-        # Default method should be GET...
+        # Default method should be POST...
         search = ItemSearch(url=ASTRAEA_URL)
-        assert search.method == 'GET'
-
-        # ...unless the "intersects" argument is present.
-        search = ItemSearch(url=ASTRAEA_URL, intersects=INTERSECTS_EXAMPLE)
         assert search.method == 'POST'
 
         # "method" argument should take precedence over presence of "intersects"
