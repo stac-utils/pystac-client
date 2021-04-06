@@ -5,7 +5,7 @@ from typing import Callable, Iterator, Optional
 from urllib.parse import urlparse
 
 import requests
-
+from pystac import STAC_IO
 from .exceptions import APIError
 
 logger = logging.getLogger(__name__)
@@ -79,7 +79,7 @@ def simple_stac_resolver(link: dict, original_request: requests.Request) -> requ
     --------
     >>> import json
     >>> import requests
-    >>> from pystac_api.paging import simple_stac_resolver
+    >>> from pystac_api.stac_io import simple_stac_resolver
     >>> original_request = urllib.request.Request(
     ...     method='POST',
     ...     url='https://stac-api/search',
