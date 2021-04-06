@@ -138,9 +138,9 @@ class TestAPISearch:
             datetime=[datetime(2020, 1, 1, 0, 0, 0), None]
         )
 
-        assert results.search_parameters_post == {
+        assert results.request.json == {
             'bbox': (-73.21, 43.99, -73.12, 44.05),
             'collections': ('naip',),
             'limit': 10,
-            'datetime': ('2020-01-01T00:00:00Z', '..')
+            'datetime': '2020-01-01T00:00:00Z/..'
         }

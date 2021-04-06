@@ -42,101 +42,101 @@ class TestItemSearch:
     def test_bbox_param(self):
         # Tuple input
         search = ItemSearch(url=ASTRAEA_URL, bbox=(-104.5, 44.0, -104.0, 45.0))
-        assert search.search_parameters_post['bbox'] == (-104.5, 44.0, -104.0, 45.0)
+        assert search.request.json['bbox'] == (-104.5, 44.0, -104.0, 45.0)
 
         # List input
         search = ItemSearch(url=ASTRAEA_URL, bbox=[-104.5, 44.0, -104.0, 45.0])
-        assert search.search_parameters_post['bbox'] == (-104.5, 44.0, -104.0, 45.0)
+        assert search.request.json['bbox'] == (-104.5, 44.0, -104.0, 45.0)
 
         # String Input
         search = ItemSearch(url=ASTRAEA_URL, bbox='-104.5,44.0,-104.0,45.0')
-        assert search.search_parameters_post['bbox'] == (-104.5, 44.0, -104.0, 45.0)
+        assert search.request.json['bbox'] == (-104.5, 44.0, -104.0, 45.0)
 
         # Generator Input
         def bboxer():
             yield from [-104.5, 44.0, -104.0, 45.0]
 
         search = ItemSearch(url=ASTRAEA_URL, bbox=bboxer())
-        assert search.search_parameters_post['bbox'] == (-104.5, 44.0, -104.0, 45.0)
+        assert search.request.json['bbox'] == (-104.5, 44.0, -104.0, 45.0)
 
     def test_datetime_param(self):
         # Single timestamp input
         search = ItemSearch(url=ASTRAEA_URL, datetime='2020-02-01T00:00:00Z')
-        assert search.search_parameters_post['datetime'] == ('2020-02-01T00:00:00Z',)
+        assert search.request.json['datetime'] == '2020-02-01T00:00:00Z'
 
         # Timestamp range input
         search = ItemSearch(url=ASTRAEA_URL, datetime='2020-02-01T00:00:00Z/2020-02-02T00:00:00Z')
-        assert search.search_parameters_post['datetime'] == ('2020-02-01T00:00:00Z', '2020-02-02T00:00:00Z')
+        assert search.request.json['datetime'] == '2020-02-01T00:00:00Z/2020-02-02T00:00:00Z'
 
         # Timestamp list input
         search = ItemSearch(url=ASTRAEA_URL, datetime=['2020-02-01T00:00:00Z', '2020-02-02T00:00:00Z'])
-        assert search.search_parameters_post['datetime'] == ('2020-02-01T00:00:00Z', '2020-02-02T00:00:00Z')
+        assert search.request.json['datetime'] == '2020-02-01T00:00:00Z/2020-02-02T00:00:00Z'
 
         # Open timestamp range input
         search = ItemSearch(url=ASTRAEA_URL, datetime='2020-02-01T00:00:00Z/..')
-        assert search.search_parameters_post['datetime'] == ('2020-02-01T00:00:00Z', '..')
+        assert search.request.json['datetime'] == '2020-02-01T00:00:00Z/..'
 
         start = datetime(2020, 2, 1, 0, 0, 0, tzinfo=tzutc())
         end = datetime(2020, 2, 2, 0, 0, 0, tzinfo=tzutc())
 
         # Single datetime input
         search = ItemSearch(url=ASTRAEA_URL, datetime=start)
-        assert search.search_parameters_post['datetime'] == ('2020-02-01T00:00:00Z',)
+        assert search.request.json['datetime'] == '2020-02-01T00:00:00Z'
 
         # Datetime range input
         search = ItemSearch(url=ASTRAEA_URL, datetime=[start, end])
-        assert search.search_parameters_post['datetime'] == ('2020-02-01T00:00:00Z', '2020-02-02T00:00:00Z')
+        assert search.request.json['datetime'] == '2020-02-01T00:00:00Z/2020-02-02T00:00:00Z'
 
         # Open datetime range input
         search = ItemSearch(url=ASTRAEA_URL, datetime=(start, None))
-        assert search.search_parameters_post['datetime'] == ('2020-02-01T00:00:00Z', '..')
+        assert search.request.json['datetime'] == '2020-02-01T00:00:00Z/..'
 
         # Localized datetime input (should be converted to UTC)
         start_localized = datetime(2020, 2, 1, 0, 0, 0, tzinfo=gettz('US/Eastern'))
         search = ItemSearch(url=ASTRAEA_URL, datetime=start_localized)
-        assert search.search_parameters_post['datetime'] == ('2020-02-01T05:00:00Z',)
+        assert search.request.json['datetime'] == '2020-02-01T05:00:00Z'
 
     @pytest.mark.vcr
     def test_collections_param(self, astraea_api):
         # Single ID string
         search = ItemSearch(url=ASTRAEA_URL, collections='naip')
-        assert search.search_parameters_post['collections'] == ('naip',)
+        assert search.request.json['collections'] == ('naip',)
 
         # Comma-separated ID string
         search = ItemSearch(url=ASTRAEA_URL, collections='naip,landsat8_l1tp')
-        assert search.search_parameters_post['collections'] == ('naip', 'landsat8_l1tp')
+        assert search.request.json['collections'] == ('naip', 'landsat8_l1tp')
 
         # List of ID strings
         search = ItemSearch(url=ASTRAEA_URL, collections=['naip', 'landsat8_l1tp'])
-        assert search.search_parameters_post['collections'] == ('naip', 'landsat8_l1tp')
+        assert search.request.json['collections'] == ('naip', 'landsat8_l1tp')
 
         # Generator of ID strings
         def collectioner():
             yield from ['naip', 'landsat8_l1tp']
         search = ItemSearch(url=ASTRAEA_URL, collections=collectioner())
-        assert search.search_parameters_post['collections'] == ('naip', 'landsat8_l1tp')
+        assert search.request.json['collections'] == ('naip', 'landsat8_l1tp')
 
         collection = astraea_api.get_child('landsat8_l1tp')
 
         # Single pystac.Collection
         search = ItemSearch(url=ASTRAEA_URL, collections=collection)
-        assert search.search_parameters_post['collections'] == ('landsat8_l1tp',)
+        assert search.request.json['collections'] == ('landsat8_l1tp',)
 
         # Mixed list
         search = ItemSearch(url=ASTRAEA_URL, collections=[collection, 'naip'])
-        assert search.search_parameters_post['collections'] == ('landsat8_l1tp', 'naip')
+        assert search.request.json['collections'] == ('landsat8_l1tp', 'naip')
 
     def test_ids_param(self):
         # Single ID
         search = ItemSearch(url=ASTRAEA_URL, ids='m_3510836_se_12_060_20180508_20190331')
-        assert search.search_parameters_post['ids'] == ('m_3510836_se_12_060_20180508_20190331',)
+        assert search.request.json['ids'] == ('m_3510836_se_12_060_20180508_20190331',)
 
         # Comma-separated ID string
         search = ItemSearch(
             url=ASTRAEA_URL,
             ids='m_3510836_se_12_060_20180508_20190331,m_3510840_se_12_060_20180504_20190331'
         )
-        assert search.search_parameters_post['ids'] == (
+        assert search.request.json['ids'] == (
             'm_3510836_se_12_060_20180508_20190331',
             'm_3510840_se_12_060_20180504_20190331'
         )
@@ -149,7 +149,7 @@ class TestItemSearch:
                 'm_3510840_se_12_060_20180504_20190331'
             ]
         )
-        assert search.search_parameters_post['ids'] == (
+        assert search.request.json['ids'] == (
             'm_3510836_se_12_060_20180508_20190331',
             'm_3510840_se_12_060_20180504_20190331'
         )
@@ -165,7 +165,7 @@ class TestItemSearch:
             url=ASTRAEA_URL,
             ids=ids()
         )
-        assert search.search_parameters_post['ids'] == (
+        assert search.request.json['ids'] == (
             'm_3510836_se_12_060_20180508_20190331',
             'm_3510840_se_12_060_20180504_20190331'
         )
@@ -173,11 +173,11 @@ class TestItemSearch:
     def test_intersects_param(self):
         # Dict input
         search = ItemSearch(url=SEARCH_URL, intersects=INTERSECTS_EXAMPLE)
-        assert search.search_parameters_post['intersects'] == INTERSECTS_EXAMPLE
+        assert search.request.json['intersects'] == INTERSECTS_EXAMPLE
 
         # JSON string input
         search = ItemSearch(url=SEARCH_URL, intersects=json.dumps(INTERSECTS_EXAMPLE))
-        assert search.search_parameters_post['intersects'] == INTERSECTS_EXAMPLE
+        assert search.request.json['intersects'] == INTERSECTS_EXAMPLE
 
     @pytest.mark.vcr
     def test_results(self):
