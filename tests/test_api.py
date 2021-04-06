@@ -69,6 +69,7 @@ class TestAPI:
 
         assert not api.conforms_to('https://api.stacspec.org/v1.0.0-beta.1/core')
 
+    @pytest.mark.skip(reason="Conformance testing has been loosened to accommodate legacy services.")
     @pytest.mark.vcr
     def test_no_conformance(self):
         """Should raise a KeyError if no conformance info can be found. Luckily, the test API doesn't publish
