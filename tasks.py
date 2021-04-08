@@ -2,16 +2,19 @@ from invoke import task
 
 unit_tests_help = {
     'coverage': 'Whether to generate a coverage report. Defaults to True.',
-    'record_mode': 'The record mode value to use for VCRpy.'
+    'record_mode': 'The record mode value to use for VCRpy.',
+    'verbose': 'Whether to use verbose output.'
 }
 
 
 @task(help=unit_tests_help)
-def unit_tests(c, coverage=False, record_mode='once'):
+def unit_tests(c, coverage=False, record_mode='once', verbose=False):
     """Runs the unit tests and, optionally, generates a coverage report."""
     cmd = f'pytest --record-mode {record_mode} --block-network'
     if coverage:
         cmd += ' --cov=pystac_api --cov-report=term-missing'
+    if verbose:
+        cmd += ' -rs'
     c.run(cmd)
 
 

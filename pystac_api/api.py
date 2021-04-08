@@ -4,7 +4,6 @@ from typing import Callable, Optional
 import pystac
 import pystac.stac_object
 import pystac.validation
-import requests
 
 from pystac_api.conformance import ConformanceClasses
 from pystac_api.exceptions import ConformanceError

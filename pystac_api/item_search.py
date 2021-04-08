@@ -13,8 +13,8 @@ from requests import Request, Session
 
 from pystac_api.exceptions import APIError
 from pystac_api.item_collection import ItemCollection
-from pystac_api.stac_io import make_request, get_pages, simple_stac_resolver
 from pystac_api.stac_api_object import STACAPIObjectMixin
+from pystac_api.stac_io import get_pages, make_request, simple_stac_resolver
 
 DatetimeOrTimestamp = Optional[Union[datetime_, str]]
 Datetime = Union[Tuple[str], Tuple[str, str]]
@@ -130,8 +130,8 @@ class ItemSearch(STACAPIObjectMixin):
         self.session = Session()
         self.session.headers.update(headers)
         self.request = Request(
-            method = method,
-            url = url
+            method=method,
+            url=url
         )
 
         self._next_resolver = next_resolver or simple_stac_resolver

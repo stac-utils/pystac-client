@@ -15,7 +15,7 @@ def search(url=API_URL, matched=False, save=None, **kwargs):
 
     api = API.open(url)
     search = api.search(**kwargs)
-    
+
     if matched:
         matched = search.matched()
         print('%s items matched' % matched)
@@ -24,19 +24,19 @@ def search(url=API_URL, matched=False, save=None, **kwargs):
     for item in search.items():
         print(f"{item.id}")
 
-    #print('%s items found' % len(items))
+    # print('%s items found' % len(items))
 
     # print metadata
-    #if printmd is not None:
-    #    print(items.summary(printmd))
+    # if printmd is not None:
+    #     print(items.summary(printmd))
 
     # print calendar
-    #if printcal:
-    #    print(items.calendar(printcal))
+    # if printcal:
+    #     print(items.calendar(printcal))
 
     # save all metadata in JSON file
-    #if save is not None:
-    #    items.save(filename=save)
+    # if save is not None:
+    #     items.save(filename=save)
 
 
 def parse_args(args):
@@ -61,12 +61,15 @@ def parse_args(args):
     search_group.add_argument('--ids', help='One or more Item IDs (ignores other parameters)', nargs='*')
     search_group.add_argument('--bbox', help='Bounding box (min lon, min lat, max lon, max lat)', nargs=4)
     search_group.add_argument('--intersects', help='GeoJSON Feature or geometry (file or string)')
-    search_group.add_argument('--datetime', help='Single date/time or begin and end date/time (e.g., 2017-01-01/2017-02-15)')
-    #search_group.add_argument('-q', '--query', nargs='*', help='Query properties of form KEY=VALUE (<, >, <=, >=, = supported)')
+    search_group.add_argument('--datetime', help='Single date/time or begin and end date/time '
+                                                 '(e.g., 2017-01-01/2017-02-15)')
+    # search_group.add_argument('-q', '--query', nargs='*', help='Query properties of form '
+    #                                                            'KEY=VALUE (<, >, <=, >=, = supported)')
     search_group.add_argument('--sortby', help='Sort by fields', nargs='*')
 
     output_group = parser.add_argument_group('output options')
-    output_group.add_argument('--matched', help='Print number of matched items and exit', action='store_true', default=False)
+    output_group.add_argument('--matched', help='Print number of matched items and exit',
+                              action='store_true', default=False)
 
     parsed_args = {k: v for k, v in vars(parser0.parse_args(args)).items() if v is not None}
 
@@ -95,6 +98,7 @@ def cli():
     cmd = args.pop('command')
     if cmd == 'search':
         search(**args)
+
 
 if __name__ == "__main__":
     cli()
