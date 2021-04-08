@@ -167,4 +167,87 @@ interactions:
     status:
       code: 200
       message: OK
+- request:
+    body: '{"ids": ["m_3510836_se_12_060_20180508_20190331", "m_3510840_se_12_060_20180504_20190331"]}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '91'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.25.1
+    method: POST
+    uri: https://eod-catalog-svc-prod.astraea.earth/search
+  response:
+    body:
+      string: !!binary |
+        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
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - X-Astraea-Catalog-Client
+      - Authorization, Content-Type, X-Requested-With
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/geo+json
+      Date:
+      - Tue, 06 Apr 2021 19:24:29 GMT
+      Server:
+      - akka-http/10.2.3
+      Transfer-Encoding:
+      - chunked
+    status:
+      code: 200
+      message: OK
 version: 1

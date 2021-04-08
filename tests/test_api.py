@@ -69,6 +69,7 @@ class TestAPI:
 
         assert not api.conforms_to('https://api.stacspec.org/v1.0.0-beta.1/core')
 
+    @pytest.mark.skip(reason="Conformance testing has been loosened to accommodate legacy services.")
     @pytest.mark.vcr
     def test_no_conformance(self):
         """Should raise a KeyError if no conformance info can be found. Luckily, the test API doesn't publish
@@ -137,9 +138,9 @@ class TestAPISearch:
             datetime=[datetime(2020, 1, 1, 0, 0, 0), None]
         )
 
-        assert results.search_parameters_post == {
+        assert results.request.json == {
             'bbox': (-73.21, 43.99, -73.12, 44.05),
             'collections': ('naip',),
             'limit': 10,
-            'datetime': ('2020-01-01T00:00:00Z', '..')
+            'datetime': '2020-01-01T00:00:00Z/..'
         }
