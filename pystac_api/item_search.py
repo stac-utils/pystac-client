@@ -196,7 +196,7 @@ class ItemSearch(STACAPIObjectMixin):
         if isinstance(value, Iterable):
             return '/'.join((map(_format, value)))
 
-        return _format(value),
+        return _format(value)
 
     @staticmethod
     def _format_collections(value: Optional[CollectionsLike]) -> Optional[Collections]:

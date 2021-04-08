@@ -72,7 +72,6 @@ class TestItemSearchParams:
         search = ItemSearch(url=ASTRAEA_URL, datetime='2020-02-01T00:00:00Z/..')
         assert search.request.json['datetime'] == '2020-02-01T00:00:00Z/..'
 
-    @pytest.mark.xfail(reason="Parsing of single datetime objects is broken")
     def test_single_datetime_object(self):
         start = datetime(2020, 2, 1, 0, 0, 0, tzinfo=tzutc())
 
@@ -95,7 +94,6 @@ class TestItemSearchParams:
         search = ItemSearch(url=ASTRAEA_URL, datetime=(start, None))
         assert search.request.json['datetime'] == '2020-02-01T00:00:00Z/..'
 
-    @pytest.mark.xfail(reason="Parsing of single datetime objects is broken")
     def test_localized_datetime_converted_to_utc(self):
         # Localized datetime input (should be converted to UTC)
         start_localized = datetime(2020, 2, 1, 0, 0, 0, tzinfo=gettz('US/Eastern'))
