@@ -1,0 +1,40 @@
+#!/bin/bash
+
+set -e
+
+if [[ -n "${CI}" ]]; then
+    set -x
+fi
+
+function usage() {
+    echo -n \
+        "Usage: $(basename "$0")
+Execute project linters and test suites.
+"
+}
+
+if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
+    if [ "${1:-}" = "--help" ]; then
+        usage
+    else
+        # Lint
+        flake8 pystac tests
+
+        # Code formatting
+        yapf -dpr pystac tests
+
+        # Code spelling
+        codespell -I .codespellignore -f \
+            pystac/*.py pystac/**/*.py \
+            tests/*.py tests/**/*.py \
+            docs/*.rst docs/**/*.rst \
+            docs/*.ipynb docs/**/*.ipynb \
+            scripts/* \
+            *.py \
+            *.md
+
+        # Test suite with coverage enabled
+        coverage run --source=pystac/ -m unittest discover tests/
+        coverage xml
+    fi
+fi
