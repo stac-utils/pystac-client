@@ -39,4 +39,4 @@ class TestAPIExtensionIndex:
         with pytest.raises(ExtensionError) as excinfo:
             api.api_ext['not_an_extension']
 
-        assert 'is not an extension registered with pystac-api' in str(excinfo.value)
+        assert 'is not an extension registered with pystac-client' in str(excinfo.value)
