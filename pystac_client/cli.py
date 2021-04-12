@@ -23,7 +23,6 @@ def search(url=API_URL, matched=False, save=None, stdout=False, **kwargs):
         print('%s items matched' % matched)
         return
 
-    #if save is not None:
     items = ItemCollection(search.items())
 
     if stdout:

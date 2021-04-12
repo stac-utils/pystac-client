@@ -1,7 +1,7 @@
 import itertools as it
 import json
 import logging
-from collections.abc import Iterable
+from collections.abc import Iterable, Mapping
 from copy import deepcopy
 from datetime import datetime as datetime_
 from typing import Callable, Iterator, List, Optional, Tuple, Union
@@ -11,7 +11,6 @@ import pystac
 import pytz
 from requests import Request, Session
 
-from pystac_api.exceptions import APIError
 from pystac_api.item_collection import ItemCollection
 from pystac_api.stac_api_object import STACAPIObjectMixin
 from pystac_api.stac_io import get_pages, make_request, simple_stac_resolver
