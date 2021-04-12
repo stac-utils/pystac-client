@@ -1,3 +1,6 @@
-Sphinx~=3.5.1
+codespell==1.17.1
+flake8==3.8.*
 recommonmark~=0.7.1
+Sphinx~=3.5.1
 toml~=0.10.2
+yapf==0.30.*
