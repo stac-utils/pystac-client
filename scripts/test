@@ -18,14 +18,14 @@ if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
         usage
     else
         # Lint
-        flake8 pystac tests
+        flake8 pystac_client tests
 
         # Code formatting
-        yapf -dpr pystac tests
+        yapf -dpr pystac_client tests
 
         # Code spelling
         codespell -I .codespellignore -f \
-            pystac/*.py pystac/**/*.py \
+            pystac_client/*.py pystac_client/**/*.py \
             tests/*.py tests/**/*.py \
             docs/*.rst docs/**/*.rst \
             docs/*.ipynb docs/**/*.ipynb \
@@ -34,7 +34,7 @@ if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
             *.md
 
         # Test suite with coverage enabled
-        coverage run --source=pystac/ -m unittest discover tests/
+        coverage run --source=pystac_client/ -m unittest discover tests/
         coverage xml
     fi
 fi
