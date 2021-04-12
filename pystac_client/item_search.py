@@ -42,8 +42,48 @@ IDsLike = Union[IDs, str, List[str], Iterator[str]]
 Intersects = dict
 IntersectsLike = Union[str, Intersects, object]
 
+Query = dict
+QueryLike = Union[Query, List[str]]
+
 
 logger = logging.getLogger(__name__)
+
+
+# probably should be in a utils module
+# from https://gist.github.com/angstwad/bf22d1822c38a92ec0a9#gistcomment-2622319
+def dict_merge(dct, merge_dct, add_keys=True):
+    """ Recursive dict merge. Inspired by :meth:``dict.update()``, instead of
+    updating only top-level keys, dict_merge recurses down into dicts nested
+    to an arbitrary depth, updating keys. The ``merge_dct`` is merged into
+    ``dct``.
+    This version will return a copy of the dictionary and leave the original
+    arguments untouched.
+    The optional argument ``add_keys``, determines whether keys which are
+    present in ``merge_dict`` but not ``dct`` should be included in the
+    new dict.
+    Args:
+        dct (dict) onto which the merge is executed
+        merge_dct (dict): dct merged into dct
+        add_keys (bool): whether to add new keys
+    Returns:
+        dict: updated dict
+    """
+    dct = dct.copy()
+    if not add_keys:
+        merge_dct = {
+            k: merge_dct[k]
+            for k in set(dct).intersection(set(merge_dct))
+        }
+
+    for k, v in merge_dct.items():
+        if (k in dct and isinstance(dct[k], dict)
+                and isinstance(merge_dct[k], Mapping)):
+            dct[k] = dict_merge(dct[k], merge_dct[k], add_keys=add_keys)
+        else:
+            dct[k] = merge_dct[k]
+
+    return dct
+
 
 
 class ItemSearch(STACAPIObjectMixin):
@@ -119,7 +159,7 @@ class ItemSearch(STACAPIObjectMixin):
         intersects: Optional[IntersectsLike] = None,
         ids: Optional[IDsLike] = None,
         collections: Optional[CollectionsLike] = None,
-
+        query: Optional[QueryLike] = None,
         max_items: Optional[int] = None,
         method: Optional[str] = 'POST',
         headers: Optional[dict] = {},
@@ -143,7 +183,8 @@ class ItemSearch(STACAPIObjectMixin):
             'datetime': self._format_datetime(datetime),
             'ids': self._format_ids(ids),
             'collections': self._format_collections(collections),
-            'intersects': self._format_intersects(intersects)
+            'intersects': self._format_intersects(intersects),
+            'query': self._format_query(query)
         }
         self._search_parameters = {k: v for k, v in params.items() if v is not None}
 
@@ -162,6 +203,26 @@ class ItemSearch(STACAPIObjectMixin):
     def method(self):
         """The HTTP method/verb that will be used when making requests."""
         return str(self.request.method)
+
+    @staticmethod
+    def _format_query(value: List[QueryLike]) -> Optional[dict]:
+        if value is None:
+            return None
+
+        OP_MAP = {'>=': 'gte', '<=': 'lte', '=': 'eq', '>': 'gt', '<': 'lt'}
+
+        if isinstance(value, list):
+            query = {}
+            for q in value:
+                for op in ['>=', '<=', '=', '>', '<']:
+                    parts = q.split(op)
+                    if len(parts) == 2:
+                        query = dict_merge(query, {parts[0]: {OP_MAP[op]: parts[1]}})
+                        break
+        else:
+            query = value
+
+        return query
 
     @staticmethod
     def _format_bbox(value: Optional[BBoxLike]) -> Optional[BBox]:
@@ -237,10 +298,14 @@ class ItemSearch(STACAPIObjectMixin):
 
     def matched(self) -> int:
         resp = make_request(self.session, self.request, {"limit": 0})
-        found = resp.get('numberMatched')
+        found = None
+        if 'context' in resp:
+            found = resp['context']['matched']
+        elif 'numberMatched' in resp:
+            found = resp['numberMatched']
         if found is None:
-            raise APIError('Unexpected response')
-        return resp['numberMatched']
+            logger.warning("numberMatched or context.matched not in response")
+        return found
 
     def item_collections(self) -> Iterator[ItemCollection]:
         """Iterator that yields dictionaries matching the `ItemCollection

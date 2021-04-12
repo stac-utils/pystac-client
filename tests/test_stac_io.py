@@ -9,7 +9,6 @@ from .helpers import ASTRAEA_URL, MLHUB_URL
 
 
 class TestSTAC_IOOverride:
-
     @pytest.mark.vcr
     def test_request_input(self):
         request = Request(url=ASTRAEA_URL)

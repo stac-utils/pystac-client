@@ -1,9 +1,9 @@
 [tool.poetry]
-name = "pystac-api"
+name = "pystac-client"
 version = "0.1.0"
 description = "A Python client for the STAC API spec."
-homepage = "https://github.com/stac-utils/pystac-api-client"
-repository = "https://github.com/stac-utils/pystac-api-client"
+homepage = "https://github.com/stac-utils/pystac-client"
+repository = "https://github.com/stac-utils/pystac-client"
 authors = ["Jon Duckworth <duckontheweb@gmail.com>", "Matthew Hanson <matt.a.hanson@gmail.com>"]
 
 classifiers = [
@@ -24,7 +24,7 @@ classifiers = [
 ]
 
 [tool.poetry.scripts]
-pystac-api-client = "pystac_api.cli:cli"
+pystac-client = "pystac_client.cli:cli"
 
 [tool.poetry.dependencies]
 python = "^3.6"

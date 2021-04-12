@@ -14,7 +14,7 @@ Installation
 
 .. code-block:: console
 
-   $ pip install git+https://github.com/duckontheweb/pystac-api.git#egg=pystac_api
+   $ pip install git+https://github.com/stac-utils/pystac-api-client.git#egg=pystac_api
 
 ``pystac_api`` requires `Python >=3.6 <https://www.python.org/>`__.
 
@@ -29,7 +29,7 @@ concepts from the `sat-search <https://github.com/sat-utils/sat-search>`__ libra
 Search endpoints.
 
 *While this library builds on the work of the PySTAC library and tries to follow the patterns of that project as much
-as possible, `pystac-api` is a separate project not in any way associated with that library.*
+as possible, `pystac-api-client` is a separate project not in any way associated with that library.*
 
 Supported Specifications
 ------------------------

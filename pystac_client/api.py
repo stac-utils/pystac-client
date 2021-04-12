@@ -13,6 +13,7 @@ from pystac_api.item_search import (
     DatetimeLike,
     IDsLike,
     IntersectsLike,
+    QueryLike,
     ItemSearch,
 )
 from pystac_api.stac_api_object import STACAPIObjectMixin
@@ -154,6 +155,7 @@ class API(pystac.Catalog, STACAPIObjectMixin):
         intersects: Optional[IntersectsLike] = None,
         ids: Optional[IDsLike] = None,
         collections: Optional[CollectionsLike] = None,
+        query: Optional[QueryLike] = None,
         max_items: Optional[int] = None,
         method: Optional[str] = 'POST',
         next_resolver: Optional[Callable] = None
@@ -235,14 +237,16 @@ class API(pystac.Catalog, STACAPIObjectMixin):
 
         return ItemSearch(
             search_link.target,
-            method=method,
             limit=limit,
             bbox=bbox,
             datetime=datetime,
             intersects=intersects,
             ids=ids,
             collections=collections,
+            query=query,
             max_items=max_items,
+            method=method,
+            headers=self.headers,
             conformance=self.conformance,
             next_resolver=next_resolver
         )

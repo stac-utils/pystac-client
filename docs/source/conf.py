@@ -20,11 +20,11 @@ from pystac_api import __version__  # noqa: E402
 
 # -- Project information -----------------------------------------------------
 
-project = 'pystac-api'
+project = 'pystac-api-client'
 copyright = '2021, Jon Duckworth'
 author = 'Jon Duckworth'
 github_user = 'duckontheweb'
-github_repo = 'pystac-api'
+github_repo = 'pystac-api-client'
 
 # Get the package description
 try:

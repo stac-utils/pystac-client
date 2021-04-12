@@ -4,13 +4,16 @@ import logging
 import os
 import sys
 
+import termtables as tt
+from pystac import ItemCollection
+
 from .api import API
 from .version import __version__
 
 API_URL = os.getenv('STAC_API_URL', None)
 
 
-def search(url=API_URL, matched=False, save=None, **kwargs):
+def search(url=API_URL, matched=False, save=None, stdout=False, **kwargs):
     """ Main function for performing a search """
 
     api = API.open(url)
@@ -21,22 +24,15 @@ def search(url=API_URL, matched=False, save=None, **kwargs):
         print('%s items matched' % matched)
         return
 
-    for item in search.items():
-        print(f"{item.id}")
+    #if save is not None:
+    items = ItemCollection(search.items())
 
-    # print('%s items found' % len(items))
+    if stdout:
+        print(json.dumps(items.to_dict()))
 
-    # print metadata
-    # if printmd is not None:
-    #     print(items.summary(printmd))
-
-    # print calendar
-    # if printcal:
-    #     print(items.calendar(printcal))
-
-    # save all metadata in JSON file
-    # if save is not None:
-    #     items.save(filename=save)
+    if save is not None:
+        with open(save, 'w') as f:
+            f.write(json.dumps(items.to_dict()))
 
 
 def parse_args(args):
@@ -63,13 +59,16 @@ def parse_args(args):
     search_group.add_argument('--intersects', help='GeoJSON Feature or geometry (file or string)')
     search_group.add_argument('--datetime', help='Single date/time or begin and end date/time '
                                                  '(e.g., 2017-01-01/2017-02-15)')
-    # search_group.add_argument('-q', '--query', nargs='*', help='Query properties of form '
-    #                                                            'KEY=VALUE (<, >, <=, >=, = supported)')
+    search_group.add_argument('-q', '--query', nargs='*', help='Query properties of form '
+                                                                'KEY=VALUE (<, >, <=, >=, = supported)')
     search_group.add_argument('--sortby', help='Sort by fields', nargs='*')
+    search_group.add_argument('--max-items', dest='max_items', help='Max items to retrieve from search', type=int)
 
     output_group = parser.add_argument_group('output options')
     output_group.add_argument('--matched', help='Print number of matched items and exit',
                               action='store_true', default=False)
+    output_group.add_argument('--stdout', help='Print results to stdout (also disables logging)', default=False, action='store_true')
+    output_group.add_argument('--save', help='Filename to save Item collection to', default=None)
 
     parsed_args = {k: v for k, v in vars(parser0.parse_args(args)).items() if v is not None}
 
@@ -90,10 +89,11 @@ def parse_args(args):
 def cli():
     args = parse_args(sys.argv[1:])
 
-    logging.basicConfig(stream=sys.stdout, level=args.pop('logging'))
-    # quiet loggers
-    for lg in ['urllib3']:
-        logging.getLogger(lg).propagate = False
+    if not args.pop('stdout', False):
+        logging.basicConfig(stream=sys.stdout, level=args.pop('logging'))
+        # quiet loggers
+        for lg in ['urllib3']:
+            logging.getLogger(lg).propagate = False
 
     cmd = args.pop('command')
     if cmd == 'search':

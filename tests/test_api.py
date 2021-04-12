@@ -10,7 +10,6 @@ from .helpers import ASTRAEA_API_PATH, ASTRAEA_URL, TEST_DATA, read_data_file
 
 
 class TestAPI:
-
     def test_instance(self):
         api = API.from_file(ASTRAEA_API_PATH)
 
@@ -35,9 +34,7 @@ class TestAPI:
         api_content = read_data_file('astraea_api.json', parse_json=True)
 
         # Set conformsTo URIs to conform with STAC API - Core using official URI
-        api_content['conformsTo'] = [
-            'https://api.stacspec.org/v1.0.0-beta.1/core'
-        ]
+        api_content['conformsTo'] = ['https://api.stacspec.org/v1.0.0-beta.1/core']
         api = API.from_dict(api_content)
 
         # Must have a conformance property that is the list of URIs from the conformsTo property
@@ -56,9 +53,7 @@ class TestAPI:
         api_content = read_data_file('astraea_api.json', parse_json=True)
 
         # Set conformsTo URIs to conform with STAC API - Core using official URI
-        api_content['conformsTo'] = [
-            'http://stacspec.org/spec/api/1.0.0-beta.1/core'
-        ]
+        api_content['conformsTo'] = ['http://stacspec.org/spec/api/1.0.0-beta.1/core']
         api = API.from_dict(api_content)
 
         # Must have a conformance property that is the list of URIs from the conformsTo property
@@ -69,7 +64,8 @@ class TestAPI:
 
         assert not api.conforms_to('https://api.stacspec.org/v1.0.0-beta.1/core')
 
-    @pytest.mark.skip(reason="Conformance testing has been loosened to accommodate legacy services.")
+    @pytest.mark.skip(reason="Conformance testing has been loosened to accommodate legacy services."
+                      )
     @pytest.mark.vcr
     def test_no_conformance(self):
         """Should raise a KeyError if no conformance info can be found. Luckily, the test API doesn't publish
@@ -101,7 +97,6 @@ class TestAPI:
 
 
 class TestAPISearch:
-
     @pytest.fixture(scope='function')
     def api(self):
         return API.from_file(str(TEST_DATA / 'astraea_api.json'))
@@ -110,15 +105,14 @@ class TestAPISearch:
         """Should raise a NotImplementedError if the API doesn't conform to the Item Search spec. Message should
         include information about the spec that was not conformed to."""
         # Set the conformance to only STAC API - Core
-        api.conformance = [
-            ConformanceClasses.STAC_API_CORE.uri
-        ]
+        api.conformance = [ConformanceClasses.STAC_API_CORE.uri]
 
         with pytest.raises(NotImplementedError) as excinfo:
             api.search(limit=10, max_items=10, collections='naip')
 
         assert ConformanceClasses.STAC_API_ITEM_SEARCH.name in str(excinfo.value)
-        assert all(uri in str(excinfo.value) for uri in ConformanceClasses.STAC_API_ITEM_SEARCH.all_uris)
+        assert all(uri in str(excinfo.value)
+                   for uri in ConformanceClasses.STAC_API_ITEM_SEARCH.all_uris)
 
     def test_no_search_link(self, api):
         # Remove the search link
@@ -130,17 +124,15 @@ class TestAPISearch:
         assert 'No link with a "rel" type of "search"' in str(excinfo.value)
 
     def test_search(self, api):
-        results = api.search(
-            bbox=[-73.21, 43.99, -73.12, 44.05],
-            collections='naip',
-            limit=10,
-            max_items=20,
-            datetime=[datetime(2020, 1, 1, 0, 0, 0), None]
-        )
+        results = api.search(bbox=[-73.21, 43.99, -73.12, 44.05],
+                             collections='naip',
+                             limit=10,
+                             max_items=20,
+                             datetime=[datetime(2020, 1, 1, 0, 0, 0), None])
 
         assert results.request.json == {
             'bbox': (-73.21, 43.99, -73.12, 44.05),
-            'collections': ('naip',),
+            'collections': ('naip', ),
             'limit': 10,
             'datetime': '2020-01-01T00:00:00Z/..'
         }

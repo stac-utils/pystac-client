@@ -55,8 +55,10 @@ class ItemCollection(pystac.STACObject, STACAPIObjectMixin):
             links = filter(lambda l: l.rel != 'self', links)
 
         d = {
+            'type': 'FeatureCollection',
             'stac_version': pystac.get_stac_version(),
             'links': [link.to_dict() for link in links],
+            'features': [f.to_dict() for f in self.features],
             **deepcopy(self.extra_fields)
         }
 
