@@ -19,6 +19,5 @@ import pystac_api.extensions.context
 STAC_IO.read_text_method = read_text_method
 
 # Add API Extensions
-STAC_API_EXTENSIONS = pystac.extensions.base.RegisteredSTACExtensions([
-    extensions.context.CONTEXT_EXTENSION_DEFINITION
-])
+STAC_API_EXTENSIONS = pystac.extensions.base.RegisteredSTACExtensions(
+    [extensions.context.CONTEXT_EXTENSION_DEFINITION])

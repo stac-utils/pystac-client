@@ -18,23 +18,15 @@ from pystac_api.stac_io import get_pages, make_request, simple_stac_resolver
 
 DatetimeOrTimestamp = Optional[Union[datetime_, str]]
 Datetime = Union[Tuple[str], Tuple[str, str]]
-DatetimeLike = Union[
-    DatetimeOrTimestamp,
-    Tuple[DatetimeOrTimestamp, DatetimeOrTimestamp],
-    List[DatetimeOrTimestamp],
-    Iterator[DatetimeOrTimestamp]
-]
+DatetimeLike = Union[DatetimeOrTimestamp, Tuple[DatetimeOrTimestamp, DatetimeOrTimestamp],
+                     List[DatetimeOrTimestamp], Iterator[DatetimeOrTimestamp]]
 
 BBox = Tuple[float, ...]
 BBoxLike = Union[BBox, List[float], Iterator[float], str]
 
 Collections = Tuple[str, ...]
-CollectionsLike = Union[
-    List[Union[str, pystac.Collection]],
-    Iterator[Union[str, pystac.Collection]],
-    str,
-    pystac.Collection
-]
+CollectionsLike = Union[List[Union[str, pystac.Collection]],
+                        Iterator[Union[str, pystac.Collection]], str, pystac.Collection]
 
 IDs = Tuple[str, ...]
 IDsLike = Union[IDs, str, List[str], Iterator[str]]
@@ -44,7 +36,6 @@ IntersectsLike = Union[str, Intersects, object]
 
 Query = dict
 QueryLike = Union[Query, List[str]]
-
 
 logger = logging.getLogger(__name__)
 
@@ -70,20 +61,15 @@ def dict_merge(dct, merge_dct, add_keys=True):
     """
     dct = dct.copy()
     if not add_keys:
-        merge_dct = {
-            k: merge_dct[k]
-            for k in set(dct).intersection(set(merge_dct))
-        }
+        merge_dct = {k: merge_dct[k] for k in set(dct).intersection(set(merge_dct))}
 
     for k, v in merge_dct.items():
-        if (k in dct and isinstance(dct[k], dict)
-                and isinstance(merge_dct[k], Mapping)):
+        if (k in dct and isinstance(dct[k], dict) and isinstance(merge_dct[k], Mapping)):
             dct[k] = dict_merge(dct[k], merge_dct[k], add_keys=add_keys)
         else:
             dct[k] = merge_dct[k]
 
     return dct
-
 
 
 class ItemSearch(STACAPIObjectMixin):
@@ -169,10 +155,7 @@ class ItemSearch(STACAPIObjectMixin):
         self.conformance = conformance
         self.session = Session()
         self.session.headers.update(headers)
-        self.request = Request(
-            method=method,
-            url=url
-        )
+        self.request = Request(method=method, url=url)
 
         self._next_resolver = next_resolver or simple_stac_resolver
         self._max_items = max_items
@@ -318,11 +301,9 @@ class ItemSearch(STACAPIObjectMixin):
         """
         request = deepcopy(self.request)
 
-        for page in get_pages(
-            session=self.session,
-            request=request,
-            next_resolver=self._next_resolver
-        ):
+        for page in get_pages(session=self.session,
+                              request=request,
+                              next_resolver=self._next_resolver):
             yield ItemCollection.from_dict(page, conformance=self.conformance)
 
     def items(self) -> Iterator[pystac.Item]:

@@ -67,9 +67,7 @@ class APIExtensionIndex:
         """
         try:
             extension_class = pystac_api.STAC_API_EXTENSIONS.get_extension_class(
-                extension_id,
-                self.stac_object.__class__
-            )
+                extension_id, self.stac_object.__class__)
             extension_conformance = getattr(extension_class, 'conformance', None)
             return self.stac_object.conforms_to(extension_conformance)
         except ExtensionError:

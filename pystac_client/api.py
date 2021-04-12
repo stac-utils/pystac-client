@@ -40,20 +40,22 @@ class API(pystac.Catalog, STACAPIObjectMixin):
         `OGC API - Features conformance declaration
         <http://docs.opengeospatial.org/is/17-069r3/17-069r3.html#_declaration_of_conformance_classes>`_.
     """
-
-    def __init__(
-        self,
-        id,
-        description,
-        title=None,
-        stac_extensions=None,
-        extra_fields=None,
-        href=None,
-        catalog_type=None,
-        conformance=None
-    ):
-        super().__init__(id=id, description=description, title=title, stac_extensions=stac_extensions,
-                         extra_fields=extra_fields, href=href, catalog_type=catalog_type)
+    def __init__(self,
+                 id,
+                 description,
+                 title=None,
+                 stac_extensions=None,
+                 extra_fields=None,
+                 href=None,
+                 catalog_type=None,
+                 conformance=None):
+        super().__init__(id=id,
+                         description=description,
+                         title=title,
+                         stac_extensions=stac_extensions,
+                         extra_fields=extra_fields,
+                         href=href,
+                         catalog_type=catalog_type)
 
         self.conformance = conformance
 
@@ -62,8 +64,7 @@ class API(pystac.Catalog, STACAPIObjectMixin):
             allowed_uris = "\n\t".join(ConformanceClasses.STAC_API_CORE.all_uris)
             raise ConformanceError(
                 'API does not conform to {ConformanceClasses.STAC_API_CORE}. Must contain one of the following '
-                f'URIs to conform (preferably the first):\n\t{allowed_uris}.'
-            )
+                f'URIs to conform (preferably the first):\n\t{allowed_uris}.')
 
         self.headers = {}
 
@@ -146,20 +147,18 @@ class API(pystac.Catalog, STACAPIObjectMixin):
         """
         return self.get_child_links()
 
-    def search(
-        self,
-        *,
-        limit: Optional[int] = None,
-        bbox: Optional[BBoxLike] = None,
-        datetime: Optional[DatetimeLike] = None,
-        intersects: Optional[IntersectsLike] = None,
-        ids: Optional[IDsLike] = None,
-        collections: Optional[CollectionsLike] = None,
-        query: Optional[QueryLike] = None,
-        max_items: Optional[int] = None,
-        method: Optional[str] = 'POST',
-        next_resolver: Optional[Callable] = None
-    ) -> ItemSearch:
+    def search(self,
+               *,
+               limit: Optional[int] = None,
+               bbox: Optional[BBoxLike] = None,
+               datetime: Optional[DatetimeLike] = None,
+               intersects: Optional[IntersectsLike] = None,
+               ids: Optional[IDsLike] = None,
+               collections: Optional[CollectionsLike] = None,
+               query: Optional[QueryLike] = None,
+               max_items: Optional[int] = None,
+               method: Optional[str] = 'POST',
+               next_resolver: Optional[Callable] = None) -> ItemSearch:
         """Query the ``/search`` endpoint using the given parameters.
 
         This method returns an :class:`~pystac_api.ItemSearch` instance, see that class's documentation
@@ -222,7 +221,8 @@ class API(pystac.Catalog, STACAPIObjectMixin):
             <https://github.com/radiantearth/stac-api-spec/tree/master/item-search>`__ or does not have a link with
             a ``"rel"`` type of ``"search"``.
         """
-        if self.conformance is not None and not self.conforms_to(ConformanceClasses.STAC_API_ITEM_SEARCH):
+        if self.conformance is not None and not self.conforms_to(
+                ConformanceClasses.STAC_API_ITEM_SEARCH):
             spec_name = ConformanceClasses.STAC_API_ITEM_SEARCH.name
             spec_uris = '\n\t'.join(ConformanceClasses.STAC_API_ITEM_SEARCH.all_uris)
             msg = f'This service does not conform to the {spec_name} spec and therefore the search method is not ' \
@@ -232,21 +232,20 @@ class API(pystac.Catalog, STACAPIObjectMixin):
 
         search_link = self.get_single_link('search')
         if search_link is None:
-            raise NotImplementedError('No link with a "rel" type of "search" could be found in this services\'s '
-                                      'root catalog.')
+            raise NotImplementedError(
+                'No link with a "rel" type of "search" could be found in this services\'s '
+                'root catalog.')
 
-        return ItemSearch(
-            search_link.target,
-            limit=limit,
-            bbox=bbox,
-            datetime=datetime,
-            intersects=intersects,
-            ids=ids,
-            collections=collections,
-            query=query,
-            max_items=max_items,
-            method=method,
-            headers=self.headers,
-            conformance=self.conformance,
-            next_resolver=next_resolver
-        )
+        return ItemSearch(search_link.target,
+                          limit=limit,
+                          bbox=bbox,
+                          datetime=datetime,
+                          intersects=intersects,
+                          ids=ids,
+                          collections=collections,
+                          query=query,
+                          max_items=max_items,
+                          method=method,
+                          headers=self.headers,
+                          conformance=self.conformance,
+                          next_resolver=next_resolver)

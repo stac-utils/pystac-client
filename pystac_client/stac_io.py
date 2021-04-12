@@ -125,19 +125,15 @@ def simple_stac_resolver(link: dict, original_request: requests.Request) -> requ
         parameters = original_request.json
         link_body = link.get('body', {})
         parameters = {**parameters, **link_body} if merge else link_body
-        request = requests.Request(
-            method=method,
-            url=original_request.url,
-            headers=headers,
-            json=parameters
-        )
+        request = requests.Request(method=method,
+                                   url=original_request.url,
+                                   headers=headers,
+                                   json=parameters)
     else:
-        request = requests.Request(
-            method=method,
-            url=original_request.url,
-            headers=headers,
-            params=parameters
-        )
+        request = requests.Request(method=method,
+                                   url=original_request.url,
+                                   headers=headers,
+                                   params=parameters)
 
     return request
 

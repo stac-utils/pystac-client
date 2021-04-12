@@ -49,7 +49,7 @@ class ContextItemCollectionExtension(base.ItemCollectionFragment):
 
     @classmethod
     def _object_links(cls):
-        return[]
+        return []
 
     @property
     def limit(self) -> Optional[int]:
@@ -95,7 +95,6 @@ class ContextAPIExtension(base.APIExtension):
 
     conformance = ConformanceClasses.STAC_API_ITEM_SEARCH_CONTEXT_EXT
     """See the :class:`~pystac_api.conformance.STAC_API_ITEM_SEARCH_CONTEXT_EXT` for valid conformance URIs."""
-
     def __init__(self, api: API):
         self.api = api
 
@@ -108,10 +107,7 @@ class ContextAPIExtension(base.APIExtension):
         return []
 
 
-CONTEXT_EXTENSION_DEFINITION = ExtensionDefinition(
-    APIExtensions.CONTEXT,
-    [
-        base.ExtendedObject(API, ContextAPIExtension),
-        base.ExtendedObject(ItemCollection, ContextItemCollectionExtension)
-    ]
-)
+CONTEXT_EXTENSION_DEFINITION = ExtensionDefinition(APIExtensions.CONTEXT, [
+    base.ExtendedObject(API, ContextAPIExtension),
+    base.ExtendedObject(ItemCollection, ContextItemCollectionExtension)
+])

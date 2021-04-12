@@ -30,13 +30,7 @@ class ItemCollection(pystac.STACObject, STACAPIObjectMixin):
 
 
     """
-    def __init__(
-            self,
-            features=None,
-            stac_extensions=None,
-            conformance=None,
-            extra_fields=None
-    ):
+    def __init__(self, features=None, stac_extensions=None, conformance=None, extra_fields=None):
         super().__init__(stac_extensions)
 
         features = features or []
@@ -70,12 +64,11 @@ class ItemCollection(pystac.STACObject, STACAPIObjectMixin):
     def clone(self):
         """Creates a clone of this object. This clone is a deep copy; all links are cloned and all other
          elements are copied (for shallow lists) or deep copied (for dictionaries)."""
-        clone = self.__class__(
-            features=[item.clone() for item in self.features],
-            stac_extensions=list(self.stac_extensions) if self.stac_extensions is not None else None,
-            extra_fields=deepcopy(self.extra_fields),
-            conformance=list(self.conformance)
-        )
+        clone = self.__class__(features=[item.clone() for item in self.features],
+                               stac_extensions=list(self.stac_extensions)
+                               if self.stac_extensions is not None else None,
+                               extra_fields=deepcopy(self.extra_fields),
+                               conformance=list(self.conformance))
         for link in self.links:
             clone.add_link(link.clone())
         return clone
@@ -88,19 +81,14 @@ class ItemCollection(pystac.STACObject, STACAPIObjectMixin):
         argument. See the :meth:`API.search <pystac_api.API.search>` method for an example."""
         d = deepcopy(d)
 
-        features = [
-            pystac.Item.from_dict(feature)
-            for feature in d.pop('features', [])
-        ]
+        features = [pystac.Item.from_dict(feature) for feature in d.pop('features', [])]
         links = d.pop('links', [])
         stac_extensions = d.pop('stac_extensions', None)
 
-        item_collection = cls(
-            features=features,
-            stac_extensions=stac_extensions,
-            extra_fields=deepcopy(d),
-            conformance=conformance
-        )
+        item_collection = cls(features=features,
+                              stac_extensions=stac_extensions,
+                              extra_fields=deepcopy(d),
+                              conformance=conformance)
 
         for link in links:
             item_collection.add_link(pystac.Link.from_dict(link))

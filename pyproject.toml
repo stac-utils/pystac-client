@@ -28,7 +28,7 @@ pystac-client = "pystac_client.cli:cli"
 
 [tool.poetry.dependencies]
 python = "^3.6"
-pystac = "~0.5.4"
+pystac = "~0.5.6"
 requests = "^2.25.1"
 
 [tool.poetry.dev-dependencies]

@@ -82,27 +82,22 @@ class ConformanceClass(Container):
 STAC_PREFIX = 'https://api.stacspec.org/v1.0.0-beta.1'
 STAC_PREFIX_LEGACY = 'http://stacspec.org/spec/api/1.0.0-beta.1'
 
-STAC_API_CORE = ConformanceClass(
-    name='STAC API - Core',
-    uri=f'{STAC_PREFIX}/core',
-    alternative_uris={f'{STAC_PREFIX_LEGACY}/core'}
-)
+STAC_API_CORE = ConformanceClass(name='STAC API - Core',
+                                 uri=f'{STAC_PREFIX}/core',
+                                 alternative_uris={f'{STAC_PREFIX_LEGACY}/core'})
 """Used to test conformance with the `STAC API - Core spec
 <https://github.com/radiantearth/stac-api-spec/tree/master/core>`__."""
 
-STAC_API_ITEM_SEARCH = ConformanceClass(
-    name='STAC API - Item Search',
-    uri=f'{STAC_PREFIX}/item-search',
-    alternative_uris={f'{STAC_PREFIX_LEGACY}/req/stac-search'}
-)
+STAC_API_ITEM_SEARCH = ConformanceClass(name='STAC API - Item Search',
+                                        uri=f'{STAC_PREFIX}/item-search',
+                                        alternative_uris={f'{STAC_PREFIX_LEGACY}/req/stac-search'})
 """Used to test conformance with the `STAC API - Item Search spec
 <https://github.com/radiantearth/stac-api-spec/tree/master/item-search>`__."""
 
 STAC_API_ITEM_SEARCH_CONTEXT_EXT = ConformanceClass(
     name='STAC API - Item Search: Context Extension',
     uri=f'{STAC_API_ITEM_SEARCH.uri}#context',
-    alternative_uris={f'{STAC_PREFIX_LEGACY}/req/context'}
-)
+    alternative_uris={f'{STAC_PREFIX_LEGACY}/req/context'})
 """Used to test conformance with the `Context Extension
 <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/context>`__ to the STAC API - Item Search"""
 

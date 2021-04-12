@@ -39,7 +39,8 @@ class ExtendedObject:
         if stac_object_class is ItemCollection:
             if not issubclass(extension_class, ItemCollectionFragment):
                 raise ExtensionError(
-                    "Classes extending ItemCollection instances must inherit from ItemCollectionExtension")
+                    "Classes extending ItemCollection instances must inherit from ItemCollectionExtension"
+                )
         if stac_object_class is Catalog:  # pragma: no cover
             if not issubclass(extension_class, CatalogExtension):
                 raise ExtensionError(
@@ -61,7 +62,6 @@ class ItemCollectionFragment(ABC):
     conformance = None
     """MUST be overwritten in the child class with a :class:`~pystac_api.conformance.ConformanceClass` instance
     that defines the conformance URIs associated with this extension."""
-
     @classmethod
     def _from_object(cls, stac_object):
         return cls.from_item_collection(stac_object)
@@ -79,7 +79,8 @@ class ItemCollectionFragment(ABC):
     @classmethod
     def __init_subclass__(cls):
         if getattr(cls, 'conformance', None) is None:
-            raise NotImplementedError('Sub-classes of ItemCollectionFragment must implement conformance attribute.')
+            raise NotImplementedError(
+                'Sub-classes of ItemCollectionFragment must implement conformance attribute.')
 
 
 class ItemSearchFragment(ABC):
@@ -87,7 +88,6 @@ class ItemSearchFragment(ABC):
     conformance = None
     """MUST be overwritten in the child class with a :class:`~pystac_api.conformance.ConformanceClass` instance
     that defines the conformance URIs associated with this extension."""
-
     @classmethod
     def _from_object(cls, stac_object):
         return cls.from_item_search(stac_object)
@@ -105,7 +105,8 @@ class ItemSearchFragment(ABC):
     @classmethod
     def __init_subclass__(cls):
         if getattr(cls, 'conformance', None) is None:
-            raise NotImplementedError('Sub-classes of ItemSearchFragment must implement conformance attribute.')
+            raise NotImplementedError(
+                'Sub-classes of ItemSearchFragment must implement conformance attribute.')
 
 
 class APIExtension(ABC):
@@ -126,7 +127,8 @@ class APIExtension(ABC):
     @classmethod
     def __init_subclass__(cls):
         if getattr(cls, 'conformance', None) is None:
-            raise NotImplementedError('Sub-classes of APIExtension must implement conformance attribute.')
+            raise NotImplementedError(
+                'Sub-classes of APIExtension must implement conformance attribute.')
 
     conformance = None
     """MUST be overwritten in the child class with a :class:`~pystac_api.conformance.ConformanceClass` instance
