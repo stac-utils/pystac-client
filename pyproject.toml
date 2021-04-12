@@ -40,17 +40,12 @@ invoke = "^1.5.0"
 pytest-cov = "^2.11.1"
 pytest-recording = "^0.11.0"
 isort = "^5.7.0"
-vulture = "^2.3"
 recommonmark = "^0.7.1"
 flake8 = "^3.8.4"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
-
-[tool.vulture]
-paths = ["pystac_api", "vulture_allow.py"]
-exclude = ["pystac_api/__init__.py"]
 
 [tool.isort]
 skip = ["pystac_api/__init__.py"]
