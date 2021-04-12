@@ -298,10 +298,14 @@ class ItemSearch(STACAPIObjectMixin):
 
     def matched(self) -> int:
         resp = make_request(self.session, self.request, {"limit": 0})
-        found = resp.get('numberMatched')
+        found = None
+        if 'context' in resp:
+            found = resp['context']['matched']
+        elif 'numberMatched' in resp:
+            found = resp['numberMatched']
         if found is None:
-            raise APIError('Unexpected response')
-        return resp['numberMatched']
+            logger.warning("numberMatched or context.matched not in response")
+        return found
 
     def item_collections(self) -> Iterator[ItemCollection]:
         """Iterator that yields dictionaries matching the `ItemCollection
