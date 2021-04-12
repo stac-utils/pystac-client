@@ -116,14 +116,14 @@ def simple_stac_resolver(link: dict, original_request: requests.Request) -> requ
 
     # If the link object includes a "headers" property, use that and respect the "merge" property.
     link_headers = link.get('headers')
-    headers = original_request.get('headers', {})
+    headers = original_request.headers
     if link_headers is not None:
         headers = {**headers, **link_headers} if merge else link_headers
 
     # If "POST" use the body object that and respect the "merge" property.
 
     if method == 'POST':
-        parameters = original_request.get('json', {})
+        parameters = {} if original_request.json is None else original_request.json
         link_body = link.get('body', {})
         parameters = {**parameters, **link_body} if merge else link_body
         request = requests.Request(
