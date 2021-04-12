@@ -1,6 +1,6 @@
 import pytest
 
-from pystac_api import APIExtensions, ConformanceClasses, ItemSearch
+from pystac_client import APIExtensions, ConformanceClasses, ItemSearch
 
 from ..helpers import ASTRAEA_URL
 

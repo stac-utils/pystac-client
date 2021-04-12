@@ -2,7 +2,7 @@ from copy import deepcopy
 
 import pystac
 
-from pystac_api.stac_api_object import STACAPIObjectMixin
+from pystac_client.stac_api_object import STACAPIObjectMixin
 
 
 class ItemCollection(pystac.STACObject, STACAPIObjectMixin):
@@ -78,7 +78,7 @@ class ItemCollection(pystac.STACObject, STACAPIObjectMixin):
         """Parses a :class:`ItemCollection` instance from a dictionary. Note that ItemCollection objects do not publish
         their own conformance URIs in a "conformsTo" attribute. To add conformance URIs to indicate which API
         extensions an :class:`ItemCollection` instance implements you MUST pass this list in using the ``conformance``
-        argument. See the :meth:`API.search <pystac_api.API.search>` method for an example."""
+        argument. See the :meth:`API.search <pystac_client.API.search>` method for an example."""
         d = deepcopy(d)
 
         features = [pystac.Item.from_dict(feature) for feature in d.pop('features', [])]

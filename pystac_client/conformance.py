@@ -16,7 +16,7 @@ Examples
 
 Test that a URI conforms to any version of the STAC API - Core spec
 
->>> from pystac_api.conformance import STAC_API_CORE
+>>> from pystac_client.conformance import STAC_API_CORE
 >>> 'http://stacspec.org/spec/api/1.0.0-beta.1/core' in STAC_API_CORE
 True
 

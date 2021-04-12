@@ -9,7 +9,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - pystac_api/0.1.0 (Darwin)
+      - pystac_client/0.1.0 (Darwin)
     method: GET
     uri: https://eod-catalog-svc-prod.astraea.earth/
   response:

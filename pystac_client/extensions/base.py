@@ -5,14 +5,14 @@ from pystac import Catalog, Collection, Item
 from pystac.extensions import ExtensionError
 from pystac.extensions.base import CatalogExtension, CollectionExtension, ItemExtension
 
-from pystac_api.api import API
-from pystac_api.item_collection import ItemCollection
-from pystac_api.item_search import ItemSearch
+from pystac_client.api import API
+from pystac_client.item_collection import ItemCollection
+from pystac_client.item_search import ItemSearch
 
 
 class ExtendedObject:
     """Maps :class:`pystac.STACObject` classes (API, Catalog, Collection and Item) and the
-    :class:`~pystac_api.ItemSearch` class (which does not inherit from :class:`pystac.STACObject`) to extension classes
+    :class:`~pystac_client.ItemSearch` class (which does not inherit from :class:`pystac.STACObject`) to extension classes
     (classes that implement one of :class:`APIExtension`, :class:`ItemSearchFragment`, :class:`ItemCollectionFragment`,
     :class:`CatalogExtension`, :class:`CollectionExtension`, or :class:`ItemCollection`). When an extension is
     registered it uses the registered list of ``ExtendedObjects`` to determine how to handle extending objects, e.g.
@@ -23,9 +23,9 @@ class ExtendedObject:
     ----------
     stac_object_class : type
         The :class:`~pystac.STACObject` class that is being extended (may also be the
-        :class:`~pystac_api.ItemSearch` class, which does not inherit from :class:`~pystac.STACObject`).
+        :class:`~pystac_client.ItemSearch` class, which does not inherit from :class:`~pystac.STACObject`).
     extension_class : type
-        The class of the extension (e.g. :class:`~pystac_api.extensions.context.ContextAPIExtension`)
+        The class of the extension (e.g. :class:`~pystac_client.extensions.context.ContextAPIExtension`)
     """
     def __init__(self, stac_object_class, extension_class):
         if stac_object_class is API:
@@ -60,7 +60,7 @@ class ExtendedObject:
 class ItemCollectionFragment(ABC):
 
     conformance = None
-    """MUST be overwritten in the child class with a :class:`~pystac_api.conformance.ConformanceClass` instance
+    """MUST be overwritten in the child class with a :class:`~pystac_client.conformance.ConformanceClass` instance
     that defines the conformance URIs associated with this extension."""
     @classmethod
     def _from_object(cls, stac_object):
@@ -69,7 +69,7 @@ class ItemCollectionFragment(ABC):
     @classmethod
     @abstractmethod
     def from_item_collection(cls, item_collection):  # pragma: no cover
-        """Creates an instance of the extension from an :class:`~pystac_api.ItemCollection` instance."""
+        """Creates an instance of the extension from an :class:`~pystac_client.ItemCollection` instance."""
 
     @classmethod
     @abstractmethod
@@ -86,7 +86,7 @@ class ItemCollectionFragment(ABC):
 class ItemSearchFragment(ABC):
 
     conformance = None
-    """MUST be overwritten in the child class with a :class:`~pystac_api.conformance.ConformanceClass` instance
+    """MUST be overwritten in the child class with a :class:`~pystac_client.conformance.ConformanceClass` instance
     that defines the conformance URIs associated with this extension."""
     @classmethod
     def _from_object(cls, stac_object):
@@ -95,7 +95,7 @@ class ItemSearchFragment(ABC):
     @classmethod
     @abstractmethod
     def from_item_search(cls, item_search):
-        """Creates an instance of the extension from an :class:`~pystac_api.ItemSearch` instance."""
+        """Creates an instance of the extension from an :class:`~pystac_client.ItemSearch` instance."""
 
     @classmethod
     @abstractmethod
@@ -117,7 +117,7 @@ class APIExtension(ABC):
     @classmethod
     @abstractmethod
     def from_api(cls, api: API):
-        """Creates an instance of the extension from an :class:`~pystac_api.API` instance."""
+        """Creates an instance of the extension from an :class:`~pystac_client.API` instance."""
 
     @classmethod
     @abstractmethod
@@ -131,5 +131,5 @@ class APIExtension(ABC):
                 'Sub-classes of APIExtension must implement conformance attribute.')
 
     conformance = None
-    """MUST be overwritten in the child class with a :class:`~pystac_api.conformance.ConformanceClass` instance
+    """MUST be overwritten in the child class with a :class:`~pystac_client.conformance.ConformanceClass` instance
     that defines the conformance URIs associated with this extension."""

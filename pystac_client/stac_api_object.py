@@ -2,8 +2,8 @@ from typing import List, Union
 
 from pystac.extensions import ExtensionError
 
-import pystac_api
-from pystac_api.conformance import ConformanceClass
+import pystac_client
+from pystac_client.conformance import ConformanceClass
 
 
 class APIExtensionIndex:
@@ -15,10 +15,10 @@ class APIExtensionIndex:
     To access a specific extension, use the __getitem__ on this class with the
     extension ID:
 
-    >>> from pystac_api import API
+    >>> from pystac_client import API
     >>> api = API.from_file(...)
     >>> api.api_ext.context
-    <pystac_api.extensions.context.ContextAPIExtension object at 0x1035669d0>
+    <pystac_client.extensions.context.ContextAPIExtension object at 0x1035669d0>
     """
     def __init__(self, stac_object):
         self.stac_object = stac_object
@@ -26,7 +26,7 @@ class APIExtensionIndex:
     def __getitem__(self, extension_id):
         """Gets the extension object for the given extension."""
         # Check to make sure this is a registered extension.
-        if not pystac_api.STAC_API_EXTENSIONS.is_registered_extension(extension_id):
+        if not pystac_client.STAC_API_EXTENSIONS.is_registered_extension(extension_id):
             raise ExtensionError("'{}' is not an extension "
                                  "registered with pystac-api".format(extension_id))
 
@@ -35,7 +35,7 @@ class APIExtensionIndex:
                                  "Use the 'ext.enable' method to enable this extension "
                                  "first.".format(self.stac_object, extension_id))
 
-        return pystac_api.STAC_API_EXTENSIONS.extend_object(extension_id, self.stac_object)
+        return pystac_client.STAC_API_EXTENSIONS.extend_object(extension_id, self.stac_object)
 
     def __getattr__(self, extension_id):
         """Gets an extension based on a dynamic attribute. This takes the attribute name and passes it to __getitem__.
@@ -58,7 +58,7 @@ class APIExtensionIndex:
         ----------
         extension_id : str
             The extension ID to check. This must be an ID corresponding to one of the IDs in
-            :obj:`pystac_api.API_STAC_EXTENSIONS`.
+            :obj:`pystac_client.API_STAC_EXTENSIONS`.
 
         Returns
         -------
@@ -66,7 +66,7 @@ class APIExtensionIndex:
             True if the object implements the extensions
         """
         try:
-            extension_class = pystac_api.STAC_API_EXTENSIONS.get_extension_class(
+            extension_class = pystac_client.STAC_API_EXTENSIONS.get_extension_class(
                 extension_id, self.stac_object.__class__)
             extension_conformance = getattr(extension_class, 'conformance', None)
             return self.stac_object.conforms_to(extension_conformance)
@@ -96,7 +96,7 @@ class STACAPIObjectMixin:
         Parameters
         ----------
         spec : str or ConformanceClass
-            Either a :class:`~pystac_api.conformance.ConformanceClass` instance or the URI string for the spec.
+            Either a :class:`~pystac_client.conformance.ConformanceClass` instance or the URI string for the spec.
 
         Returns
         -------

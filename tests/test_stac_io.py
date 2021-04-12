@@ -3,7 +3,7 @@ from urllib.request import Request
 
 import pytest
 
-from pystac_api.stac_io import read_text_method
+from pystac_client.stac_io import read_text_method
 
 from .helpers import ASTRAEA_URL, MLHUB_URL
 

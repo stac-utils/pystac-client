@@ -3,8 +3,8 @@ from datetime import datetime
 import pystac
 import pytest
 
-from pystac_api import API, ConformanceClasses
-from pystac_api.exceptions import ConformanceError
+from pystac_client import API, ConformanceClasses
+from pystac_client.exceptions import ConformanceError
 
 from .helpers import ASTRAEA_API_PATH, ASTRAEA_URL, TEST_DATA, read_data_file
 

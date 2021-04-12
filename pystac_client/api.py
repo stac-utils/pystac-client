@@ -5,9 +5,9 @@ import pystac
 import pystac.stac_object
 import pystac.validation
 
-from pystac_api.conformance import ConformanceClasses
-from pystac_api.exceptions import ConformanceError
-from pystac_api.item_search import (
+from pystac_client.conformance import ConformanceClasses
+from pystac_client.exceptions import ConformanceError
+from pystac_client.item_search import (
     BBoxLike,
     CollectionsLike,
     DatetimeLike,
@@ -16,7 +16,7 @@ from pystac_api.item_search import (
     QueryLike,
     ItemSearch,
 )
-from pystac_api.stac_api_object import STACAPIObjectMixin
+from pystac_client.stac_api_object import STACAPIObjectMixin
 
 
 class API(pystac.Catalog, STACAPIObjectMixin):
@@ -25,8 +25,8 @@ class API(pystac.Catalog, STACAPIObjectMixin):
     a valid `STAC Catalog <https://github.com/radiantearth/stac-spec/blob/master/catalog-spec/catalog-spec.md>`_ the
     API must have a ``"conformsTo"`` property that lists the conformance URIs.
 
-    All :class:`~pystac_api.API` instances must be given a ``conformance`` argument at instantiation, and when calling
-    the :meth:`~pystac_api.API.from_dict` method the dictionary must contain a ``"conformsTo"`` attribute. If this is
+    All :class:`~pystac_client.API` instances must be given a ``conformance`` argument at instantiation, and when calling
+    the :meth:`~pystac_client.API.from_dict` method the dictionary must contain a ``"conformsTo"`` attribute. If this is
     not true then a :exc:`KeyError` is raised.
 
     In addition to the methods and attributes inherited from :class:`pystac.Catalog`, this class offers some convenience
@@ -100,7 +100,7 @@ class API(pystac.Catalog, STACAPIObjectMixin):
 
         Raises
         ------
-        pystac_api.exceptions.ConformanceError
+        pystac_client.exceptions.ConformanceError
             If the API does not publish conformance URIs in either a ``"conformsTo"`` attribute in the landing page
             response or in a ``/conformance``. According to the STAC API - Core spec, services must publish this as
             part of a ``"conformsTo"`` attribute, but some legacy APIs fail to do so.
@@ -161,9 +161,9 @@ class API(pystac.Catalog, STACAPIObjectMixin):
                next_resolver: Optional[Callable] = None) -> ItemSearch:
         """Query the ``/search`` endpoint using the given parameters.
 
-        This method returns an :class:`~pystac_api.ItemSearch` instance, see that class's documentation
+        This method returns an :class:`~pystac_client.ItemSearch` instance, see that class's documentation
         for details on how to get the number of matches and iterate over results. All keyword arguments are passed
-        directly to the :class:`~pystac_api.ItemSearch` instance.
+        directly to the :class:`~pystac_client.ItemSearch` instance.
 
         .. warning::
 
@@ -208,7 +208,7 @@ class API(pystac.Catalog, STACAPIObjectMixin):
             retry with a ``"GET"`` request for all subsequent requests.
         next_resolver: Callable, optional
             A callable that will be used to construct the next request based on a "next" link and the previous request.
-            Defaults to using the :func:`~pystac_api.paging.simple_stac_resolver`.
+            Defaults to using the :func:`~pystac_client.paging.simple_stac_resolver`.
 
         Returns
         -------

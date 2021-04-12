@@ -4,15 +4,15 @@ from typing import Optional
 
 from pystac.extensions.base import ExtensionDefinition
 
-from pystac_api import API, APIExtensions, ConformanceClasses
-from pystac_api.extensions import base
-from pystac_api.item_collection import ItemCollection
+from pystac_client import API, APIExtensions, ConformanceClasses
+from pystac_client.extensions import base
+from pystac_client.item_collection import ItemCollection
 
 
 class ContextItemCollectionExtension(base.ItemCollectionFragment):
     """Implements the `STAC API Context Extension
     <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/context>`__ for
-    :class:`~pystac_api.ItemCollection` instances.
+    :class:`~pystac_client.ItemCollection` instances.
 
     Enables retrieving the number of returned items in the given page, as well as the page size limit and total number
     of items matched, if the services provides those values.
@@ -20,7 +20,7 @@ class ContextItemCollectionExtension(base.ItemCollectionFragment):
     Examples
     --------
 
-    >>> from pystac_api import API
+    >>> from pystac_client import API
     >>> api = API.from_file(...)
     >>> results = api.search(bbox=..., datetime=..., ...)
     >>> for i, page in enumerate(results.item_collections()):
@@ -75,26 +75,26 @@ class ContextItemCollectionExtension(base.ItemCollectionFragment):
 
 class ContextAPIExtension(base.APIExtension):
     """Implements the `STAC API Context Extension
-    <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/context>`__ for :class:`~pystac_api.API`
+    <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/context>`__ for :class:`~pystac_client.API`
     instances.
 
-    This extension class enables checking for implementation of the Context Extension on :class:`~pystac_api.API`
+    This extension class enables checking for implementation of the Context Extension on :class:`~pystac_client.API`
     objects as show below, but otherwise provides no new behavior for that class.
 
     Examples
     --------
     Returns ``True`` if the API landing page contains any of the
-    :class:`~pystac_api.conformance.STAC_API_ITEM_SEARCH_CONTEXT_EXT` conformance URIs in its ``"conformsTo"``
+    :class:`~pystac_client.conformance.STAC_API_ITEM_SEARCH_CONTEXT_EXT` conformance URIs in its ``"conformsTo"``
     attribute.
 
-    >>> from pystac_api import API, ConformanceClasses
+    >>> from pystac_client import API, ConformanceClasses
     >>> api = API.from_file(...)
     >>> api.api_ext.implements(ConformanceClasses.STAC_API_ITEM_SEARCH_CONTEXT_EXT)
     True
     """
 
     conformance = ConformanceClasses.STAC_API_ITEM_SEARCH_CONTEXT_EXT
-    """See the :class:`~pystac_api.conformance.STAC_API_ITEM_SEARCH_CONTEXT_EXT` for valid conformance URIs."""
+    """See the :class:`~pystac_client.conformance.STAC_API_ITEM_SEARCH_CONTEXT_EXT` for valid conformance URIs."""
     def __init__(self, api: API):
         self.api = api
 

@@ -1,7 +1,7 @@
 import pytest
 from pystac.extensions import ExtensionError
 
-from pystac_api import API, APIExtensions, ConformanceClasses
+from pystac_client import API, APIExtensions, ConformanceClasses
 
 from .helpers import ASTRAEA_API_PATH
 

@@ -11,9 +11,9 @@ import pystac
 import pytz
 from requests import Request, Session
 
-from pystac_api.item_collection import ItemCollection
-from pystac_api.stac_api_object import STACAPIObjectMixin
-from pystac_api.stac_io import get_pages, make_request, simple_stac_resolver
+from pystac_client.item_collection import ItemCollection
+from pystac_client.stac_api_object import STACAPIObjectMixin
+from pystac_client.stac_io import get_pages, make_request, simple_stac_resolver
 
 DatetimeOrTimestamp = Optional[Union[datetime_, str]]
 Datetime = Union[Tuple[str], Tuple[str, str]]
@@ -129,7 +129,7 @@ class ItemSearch(STACAPIObjectMixin):
     ----------------
     next_resolver : Callable, optional
         A callable that will be used to construct the next request based on a "next" link and the previous request.
-        Defaults to using the :func:`~pystac_api.stac_io.simple_stac_resolver`.
+        Defaults to using the :func:`~pystac_client.stac_io.simple_stac_resolver`.
     conformance : list, optional
         A list of conformance URIs indicating the specs that this service conforms to. Note that these are *not*
         published as part of the ``"search"`` endpoint and must be obtained from the service's landing page.
@@ -296,7 +296,7 @@ class ItemSearch(STACAPIObjectMixin):
 
         Yields
         -------
-        item_collection : pystac_api.ItemCollection
+        item_collection : pystac_client.ItemCollection
         """
         request = deepcopy(self.request)
 
@@ -308,7 +308,7 @@ class ItemSearch(STACAPIObjectMixin):
     def items(self) -> Iterator[pystac.Item]:
         """Iterator that yields :class:`pystac.Item` instances for each item matching the given search parameters. Calls
         :meth:`ItemSearch.item_collections()` internally and yields from
-        :attr:`ItemCollection.features <pystac_api.ItemCollection.features>` for each page of results.
+        :attr:`ItemCollection.features <pystac_client.ItemCollection.features>` for each page of results.
 
         Yields
         ------

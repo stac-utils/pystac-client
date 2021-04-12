@@ -5,8 +5,8 @@ import pystac
 import pytest
 from dateutil.tz import gettz, tzutc
 
-from pystac_api import API
-from pystac_api.item_search import ItemSearch
+from pystac_client import API
+from pystac_client.item_search import ItemSearch
 
 from .helpers import ASTRAEA_URL, read_data_file
 

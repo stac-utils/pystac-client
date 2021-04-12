@@ -1,4 +1,4 @@
-from pystac_api import __version__
+from pystac_client import __version__
 
 
 def test_version():

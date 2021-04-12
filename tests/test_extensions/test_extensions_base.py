@@ -1,8 +1,8 @@
 import pytest
 from pystac.extensions import ExtensionError
 
-from pystac_api import API, ItemCollection, ItemSearch
-from pystac_api.extensions.base import (
+from pystac_client import API, ItemCollection, ItemSearch
+from pystac_client.extensions.base import (
     APIExtension,
     ExtendedObject,
     ItemCollectionFragment,

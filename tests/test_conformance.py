@@ -1,4 +1,4 @@
-from pystac_api import ConformanceClasses
+from pystac_client import ConformanceClasses
 
 
 class TestConformanceClasses:
