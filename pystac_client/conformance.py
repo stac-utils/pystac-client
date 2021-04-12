@@ -1,6 +1,6 @@
 """This module defines a :class:`ConformanceClass` class that can be used to check conformance to a spec based on the
 presence of a conformance URI. Each instance has a single :attr:`ConformanceClass.uri` property that represents the
-most up-to-date offical conformance URI for that spec. Because the STAC API spec has been rapidly evolving, many APIs
+most up-to-date official conformance URI for that spec. Because the STAC API spec has been rapidly evolving, many APIs
 publish other conformance URIs that were defined in previous iterations of the spec, or are defined by other entities.
 These unofficial URIs are captured in the :attr:`ConformanceClass.alternative_uris` property.
 
