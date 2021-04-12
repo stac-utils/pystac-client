@@ -2,7 +2,6 @@ from pystac_api import ConformanceClasses
 
 
 class TestConformanceClasses:
-
     def test_stac_core(self):
         assert ConformanceClasses.STAC_API_CORE.name == 'STAC API - Core'
 

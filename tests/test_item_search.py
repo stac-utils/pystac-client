@@ -12,14 +12,10 @@ from .helpers import ASTRAEA_URL, read_data_file
 
 SEARCH_URL = f'{ASTRAEA_URL}/search'
 INTERSECTS_EXAMPLE = {
-    'type': 'Polygon',
-    'coordinates': [[
-        [-73.21, 43.99],
-        [-73.21, 44.05],
-        [-73.12, 44.05],
-        [-73.12, 43.99],
-        [-73.21, 43.99]
-    ]]
+    'type':
+    'Polygon',
+    'coordinates': [[[-73.21, 43.99], [-73.21, 44.05], [-73.12, 44.05], [-73.12, 43.99],
+                     [-73.21, 43.99]]]
 }
 
 
@@ -69,7 +65,8 @@ class TestItemSearch:
         assert search.request.json['datetime'] == '2020-02-01T00:00:00Z/2020-02-02T00:00:00Z'
 
         # Timestamp list input
-        search = ItemSearch(url=ASTRAEA_URL, datetime=['2020-02-01T00:00:00Z', '2020-02-02T00:00:00Z'])
+        search = ItemSearch(url=ASTRAEA_URL,
+                            datetime=['2020-02-01T00:00:00Z', '2020-02-02T00:00:00Z'])
         assert search.request.json['datetime'] == '2020-02-01T00:00:00Z/2020-02-02T00:00:00Z'
 
         # Open timestamp range input
@@ -100,7 +97,7 @@ class TestItemSearch:
     def test_collections_param(self, astraea_api):
         # Single ID string
         search = ItemSearch(url=ASTRAEA_URL, collections='naip')
-        assert search.request.json['collections'] == ('naip',)
+        assert search.request.json['collections'] == ('naip', )
 
         # Comma-separated ID string
         search = ItemSearch(url=ASTRAEA_URL, collections='naip,landsat8_l1tp')
@@ -113,6 +110,7 @@ class TestItemSearch:
         # Generator of ID strings
         def collectioner():
             yield from ['naip', 'landsat8_l1tp']
+
         search = ItemSearch(url=ASTRAEA_URL, collections=collectioner())
         assert search.request.json['collections'] == ('naip', 'landsat8_l1tp')
 
@@ -120,7 +118,7 @@ class TestItemSearch:
 
         # Single pystac.Collection
         search = ItemSearch(url=ASTRAEA_URL, collections=collection)
-        assert search.request.json['collections'] == ('landsat8_l1tp',)
+        assert search.request.json['collections'] == ('landsat8_l1tp', )
 
         # Mixed list
         search = ItemSearch(url=ASTRAEA_URL, collections=[collection, 'naip'])
@@ -129,46 +127,31 @@ class TestItemSearch:
     def test_ids_param(self):
         # Single ID
         search = ItemSearch(url=ASTRAEA_URL, ids='m_3510836_se_12_060_20180508_20190331')
-        assert search.request.json['ids'] == ('m_3510836_se_12_060_20180508_20190331',)
+        assert search.request.json['ids'] == ('m_3510836_se_12_060_20180508_20190331', )
 
         # Comma-separated ID string
         search = ItemSearch(
             url=ASTRAEA_URL,
-            ids='m_3510836_se_12_060_20180508_20190331,m_3510840_se_12_060_20180504_20190331'
-        )
-        assert search.request.json['ids'] == (
-            'm_3510836_se_12_060_20180508_20190331',
-            'm_3510840_se_12_060_20180504_20190331'
-        )
+            ids='m_3510836_se_12_060_20180508_20190331,m_3510840_se_12_060_20180504_20190331')
+        assert search.request.json['ids'] == ('m_3510836_se_12_060_20180508_20190331',
+                                              'm_3510840_se_12_060_20180504_20190331')
 
         # List of IDs
         search = ItemSearch(
             url=ASTRAEA_URL,
-            ids=[
-                'm_3510836_se_12_060_20180508_20190331',
-                'm_3510840_se_12_060_20180504_20190331'
-            ]
-        )
-        assert search.request.json['ids'] == (
-            'm_3510836_se_12_060_20180508_20190331',
-            'm_3510840_se_12_060_20180504_20190331'
-        )
+            ids=['m_3510836_se_12_060_20180508_20190331', 'm_3510840_se_12_060_20180504_20190331'])
+        assert search.request.json['ids'] == ('m_3510836_se_12_060_20180508_20190331',
+                                              'm_3510840_se_12_060_20180504_20190331')
 
         # Generator of IDs
         def ids():
             yield from [
-                'm_3510836_se_12_060_20180508_20190331',
-                'm_3510840_se_12_060_20180504_20190331'
+                'm_3510836_se_12_060_20180508_20190331', 'm_3510840_se_12_060_20180504_20190331'
             ]
 
-        search = ItemSearch(
-            url=ASTRAEA_URL,
-            ids=ids()
-        )
-        assert search.request.json['ids'] == (
-            'm_3510836_se_12_060_20180508_20190331',
-            'm_3510840_se_12_060_20180504_20190331'
-        )
+        search = ItemSearch(url=ASTRAEA_URL, ids=ids())
+        assert search.request.json['ids'] == ('m_3510836_se_12_060_20180508_20190331',
+                                              'm_3510840_se_12_060_20180504_20190331')
 
     def test_intersects_param(self):
         # Dict input
@@ -193,10 +176,7 @@ class TestItemSearch:
 
     @pytest.mark.vcr
     def test_ids_results(self):
-        ids = [
-            'm_3510836_se_12_060_20180508_20190331',
-            'm_3510840_se_12_060_20180504_20190331'
-        ]
+        ids = ['m_3510836_se_12_060_20180508_20190331', 'm_3510840_se_12_060_20180504_20190331']
         search = ItemSearch(
             url=SEARCH_URL,
             ids=ids,
@@ -210,40 +190,27 @@ class TestItemSearch:
     def test_datetime_results(self):
         # Datetime range string
         datetime_ = '2019-01-01T00:00:01Z/2019-01-01T00:00:10Z'
-        search = ItemSearch(
-            url=SEARCH_URL,
-            datetime=datetime_
-        )
+        search = ItemSearch(url=SEARCH_URL, datetime=datetime_)
         results = list(search.items())
         assert len(results) == 12
 
         min_datetime = datetime(2019, 1, 1, 0, 0, 1, tzinfo=tzutc())
         max_datetime = datetime(2019, 1, 1, 0, 0, 10, tzinfo=tzutc())
-        search = ItemSearch(
-            url=SEARCH_URL,
-            datetime=(min_datetime, max_datetime)
-        )
+        search = ItemSearch(url=SEARCH_URL, datetime=(min_datetime, max_datetime))
         results = search.items()
-        assert all(min_datetime <= item.datetime <= (max_datetime + timedelta(seconds=1))for item in results)
+        assert all(min_datetime <= item.datetime <= (max_datetime + timedelta(seconds=1))
+                   for item in results)
 
     @pytest.mark.vcr
     def test_intersects_results(self):
         # GeoJSON-like dict
         intersects_dict = {
-            'type': 'Polygon',
-            'coordinates': [[
-                [-73.21, 43.99],
-                [-73.21, 44.05],
-                [-73.12, 44.05],
-                [-73.12, 43.99],
-                [-73.21, 43.99]
-            ]]
+            'type':
+            'Polygon',
+            'coordinates': [[[-73.21, 43.99], [-73.21, 44.05], [-73.12, 44.05], [-73.12, 43.99],
+                             [-73.21, 43.99]]]
         }
-        search = ItemSearch(
-            url=SEARCH_URL,
-            intersects=intersects_dict,
-            collections='naip'
-        )
+        search = ItemSearch(url=SEARCH_URL, intersects=intersects_dict, collections='naip')
         results = list(search.items())
         assert len(results) == 30
 
@@ -252,11 +219,7 @@ class TestItemSearch:
             __geo_interface__ = intersects_dict
 
         intersects_obj = MockGeoObject()
-        search = ItemSearch(
-            url=SEARCH_URL,
-            intersects=intersects_obj,
-            collections='naip'
-        )
+        search = ItemSearch(url=SEARCH_URL, intersects=intersects_obj, collections='naip')
         results = search.items()
         assert all(isinstance(item, pystac.Item) for item in results)
 
