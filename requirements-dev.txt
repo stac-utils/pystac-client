@@ -1,6 +1,7 @@
 codespell==1.17.1
 coverage==5.2.*
 flake8==3.8.*
+pytest~=3.6.4
 recommonmark~=0.7.1
 Sphinx~=3.5.1
 toml~=0.10.2
