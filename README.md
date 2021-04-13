@@ -1,7 +1,7 @@
 STAC API Client
 ===============
 
-A Python client for working with STAC APIs.
+A Python client for working with STAC Catalogs and APIs.
 
 ## Installation
 
