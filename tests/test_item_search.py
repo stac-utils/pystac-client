@@ -97,6 +97,42 @@ class TestItemSearchParams:
         search = ItemSearch(url=ASTRAEA_URL, datetime=start_localized)
         assert search.request.json['datetime'] == '2020-02-01T05:00:00Z'
 
+    def test_single_year(self):
+        search = ItemSearch(url=ASTRAEA_URL, datetime='2020')
+        assert search.request.json['datetime'] == "2020-01-01T00:00:00Z/2020-12-31T23:59:59Z"
+
+    def test_range_of_years(self):
+        search = ItemSearch(url=ASTRAEA_URL, datetime='2019/2020')
+        assert search.request.json['datetime'] == "2019-01-01T00:00:00Z/2020-12-31T23:59:59Z"
+
+    def test_single_month(self):
+        search = ItemSearch(url=ASTRAEA_URL, datetime='2020-06')
+        assert search.request.json['datetime'] == "2020-06-01T00:00:00Z/2020-06-30T23:59:59Z"
+
+    def test_range_of_months(self):
+        search = ItemSearch(url=ASTRAEA_URL, datetime='2020-04/2020-06')
+        assert search.request.json['datetime'] == "2020-04-01T00:00:00Z/2020-06-30T23:59:59Z"
+
+    def test_single_date(self):
+        search = ItemSearch(url=ASTRAEA_URL, datetime='2020-06-10')
+        assert search.request.json['datetime'] == "2020-06-10T00:00:00Z/2020-06-10T23:59:59Z"
+
+    def test_range_of_dates(self):
+        search = ItemSearch(url=ASTRAEA_URL, datetime='2020-06-10/2020-06-20')
+        assert search.request.json['datetime'] == "2020-06-10T00:00:00Z/2020-06-20T23:59:59Z"
+
+    def test_mixed_simple_date_strings(self):
+        search = ItemSearch(url=ASTRAEA_URL, datetime="2019/2020-06-10")
+        assert search.request.json['datetime'] == "2019-01-01T00:00:00Z/2020-06-10T23:59:59Z"
+
+    def test_three_datetimes(self):
+        start = datetime(2020, 2, 1, 0, 0, 0, tzinfo=tzutc())
+        middle = datetime(2020, 2, 2, 0, 0, 0, tzinfo=tzutc())
+        end = datetime(2020, 2, 3, 0, 0, 0, tzinfo=tzutc())
+
+        with pytest.raises(Exception):
+            ItemSearch(url=ASTRAEA_URL, datetime=[start, middle, end])
+
     def test_single_collection_string(self):
         # Single ID string
         search = ItemSearch(url=ASTRAEA_URL, collections='naip')

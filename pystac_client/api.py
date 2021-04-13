@@ -181,15 +181,28 @@ class API(pystac.Catalog, STACAPIObjectMixin):
             May be a list, tuple, or iterator representing a bounding box of 2D or 3D coordinates. Results will be
             filtered to only those intersecting the bounding box.
         datetime: str or datetime.datetime or list or tuple or Iterator, optional
-            Either a single datetime or datetime range used to filter results. You may express a single datetime using
-            a :class:`datetime.datetime` instance or a `RFC 3339-compliant <https://tools.ietf.org/html/rfc3339>`__
-            timestamp. Instances of :class:`datetime.datetime` may be either timezone aware or unaware. Timezone aware
-            instances will be converted to a UTC timestamp before being passed to the endpoint. Timezone unaware
-            instances are assumed to represent UTC timestamps.
-            You may represent a datetime range using a ``"/"`` separated string as described in the spec, or a list,
-            tuple, or iterator of 2 timestamps or datetime instances. For open-ended ranges, use either ``".."``
-            (``'2020-01-01:00:00:00Z/..'``, ``['2020-01-01:00:00:00Z', '..']``) or a value of ``None``
-            (``['2020-01-01:00:00:00Z', None]``).
+            Either a single datetime or datetime range used to filter results. You may express a single datetime using a
+            :class:`datetime.datetime` instance, a `RFC 3339-compliant <https://tools.ietf.org/html/rfc3339>`__ timestamp,
+            or a simple date string (see below). Instances of :class:`datetime.datetime` may be either timezone aware or
+            unaware. Timezone aware instances will be converted to a UTC timestamp before being passed to the endpoint.
+            Timezone unaware instances are assumed to represent UTC timestamps. You may represent a datetime range using a
+            ``"/"`` separated string as described in the spec, or a list, tuple, or iterator of 2 timestamps or datetime
+            instances. For open-ended ranges, use either ``".."`` (``'2020-01-01:00:00:00Z/..'``,
+            ``['2020-01-01:00:00:00Z', '..']``) or a value of ``None`` (``['2020-01-01:00:00:00Z', None]``).
+
+            If using a simple date string, the datetime can be specified in ``YYYY-mm-dd`` format, optionally truncating
+            to ``YYYY-mm`` or just ``YYYY``. Simple date strings will be expanded to include the entire time period, for
+            example:
+
+            - ``2017`` expands to ``2017-01-01T00:00:00Z/2017-12-31T23:59:59Z``
+            - ``2017-06`` expands to ``2017-06-01T00:00:00Z/2017-06-30T23:59:59Z``
+            - ``2017-06-10`` expands to ``2017-06-10T00:00:00Z/2017-06-10T23:59:59Z``
+
+            If used in a range, the end of the range expands to the end of that day/month/year, for example:
+
+            - ``2017/2018`` expands to ``2017-01-01T00:00:00Z/2018-12-31T23:59:59Z``
+            - ``2017-06/2017-07`` expands to ``2017-06-01T00:00:00Z/2017-07-31T23:59:59Z``
+            - ``2017-06-10/2017-06-11`` expands to ``2017-06-10T00:00:00Z/2017-06-11T23:59:59Z``
         intersects: str or dict, optional
             A GeoJSON-like dictionary or JSON string. Results will be filtered to only those intersecting the geometry
         ids: list, optional
