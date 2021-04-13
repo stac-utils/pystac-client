@@ -55,17 +55,10 @@ class ItemCollection(object):
 
     @classmethod
     def from_dict(cls, d, conformance=None, href=None, root=None):
-        """Parses a :class:`ItemCollection` instance from a dictionary. Note that ItemCollection objects do not publish
-        their own conformance URIs in a "conformsTo" attribute. To add conformance URIs to indicate which API
-        extensions an :class:`ItemCollection` instance implements you MUST pass this list in using the ``conformance``
-        argument. See the :meth:`API.search <pystac_client.API.search>` method for an example."""
+        """Parses a :class:`ItemCollection` instance from a dictionary. """
         features = [pystac.Item.from_dict(feature) for feature in d.pop('features', [])]
-        links = d.pop('links', [])
 
         item_collection = cls(features=features)
-
-        for link in links:
-            item_collection.add_link(pystac.Link.from_dict(link))
 
         return item_collection
 
