@@ -1,0 +1,22 @@
+#!/bin/bash
+
+set -e
+
+if [[ -n "${CI}" ]]; then
+    set -x
+fi
+
+function usage() {
+    echo -n \
+        "Usage: $(basename "$0")
+Build documentation
+"
+}
+
+if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
+    if [ "${1:-}" = "--help" ]; then
+        usage
+    else
+        sphinx-build -M html docs/source docs/build
+    fi
+fi
