@@ -3,12 +3,11 @@ import json
 import logging
 from collections.abc import Iterable, Mapping
 from copy import deepcopy
-from datetime import datetime as datetime_
+from datetime import timezone, datetime as datetime_
 from typing import Callable, Iterator, List, Optional, Tuple, Union
 from urllib.error import HTTPError
 
 import pystac
-import pytz
 from requests import Request, Session
 
 from pystac_client.item_collection import ItemCollection
@@ -227,7 +226,7 @@ class ItemSearch(STACAPIObjectMixin):
                 return dt
 
             if dt.tzinfo is not None:
-                dt = dt.astimezone(pytz.UTC)
+                dt = dt.astimezone(timezone.utc)
                 dt = dt.replace(tzinfo=None)
 
             return dt.isoformat('T') + 'Z'
