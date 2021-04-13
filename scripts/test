@@ -34,7 +34,7 @@ if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
             *.md
 
         # Test suite with coverage enabled
-        coverage run --source=pystac_client/ -m unittest discover tests/
+        pytest -s --cov pystac_client --cov-report term-missing
         coverage xml
     fi
 fi
