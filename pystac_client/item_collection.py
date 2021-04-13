@@ -1,8 +1,7 @@
+import json
 from copy import deepcopy
 
 import pystac
-
-from pystac_client.stac_api_object import STACAPIObjectMixin
 
 
 class ItemCollection(object):
@@ -72,5 +71,5 @@ class ItemCollection(object):
 
     @classmethod
     def from_file(cls, filename):
-        with open(filename) as f: 
+        with open(filename) as f:
             return cls.from_dict(json.loads(f.read()))
