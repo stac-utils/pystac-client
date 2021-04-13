@@ -66,3 +66,7 @@ class ItemCollection(object):
     def from_file(cls, filename):
         with open(filename) as f:
             return cls.from_dict(json.loads(f.read()))
+
+    def save(self, filename):
+        with open(filename, 'w') as f:
+            f.write(json.dumps(self.to_dict()))
