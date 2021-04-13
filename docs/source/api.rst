@@ -1,32 +1,32 @@
 API Reference
 =============
 
-.. module:: pystac_api
+.. module:: pystac_client
 
 Main Package
 ------------
 
-.. autoclass:: pystac_api.API
+.. autoclass:: pystac_client.API
     :members:
     :undoc-members:
     :show-inheritance:
 
-.. autoclass:: pystac_api.ConformanceClasses
+.. autoclass:: pystac_client.ConformanceClasses
     :members:
     :undoc-members:
     :show-inheritance:
 
-.. autoclass:: pystac_api.ItemSearch
+.. autoclass:: pystac_client.ItemSearch
     :members:
     :undoc-members:
     :show-inheritance:
 
-.. autoclass:: pystac_api.ItemCollection
+.. autoclass:: pystac_client.ItemCollection
     :members:
     :undoc-members:
     :show-inheritance:
 
-.. autoclass:: pystac_api.APIExtensions
+.. autoclass:: pystac_client.APIExtensions
     :members:
     :undoc-members:
     :show-inheritance:
@@ -35,7 +35,7 @@ Main Package
 Conformance
 -----------
 
-.. automodule:: pystac_api.conformance
+.. automodule:: pystac_client.conformance
     :members:
     :undoc-members:
     :show-inheritance:
@@ -43,12 +43,12 @@ Conformance
 STAC API Objects
 ----------------
 
-.. autoclass:: pystac_api.stac_api_object.APIExtensionIndex
+.. autoclass:: pystac_client.stac_api_object.APIExtensionIndex
     :members:
     :undoc-members:
     :show-inheritance:
 
-.. autoclass:: pystac_api.stac_api_object.STACAPIObjectMixin
+.. autoclass:: pystac_client.stac_api_object.STACAPIObjectMixin
     :members:
     :undoc-members:
     :show-inheritance:
@@ -59,15 +59,7 @@ Extensions
 Context Extension
 +++++++++++++++++
 
-.. automodule:: pystac_api.extensions.context
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-Paging
-----------
-
-.. automodule:: pystac_api.paging
+.. automodule:: pystac_client.extensions.context
     :members:
     :undoc-members:
     :show-inheritance:
@@ -75,7 +67,7 @@ Paging
 Exceptions
 ----------
 
-.. automodule:: pystac_api.exceptions
+.. automodule:: pystac_client.exceptions
     :members:
     :undoc-members:
     :show-inheritance:
