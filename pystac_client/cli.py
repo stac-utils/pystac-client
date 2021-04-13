@@ -12,25 +12,22 @@ from .version import __version__
 API_URL = os.getenv('STAC_API_URL', None)
 
 
-def search(url=API_URL, matched=False, save=None, stdout=False, **kwargs):
+def search(url=API_URL, save=None, stdout=False, **kwargs):
     """ Main function for performing a search """
 
     api = API.open(url)
     search = api.search(**kwargs)
 
-    if matched:
+    if stdout or save:
+        items = ItemCollection(search.items())
+        if save:
+            with open(save, 'w') as f:
+                f.write(json.dumps(items.to_dict()))
+        else:
+            print(json.dumps(items.to_dict()))
+    else:
         matched = search.matched()
         print('%s items matched' % matched)
-        return
-
-    items = ItemCollection(search.items())
-
-    if stdout:
-        print(json.dumps(items.to_dict()))
-
-    if save is not None:
-        with open(save, 'w') as f:
-            f.write(json.dumps(items.to_dict()))
 
 
 def parse_args(args):
@@ -43,7 +40,7 @@ def parse_args(args):
                         help='Print version and exit',
                         action='version',
                         version=__version__)
-    parent.add_argument('--logging', default='DEBUG', help='DEBUG, INFO, WARN, ERROR, CRITICAL')
+    parent.add_argument('--logging', default='INFO', help='DEBUG, INFO, WARN, ERROR, CRITICAL')
     parent.add_argument('--url', help='Root API URL', default=os.getenv('STAC_API_URL', None))
     parent.add_argument('--limit', help='Page size limit', type=int, default=500)
     parent.add_argument('--headers',
@@ -82,11 +79,7 @@ def parse_args(args):
                               type=int)
 
     output_group = parser.add_argument_group('output options')
-    output_group.add_argument('--matched',
-                              help='Print number of matched items and exit',
-                              action='store_true',
-                              default=False)
-    output_group.add_argument('--stdout',
+    output_group.add_argument('--stdout', dest='stdout',
                               help='Print results to stdout (also disables logging)',
                               default=False,
                               action='store_true')
@@ -94,6 +87,7 @@ def parse_args(args):
 
     parsed_args = {k: v for k, v in vars(parser0.parse_args(args)).items() if v is not None}
 
+    # if intersects is JSON file, read it in
     if 'intersects' in parsed_args:
         if os.path.exists(parsed_args['intersects']):
             with open(parsed_args['intersects']) as f:
@@ -111,8 +105,9 @@ def parse_args(args):
 def cli():
     args = parse_args(sys.argv[1:])
 
-    if not args.pop('stdout', False):
-        logging.basicConfig(stream=sys.stdout, level=args.pop('logging'))
+    loglevel = args.pop('logging')
+    if not args.get('stdout', False):
+        logging.basicConfig(stream=sys.stdout, level=loglevel)
         # quiet loggers
         for lg in ['urllib3']:
             logging.getLogger(lg).propagate = False
