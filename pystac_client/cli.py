@@ -79,7 +79,7 @@ def parse_args(args):
                               type=int)
 
     output_group = parser.add_argument_group('output options')
-    output_group.add_argument('--stdout', dest='stdout',
+    output_group.add_argument('--stdout',
                               help='Print results to stdout (also disables logging)',
                               default=False,
                               action='store_true')
