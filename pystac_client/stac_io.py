@@ -19,7 +19,7 @@ def read_text_method(uri):
     if bool(urlparse(uri).scheme):
         logger.debug(f"Requesting {uri}")
         resp = requests.get(uri)
-        return requests.get(uri).content
+        return resp.content
     else:
         return STAC_IO.default_read_text_method(uri)
 

@@ -6,7 +6,6 @@
 
 import re
 import sys
-import toml
 from pathlib import Path
 
 # -- Path setup --------------------------------------------------------------
@@ -25,16 +24,7 @@ copyright = '2021, Jon Duckworth'
 author = 'Jon Duckworth'
 github_user = 'duckontheweb'
 github_repo = 'pystac-api-client'
-
-# Get the package description
-try:
-    pyproject_file = Path(__file__).parent.parent.parent / 'pyproject.toml'
-    with pyproject_file.open('r') as src:
-        pyproject = toml.load(src)
-
-    package_description = pyproject.get('tool', {}).get('poetry', {}).get('description', '')
-except Exception:
-    package_description = ''
+package_description = 'A Python client for the STAC API spec.'
 
 # The full version, including alpha/beta/rc tags
 version = re.fullmatch(r'^(\d+\.\d+\.\d).*$', __version__).group(1)

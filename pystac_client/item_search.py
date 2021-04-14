@@ -1,5 +1,8 @@
+from dateutil.tz import tzutc
+from dateutil.relativedelta import relativedelta
 import itertools as it
 import json
+import re
 import logging
 from collections.abc import Iterable, Mapping
 from copy import deepcopy
@@ -13,6 +16,9 @@ from requests import Request, Session
 from pystac_client.item_collection import ItemCollection
 from pystac_client.stac_api_object import STACAPIObjectMixin
 from pystac_client.stac_io import get_pages, make_request, simple_stac_resolver
+
+DATETIME_REGEX = re.compile(
+    r"(?P<year>\d{4})(-(?P<month>\d{2})(-(?P<day>\d{2})(?P<remainder>T\d{2}:\d{2}:\d{2}\w*)?)?)?")
 
 DatetimeOrTimestamp = Optional[Union[datetime_, str]]
 Datetime = Union[Tuple[str], Tuple[str, str]]
@@ -106,15 +112,28 @@ class ItemSearch(STACAPIObjectMixin):
         May be a list, tuple, or iterator representing a bounding box of 2D or 3D coordinates. Results will be filtered
         to only those intersecting the bounding box.
     datetime: str or datetime.datetime or list or tuple or Iterator, optional
-        Either a single datetime or datetime range used to filter results. You may express a single datetime using
-        a :class:`datetime.datetime` instance or a `RFC 3339-compliant <https://tools.ietf.org/html/rfc3339>`__
-        timestamp. Instances of :class:`datetime.datetime` may be either timezone aware or unaware. Timezone aware
-        instances will be converted to a UTC timestamp before being passed to the endpoint. Timezone unaware instances
-        are assumed to represent UTC timestamps.
-        You may represent a datetime range using a ``"/"`` separated string as described in the spec, or a list, tuple,
-        or iterator of 2 timestamps or datetime instances. For open-ended ranges, use either ``".."``
-        (``'2020-01-01:00:00:00Z/..'``, ``['2020-01-01:00:00:00Z', '..']``) or a value of ``None``
-        (``['2020-01-01:00:00:00Z', None]``).
+        Either a single datetime or datetime range used to filter results. You may express a single datetime using a
+        :class:`datetime.datetime` instance, a `RFC 3339-compliant <https://tools.ietf.org/html/rfc3339>`__ timestamp,
+        or a simple date string (see below). Instances of :class:`datetime.datetime` may be either timezone aware or
+        unaware. Timezone aware instances will be converted to a UTC timestamp before being passed to the endpoint.
+        Timezone unaware instances are assumed to represent UTC timestamps. You may represent a datetime range using a
+        ``"/"`` separated string as described in the spec, or a list, tuple, or iterator of 2 timestamps or datetime
+        instances. For open-ended ranges, use either ``".."`` (``'2020-01-01:00:00:00Z/..'``,
+        ``['2020-01-01:00:00:00Z', '..']``) or a value of ``None`` (``['2020-01-01:00:00:00Z', None]``).
+
+        If using a simple date string, the datetime can be specified in ``YYYY-mm-dd`` format, optionally truncating
+        to ``YYYY-mm`` or just ``YYYY``. Simple date strings will be expanded to include the entire time period, for
+        example:
+
+        - ``2017`` expands to ``2017-01-01T00:00:00Z/2017-12-31T23:59:59Z``
+        - ``2017-06`` expands to ``2017-06-01T00:00:00Z/2017-06-30T23:59:59Z``
+        - ``2017-06-10`` expands to ``2017-06-10T00:00:00Z/2017-06-10T23:59:59Z``
+
+        If used in a range, the end of the range expands to the end of that day/month/year, for example:
+
+        - ``2017/2018`` expands to ``2017-01-01T00:00:00Z/2018-12-31T23:59:59Z``
+        - ``2017-06/2017-07`` expands to ``2017-06-01T00:00:00Z/2017-07-31T23:59:59Z``
+        - ``2017-06-10/2017-06-11`` expands to ``2017-06-10T00:00:00Z/2017-06-11T23:59:59Z``
     intersects: str or dict, optional
         A GeoJSON-like dictionary or JSON string. Results will be filtered to only those intersecting the geometry
     ids: list, optional
@@ -219,26 +238,79 @@ class ItemSearch(STACAPIObjectMixin):
 
     @staticmethod
     def _format_datetime(value: Optional[DatetimeLike]) -> Optional[Datetime]:
-        def _format(dt):
-            if dt is None:
-                return '..'
-            if isinstance(dt, str):
-                return dt
+        def _to_utc_isoformat(dt):
+            dt = dt.astimezone(timezone.utc)
+            dt = dt.replace(tzinfo=None)
+            return dt.isoformat("T") + "Z"
 
-            if dt.tzinfo is not None:
-                dt = dt.astimezone(timezone.utc)
-                dt = dt.replace(tzinfo=None)
+        def _to_isoformat_range(component: DatetimeOrTimestamp):
+            """Converts a single DatetimeOrTimestamp into one or two Datetimes.
 
-            return dt.isoformat('T') + 'Z'
+            This is required to expand a single value like "2017" out to the whole year. This function returns two values.
+            The first value is always a valid Datetime. The second value can be None or a Datetime. If it is None, this
+            means that the first value was an exactly specified value (e.g. a `datetime.datetime`). If the second value is
+            a Datetime, then it will be the end of the range at the resolution of the component, e.g. if the component
+            were "2017" the second value would be the last second of the last day of 2017.
+            """
+            if component is None:
+                return "..", None
+            elif isinstance(component, str):
+                if component == "..":
+                    return component, None
+
+                match = DATETIME_REGEX.match(component)
+                if not match:
+                    raise Exception(f"invalid datetime component: {component}")
+                elif match.group("remainder"):
+                    return component, None
+                else:
+                    year = int(match.group("year"))
+                    optional_month = match.group("month")
+                    optional_day = match.group("day")
+
+                if optional_day is not None:
+                    start = datetime_(year,
+                                      int(optional_month),
+                                      int(optional_day),
+                                      0,
+                                      0,
+                                      0,
+                                      tzinfo=tzutc())
+                    end = start + relativedelta(days=1, seconds=-1)
+                elif optional_month is not None:
+                    start = datetime_(year, int(optional_month), 1, 0, 0, 0, tzinfo=tzutc())
+                    end = start + relativedelta(months=1, seconds=-1)
+                else:
+                    start = datetime_(year, 1, 1, 0, 0, 0, tzinfo=tzutc())
+                    end = start + relativedelta(years=1, seconds=-1)
+                return _to_utc_isoformat(start), _to_utc_isoformat(end)
+            else:
+                return _to_utc_isoformat(component), None
 
         if value is None:
             return None
-        if isinstance(value, str):
-            return '/'.join((map(_format, value.split('/'))))
-        if isinstance(value, Iterable):
-            return '/'.join((map(_format, value)))
+        elif isinstance(value, datetime_):
+            return _to_utc_isoformat(value)
+        elif isinstance(value, str):
+            components = value.split("/")
+        else:
+            components = list(value)
 
-        return _format(value)
+        if not components:
+            return None
+        elif len(components) == 1:
+            start, end = _to_isoformat_range(components[0])
+            if end is not None:
+                return f"{start}/{end}"
+            else:
+                return start
+        elif len(components) == 2:
+            start, _ = _to_isoformat_range(components[0])
+            backup_end, end = _to_isoformat_range(components[1])
+            return f"{start}/{end or backup_end}"
+        else:
+            raise Exception(
+                f"too many datetime components (max=2, actual={len(components)}): {value}")
 
     @staticmethod
     def _format_collections(value: Optional[CollectionsLike]) -> Optional[Collections]:

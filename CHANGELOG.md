@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+- #33: Simple date string search for items
+
 ### Fixed
 
 ### Changed
