@@ -1,6 +1,12 @@
 STAC API Client
 ===============
 
+[![CI](https://github.com/stac-utils/pystac-client/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/stac-utils/pystac-client/actions/workflows/continuous-integration.yml)
+[![Release](https://github.com/stac-utils/pystac-client/actions/workflows/release.yml/badge.svg)](https://github.com/stac-utils/pystac-client/actions/workflows/release.yml)
+[![PyPI version](https://badge.fury.io/py/pystac_client.svg)](https://badge.fury.io/py/pystac_client)
+[![Documentation](https://readthedocs.org/projects/pystac_client/badge/?version=latest)](https://pystac_client.readthedocs.io/en/latest/)
+[![codecov](https://codecov.io/gh/stac-utils/pystac-client/branch/main/graph/badge.svg)](https://codecov.io/gh/stac-utils/pystac-client)
+
 A Python client for working with STAC Catalogs and APIs.
 
 ## Installation
