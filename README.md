@@ -21,7 +21,6 @@ Use the CLI to quickly make searches and output or save the results.
 
 ```
 $ stac-client search --url https://earth-search.aws.element84.com/v0 -c sentinel-s2-l2a-cogs --bbox -72.5 40.5 -72 41
-
 1999 items matched
 ```
 
@@ -30,7 +29,6 @@ The environment variable `STAC API URL` can be set instead of having to explicit
 ```
 $ export STAC_API_URL=https://earth-search.aws.element84.com/v0 
 $ stac-client search -c sentinel-s2-l2a-cogs --bbox -72.5 40.5 -72 41 --datetime 2020-01-01/2020-01-31
-
 48 items matched
 ```
 
@@ -39,7 +37,7 @@ The CLI performs a search with limit=0 so does not get any Items, it only gets t
 Specifying `--stdout` will fetch all items, paginating if necessary. If `max_items` is provided it will stop paging once that many items has been retrieved. It then prints all items to stdout as an ItemCollection. This can be useful to pipe output to another process such as [stac-terminal](https://github.com/stac-utils/stac-terminal), [geojsonio-cli](https://github.com/mapbox/geojsonio-cli), or [jq](https://stedolan.github.io/jq/).
 
 ```
-$ stac-client search -c sentinel-s2-l2a-cogs --bbox -72.5 40.5 -72 41 --datetime 2020-01-01/2020-01-31 | stacterm cal --label platform
+$ stac-client search --stdout -c sentinel-s2-l2a-cogs --bbox -72.5 40.5 -72 41 --datetime 2020-01-01/2020-01-31 | stacterm cal --label platform
 ```
 
 ![](docs/source/images/stacterm-cal.png)
@@ -68,6 +66,7 @@ Any number of properties can be included, and each can be included more than onc
 
 ```
 $ stac-client search -c sentinel-s2-l2a-cogs --bbox -72.5 40.5 -72 41 --datetime 2020-01-01/2020-01-31 -q "eo:cloud_cover<10"
+10 items matched
 ```
 
 ### Python
@@ -82,8 +81,7 @@ api = client.API.open("https://earth-search.aws.element84.com/v0")
 
 Create a search
 ```
-mysearch = api.search(collections=['sentinel-s2-l2a-cogs'], bbox=[-72.5,40.5,-72,41])
-
+mysearch = api.search(collections=['sentinel-s2-l2a-cogs'], bbox=[-72.5,40.5,-72,41], max_items=10)
 print(f"{mysearch.matched()} items found")
 ```
 
@@ -97,8 +95,7 @@ for item in mysearch.items():
 Save all found items as a single FeatureCollection
 
 ```
-items = mysearch.items()
-
+items = list(mysearch.items())
 items.save('items.json')
 ```
 
@@ -107,13 +104,13 @@ items.save('items.json')
 ### Build Docs
 
 ```shell
-$ poetry run inv build-docs
+$ scripts/build-docs
 ```
 
 ### Run Tests
 
 ```shell
-$ ./scripts/test
+$ scripts/test
 ```
 
 or
@@ -125,6 +122,6 @@ $ pytest -v -s --cov pystac_client --cov-report term-missing
 ### Lint
 
 ```shell
-$ ./scripts/format
+$ scripts/format
 ```
 
