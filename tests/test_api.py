@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from dateutil.tz import tzutc
 import pystac
 import pytest
 
@@ -128,7 +129,7 @@ class TestAPISearch:
                              collections='naip',
                              limit=10,
                              max_items=20,
-                             datetime=[datetime(2020, 1, 1, 0, 0, 0), None])
+                             datetime=[datetime(2020, 1, 1, 0, 0, 0, tzinfo=tzutc()), None])
 
         assert results.request.json == {
             'bbox': (-73.21, 43.99, -73.12, 44.05),
