@@ -101,7 +101,7 @@ for item in mysearch.items():
 Save all found items as a single FeatureCollection
 
 ```
-items = list(mysearch.items())
+items = mysearch.items_as_collection()
 items.save('items.json')
 ```
 

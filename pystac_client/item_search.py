@@ -397,3 +397,12 @@ class ItemSearch(STACAPIObjectMixin):
                 yield from it.islice(_paginate(), self._max_items)
             else:
                 raise
+
+    def items_as_collection(self) -> ItemCollection:
+        """Convenience method that builds an :class:`ItemCollection` from all items matching the given search parameters.
+
+        Returns
+        ------
+        item_collection : ItemCollection
+        """
+        return ItemCollection(self.items())

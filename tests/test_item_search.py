@@ -306,3 +306,15 @@ class TestItemSearch:
 
         assert pages[1] != pages[2]
         assert pages[1].features != pages[2].features
+
+    @pytest.mark.vcr
+    def test_items_as_collection(self):
+        search = ItemSearch(
+            url=SEARCH_URL,
+            bbox=(-73.21, 43.99, -73.12, 44.05),
+            collections='naip',
+            limit=10,
+            max_items=20,
+        )
+        item_collection = search.items_as_collection()
+        assert len(item_collection.features) == 20
