@@ -28,7 +28,7 @@ class APIExtensionIndex:
         # Check to make sure this is a registered extension.
         if not pystac_client.STAC_API_EXTENSIONS.is_registered_extension(extension_id):
             raise ExtensionError("'{}' is not an extension "
-                                 "registered with pystac-api".format(extension_id))
+                                 "registered with pystac-client".format(extension_id))
 
         if not self.implements(extension_id):
             raise ExtensionError("{} does not implement the {} extension. "
