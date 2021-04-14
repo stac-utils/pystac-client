@@ -3,6 +3,7 @@ import logging
 from copy import deepcopy
 from typing import Callable, Iterator, Optional
 from urllib.parse import urlparse
+from urllib.request import Request, urlopen
 
 import requests
 from pystac import STAC_IO
@@ -16,10 +17,15 @@ def read_text_method(uri):
     """Overwrites the default method for reading text from a URL or file to allow :class:`urllib.request.Request`
     instances as input. This method also raises any :exc:`urllib.error.HTTPError` exceptions rather than catching
     them to allow us to handle different response status codes as needed."""
-    if bool(urlparse(uri).scheme):
+    if isinstance(uri, Request):
+        logger.debug(f"Requesting {uri.get_full_url()}")
+        with urlopen(uri) as response:
+            resp = response.read()
+        return resp.decode("utf-8")
+    elif bool(urlparse(uri).scheme):
         logger.debug(f"Requesting {uri}")
         resp = requests.get(uri)
-        return resp.content
+        return resp.content.decode("utf-8")
     else:
         return STAC_IO.default_read_text_method(uri)
 
