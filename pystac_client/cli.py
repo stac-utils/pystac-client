@@ -15,19 +15,22 @@ API_URL = os.getenv('STAC_API_URL', None)
 def search(url=API_URL, save=None, stdout=False, **kwargs):
     """ Main function for performing a search """
 
-    api = API.open(url)
-    search = api.search(**kwargs)
+    try:
+        api = API.open(url)
+        search = api.search(**kwargs)
 
-    if stdout or save:
-        items = ItemCollection(search.items())
-        if save:
-            with open(save, 'w') as f:
-                f.write(json.dumps(items.to_dict()))
+        if stdout or save:
+            items = ItemCollection(search.items())
+            if save:
+                with open(save, 'w') as f:
+                    f.write(json.dumps(items.to_dict()))
+            else:
+                print(json.dumps(items.to_dict()))
         else:
-            print(json.dumps(items.to_dict()))
-    else:
-        matched = search.matched()
-        print('%s items matched' % matched)
+            matched = search.matched()
+            print('%s items matched' % matched)
+    except Exception as e:
+        print(e)
 
 
 def parse_args(args):

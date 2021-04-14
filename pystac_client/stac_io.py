@@ -18,6 +18,7 @@ def read_text_method(uri):
     them to allow us to handle different response status codes as needed."""
     if bool(urlparse(uri).scheme):
         logger.debug(f"Requesting {uri}")
+        resp = requests.get(uri)
         return requests.get(uri).content
     else:
         return STAC_IO.default_read_text_method(uri)
@@ -32,11 +33,10 @@ def make_request(session, request, additional_parameters={}):
         _request.params.update(additional_parameters)
         logger.debug(f"Requesting {_request.url}, Payload: {json.dumps(_request.params)}")
     prepped = session.prepare_request(_request)
-    resp = session.send(prepped).json()
-    if resp.get('code', 200) != 200:
-        raise APIError(resp.get('message', 'Unknown error'))
-
-    return resp
+    resp = session.send(prepped)
+    if resp.status_code != 200:
+        raise APIError(resp.text)
+    return resp.json()
 
 
 def simple_stac_resolver(link: dict, original_request: requests.Request) -> requests.Request:
