@@ -87,8 +87,8 @@ class ContextAPIExtension(base.APIExtension):
     :class:`~pystac_client.conformance.STAC_API_ITEM_SEARCH_CONTEXT_EXT` conformance URIs in its ``"conformsTo"``
     attribute.
 
-    >>> from pystac_client import API, ConformanceClasses
-    >>> api = API.from_file(...)
+    >>> from pystac_client import Client, ConformanceClasses
+    >>> api = Client.from_file(...)
     >>> api.api_ext.implements(ConformanceClasses.STAC_API_ITEM_SEARCH_CONTEXT_EXT)
     True
     """
