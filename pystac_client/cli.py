@@ -11,6 +11,8 @@ from .version import __version__
 
 STAC_URL = os.getenv('STAC_URL', None)
 
+logger = logging.getLogger(__name__)
+
 
 def search(url=STAC_URL, matched=False, save=None, **kwargs):
     """ Main function for performing a search """
@@ -31,6 +33,7 @@ def search(url=STAC_URL, matched=False, save=None, **kwargs):
                 print(json.dumps(items.to_dict()))
 
     except Exception as e:
+        logger.error(e, exc_info=True)
         print(e)
 
 
@@ -83,10 +86,6 @@ def parse_args(args):
                               type=int)
 
     output_group = parser.add_argument_group('output options')
-    output_group.add_argument('--stdout',
-                              help='Print results to stdout (also disables logging)',
-                              default=False,
-                              action='store_true')
     output_group.add_argument('--matched',
                               help='Print number matched',
                               default=False,
@@ -114,11 +113,15 @@ def cli():
     args = parse_args(sys.argv[1:])
 
     loglevel = args.pop('logging')
-    if not args.get('stdout', False):
+    # don't enable logging if print to stdout
+    if args.get('save', False) or args.get('matched', False):
         logging.basicConfig(stream=sys.stdout, level=loglevel)
         # quiet loggers
         for lg in ['urllib3']:
             logging.getLogger(lg).propagate = False
+ 
+    if args.get('url', None) is None:
+        raise RuntimeError('No STAC URL provided')
 
     cmd = args.pop('command')
     if cmd == 'search':
