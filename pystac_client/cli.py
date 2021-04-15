@@ -12,23 +12,24 @@ from .version import __version__
 STAC_URL = os.getenv('STAC_URL', None)
 
 
-def search(url=STAC_URL, save=None, stdout=False, **kwargs):
+def search(url=STAC_URL, matched=False, save=None, **kwargs):
     """ Main function for performing a search """
 
     try:
         catalog = Client.open(url)
         search = catalog.search(**kwargs)
 
-        if stdout or save:
+        if matched:
+            matched = search.matched()
+            print('%s items matched' % matched)
+        else:
             items = ItemCollection(search.items())
             if save:
                 with open(save, 'w') as f:
                     f.write(json.dumps(items.to_dict()))
             else:
                 print(json.dumps(items.to_dict()))
-        else:
-            matched = search.matched()
-            print('%s items matched' % matched)
+
     except Exception as e:
         print(e)
 
@@ -84,6 +85,10 @@ def parse_args(args):
     output_group = parser.add_argument_group('output options')
     output_group.add_argument('--stdout',
                               help='Print results to stdout (also disables logging)',
+                              default=False,
+                              action='store_true')
+    output_group.add_argument('--matched',
+                              help='Print number matched',
                               default=False,
                               action='store_true')
     output_group.add_argument('--save', help='Filename to save Item collection to', default=None)
