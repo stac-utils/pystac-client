@@ -19,7 +19,8 @@ class TestAPI:
 
         assert str(api) == '<Catalog id=astraea>'
 
-        import shutil, os
+        import shutil
+        import os
         shutil.rmtree(os.path.join(os.path.dirname(__file__), 'cassettes', 'test_api'))
 
     @pytest.mark.vcr
