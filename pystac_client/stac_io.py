@@ -34,10 +34,14 @@ def make_request(session, request, additional_parameters={}):
     _request = deepcopy(request)
     if _request.method == 'POST':
         _request.json.update(additional_parameters)
-        logger.debug(f"Requesting {_request.url}, Payload: {json.dumps(_request.json)}")
+        logger.debug(
+            f"Requesting {_request.url}, Payload: {json.dumps(_request.json)}, Headers: {session.headers}"
+        )
     else:
         _request.params.update(additional_parameters)
-        logger.debug(f"Requesting {_request.url}, Payload: {json.dumps(_request.params)}")
+        logger.debug(
+            f"Requesting {_request.url}, Payload: {json.dumps(_request.params)}, Headers: {session.headers}"
+        )
     prepped = session.prepare_request(_request)
     resp = session.send(prepped)
     if resp.status_code != 200:
