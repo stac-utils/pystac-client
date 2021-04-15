@@ -119,7 +119,7 @@ def cli():
         # quiet loggers
         for lg in ['urllib3']:
             logging.getLogger(lg).propagate = False
- 
+
     if args.get('url', None) is None:
         raise RuntimeError('No STAC URL provided')
 
