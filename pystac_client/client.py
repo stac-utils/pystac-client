@@ -48,7 +48,8 @@ class Client(pystac.Catalog, STACAPIObjectMixin):
                  extra_fields=None,
                  href=None,
                  catalog_type=None,
-                 conformance=None):
+                 conformance=None,
+                 headers=None):
         super().__init__(id=id,
                          description=description,
                          title=title,
@@ -66,7 +67,7 @@ class Client(pystac.Catalog, STACAPIObjectMixin):
                 'API does not conform to {ConformanceClasses.STAC_API_CORE}. Must contain one of the following '
                 f'URIs to conform (preferably the first):\n\t{allowed_uris}.')
 
-        self.headers = {}
+        self.headers = headers
 
     def __repr__(self):
         return '<Catalog id={}>'.format(self.id)

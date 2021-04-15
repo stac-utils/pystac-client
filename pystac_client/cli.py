@@ -14,11 +14,11 @@ STAC_URL = os.getenv('STAC_URL', None)
 logger = logging.getLogger(__name__)
 
 
-def search(url=STAC_URL, matched=False, save=None, **kwargs):
+def search(url=STAC_URL, matched=False, save=None, headers=None, **kwargs):
     """ Main function for performing a search """
 
     try:
-        catalog = Client.open(url)
+        catalog = Client.open(url, headers=headers)
         search = catalog.search(**kwargs)
 
         if matched:
@@ -51,7 +51,7 @@ def parse_args(args):
     parent.add_argument('--url', help='Root Catalog URL', default=os.getenv('STAC_URL', None))
     parent.add_argument('--limit', help='Page size limit', type=int, default=500)
     parent.add_argument('--headers',
-                        help='Additional request headers (JSON file or string)',
+                        help='Additional request headers (JSON string)',
                         default=None)
 
     subparsers = parser0.add_subparsers(dest='command')
@@ -105,6 +105,10 @@ def parse_args(args):
                     parsed_args['intersects'] = data['features'][0]['geometry']
                 else:
                     parsed_args['intersects'] = data
+
+    # if headers provided, parse it
+    if 'headers' in parsed_args:
+        parsed_args['headers'] = json.loads(parsed_args['headers'])
 
     return parsed_args
 
