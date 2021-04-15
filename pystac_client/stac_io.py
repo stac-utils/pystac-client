@@ -18,7 +18,7 @@ def read_text_method(uri):
     instances as input. This method also raises any :exc:`urllib.error.HTTPError` exceptions rather than catching
     them to allow us to handle different response status codes as needed."""
     if isinstance(uri, Request):
-        logger.debug(f"Requesting {uri.get_full_url()}")
+        logger.debug(f"Requesting {uri.get_full_url()} with headers {uri.headers}")
         with urlopen(uri) as response:
             resp = response.read()
         return resp.decode("utf-8")
