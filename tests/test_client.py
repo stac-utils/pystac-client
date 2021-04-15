@@ -4,7 +4,7 @@ from dateutil.tz import tzutc
 import pystac
 import pytest
 
-from pystac_client import API, ConformanceClasses
+from pystac_client import Client, ConformanceClasses
 from pystac_client.exceptions import ConformanceError
 
 from .helpers import ASTRAEA_API_PATH, ASTRAEA_URL, TEST_DATA, read_data_file
@@ -12,16 +12,16 @@ from .helpers import ASTRAEA_API_PATH, ASTRAEA_URL, TEST_DATA, read_data_file
 
 class TestAPI:
     def test_instance(self):
-        api = API.from_file(ASTRAEA_API_PATH)
+        api = Client.from_file(ASTRAEA_API_PATH)
 
         # An API instance is also a Catalog instance
         assert isinstance(api, pystac.Catalog)
 
-        assert str(api) == '<API id=astraea>'
+        assert str(api) == '<Catalog id=astraea>'
 
     @pytest.mark.vcr
     def test_links(self):
-        api = API.from_file(ASTRAEA_API_PATH)
+        api = Client.from_file(ASTRAEA_API_PATH)
 
         # Should be able to get collections via links as with a typical PySTAC Catalog
         collection_links = api.get_links('child')
@@ -36,7 +36,7 @@ class TestAPI:
 
         # Set conformsTo URIs to conform with STAC API - Core using official URI
         api_content['conformsTo'] = ['https://api.stacspec.org/v1.0.0-beta.1/core']
-        api = API.from_dict(api_content)
+        api = Client.from_dict(api_content)
 
         # Must have a conformance property that is the list of URIs from the conformsTo property
         assert hasattr(api, 'conformance')
@@ -55,7 +55,7 @@ class TestAPI:
 
         # Set conformsTo URIs to conform with STAC API - Core using official URI
         api_content['conformsTo'] = ['http://stacspec.org/spec/api/1.0.0-beta.1/core']
-        api = API.from_dict(api_content)
+        api = Client.from_dict(api_content)
 
         # Must have a conformance property that is the list of URIs from the conformsTo property
         assert hasattr(api, 'conformance')
@@ -77,7 +77,7 @@ class TestAPI:
         del api_content['conformsTo']
 
         with pytest.raises(KeyError):
-            API.from_dict(api_content)
+            Client.from_dict(api_content)
 
     @pytest.mark.vcr
     def test_no_stac_core_conformance(self):
@@ -88,11 +88,11 @@ class TestAPI:
         api_content['conformsTo'] = []
 
         with pytest.raises(ConformanceError):
-            API.from_dict(api_content)
+            Client.from_dict(api_content)
 
     @pytest.mark.vcr
     def test_from_file(self):
-        api = API.from_file(ASTRAEA_URL)
+        api = Client.from_file(ASTRAEA_URL)
 
         assert api.title == 'Astraea Earth OnDemand'
 
@@ -100,7 +100,7 @@ class TestAPI:
 class TestAPISearch:
     @pytest.fixture(scope='function')
     def api(self):
-        return API.from_file(str(TEST_DATA / 'astraea_api.json'))
+        return Client.from_file(str(TEST_DATA / 'astraea_api.json'))
 
     def test_search_conformance_error(self, api):
         """Should raise a NotImplementedError if the API doesn't conform to the Item Search spec. Message should

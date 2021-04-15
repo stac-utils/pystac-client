@@ -19,14 +19,14 @@ from pystac_client.item_search import (
 from pystac_client.stac_api_object import STACAPIObjectMixin
 
 
-class API(pystac.Catalog, STACAPIObjectMixin):
-    """Instances of the ``API`` class inherit from :class:`pystac.Catalog` and provide a convenient way of interacting
-    with APIs that conform to the `STAC API spec <https://github.com/radiantearth/stac-api-spec>`_. In addition to being
-    a valid `STAC Catalog <https://github.com/radiantearth/stac-spec/blob/master/catalog-spec/catalog-spec.md>`_ the
+class Client(pystac.Catalog, STACAPIObjectMixin):
+    """Instances of the ``Client`` class inherit from :class:`pystac.Catalog` and provide a convenient way of interacting
+    with Catalogs OR APIs that conform to the `STAC API spec <https://github.com/radiantearth/stac-api-spec>`_. In addition
+    to being a valid `STAC Catalog <https://github.com/radiantearth/stac-spec/blob/master/catalog-spec/catalog-spec.md>`_ the
     API must have a ``"conformsTo"`` property that lists the conformance URIs.
 
-    All :class:`~pystac_client.API` instances must be given a ``conformance`` argument at instantiation, and when calling
-    the :meth:`~pystac_client.API.from_dict` method the dictionary must contain a ``"conformsTo"`` attribute. If this is
+    All :class:`~pystac_client.Client` instances must be given a ``conformance`` argument at instantiation, and when calling
+    the :meth:`~pystac_client.Client.from_dict` method the dictionary must contain a ``"conformsTo"`` attribute. If this is
     not true then a :exc:`KeyError` is raised.
 
     In addition to the methods and attributes inherited from :class:`pystac.Catalog`, this class offers some convenience
@@ -69,24 +69,24 @@ class API(pystac.Catalog, STACAPIObjectMixin):
         self.headers = {}
 
     def __repr__(self):
-        return '<API id={}>'.format(self.id)
+        return '<Catalog id={}>'.format(self.id)
 
     @classmethod
     def open(cls, url, headers={}):
-        """Alias for PySTAC's STAC Obkect `from_file` method
+        """Alias for PySTAC's STAC Object `from_file` method
 
         Parameters
         ----------
         url : str
-            The URL of a STAC API Catalog
+            The URL of a STAC Catalog
 
         Returns
         -------
-        api : API
+        catalog : Client
         """
-        api = cls.from_file(url)
-        api.headers = headers
-        return api
+        catalog = cls.from_file(url)
+        catalog.headers = headers
+        return catalog
 
     @classmethod
     def from_dict(
@@ -101,7 +101,7 @@ class API(pystac.Catalog, STACAPIObjectMixin):
         Raises
         ------
         pystac_client.exceptions.ConformanceError
-            If the API does not publish conformance URIs in either a ``"conformsTo"`` attribute in the landing page
+            If the Catalog does not publish conformance URIs in either a ``"conformsTo"`` attribute in the landing page
             response or in a ``/conformance``. According to the STAC API - Core spec, services must publish this as
             part of a ``"conformsTo"`` attribute, but some legacy APIs fail to do so.
         """
@@ -119,7 +119,7 @@ class API(pystac.Catalog, STACAPIObjectMixin):
 
         d.pop('stac_version')
 
-        api = cls(
+        catalog = cls(
             id=id,
             description=description,
             title=title,
@@ -133,16 +133,16 @@ class API(pystac.Catalog, STACAPIObjectMixin):
         for link in links:
             if link['rel'] == 'root':
                 # Remove the link that's generated in Catalog's constructor.
-                api.remove_links('root')
+                catalog.remove_links('root')
 
             if link['rel'] != 'self' or href is None:
-                api.add_link(pystac.Link.from_dict(link))
+                catalog.add_link(pystac.Link.from_dict(link))
 
-        return api
+        return catalog
 
     @classmethod
     def get_collections_list(self):
-        """Gets list of available collections from this API. Alias for get_child_links since children
+        """Gets list of available collections from this Catalog. Alias for get_child_links since children
             of an API are always and only ever collections
         """
         return self.get_child_links()

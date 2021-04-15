@@ -1,7 +1,7 @@
 import pytest
 from pystac.extensions import ExtensionError
 
-from pystac_client import API, ItemCollection, ItemSearch
+from pystac_client import Client, ItemCollection, ItemSearch
 from pystac_client.extensions.base import (
     APIExtension,
     ExtendedObject,
@@ -14,7 +14,7 @@ class TestExtendedObject:
     def test_wrong_class_exceptions(self):
         """Should raise exceptions if we try to extend the wrong class for a given extension"""
         with pytest.raises(ExtensionError):
-            ExtendedObject(API, ItemCollectionFragment)
+            ExtendedObject(Client, ItemCollectionFragment)
 
         with pytest.raises(ExtensionError):
             ExtendedObject(ItemCollection, ItemSearchFragment)
