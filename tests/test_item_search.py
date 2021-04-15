@@ -5,7 +5,7 @@ import pystac
 import pytest
 from dateutil.tz import gettz, tzutc
 
-from pystac_client import API
+from pystac_client import Client
 from pystac_client.item_search import ItemSearch
 
 from .helpers import ASTRAEA_URL, read_data_file
@@ -23,7 +23,7 @@ class TestItemSearchParams:
     @pytest.fixture(scope='function')
     def astraea_api(self):
         api_content = read_data_file('astraea_api.json', parse_json=True)
-        return API.from_dict(api_content)
+        return Client.from_dict(api_content)
 
     def test_tuple_bbox(self):
         # Tuple input
@@ -219,7 +219,7 @@ class TestItemSearch:
     @pytest.fixture(scope='function')
     def astraea_api(self):
         api_content = read_data_file('astraea_api.json', parse_json=True)
-        return API.from_dict(api_content)
+        return Client.from_dict(api_content)
 
     def test_method(self):
         # Default method should be POST...

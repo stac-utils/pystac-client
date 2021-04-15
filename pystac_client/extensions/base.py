@@ -5,7 +5,7 @@ from pystac import Catalog, Collection, Item
 from pystac.extensions import ExtensionError
 from pystac.extensions.base import CatalogExtension, CollectionExtension, ItemExtension
 
-from pystac_client.api import API
+from pystac_client.client import Client
 from pystac_client.item_collection import ItemCollection
 from pystac_client.item_search import ItemSearch
 
@@ -28,7 +28,7 @@ class ExtendedObject:
         The class of the extension (e.g. :class:`~pystac_client.extensions.context.ContextAPIExtension`)
     """
     def __init__(self, stac_object_class, extension_class):
-        if stac_object_class is API:
+        if stac_object_class is Client:
             if not issubclass(extension_class, APIExtension):
                 raise ExtensionError(
                     "Classes extending API instances must inherit from APIExtension")
@@ -111,13 +111,13 @@ class ItemSearchFragment(ABC):
 
 class APIExtension(ABC):
     @classmethod
-    def _from_object(cls, stac_object: API):
+    def _from_object(cls, stac_object: Client):
         return cls.from_api(stac_object)
 
     @classmethod
     @abstractmethod
-    def from_api(cls, api: API):
-        """Creates an instance of the extension from an :class:`~pystac_client.API` instance."""
+    def from_api(cls, api: Client):
+        """Creates an instance of the extension from an :class:`~pystac_client.Client` instance."""
 
     @classmethod
     @abstractmethod

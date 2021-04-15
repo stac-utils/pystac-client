@@ -1,7 +1,7 @@
 import pytest
 from pystac.extensions import ExtensionError
 
-from pystac_client import API, APIExtensions, ConformanceClasses
+from pystac_client import Client, APIExtensions, ConformanceClasses
 
 from .helpers import ASTRAEA_API_PATH
 
@@ -9,7 +9,7 @@ from .helpers import ASTRAEA_API_PATH
 class TestAPIExtensionIndex:
     @pytest.fixture(scope='function')
     def api(self):
-        return API.from_file(ASTRAEA_API_PATH)
+        return Client.from_file(ASTRAEA_API_PATH)
 
     def test_implements_api_ext(self, api):
         api.conformance = [

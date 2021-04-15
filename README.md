@@ -30,10 +30,10 @@ $ stac-client search --url https://earth-search.aws.element84.com/v0 -c sentinel
 1999 items matched
 ```
 
-The environment variable `STAC API URL` can be set instead of having to explicitly set the URL with every call:
+The environment variable `STAC_URL` can be set instead of having to explicitly set the Catalog URL with every call:
 
 ```
-$ export STAC_API_URL=https://earth-search.aws.element84.com/v0 
+$ export STAC_URL=https://earth-search.aws.element84.com/v0 
 $ stac-client search -c sentinel-s2-l2a-cogs --bbox -72.5 40.5 -72 41 --datetime 2020-01-01/2020-01-31
 48 items matched
 ```
@@ -54,7 +54,7 @@ The `--save` switch will save all fetched items (as with `--stdout`) to a file.
 $ stac-client search -c sentinel-s2-l2a-cogs --bbox -72.5 40.5 -72 41 --datetime 2020-01-01/2020-01-31 --save items.json
 ```
 
-If the API supports the [Query extension](https://github.com/radiantearth/stac-api-spec/tree/master/fragments/query), any Item property can also be included in the search. Rather than requiring the JSON syntax the Query extension uses, pystac-client uses a simpler syntax that it will translate to the JSON equivalent. 
+If the Catalog supports the [Query extension](https://github.com/radiantearth/stac-api-spec/tree/master/fragments/query), any Item property can also be included in the search. Rather than requiring the JSON syntax the Query extension uses, pystac-client uses a simpler syntax that it will translate to the JSON equivalent. 
 
 ```
 <property><operator><value>
@@ -80,14 +80,14 @@ $ stac-client search -c sentinel-s2-l2a-cogs --bbox -72.5 40.5 -72 41 --datetime
 To use the Python library, first an API instance is created for a specific STAC API (use the root URL)
 
 ```
-import pystac_client as client
+from pystac_client import Client
 
-api = client.API.open("https://earth-search.aws.element84.com/v0")
+catalog = Client.open("https://earth-search.aws.element84.com/v0")
 ```
 
 Create a search
 ```
-mysearch = api.search(collections=['sentinel-s2-l2a-cogs'], bbox=[-72.5,40.5,-72,41], max_items=10)
+mysearch = catalog.search(collections=['sentinel-s2-l2a-cogs'], bbox=[-72.5,40.5,-72,41], max_items=10)
 print(f"{mysearch.matched()} items found")
 ```
 

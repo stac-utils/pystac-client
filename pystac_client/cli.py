@@ -6,35 +6,39 @@ import sys
 
 from .item_collection import ItemCollection
 
-from .api import API
+from .client import Client
 from .version import __version__
 
-API_URL = os.getenv('STAC_API_URL', None)
+STAC_URL = os.getenv('STAC_URL', None)
+
+logger = logging.getLogger(__name__)
 
 
-def search(url=API_URL, save=None, stdout=False, **kwargs):
+def search(url=STAC_URL, matched=False, save=None, **kwargs):
     """ Main function for performing a search """
 
     try:
-        api = API.open(url)
-        search = api.search(**kwargs)
+        catalog = Client.open(url)
+        search = catalog.search(**kwargs)
 
-        if stdout or save:
+        if matched:
+            matched = search.matched()
+            print('%s items matched' % matched)
+        else:
             items = ItemCollection(search.items())
             if save:
                 with open(save, 'w') as f:
                     f.write(json.dumps(items.to_dict()))
             else:
                 print(json.dumps(items.to_dict()))
-        else:
-            matched = search.matched()
-            print('%s items matched' % matched)
+
     except Exception as e:
+        logger.error(e, exc_info=True)
         print(e)
 
 
 def parse_args(args):
-    desc = 'STAC API Client'
+    desc = 'STAC Client'
     dhf = argparse.ArgumentDefaultsHelpFormatter
     parser0 = argparse.ArgumentParser(description=desc)
 
@@ -44,7 +48,7 @@ def parse_args(args):
                         action='version',
                         version=__version__)
     parent.add_argument('--logging', default='INFO', help='DEBUG, INFO, WARN, ERROR, CRITICAL')
-    parent.add_argument('--url', help='Root API URL', default=os.getenv('STAC_API_URL', None))
+    parent.add_argument('--url', help='Root Catalog URL', default=os.getenv('STAC_URL', None))
     parent.add_argument('--limit', help='Page size limit', type=int, default=500)
     parent.add_argument('--headers',
                         help='Additional request headers (JSON file or string)',
@@ -82,8 +86,8 @@ def parse_args(args):
                               type=int)
 
     output_group = parser.add_argument_group('output options')
-    output_group.add_argument('--stdout',
-                              help='Print results to stdout (also disables logging)',
+    output_group.add_argument('--matched',
+                              help='Print number matched',
                               default=False,
                               action='store_true')
     output_group.add_argument('--save', help='Filename to save Item collection to', default=None)
@@ -109,11 +113,15 @@ def cli():
     args = parse_args(sys.argv[1:])
 
     loglevel = args.pop('logging')
-    if not args.get('stdout', False):
+    # don't enable logging if print to stdout
+    if args.get('save', False) or args.get('matched', False):
         logging.basicConfig(stream=sys.stdout, level=loglevel)
         # quiet loggers
         for lg in ['urllib3']:
             logging.getLogger(lg).propagate = False
+
+    if args.get('url', None) is None:
+        raise RuntimeError('No STAC URL provided')
 
     cmd = args.pop('command')
     if cmd == 'search':

@@ -15,8 +15,8 @@ class APIExtensionIndex:
     To access a specific extension, use the __getitem__ on this class with the
     extension ID:
 
-    >>> from pystac_client import API
-    >>> api = API.from_file(...)
+    >>> from pystac_client import Client
+    >>> api = Client.from_file(...)
     >>> api.api_ext.context
     <pystac_client.extensions.context.ContextAPIExtension object at 0x1035669d0>
     """

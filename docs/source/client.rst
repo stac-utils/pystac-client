@@ -1,4 +1,4 @@
-API Reference
+Client Reference
 =============
 
 .. module:: pystac_client
@@ -6,7 +6,7 @@ API Reference
 Main Package
 ------------
 
-.. autoclass:: pystac_client.API
+.. autoclass:: pystac_client.Client
     :members:
     :undoc-members:
     :show-inheritance:

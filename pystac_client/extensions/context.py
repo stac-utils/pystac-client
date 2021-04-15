@@ -4,7 +4,7 @@ from typing import Optional
 
 from pystac.extensions.base import ExtensionDefinition
 
-from pystac_client import API, APIExtensions, ConformanceClasses
+from pystac_client import Client, APIExtensions, ConformanceClasses
 from pystac_client.extensions import base
 from pystac_client.item_collection import ItemCollection
 
@@ -20,9 +20,9 @@ class ContextItemCollectionExtension(base.ItemCollectionFragment):
     Examples
     --------
 
-    >>> from pystac_client import API
-    >>> api = API.from_file(...)
-    >>> results = api.search(bbox=..., datetime=..., ...)
+    >>> from pystac_client import Client
+    >>> catalog = Client.from_file(...)
+    >>> results = catalog.search(bbox=..., datetime=..., ...)
     >>> for i, page in enumerate(results.item_collections()):
     ...     print(f'Page {i + 1}:')
     ...     print(f'\tMatched: {page.api_ext.context.matched}')
@@ -87,19 +87,19 @@ class ContextAPIExtension(base.APIExtension):
     :class:`~pystac_client.conformance.STAC_API_ITEM_SEARCH_CONTEXT_EXT` conformance URIs in its ``"conformsTo"``
     attribute.
 
-    >>> from pystac_client import API, ConformanceClasses
-    >>> api = API.from_file(...)
+    >>> from pystac_client import Client, ConformanceClasses
+    >>> api = Client.from_file(...)
     >>> api.api_ext.implements(ConformanceClasses.STAC_API_ITEM_SEARCH_CONTEXT_EXT)
     True
     """
 
     conformance = ConformanceClasses.STAC_API_ITEM_SEARCH_CONTEXT_EXT
     """See the :class:`~pystac_client.conformance.STAC_API_ITEM_SEARCH_CONTEXT_EXT` for valid conformance URIs."""
-    def __init__(self, api: API):
+    def __init__(self, api: Client):
         self.api = api
 
     @classmethod
-    def from_api(cls, api: API):
+    def from_api(cls, api: Client):
         return cls(api)
 
     @classmethod
@@ -108,6 +108,6 @@ class ContextAPIExtension(base.APIExtension):
 
 
 CONTEXT_EXTENSION_DEFINITION = ExtensionDefinition(APIExtensions.CONTEXT, [
-    base.ExtendedObject(API, ContextAPIExtension),
+    base.ExtendedObject(Client, ContextAPIExtension),
     base.ExtendedObject(ItemCollection, ContextItemCollectionExtension)
 ])
