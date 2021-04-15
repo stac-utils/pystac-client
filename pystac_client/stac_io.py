@@ -18,7 +18,7 @@ def read_text_method(uri):
     instances as input. This method also raises any :exc:`urllib.error.HTTPError` exceptions rather than catching
     them to allow us to handle different response status codes as needed."""
     if isinstance(uri, Request):
-        logger.debug(f"Requesting {uri.get_full_url()}")
+        logger.debug(f"Requesting {uri.get_full_url()} with headers {uri.headers}")
         with urlopen(uri) as response:
             resp = response.read()
         return resp.decode("utf-8")
@@ -34,10 +34,14 @@ def make_request(session, request, additional_parameters={}):
     _request = deepcopy(request)
     if _request.method == 'POST':
         _request.json.update(additional_parameters)
-        logger.debug(f"Requesting {_request.url}, Payload: {json.dumps(_request.json)}")
+        logger.debug(
+            f"Requesting {_request.url}, Payload: {json.dumps(_request.json)}, Headers: {session.headers}"
+        )
     else:
         _request.params.update(additional_parameters)
-        logger.debug(f"Requesting {_request.url}, Payload: {json.dumps(_request.params)}")
+        logger.debug(
+            f"Requesting {_request.url}, Payload: {json.dumps(_request.params)}, Headers: {session.headers}"
+        )
     prepped = session.prepare_request(_request)
     resp = session.send(prepped)
     if resp.status_code != 200:

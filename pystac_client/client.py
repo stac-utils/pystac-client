@@ -1,9 +1,11 @@
 from copy import deepcopy
 from typing import Callable, Optional
+from urllib.request import Request
 
 import pystac
 import pystac.stac_object
 import pystac.validation
+from pystac import STAC_IO
 
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.exceptions import ConformanceError
@@ -67,13 +69,13 @@ class Client(pystac.Catalog, STACAPIObjectMixin):
                 'API does not conform to {ConformanceClasses.STAC_API_CORE}. Must contain one of the following '
                 f'URIs to conform (preferably the first):\n\t{allowed_uris}.')
 
-        self.headers = headers
+        self.headers = headers or {}
 
     def __repr__(self):
         return '<Catalog id={}>'.format(self.id)
 
     @classmethod
-    def open(cls, url, headers={}):
+    def open(cls, url, headers=None):
         """Alias for PySTAC's STAC Object `from_file` method
 
         Parameters
@@ -85,7 +87,16 @@ class Client(pystac.Catalog, STACAPIObjectMixin):
         -------
         catalog : Client
         """
+        import pystac_client.stac_io
+
+        def read_text_method(url):
+            request = Request(url, headers=headers or {})
+            return pystac_client.stac_io.read_text_method(request)
+
+        old_read_text_method = STAC_IO.read_text_method
+        STAC_IO.read_text_method = read_text_method
         catalog = cls.from_file(url)
+        STAC_IO.read_text_method = old_read_text_method
         catalog.headers = headers
         return catalog
 
