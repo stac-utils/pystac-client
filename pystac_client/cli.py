@@ -6,18 +6,18 @@ import sys
 
 from .item_collection import ItemCollection
 
-from .api import API
+from .client import Client
 from .version import __version__
 
-API_URL = os.getenv('STAC_API_URL', None)
+STAC_URL = os.getenv('STAC_URL', None)
 
 
-def search(url=API_URL, save=None, stdout=False, **kwargs):
+def search(url=STAC_URL, save=None, stdout=False, **kwargs):
     """ Main function for performing a search """
 
     try:
-        api = API.open(url)
-        search = api.search(**kwargs)
+        catalog = Client.open(url)
+        search = catalog.search(**kwargs)
 
         if stdout or save:
             items = ItemCollection(search.items())
@@ -34,7 +34,7 @@ def search(url=API_URL, save=None, stdout=False, **kwargs):
 
 
 def parse_args(args):
-    desc = 'STAC API Client'
+    desc = 'STAC Client'
     dhf = argparse.ArgumentDefaultsHelpFormatter
     parser0 = argparse.ArgumentParser(description=desc)
 
@@ -44,7 +44,7 @@ def parse_args(args):
                         action='version',
                         version=__version__)
     parent.add_argument('--logging', default='INFO', help='DEBUG, INFO, WARN, ERROR, CRITICAL')
-    parent.add_argument('--url', help='Root API URL', default=os.getenv('STAC_API_URL', None))
+    parent.add_argument('--url', help='Root Catalog URL', default=os.getenv('STAC_URL', None))
     parent.add_argument('--limit', help='Page size limit', type=int, default=500)
     parent.add_argument('--headers',
                         help='Additional request headers (JSON file or string)',
