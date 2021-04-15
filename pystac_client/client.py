@@ -1,9 +1,12 @@
 from copy import deepcopy
 from typing import Callable, Optional
+from urllib.request import Request
 
 import pystac
 import pystac.stac_object
 import pystac.validation
+from pystac import STAC_IO
+from pystac.utils import (is_absolute_href, make_absolute_href)
 
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.exceptions import ConformanceError
@@ -67,14 +70,17 @@ class Client(pystac.Catalog, STACAPIObjectMixin):
                 'API does not conform to {ConformanceClasses.STAC_API_CORE}. Must contain one of the following '
                 f'URIs to conform (preferably the first):\n\t{allowed_uris}.')
 
-        self.headers = headers
+        self.headers = headers or {}
 
     def __repr__(self):
         return '<Catalog id={}>'.format(self.id)
 
     @classmethod
-    def open(cls, url, headers={}):
-        """Alias for PySTAC's STAC Object `from_file` method
+    def open(cls, url, headers=None):
+        """Clone of PySTAC's STAC Object `from_file` method
+
+        We want to include headers in the initial request to the API so we can't use the pystac `from_file` method
+        directly.
 
         Parameters
         ----------
@@ -85,7 +91,18 @@ class Client(pystac.Catalog, STACAPIObjectMixin):
         -------
         catalog : Client
         """
-        catalog = cls.from_file(url)
+        if not is_absolute_href(url):
+            url = make_absolute_href(url)
+        request = Request(url, headers=headers or {})
+        json = STAC_IO.read_json(request)
+        catalog = cls.from_dict(json, href=url)
+        if catalog.get_self_href() is None:
+            catalog.set_self_href()
+        root_link = catalog.get_root_link()
+        if root_link is not None:
+            if not root_link.is_resolved():
+                if root_link.get_absolute_href() == url:
+                    catalog.set_root(catalog)
         catalog.headers = headers
         return catalog
 

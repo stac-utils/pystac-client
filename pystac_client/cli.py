@@ -5,7 +5,6 @@ import os
 import sys
 
 from .item_collection import ItemCollection
-
 from .client import Client
 from .version import __version__
 
@@ -35,6 +34,7 @@ def search(url=STAC_URL, matched=False, save=None, headers=None, **kwargs):
     except Exception as e:
         logger.error(e, exc_info=True)
         print(e)
+        return 1
 
 
 def parse_args(args):
@@ -50,9 +50,7 @@ def parse_args(args):
     parent.add_argument('--logging', default='INFO', help='DEBUG, INFO, WARN, ERROR, CRITICAL')
     parent.add_argument('--url', help='Root Catalog URL', default=os.getenv('STAC_URL', None))
     parent.add_argument('--limit', help='Page size limit', type=int, default=500)
-    parent.add_argument('--headers',
-                        help='Additional request headers (JSON string)',
-                        default=None)
+    parent.add_argument('--headers', help='Additional request headers (JSON string)', default=None)
 
     subparsers = parser0.add_subparsers(dest='command')
 
@@ -129,8 +127,10 @@ def cli():
 
     cmd = args.pop('command')
     if cmd == 'search':
-        search(**args)
+        return search(**args)
 
 
 if __name__ == "__main__":
-    cli()
+    return_code = cli()
+    if return_code and return_code != 0:
+        sys.exit(return_code)
