@@ -7,7 +7,7 @@ interactions:
       Host:
       - eod-catalog-svc-prod.astraea.earth
       User-Agent:
-      - Python-urllib/3.8
+      - Python-urllib/3.9
     method: GET
     uri: https://eod-catalog-svc-prod.astraea.earth
   response:
@@ -86,7 +86,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 02 Mar 2021 02:15:41 GMT
+      - Wed, 14 Apr 2021 16:56:16 GMT
       Server:
       - akka-http/10.2.3
     status:

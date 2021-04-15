@@ -2,99 +2,6 @@ interactions:
 - request:
     body: null
     headers:
-      Connection:
-      - close
-      Host:
-      - eod-catalog-svc-prod.astraea.earth
-      User-Agent:
-      - Python-urllib/3.8
-    method: GET
-    uri: https://eod-catalog-svc-prod.astraea.earth
-  response:
-    body:
-      string: '{"conformsTo":["http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson","http://www.opengis.net/spec/ogcapi_common-2/1.0/req/collections","http://stacspec.org/spec/api/1.0.0-beta.1/core","http://stacspec.org/spec/api/1.0.0-beta.1/req/stac-search","http://stacspec.org/spec/api/1.0.0-beta.1/req/stac-response","http://stacspec.org/spec/api/1.0.0-beta.1/req/fields","http://stacspec.org/spec/api/1.0.0-beta.1/req/context","http://stacspec.org/spec/api/1.0.0-beta.1/req/sort"],"description":"Astraea
-        Earth OnDemand geospatial imagery query and analysis tool","id":"astraea","links":[{"href":"https://eod-catalog-svc-prod.astraea.earth","rel":"self","title":"Self","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth","rel":"root","title":"Root","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/api","rel":"service-desc","title":"OpenAPI
-        specification","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/api.html","rel":"service-doc","title":"API
-        documentation","type":"text/html"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections","rel":"data","title":"Collections","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections","rel":"collections","title":"Collections","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/landsat8_l1tp","rel":"child","title":"Landsat
-        8 C1 T1","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/mcd43a4","rel":"child","title":"MCD43A4
-        NBAR","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/mod11a1","rel":"child","title":"MOD11A1
-        LST","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/myd11a1","rel":"child","title":"MYD11A1
-        LST","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/mod13a1","rel":"child","title":"MOD13A1
-        VI","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/myd13a1","rel":"child","title":"MYD13A1
-        VI","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/sentinel1_l1c_grd","rel":"child","title":"Sentinel-1
-        L1C GRD","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/sentinel2_l2a","rel":"child","title":"Sentinel-2
-        L2A","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/sentinel2_l1c","rel":"child","title":"Sentinel-2
-        L1C","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/naip","rel":"child","title":"NAIP","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/maxar_open_data","rel":"child","title":"Maxar
-        Open Data","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/collections/spacenet7","rel":"child","title":"SpaceNet
-        7","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/aggregate","rel":"aggregation","title":"Aggregation","type":"application/json"},{"capabilities":{"parameters":[{"name":"composite","values":[{"description":"Default
-        View.","name":"default","title":"Default View"},{"description":"True Color
-        Composite.","name":"true_color","title":"True Color Composite"},{"description":"Normalized
-        Difference Vegetation Index.","name":"ndvi","title":"NDVI"},{"description":"Normalized
-        Difference Water Index using Green and NIR per McFeeters(1997).","name":"ndwi","title":"NDWI
-        (Green & NIR)"},{"description":"Normalized Difference Water Index using NIR
-        and SWIR per Gao(1997).","name":"ndwi2","title":"NDWI (NIR & SWIR)"},{"description":"Color
-        Infrared (Vegetation) consisting of Near-infrared, Red, and Green bands.","name":"color_infrared_veg1","title":"Color
-        Infrared Vegetation (NRG)"},{"description":"Color Infrared (Vegetation) consisting
-        of Near-infrared, Green, and Blue bands.","name":"color_infrared_veg2","title":"Color
-        Infrared Vegetation 2 (NGB)"},{"description":"False Color Infrared (Urban).","name":"false_color_urban","title":"False
-        Color (Urban)"},{"description":"Agriculture.","name":"agriculture","title":"Agriculture"},{"description":"Moisture
-        Index.","name":"moisture_index","title":"Moisture Index"},{"description":"Geology.","name":"geology","title":"Geology"},{"description":"Bathymetric.","name":"bathymetric","title":"Bathymetric"},{"description":"Atmospheric
-        Penetration.","name":"atmospheric_penetration","title":"Atmospheric Penetration"},{"description":"SWIR
-        1.","name":"swir1","title":"SWIR 1"},{"description":"SWIR 2.","name":"swir2","title":"SWIR
-        2"},{"description":"SAR VV Polarization.","name":"sar_vv","title":"SAR VV
-        Polarization"},{"description":"SAR VH Polarization.","name":"sar_vh","title":"SAR
-        VH Polarization"},{"description":"SAR HH Polarization.","name":"sar_hh","title":"SAR
-        HH Polarization"},{"description":"SAR HV Polarization.","name":"sar_hv","title":"SAR
-        HV Polarization"},{"description":"SAR False Color (Urban).","name":"sar_false_color_urban","title":"SAR
-        False Color (Urban)"}]}]},"href":"https://eod-catalog-svc-prod.astraea.earth/aggregate","rel":"aggregate","title":"Aggregate","type":"application/json"},{"capabilities":{"parameters":[{"name":"composite","values":[{"description":"Default
-        View.","name":"default","title":"Default View"},{"description":"True Color
-        Composite.","name":"true_color","title":"True Color Composite"},{"description":"Normalized
-        Difference Vegetation Index.","name":"ndvi","title":"NDVI"},{"description":"Normalized
-        Difference Water Index using Green and NIR per McFeeters(1997).","name":"ndwi","title":"NDWI
-        (Green & NIR)"},{"description":"Normalized Difference Water Index using NIR
-        and SWIR per Gao(1997).","name":"ndwi2","title":"NDWI (NIR & SWIR)"},{"description":"Color
-        Infrared (Vegetation) consisting of Near-infrared, Red, and Green bands.","name":"color_infrared_veg1","title":"Color
-        Infrared Vegetation (NRG)"},{"description":"Color Infrared (Vegetation) consisting
-        of Near-infrared, Green, and Blue bands.","name":"color_infrared_veg2","title":"Color
-        Infrared Vegetation 2 (NGB)"},{"description":"False Color Infrared (Urban).","name":"false_color_urban","title":"False
-        Color (Urban)"},{"description":"Agriculture.","name":"agriculture","title":"Agriculture"},{"description":"Moisture
-        Index.","name":"moisture_index","title":"Moisture Index"},{"description":"Geology.","name":"geology","title":"Geology"},{"description":"Bathymetric.","name":"bathymetric","title":"Bathymetric"},{"description":"Atmospheric
-        Penetration.","name":"atmospheric_penetration","title":"Atmospheric Penetration"},{"description":"SWIR
-        1.","name":"swir1","title":"SWIR 1"},{"description":"SWIR 2.","name":"swir2","title":"SWIR
-        2"},{"description":"SAR VV Polarization.","name":"sar_vv","title":"SAR VV
-        Polarization"},{"description":"SAR VH Polarization.","name":"sar_vh","title":"SAR
-        VH Polarization"},{"description":"SAR HH Polarization.","name":"sar_hh","title":"SAR
-        HH Polarization"},{"description":"SAR HV Polarization.","name":"sar_hv","title":"SAR
-        HV Polarization"},{"description":"SAR False Color (Urban).","name":"sar_false_color_urban","title":"SAR
-        False Color (Urban)"}]}]},"href":"https://eod-catalog-svc-prod.astraea.earth/search","rel":"search","title":"Search","type":"application/json"},{"href":"https://eod-catalog-svc-prod.astraea.earth/grid_id_definitions?20200218","rel":"grid_id_definitions","title":"Grid
-        ID Definitions","type":"application/json"}],"stac_extensions":["eo","proj","context"],"stac_version":"1.0.0-beta.2","title":"Astraea
-        Earth OnDemand"}'
-    headers:
-      Access-Control-Allow-Credentials:
-      - 'true'
-      Access-Control-Allow-Headers:
-      - X-Astraea-Catalog-Client
-      - Authorization, Content-Type, X-Requested-With
-      Access-Control-Allow-Origin:
-      - '*'
-      Cache-Control:
-      - no-cache, no-store, must-revalidate
-      Connection:
-      - close
-      Content-Length:
-      - '7768'
-      Content-Type:
-      - application/json
-      Date:
-      - Tue, 02 Mar 2021 02:15:42 GMT
-      Server:
-      - akka-http/10.2.3
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
       Accept:
       - '*/*'
       Accept-Encoding:
@@ -148,7 +55,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 06 Apr 2021 19:25:42 GMT
+      - Wed, 14 Apr 2021 16:56:16 GMT
       Server:
       - akka-http/10.2.3
       Transfer-Encoding:
