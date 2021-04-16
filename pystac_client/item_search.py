@@ -171,7 +171,7 @@ class ItemSearch(STACAPIObjectMixin):
     ):
         self.conformance = conformance
         self.session = Session()
-        self.session.headers.update(headers)
+        self.session.headers.update(headers or {})
         self.request = Request(method=method, url=url)
 
         self._next_resolver = next_resolver or simple_stac_resolver
