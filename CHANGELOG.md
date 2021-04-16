@@ -8,11 +8,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- `ItemSearch.items_as_collection` #37
+- `ItemSearch.items_as_collection` [#37](https://github.com/stac-utils/pystac-client/pull/37)
 
 ### Fixed
 
+- Include headers in STAC_IO [#38](https://github.com/stac-utils/pystac-client/pull/38)
+
 ### Changed
+
+- CLI: pass in heades as list of KEY=VALUE pairs
 
 ### Removed
 

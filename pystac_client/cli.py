@@ -51,7 +51,8 @@ def parse_args(args):
     parent.add_argument('--url', help='Root Catalog URL', default=os.getenv('STAC_URL', None))
     parent.add_argument('--limit', help='Page size limit', type=int, default=500)
     parent.add_argument('--headers',
-                        help='Additional request headers (JSON string or file)',
+                        nargs='*',
+                        help='Additional request headers (KEY=VALUE pairs)',
                         default=None)
 
     subparsers = parser0.add_subparsers(dest='command')
@@ -108,12 +109,14 @@ def parse_args(args):
 
     # if headers provided, parse it
     if 'headers' in parsed_args:
-        headers = parsed_args['headers']
-        if os.path.exists(headers):
-            with open(headers) as headers_file:
-                parsed_args['headers'] = json.load(headers_file)
-        else:
-            parsed_args['headers'] = json.loads(headers)
+        new_headers = {}
+        for head in parsed_args['headers']:
+            parts = head.split('=')
+            if len(parts) == 2:
+                new_headers[parts[0]] = parts[1]
+            else:
+                logger.warning(f"Unable to parse header {head}")
+        parsed_args['headers'] = new_headers
 
     return parsed_args
 
