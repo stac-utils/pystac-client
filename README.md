@@ -7,7 +7,7 @@ STAC API Client
 [![Documentation](https://readthedocs.org/projects/pystac_client/badge/?version=latest)](https://pystac_client.readthedocs.io/en/latest/)
 [![codecov](https://codecov.io/gh/stac-utils/pystac-client/branch/main/graph/badge.svg)](https://codecov.io/gh/stac-utils/pystac-client)
 
-A Python client for working with STAC Catalogs and APIs.
+A Python client for working with [STAC](https://stacspec.org/) Catalogs and APIs.
 
 ## Installation
 
