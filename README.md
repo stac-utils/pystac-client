@@ -7,7 +7,7 @@ STAC API Client
 [![Documentation](https://readthedocs.org/projects/pystac_client/badge/?version=latest)](https://pystac_client.readthedocs.io/en/latest/)
 [![codecov](https://codecov.io/gh/stac-utils/pystac-client/branch/main/graph/badge.svg)](https://codecov.io/gh/stac-utils/pystac-client)
 
-A Python client for working with STAC Catalogs and APIs.
+A Python client for working with [STAC](https://stacspec.org/) Catalogs and APIs.
 
 ## Installation
 
@@ -30,31 +30,38 @@ $ stac-client search --url https://earth-search.aws.element84.com/v0 -c sentinel
 1999 items matched
 ```
 
+The `--matched` switch performs a search with limit=0 so does not get any Items, but gets the total number of 
+matches which will be output to the screen.
+
 The environment variable `STAC_URL` can be set instead of having to explicitly set the Catalog URL with every call:
 
 ```
 $ export STAC_URL=https://earth-search.aws.element84.com/v0 
-$ stac-client search -c sentinel-s2-l2a-cogs --bbox -72.5 40.5 -72 41 --datetime 2020-01-01/2020-01-31
+$ stac-client search -c sentinel-s2-l2a-cogs --bbox -72.5 40.5 -72 41 --datetime 2020-01-01/2020-01-31 --matched
 48 items matched
 ```
 
-The CLI performs a search with limit=0 so does not get any Items, it only gets the count. To fetch the items use one or both of the `--stdout` or `--save` switches.
-
-Specifying `--stdout` will fetch all items, paginating if necessary. If `max_items` is provided it will stop paging once that many items has been retrieved. It then prints all items to stdout as an ItemCollection. This can be useful to pipe output to another process such as [stac-terminal](https://github.com/stac-utils/stac-terminal), [geojsonio-cli](https://github.com/mapbox/geojsonio-cli), or [jq](https://stedolan.github.io/jq/).
+Without the `--matched` switch, all items will be fetched, paginating if necessary. If `max_items` is provided 
+it will stop paging once that many items has been retrieved. It then prints all items to stdout as an ItemCollection.
+This can be useful to pipe output to another process such as [stac-terminal](https://github.com/stac-utils/stac-terminal),
+[geojsonio-cli](https://github.com/mapbox/geojsonio-cli), or [jq](https://stedolan.github.io/jq/).
 
 ```
-$ stac-client search --stdout -c sentinel-s2-l2a-cogs --bbox -72.5 40.5 -72 41 --datetime 2020-01-01/2020-01-31 | stacterm cal --label platform
+$ stac-client search -c sentinel-s2-l2a-cogs --bbox -72.5 40.5 -72 41 --datetime 2020-01-01/2020-01-31 | stacterm cal --label platform
 ```
 
 ![](docs/source/images/stacterm-cal.png)
 
-The `--save` switch will save all fetched items (as with `--stdout`) to a file.
+If the `--save` switch is provided instead, the results will not be output to stdout, but instead will be saved to
+the specified file.
 
 ```
 $ stac-client search -c sentinel-s2-l2a-cogs --bbox -72.5 40.5 -72 41 --datetime 2020-01-01/2020-01-31 --save items.json
 ```
 
-If the Catalog supports the [Query extension](https://github.com/radiantearth/stac-api-spec/tree/master/fragments/query), any Item property can also be included in the search. Rather than requiring the JSON syntax the Query extension uses, pystac-client uses a simpler syntax that it will translate to the JSON equivalent. 
+If the Catalog supports the [Query extension](https://github.com/radiantearth/stac-api-spec/tree/master/fragments/query),
+any Item property can also be included in the search. Rather than requiring the JSON syntax the Query extension uses,
+pystac-client uses a simpler syntax that it will translate to the JSON equivalent. 
 
 ```
 <property><operator><value>
@@ -71,7 +78,7 @@ view:sun_elevation<20
 Any number of properties can be included, and each can be included more than once to use additional operators.
 
 ```
-$ stac-client search -c sentinel-s2-l2a-cogs --bbox -72.5 40.5 -72 41 --datetime 2020-01-01/2020-01-31 -q "eo:cloud_cover<10"
+$ stac-client search -c sentinel-s2-l2a-cogs --bbox -72.5 40.5 -72 41 --datetime 2020-01-01/2020-01-31 -q "eo:cloud_cover<10" --matched
 10 items matched
 ```
 

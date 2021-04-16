@@ -15,4 +15,3 @@ ignore = E126,E127,W503
 
 exclude =
     docs/build
-    .tox
