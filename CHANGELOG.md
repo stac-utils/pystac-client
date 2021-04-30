@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - `ItemSearch.items_as_collection` [#37](https://github.com/stac-utils/pystac-client/pull/37)
+- Documentation [published on ReadTheDocs](https://pystac-client.readthedocs.io/en/latest/) [#46](https://github.com/stac-utils/pystac-client/pull/46)
 
 ### Fixed
 
