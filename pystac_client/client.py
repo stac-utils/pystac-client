@@ -95,8 +95,10 @@ class Client(pystac.Catalog, STACAPIObjectMixin):
 
         old_read_text_method = STAC_IO.read_text_method
         STAC_IO.read_text_method = read_text_method
-        catalog = cls.from_file(url)
-        STAC_IO.read_text_method = old_read_text_method
+        try:
+            catalog = cls.from_file(url)
+        finally:
+            STAC_IO.read_text_method = old_read_text_method
         catalog.headers = headers
         return catalog
 
