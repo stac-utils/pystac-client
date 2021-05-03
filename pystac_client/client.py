@@ -1,4 +1,5 @@
 from copy import deepcopy
+import os
 from typing import Callable, Optional
 from urllib.request import Request
 
@@ -75,19 +76,26 @@ class Client(pystac.Catalog, STACAPIObjectMixin):
         return '<Catalog id={}>'.format(self.id)
 
     @classmethod
-    def open(cls, url, headers=None):
+    def open(cls, url=None, headers=None):
         """Alias for PySTAC's STAC Object `from_file` method
 
         Parameters
         ----------
-        url : str
-            The URL of a STAC Catalog
+        url : str, optional
+            The URL of a STAC Catalog. If not specified, this will use the `STAC_URL` environment variable.
 
         Returns
         -------
         catalog : Client
         """
         import pystac_client.stac_io
+
+        if url is None:
+            url = os.environ.get("STAC_URL")
+
+        if url is None:
+            raise TypeError(
+                "'url' must be specified or the 'STAC_URL' environment variable must be set.")
 
         def read_text_method(url):
             request = Request(url, headers=headers or {})

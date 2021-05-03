@@ -1,4 +1,5 @@
 from datetime import datetime
+import os
 
 from dateutil.tz import tzutc
 import pystac
@@ -95,6 +96,19 @@ class TestAPI:
         api = Client.from_file(ASTRAEA_URL)
 
         assert api.title == 'Astraea Earth OnDemand'
+
+    @pytest.mark.vcr
+    def test_environment_variable(self):
+        old_stac_url = os.environ.get("STAC_URL")
+        os.environ["STAC_URL"] = ASTRAEA_URL
+        try:
+            client = Client.open()
+            assert client.title == "Astraea Earth OnDemand"
+        finally:
+            if old_stac_url:
+                os.environ["STAC_URL"] = old_stac_url
+            else:
+                del os.environ["STAC_URL"]
 
 
 class TestAPISearch:
