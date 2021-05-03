@@ -110,6 +110,17 @@ class TestAPI:
             else:
                 del os.environ["STAC_URL"]
 
+    def test_no_url(self):
+        old_stac_url = os.environ.get("STAC_URL")
+        if old_stac_url:
+            del os.environ["STAC_URL"]
+        try:
+            with pytest.raises(TypeError):
+                Client.open()
+        finally:
+            if old_stac_url:
+                os.environ["STAC_URL"] = old_stac_url
+
 
 class TestAPISearch:
     @pytest.fixture(scope='function')
