@@ -10,3 +10,8 @@ class TestCLI:
         args = ["stac-client", "search", "--url", ASTRAEA_URL, "-c", "naip", "--max-items", "20"]
         result = script_runner.run(*args, print_result=False)
         assert result.success
+
+    def test_no_arguments(self, script_runner: ScriptRunner):
+        args = ["stac-client"]
+        result = script_runner.run(*args, print_result=False)
+        assert result.success

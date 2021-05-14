@@ -94,6 +94,9 @@ def parse_args(args):
     output_group.add_argument('--save', help='Filename to save Item collection to', default=None)
 
     parsed_args = {k: v for k, v in vars(parser0.parse_args(args)).items() if v is not None}
+    if "command" not in parsed_args:
+        parser0.print_usage()
+        return []
 
     # if intersects is JSON file, read it in
     if 'intersects' in parsed_args:
@@ -123,6 +126,8 @@ def parse_args(args):
 
 def cli():
     args = parse_args(sys.argv[1:])
+    if not args:
+        return None
 
     loglevel = args.pop('logging')
     # don't enable logging if print to stdout
