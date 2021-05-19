@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - Running `stac-client` with no arguments no longer raises a confusing exception [#52](https://github.com/stac-utils/pystac-client/pull/52)
+- `Client.get_collections_list` [#44](https://github.com/stac-utils/pystac-client/issues/44)
 
 ## [v0.1.1] - 2021-04-16
 

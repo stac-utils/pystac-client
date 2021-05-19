@@ -28,6 +28,9 @@ class TestAPI:
         collection_links = api.get_links('child')
         assert len(collection_links) > 0
 
+        collection_links_alt = api.get_collections_list()
+        assert len(collection_links) == len(collection_links_alt)
+
         first_collection = api.get_single_link('child').resolve_stac_object(root=api).target
         assert isinstance(first_collection, pystac.Collection)
 

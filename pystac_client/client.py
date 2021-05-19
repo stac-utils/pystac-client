@@ -162,7 +162,6 @@ class Client(pystac.Catalog, STACAPIObjectMixin):
 
         return catalog
 
-    @classmethod
     def get_collections_list(self):
         """Gets list of available collections from this Catalog. Alias for get_child_links since children
             of an API are always and only ever collections
