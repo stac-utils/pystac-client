@@ -1,33 +1,49 @@
+from copy import deepcopy
 import json
 import logging
-from copy import deepcopy
-from typing import Callable, Iterator, Optional
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    List,
+    Optional,
+    TYPE_CHECKING,
+    Tuple,
+    Type,
+    Union,
+)
 from urllib.parse import urlparse
 from urllib.request import Request, urlopen
 
 import requests
-from pystac import STAC_IO
+from pystac import StacIO
 
 from .exceptions import APIError
+
+if TYPE_CHECKING:
+    from pystac.link import Link as Link_Type
+
 
 logger = logging.getLogger(__name__)
 
 
-def read_text_method(uri):
-    """Overwrites the default method for reading text from a URL or file to allow :class:`urllib.request.Request`
-    instances as input. This method also raises any :exc:`urllib.error.HTTPError` exceptions rather than catching
-    them to allow us to handle different response status codes as needed."""
-    if isinstance(uri, Request):
-        logger.debug(f"Requesting {uri.get_full_url()} with headers {uri.headers}")
-        with urlopen(uri) as response:
-            resp = response.read()
-        return resp.decode("utf-8")
-    elif bool(urlparse(uri).scheme):
-        logger.debug(f"Requesting {uri}")
-        resp = requests.get(uri)
-        return resp.content.decode("utf-8")
-    else:
-        return STAC_IO.default_read_text_method(uri)
+class StacApiIO(StacIO):
+
+    def read_text(self, source: Union[str, "Link_Type"], *args: Any, **kwargs: Any):
+        """Overwrites the default method for reading text from a URL or file to allow :class:`urllib.request.Request`
+        instances as input. This method also raises any :exc:`urllib.error.HTTPError` exceptions rather than catching
+        them to allow us to handle different response status codes as needed."""
+        if isinstance(uri, Request):
+            logger.debug(f"Requesting {uri.get_full_url()} with headers {uri.headers}")
+            with urlopen(uri) as response:
+                resp = response.read()
+            return resp.decode("utf-8")
+        elif bool(urlparse(uri).scheme):
+            logger.debug(f"Requesting {uri}")
+            resp = requests.get(uri)
+            return resp.content.decode("utf-8")
+        else:
+            return STAC_IO.default_read_text_method(uri)
 
 
 def make_request(session, request, additional_parameters={}):

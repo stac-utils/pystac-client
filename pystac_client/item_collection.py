@@ -17,10 +17,10 @@ class ItemCollection(object):
         A list of :class:`pystac.Item` objects.
     """
     def __init__(
-            self,
-            features: List[Item],
-            links: List[Link] = [],
-            extra_fields: Optional[Dict[str, Any]] = {},
+        self,
+        features: List[Item],
+        links: List[Link] = [],
+        extra_fields: Optional[Dict[str, Any]] = {},
     ):
         features = features or []
         self.features = [f.clone() for f in features]
@@ -73,10 +73,8 @@ class ItemCollection(object):
     def clone(self):
         """Creates a clone of this object. This clone is a deep copy; all links are cloned and all other
          elements are copied (for shallow lists) or deep copied (for dictionaries)."""
-        clone = self.__class__(
-            features=[item.clone() for item in self.features],
-            collections=[item.get_collection() for item in self.features]
-        )
+        clone = self.__class__(features=[item.clone() for item in self.features],
+                               collections=[item.get_collection() for item in self.features])
         for link in self.links:
             clone.add_link(link.clone())
         return clone
@@ -94,11 +92,7 @@ class ItemCollection(object):
         for link in d.pop('links', []):
             links.append(Link.from_dict(link))
 
-        item_collection = cls(
-            features=features,
-            links=links,
-            extra_fields=d
-        )
+        item_collection = cls(features=features, links=links, extra_fields=d)
 
         return item_collection
 
