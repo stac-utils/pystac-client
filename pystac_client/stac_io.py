@@ -5,11 +5,9 @@ from typing import (
     Any,
     Callable,
     Dict,
-    List,
+    Iterator,
     Optional,
     TYPE_CHECKING,
-    Tuple,
-    Type,
     Union,
 )
 from urllib.parse import urlparse
@@ -23,27 +21,54 @@ from .exceptions import APIError
 if TYPE_CHECKING:
     from pystac.link import Link as Link_Type
 
-
 logger = logging.getLogger(__name__)
 
 
 class StacApiIO(StacIO):
+    def __init__(self, headers: Optional[Dict] = None):
+        """Initialize class for API IO
 
-    def read_text(self, source: Union[str, "Link_Type"], *args: Any, **kwargs: Any):
+        Args:
+            headers : Optional dictionary of headers to include in all requests
+
+        Returns:
+            StacApiIO : StacApiIO instance
+        """
+        self.headers = headers
+
+    def read_text(self, source: Union[str, Request, "Link_Type"], *args: Any, **kwargs: Any) -> str:
         """Overwrites the default method for reading text from a URL or file to allow :class:`urllib.request.Request`
         instances as input. This method also raises any :exc:`urllib.error.HTTPError` exceptions rather than catching
         them to allow us to handle different response status codes as needed."""
-        if isinstance(uri, Request):
-            logger.debug(f"Requesting {uri.get_full_url()} with headers {uri.headers}")
-            with urlopen(uri) as response:
+        if isinstance(source, Request):
+            _request = source
+        elif isinstance(source, "Link_Type"):
+            href = source.href
+            # get headers and body from Link and create request
+            _request = requests.Request(url=source.href, headers=self.headers)
+        elif isinstance(source, str):
+            href = source
+            if bool(urlparse(href).scheme):
+                _request = requests.Request(method='GET', url=source, headers=self.headers)
+            else:
+                with open(href) as f:
+                    href_contents = f.read()
+                return href_contents
+
+        return self.request(_request)
+
+    def request(self, _request) -> str:
+        uri = _request.get_full_url()
+        logger.debug(f"Requesting {uri} with headers {_request.headers}")
+        try:
+            with urlopen(_request) as response:
                 resp = response.read()
             return resp.decode("utf-8")
-        elif bool(urlparse(uri).scheme):
-            logger.debug(f"Requesting {uri}")
-            resp = requests.get(uri)
-            return resp.content.decode("utf-8")
-        else:
-            return STAC_IO.default_read_text_method(uri)
+        except Exception as err:
+            raise APIError(f"Could not read {uri}: {err}")
+
+    def write_text_to_href(self, *args: Any, **kwargs: Any) -> None:
+        raise APIError("Transactions not supported")
 
 
 def make_request(session, request, additional_parameters={}):

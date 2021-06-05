@@ -1,12 +1,10 @@
 from copy import deepcopy
 import os
 from typing import Callable, Optional
-from urllib.request import Request
 
 import pystac
 import pystac.stac_object
 import pystac.validation
-from pystac import STAC_IO
 
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.exceptions import ConformanceError
@@ -20,6 +18,7 @@ from pystac_client.item_search import (
     ItemSearch,
 )
 from pystac_client.stac_api_object import STACAPIObjectMixin
+from pystac_client.stac_io import StacApiIO
 
 
 class Client(pystac.Catalog, STACAPIObjectMixin):
@@ -88,7 +87,6 @@ class Client(pystac.Catalog, STACAPIObjectMixin):
         -------
         catalog : Client
         """
-        import pystac_client.stac_io
 
         if url is None:
             url = os.environ.get("STAC_URL")
@@ -97,17 +95,9 @@ class Client(pystac.Catalog, STACAPIObjectMixin):
             raise TypeError(
                 "'url' must be specified or the 'STAC_URL' environment variable must be set.")
 
-        def read_text_method(url):
-            request = Request(url, headers=headers or {})
-            return pystac_client.stac_io.read_text_method(request)
+        stac_io = StacApiIO(headers=headers)
 
-        old_read_text_method = STAC_IO.read_text_method
-        STAC_IO.read_text_method = read_text_method
-        try:
-            catalog = cls.from_file(url)
-        finally:
-            STAC_IO.read_text_method = old_read_text_method
-        catalog.headers = headers
+        catalog = cls.from_file(url, stac_io)
         return catalog
 
     @classmethod
