@@ -18,7 +18,8 @@ from pystac_client.stac_api_object import STACAPIObjectMixin
 from pystac_client.stac_io import get_pages, make_request, simple_stac_resolver
 
 DATETIME_REGEX = re.compile(
-    r"(?P<year>\d{4})(-(?P<month>\d{2})(-(?P<day>\d{2})(?P<remainder>T\d{2}:\d{2}:\d{2}\w*)?)?)?")
+    r"(?P<year>\d{4})(\-(?P<month>\d{2})(\-(?P<day>\d{2})"
+    r"(?P<remainder>(T|t)\d{2}:\d{2}:\d{2}(\.\d+)?(Z|([-+])(\d{2}):(\d{2})))?)?)?")
 
 DatetimeOrTimestamp = Optional[Union[datetime_, str]]
 Datetime = Union[Tuple[str], Tuple[str, str]]
