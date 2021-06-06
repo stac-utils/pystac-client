@@ -1,3 +1,4 @@
+from copy import deepcopy
 import json
 # from copy import deepcopy
 from typing import Any, Dict, List, Optional
@@ -13,24 +14,29 @@ class ItemCollection(object):
 
     Attributes
     ----------
-    features : list
-        A list of :class:`pystac.Item` objects.
+    items : list
+        A list of :class:`pystac.Item` objects
+    links : list
+        A list of :class:`pystac.Link` objects
+    extra_fields: Dict
+        Dictionary of any additional fields to add to the ItemCollection
     """
     def __init__(
         self,
-        features: List[Item],
+        items: List[Item],
         links: List[Link] = [],
         extra_fields: Optional[Dict[str, Any]] = {},
     ):
-        features = features or []
-        self.features = [f.clone() for f in features]
+        items = items or []
+        self.items = items
         self.extra_fields = extra_fields
         self.links = links
-        for f in self.features:
+        for f in self.items:
             f.clear_links('root')
+        breakpoint()
 
     def __getitem__(self, key):
-        return self.features[key]
+        return self.items[key]
 
     def to_dict(self, include_self_link=True):
         """Serializes an :class:`ItemCollection` instance to a JSON-like dictionary. """
@@ -39,12 +45,13 @@ class ItemCollection(object):
         if not include_self_link:
             links = filter(lambda l: l.rel != 'self', links)
 
-        d = {
+        d = deepcopy(self.extra_fields)
+        d.update({
             'type': 'FeatureCollection',
             'links': [link.to_dict() for link in links],
-            'features': [f.to_dict() for f in self.features]
-        }
-
+            'features': [f.to_dict() for f in self.items]
+        })
+        breakpoint()
         return d
 
     def add_link(self, link: Link) -> None:
@@ -81,19 +88,18 @@ class ItemCollection(object):
 
     @classmethod
     def from_dict(cls, d):
-        """Parses this STACObject from the passed in dictionary.
+        """Parses an ItemCollection from the passed in dictionary.
 
         Args:
             d : The dict to parse
         """
-        features = [Item.from_dict(feature) for feature in d.pop('features', [])]
-
+        items = [Item.from_dict(feature) for feature in d.pop('features', [])]
+        
         links = []
         for link in d.pop('links', []):
             links.append(Link.from_dict(link))
 
-        item_collection = cls(features=features, links=links, extra_fields=d)
-
+        item_collection = cls(items=items, links=links, extra_fields=d)
         return item_collection
 
     @classmethod
