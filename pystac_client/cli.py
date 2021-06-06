@@ -24,7 +24,7 @@ def search(url=STAC_URL, matched=False, save=None, headers=None, **kwargs):
             matched = search.matched()
             print('%s items matched' % matched)
         else:
-            items = ItemCollection(search.items())
+            items = search.get_all_items()
             if save:
                 with open(save, 'w') as f:
                     f.write(json.dumps(items.to_dict()))
