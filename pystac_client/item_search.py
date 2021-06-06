@@ -7,15 +7,15 @@ import logging
 from collections.abc import Iterable, Mapping
 from copy import deepcopy
 from datetime import timezone, datetime as datetime_
-from typing import Callable, Iterator, List, Optional, Tuple, Union
+from typing import Callable, Dict, Iterator, List, Optional, Tuple, Union
 from urllib.error import HTTPError
 
 import pystac
-from requests import Request, Session
+from requests import Request
 
-from pystac_client.item_collection import ItemCollection
+from pystac_client.item_collection import Item, ItemCollection
 from pystac_client.stac_api_object import STACAPIObjectMixin
-from pystac_client.stac_io import get_pages, make_request, simple_stac_resolver
+from pystac_client.stac_io import StacApiIO
 
 DATETIME_REGEX = re.compile(
     r"(?P<year>\d{4})(-(?P<month>\d{2})(-(?P<day>\d{2})(?P<remainder>T\d{2}:\d{2}:\d{2}\w*)?)?)?")
@@ -155,6 +155,7 @@ class ItemSearch(STACAPIObjectMixin):
     def __init__(
         self,
         url: str,
+        stac_io: StacApiIO,
         *,
         limit: Optional[int] = None,
         bbox: Optional[BBoxLike] = None,
@@ -165,17 +166,13 @@ class ItemSearch(STACAPIObjectMixin):
         query: Optional[QueryLike] = None,
         max_items: Optional[int] = None,
         method: Optional[str] = 'POST',
-        headers: Optional[dict] = {},
         conformance: List[str] = [],
-        next_resolver: Callable = None,
     ):
-        self.conformance = conformance
-        self.session = Session()
-        self.session.headers.update(headers or {})
-        self.request = Request(method=method, url=url)
-
-        self._next_resolver = next_resolver or simple_stac_resolver
+        self.url = url
+        self._stac_io = stac_io
         self._max_items = max_items
+        self.method = method
+        self.conformance = conformance
 
         params = {
             'limit': int(limit) if limit is not None else None,
@@ -186,23 +183,7 @@ class ItemSearch(STACAPIObjectMixin):
             'intersects': self._format_intersects(intersects),
             'query': self._format_query(query)
         }
-        self._search_parameters = {k: v for k, v in params.items() if v is not None}
-
-        if method == 'POST':
-            self.request.json = self._search_parameters
-        else:
-            self.request.params = self._search_parameters
-
-    @property
-    def url(self):
-        """The base URL to which search requests will be made. This may include query string parameters, but any
-        parameters that overlap with initialization arguments will be overwritten."""
-        return str(self.request.url)
-
-    @property
-    def method(self):
-        """The HTTP method/verb that will be used when making requests."""
-        return str(self.request.method)
+        self._parameters = {k: v for k, v in params.items() if v is not None}
 
     @staticmethod
     def _format_query(value: List[QueryLike]) -> Optional[dict]:
@@ -350,7 +331,9 @@ class ItemSearch(STACAPIObjectMixin):
         return deepcopy(getattr(value, '__geo_interface__', value))
 
     def matched(self) -> int:
-        resp = make_request(self.session, self.request, {"limit": 0})
+        params = {"limit": 0}
+        params.update(self._parameters)
+        resp = self._stac_io.read_json(self.url, method=self.method, parameters=params)
         found = None
         if 'context' in resp:
             found = resp['context']['matched']
@@ -360,7 +343,7 @@ class ItemSearch(STACAPIObjectMixin):
             logger.warning("numberMatched or context.matched not in response")
         return found
 
-    def item_collections(self) -> Iterator[ItemCollection]:
+    def get_pages(self) -> Iterator[Dict]:
         """Iterator that yields dictionaries matching the `ItemCollection
         <https://github.com/radiantearth/stac-api-spec/blob/master/fragments/itemcollection/README.md>`__ spec. Each of
         these items represents a "page" or results for the search.
@@ -369,14 +352,35 @@ class ItemSearch(STACAPIObjectMixin):
         -------
         item_collection : pystac_client.ItemCollection
         """
-        request = deepcopy(self.request)
+        page = self._stac_io.read_json(self.url, method=self.method, parameters=self._parameters)
+        yield page
 
-        for page in get_pages(session=self.session,
-                              request=request,
-                              next_resolver=self._next_resolver):
-            yield ItemCollection.from_dict(page, conformance=self.conformance)
+        next_link = next((link for link in page.get('links', []) if link['rel'] == 'next'), None)
+        while next_link:
+            link = pystac.Link.from_dict(next_link)
+            page = self._stac_io.read_json(link, parameters=self._parameters)
+            #breakpoint()
+            yield page
 
-    def items(self) -> Iterator[pystac.Item]:
+            # get the next link and make the next request
+            next_link = next((link for link in page.get('links', []) if link['rel'] == 'next'), None)
+
+    def get_item_collections(self) -> Iterator[ItemCollection]:
+        """Iterator that yields ItemCollection objects.  Each ItemCollection is a page of results
+        from the search.
+
+        Yields
+        -------
+        item_collection : pystac_client.ItemCollection
+        """
+        for page in self.get_pages():
+            yield ItemCollection.from_dict(page)
+
+    def item_collections(self) -> Iterator[ItemCollection]:
+        logger.warning("Search.item_collections is deprecated, please use get_item_collections")
+        return self.get_item_collections()
+
+    def get_items(self) -> Iterator[pystac.Item]:
         """Iterator that yields :class:`pystac.Item` instances for each item matching the given search parameters. Calls
         :meth:`ItemSearch.item_collections()` internally and yields from
         :attr:`ItemCollection.features <pystac_client.ItemCollection.features>` for each page of results.
@@ -385,24 +389,28 @@ class ItemSearch(STACAPIObjectMixin):
         ------
         item : pystac.Item
         """
-        def _paginate():
-            for item_collection in self.item_collections():
-                yield from item_collection.features
+        nitems = 0
+        for item_collection in self.get_item_collections():
+            for item in item_collection:
+                yield item
+                nitems += 1
+                if self._max_items and nitems >= self._max_items:
+                    return
 
-        try:
-            yield from it.islice(_paginate(), self._max_items)
-        except HTTPError as e:
-            if e.code == 405:
-                self._method = 'GET'
-                yield from it.islice(_paginate(), self._max_items)
-            else:
-                raise
+    def items(self) -> Iterator[ItemCollection]:
+        logger.warning("Search.items is deprecated, please use get_items")
+        return self.get_items()
 
-    def items_as_collection(self) -> ItemCollection:
+    def get_all_items(self) -> ItemCollection:
         """Convenience method that builds an :class:`ItemCollection` from all items matching the given search parameters.
 
         Returns
         ------
         item_collection : ItemCollection
         """
-        return ItemCollection(self.items())
+
+        items = []
+        for page in self.get_pages():
+            for feature in page['features']:
+                items.append(Item.from_dict(feature))
+        return ItemCollection(items)

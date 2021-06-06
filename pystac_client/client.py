@@ -1,9 +1,10 @@
 from copy import deepcopy
 import os
-from typing import Callable, Optional
+from typing import Callable, Optional, cast
 
 import pystac
-import pystac.stac_object
+from pystac.stac_object import STACObject
+from pystac.utils import is_absolute_href, make_absolute_href
 import pystac.validation
 
 from pystac_client.conformance import ConformanceClasses
@@ -101,6 +102,46 @@ class Client(pystac.Catalog, STACAPIObjectMixin):
         return catalog
 
     @classmethod
+    def from_file(
+        cls, href: str, stac_io: Optional[pystac.StacIO] = None
+    ) -> "STACObject":
+        """Reads a STACObject implementation from a file.
+
+        Args:
+            href : The HREF to read the object from.
+            stac_io: Optional instance of StacIO to use. If not provided, will use the
+                default instance.
+
+        Returns:
+            The specific STACObject implementation class that is represented
+            by the JSON read from the file located at HREF.
+        """
+        if stac_io is None:
+            stac_io = pystac.StacIO.default()
+
+        if not is_absolute_href(href):
+            href = make_absolute_href(href)
+
+        if cls == STACObject:
+            o = stac_io.read_stac_object(href)
+        else:
+            d = stac_io.read_json(href)
+            o = cls.from_dict(d, href=href)
+            o._stac_io = stac_io
+
+        # Set the self HREF, if it's not already set to something else.
+        if o.get_self_href() is None:
+            o.set_self_href(href)
+
+        # If this is a root catalog, set the root to the catalog instance.
+        root_link = o.get_root_link()
+        if root_link is not None:
+            if not root_link.is_resolved():
+                if root_link.get_absolute_href() == href:
+                    o.set_root(cast(pystac.Catalog, o))
+        return o
+
+    @classmethod
     def from_dict(
         cls,
         d,
@@ -168,8 +209,7 @@ class Client(pystac.Catalog, STACAPIObjectMixin):
                collections: Optional[CollectionsLike] = None,
                query: Optional[QueryLike] = None,
                max_items: Optional[int] = None,
-               method: Optional[str] = 'POST',
-               next_resolver: Optional[Callable] = None) -> ItemSearch:
+               method: Optional[str] = 'POST') -> ItemSearch:
         """Query the ``/search`` endpoint using the given parameters.
 
         This method returns an :class:`~pystac_client.ItemSearch` instance, see that class's documentation
@@ -230,9 +270,6 @@ class Client(pystac.Catalog, STACAPIObjectMixin):
             ``None``. If ``None``, this will default to ``"POST"`` if the ``intersects`` argument is present and
             ``"GET"`` if not. If a ``"POST"`` request receives a ``405`` status for the response, it will automatically
             retry with a ``"GET"`` request for all subsequent requests.
-        next_resolver: Callable, optional
-            A callable that will be used to construct the next request based on a "next" link and the previous request.
-            Defaults to using the :func:`~pystac_client.paging.simple_stac_resolver`.
 
         Returns
         -------
@@ -261,6 +298,7 @@ class Client(pystac.Catalog, STACAPIObjectMixin):
                 'root catalog.')
 
         return ItemSearch(search_link.target,
+                          self._stac_io,
                           limit=limit,
                           bbox=bbox,
                           datetime=datetime,
@@ -270,6 +308,4 @@ class Client(pystac.Catalog, STACAPIObjectMixin):
                           query=query,
                           max_items=max_items,
                           method=method,
-                          headers=self.headers,
-                          conformance=self.conformance,
-                          next_resolver=next_resolver)
+                          conformance=self.conformance)

@@ -13,7 +13,7 @@ from .helpers import ASTRAEA_API_PATH, ASTRAEA_URL, TEST_DATA, read_data_file
 
 class TestAPI:
     def test_instance(self):
-        api = Client.from_file(ASTRAEA_API_PATH)
+        api = Client.open(ASTRAEA_API_PATH)
 
         # An API instance is also a Catalog instance
         assert isinstance(api, pystac.Catalog)
@@ -22,7 +22,7 @@ class TestAPI:
 
     @pytest.mark.vcr
     def test_links(self):
-        api = Client.from_file(ASTRAEA_API_PATH)
+        api = Client.open(ASTRAEA_API_PATH)
 
         # Should be able to get collections via links as with a typical PySTAC Catalog
         collection_links = api.get_links('child')
