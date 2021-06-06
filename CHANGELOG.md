@@ -10,9 +10,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - `Client.open` falls back to the `STAC_URL` environment variable if no url is provided as an argument [#48](https://github.com/stac-utils/pystac-client/pull/48)
 - New Search.get_pages() iterator function to retrieve pages as raw JSON, not as ItemCollections
+- `StacApiIO` class added, subclass from PySTAC `StacIO`. A `StacApiIO` instance is used for all IO for a Client instance, and all requests
+are in a single HTTP session.
 
 ### Changed
-- IO changed to use PySTAC's new StacIo class. A single StacIO class, and HTTP session is used for all requests with a Client instance
+
+- IO changed to use PySTAC's new StacIo base class. 
+- `Search.item_collections()` renamed to `Search.get_item_collections()`
+- `Search.item_collections()` renamed to `Search.get_items()`
 
 ### Fixed
 
@@ -21,7 +26,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Removed
 
+- `get_pages` and `simple_stac_resolver` functions from `pystac_client.stac_io` (The new StacApiIO class understands `Link` objects)
+- `Client.search()` no longer accepts a `next_resolver` argument
 - pystac.extensions modules, which were based on PySTAC's previous extension implementation, replaced in 1.0.0
+
+### Deprecated
+- `Search.item_collections()`
+- `Search.items()`
 
 ## [v0.1.1] - 2021-04-16
 
