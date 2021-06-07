@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 
 ASTRAEA_URL = 'https://eod-catalog-svc-prod.astraea.earth'
-MLHUB_URL = 'https://api.radiant.earth/mlhub/v1/'
+MLHUB_URL = 'https://api.radiant.earth/mlhub/v1'
 
 TEST_DATA = Path(__file__).parent / 'data'
 

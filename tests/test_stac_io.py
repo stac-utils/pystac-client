@@ -1,10 +1,7 @@
-from urllib.error import HTTPError
-from urllib.request import Request
-
 import pytest
 
+from pystac_client.exceptions import APIError
 from pystac_client.stac_io import StacApiIO
-
 from .helpers import ASTRAEA_URL, MLHUB_URL
 
 
@@ -12,9 +9,7 @@ class TestSTAC_IOOverride:
     @pytest.mark.vcr
     def test_request_input(self):
         stac_api_io = StacApiIO()
-        request = Request(url=ASTRAEA_URL)
-        response = stac_api_io.read_text(request)
-
+        response = stac_api_io.read_text(ASTRAEA_URL)
         assert isinstance(response, str)
 
     @pytest.mark.vcr
@@ -28,11 +23,10 @@ class TestSTAC_IOOverride:
     def test_http_error(self):
         stac_api_io = StacApiIO()
         # Attempt to access an authenticated endpoint
-        request = Request(url=f'{MLHUB_URL}/search')
-        with pytest.raises(HTTPError) as excinfo:
-            stac_api_io.read_text(request)
+        with pytest.raises(APIError) as excinfo:
+            stac_api_io.read_text(f'{MLHUB_URL}/search')
 
-        assert isinstance(excinfo.value, HTTPError)
+        assert isinstance(excinfo.value, APIError)
 
     def test_local_file(self, tmp_path):
         stac_api_io = StacApiIO()
