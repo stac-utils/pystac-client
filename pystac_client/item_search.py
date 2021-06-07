@@ -143,12 +143,6 @@ class ItemSearch(STACAPIObjectMixin):
     collections: list, optional
         List of one or more Collection IDs or :class:`pystac.Collection` instances. Only Items in one of the provided
         Collections will be searched
-
-    Other Parameters
-    ----------------
-    next_resolver : Callable, optional
-        A callable that will be used to construct the next request based on a "next" link and the previous request.
-        Defaults to using the :func:`~pystac_client.stac_io.simple_stac_resolver`.
     conformance : list, optional
         A list of conformance URIs indicating the specs that this service conforms to. Note that these are *not*
         published as part of the ``"search"`` endpoint and must be obtained from the service's landing page.
@@ -156,7 +150,7 @@ class ItemSearch(STACAPIObjectMixin):
     def __init__(
         self,
         url: str,
-        stac_io: StacApiIO,
+        stac_io: Optional[StacApiIO] = None,
         *,
         limit: Optional[int] = None,
         bbox: Optional[BBoxLike] = None,
@@ -170,7 +164,10 @@ class ItemSearch(STACAPIObjectMixin):
         conformance: List[str] = [],
     ):
         self.url = url
-        self._stac_io = stac_io
+        if stac_io:
+            self._stac_io = stac_io
+        else:
+            self._stac_io = StacApiIO()
         self._max_items = max_items
         self.method = method
         self.conformance = conformance
@@ -360,7 +357,6 @@ class ItemSearch(STACAPIObjectMixin):
         while next_link:
             link = pystac.Link.from_dict(next_link)
             page = self._stac_io.read_json(link, parameters=self._parameters)
-            #breakpoint()
             yield page
 
             # get the next link and make the next request
@@ -398,7 +394,7 @@ class ItemSearch(STACAPIObjectMixin):
                 if self._max_items and nitems >= self._max_items:
                     return
 
-    def items(self) -> Iterator[ItemCollection]:
+    def items(self) -> Iterator[pystac.Item]:
         logger.warning("Search.items is deprecated, please use get_items")
         return self.get_items()
 

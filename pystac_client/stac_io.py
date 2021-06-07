@@ -47,7 +47,6 @@ class StacApiIO(DefaultStacIO):
                 return href_contents
         elif isinstance(source, Link):
             link = source.to_dict()
-            breakpoint()
             href = link['href']
             # get headers and body from Link and add to request from simple stac resolver
             merge = bool(link.get('merge', False))
