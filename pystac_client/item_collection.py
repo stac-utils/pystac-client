@@ -33,7 +33,6 @@ class ItemCollection(object):
         self.links = links
         for f in self.items:
             f.clear_links('root')
-        breakpoint()
 
     def __getitem__(self, key):
         return self.items[key]
@@ -51,7 +50,6 @@ class ItemCollection(object):
             'links': [link.to_dict() for link in links],
             'features': [f.to_dict() for f in self.items]
         })
-        breakpoint()
         return d
 
     def add_link(self, link: Link) -> None:

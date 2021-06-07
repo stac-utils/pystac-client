@@ -9,7 +9,7 @@ interactions:
       User-Agent:
       - Python-urllib/3.9
     method: GET
-    uri: https://eod-catalog-svc-prod.astraea.earth
+    uri: https://eod-catalog-svc-prod.astraea.earth/
   response:
     body:
       string: '{"conformsTo":["http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson","http://www.opengis.net/spec/ogcapi_common-2/1.0/req/collections","http://stacspec.org/spec/api/1.0.0-beta.1/core","http://stacspec.org/spec/api/1.0.0-beta.1/req/stac-search","http://stacspec.org/spec/api/1.0.0-beta.1/req/stac-response","http://stacspec.org/spec/api/1.0.0-beta.1/req/fields","http://stacspec.org/spec/api/1.0.0-beta.1/req/context","http://stacspec.org/spec/api/1.0.0-beta.1/req/sort"],"description":"Astraea

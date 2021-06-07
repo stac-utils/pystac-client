@@ -4,6 +4,8 @@ import logging
 import os
 import sys
 
+# import coloredlogs
+
 from .item_collection import ItemCollection
 from .client import Client
 from .version import __version__
@@ -133,6 +135,7 @@ def cli():
     # don't enable logging if print to stdout
     if args.get('save', False) or args.get('matched', False):
         logging.basicConfig(stream=sys.stdout, level=loglevel)
+        # coloredlogs.install(level=loglevel, logger=logger)
         # quiet loggers
         for lg in ['urllib3']:
             logging.getLogger(lg).propagate = False
