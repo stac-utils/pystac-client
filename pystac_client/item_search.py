@@ -11,11 +11,10 @@ from typing import Callable, Dict, Iterator, List, Optional, Tuple, Union
 from urllib.parse import quote
 from urllib.error import HTTPError
 
-import pystac
+from pystac import Collection, Item, ItemCollection, Link
 from requests import Request
 
 from pystac_client.exceptions import APIError
-from pystac_client.item_collection import Item, ItemCollection
 from pystac_client.stac_api_object import STACAPIObjectMixin
 from pystac_client.stac_io import StacApiIO
 
@@ -32,8 +31,8 @@ BBox = Tuple[float, ...]
 BBoxLike = Union[BBox, List[float], Iterator[float], str]
 
 Collections = Tuple[str, ...]
-CollectionsLike = Union[List[Union[str, pystac.Collection]],
-                        Iterator[Union[str, pystac.Collection]], str, pystac.Collection]
+CollectionsLike = Union[List[Union[str, Collection]],
+                        Iterator[Union[str, Collection]], str, Collection]
 
 IDs = Tuple[str, ...]
 IDsLike = Union[IDs, str, List[str], Iterator[str]]
@@ -318,7 +317,7 @@ class ItemSearch(STACAPIObjectMixin):
             return None
         if isinstance(value, str):
             return tuple(map(_format, value.split(',')))
-        if isinstance(value, pystac.Collection):
+        if isinstance(value, Collection):
             return _format(value),
 
         return _format(value)
@@ -369,7 +368,7 @@ class ItemSearch(STACAPIObjectMixin):
 
         next_link = next((link for link in page.get('links', []) if link['rel'] == 'next'), None)
         while next_link:
-            link = pystac.Link.from_dict(next_link)
+            link = Link.from_dict(next_link)
             page = self._stac_io.read_json(link, parameters=self._parameters)
             yield page
 
@@ -391,7 +390,7 @@ class ItemSearch(STACAPIObjectMixin):
         logger.warning("Search.item_collections is deprecated, please use get_item_collections")
         return self.get_item_collections()
 
-    def get_items(self) -> Iterator[pystac.Item]:
+    def get_items(self) -> Iterator[Item]:
         """Iterator that yields :class:`pystac.Item` instances for each item matching the given search parameters. Calls
         :meth:`ItemSearch.item_collections()` internally and yields from
         :attr:`ItemCollection.features <pystac_client.ItemCollection.features>` for each page of results.
@@ -408,7 +407,7 @@ class ItemSearch(STACAPIObjectMixin):
                 if self._max_items and nitems >= self._max_items:
                     return
 
-    def items(self) -> Iterator[pystac.Item]:
+    def items(self) -> Iterator[Item]:
         logger.warning("Search.items is deprecated, please use get_items")
         return self.get_items()
 

@@ -5,8 +5,8 @@ import os
 import sys
 
 # import coloredlogs
+from pystac import ItemCollection
 
-from .item_collection import ItemCollection
 from .client import Client
 from .version import __version__
 
