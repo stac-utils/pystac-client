@@ -1,13 +1,13 @@
 from copy import deepcopy
 import os
-from typing import Callable, Optional, cast
+from typing import Callable, Optional, cast, List, Union
 
 import pystac
 from pystac.stac_object import STACObject
 from pystac.utils import is_absolute_href, make_absolute_href
 import pystac.validation
 
-from pystac_client.conformance import ConformanceClasses
+from pystac_client.conformance import ConformanceClass, ConformanceClasses
 from pystac_client.exceptions import ConformanceError
 from pystac_client.item_search import (
     BBoxLike,
@@ -65,7 +65,7 @@ class Client(pystac.Catalog, STACAPIObjectMixin):
 
         # Check that the API conforms to the STAC API - Core spec (or ignore if None)
         if conformance is not None and not self.conforms_to(ConformanceClasses.STAC_API_CORE):
-            allowed_uris = "\n\t".join(ConformanceClasses.STAC_API_CORE.all_uris)
+            allowed_uris = "\n\t".join(ConformanceClass.STAC_API_CORE.all_uris)
             raise ConformanceError(
                 'API does not conform to {ConformanceClasses.STAC_API_CORE}. Must contain one of the following '
                 f'URIs to conform (preferably the first):\n\t{allowed_uris}.')
@@ -198,6 +198,31 @@ class Client(pystac.Catalog, STACAPIObjectMixin):
             of an API are always and only ever collections
         """
         return self.get_child_links()
+
+    def conforms_to(self, spec: Union[str, ConformanceClass]) -> bool:
+        """Whether the API conforms to the given standard. This method only checks against the ``"conformsTo"``
+        property from the API landing page and does not make any additional calls to a ``/conformance`` endpoint
+        even if the API provides such an endpoint.
+
+        Parameters
+        ----------
+        spec : str or ConformanceClass
+            Either a :class:`~pystac_client.conformance.ConformanceClass` instance or the URI string for the spec.
+
+        Returns
+        -------
+        bool
+            Indicates if the API conforms to the given spec or URI.
+        """
+        if not self.conformance or not spec:
+            return False
+        for conformance_uri in self.conformance:
+            if isinstance(spec, str) and conformance_uri == spec:
+                return True
+            if conformance_uri in spec:
+                return True
+        return False
+
 
     def search(self,
                *,
