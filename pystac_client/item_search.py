@@ -8,11 +8,13 @@ from collections.abc import Iterable, Mapping
 from copy import deepcopy
 from datetime import timezone, datetime as datetime_
 from typing import Callable, Dict, Iterator, List, Optional, Tuple, Union
+from urllib.parse import quote
 from urllib.error import HTTPError
 
 import pystac
 from requests import Request
 
+from pystac_client.exceptions import APIError
 from pystac_client.item_collection import Item, ItemCollection
 from pystac_client.stac_api_object import STACAPIObjectMixin
 from pystac_client.stac_io import StacApiIO
@@ -183,6 +185,17 @@ class ItemSearch(STACAPIObjectMixin):
         }
         self._parameters = {k: v for k, v in params.items() if v is not None}
 
+    '''
+    def format_parameters(self, method='GET'):
+        if method == 'POST':
+            return self._parameters
+        elif method == 'GET':
+            params = deepcopy(self._parameters)
+            params['collections'] = json.dumps(params['collections'])
+        else:
+            raise APIError("Unsupported method")
+    '''
+
     @staticmethod
     def _format_query(value: List[QueryLike]) -> Optional[dict]:
         if value is None:
@@ -331,6 +344,7 @@ class ItemSearch(STACAPIObjectMixin):
     def matched(self) -> int:
         params = {"limit": 0}
         params.update(self._parameters)
+        params["limit"] = 0
         resp = self._stac_io.read_json(self.url, method=self.method, parameters=params)
         found = None
         if 'context' in resp:

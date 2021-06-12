@@ -1,5 +1,4 @@
 # flake8: noqa
-import pystac.extensions.base
 
 from pystac_client.version import __version__
 from pystac_client.stac_api_object import STACAPIObjectMixin
