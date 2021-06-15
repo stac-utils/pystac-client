@@ -65,22 +65,6 @@ class StacApiIO(DefaultStacIO):
                 parameters = {}
             return self.request(href, *args, method=method, headers=headers, parameters=parameters)
 
-    def read_json(self, source: Union[str, Link], *args: Any, **kwargs: Any) -> Dict[str, Any]:
-        """Read a dict from the given source.
-
-        See :func:`StacIO.read_text <pystac.StacIO.read_text>` for usage of
-        str vs Link as a parameter.
-
-        Args:
-            source : The source from which to read.
-
-        Returns:
-            dict: A dict representation of the JSON contained in the file at the
-            given source.
-        """
-        txt = self.read_text(source, *args, **kwargs)
-        return self._json_loads(txt, source)
-
     def request(self, href: str, method: Optional[str] = 'GET', 
                 headers: Optional[dict] = {},
                 parameters: Optional[dict] = {}) -> str:
