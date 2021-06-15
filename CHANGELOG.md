@@ -12,12 +12,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - New Search.get_pages() iterator function to retrieve pages as raw JSON, not as ItemCollections
 - `StacApiIO` class added, subclass from PySTAC `StacIO`. A `StacApiIO` instance is used for all IO for a Client instance, and all requests
 are in a single HTTP session.
+- `conformance.CONFORMANCE_CLASSES` dictionary added containing all STAC API Capabilities from stac-api-spec
 
 ### Changed
 
-- IO changed to use PySTAC's new StacIo base class. 
+- IO changed to use PySTAC's new StacIO base class. 
 - `Search.item_collections()` renamed to `Search.get_item_collections()`
 - `Search.item_collections()` renamed to `Search.get_items()`
+- Conformance is checked by each individual function that requires a particular conformance
+- STAC API testing URLs changed to updated APIs
 
 ### Fixed
 
@@ -30,6 +33,9 @@ are in a single HTTP session.
 - `get_pages` and `simple_stac_resolver` functions from `pystac_client.stac_io` (The new StacApiIO class understands `Link` objects)
 - `Client.search()` no longer accepts a `next_resolver` argument
 - pystac.extensions modules, which were based on PySTAC's previous extension implementation, replaced in 1.0.0
+- `stac_api_object.StacApiObjectMixin`, replaced with `conformance.ConformanceMixin`
+- `conformance.ConformanceClass`, replaced with `conformance.ConformanceMixin`
+- `conformance.ConformanceClasses`, replaced with `conformance.ConformanceMixin`
 
 ### Deprecated
 - `Search.item_collections()`
