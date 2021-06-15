@@ -115,3 +115,5 @@ class ConformanceMixin:
 
         if not check_conformance():
             raise NotImplementedError(f"{conformance_class['name']} not supported")
+
+        return True
