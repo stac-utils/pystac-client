@@ -7,8 +7,7 @@ from pystac.stac_object import STACObject
 from pystac.utils import is_absolute_href, make_absolute_href
 import pystac.validation
 
-from pystac_client.conformance import ConformanceClass, ConformanceClasses
-from pystac_client.exceptions import ConformanceError
+from pystac_client.conformance import ConformanceMixin
 from pystac_client.item_search import (
     BBoxLike,
     CollectionsLike,
@@ -18,11 +17,10 @@ from pystac_client.item_search import (
     QueryLike,
     ItemSearch,
 )
-from pystac_client.stac_api_object import STACAPIObjectMixin
 from pystac_client.stac_io import StacApiIO
 
 
-class Client(pystac.Catalog, STACAPIObjectMixin):
+class Client(pystac.Catalog, ConformanceMixin):
     """Instances of the ``Client`` class inherit from :class:`pystac.Catalog` and provide a convenient way of interacting
     with Catalogs OR APIs that conform to the `STAC API spec <https://github.com/radiantearth/stac-api-spec>`_. In addition
     to being a valid `STAC Catalog <https://github.com/radiantearth/stac-spec/blob/master/catalog-spec/catalog-spec.md>`_ the
@@ -62,18 +60,11 @@ class Client(pystac.Catalog, STACAPIObjectMixin):
                          catalog_type=catalog_type)
 
         self.conformance = conformance
-
-        # Check that the API conforms to the STAC API - Core spec (or ignore if None)
-        if conformance is not None and not self.conforms_to(ConformanceClasses.STAC_API_CORE):
-            allowed_uris = "\n\t".join(ConformanceClass.STAC_API_CORE.all_uris)
-            raise ConformanceError(
-                'API does not conform to {ConformanceClasses.STAC_API_CORE}. Must contain one of the following '
-                f'URIs to conform (preferably the first):\n\t{allowed_uris}.')
-
+        self.conforms_to("core")
         self.headers = headers or {}
 
     def __repr__(self):
-        return '<Catalog id={}>'.format(self.id)
+        return '<Client id={}>'.format(self.id)
 
     @classmethod
     def open(cls, url=None, headers=None):
@@ -199,31 +190,6 @@ class Client(pystac.Catalog, STACAPIObjectMixin):
         """
         return self.get_child_links()
 
-    def conforms_to(self, spec: Union[str, ConformanceClass]) -> bool:
-        """Whether the API conforms to the given standard. This method only checks against the ``"conformsTo"``
-        property from the API landing page and does not make any additional calls to a ``/conformance`` endpoint
-        even if the API provides such an endpoint.
-
-        Parameters
-        ----------
-        spec : str or ConformanceClass
-            Either a :class:`~pystac_client.conformance.ConformanceClass` instance or the URI string for the spec.
-
-        Returns
-        -------
-        bool
-            Indicates if the API conforms to the given spec or URI.
-        """
-        if not self.conformance or not spec:
-            return False
-        for conformance_uri in self.conformance:
-            if isinstance(spec, str) and conformance_uri == spec:
-                return True
-            if conformance_uri in spec:
-                return True
-        return False
-
-
     def search(self,
                *,
                limit: Optional[int] = None,
@@ -307,23 +273,13 @@ class Client(pystac.Catalog, STACAPIObjectMixin):
             <https://github.com/radiantearth/stac-api-spec/tree/master/item-search>`__ or does not have a link with
             a ``"rel"`` type of ``"search"``.
         """
-        if self.conformance is not None and not self.conforms_to(
-                ConformanceClasses.STAC_API_ITEM_SEARCH):
-            spec_name = ConformanceClasses.STAC_API_ITEM_SEARCH.name
-            spec_uris = '\n\t'.join(ConformanceClasses.STAC_API_ITEM_SEARCH.all_uris)
-            msg = f'This service does not conform to the {spec_name} spec and therefore the search method is not ' \
-                  f'implemented. Services must publish one of the following conformance URIs in order to conform to ' \
-                  f'this spec (preferably the first one):\n\t{spec_uris}'
-            raise NotImplementedError(msg)
 
         search_link = self.get_single_link('search')
         if search_link is None:
-            raise NotImplementedError(
-                'No link with a "rel" type of "search" could be found in this services\'s '
-                'root catalog.')
+            raise NotImplementedError('No link with "rel" type of "search" could be found in this catalog')
 
         return ItemSearch(search_link.target,
-                          self._stac_io,
+                          conformance=self.conformance,
                           limit=limit,
                           bbox=bbox,
                           datetime=datetime,
@@ -333,4 +289,4 @@ class Client(pystac.Catalog, STACAPIObjectMixin):
                           query=query,
                           max_items=max_items,
                           method=method,
-                          conformance=self.conformance)
+                          stac_io=self._stac_io)

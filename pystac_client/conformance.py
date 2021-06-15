@@ -17,93 +17,101 @@ Examples
 Test that a URI conforms to any version of the STAC API - Core spec
 
 >>> from pystac_client.conformance import STAC_API_CORE
->>> 'http://stacspec.org/spec/api/1.0.0-beta.1/core' in STAC_API_CORE
+>>> 'http://stacspec.org/spec/api/1.0.0-beta.2/core' in STAC_API_CORE
 True
 
 Test that a URI is the official STAC API - Core conformance URI
 
->>> 'http://stacspec.org/spec/api/1.0.0-beta.1' == STAC_API_CORE
+>>> 'http://stacspec.org/spec/api/1.0.0-beta.2' == STAC_API_CORE
 False
->>> 'http://stacspec.org/spec/api/1.0.0-beta.1' in STAC_API_CORE
+>>> 'http://stacspec.org/spec/api/1.0.0-beta.2' in STAC_API_CORE
 True
 """
 from collections.abc import Container
 from typing import List, Optional, Set
 
+from pystac_client.exceptions import ConformanceError
 
-class ConformanceClass(Container):
-    """Class for working with the various specs that STAC APIs may conform with and testing conformance based on URIs.
 
-    Parameters
-    ----------
-    name : str
-        The name of the spec (e.g. "STAC API - Core").
-    uri : str
-        The official conformance URI for the spec. This should be the most up-to-date URI associated with this spec. To
-        include legacy or alternative URIs in the conformance checks, use the ``alternative_uris`` argument.
-    alternative_uris : set, optional
-        A set of additional URIs that should be considered as conforming to this spec.
-    """
-    def __init__(self, name: str, uri: str, alternative_uris: Optional[Set[str]] = None):
-        self._name = name
-        self._uri = uri
-        self._alternative_uris = set(alternative_uris or [])
+STAC_PREFIXES = [
+    'https://api.stacspec.org/v1.0.0-beta.2',
+    'https://api.stacspec.org/v1.0.0-beta.1'
+]
+
+CONFORMANCE_CLASSES = {
+    "core": {
+        "name": "STAC API - Core",
+        "uris": [f"{p}/core" for p in STAC_PREFIXES]
+    },
+    "item-search": {
+        "name": "STAC API - Item Search",
+        "uris": [f"{p}/item-search" for p in STAC_PREFIXES]
+    },
+    "item-search#context": {
+        "name": "STAC API - Item Search: Context Extension",
+        "uris": [f"{p}/item-search#context" for p in STAC_PREFIXES]
+    },
+    "item-search#fields": {
+        "name": "STAC API - Item Search: Fields Extension",
+        "uris": [f"{p}/item-search#fields" for p in STAC_PREFIXES]
+    },
+    "item-search#sort": {
+        "name": "STAC API - Item Search: Sort Extension",
+        "uris": [f"{p}/item-search#sort" for p in STAC_PREFIXES]
+    },
+    "item-search#query": {
+        "name": "STAC API - Item Search: Query Extension",
+        "uris": [f"{p}/item-search#query" for p in STAC_PREFIXES]
+    },
+    "item-search#filter": {
+        "name": "STAC API - Item Search: Filter Extension",
+        "uris": [f"{p}/item-search#filter" for p in STAC_PREFIXES]
+    },    
+}
+
+
+class ConformanceMixin:
+    """A mixin class that adds functionality for checking conformance against various STAC API specs."""
+
+    _conformance = []
 
     @property
-    def name(self) -> str:
-        """The human-readable name of the spec."""
-        return self._name
+    def conformance(self) -> List[str]:
+        """Overwrite in the sub-class to list the conformance URIs for this object."""
+        return self._conformance
 
-    @property
-    def all_uris(self) -> List[str]:
-        """List of all URIs associated with this spec. The first URI will always be the official one
-        (from the :attr:`ConformanceClass.uri` property). An API listing *any* of these URIs in its ``"conformsTo"``
-        property will be treated as conforming to the spec."""
-        return [self.uri] + list(self.alternative_uris)
+    @conformance.setter
+    def conformance(self, value):
+        self._conformance = value
 
-    @property
-    def uri(self) -> str:
-        """The official conformance URI for this spec."""
-        return str(self._uri)
+    def conforms_to(self, key: str) -> bool:
+        """Whether the API conforms to the given standard. This method only checks against the ``"conformsTo"``
+        property from the API landing page and does not make any additional calls to a ``/conformance`` endpoint
+        even if the API provides such an endpoint.
 
-    @property
-    def alternative_uris(self) -> Set[str]:
-        """A set of alternative URIs for this spec."""
-        return set(self._alternative_uris)
+        Parameters
+        ----------
+        spec : str or ConformanceClass
+            Either a :class:`~pystac_client.conformance.ConformanceClass` instance or the URI string for the spec.
 
-    def __contains__(self, item):
-        return item in self.all_uris
+        Returns
+        -------
+        bool
+            Indicates if the API conforms to the given spec or URI.
+        """
 
-    def __eq__(self, other):
-        uri = getattr(other, 'uri', other)
-        return uri == self.uri
+        # Conformance of None means ignore all conformance as opposed to an
+        #  empty array which would indicate the API conforms to nothing
+        if self.conformance is None:
+            return True
 
+        conformance_class = CONFORMANCE_CLASSES[key]
 
-STAC_PREFIX = 'https://api.stacspec.org/v1.0.0-beta.1'
-STAC_PREFIX_LEGACY = 'http://stacspec.org/spec/api/1.0.0-beta.1'
+        def check_conformance():
+            for uri in conformance_class["uris"]:
+                if uri in self.conformance:
+                    return True
+            return False
 
-STAC_API_CORE = ConformanceClass(name='STAC API - Core',
-                                 uri=f'{STAC_PREFIX}/core',
-                                 alternative_uris={f'{STAC_PREFIX_LEGACY}/core'})
-"""Used to test conformance with the `STAC API - Core spec
-<https://github.com/radiantearth/stac-api-spec/tree/master/core>`__."""
-
-STAC_API_ITEM_SEARCH = ConformanceClass(name='STAC API - Item Search',
-                                        uri=f'{STAC_PREFIX}/item-search',
-                                        alternative_uris={f'{STAC_PREFIX_LEGACY}/req/stac-search'})
-"""Used to test conformance with the `STAC API - Item Search spec
-<https://github.com/radiantearth/stac-api-spec/tree/master/item-search>`__."""
-
-STAC_API_ITEM_SEARCH_CONTEXT_EXT = ConformanceClass(
-    name='STAC API - Item Search: Context Extension',
-    uri=f'{STAC_API_ITEM_SEARCH.uri}#context',
-    alternative_uris={f'{STAC_PREFIX_LEGACY}/req/context'})
-"""Used to test conformance with the `Context Extension
-<https://github.com/radiantearth/stac-api-spec/tree/master/fragments/context>`__ to the STAC API - Item Search"""
-
-
-class ConformanceClasses:
-    """Enumerates the conformance classes used by this package."""
-    STAC_API_CORE = STAC_API_CORE
-    STAC_API_ITEM_SEARCH = STAC_API_ITEM_SEARCH
-    STAC_API_ITEM_SEARCH_CONTEXT_EXT = STAC_API_ITEM_SEARCH_CONTEXT_EXT
+        if not check_conformance():
+            raise NotImplementedError(f"{conformance_class['name']} not supported")

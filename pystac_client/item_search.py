@@ -7,16 +7,20 @@ import logging
 from collections.abc import Iterable, Mapping
 from copy import deepcopy
 from datetime import timezone, datetime as datetime_
-from typing import Callable, Dict, Iterator, List, Optional, Tuple, Union
+from typing import Callable, Dict, Iterator, List, Optional, TYPE_CHECKING, Tuple, Union
 from urllib.parse import quote
 from urllib.error import HTTPError
 
 from pystac import Collection, Item, ItemCollection, Link
-from requests import Request
+from pystac.stac_io import StacIO
 
 from pystac_client.exceptions import APIError
-from pystac_client.stac_api_object import STACAPIObjectMixin
 from pystac_client.stac_io import StacApiIO
+from pystac_client.conformance import ConformanceMixin
+
+if TYPE_CHECKING:
+    from pystac_client.client import Client as Client_Type
+
 
 DATETIME_REGEX = re.compile(
     r"(?P<year>\d{4})(\-(?P<month>\d{2})(\-(?P<day>\d{2})"
@@ -78,7 +82,7 @@ def dict_merge(dct, merge_dct, add_keys=True):
     return dct
 
 
-class ItemSearch(STACAPIObjectMixin):
+class ItemSearch(ConformanceMixin):
     """Represents a deferred query to an Item Search endpoint as described in the `STAC API - Item Search spec
     <https://github.com/radiantearth/stac-api-spec/tree/master/item-search>`__. No request is sent to the API until
     either the :meth:`ItemSearch.item_collections` or :meth:`ItemSearch.items` method is called and iterated over.
@@ -151,7 +155,7 @@ class ItemSearch(STACAPIObjectMixin):
     def __init__(
         self,
         url: str,
-        stac_io: Optional[StacApiIO] = None,
+        conformance: Optional[str] = None,
         *,
         limit: Optional[int] = None,
         bbox: Optional[BBoxLike] = None,
@@ -162,16 +166,19 @@ class ItemSearch(STACAPIObjectMixin):
         query: Optional[QueryLike] = None,
         max_items: Optional[int] = None,
         method: Optional[str] = 'POST',
-        conformance: List[str] = [],
+        stac_io: Optional[StacIO] = None
     ):
         self.url = url
+        self.conformance = conformance
+        self.conforms_to("item-search")
+
         if stac_io:
             self._stac_io = stac_io
         else:
             self._stac_io = StacApiIO()
+        
         self._max_items = max_items
         self.method = method
-        self.conformance = conformance
 
         params = {
             'limit': int(limit) if limit is not None else None,
