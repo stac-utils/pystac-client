@@ -1,13 +1,12 @@
-from pystac_client import ConformanceClasses
+from pystac_client.conformance import ConformanceMixin
 
 
-class TestConformanceClasses:
+class TestConformanceMixin:
     def test_stac_core(self):
-        assert ConformanceClasses.STAC_API_CORE.name == 'STAC API - Core'
-
-        # Official conformance URI
-        assert 'https://api.stacspec.org/v1.0.0-beta.1/core' == ConformanceClasses.STAC_API_CORE
+        conformance = ConformanceMixin()
+        conformance.conformance = ['https://api.stacspec.org/v1.0.0-beta.2/core']
+        assert conformance.conforms_to('core')
 
         # Legacy URIs
-        assert 'http://stacspec.org/spec/api/1.0.0-beta.1/core' != ConformanceClasses.STAC_API_CORE \
-            and 'http://stacspec.org/spec/api/1.0.0-beta.1/core' in ConformanceClasses.STAC_API_CORE
+        conformance.conformance = ['https://api.stacspec.org/v1.0.0-beta.1/core']
+        assert conformance.conforms_to('core')
