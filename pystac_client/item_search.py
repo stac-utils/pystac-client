@@ -177,6 +177,9 @@ class ItemSearch(ConformanceMixin):
             self._stac_io = StacApiIO()
         
         self._max_items = max_items
+        if self._max_items is not None and limit is not None:
+            limit = min(limit, self._max_items)
+
         self.method = method
 
         params = {
@@ -424,9 +427,10 @@ class ItemSearch(ConformanceMixin):
         ------
         item_collection : ItemCollection
         """
-
         items = []
         for page in self.get_pages():
             for feature in page['features']:
                 items.append(Item.from_dict(feature))
+                if self._max_items and len(items) >= self._max_items:
+                    return ItemCollection(items)
         return ItemCollection(items)
