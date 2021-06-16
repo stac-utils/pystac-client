@@ -65,4 +65,126 @@ interactions:
     status:
       code: 200
       message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.25.1
+    method: GET
+    uri: https://planetarycomputer.microsoft.com/api/stac/v1
+  response:
+    body:
+      string: '{"id":"microsoft-pc","description":"Searchable spatiotemporal metadata
+        describing Earth science datasets hosted by the Microsoft Planetary Computer","title":"Microsoft
+        Planetary Computer STAC API","stac_version":"1.0.0-beta.2","links":[{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/","rel":"self","type":"application/json"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/docs","rel":"docs","type":"text/html","title":"OpenAPI
+        docs"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance","rel":"conformance","type":"application/json","title":"STAC/WFS3
+        conformance classes implemented by this server"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","rel":"search","type":"application/geo+json","title":"STAC
+        search"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/aster-l1t","rel":"child","type":"application/json","title":"ASTER
+        L1T"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2","rel":"child","type":"application/json","title":"Landsat
+        8 Collection 2 Level-2"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a","rel":"child","type":"application/json","title":"Sentinel-2
+        Level-2A"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip","rel":"child","type":"application/json","title":"NAIP:
+        National Agriculture Imagery Program"}],"conformsTo":["https://api.stacspec.org/v1.0.0-beta.1/core","https://api.stacspec.org/v1.0.0-beta.1/item-search","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"]}'
+    headers:
+      Content-Length:
+      - '1742'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 16 Jun 2021 02:53:49 GMT
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      X-Azure-Ref:
+      - 0vWfJYAAAAABr6Nazjn/JRoBxS9a1sVJyQk9TMzFFREdFMDQyMAA5MjdhYmZhNi0xOWY2LTRhZjEtYTA5ZC1jOTU5ZDlhMWU2NDQ=
+      X-Cache:
+      - CONFIG_NOCACHE
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.25.1
+    method: GET
+    uri: https://planetarycomputer.microsoft.com/api/stac/v1/collections/aster-l1t
+  response:
+    body:
+      string: '{"id":"aster-l1t","description":"The [ASTER](https://terra.nasa.gov/about/terra-instruments/aster)
+        instrument, launched on-board NASA''s [Terra](https://terra.nasa.gov/) satellite
+        in 1999, provides multispectral images of the Earth at 15m-90m resolution.  ASTER
+        images provide information about land surface temperature, color, elevation,
+        and mineral composition.\n\nThis dataset represents ASTER [L1T](https://lpdaac.usgs.gov/products/ast_l1tv003/)
+        data from 2000-2006.  L1T images have been terrain-corrected and rotated to
+        a north-up UTM projection.  Images are in [cloud-optimized GeoTIFF](https://www.cogeo.org/)
+        format.\n","stac_version":"1.0.0-beta.2","links":[{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/aster-l1t","rel":"self","type":"application/json"},{"href":"https://planetarycomputer.microsoft.com/","rel":"parent","type":"application/json"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/aster-l1t/items","rel":"item","type":"application/geo+json"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/","rel":"root","type":"application/json"},{"href":"https://www.usgs.gov/core-science-systems/hdds/data-policy","rel":"license","title":"public
+        domain"}],"stac_extensions":["item-assets","collection-assets"],"title":"ASTER
+        L1T","license":"proprietary","extent":{"spatial":{"bbox":[[-180.0,-90.0,180.0,90.0]]},"temporal":{"interval":[["2000-03-04T12:00:00.000000Z","2006-12-31T12:00:00.000000Z"]]}},"keywords":["aster","usgs","nasa","satellite","global"],"providers":[{"name":"NASA","roles":["producer","licensor"],"url":"https://terra.nasa.gov/about/terra-instruments/aster"},{"name":"USGS","roles":["processor","producer","licensor"],"url":"https://lpdaac.usgs.gov/data/get-started-data/collection-overview/missions/aster-overview/"},{"name":"Microsoft","roles":["host","processor"],"url":"https://planetarycomputer.microsoft.com"}],"summaries":{"gsd":[15,30,90],"eo:bands":[{"gsd":15,"name":"VNIR_Band1","common_name":"yellow/green","description":"visible
+        yellow/green","center_wavelength":0.56,"full_width_half_max":0.08},{"gsd":15,"name":"VNIR_Band2","common_name":"red","description":"visible
+        red","center_wavelength":0.66,"full_width_half_max":0.06},{"gsd":15,"name":"VNIR_Band3N","common_name":"near
+        infrared","description":"near infrared","center_wavelength":0.82,"full_width_half_max":0.08},{"gsd":30,"name":"SWIR_Band4","common_name":"swir","description":"short-wave
+        infrared","center_wavelength":1.65,"full_width_half_max":0.1},{"gsd":30,"name":"SWIR_Band5","common_name":"swir","description":"short-wave
+        infrared","center_wavelength":2.165,"full_width_half_max":0.04},{"gsd":30,"name":"SWIR_Band6","common_name":"swir","description":"short-wave
+        infrared","center_wavelength":2.205,"full_width_half_max":0.04},{"gsd":30,"name":"SWIR_Band7","common_name":"swir","description":"short-wave
+        infrared","center_wavelength":2.26,"full_width_half_max":0.05},{"gsd":30,"name":"SWIR_Band8","common_name":"swir","description":"short-wave
+        infrared","center_wavelength":2.339,"full_width_half_max":0.07},{"gsd":30,"name":"SWIR_Band9","common_name":"swir","description":"short-wave
+        infrared","center_wavelength":2.395,"full_width_half_max":0.07},{"gsd":90,"name":"TIR_Band10","common_name":"lwir","description":"thermal
+        infrared","center_wavelength":8.3,"full_width_half_max":0.35},{"gsd":90,"name":"TIR_Band11","common_name":"lwir","description":"thermal
+        infrared","center_wavelength":8.65,"full_width_half_max":0.35},{"gsd":90,"name":"TIR_Band12","common_name":"lwir","description":"thermal
+        infrared","center_wavelength":9.11,"full_width_half_max":0.35},{"gsd":90,"name":"TIR_Band13","common_name":"lwir","description":"thermal
+        infrared","center_wavelength":10.6,"full_width_half_max":0.7},{"gsd":90,"name":"TIR_Band14","common_name":"lwir","description":"thermal
+        infrared","center_wavelength":11.3,"full_width_half_max":0.7}],"platform":["terra"],"instruments":["aster"]},"msft:container":"aster","msft:storage_account":"astersa","msft:short_description":"The
+        ASTER instrument, launched on-board NASA''s Terra satellite in 1999, provides
+        multispectral images of the Earth at 15m-90m resolution.  This dataset contains
+        ASTER data from 2000-2006.","assets":{"thumbnail":{"title":"ASTER L1T","href":"https://ai4edatasetspublicassets.blob.core.windows.net/assets/pc_thumbnails/aster.png","media_type":"image/png"}},"item_assets":{"TIR":{"title":"TIR
+        Swath data","roles":["data"],"eo:bands":[{"name":"TIR_Band10","common_name":"lwir","center_wavelength":8.3,"full_width_half_max":0.35,"description":"thermal
+        infrared"},{"name":"TIR_Band11","common_name":"lwir","center_wavelength":8.65,"full_width_half_max":0.35,"description":"thermal
+        infrared"},{"name":"TIR_Band12","common_name":"lwir","center_wavelength":9.11,"full_width_half_max":0.35,"description":"thermal
+        infrared"},{"name":"TIR_Band13","common_name":"lwir","center_wavelength":10.6,"full_width_half_max":0.7,"description":"thermal
+        infrared"},{"name":"TIR_Band14","common_name":"lwir","center_wavelength":11.3,"full_width_half_max":0.7,"description":"thermal
+        infrared"}]},"xml":{"title":"XML metadata","type":"application/xml","roles":["metadata"]},"SWIR":{"title":"SWIR
+        Swath data","type":"image/tiff; application=geotiff; profile=cloud-optimized","roles":["data"],"eo:bands":[{"name":"SWIR_Band4","common_name":"swir","center_wavelength":1.65,"full_width_half_max":0.1,"description":"short-wave
+        infrared"},{"name":"SWIR_Band5","common_name":"swir","center_wavelength":2.165,"full_width_half_max":0.04,"description":"short-wave
+        infrared"},{"name":"SWIR_Band6","common_name":"swir","center_wavelength":2.205,"full_width_half_max":0.04,"description":"short-wave
+        infrared"},{"name":"SWIR_Band7","common_name":"swir","center_wavelength":2.26,"full_width_half_max":0.05,"description":"short-wave
+        infrared"},{"name":"SWIR_Band8","common_name":"swir","center_wavelength":2.339,"full_width_half_max":0.07,"description":"short-wave
+        infrared"},{"name":"SWIR_Band9","common_name":"swir","center_wavelength":2.395,"full_width_half_max":0.07,"description":"short-wave
+        infrared"}]},"VNIR":{"title":"VNIR Swath data","type":"image/tiff; application=geotiff;
+        profile=cloud-optimized","roles":["data"],"eo:bands":[{"name":"VNIR_Band1","common_name":"yellow/green","center_wavelength":0.56,"full_width_half_max":0.08,"description":"visible
+        yellow/green"},{"name":"VNIR_Band2","common_name":"red","center_wavelength":0.66,"full_width_half_max":0.06,"description":"visible
+        red"},{"name":"VNIR_Band3N","common_name":"near infrared","center_wavelength":0.82,"full_width_half_max":0.08,"description":"near
+        infrared"}]},"qa-txt":{"title":"QA browse file","description":"Geometric quality
+        assessment report.","type":"text/plain","roles":["metadata"]},"qa-browse":{"title":"QA
+        browse file","description":"Single-band black and white reduced resolution
+        browse overlaid with red, green, and blue (RGB) markers for GCPs used during
+        the geometric verification quality check.","type":"image/jpeg","roles":["thumbnail"]},"tir-browse":{"title":"Standalone
+        reduced resolution TIR","type":"image/jpeg","roles":["thumbnail"]},"vnir-browse":{"title":"VNIR
+        browse file","description":"Standalone reduced resolution VNIR","type":"image/jpeg","roles":["thumbnail"]}}}'
+    headers:
+      Content-Length:
+      - '7259'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 16 Jun 2021 02:53:49 GMT
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      X-Azure-Ref:
+      - 0vWfJYAAAAABhufw5zF3qQZ87G3gowZ1mQk9TMzFFREdFMDQyMAA5MjdhYmZhNi0xOWY2LTRhZjEtYTA5ZC1jOTU5ZDlhMWU2NDQ=
+      X-Cache:
+      - CONFIG_NOCACHE
+    status:
+      code: 200
+      message: OK
 version: 1
