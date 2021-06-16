@@ -1,25 +1,18 @@
 from dateutil.tz import tzutc
 from dateutil.relativedelta import relativedelta
-import itertools as it
 import json
 import re
 import logging
 from collections.abc import Iterable, Mapping
 from copy import deepcopy
 from datetime import timezone, datetime as datetime_
-from typing import Callable, Dict, Iterator, List, Optional, TYPE_CHECKING, Tuple, Union
-from urllib.parse import quote
-from urllib.error import HTTPError
+from typing import Dict, Iterator, List, Optional, Tuple, Union
 
 from pystac import Collection, Item, ItemCollection, Link
 from pystac.stac_io import StacIO
 
-from pystac_client.exceptions import APIError
 from pystac_client.stac_io import StacApiIO
 from pystac_client.conformance import ConformanceMixin
-
-if TYPE_CHECKING:
-    from pystac_client.client import Client as Client_Type
 
 
 DATETIME_REGEX = re.compile(
@@ -175,7 +168,7 @@ class ItemSearch(ConformanceMixin):
             self._stac_io = stac_io
         else:
             self._stac_io = StacApiIO()
-        
+
         self._max_items = max_items
         if self._max_items is not None and limit is not None:
             limit = min(limit, self._max_items)

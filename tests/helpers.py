@@ -17,4 +17,3 @@ def read_data_file(file_name: str, mode='r', parse_json=False):
             return json.load(src)
         else:
             return src.read()
-

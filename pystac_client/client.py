@@ -1,6 +1,6 @@
 from copy import deepcopy
 import os
-from typing import Callable, Optional, cast, List, Union
+from typing import Optional, cast
 
 import pystac
 from pystac.stac_object import STACObject

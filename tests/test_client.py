@@ -49,7 +49,6 @@ class TestAPI:
 
         assert api.conforms_to('core')
 
-    #@pytest.mark.skip(reason="Conformance testing has been loosened to accommodate legacy services.")
     @pytest.mark.vcr
     def test_no_conformance(self):
         """Should raise a NotImplementedError if no conformance info can be found. Luckily, the test API doesn't publish

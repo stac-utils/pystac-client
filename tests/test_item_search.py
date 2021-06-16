@@ -256,7 +256,10 @@ class TestItemSearch:
 
     @pytest.mark.vcr
     def test_ids_results(self):
-        ids = ['S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE', 'fl_m_2608004_nw_17_060_20191215_20200113']
+        ids = [
+            'S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE',
+            'fl_m_2608004_nw_17_060_20191215_20200113'
+        ]
         search = ItemSearch(
             url=SEARCH_URL,
             ids=ids,

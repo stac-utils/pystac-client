@@ -27,10 +27,7 @@ False
 >>> 'http://stacspec.org/spec/api/1.0.0-beta.2' in STAC_API_CORE
 True
 """
-from collections.abc import Container
-from typing import List, Optional, Set
-
-from pystac_client.exceptions import ConformanceError
+from typing import List
 
 
 STAC_PREFIXES = [
@@ -66,7 +63,7 @@ CONFORMANCE_CLASSES = {
     "item-search#filter": {
         "name": "STAC API - Item Search: Filter Extension",
         "uris": [f"{p}/item-search#filter" for p in STAC_PREFIXES]
-    },    
+    },
 }
 
 

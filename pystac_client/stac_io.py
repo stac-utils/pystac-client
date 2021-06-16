@@ -1,4 +1,3 @@
-from copy import deepcopy
 import json
 import logging
 from typing import (
@@ -8,9 +7,8 @@ from typing import (
     Union,
 )
 from urllib.parse import urlparse
-from requests import Session
+from requests import Request, Session
 
-import requests
 from pystac.link import Link
 from pystac.stac_io import DefaultStacIO
 
@@ -65,16 +63,16 @@ class StacApiIO(DefaultStacIO):
                 parameters = {}
             return self.request(href, *args, method=method, headers=headers, parameters=parameters)
 
-    def request(self, href: str, method: Optional[str] = 'GET', 
+    def request(self, href: str, method: Optional[str] = 'GET',
                 headers: Optional[dict] = {},
                 parameters: Optional[dict] = {}) -> str:
         if method == 'POST':
-            request = requests.Request(method=method, url=href, headers=headers, json=parameters)
+            request = Request(method=method, url=href, headers=headers, json=parameters)
             logger.debug(
                 f"POST {request.url}, Payload: {json.dumps(request.json)}, Headers: {self.session.headers}"
             )
         else:
-            request = requests.Request(method=method, url=href,  headers=headers, params=parameters)
+            request = Request(method=method, url=href, headers=headers, params=parameters)
             logger.debug(
                 f"GET {request.url}, Payload: {json.dumps(request.params)}, Headers: {self.session.headers}"
             )
