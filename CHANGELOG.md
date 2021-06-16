@@ -36,6 +36,7 @@ are in a single HTTP session.
 - `stac_api_object.StacApiObjectMixin`, replaced with `conformance.ConformanceMixin`
 - `conformance.ConformanceClass`, replaced with `conformance.ConformanceMixin`
 - `conformance.ConformanceClasses`, replaced with `conformance.ConformanceMixin`
+- PySTAC Collection objects can no longer be passed in as `collections` arguments to the `ItemSearch` class (just pass ids)
 
 ### Deprecated
 - `Search.item_collections()`

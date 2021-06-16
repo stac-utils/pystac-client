@@ -7,7 +7,6 @@ STAC_URLS = {
     "PLANETARY-COMPUTER": "https://planetarycomputer.microsoft.com/api/stac/v1",
     "EARTH-SEARCH": "https://earth-search.aws.element84.com/v0",
     "MLHUB": "https://api.radiant.earth/mlhub/v1",
-    "ASTRAEA": "https://eod-catalog-svc-prod.astraea.earth"
 }
 
 

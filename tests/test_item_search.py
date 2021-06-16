@@ -184,22 +184,6 @@ class TestItemSearchParams:
         search = ItemSearch(url=SEARCH_URL, collections=collectioner())
         assert search._parameters['collections'] == ('naip', 'landsat8_l1tp')
 
-    @pytest.mark.vcr
-    def test_collection_object(self, sample_client):
-        collection = sample_client.get_child('landsat8_l1tp')
-
-        # Single pystac.Collection
-        search = ItemSearch(url=SEARCH_URL, collections=collection)
-        assert search._parameters['collections'] == ('landsat8_l1tp', )
-
-    @pytest.mark.vcr
-    def test_mixed_collection_object_and_string(self, sample_client):
-        collection = sample_client.get_child('landsat8_l1tp')
-
-        # Mixed list
-        search = ItemSearch(url=SEARCH_URL, collections=[collection, 'naip'])
-        assert search._parameters['collections'] == ('landsat8_l1tp', 'naip')
-
     def test_single_id_string(self):
         # Single ID
         search = ItemSearch(url=SEARCH_URL, ids='m_3510836_se_12_060_20180508_20190331')
