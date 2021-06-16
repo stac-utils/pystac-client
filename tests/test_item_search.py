@@ -329,4 +329,4 @@ class TestItemSearch:
             max_items=20,
         )
         item_collection = search.get_all_items()
-        assert len(item_collection.items) == 30
+        assert len(item_collection.items) == 20

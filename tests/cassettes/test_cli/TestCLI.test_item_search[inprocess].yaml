@@ -3064,4 +3064,941 @@ interactions:
     status:
       code: 200
       message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.25.1
+    method: GET
+    uri: https://planetarycomputer.microsoft.com/api/stac/v1
+  response:
+    body:
+      string: '{"id":"microsoft-pc","description":"Searchable spatiotemporal metadata
+        describing Earth science datasets hosted by the Microsoft Planetary Computer","title":"Microsoft
+        Planetary Computer STAC API","stac_version":"1.0.0-beta.2","links":[{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/","rel":"self","type":"application/json"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/docs","rel":"docs","type":"text/html","title":"OpenAPI
+        docs"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance","rel":"conformance","type":"application/json","title":"STAC/WFS3
+        conformance classes implemented by this server"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","rel":"search","type":"application/geo+json","title":"STAC
+        search"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/aster-l1t","rel":"child","type":"application/json","title":"ASTER
+        L1T"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2","rel":"child","type":"application/json","title":"Landsat
+        8 Collection 2 Level-2"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a","rel":"child","type":"application/json","title":"Sentinel-2
+        Level-2A"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip","rel":"child","type":"application/json","title":"NAIP:
+        National Agriculture Imagery Program"}],"conformsTo":["https://api.stacspec.org/v1.0.0-beta.1/core","https://api.stacspec.org/v1.0.0-beta.1/item-search","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"]}'
+    headers:
+      Content-Length:
+      - '1742'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 16 Jun 2021 03:34:59 GMT
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      X-Azure-Ref:
+      - 0ZHHJYAAAAAAjCN1fi0PqSJsx9zFWnKijQk9TMzFFREdFMDQxMgA5MjdhYmZhNi0xOWY2LTRhZjEtYTA5ZC1jOTU5ZDlhMWU2NDQ=
+      X-Cache:
+      - CONFIG_NOCACHE
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"limit": 20, "collections": ["naip"]}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '38'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.25.1
+    method: POST
+    uri: https://planetarycomputer.microsoft.com/api/stac/v1/search
+  response:
+    body:
+      string: '{"type":"FeatureCollection","context":{"returned":20,"limit":20,"matched":995609},"features":[{"collection":"naip","id":"fl_m_2608004_nw_17_060_20191215_20200113","type":"Feature","stac_version":"1.0.0-beta.2","properties":{"naip:state":"fl","naip:year":"2019","gsd":0.6,"proj:epsg":26917,"proj:shape":[12240,11040],"proj:bbox":[537006.0,2979366.0,543630.0,2986710.0],"proj:transform":[0.6,0.0,537006.0,0.0,-0.6,2986710.0,0.0,0.0,1.0],"datetime":"2019-12-15T00:00:00Z"},"geometry":{"coordinates":[[[-80.560502,26.93549],[-80.560244,27.001794],[-80.627008,27.001987],[-80.627226,26.935682],[-80.560502,26.93549]]],"type":"Polygon"},"bbox":[-80.627226,26.93549,-80.560244,27.001987],"assets":{"image":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/26080/m_2608004_nw_17_060_20191215.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"RGBIR COG tile","eo:bands":[{"name":"Red","common_name":"red"},{"name":"Green","common_name":"green"},{"name":"Blue","common_name":"blue"},{"name":"NIR","common_name":"nir","description":"near-infrared"}],"roles":["data"]},"metadata":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_fgdc_2019/26080/m_2608004_nw_17_060_20191215.txt","type":"text/plain","title":"FGDC
+        Metdata","roles":["metadata"]},"thumbnail":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/26080/m_2608004_nw_17_060_20191215.200.jpg","type":"image/jpeg","title":"Thumbnail","roles":["thumbnail"]}},"links":[{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/fl_m_2608004_nw_17_060_20191215_20200113"}],"stac_extensions":["eo","projection"]},{"collection":"naip","id":"fl_m_2708003_sw_17_060_20191215_20200113","type":"Feature","stac_version":"1.0.0-beta.2","properties":{"naip:state":"fl","naip:year":"2019","gsd":0.6,"proj:epsg":26917,"proj:shape":[12240,10950],"proj:bbox":[524394.0,3083178.0,530964.0,3090522.0],"proj:transform":[0.6,0.0,524394.0,0.0,-0.6,3090522.0,0.0,0.0,1.0],"datetime":"2019-12-15T00:00:00Z"},"geometry":{"coordinates":[[[-80.685446,27.873038],[-80.685254,27.939334],[-80.752037,27.939471],[-80.752188,27.873174],[-80.685446,27.873038]]],"type":"Polygon"},"bbox":[-80.752188,27.873038,-80.685254,27.939471],"assets":{"image":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/27080/m_2708003_sw_17_060_20191215.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"RGBIR COG tile","eo:bands":[{"name":"Red","common_name":"red"},{"name":"Green","common_name":"green"},{"name":"Blue","common_name":"blue"},{"name":"NIR","common_name":"nir","description":"near-infrared"}],"roles":["data"]},"metadata":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_fgdc_2019/27080/m_2708003_sw_17_060_20191215.txt","type":"text/plain","title":"FGDC
+        Metdata","roles":["metadata"]},"thumbnail":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/27080/m_2708003_sw_17_060_20191215.200.jpg","type":"image/jpeg","title":"Thumbnail","roles":["thumbnail"]}},"links":[{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/fl_m_2708003_sw_17_060_20191215_20200113"}],"stac_extensions":["eo","projection"]},{"collection":"naip","id":"fl_m_2708011_ne_17_060_20191215_20200113","type":"Feature","stac_version":"1.0.0-beta.2","properties":{"naip:state":"fl","naip:year":"2019","gsd":0.6,"proj:epsg":26917,"proj:shape":[12240,10960],"proj:bbox":[530562.0,3076272.0,537138.0,3083616.0],"proj:transform":[0.6,0.0,530562.0,0.0,-0.6,3083616.0,0.0,0.0,1.0],"datetime":"2019-12-15T00:00:00Z"},"geometry":{"coordinates":[[[-80.622943,27.810538],[-80.622714,27.876835],[-80.689519,27.877001],[-80.689707,27.810704],[-80.622943,27.810538]]],"type":"Polygon"},"bbox":[-80.689707,27.810538,-80.622714,27.877001],"assets":{"image":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/27080/m_2708011_ne_17_060_20191215.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"RGBIR COG tile","eo:bands":[{"name":"Red","common_name":"red"},{"name":"Green","common_name":"green"},{"name":"Blue","common_name":"blue"},{"name":"NIR","common_name":"nir","description":"near-infrared"}],"roles":["data"]},"metadata":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_fgdc_2019/27080/m_2708011_ne_17_060_20191215.txt","type":"text/plain","title":"FGDC
+        Metdata","roles":["metadata"]},"thumbnail":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/27080/m_2708011_ne_17_060_20191215.200.jpg","type":"image/jpeg","title":"Thumbnail","roles":["thumbnail"]}},"links":[{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/fl_m_2708011_ne_17_060_20191215_20200113"}],"stac_extensions":["eo","projection"]},{"collection":"naip","id":"fl_m_2708003_se_17_060_20191215_20200113","type":"Feature","stac_version":"1.0.0-beta.2","properties":{"naip:state":"fl","naip:year":"2019","gsd":0.6,"proj:epsg":26917,"proj:shape":[12230,10950],"proj:bbox":[530544.0,3083196.0,537114.0,3090534.0],"proj:transform":[0.6,0.0,530544.0,0.0,-0.6,3090534.0,0.0,0.0,1.0],"datetime":"2019-12-15T00:00:00Z"},"geometry":{"coordinates":[[[-80.62297,27.873044],[-80.622741,27.939286],[-80.689523,27.939452],[-80.689712,27.87321],[-80.62297,27.873044]]],"type":"Polygon"},"bbox":[-80.689712,27.873044,-80.622741,27.939452],"assets":{"image":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/27080/m_2708003_se_17_060_20191215.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"RGBIR COG tile","eo:bands":[{"name":"Red","common_name":"red"},{"name":"Green","common_name":"green"},{"name":"Blue","common_name":"blue"},{"name":"NIR","common_name":"nir","description":"near-infrared"}],"roles":["data"]},"metadata":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_fgdc_2019/27080/m_2708003_se_17_060_20191215.txt","type":"text/plain","title":"FGDC
+        Metdata","roles":["metadata"]},"thumbnail":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/27080/m_2708003_se_17_060_20191215.200.jpg","type":"image/jpeg","title":"Thumbnail","roles":["thumbnail"]}},"links":[{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/fl_m_2708003_se_17_060_20191215_20200113"}],"stac_extensions":["eo","projection"]},{"collection":"naip","id":"fl_m_2608005_ne_17_060_20191215_20200113","type":"Feature","stac_version":"1.0.0-beta.2","properties":{"naip:state":"fl","naip:year":"2019","gsd":0.6,"proj:epsg":26917,"proj:shape":[12250,11070],"proj:bbox":[555606.0,2979438.0,562248.0,2986788.0],"proj:transform":[0.6,0.0,555606.0,0.0,-0.6,2986788.0,0.0,0.0,1.0],"datetime":"2019-12-15T00:00:00Z"},"geometry":{"coordinates":[[[-80.372961,26.935431],[-80.372594,27.001788],[-80.439536,27.00207],[-80.439865,26.935713],[-80.372961,26.935431]]],"type":"Polygon"},"bbox":[-80.439865,26.935431,-80.372594,27.00207],"assets":{"image":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/26080/m_2608005_ne_17_060_20191215.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"RGBIR COG tile","eo:bands":[{"name":"Red","common_name":"red"},{"name":"Green","common_name":"green"},{"name":"Blue","common_name":"blue"},{"name":"NIR","common_name":"nir","description":"near-infrared"}],"roles":["data"]},"metadata":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_fgdc_2019/26080/m_2608005_ne_17_060_20191215.txt","type":"text/plain","title":"FGDC
+        Metdata","roles":["metadata"]},"thumbnail":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/26080/m_2608005_ne_17_060_20191215.200.jpg","type":"image/jpeg","title":"Thumbnail","roles":["thumbnail"]}},"links":[{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/fl_m_2608005_ne_17_060_20191215_20200113"}],"stac_extensions":["eo","projection"]},{"collection":"naip","id":"fl_m_2708005_sw_17_060_20191215_20200113","type":"Feature","stac_version":"1.0.0-beta.2","properties":{"naip:state":"fl","naip:year":"2019","gsd":0.6,"proj:epsg":26917,"proj:shape":[12250,10970],"proj:bbox":[548988.0,3083256.0,555570.0,3090606.0],"proj:transform":[0.6,0.0,548988.0,0.0,-0.6,3090606.0,0.0,0.0,1.0],"datetime":"2019-12-15T00:00:00Z"},"geometry":{"coordinates":[[[-80.435485,27.872945],[-80.435141,27.939294],[-80.502043,27.939552],[-80.502347,27.873203],[-80.435485,27.872945]]],"type":"Polygon"},"bbox":[-80.502347,27.872945,-80.435141,27.939552],"assets":{"image":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/27080/m_2708005_sw_17_060_20191215.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"RGBIR COG tile","eo:bands":[{"name":"Red","common_name":"red"},{"name":"Green","common_name":"green"},{"name":"Blue","common_name":"blue"},{"name":"NIR","common_name":"nir","description":"near-infrared"}],"roles":["data"]},"metadata":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_fgdc_2019/27080/m_2708005_sw_17_060_20191215.txt","type":"text/plain","title":"FGDC
+        Metdata","roles":["metadata"]},"thumbnail":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/27080/m_2708005_sw_17_060_20191215.200.jpg","type":"image/jpeg","title":"Thumbnail","roles":["thumbnail"]}},"links":[{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/fl_m_2708005_sw_17_060_20191215_20200113"}],"stac_extensions":["eo","projection"]},{"collection":"naip","id":"fl_m_2708004_nw_17_060_20191215_20200113","type":"Feature","stac_version":"1.0.0-beta.2","properties":{"naip:state":"fl","naip:year":"2019","gsd":0.6,"proj:epsg":26917,"proj:shape":[12250,10950],"proj:bbox":[536670.0,3090132.0,543240.0,3097482.0],"proj:transform":[0.6,0.0,536670.0,0.0,-0.6,3097482.0,0.0,0.0,1.0],"datetime":"2019-12-15T00:00:00Z"},"geometry":{"coordinates":[[[-80.560487,27.935472],[-80.560218,28.001821],[-80.627038,28.002018],[-80.627266,27.935669],[-80.560487,27.935472]]],"type":"Polygon"},"bbox":[-80.627266,27.935472,-80.560218,28.002018],"assets":{"image":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/27080/m_2708004_nw_17_060_20191215.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"RGBIR COG tile","eo:bands":[{"name":"Red","common_name":"red"},{"name":"Green","common_name":"green"},{"name":"Blue","common_name":"blue"},{"name":"NIR","common_name":"nir","description":"near-infrared"}],"roles":["data"]},"metadata":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_fgdc_2019/27080/m_2708004_nw_17_060_20191215.txt","type":"text/plain","title":"FGDC
+        Metdata","roles":["metadata"]},"thumbnail":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/27080/m_2708004_nw_17_060_20191215.200.jpg","type":"image/jpeg","title":"Thumbnail","roles":["thumbnail"]}},"links":[{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/fl_m_2708004_nw_17_060_20191215_20200113"}],"stac_extensions":["eo","projection"]},{"collection":"naip","id":"fl_m_2708004_se_17_060_20191215_20200113","type":"Feature","stac_version":"1.0.0-beta.2","properties":{"naip:state":"fl","naip:year":"2019","gsd":0.6,"proj:epsg":26917,"proj:shape":[12250,10970],"proj:bbox":[542838.0,3083232.0,549420.0,3090582.0],"proj:transform":[0.6,0.0,542838.0,0.0,-0.6,3090582.0,0.0,0.0,1.0],"datetime":"2019-12-15T00:00:00Z"},"geometry":{"coordinates":[[[-80.49796,27.87297],[-80.497653,27.939319],[-80.564557,27.939547],[-80.564822,27.873198],[-80.49796,27.87297]]],"type":"Polygon"},"bbox":[-80.564822,27.87297,-80.497653,27.939547],"assets":{"image":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/27080/m_2708004_se_17_060_20191215.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"RGBIR COG tile","eo:bands":[{"name":"Red","common_name":"red"},{"name":"Green","common_name":"green"},{"name":"Blue","common_name":"blue"},{"name":"NIR","common_name":"nir","description":"near-infrared"}],"roles":["data"]},"metadata":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_fgdc_2019/27080/m_2708004_se_17_060_20191215.txt","type":"text/plain","title":"FGDC
+        Metdata","roles":["metadata"]},"thumbnail":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/27080/m_2708004_se_17_060_20191215.200.jpg","type":"image/jpeg","title":"Thumbnail","roles":["thumbnail"]}},"links":[{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/fl_m_2708004_se_17_060_20191215_20200113"}],"stac_extensions":["eo","projection"]},{"collection":"naip","id":"fl_m_2708011_nw_17_060_20191215_20200113","type":"Feature","stac_version":"1.0.0-beta.2","properties":{"naip:state":"fl","naip:year":"2019","gsd":0.6,"proj:epsg":26917,"proj:shape":[12240,10960],"proj:bbox":[524406.0,3076254.0,530982.0,3083598.0],"proj:transform":[0.6,0.0,524406.0,0.0,-0.6,3083598.0,0.0,0.0,1.0],"datetime":"2019-12-15T00:00:00Z"},"geometry":{"coordinates":[[[-80.685444,27.810532],[-80.685252,27.876829],[-80.752058,27.876965],[-80.752208,27.810668],[-80.685444,27.810532]]],"type":"Polygon"},"bbox":[-80.752208,27.810532,-80.685252,27.876965],"assets":{"image":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/27080/m_2708011_nw_17_060_20191215.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"RGBIR COG tile","eo:bands":[{"name":"Red","common_name":"red"},{"name":"Green","common_name":"green"},{"name":"Blue","common_name":"blue"},{"name":"NIR","common_name":"nir","description":"near-infrared"}],"roles":["data"]},"metadata":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_fgdc_2019/27080/m_2708011_nw_17_060_20191215.txt","type":"text/plain","title":"FGDC
+        Metdata","roles":["metadata"]},"thumbnail":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/27080/m_2708011_nw_17_060_20191215.200.jpg","type":"image/jpeg","title":"Thumbnail","roles":["thumbnail"]}},"links":[{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/fl_m_2708011_nw_17_060_20191215_20200113"}],"stac_extensions":["eo","projection"]},{"collection":"naip","id":"fl_m_2608006_ne_17_060_20191215_20200113","type":"Feature","stac_version":"1.0.0-beta.2","properties":{"naip:state":"fl","naip:year":"2019","gsd":0.6,"proj:epsg":26917,"proj:shape":[12270,11080],"proj:bbox":[568008.0,2979498.0,574656.0,2986860.0],"proj:transform":[0.6,0.0,568008.0,0.0,-0.6,2986860.0,0.0,0.0,1.0],"datetime":"2019-12-15T00:00:00Z"},"geometry":{"coordinates":[[[-80.247977,26.935362],[-80.247535,27.001825],[-80.314537,27.002167],[-80.314939,26.935703],[-80.247977,26.935362]]],"type":"Polygon"},"bbox":[-80.314939,26.935362,-80.247535,27.002167],"assets":{"image":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/26080/m_2608006_ne_17_060_20191215.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"RGBIR COG tile","eo:bands":[{"name":"Red","common_name":"red"},{"name":"Green","common_name":"green"},{"name":"Blue","common_name":"blue"},{"name":"NIR","common_name":"nir","description":"near-infrared"}],"roles":["data"]},"metadata":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_fgdc_2019/26080/m_2608006_ne_17_060_20191215.txt","type":"text/plain","title":"FGDC
+        Metdata","roles":["metadata"]},"thumbnail":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/26080/m_2608006_ne_17_060_20191215.200.jpg","type":"image/jpeg","title":"Thumbnail","roles":["thumbnail"]}},"links":[{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/fl_m_2608006_ne_17_060_20191215_20200113"}],"stac_extensions":["eo","projection"]},{"collection":"naip","id":"fl_m_2708004_ne_17_060_20191215_20200113","type":"Feature","stac_version":"1.0.0-beta.2","properties":{"naip:state":"fl","naip:year":"2019","gsd":0.6,"proj:epsg":26917,"proj:shape":[12250,10960],"proj:bbox":[542814.0,3090156.0,549390.0,3097506.0],"proj:transform":[0.6,0.0,542814.0,0.0,-0.6,3097506.0,0.0,0.0,1.0],"datetime":"2019-12-15T00:00:00Z"},"geometry":{"coordinates":[[[-80.497976,27.935475],[-80.497669,28.001823],[-80.56455,28.002051],[-80.564816,27.935702],[-80.497976,27.935475]]],"type":"Polygon"},"bbox":[-80.564816,27.935475,-80.497669,28.002051],"assets":{"image":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/27080/m_2708004_ne_17_060_20191215.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"RGBIR COG tile","eo:bands":[{"name":"Red","common_name":"red"},{"name":"Green","common_name":"green"},{"name":"Blue","common_name":"blue"},{"name":"NIR","common_name":"nir","description":"near-infrared"}],"roles":["data"]},"metadata":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_fgdc_2019/27080/m_2708004_ne_17_060_20191215.txt","type":"text/plain","title":"FGDC
+        Metdata","roles":["metadata"]},"thumbnail":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/27080/m_2708004_ne_17_060_20191215.200.jpg","type":"image/jpeg","title":"Thumbnail","roles":["thumbnail"]}},"links":[{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/fl_m_2708004_ne_17_060_20191215_20200113"}],"stac_extensions":["eo","projection"]},{"collection":"naip","id":"fl_m_2708005_nw_17_060_20191215_20200113","type":"Feature","stac_version":"1.0.0-beta.2","properties":{"naip:state":"fl","naip:year":"2019","gsd":0.6,"proj:epsg":26917,"proj:shape":[12250,10970],"proj:bbox":[548958.0,3090180.0,555540.0,3097530.0],"proj:transform":[0.6,0.0,548958.0,0.0,-0.6,3097530.0,0.0,0.0,1.0],"datetime":"2019-12-15T00:00:00Z"},"geometry":{"coordinates":[[[-80.435466,27.935449],[-80.43512,28.001797],[-80.502061,28.002056],[-80.502366,27.935708],[-80.435466,27.935449]]],"type":"Polygon"},"bbox":[-80.502366,27.935449,-80.43512,28.002056],"assets":{"image":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/27080/m_2708005_nw_17_060_20191215.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"RGBIR COG tile","eo:bands":[{"name":"Red","common_name":"red"},{"name":"Green","common_name":"green"},{"name":"Blue","common_name":"blue"},{"name":"NIR","common_name":"nir","description":"near-infrared"}],"roles":["data"]},"metadata":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_fgdc_2019/27080/m_2708005_nw_17_060_20191215.txt","type":"text/plain","title":"FGDC
+        Metdata","roles":["metadata"]},"thumbnail":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/27080/m_2708005_nw_17_060_20191215.200.jpg","type":"image/jpeg","title":"Thumbnail","roles":["thumbnail"]}},"links":[{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/fl_m_2708005_nw_17_060_20191215_20200113"}],"stac_extensions":["eo","projection"]},{"collection":"naip","id":"fl_m_2608006_nw_17_060_20191215_20200113","type":"Feature","stac_version":"1.0.0-beta.2","properties":{"naip:state":"fl","naip:year":"2019","gsd":0.6,"proj:epsg":26917,"proj:shape":[12260,11070],"proj:bbox":[561810.0,2979468.0,568452.0,2986824.0],"proj:transform":[0.6,0.0,561810.0,0.0,-0.6,2986824.0,0.0,0.0,1.0],"datetime":"2019-12-15T00:00:00Z"},"geometry":{"coordinates":[[[-80.310469,26.935411],[-80.310064,27.00182],[-80.377006,27.002132],[-80.377372,26.935722],[-80.310469,26.935411]]],"type":"Polygon"},"bbox":[-80.377372,26.935411,-80.310064,27.002132],"assets":{"image":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/26080/m_2608006_nw_17_060_20191215.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"RGBIR COG tile","eo:bands":[{"name":"Red","common_name":"red"},{"name":"Green","common_name":"green"},{"name":"Blue","common_name":"blue"},{"name":"NIR","common_name":"nir","description":"near-infrared"}],"roles":["data"]},"metadata":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_fgdc_2019/26080/m_2608006_nw_17_060_20191215.txt","type":"text/plain","title":"FGDC
+        Metdata","roles":["metadata"]},"thumbnail":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/26080/m_2608006_nw_17_060_20191215.200.jpg","type":"image/jpeg","title":"Thumbnail","roles":["thumbnail"]}},"links":[{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/fl_m_2608006_nw_17_060_20191215_20200113"}],"stac_extensions":["eo","projection"]},{"collection":"naip","id":"fl_m_2708003_ne_17_060_20191215_20200113","type":"Feature","stac_version":"1.0.0-beta.2","properties":{"naip:state":"fl","naip:year":"2019","gsd":0.6,"proj:epsg":26917,"proj:shape":[12230,10950],"proj:bbox":[530526.0,3090120.0,537096.0,3097458.0],"proj:transform":[0.6,0.0,530526.0,0.0,-0.6,3097458.0,0.0,0.0,1.0],"datetime":"2019-12-15T00:00:00Z"},"geometry":{"coordinates":[[[-80.622937,27.935549],[-80.622706,28.00179],[-80.689527,28.001957],[-80.689717,27.935715],[-80.622937,27.935549]]],"type":"Polygon"},"bbox":[-80.689717,27.935549,-80.622706,28.001957],"assets":{"image":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/27080/m_2708003_ne_17_060_20191215.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"RGBIR COG tile","eo:bands":[{"name":"Red","common_name":"red"},{"name":"Green","common_name":"green"},{"name":"Blue","common_name":"blue"},{"name":"NIR","common_name":"nir","description":"near-infrared"}],"roles":["data"]},"metadata":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_fgdc_2019/27080/m_2708003_ne_17_060_20191215.txt","type":"text/plain","title":"FGDC
+        Metdata","roles":["metadata"]},"thumbnail":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/27080/m_2708003_ne_17_060_20191215.200.jpg","type":"image/jpeg","title":"Thumbnail","roles":["thumbnail"]}},"links":[{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/fl_m_2708003_ne_17_060_20191215_20200113"}],"stac_extensions":["eo","projection"]},{"collection":"naip","id":"fl_m_2708003_nw_17_060_20191215_20200113","type":"Feature","stac_version":"1.0.0-beta.2","properties":{"naip:state":"fl","naip:year":"2019","gsd":0.6,"proj:epsg":26917,"proj:shape":[12230,10940],"proj:bbox":[524382.0,3090102.0,530946.0,3097440.0],"proj:transform":[0.6,0.0,524382.0,0.0,-0.6,3097440.0,0.0,0.0,1.0],"datetime":"2019-12-15T00:00:00Z"},"geometry":{"coordinates":[[[-80.685448,27.935543],[-80.685256,28.001785],[-80.752016,28.001922],[-80.752168,27.93568],[-80.685448,27.935543]]],"type":"Polygon"},"bbox":[-80.752168,27.935543,-80.685256,28.001922],"assets":{"image":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/27080/m_2708003_nw_17_060_20191215.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"RGBIR COG tile","eo:bands":[{"name":"Red","common_name":"red"},{"name":"Green","common_name":"green"},{"name":"Blue","common_name":"blue"},{"name":"NIR","common_name":"nir","description":"near-infrared"}],"roles":["data"]},"metadata":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_fgdc_2019/27080/m_2708003_nw_17_060_20191215.txt","type":"text/plain","title":"FGDC
+        Metdata","roles":["metadata"]},"thumbnail":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/27080/m_2708003_nw_17_060_20191215.200.jpg","type":"image/jpeg","title":"Thumbnail","roles":["thumbnail"]}},"links":[{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/fl_m_2708003_nw_17_060_20191215_20200113"}],"stac_extensions":["eo","projection"]},{"collection":"naip","id":"fl_m_2708004_sw_17_060_20191215_20200113","type":"Feature","stac_version":"1.0.0-beta.2","properties":{"naip:state":"fl","naip:year":"2019","gsd":0.6,"proj:epsg":26917,"proj:shape":[12240,10950],"proj:bbox":[536694.0,3083214.0,543264.0,3090558.0],"proj:transform":[0.6,0.0,536694.0,0.0,-0.6,3090558.0,0.0,0.0,1.0],"datetime":"2019-12-15T00:00:00Z"},"geometry":{"coordinates":[[[-80.560495,27.873021],[-80.560227,27.939317],[-80.627009,27.939514],[-80.627237,27.873218],[-80.560495,27.873021]]],"type":"Polygon"},"bbox":[-80.627237,27.873021,-80.560227,27.939514],"assets":{"image":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/27080/m_2708004_sw_17_060_20191215.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"RGBIR COG tile","eo:bands":[{"name":"Red","common_name":"red"},{"name":"Green","common_name":"green"},{"name":"Blue","common_name":"blue"},{"name":"NIR","common_name":"nir","description":"near-infrared"}],"roles":["data"]},"metadata":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_fgdc_2019/27080/m_2708004_sw_17_060_20191215.txt","type":"text/plain","title":"FGDC
+        Metdata","roles":["metadata"]},"thumbnail":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/27080/m_2708004_sw_17_060_20191215.200.jpg","type":"image/jpeg","title":"Thumbnail","roles":["thumbnail"]}},"links":[{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/fl_m_2708004_sw_17_060_20191215_20200113"}],"stac_extensions":["eo","projection"]},{"collection":"naip","id":"fl_m_2608004_ne_17_060_20191215_20200113","type":"Feature","stac_version":"1.0.0-beta.2","properties":{"naip:state":"fl","naip:year":"2019","gsd":0.6,"proj:epsg":26917,"proj:shape":[12250,11050],"proj:bbox":[543204.0,2979384.0,549834.0,2986734.0],"proj:transform":[0.6,0.0,543204.0,0.0,-0.6,2986734.0,0.0,0.0,1.0],"datetime":"2019-12-15T00:00:00Z"},"geometry":{"coordinates":[[[-80.498008,26.935444],[-80.497714,27.001802],[-80.564537,27.002024],[-80.564792,26.935666],[-80.498008,26.935444]]],"type":"Polygon"},"bbox":[-80.564792,26.935444,-80.497714,27.002024],"assets":{"image":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/26080/m_2608004_ne_17_060_20191215.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"RGBIR COG tile","eo:bands":[{"name":"Red","common_name":"red"},{"name":"Green","common_name":"green"},{"name":"Blue","common_name":"blue"},{"name":"NIR","common_name":"nir","description":"near-infrared"}],"roles":["data"]},"metadata":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_fgdc_2019/26080/m_2608004_ne_17_060_20191215.txt","type":"text/plain","title":"FGDC
+        Metdata","roles":["metadata"]},"thumbnail":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/26080/m_2608004_ne_17_060_20191215.200.jpg","type":"image/jpeg","title":"Thumbnail","roles":["thumbnail"]}},"links":[{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/fl_m_2608004_ne_17_060_20191215_20200113"}],"stac_extensions":["eo","projection"]},{"collection":"naip","id":"fl_m_2608003_nw_17_060_20191215_20200113","type":"Feature","stac_version":"1.0.0-beta.2","properties":{"naip:state":"fl","naip:year":"2019","gsd":0.6,"proj:epsg":26917,"proj:shape":[12230,11030],"proj:bbox":[524604.0,2979336.0,531222.0,2986674.0],"proj:transform":[0.6,0.0,524604.0,0.0,-0.6,2986674.0,0.0,0.0,1.0],"datetime":"2019-12-15T00:00:00Z"},"geometry":{"coordinates":[[[-80.68549,26.935553],[-80.685306,27.001804],[-80.75201,27.001937],[-80.752155,26.935686],[-80.68549,26.935553]]],"type":"Polygon"},"bbox":[-80.752155,26.935553,-80.685306,27.001937],"assets":{"image":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/26080/m_2608003_nw_17_060_20191215.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"RGBIR COG tile","eo:bands":[{"name":"Red","common_name":"red"},{"name":"Green","common_name":"green"},{"name":"Blue","common_name":"blue"},{"name":"NIR","common_name":"nir","description":"near-infrared"}],"roles":["data"]},"metadata":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_fgdc_2019/26080/m_2608003_nw_17_060_20191215.txt","type":"text/plain","title":"FGDC
+        Metdata","roles":["metadata"]},"thumbnail":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/26080/m_2608003_nw_17_060_20191215.200.jpg","type":"image/jpeg","title":"Thumbnail","roles":["thumbnail"]}},"links":[{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/fl_m_2608003_nw_17_060_20191215_20200113"}],"stac_extensions":["eo","projection"]},{"collection":"naip","id":"fl_m_2608005_nw_17_060_20191215_20200113","type":"Feature","stac_version":"1.0.0-beta.2","properties":{"naip:state":"fl","naip:year":"2019","gsd":0.6,"proj:epsg":26917,"proj:shape":[12250,11050],"proj:bbox":[549408.0,2979408.0,556038.0,2986758.0],"proj:transform":[0.6,0.0,549408.0,0.0,-0.6,2986758.0,0.0,0.0,1.0],"datetime":"2019-12-15T00:00:00Z"},"geometry":{"coordinates":[[[-80.435515,26.935425],[-80.435184,27.001782],[-80.502006,27.002034],[-80.502298,26.935676],[-80.435515,26.935425]]],"type":"Polygon"},"bbox":[-80.502298,26.935425,-80.435184,27.002034],"assets":{"image":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/26080/m_2608005_nw_17_060_20191215.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"RGBIR COG tile","eo:bands":[{"name":"Red","common_name":"red"},{"name":"Green","common_name":"green"},{"name":"Blue","common_name":"blue"},{"name":"NIR","common_name":"nir","description":"near-infrared"}],"roles":["data"]},"metadata":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_fgdc_2019/26080/m_2608005_nw_17_060_20191215.txt","type":"text/plain","title":"FGDC
+        Metdata","roles":["metadata"]},"thumbnail":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/26080/m_2608005_nw_17_060_20191215.200.jpg","type":"image/jpeg","title":"Thumbnail","roles":["thumbnail"]}},"links":[{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/fl_m_2608005_nw_17_060_20191215_20200113"}],"stac_extensions":["eo","projection"]},{"collection":"naip","id":"fl_m_2608003_ne_17_060_20191215_20200113","type":"Feature","stac_version":"1.0.0-beta.2","properties":{"naip:state":"fl","naip:year":"2019","gsd":0.6,"proj:epsg":26917,"proj:shape":[12240,11040],"proj:bbox":[530802.0,2979348.0,537426.0,2986692.0],"proj:transform":[0.6,0.0,530802.0,0.0,-0.6,2986692.0,0.0,0.0,1.0],"datetime":"2019-12-15T00:00:00Z"},"geometry":{"coordinates":[[[-80.622996,26.935508],[-80.622775,27.001813],[-80.689539,27.001976],[-80.689721,26.935671],[-80.622996,26.935508]]],"type":"Polygon"},"bbox":[-80.689721,26.935508,-80.622775,27.001976],"assets":{"image":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/26080/m_2608003_ne_17_060_20191215.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"RGBIR COG tile","eo:bands":[{"name":"Red","common_name":"red"},{"name":"Green","common_name":"green"},{"name":"Blue","common_name":"blue"},{"name":"NIR","common_name":"nir","description":"near-infrared"}],"roles":["data"]},"metadata":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_fgdc_2019/26080/m_2608003_ne_17_060_20191215.txt","type":"text/plain","title":"FGDC
+        Metdata","roles":["metadata"]},"thumbnail":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/26080/m_2608003_ne_17_060_20191215.200.jpg","type":"image/jpeg","title":"Thumbnail","roles":["thumbnail"]}},"links":[{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/fl_m_2608003_ne_17_060_20191215_20200113"}],"stac_extensions":["eo","projection"]}],"links":[{"rel":"next","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"POST","body":{"limit":20,"collections":["naip"],"token":"PHWCcZK9"},"merge":true}],"bbox":[-80.752208,26.935362,27.935549,28.002056],"numberMatched":995609,"numberReturned":20}'
+    headers:
+      Content-Length:
+      - '40240'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 16 Jun 2021 03:35:00 GMT
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      X-Azure-Ref:
+      - 0ZHHJYAAAAABwBUYm3QvrRqrmFY1Z9oHJQk9TMzFFREdFMDQxMgA5MjdhYmZhNi0xOWY2LTRhZjEtYTA5ZC1jOTU5ZDlhMWU2NDQ=
+      X-Cache:
+      - CONFIG_NOCACHE
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Connection:
+      - close
+      Host:
+      - planetarycomputer.microsoft.com
+      User-Agent:
+      - Python-urllib/3.9
+    method: GET
+    uri: https://planetarycomputer.microsoft.com/api/stac/v1/
+  response:
+    body:
+      string: '{"id":"microsoft-pc","description":"Searchable spatiotemporal metadata
+        describing Earth science datasets hosted by the Microsoft Planetary Computer","title":"Microsoft
+        Planetary Computer STAC API","stac_version":"1.0.0-beta.2","links":[{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/","rel":"self","type":"application/json"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/docs","rel":"docs","type":"text/html","title":"OpenAPI
+        docs"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance","rel":"conformance","type":"application/json","title":"STAC/WFS3
+        conformance classes implemented by this server"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","rel":"search","type":"application/geo+json","title":"STAC
+        search"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/aster-l1t","rel":"child","type":"application/json","title":"ASTER
+        L1T"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2","rel":"child","type":"application/json","title":"Landsat
+        8 Collection 2 Level-2"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a","rel":"child","type":"application/json","title":"Sentinel-2
+        Level-2A"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip","rel":"child","type":"application/json","title":"NAIP:
+        National Agriculture Imagery Program"}],"conformsTo":["https://api.stacspec.org/v1.0.0-beta.1/core","https://api.stacspec.org/v1.0.0-beta.1/item-search","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"]}'
+    headers:
+      Connection:
+      - close
+      Content-Length:
+      - '1742'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 16 Jun 2021 03:35:00 GMT
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      X-Azure-Ref:
+      - 0ZXHJYAAAAAApvPAgKp70Tq8LroPXqol3Qk9TMzFFREdFMDQxOAA5MjdhYmZhNi0xOWY2LTRhZjEtYTA5ZC1jOTU5ZDlhMWU2NDQ=
+      X-Cache:
+      - CONFIG_NOCACHE
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Connection:
+      - close
+      Host:
+      - planetarycomputer.microsoft.com
+      User-Agent:
+      - Python-urllib/3.9
+    method: GET
+    uri: https://planetarycomputer.microsoft.com/api/stac/v1/
+  response:
+    body:
+      string: '{"id":"microsoft-pc","description":"Searchable spatiotemporal metadata
+        describing Earth science datasets hosted by the Microsoft Planetary Computer","title":"Microsoft
+        Planetary Computer STAC API","stac_version":"1.0.0-beta.2","links":[{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/","rel":"self","type":"application/json"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/docs","rel":"docs","type":"text/html","title":"OpenAPI
+        docs"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance","rel":"conformance","type":"application/json","title":"STAC/WFS3
+        conformance classes implemented by this server"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","rel":"search","type":"application/geo+json","title":"STAC
+        search"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/aster-l1t","rel":"child","type":"application/json","title":"ASTER
+        L1T"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2","rel":"child","type":"application/json","title":"Landsat
+        8 Collection 2 Level-2"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a","rel":"child","type":"application/json","title":"Sentinel-2
+        Level-2A"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip","rel":"child","type":"application/json","title":"NAIP:
+        National Agriculture Imagery Program"}],"conformsTo":["https://api.stacspec.org/v1.0.0-beta.1/core","https://api.stacspec.org/v1.0.0-beta.1/item-search","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"]}'
+    headers:
+      Connection:
+      - close
+      Content-Length:
+      - '1742'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 16 Jun 2021 03:35:01 GMT
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      X-Azure-Ref:
+      - 0ZXHJYAAAAADNAtRQwCANRap7ZSIJonrEQk9TMzFFREdFMDQyMAA5MjdhYmZhNi0xOWY2LTRhZjEtYTA5ZC1jOTU5ZDlhMWU2NDQ=
+      X-Cache:
+      - CONFIG_NOCACHE
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Connection:
+      - close
+      Host:
+      - planetarycomputer.microsoft.com
+      User-Agent:
+      - Python-urllib/3.9
+    method: GET
+    uri: https://planetarycomputer.microsoft.com/api/stac/v1/
+  response:
+    body:
+      string: '{"id":"microsoft-pc","description":"Searchable spatiotemporal metadata
+        describing Earth science datasets hosted by the Microsoft Planetary Computer","title":"Microsoft
+        Planetary Computer STAC API","stac_version":"1.0.0-beta.2","links":[{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/","rel":"self","type":"application/json"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/docs","rel":"docs","type":"text/html","title":"OpenAPI
+        docs"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance","rel":"conformance","type":"application/json","title":"STAC/WFS3
+        conformance classes implemented by this server"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","rel":"search","type":"application/geo+json","title":"STAC
+        search"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/aster-l1t","rel":"child","type":"application/json","title":"ASTER
+        L1T"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2","rel":"child","type":"application/json","title":"Landsat
+        8 Collection 2 Level-2"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a","rel":"child","type":"application/json","title":"Sentinel-2
+        Level-2A"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip","rel":"child","type":"application/json","title":"NAIP:
+        National Agriculture Imagery Program"}],"conformsTo":["https://api.stacspec.org/v1.0.0-beta.1/core","https://api.stacspec.org/v1.0.0-beta.1/item-search","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"]}'
+    headers:
+      Connection:
+      - close
+      Content-Length:
+      - '1742'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 16 Jun 2021 03:35:01 GMT
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      X-Azure-Ref:
+      - 0ZXHJYAAAAADTXS2oGqHYQozMg183ALVyQk9TMzFFREdFMDQxNAA5MjdhYmZhNi0xOWY2LTRhZjEtYTA5ZC1jOTU5ZDlhMWU2NDQ=
+      X-Cache:
+      - CONFIG_NOCACHE
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Connection:
+      - close
+      Host:
+      - planetarycomputer.microsoft.com
+      User-Agent:
+      - Python-urllib/3.9
+    method: GET
+    uri: https://planetarycomputer.microsoft.com/api/stac/v1/
+  response:
+    body:
+      string: '{"id":"microsoft-pc","description":"Searchable spatiotemporal metadata
+        describing Earth science datasets hosted by the Microsoft Planetary Computer","title":"Microsoft
+        Planetary Computer STAC API","stac_version":"1.0.0-beta.2","links":[{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/","rel":"self","type":"application/json"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/docs","rel":"docs","type":"text/html","title":"OpenAPI
+        docs"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance","rel":"conformance","type":"application/json","title":"STAC/WFS3
+        conformance classes implemented by this server"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","rel":"search","type":"application/geo+json","title":"STAC
+        search"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/aster-l1t","rel":"child","type":"application/json","title":"ASTER
+        L1T"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2","rel":"child","type":"application/json","title":"Landsat
+        8 Collection 2 Level-2"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a","rel":"child","type":"application/json","title":"Sentinel-2
+        Level-2A"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip","rel":"child","type":"application/json","title":"NAIP:
+        National Agriculture Imagery Program"}],"conformsTo":["https://api.stacspec.org/v1.0.0-beta.1/core","https://api.stacspec.org/v1.0.0-beta.1/item-search","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"]}'
+    headers:
+      Connection:
+      - close
+      Content-Length:
+      - '1742'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 16 Jun 2021 03:35:01 GMT
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      X-Azure-Ref:
+      - 0ZXHJYAAAAAARP6dgySsfS4Dt5EldX6DgQk9TMzFFREdFMDQwNwA5MjdhYmZhNi0xOWY2LTRhZjEtYTA5ZC1jOTU5ZDlhMWU2NDQ=
+      X-Cache:
+      - CONFIG_NOCACHE
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Connection:
+      - close
+      Host:
+      - planetarycomputer.microsoft.com
+      User-Agent:
+      - Python-urllib/3.9
+    method: GET
+    uri: https://planetarycomputer.microsoft.com/api/stac/v1/
+  response:
+    body:
+      string: '{"id":"microsoft-pc","description":"Searchable spatiotemporal metadata
+        describing Earth science datasets hosted by the Microsoft Planetary Computer","title":"Microsoft
+        Planetary Computer STAC API","stac_version":"1.0.0-beta.2","links":[{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/","rel":"self","type":"application/json"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/docs","rel":"docs","type":"text/html","title":"OpenAPI
+        docs"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance","rel":"conformance","type":"application/json","title":"STAC/WFS3
+        conformance classes implemented by this server"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","rel":"search","type":"application/geo+json","title":"STAC
+        search"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/aster-l1t","rel":"child","type":"application/json","title":"ASTER
+        L1T"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2","rel":"child","type":"application/json","title":"Landsat
+        8 Collection 2 Level-2"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a","rel":"child","type":"application/json","title":"Sentinel-2
+        Level-2A"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip","rel":"child","type":"application/json","title":"NAIP:
+        National Agriculture Imagery Program"}],"conformsTo":["https://api.stacspec.org/v1.0.0-beta.1/core","https://api.stacspec.org/v1.0.0-beta.1/item-search","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"]}'
+    headers:
+      Connection:
+      - close
+      Content-Length:
+      - '1742'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 16 Jun 2021 03:35:01 GMT
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      X-Azure-Ref:
+      - 0ZnHJYAAAAABAGmbN/MAXQ6cfS7o3XsM5Qk9TMzFFREdFMDQxOQA5MjdhYmZhNi0xOWY2LTRhZjEtYTA5ZC1jOTU5ZDlhMWU2NDQ=
+      X-Cache:
+      - CONFIG_NOCACHE
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Connection:
+      - close
+      Host:
+      - planetarycomputer.microsoft.com
+      User-Agent:
+      - Python-urllib/3.9
+    method: GET
+    uri: https://planetarycomputer.microsoft.com/api/stac/v1/
+  response:
+    body:
+      string: '{"id":"microsoft-pc","description":"Searchable spatiotemporal metadata
+        describing Earth science datasets hosted by the Microsoft Planetary Computer","title":"Microsoft
+        Planetary Computer STAC API","stac_version":"1.0.0-beta.2","links":[{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/","rel":"self","type":"application/json"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/docs","rel":"docs","type":"text/html","title":"OpenAPI
+        docs"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance","rel":"conformance","type":"application/json","title":"STAC/WFS3
+        conformance classes implemented by this server"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","rel":"search","type":"application/geo+json","title":"STAC
+        search"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/aster-l1t","rel":"child","type":"application/json","title":"ASTER
+        L1T"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2","rel":"child","type":"application/json","title":"Landsat
+        8 Collection 2 Level-2"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a","rel":"child","type":"application/json","title":"Sentinel-2
+        Level-2A"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip","rel":"child","type":"application/json","title":"NAIP:
+        National Agriculture Imagery Program"}],"conformsTo":["https://api.stacspec.org/v1.0.0-beta.1/core","https://api.stacspec.org/v1.0.0-beta.1/item-search","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"]}'
+    headers:
+      Connection:
+      - close
+      Content-Length:
+      - '1742'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 16 Jun 2021 03:35:02 GMT
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      X-Azure-Ref:
+      - 0ZnHJYAAAAACRiXK5rA1iTquKUo8KRgF6Qk9TMzFFREdFMDQxOQA5MjdhYmZhNi0xOWY2LTRhZjEtYTA5ZC1jOTU5ZDlhMWU2NDQ=
+      X-Cache:
+      - CONFIG_NOCACHE
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Connection:
+      - close
+      Host:
+      - planetarycomputer.microsoft.com
+      User-Agent:
+      - Python-urllib/3.9
+    method: GET
+    uri: https://planetarycomputer.microsoft.com/api/stac/v1/
+  response:
+    body:
+      string: '{"id":"microsoft-pc","description":"Searchable spatiotemporal metadata
+        describing Earth science datasets hosted by the Microsoft Planetary Computer","title":"Microsoft
+        Planetary Computer STAC API","stac_version":"1.0.0-beta.2","links":[{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/","rel":"self","type":"application/json"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/docs","rel":"docs","type":"text/html","title":"OpenAPI
+        docs"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance","rel":"conformance","type":"application/json","title":"STAC/WFS3
+        conformance classes implemented by this server"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","rel":"search","type":"application/geo+json","title":"STAC
+        search"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/aster-l1t","rel":"child","type":"application/json","title":"ASTER
+        L1T"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2","rel":"child","type":"application/json","title":"Landsat
+        8 Collection 2 Level-2"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a","rel":"child","type":"application/json","title":"Sentinel-2
+        Level-2A"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip","rel":"child","type":"application/json","title":"NAIP:
+        National Agriculture Imagery Program"}],"conformsTo":["https://api.stacspec.org/v1.0.0-beta.1/core","https://api.stacspec.org/v1.0.0-beta.1/item-search","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"]}'
+    headers:
+      Connection:
+      - close
+      Content-Length:
+      - '1742'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 16 Jun 2021 03:35:01 GMT
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      X-Azure-Ref:
+      - 0ZnHJYAAAAABHQAB6TUbLT60WQm+80QPfQk9TMzFFREdFMDQwNwA5MjdhYmZhNi0xOWY2LTRhZjEtYTA5ZC1jOTU5ZDlhMWU2NDQ=
+      X-Cache:
+      - CONFIG_NOCACHE
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Connection:
+      - close
+      Host:
+      - planetarycomputer.microsoft.com
+      User-Agent:
+      - Python-urllib/3.9
+    method: GET
+    uri: https://planetarycomputer.microsoft.com/api/stac/v1/
+  response:
+    body:
+      string: '{"id":"microsoft-pc","description":"Searchable spatiotemporal metadata
+        describing Earth science datasets hosted by the Microsoft Planetary Computer","title":"Microsoft
+        Planetary Computer STAC API","stac_version":"1.0.0-beta.2","links":[{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/","rel":"self","type":"application/json"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/docs","rel":"docs","type":"text/html","title":"OpenAPI
+        docs"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance","rel":"conformance","type":"application/json","title":"STAC/WFS3
+        conformance classes implemented by this server"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","rel":"search","type":"application/geo+json","title":"STAC
+        search"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/aster-l1t","rel":"child","type":"application/json","title":"ASTER
+        L1T"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2","rel":"child","type":"application/json","title":"Landsat
+        8 Collection 2 Level-2"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a","rel":"child","type":"application/json","title":"Sentinel-2
+        Level-2A"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip","rel":"child","type":"application/json","title":"NAIP:
+        National Agriculture Imagery Program"}],"conformsTo":["https://api.stacspec.org/v1.0.0-beta.1/core","https://api.stacspec.org/v1.0.0-beta.1/item-search","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"]}'
+    headers:
+      Connection:
+      - close
+      Content-Length:
+      - '1742'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 16 Jun 2021 03:35:02 GMT
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      X-Azure-Ref:
+      - 0ZnHJYAAAAABfkyzTJ79+QLFxiFr/WAKHQk9TMzFFREdFMDQwOAA5MjdhYmZhNi0xOWY2LTRhZjEtYTA5ZC1jOTU5ZDlhMWU2NDQ=
+      X-Cache:
+      - CONFIG_NOCACHE
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Connection:
+      - close
+      Host:
+      - planetarycomputer.microsoft.com
+      User-Agent:
+      - Python-urllib/3.9
+    method: GET
+    uri: https://planetarycomputer.microsoft.com/api/stac/v1/
+  response:
+    body:
+      string: '{"id":"microsoft-pc","description":"Searchable spatiotemporal metadata
+        describing Earth science datasets hosted by the Microsoft Planetary Computer","title":"Microsoft
+        Planetary Computer STAC API","stac_version":"1.0.0-beta.2","links":[{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/","rel":"self","type":"application/json"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/docs","rel":"docs","type":"text/html","title":"OpenAPI
+        docs"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance","rel":"conformance","type":"application/json","title":"STAC/WFS3
+        conformance classes implemented by this server"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","rel":"search","type":"application/geo+json","title":"STAC
+        search"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/aster-l1t","rel":"child","type":"application/json","title":"ASTER
+        L1T"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2","rel":"child","type":"application/json","title":"Landsat
+        8 Collection 2 Level-2"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a","rel":"child","type":"application/json","title":"Sentinel-2
+        Level-2A"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip","rel":"child","type":"application/json","title":"NAIP:
+        National Agriculture Imagery Program"}],"conformsTo":["https://api.stacspec.org/v1.0.0-beta.1/core","https://api.stacspec.org/v1.0.0-beta.1/item-search","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"]}'
+    headers:
+      Connection:
+      - close
+      Content-Length:
+      - '1742'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 16 Jun 2021 03:35:02 GMT
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      X-Azure-Ref:
+      - 0ZnHJYAAAAABUamFN0PTyR4cAhZuC/HblQk9TMzFFREdFMDQxMQA5MjdhYmZhNi0xOWY2LTRhZjEtYTA5ZC1jOTU5ZDlhMWU2NDQ=
+      X-Cache:
+      - CONFIG_NOCACHE
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Connection:
+      - close
+      Host:
+      - planetarycomputer.microsoft.com
+      User-Agent:
+      - Python-urllib/3.9
+    method: GET
+    uri: https://planetarycomputer.microsoft.com/api/stac/v1/
+  response:
+    body:
+      string: '{"id":"microsoft-pc","description":"Searchable spatiotemporal metadata
+        describing Earth science datasets hosted by the Microsoft Planetary Computer","title":"Microsoft
+        Planetary Computer STAC API","stac_version":"1.0.0-beta.2","links":[{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/","rel":"self","type":"application/json"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/docs","rel":"docs","type":"text/html","title":"OpenAPI
+        docs"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance","rel":"conformance","type":"application/json","title":"STAC/WFS3
+        conformance classes implemented by this server"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","rel":"search","type":"application/geo+json","title":"STAC
+        search"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/aster-l1t","rel":"child","type":"application/json","title":"ASTER
+        L1T"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2","rel":"child","type":"application/json","title":"Landsat
+        8 Collection 2 Level-2"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a","rel":"child","type":"application/json","title":"Sentinel-2
+        Level-2A"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip","rel":"child","type":"application/json","title":"NAIP:
+        National Agriculture Imagery Program"}],"conformsTo":["https://api.stacspec.org/v1.0.0-beta.1/core","https://api.stacspec.org/v1.0.0-beta.1/item-search","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"]}'
+    headers:
+      Connection:
+      - close
+      Content-Length:
+      - '1742'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 16 Jun 2021 03:35:02 GMT
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      X-Azure-Ref:
+      - 0ZnHJYAAAAADO/u5urRhuQIH+/Omthj9UQk9TMzFFREdFMDQyMQA5MjdhYmZhNi0xOWY2LTRhZjEtYTA5ZC1jOTU5ZDlhMWU2NDQ=
+      X-Cache:
+      - CONFIG_NOCACHE
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Connection:
+      - close
+      Host:
+      - planetarycomputer.microsoft.com
+      User-Agent:
+      - Python-urllib/3.9
+    method: GET
+    uri: https://planetarycomputer.microsoft.com/api/stac/v1/
+  response:
+    body:
+      string: '{"id":"microsoft-pc","description":"Searchable spatiotemporal metadata
+        describing Earth science datasets hosted by the Microsoft Planetary Computer","title":"Microsoft
+        Planetary Computer STAC API","stac_version":"1.0.0-beta.2","links":[{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/","rel":"self","type":"application/json"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/docs","rel":"docs","type":"text/html","title":"OpenAPI
+        docs"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance","rel":"conformance","type":"application/json","title":"STAC/WFS3
+        conformance classes implemented by this server"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","rel":"search","type":"application/geo+json","title":"STAC
+        search"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/aster-l1t","rel":"child","type":"application/json","title":"ASTER
+        L1T"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2","rel":"child","type":"application/json","title":"Landsat
+        8 Collection 2 Level-2"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a","rel":"child","type":"application/json","title":"Sentinel-2
+        Level-2A"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip","rel":"child","type":"application/json","title":"NAIP:
+        National Agriculture Imagery Program"}],"conformsTo":["https://api.stacspec.org/v1.0.0-beta.1/core","https://api.stacspec.org/v1.0.0-beta.1/item-search","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"]}'
+    headers:
+      Connection:
+      - close
+      Content-Length:
+      - '1742'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 16 Jun 2021 03:35:02 GMT
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      X-Azure-Ref:
+      - 0Z3HJYAAAAAB9aK2XQOART7mGD6kBUccnQk9TMzFFREdFMDQxOQA5MjdhYmZhNi0xOWY2LTRhZjEtYTA5ZC1jOTU5ZDlhMWU2NDQ=
+      X-Cache:
+      - CONFIG_NOCACHE
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Connection:
+      - close
+      Host:
+      - planetarycomputer.microsoft.com
+      User-Agent:
+      - Python-urllib/3.9
+    method: GET
+    uri: https://planetarycomputer.microsoft.com/api/stac/v1/
+  response:
+    body:
+      string: '{"id":"microsoft-pc","description":"Searchable spatiotemporal metadata
+        describing Earth science datasets hosted by the Microsoft Planetary Computer","title":"Microsoft
+        Planetary Computer STAC API","stac_version":"1.0.0-beta.2","links":[{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/","rel":"self","type":"application/json"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/docs","rel":"docs","type":"text/html","title":"OpenAPI
+        docs"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance","rel":"conformance","type":"application/json","title":"STAC/WFS3
+        conformance classes implemented by this server"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","rel":"search","type":"application/geo+json","title":"STAC
+        search"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/aster-l1t","rel":"child","type":"application/json","title":"ASTER
+        L1T"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2","rel":"child","type":"application/json","title":"Landsat
+        8 Collection 2 Level-2"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a","rel":"child","type":"application/json","title":"Sentinel-2
+        Level-2A"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip","rel":"child","type":"application/json","title":"NAIP:
+        National Agriculture Imagery Program"}],"conformsTo":["https://api.stacspec.org/v1.0.0-beta.1/core","https://api.stacspec.org/v1.0.0-beta.1/item-search","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"]}'
+    headers:
+      Connection:
+      - close
+      Content-Length:
+      - '1742'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 16 Jun 2021 03:35:03 GMT
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      X-Azure-Ref:
+      - 0Z3HJYAAAAADCrJyaIM4EQau0nhLZAYXeQk9TMzFFREdFMDQxOQA5MjdhYmZhNi0xOWY2LTRhZjEtYTA5ZC1jOTU5ZDlhMWU2NDQ=
+      X-Cache:
+      - CONFIG_NOCACHE
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Connection:
+      - close
+      Host:
+      - planetarycomputer.microsoft.com
+      User-Agent:
+      - Python-urllib/3.9
+    method: GET
+    uri: https://planetarycomputer.microsoft.com/api/stac/v1/
+  response:
+    body:
+      string: '{"id":"microsoft-pc","description":"Searchable spatiotemporal metadata
+        describing Earth science datasets hosted by the Microsoft Planetary Computer","title":"Microsoft
+        Planetary Computer STAC API","stac_version":"1.0.0-beta.2","links":[{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/","rel":"self","type":"application/json"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/docs","rel":"docs","type":"text/html","title":"OpenAPI
+        docs"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance","rel":"conformance","type":"application/json","title":"STAC/WFS3
+        conformance classes implemented by this server"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","rel":"search","type":"application/geo+json","title":"STAC
+        search"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/aster-l1t","rel":"child","type":"application/json","title":"ASTER
+        L1T"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2","rel":"child","type":"application/json","title":"Landsat
+        8 Collection 2 Level-2"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a","rel":"child","type":"application/json","title":"Sentinel-2
+        Level-2A"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip","rel":"child","type":"application/json","title":"NAIP:
+        National Agriculture Imagery Program"}],"conformsTo":["https://api.stacspec.org/v1.0.0-beta.1/core","https://api.stacspec.org/v1.0.0-beta.1/item-search","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"]}'
+    headers:
+      Connection:
+      - close
+      Content-Length:
+      - '1742'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 16 Jun 2021 03:35:02 GMT
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      X-Azure-Ref:
+      - 0Z3HJYAAAAACUFlCOrQgqRLUCbVOzzobwQk9TMzFFREdFMDQxMAA5MjdhYmZhNi0xOWY2LTRhZjEtYTA5ZC1jOTU5ZDlhMWU2NDQ=
+      X-Cache:
+      - CONFIG_NOCACHE
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Connection:
+      - close
+      Host:
+      - planetarycomputer.microsoft.com
+      User-Agent:
+      - Python-urllib/3.9
+    method: GET
+    uri: https://planetarycomputer.microsoft.com/api/stac/v1/
+  response:
+    body:
+      string: '{"id":"microsoft-pc","description":"Searchable spatiotemporal metadata
+        describing Earth science datasets hosted by the Microsoft Planetary Computer","title":"Microsoft
+        Planetary Computer STAC API","stac_version":"1.0.0-beta.2","links":[{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/","rel":"self","type":"application/json"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/docs","rel":"docs","type":"text/html","title":"OpenAPI
+        docs"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance","rel":"conformance","type":"application/json","title":"STAC/WFS3
+        conformance classes implemented by this server"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","rel":"search","type":"application/geo+json","title":"STAC
+        search"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/aster-l1t","rel":"child","type":"application/json","title":"ASTER
+        L1T"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2","rel":"child","type":"application/json","title":"Landsat
+        8 Collection 2 Level-2"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a","rel":"child","type":"application/json","title":"Sentinel-2
+        Level-2A"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip","rel":"child","type":"application/json","title":"NAIP:
+        National Agriculture Imagery Program"}],"conformsTo":["https://api.stacspec.org/v1.0.0-beta.1/core","https://api.stacspec.org/v1.0.0-beta.1/item-search","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"]}'
+    headers:
+      Connection:
+      - close
+      Content-Length:
+      - '1742'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 16 Jun 2021 03:35:03 GMT
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      X-Azure-Ref:
+      - 0Z3HJYAAAAABBPIcxFEI3Qanhz9wO9w5nQk9TMzFFREdFMDQxMwA5MjdhYmZhNi0xOWY2LTRhZjEtYTA5ZC1jOTU5ZDlhMWU2NDQ=
+      X-Cache:
+      - CONFIG_NOCACHE
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Connection:
+      - close
+      Host:
+      - planetarycomputer.microsoft.com
+      User-Agent:
+      - Python-urllib/3.9
+    method: GET
+    uri: https://planetarycomputer.microsoft.com/api/stac/v1/
+  response:
+    body:
+      string: '{"id":"microsoft-pc","description":"Searchable spatiotemporal metadata
+        describing Earth science datasets hosted by the Microsoft Planetary Computer","title":"Microsoft
+        Planetary Computer STAC API","stac_version":"1.0.0-beta.2","links":[{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/","rel":"self","type":"application/json"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/docs","rel":"docs","type":"text/html","title":"OpenAPI
+        docs"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance","rel":"conformance","type":"application/json","title":"STAC/WFS3
+        conformance classes implemented by this server"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","rel":"search","type":"application/geo+json","title":"STAC
+        search"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/aster-l1t","rel":"child","type":"application/json","title":"ASTER
+        L1T"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2","rel":"child","type":"application/json","title":"Landsat
+        8 Collection 2 Level-2"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a","rel":"child","type":"application/json","title":"Sentinel-2
+        Level-2A"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip","rel":"child","type":"application/json","title":"NAIP:
+        National Agriculture Imagery Program"}],"conformsTo":["https://api.stacspec.org/v1.0.0-beta.1/core","https://api.stacspec.org/v1.0.0-beta.1/item-search","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"]}'
+    headers:
+      Connection:
+      - close
+      Content-Length:
+      - '1742'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 16 Jun 2021 03:35:03 GMT
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      X-Azure-Ref:
+      - 0Z3HJYAAAAAC821cvDt/3TqjSeVIKgJIkQk9TMzFFREdFMDQxOAA5MjdhYmZhNi0xOWY2LTRhZjEtYTA5ZC1jOTU5ZDlhMWU2NDQ=
+      X-Cache:
+      - CONFIG_NOCACHE
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Connection:
+      - close
+      Host:
+      - planetarycomputer.microsoft.com
+      User-Agent:
+      - Python-urllib/3.9
+    method: GET
+    uri: https://planetarycomputer.microsoft.com/api/stac/v1/
+  response:
+    body:
+      string: '{"id":"microsoft-pc","description":"Searchable spatiotemporal metadata
+        describing Earth science datasets hosted by the Microsoft Planetary Computer","title":"Microsoft
+        Planetary Computer STAC API","stac_version":"1.0.0-beta.2","links":[{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/","rel":"self","type":"application/json"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/docs","rel":"docs","type":"text/html","title":"OpenAPI
+        docs"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance","rel":"conformance","type":"application/json","title":"STAC/WFS3
+        conformance classes implemented by this server"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","rel":"search","type":"application/geo+json","title":"STAC
+        search"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/aster-l1t","rel":"child","type":"application/json","title":"ASTER
+        L1T"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2","rel":"child","type":"application/json","title":"Landsat
+        8 Collection 2 Level-2"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a","rel":"child","type":"application/json","title":"Sentinel-2
+        Level-2A"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip","rel":"child","type":"application/json","title":"NAIP:
+        National Agriculture Imagery Program"}],"conformsTo":["https://api.stacspec.org/v1.0.0-beta.1/core","https://api.stacspec.org/v1.0.0-beta.1/item-search","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"]}'
+    headers:
+      Connection:
+      - close
+      Content-Length:
+      - '1742'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 16 Jun 2021 03:35:03 GMT
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      X-Azure-Ref:
+      - 0Z3HJYAAAAADo0TNfJ/BFS6nRWXxsrUwPQk9TMzFFREdFMDQxNwA5MjdhYmZhNi0xOWY2LTRhZjEtYTA5ZC1jOTU5ZDlhMWU2NDQ=
+      X-Cache:
+      - CONFIG_NOCACHE
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Connection:
+      - close
+      Host:
+      - planetarycomputer.microsoft.com
+      User-Agent:
+      - Python-urllib/3.9
+    method: GET
+    uri: https://planetarycomputer.microsoft.com/api/stac/v1/
+  response:
+    body:
+      string: '{"id":"microsoft-pc","description":"Searchable spatiotemporal metadata
+        describing Earth science datasets hosted by the Microsoft Planetary Computer","title":"Microsoft
+        Planetary Computer STAC API","stac_version":"1.0.0-beta.2","links":[{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/","rel":"self","type":"application/json"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/docs","rel":"docs","type":"text/html","title":"OpenAPI
+        docs"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance","rel":"conformance","type":"application/json","title":"STAC/WFS3
+        conformance classes implemented by this server"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","rel":"search","type":"application/geo+json","title":"STAC
+        search"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/aster-l1t","rel":"child","type":"application/json","title":"ASTER
+        L1T"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2","rel":"child","type":"application/json","title":"Landsat
+        8 Collection 2 Level-2"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a","rel":"child","type":"application/json","title":"Sentinel-2
+        Level-2A"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip","rel":"child","type":"application/json","title":"NAIP:
+        National Agriculture Imagery Program"}],"conformsTo":["https://api.stacspec.org/v1.0.0-beta.1/core","https://api.stacspec.org/v1.0.0-beta.1/item-search","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"]}'
+    headers:
+      Connection:
+      - close
+      Content-Length:
+      - '1742'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 16 Jun 2021 03:35:03 GMT
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      X-Azure-Ref:
+      - 0aHHJYAAAAAABvxWIUUVxTr47sh0lktjTQk9TMzFFREdFMDQwNwA5MjdhYmZhNi0xOWY2LTRhZjEtYTA5ZC1jOTU5ZDlhMWU2NDQ=
+      X-Cache:
+      - CONFIG_NOCACHE
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Connection:
+      - close
+      Host:
+      - planetarycomputer.microsoft.com
+      User-Agent:
+      - Python-urllib/3.9
+    method: GET
+    uri: https://planetarycomputer.microsoft.com/api/stac/v1/
+  response:
+    body:
+      string: '{"id":"microsoft-pc","description":"Searchable spatiotemporal metadata
+        describing Earth science datasets hosted by the Microsoft Planetary Computer","title":"Microsoft
+        Planetary Computer STAC API","stac_version":"1.0.0-beta.2","links":[{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/","rel":"self","type":"application/json"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/docs","rel":"docs","type":"text/html","title":"OpenAPI
+        docs"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance","rel":"conformance","type":"application/json","title":"STAC/WFS3
+        conformance classes implemented by this server"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","rel":"search","type":"application/geo+json","title":"STAC
+        search"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/aster-l1t","rel":"child","type":"application/json","title":"ASTER
+        L1T"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2","rel":"child","type":"application/json","title":"Landsat
+        8 Collection 2 Level-2"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a","rel":"child","type":"application/json","title":"Sentinel-2
+        Level-2A"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip","rel":"child","type":"application/json","title":"NAIP:
+        National Agriculture Imagery Program"}],"conformsTo":["https://api.stacspec.org/v1.0.0-beta.1/core","https://api.stacspec.org/v1.0.0-beta.1/item-search","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"]}'
+    headers:
+      Connection:
+      - close
+      Content-Length:
+      - '1742'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 16 Jun 2021 03:35:03 GMT
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      X-Azure-Ref:
+      - 0aHHJYAAAAADp5e7b5V5kTIOeDPi5qlrIQk9TMzFFREdFMDQxMgA5MjdhYmZhNi0xOWY2LTRhZjEtYTA5ZC1jOTU5ZDlhMWU2NDQ=
+      X-Cache:
+      - CONFIG_NOCACHE
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Connection:
+      - close
+      Host:
+      - planetarycomputer.microsoft.com
+      User-Agent:
+      - Python-urllib/3.9
+    method: GET
+    uri: https://planetarycomputer.microsoft.com/api/stac/v1/
+  response:
+    body:
+      string: '{"id":"microsoft-pc","description":"Searchable spatiotemporal metadata
+        describing Earth science datasets hosted by the Microsoft Planetary Computer","title":"Microsoft
+        Planetary Computer STAC API","stac_version":"1.0.0-beta.2","links":[{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/","rel":"self","type":"application/json"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/docs","rel":"docs","type":"text/html","title":"OpenAPI
+        docs"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance","rel":"conformance","type":"application/json","title":"STAC/WFS3
+        conformance classes implemented by this server"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","rel":"search","type":"application/geo+json","title":"STAC
+        search"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/aster-l1t","rel":"child","type":"application/json","title":"ASTER
+        L1T"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2","rel":"child","type":"application/json","title":"Landsat
+        8 Collection 2 Level-2"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a","rel":"child","type":"application/json","title":"Sentinel-2
+        Level-2A"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip","rel":"child","type":"application/json","title":"NAIP:
+        National Agriculture Imagery Program"}],"conformsTo":["https://api.stacspec.org/v1.0.0-beta.1/core","https://api.stacspec.org/v1.0.0-beta.1/item-search","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"]}'
+    headers:
+      Connection:
+      - close
+      Content-Length:
+      - '1742'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 16 Jun 2021 03:35:04 GMT
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      X-Azure-Ref:
+      - 0aHHJYAAAAAB31kYKJctcSp7+406VWpkBQk9TMzFFREdFMDQxMQA5MjdhYmZhNi0xOWY2LTRhZjEtYTA5ZC1jOTU5ZDlhMWU2NDQ=
+      X-Cache:
+      - CONFIG_NOCACHE
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Connection:
+      - close
+      Host:
+      - planetarycomputer.microsoft.com
+      User-Agent:
+      - Python-urllib/3.9
+    method: GET
+    uri: https://planetarycomputer.microsoft.com/api/stac/v1/
+  response:
+    body:
+      string: '{"id":"microsoft-pc","description":"Searchable spatiotemporal metadata
+        describing Earth science datasets hosted by the Microsoft Planetary Computer","title":"Microsoft
+        Planetary Computer STAC API","stac_version":"1.0.0-beta.2","links":[{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/","rel":"self","type":"application/json"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/docs","rel":"docs","type":"text/html","title":"OpenAPI
+        docs"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance","rel":"conformance","type":"application/json","title":"STAC/WFS3
+        conformance classes implemented by this server"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","rel":"search","type":"application/geo+json","title":"STAC
+        search"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/aster-l1t","rel":"child","type":"application/json","title":"ASTER
+        L1T"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2","rel":"child","type":"application/json","title":"Landsat
+        8 Collection 2 Level-2"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a","rel":"child","type":"application/json","title":"Sentinel-2
+        Level-2A"},{"href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip","rel":"child","type":"application/json","title":"NAIP:
+        National Agriculture Imagery Program"}],"conformsTo":["https://api.stacspec.org/v1.0.0-beta.1/core","https://api.stacspec.org/v1.0.0-beta.1/item-search","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"]}'
+    headers:
+      Connection:
+      - close
+      Content-Length:
+      - '1742'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 16 Jun 2021 03:35:04 GMT
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      X-Azure-Ref:
+      - 0aHHJYAAAAAA56uX5sJApSbLHf3Ww7GrQQk9TMzFFREdFMDQxOQA5MjdhYmZhNi0xOWY2LTRhZjEtYTA5ZC1jOTU5ZDlhMWU2NDQ=
+      X-Cache:
+      - CONFIG_NOCACHE
+    status:
+      code: 200
+      message: OK
 version: 1
