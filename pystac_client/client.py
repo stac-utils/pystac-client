@@ -93,9 +93,7 @@ class Client(pystac.Catalog, ConformanceMixin):
         return catalog
 
     @classmethod
-    def from_file(
-        cls, href: str, stac_io: Optional[pystac.StacIO] = None
-    ) -> "STACObject":
+    def from_file(cls, href: str, stac_io: Optional[pystac.StacIO] = None) -> "STACObject":
         """Reads a STACObject implementation from a file.
 
         Args:
@@ -276,7 +274,8 @@ class Client(pystac.Catalog, ConformanceMixin):
 
         search_link = self.get_single_link('search')
         if search_link is None:
-            raise NotImplementedError('No link with "rel" type of "search" could be found in this catalog')
+            raise NotImplementedError(
+                'No link with "rel" type of "search" could be found in this catalog')
 
         return ItemSearch(search_link.target,
                           conformance=self.conformance,

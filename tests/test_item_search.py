@@ -195,7 +195,7 @@ class TestItemSearchParams:
             url=SEARCH_URL,
             ids='m_3510836_se_12_060_20180508_20190331,m_3510840_se_12_060_20180504_20190331')
         assert search._parameters['ids'] == ('m_3510836_se_12_060_20180508_20190331',
-                                              'm_3510840_se_12_060_20180504_20190331')
+                                             'm_3510840_se_12_060_20180504_20190331')
 
     def test_list_of_id_strings(self):
         # List of IDs
@@ -203,7 +203,7 @@ class TestItemSearchParams:
             url=SEARCH_URL,
             ids=['m_3510836_se_12_060_20180508_20190331', 'm_3510840_se_12_060_20180504_20190331'])
         assert search._parameters['ids'] == ('m_3510836_se_12_060_20180508_20190331',
-                                              'm_3510840_se_12_060_20180504_20190331')
+                                             'm_3510840_se_12_060_20180504_20190331')
 
     def test_generator_of_id_string(self):
         # Generator of IDs
@@ -214,7 +214,7 @@ class TestItemSearchParams:
 
         search = ItemSearch(url=SEARCH_URL, ids=ids())
         assert search._parameters['ids'] == ('m_3510836_se_12_060_20180508_20190331',
-                                              'm_3510840_se_12_060_20180504_20190331')
+                                             'm_3510840_se_12_060_20180504_20190331')
 
     def test_intersects_dict(self):
         # Dict input

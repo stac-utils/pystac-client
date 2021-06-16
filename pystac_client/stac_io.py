@@ -31,7 +31,11 @@ class StacApiIO(DefaultStacIO):
         self.session = Session()
         self.session.headers.update(headers or {})
 
-    def read_text(self, source: Union[str, Link], *args: Any, parameters: Optional[dict] = {}, **kwargs: Any) -> str:
+    def read_text(self,
+                  source: Union[str, Link],
+                  *args: Any,
+                  parameters: Optional[dict] = {},
+                  **kwargs: Any) -> str:
         """Overwrites the default method for reading text from a URL or file to allow :class:`urllib.request.Request`
         instances as input. This method also raises any :exc:`urllib.error.HTTPError` exceptions rather than catching
         them to allow us to handle different response status codes as needed."""
@@ -63,7 +67,9 @@ class StacApiIO(DefaultStacIO):
                 parameters = {}
             return self.request(href, *args, method=method, headers=headers, parameters=parameters)
 
-    def request(self, href: str, method: Optional[str] = 'GET',
+    def request(self,
+                href: str,
+                method: Optional[str] = 'GET',
                 headers: Optional[dict] = {},
                 parameters: Optional[dict] = {}) -> str:
         if method == 'POST':

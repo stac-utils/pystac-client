@@ -1,4 +1,3 @@
-
 class APIError(Exception):
     """Raised when unexpected server error."""
 

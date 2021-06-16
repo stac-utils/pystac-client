@@ -14,7 +14,6 @@ from pystac.stac_io import StacIO
 from pystac_client.stac_io import StacApiIO
 from pystac_client.conformance import ConformanceMixin
 
-
 DATETIME_REGEX = re.compile(
     r"(?P<year>\d{4})(\-(?P<month>\d{2})(\-(?P<day>\d{2})"
     r"(?P<remainder>(T|t)\d{2}:\d{2}:\d{2}(\.\d+)?(Z|([-+])(\d{2}):(\d{2})))?)?)?")
@@ -144,22 +143,20 @@ class ItemSearch(ConformanceMixin):
         A list of conformance URIs indicating the specs that this service conforms to. Note that these are *not*
         published as part of the ``"search"`` endpoint and must be obtained from the service's landing page.
     """
-    def __init__(
-        self,
-        url: str,
-        conformance: Optional[str] = None,
-        *,
-        limit: Optional[int] = None,
-        bbox: Optional[BBoxLike] = None,
-        datetime: Optional[DatetimeLike] = None,
-        intersects: Optional[IntersectsLike] = None,
-        ids: Optional[IDsLike] = None,
-        collections: Optional[CollectionsLike] = None,
-        query: Optional[QueryLike] = None,
-        max_items: Optional[int] = None,
-        method: Optional[str] = 'POST',
-        stac_io: Optional[StacIO] = None
-    ):
+    def __init__(self,
+                 url: str,
+                 conformance: Optional[str] = None,
+                 *,
+                 limit: Optional[int] = None,
+                 bbox: Optional[BBoxLike] = None,
+                 datetime: Optional[DatetimeLike] = None,
+                 intersects: Optional[IntersectsLike] = None,
+                 ids: Optional[IDsLike] = None,
+                 collections: Optional[CollectionsLike] = None,
+                 query: Optional[QueryLike] = None,
+                 max_items: Optional[int] = None,
+                 method: Optional[str] = 'POST',
+                 stac_io: Optional[StacIO] = None):
         self.url = url
         self.conformance = conformance
         self.conforms_to("item-search")
@@ -375,7 +372,8 @@ class ItemSearch(ConformanceMixin):
             yield page
 
             # get the next link and make the next request
-            next_link = next((link for link in page.get('links', []) if link['rel'] == 'next'), None)
+            next_link = next((link for link in page.get('links', []) if link['rel'] == 'next'),
+                             None)
 
     def get_item_collections(self) -> Iterator[ItemCollection]:
         """Iterator that yields ItemCollection objects.  Each ItemCollection is a page of results
