@@ -1,6 +1,7 @@
 from dateutil.tz import tzutc
 from dateutil.relativedelta import relativedelta
 import json
+import math
 import re
 import logging
 from collections.abc import Iterable, Mapping
@@ -194,6 +195,44 @@ class ItemSearch(ConformanceMixin):
 
         self._parameters = {k: v for k, v in params.items() if v is not None}
 
+    @property
+    def datetime(self):
+        dt = self._parameters.get('datetime', None)
+        if dt is None:
+            return None
+        parts = dt.split('/')
+        if len(parts) == 1:
+            return [datetime_.fromisoformat(parts[0])]
+        elif len(parts) == 2:
+            return [datetime_.fromisoformat(parts[0]), datetime_.fromisoformat(parts[1])]
+        return None
+
+    def split_by_datetimes(self, num_item_searches=2):
+        datetimes = self.datetime
+        if datetimes is None or len(datetimes) != 2:
+            raise Exception("Datetime parameter with a start and end required to split a search")
+        delta = datetimes[1] - datetimes[0]
+        hours_per_search = math.ceil(delta.total_seconds()/3600/num_item_searches)
+        periods = []
+        for i in range(0, num_item_searches-1):
+            dt1 = datetimes[0] + datetime_.timedelta(hours=hours_per_search*i)
+            dt2 = dt1 + datetime_.timedelta(hours=hours_per_search) - datetime_.timedelta(seconds=1)
+            periods.append([dt1, dt2])
+        # insert last one
+        periods.append([
+            periods[-1][1] + datetime_.timedelta(seconds=1),
+            datetimes[1]
+        ])
+
+        # create new ItemSearch objects for each datetime period
+        searches = []
+        for p in periods:
+            new_params = deepcopy(self._parameters)
+            new_params['datetime'] = f"{p[0].isoformat('T') + 'Z'}/{p[1].isoformat('T') + 'Z'}"
+            search = ItemSearch(self.url, self.conformance, stac_io=self._stac_io, **new_params)
+            searches.append(search)
+        return searches
+
     '''
     def format_parameters(self, method='GET'):
         if method == 'POST':
@@ -205,10 +244,11 @@ class ItemSearch(ConformanceMixin):
             raise APIError("Unsupported method")
     '''
 
-    @staticmethod
-    def _format_query(value: List[QueryLike]) -> Optional[dict]:
+    def _format_query(self, value: List[QueryLike]) -> Optional[dict]:
         if value is None:
             return None
+
+        self.conforms_to("item-search#query")
 
         OP_MAP = {'>=': 'gte', '<=': 'lte', '=': 'eq', '>': 'gt', '<': 'lt'}
 
@@ -237,8 +277,7 @@ class ItemSearch(ConformanceMixin):
 
         return bbox
 
-    @staticmethod
-    def _format_datetime(value: Optional[DatetimeLike]) -> Optional[Datetime]:
+    def _format_datetime(self, value: Optional[DatetimeLike]) -> Optional[Datetime]:
         def _to_utc_isoformat(dt):
             dt = dt.astimezone(timezone.utc)
             dt = dt.replace(tzinfo=None)
