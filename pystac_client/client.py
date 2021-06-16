@@ -188,7 +188,7 @@ class Client(pystac.Catalog, ConformanceMixin):
         """
         return self.get_child_links()
 
-    def search(self, **kwargs: Any) -> ItemSearch:
+    def search(self, method: str = 'POST', **kwargs: Any) -> ItemSearch:
         """Query the ``/search`` endpoint using the given parameters. 
 
         This method returns an :class:`~pystac_client.ItemSearch` instance, see that class's documentation
@@ -204,7 +204,8 @@ class Client(pystac.Catalog, ConformanceMixin):
 
         Parameters
         ----------
-        Any parameter to the ItemSearch class, other than `url`, `conformance`, and `stac_io` which are set
+        method : The request method, 'GET' or 'POST' (default) 
+        **kwargs : Any pameter to the ItemSearch class, other than `url`, `conformance`, and `stac_io` which are set
         from this Client instance
 
         Returns
@@ -223,5 +224,6 @@ class Client(pystac.Catalog, ConformanceMixin):
         if search_link is None:
             raise NotImplementedError(
                 'No link with "rel" type of "search" could be found in this catalog')
+        # TODO - check method in provided search link against method requested here
 
         return ItemSearch(search_link.target, conformance=self.conformance, stac_io=self._stac_io, **kwargs)
