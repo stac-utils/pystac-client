@@ -411,6 +411,22 @@ class ItemSearch(ConformanceMixin):
         logger.warning("Search.items is deprecated, please use get_items")
         return self.get_items()
 
+    def get_all_items_as_dict(self) -> Dict:
+        """Convenience method that gets all items from all pages, up to self._max_items,
+         and returns an array of dictionaries
+
+        Returns
+        ------
+        Dict : A GeoJSON FeatureCollection
+        """
+        features = []
+        for page in self.get_pages():
+            for feature in page['features']:
+                features.append(feature)
+                if self._max_items and len(features) >= self._max_items:
+                    return {"type": "FeatureCollection", "features": features}
+        return {"type": "FeatureCollection", "features": features}
+
     def get_all_items(self) -> ItemCollection:
         """Convenience method that builds an :class:`ItemCollection` from all items matching the given search parameters.
 
@@ -418,10 +434,5 @@ class ItemSearch(ConformanceMixin):
         ------
         item_collection : ItemCollection
         """
-        items = []
-        for page in self.get_pages():
-            for feature in page['features']:
-                items.append(Item.from_dict(feature))
-                if self._max_items and len(items) >= self._max_items:
-                    return ItemCollection(items)
-        return ItemCollection(items)
+        feature_collection = self.get_all_items_as_dict()
+        return ItemCollection(feature_collection['features'])
