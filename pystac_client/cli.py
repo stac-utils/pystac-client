@@ -25,12 +25,12 @@ def search(url=STAC_URL, matched=False, save=None, headers=None, **kwargs):
             matched = search.matched()
             print('%s items matched' % matched)
         else:
-            items = search.get_all_items()
+            feature_collection = search.get_all_items_as_dict()
             if save:
                 with open(save, 'w') as f:
-                    f.write(json.dumps(items.to_dict()))
+                    f.write(json.dumps(feature_collection))
             else:
-                print(json.dumps(items.to_dict()))
+                print(json.dumps(feature_collection))
 
     except Exception as e:
         print(e)
