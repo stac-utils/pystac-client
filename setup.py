@@ -30,8 +30,8 @@ setup(
     install_requires=[
         "python-dateutil>=2.7.0",
         "requests~=2.25.1",
-        #"pystac~=1.0.0b3"
-        "pystac @ git+https://github.com/stac-utils/pystac.git@e7d4bdc6f29e1853154b73e3de2c479e0905a9ce"
+        "pystac~=1.0.0rc1"
+        #"pystac @ git+https://github.com/stac-utils/pystac.git@e7d4bdc6f29e1853154b73e3de2c479e0905a9ce"
     ],
     extras_require={
         "validation": ["jsonschema==3.2.0"]
