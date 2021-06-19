@@ -83,8 +83,8 @@ class ConformanceMixin:
 
         Parameters
         ----------
-        spec : str or ConformanceClass
-            Either a :class:`~pystac_client.conformance.ConformanceClass` instance or the URI string for the spec.
+        key : str
+            The ``ConformanceClasses`` key to check conformance against.
 
         Returns
         -------
