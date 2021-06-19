@@ -27,10 +27,9 @@ def search(url=STAC_URL, matched=False, save=None, headers=None, **kwargs):
         else:
             feature_collection = search.get_all_items_as_dict()
             if save:
-                with open(save, 'w') as f:
-                    f.write(json.dumps(feature_collection))
+                catalog._stac_io.save_json(feature_collection)
             else:
-                print(json.dumps(feature_collection))
+                print(catalog._stac_io._json_dumps(feature_collection))
 
     except Exception as e:
         logger.error(e, exc_info=True)
