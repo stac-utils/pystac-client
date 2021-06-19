@@ -97,7 +97,9 @@ class ConformanceMixin:
         if self.conformance is None:
             return True
 
-        conformance_class = CONFORMANCE_CLASSES[key]
+        conformance_class = CONFORMANCE_CLASSES.get(key, None)
+        if conformance_class is None:
+            raise Exception("Invalid conformance class {key}")
 
         if not any(uri in conformance_class["uris"] for uri in self.conformance):
             raise NotImplementedError(f"{conformance_class['name']} not supported")
