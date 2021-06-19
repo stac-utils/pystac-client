@@ -93,44 +93,6 @@ class Client(pystac.Catalog, ConformanceMixin):
         return catalog
 
     @classmethod
-    def from_file(cls, href: str, stac_io: Optional[pystac.StacIO] = None) -> "STACObject":
-        """Reads a STACObject implementation from a file.
-
-        Args:
-            href : The HREF to read the object from.
-            stac_io: Optional instance of StacIO to use. If not provided, will use the
-                default instance.
-
-        Returns:
-            The specific STACObject implementation class that is represented
-            by the JSON read from the file located at HREF.
-        """
-        if stac_io is None:
-            stac_io = pystac.StacIO.default()
-
-        if not is_absolute_href(href):
-            href = make_absolute_href(href)
-
-        if cls == STACObject:
-            o = stac_io.read_stac_object(href)
-        else:
-            d = stac_io.read_json(href)
-            o = cls.from_dict(d, href=href)
-            o._stac_io = stac_io
-
-        # Set the self HREF, if it's not already set to something else.
-        if o.get_self_href() is None:
-            o.set_self_href(href)
-
-        # If this is a root catalog, set the root to the catalog instance.
-        root_link = o.get_root_link()
-        if root_link is not None:
-            if not root_link.is_resolved():
-                if root_link.get_absolute_href() == href:
-                    o.set_root(cast(pystac.Catalog, o))
-        return o
-
-    @classmethod
     def from_dict(
         cls,
         d,
