@@ -27,7 +27,7 @@ False
 >>> 'http://stacspec.org/spec/api/1.0.0-beta.2' in STAC_API_CORE
 True
 """
-from typing import List
+from typing import List, Optional
 
 STAC_PREFIXES = ['https://api.stacspec.org/v1.0.0-beta.2', 'https://api.stacspec.org/v1.0.0-beta.1']
 
@@ -69,8 +69,7 @@ class ConformanceMixin:
     _conformance = []
 
     @property
-    def conformance(self) -> List[str]:
-        """Overwrite in the sub-class to list the conformance URIs for this object."""
+    def conformance(self) -> Optional[List[str]]:
         return self._conformance
 
     @conformance.setter
