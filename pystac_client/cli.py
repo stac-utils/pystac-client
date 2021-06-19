@@ -136,8 +136,7 @@ def cli():
         logging.basicConfig(stream=sys.stdout, level=loglevel)
         # coloredlogs.install(level=loglevel, logger=logger)
         # quiet loggers
-        for lg in ['urllib3']:
-            logging.getLogger(lg).propagate = False
+        logging.getLogger("urllib3").propagate = False
 
     if args.get('url', None) is None:
         raise RuntimeError('No STAC URL provided')
