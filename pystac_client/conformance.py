@@ -100,13 +100,7 @@ class ConformanceMixin:
 
         conformance_class = CONFORMANCE_CLASSES[key]
 
-        def check_conformance():
-            for uri in conformance_class["uris"]:
-                if uri in self.conformance:
-                    return True
-            return False
-
-        if not check_conformance():
+        if not any(uri in conformance_class["uris"] for uri in self.conformance):
             raise NotImplementedError(f"{conformance_class['name']} not supported")
 
         return True

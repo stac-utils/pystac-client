@@ -132,8 +132,7 @@ def cli():
     if args.get('save', False) or args.get('matched', False):
         logging.basicConfig(stream=sys.stdout, level=loglevel)
         # quiet loggers
-        for lg in ['urllib3']:
-            logging.getLogger(lg).propagate = False
+        logging.getLogger("urllib3").propagate = False
 
     if args.get('url', None) is None:
         raise RuntimeError('No STAC URL provided')
