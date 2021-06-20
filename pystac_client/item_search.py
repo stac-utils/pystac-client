@@ -340,7 +340,7 @@ class ItemSearch(ConformanceMixin):
         return deepcopy(getattr(value, '__geo_interface__', value))
 
     def matched(self) -> int:
-       params = {**self._parameters, "limit": 0}
+        params = {**self._parameters, "limit": 0}
         resp = self._stac_io.read_json(self.url, method=self.method, parameters=params)
         found = None
         if 'context' in resp:
