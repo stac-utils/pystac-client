@@ -344,7 +344,7 @@ class ItemSearch(ConformanceMixin):
         if value is None:
             return None
 
-        self.conforms_to("item-search#sort")
+        self.conforms_to(ConformanceClasses.SORT)
 
         if isinstance(value, str):
             return tuple(value.split(','))
@@ -355,7 +355,7 @@ class ItemSearch(ConformanceMixin):
         if value is None:
             return None
 
-        self.conforms_to("item-search#fields")
+        self.conforms_to(ConformanceClasses.FIELDS)
 
         if isinstance(value, str):
             return tuple(value.split(','))
