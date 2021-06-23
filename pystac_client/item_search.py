@@ -2,7 +2,6 @@ from dateutil.tz import tzutc
 from dateutil.relativedelta import relativedelta
 import json
 import re
-import logging
 from collections.abc import Iterable, Mapping
 from copy import deepcopy
 from datetime import timezone, datetime as datetime_

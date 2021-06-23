@@ -42,7 +42,8 @@ class ConformanceClasses(Enum):
     QUERY = 'item-search#query'
     FILTER = 'item-search#filter'
 
-CONFORMANCE_URIS = {c.name: [f"{p}/{c.value}" for p in STAC_PREFIXES] for c in ConformanceClasses  }
+
+CONFORMANCE_URIS = {c.name: [f"{p}/{c.value}" for p in STAC_PREFIXES] for c in ConformanceClasses}
 
 
 class ConformanceMixin:
