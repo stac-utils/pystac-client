@@ -250,7 +250,7 @@ class TestItemSearch:
             max_items=20,
             limit=10,
         )
-        results = search.items()
+        results = search.get_items()
 
         assert all(isinstance(item, pystac.Item) for item in results)
 
@@ -264,7 +264,7 @@ class TestItemSearch:
             url=SEARCH_URL,
             ids=ids,
         )
-        results = list(search.items())
+        results = list(search.get_items())
 
         assert len(results) == 2
         assert all(item.id in ids for item in results)
@@ -274,13 +274,13 @@ class TestItemSearch:
         # Datetime range string
         datetime_ = '2019-01-01T00:00:01Z/2019-01-01T00:00:10Z'
         search = ItemSearch(url=SEARCH_URL, datetime=datetime_)
-        results = list(search.items())
+        results = list(search.get_items())
         assert len(results) == 33
 
         min_datetime = datetime(2019, 1, 1, 0, 0, 1, tzinfo=tzutc())
         max_datetime = datetime(2019, 1, 1, 0, 0, 10, tzinfo=tzutc())
         search = ItemSearch(url=SEARCH_URL, datetime=(min_datetime, max_datetime))
-        results = search.items()
+        results = search.get_items()
         assert all(min_datetime <= item.datetime <= (max_datetime + timedelta(seconds=1))
                    for item in results)
 
@@ -294,7 +294,7 @@ class TestItemSearch:
                              [-73.21, 43.99]]]
         }
         search = ItemSearch(url=SEARCH_URL, intersects=intersects_dict, collections='naip')
-        results = list(search.items())
+        results = list(search.get_items())
         assert len(results) == 30
 
         # Geo-interface object
@@ -303,7 +303,7 @@ class TestItemSearch:
 
         intersects_obj = MockGeoObject()
         search = ItemSearch(url=SEARCH_URL, intersects=intersects_obj, collections='naip')
-        results = search.items()
+        results = search.get_items()
         assert all(isinstance(item, pystac.Item) for item in results)
 
     @pytest.mark.vcr
@@ -317,7 +317,7 @@ class TestItemSearch:
         )
 
         # Check that the current page changes on the ItemSearch instance when a new page is requested
-        pages = list(search.item_collections())
+        pages = list(search.get_item_collections())
 
         assert pages[1] != pages[2]
         assert pages[1].items != pages[2].items
