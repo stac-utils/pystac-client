@@ -12,7 +12,7 @@ from pystac import Collection, Item, ItemCollection, Link
 from pystac.stac_io import StacIO
 
 from pystac_client.stac_io import StacApiIO
-from pystac_client.conformance import ConformanceMixin
+from pystac_client.conformance import ConformanceClasses, ConformanceMixin
 
 DATETIME_REGEX = re.compile(
     r"(?P<year>\d{4})(\-(?P<month>\d{2})(\-(?P<day>\d{2})"
@@ -159,7 +159,7 @@ class ItemSearch(ConformanceMixin):
                  stac_io: Optional[StacIO] = None):
         self.url = url
         self.conformance = conformance
-        self.conforms_to("item-search")
+        self.conforms_to(ConformanceClasses.ITEM_SEARCH)
 
         if stac_io:
             self._stac_io = stac_io

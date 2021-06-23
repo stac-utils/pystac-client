@@ -7,7 +7,7 @@ from pystac.link import Link
 from pystac.errors import STACTypeError
 import pystac.validation
 
-from pystac_client.conformance import ConformanceMixin
+from pystac_client.conformance import ConformanceClasses, ConformanceMixin
 from pystac_client.item_search import (BBoxLike, CollectionsLike, DatetimeLike, IDsLike,
                                        IntersectsLike, QueryLike, ItemSearch)
 from pystac.serialization import (identify_stac_object, migrate_to_latest)
@@ -54,7 +54,7 @@ class Client(pystac.Catalog, ConformanceMixin):
                          catalog_type=catalog_type)
 
         self.conformance = conformance
-        self.conforms_to("core")
+        self.conforms_to(ConformanceClasses.CORE)
         self.headers = headers or {}
 
     def __repr__(self):

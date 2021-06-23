@@ -6,7 +6,7 @@ import pystac
 import pytest
 
 from pystac_client import Client
-from pystac_client.conformance import CONFORMANCE_CLASSES
+from pystac_client.conformance import ConformanceClasses
 
 from .helpers import STAC_URLS, TEST_DATA, read_data_file
 
@@ -47,7 +47,7 @@ class TestAPI:
         assert api.conformance == api_content['conformsTo']
         # Check the conformance to STAC API - Core using the ConformanceClass
 
-        assert api.conforms_to('core')
+        assert api.conforms_to(ConformanceClasses.CORE)
 
     @pytest.mark.vcr
     def test_no_conformance(self):
@@ -116,8 +116,7 @@ class TestAPISearch:
 
         with pytest.raises(NotImplementedError) as excinfo:
             api.search(limit=10, max_items=10, collections='mr-peebles')
-
-        assert CONFORMANCE_CLASSES['item-search']['name'] in str(excinfo.value)
+        assert str(ConformanceClasses.ITEM_SEARCH) in str(excinfo.value)
 
     def test_no_search_link(self, api):
         # Remove the search link
