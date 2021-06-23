@@ -1,6 +1,7 @@
 interactions:
 - request:
-    body: '{"ids": ["m_3510836_se_12_060_20180508_20190331", "m_3510840_se_12_060_20180504_20190331"]}'
+    body: '{"ids": ["S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE",
+      "fl_m_2608004_nw_17_060_20191215_20200113"]}'
     headers:
       Accept:
       - '*/*'
@@ -9,82 +10,125 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '91'
+      - '122'
       Content-Type:
       - application/json
       User-Agent:
       - python-requests/2.25.1
     method: POST
-    uri: https://eod-catalog-svc-prod.astraea.earth/search
+    uri: https://planetarycomputer.microsoft.com/api/stac/v1/search
   response:
     body:
-      string: !!binary |
-        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
+      string: '{"type":"FeatureCollection","context":{"returned":2,"limit":10,"matched":2},"features":[{"collection":"sentinel-2-l2a","id":"S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE","type":"Feature","stac_version":"1.0.0-beta.2","properties":{"platform":"Sentinel-2B","constellation":"Sentinel
+        2","instruments":["msi"],"eo:cloud_cover":40.300308,"sat:orbit_state":"ascending","sat:relative_orbit":66,"proj:epsg":32633,"s2:product_uri":"S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE","s2:generation_time":"2021-06-13T18:50:24.919Z","s2:processing_baseline":"02.12","s2:product_type":"S2MSI2A","s2:datatake_id":"GS2B_20210610T115639_022257_N02.12","s2:datatake_type":"INS-NOBS","s2:datastrip_id":"S2B_OPER_MSI_L2A_DS_ESRI_20210613T185025_S20210610T115641_N02.12","s2:granule_id":"S2B_OPER_MSI_L2A_TL_ESRI_20210613T185025_A022257_T33XXG_N02.12","s2:mgrs_tile":"33XXG","s2:reflectance_conversion_factor":0.971007319606529,"s2:degraded_msi_data_percentage":0.0,"s2:nodata_pixel_percentage":3e-6,"s2:saturated_defective_pixel_percentage":0.0,"s2:dark_features_percentage":0.487974,"s2:cloud_shadow_percentage":0.129293,"s2:vegetation_percentage":0.009277,"s2:not_vegetated_percentage":0.395938,"s2:water_percentage":30.894157,"s2:unclassified_percentage":0.213277,"s2:medium_proba_clouds_percentage":4.285321,"s2:high_proba_clouds_percentage":32.37772,"s2:thin_cirrus_percentage":3.637267,"s2:snow_ice_percentage":27.569774,"s2:mean_solar_zenith":55.700329516402,"s2:mean_solar_azimuth":204.095797943539,"datetime":"2021-06-10T11:56:39.024000Z"},"geometry":{"coordinates":[[[19.43601359,78.33903651],[24.24559515,78.22419355],[23.54575175,77.25212444],[19.09619974,77.35788083],[19.43601359,78.33903651]]],"type":"Polygon"},"bbox":[19.096199742228844,77.25212443924296,24.245595153959755,78.33903650786452],"assets":{"safe-manifest":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/manifest.safe","type":"application/xml","roles":["metadata"]},"product-metadata":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/MTD_MSIL2A.xml","type":"application/xml","roles":["metadata"]},"granule-metadata":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/MTD_TL.xml","type":"application/xml","roles":["metadata"]},"inspire-metadata":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/INSPIRE.xml","type":"application/xml","roles":["metadata"]},"datastrip-metadata":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/DATASTRIP/DS_ESRI_20210613T185025_S20210610T115641/MTD_DS.xml","type":"application/xml","roles":["metadata"]},"B02_20m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R20m/T33XXG_20210610T115639_B02_20m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 2 - Blue - 20m","eo:bands":[{"name":"B02","common_name":"blue","description":"Band
+        2 - Blue","center_wavelength":0.49,"full_width_half_max":0.098}],"proj:shape":[5490,5490],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[20.0,0.0,600000.0,0.0,-20.0,8700000.0],"roles":["data"]},"B03_20m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R20m/T33XXG_20210610T115639_B03_20m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 3 - Green - 20m","eo:bands":[{"name":"B03","common_name":"green","description":"Band
+        3 - Green","center_wavelength":0.56,"full_width_half_max":0.045}],"proj:shape":[5490,5490],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[20.0,0.0,600000.0,0.0,-20.0,8700000.0],"roles":["data"]},"B04_20m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R20m/T33XXG_20210610T115639_B04_20m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 4 - Red - 20m","eo:bands":[{"name":"B04","common_name":"red","description":"Band
+        4 - Red","center_wavelength":0.665,"full_width_half_max":0.038}],"proj:shape":[5490,5490],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[20.0,0.0,600000.0,0.0,-20.0,8700000.0],"roles":["data"]},"B05":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R20m/T33XXG_20210610T115639_B05_20m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 5 - Vegetation
+        red edge 1 - 20m","eo:bands":[{"name":"B05","common_name":"rededge","description":"Band
+        5 - Vegetation red edge 1","center_wavelength":0.704,"full_width_half_max":0.019}],"gsd":20,"proj:shape":[5490,5490],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[20.0,0.0,600000.0,0.0,-20.0,8700000.0],"roles":["data"]},"B06":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R20m/T33XXG_20210610T115639_B06_20m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 6 - Vegetation
+        red edge 2 - 20m","eo:bands":[{"name":"B06","common_name":"rededge","description":"Band
+        6 - Vegetation red edge 2","center_wavelength":0.74,"full_width_half_max":0.018}],"gsd":20,"proj:shape":[5490,5490],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[20.0,0.0,600000.0,0.0,-20.0,8700000.0],"roles":["data"]},"B07":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R20m/T33XXG_20210610T115639_B07_20m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 7 - Vegetation
+        red edge 3 - 20m","eo:bands":[{"name":"B07","common_name":"rededge","description":"Band
+        7 - Vegetation red edge 3","center_wavelength":0.783,"full_width_half_max":0.028}],"gsd":20,"proj:shape":[5490,5490],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[20.0,0.0,600000.0,0.0,-20.0,8700000.0],"roles":["data"]},"B8A":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R20m/T33XXG_20210610T115639_B8A_20m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 8A - Vegetation
+        red edge 4 - 20m","eo:bands":[{"name":"B8A","common_name":"rededge","description":"Band
+        8A - Vegetation red edge 4","center_wavelength":0.865,"full_width_half_max":0.033}],"gsd":20,"proj:shape":[5490,5490],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[20.0,0.0,600000.0,0.0,-20.0,8700000.0],"roles":["data"]},"B11":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R20m/T33XXG_20210610T115639_B11_20m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 11 - SWIR (1.6)
+        - 20m","eo:bands":[{"name":"B11","common_name":"swir16","description":"Band
+        11 - SWIR (1.6)","center_wavelength":1.61,"full_width_half_max":0.143}],"gsd":20,"proj:shape":[5490,5490],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[20.0,0.0,600000.0,0.0,-20.0,8700000.0],"roles":["data"]},"B12":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R20m/T33XXG_20210610T115639_B12_20m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 12 - SWIR (2.2)
+        - 20m","eo:bands":[{"name":"B12","common_name":"swir22","description":"Band
+        12 - SWIR (2.2)","center_wavelength":2.19,"full_width_half_max":0.242}],"gsd":20,"proj:shape":[5490,5490],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[20.0,0.0,600000.0,0.0,-20.0,8700000.0],"roles":["data"]},"SCL-20m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R20m/T33XXG_20210610T115639_SCL_20m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Scene classfication
+        map (SCL)","proj:shape":[5490,5490],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[20.0,0.0,600000.0,0.0,-20.0,8700000.0],"roles":["data"]},"AOT-20m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R20m/T33XXG_20210610T115639_AOT_20m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Aerosol optical thickness
+        (AOT)","proj:shape":[5490,5490],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[20.0,0.0,600000.0,0.0,-20.0,8700000.0],"roles":["data"]},"WVP-20m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R20m/T33XXG_20210610T115639_WVP_20m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Water vapour (WVP)","proj:shape":[5490,5490],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[20.0,0.0,600000.0,0.0,-20.0,8700000.0],"roles":["data"]},"visual-20m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R20m/T33XXG_20210610T115639_TCI_20m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"True color image","eo:bands":[{"name":"B04","common_name":"red","description":"Band
+        4 - Red","center_wavelength":0.665,"full_width_half_max":0.038},{"name":"B03","common_name":"green","description":"Band
+        3 - Green","center_wavelength":0.56,"full_width_half_max":0.045},{"name":"B02","common_name":"blue","description":"Band
+        2 - Blue","center_wavelength":0.49,"full_width_half_max":0.098}],"proj:shape":[5490,5490],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[20.0,0.0,600000.0,0.0,-20.0,8700000.0],"roles":["data"]},"B01":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R60m/T33XXG_20210610T115639_B01_60m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 1 - Coastal aerosol
+        - 60m","eo:bands":[{"name":"B01","common_name":"coastal","description":"Band
+        1 - Coastal aerosol","center_wavelength":0.443,"full_width_half_max":0.027}],"gsd":60,"proj:shape":[1830,1830],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[60.0,0.0,600000.0,0.0,-60.0,8700000.0],"roles":["data"]},"B02_60m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R60m/T33XXG_20210610T115639_B02_60m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 2 - Blue - 60m","eo:bands":[{"name":"B02","common_name":"blue","description":"Band
+        2 - Blue","center_wavelength":0.49,"full_width_half_max":0.098}],"proj:shape":[1830,1830],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[60.0,0.0,600000.0,0.0,-60.0,8700000.0],"roles":["data"]},"B03_60m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R60m/T33XXG_20210610T115639_B03_60m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 3 - Green - 60m","eo:bands":[{"name":"B03","common_name":"green","description":"Band
+        3 - Green","center_wavelength":0.56,"full_width_half_max":0.045}],"proj:shape":[1830,1830],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[60.0,0.0,600000.0,0.0,-60.0,8700000.0],"roles":["data"]},"B04_60m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R60m/T33XXG_20210610T115639_B04_60m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 4 - Red - 60m","eo:bands":[{"name":"B04","common_name":"red","description":"Band
+        4 - Red","center_wavelength":0.665,"full_width_half_max":0.038}],"proj:shape":[1830,1830],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[60.0,0.0,600000.0,0.0,-60.0,8700000.0],"roles":["data"]},"B05_60m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R60m/T33XXG_20210610T115639_B05_60m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 5 - Vegetation
+        red edge 1 - 60m","eo:bands":[{"name":"B05","common_name":"rededge","description":"Band
+        5 - Vegetation red edge 1","center_wavelength":0.704,"full_width_half_max":0.019}],"proj:shape":[1830,1830],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[60.0,0.0,600000.0,0.0,-60.0,8700000.0],"roles":["data"]},"B06_60m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R60m/T33XXG_20210610T115639_B06_60m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 6 - Vegetation
+        red edge 2 - 60m","eo:bands":[{"name":"B06","common_name":"rededge","description":"Band
+        6 - Vegetation red edge 2","center_wavelength":0.74,"full_width_half_max":0.018}],"proj:shape":[1830,1830],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[60.0,0.0,600000.0,0.0,-60.0,8700000.0],"roles":["data"]},"B07_60m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R60m/T33XXG_20210610T115639_B07_60m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 7 - Vegetation
+        red edge 3 - 60m","eo:bands":[{"name":"B07","common_name":"rededge","description":"Band
+        7 - Vegetation red edge 3","center_wavelength":0.783,"full_width_half_max":0.028}],"proj:shape":[1830,1830],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[60.0,0.0,600000.0,0.0,-60.0,8700000.0],"roles":["data"]},"B8A_60m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R60m/T33XXG_20210610T115639_B8A_60m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 8A - Vegetation
+        red edge 4 - 60m","eo:bands":[{"name":"B8A","common_name":"rededge","description":"Band
+        8A - Vegetation red edge 4","center_wavelength":0.865,"full_width_half_max":0.033}],"proj:shape":[1830,1830],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[60.0,0.0,600000.0,0.0,-60.0,8700000.0],"roles":["data"]},"B09":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R60m/T33XXG_20210610T115639_B09_60m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 9 - Water vapor
+        - 60m","eo:bands":[{"name":"B09","description":"Band 9 - Water vapor","center_wavelength":0.945,"full_width_half_max":0.026}],"gsd":60,"proj:shape":[1830,1830],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[60.0,0.0,600000.0,0.0,-60.0,8700000.0],"roles":["data"]},"B11_60m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R60m/T33XXG_20210610T115639_B11_60m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 11 - SWIR (1.6)
+        - 60m","eo:bands":[{"name":"B11","common_name":"swir16","description":"Band
+        11 - SWIR (1.6)","center_wavelength":1.61,"full_width_half_max":0.143}],"proj:shape":[1830,1830],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[60.0,0.0,600000.0,0.0,-60.0,8700000.0],"roles":["data"]},"B12_60m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R60m/T33XXG_20210610T115639_B12_60m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 12 - SWIR (2.2)
+        - 60m","eo:bands":[{"name":"B12","common_name":"swir22","description":"Band
+        12 - SWIR (2.2)","center_wavelength":2.19,"full_width_half_max":0.242}],"proj:shape":[1830,1830],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[60.0,0.0,600000.0,0.0,-60.0,8700000.0],"roles":["data"]},"SCL-60m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R60m/T33XXG_20210610T115639_SCL_60m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Scene classfication
+        map (SCL)","proj:shape":[1830,1830],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[60.0,0.0,600000.0,0.0,-60.0,8700000.0],"roles":["data"]},"AOT-60m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R60m/T33XXG_20210610T115639_AOT_60m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Aerosol optical thickness
+        (AOT)","proj:shape":[1830,1830],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[60.0,0.0,600000.0,0.0,-60.0,8700000.0],"roles":["data"]},"WVP-60m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R60m/T33XXG_20210610T115639_WVP_60m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Water vapour (WVP)","proj:shape":[1830,1830],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[60.0,0.0,600000.0,0.0,-60.0,8700000.0],"roles":["data"]},"visual-60m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R60m/T33XXG_20210610T115639_TCI_60m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"True color image","eo:bands":[{"name":"B04","common_name":"red","description":"Band
+        4 - Red","center_wavelength":0.665,"full_width_half_max":0.038},{"name":"B03","common_name":"green","description":"Band
+        3 - Green","center_wavelength":0.56,"full_width_half_max":0.045},{"name":"B02","common_name":"blue","description":"Band
+        2 - Blue","center_wavelength":0.49,"full_width_half_max":0.098}],"proj:shape":[1830,1830],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[60.0,0.0,600000.0,0.0,-60.0,8700000.0],"roles":["data"]},"B02":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R10m/T33XXG_20210610T115639_B02_10m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 2 - Blue - 10m","eo:bands":[{"name":"B02","common_name":"blue","description":"Band
+        2 - Blue","center_wavelength":0.49,"full_width_half_max":0.098}],"gsd":10,"proj:shape":[10980,10980],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[10.0,0.0,600000.0,0.0,-10.0,8700000.0],"roles":["data"]},"B03":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R10m/T33XXG_20210610T115639_B03_10m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 3 - Green - 10m","eo:bands":[{"name":"B03","common_name":"green","description":"Band
+        3 - Green","center_wavelength":0.56,"full_width_half_max":0.045}],"gsd":10,"proj:shape":[10980,10980],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[10.0,0.0,600000.0,0.0,-10.0,8700000.0],"roles":["data"]},"B04":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R10m/T33XXG_20210610T115639_B04_10m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 4 - Red - 10m","eo:bands":[{"name":"B04","common_name":"red","description":"Band
+        4 - Red","center_wavelength":0.665,"full_width_half_max":0.038}],"gsd":10,"proj:shape":[10980,10980],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[10.0,0.0,600000.0,0.0,-10.0,8700000.0],"roles":["data"]},"B08":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R10m/T33XXG_20210610T115639_B08_10m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 8 - NIR - 10m","eo:bands":[{"name":"B08","common_name":"nir","description":"Band
+        8 - NIR","center_wavelength":0.842,"full_width_half_max":0.145}],"gsd":10,"proj:shape":[10980,10980],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[10.0,0.0,600000.0,0.0,-10.0,8700000.0],"roles":["data"]},"AOT-10m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R10m/T33XXG_20210610T115639_AOT_10m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Aerosol optical thickness
+        (AOT)","proj:shape":[10980,10980],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[10.0,0.0,600000.0,0.0,-10.0,8700000.0],"roles":["data"]},"WVP-10m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R10m/T33XXG_20210610T115639_WVP_10m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Water vapour (WVP)","proj:shape":[10980,10980],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[10.0,0.0,600000.0,0.0,-10.0,8700000.0],"roles":["data"]},"visual-10m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R10m/T33XXG_20210610T115639_TCI_10m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"True color image","eo:bands":[{"name":"B04","common_name":"red","description":"Band
+        4 - Red","center_wavelength":0.665,"full_width_half_max":0.038},{"name":"B03","common_name":"green","description":"Band
+        3 - Green","center_wavelength":0.56,"full_width_half_max":0.045},{"name":"B02","common_name":"blue","description":"Band
+        2 - Blue","center_wavelength":0.49,"full_width_half_max":0.098}],"proj:shape":[10980,10980],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[10.0,0.0,600000.0,0.0,-10.0,8700000.0],"roles":["data"]},"preview":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/QI_DATA/T33XXG_20210610T115639_PVI.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["thumbnail"]}},"links":[{"rel":"license","href":"https://sentinel.esa.int/documents/247904/690755/Sentinel_Data_Legal_Notice"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a"},{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a/items/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE"}],"stac_extensions":["eo","sat","projection"]},{"collection":"naip","id":"fl_m_2608004_nw_17_060_20191215_20200113","type":"Feature","stac_version":"1.0.0-beta.2","properties":{"naip:state":"fl","naip:year":"2019","gsd":0.6,"proj:epsg":26917,"proj:shape":[12240,11040],"proj:bbox":[537006.0,2979366.0,543630.0,2986710.0],"proj:transform":[0.6,0.0,537006.0,0.0,-0.6,2986710.0,0.0,0.0,1.0],"datetime":"2019-12-15T00:00:00Z"},"geometry":{"coordinates":[[[-80.560502,26.93549],[-80.560244,27.001794],[-80.627008,27.001987],[-80.627226,26.935682],[-80.560502,26.93549]]],"type":"Polygon"},"bbox":[-80.627226,26.93549,-80.560244,27.001987],"assets":{"image":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/26080/m_2608004_nw_17_060_20191215.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"RGBIR COG tile","eo:bands":[{"name":"Red","common_name":"red"},{"name":"Green","common_name":"green"},{"name":"Blue","common_name":"blue"},{"name":"NIR","common_name":"nir","description":"near-infrared"}],"roles":["data"]},"metadata":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_fgdc_2019/26080/m_2608004_nw_17_060_20191215.txt","type":"text/plain","title":"FGDC
+        Metdata","roles":["metadata"]},"thumbnail":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/26080/m_2608004_nw_17_060_20191215.200.jpg","type":"image/jpeg","title":"Thumbnail","roles":["thumbnail"]}},"links":[{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/fl_m_2608004_nw_17_060_20191215_20200113"}],"stac_extensions":["eo","projection"]}],"links":[],"bbox":[-80.627226,26.93549,77.25212443924296,78.33903650786452],"numberMatched":2,"numberReturned":2}'
     headers:
-      Access-Control-Allow-Credentials:
-      - 'true'
-      Access-Control-Allow-Headers:
-      - X-Astraea-Catalog-Client
-      - Authorization, Content-Type, X-Requested-With
-      Access-Control-Allow-Origin:
-      - '*'
-      Cache-Control:
-      - no-cache, no-store, must-revalidate
-      Connection:
-      - keep-alive
-      Content-Encoding:
-      - gzip
+      Content-Length:
+      - '28667'
       Content-Type:
-      - application/geo+json
+      - application/json
       Date:
-      - Wed, 14 Apr 2021 16:56:13 GMT
-      Server:
-      - akka-http/10.2.3
-      Transfer-Encoding:
-      - chunked
+      - Wed, 16 Jun 2021 03:06:40 GMT
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      X-Azure-Ref:
+      - 0wWrJYAAAAABcFwa7bfylTYzz34YkwHhqQk9TMzFFREdFMDQxMgA5MjdhYmZhNi0xOWY2LTRhZjEtYTA5ZC1jOTU5ZDlhMWU2NDQ=
+      X-Cache:
+      - CONFIG_NOCACHE
     status:
       code: 200
       message: OK
 - request:
-    body: '{"ids": ["m_3510836_se_12_060_20180508_20190331", "m_3510840_se_12_060_20180504_20190331"],
-      "next": "1606328250229,m_3510840_se_12_060_20180504_20190331,naip"}'
+    body: '{"ids": ["S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE",
+      "fl_m_2608004_nw_17_060_20191215_20200113"]}'
     headers:
       Accept:
       - '*/*'
@@ -93,42 +137,119 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '159'
+      - '122'
       Content-Type:
       - application/json
       User-Agent:
       - python-requests/2.25.1
     method: POST
-    uri: https://eod-catalog-svc-prod.astraea.earth/search
+    uri: https://planetarycomputer.microsoft.com/api/stac/v1/search
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAAFyOzQ6CMBCE32XPlRSOvZp44+LVGFPKGoht0XZLJIR3dyv+xdvMZGe+ncEMnvBO
-        oGawvetZlFKA02Q6bEFVAgJSCj4buQg4o2aLEdThKLjiLy8ZUQfTKYekW036b9A/GQCskmsw1D+A
-        Ndl/MQJuCcNUf6Z8spbZkbQ58RD62A/+zc3hiCFHTCgLWchNw9WiYhpNV+R0t369HaxFQ/lyeQAA
-        AP//AwCxb9Uo+wAAAA==
+      string: '{"type":"FeatureCollection","context":{"returned":2,"limit":10,"matched":2},"features":[{"collection":"sentinel-2-l2a","id":"S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE","type":"Feature","stac_version":"1.0.0-beta.2","properties":{"platform":"Sentinel-2B","constellation":"Sentinel
+        2","instruments":["msi"],"eo:cloud_cover":40.300308,"sat:orbit_state":"ascending","sat:relative_orbit":66,"proj:epsg":32633,"s2:product_uri":"S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE","s2:generation_time":"2021-06-13T18:50:24.919Z","s2:processing_baseline":"02.12","s2:product_type":"S2MSI2A","s2:datatake_id":"GS2B_20210610T115639_022257_N02.12","s2:datatake_type":"INS-NOBS","s2:datastrip_id":"S2B_OPER_MSI_L2A_DS_ESRI_20210613T185025_S20210610T115641_N02.12","s2:granule_id":"S2B_OPER_MSI_L2A_TL_ESRI_20210613T185025_A022257_T33XXG_N02.12","s2:mgrs_tile":"33XXG","s2:reflectance_conversion_factor":0.971007319606529,"s2:degraded_msi_data_percentage":0.0,"s2:nodata_pixel_percentage":3e-6,"s2:saturated_defective_pixel_percentage":0.0,"s2:dark_features_percentage":0.487974,"s2:cloud_shadow_percentage":0.129293,"s2:vegetation_percentage":0.009277,"s2:not_vegetated_percentage":0.395938,"s2:water_percentage":30.894157,"s2:unclassified_percentage":0.213277,"s2:medium_proba_clouds_percentage":4.285321,"s2:high_proba_clouds_percentage":32.37772,"s2:thin_cirrus_percentage":3.637267,"s2:snow_ice_percentage":27.569774,"s2:mean_solar_zenith":55.700329516402,"s2:mean_solar_azimuth":204.095797943539,"datetime":"2021-06-10T11:56:39.024000Z"},"geometry":{"coordinates":[[[19.43601359,78.33903651],[24.24559515,78.22419355],[23.54575175,77.25212444],[19.09619974,77.35788083],[19.43601359,78.33903651]]],"type":"Polygon"},"bbox":[19.096199742228844,77.25212443924296,24.245595153959755,78.33903650786452],"assets":{"safe-manifest":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/manifest.safe","type":"application/xml","roles":["metadata"]},"product-metadata":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/MTD_MSIL2A.xml","type":"application/xml","roles":["metadata"]},"granule-metadata":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/MTD_TL.xml","type":"application/xml","roles":["metadata"]},"inspire-metadata":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/INSPIRE.xml","type":"application/xml","roles":["metadata"]},"datastrip-metadata":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/DATASTRIP/DS_ESRI_20210613T185025_S20210610T115641/MTD_DS.xml","type":"application/xml","roles":["metadata"]},"B02_20m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R20m/T33XXG_20210610T115639_B02_20m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 2 - Blue - 20m","eo:bands":[{"name":"B02","common_name":"blue","description":"Band
+        2 - Blue","center_wavelength":0.49,"full_width_half_max":0.098}],"proj:shape":[5490,5490],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[20.0,0.0,600000.0,0.0,-20.0,8700000.0],"roles":["data"]},"B03_20m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R20m/T33XXG_20210610T115639_B03_20m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 3 - Green - 20m","eo:bands":[{"name":"B03","common_name":"green","description":"Band
+        3 - Green","center_wavelength":0.56,"full_width_half_max":0.045}],"proj:shape":[5490,5490],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[20.0,0.0,600000.0,0.0,-20.0,8700000.0],"roles":["data"]},"B04_20m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R20m/T33XXG_20210610T115639_B04_20m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 4 - Red - 20m","eo:bands":[{"name":"B04","common_name":"red","description":"Band
+        4 - Red","center_wavelength":0.665,"full_width_half_max":0.038}],"proj:shape":[5490,5490],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[20.0,0.0,600000.0,0.0,-20.0,8700000.0],"roles":["data"]},"B05":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R20m/T33XXG_20210610T115639_B05_20m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 5 - Vegetation
+        red edge 1 - 20m","eo:bands":[{"name":"B05","common_name":"rededge","description":"Band
+        5 - Vegetation red edge 1","center_wavelength":0.704,"full_width_half_max":0.019}],"gsd":20,"proj:shape":[5490,5490],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[20.0,0.0,600000.0,0.0,-20.0,8700000.0],"roles":["data"]},"B06":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R20m/T33XXG_20210610T115639_B06_20m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 6 - Vegetation
+        red edge 2 - 20m","eo:bands":[{"name":"B06","common_name":"rededge","description":"Band
+        6 - Vegetation red edge 2","center_wavelength":0.74,"full_width_half_max":0.018}],"gsd":20,"proj:shape":[5490,5490],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[20.0,0.0,600000.0,0.0,-20.0,8700000.0],"roles":["data"]},"B07":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R20m/T33XXG_20210610T115639_B07_20m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 7 - Vegetation
+        red edge 3 - 20m","eo:bands":[{"name":"B07","common_name":"rededge","description":"Band
+        7 - Vegetation red edge 3","center_wavelength":0.783,"full_width_half_max":0.028}],"gsd":20,"proj:shape":[5490,5490],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[20.0,0.0,600000.0,0.0,-20.0,8700000.0],"roles":["data"]},"B8A":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R20m/T33XXG_20210610T115639_B8A_20m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 8A - Vegetation
+        red edge 4 - 20m","eo:bands":[{"name":"B8A","common_name":"rededge","description":"Band
+        8A - Vegetation red edge 4","center_wavelength":0.865,"full_width_half_max":0.033}],"gsd":20,"proj:shape":[5490,5490],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[20.0,0.0,600000.0,0.0,-20.0,8700000.0],"roles":["data"]},"B11":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R20m/T33XXG_20210610T115639_B11_20m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 11 - SWIR (1.6)
+        - 20m","eo:bands":[{"name":"B11","common_name":"swir16","description":"Band
+        11 - SWIR (1.6)","center_wavelength":1.61,"full_width_half_max":0.143}],"gsd":20,"proj:shape":[5490,5490],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[20.0,0.0,600000.0,0.0,-20.0,8700000.0],"roles":["data"]},"B12":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R20m/T33XXG_20210610T115639_B12_20m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 12 - SWIR (2.2)
+        - 20m","eo:bands":[{"name":"B12","common_name":"swir22","description":"Band
+        12 - SWIR (2.2)","center_wavelength":2.19,"full_width_half_max":0.242}],"gsd":20,"proj:shape":[5490,5490],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[20.0,0.0,600000.0,0.0,-20.0,8700000.0],"roles":["data"]},"SCL-20m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R20m/T33XXG_20210610T115639_SCL_20m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Scene classfication
+        map (SCL)","proj:shape":[5490,5490],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[20.0,0.0,600000.0,0.0,-20.0,8700000.0],"roles":["data"]},"AOT-20m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R20m/T33XXG_20210610T115639_AOT_20m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Aerosol optical thickness
+        (AOT)","proj:shape":[5490,5490],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[20.0,0.0,600000.0,0.0,-20.0,8700000.0],"roles":["data"]},"WVP-20m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R20m/T33XXG_20210610T115639_WVP_20m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Water vapour (WVP)","proj:shape":[5490,5490],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[20.0,0.0,600000.0,0.0,-20.0,8700000.0],"roles":["data"]},"visual-20m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R20m/T33XXG_20210610T115639_TCI_20m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"True color image","eo:bands":[{"name":"B04","common_name":"red","description":"Band
+        4 - Red","center_wavelength":0.665,"full_width_half_max":0.038},{"name":"B03","common_name":"green","description":"Band
+        3 - Green","center_wavelength":0.56,"full_width_half_max":0.045},{"name":"B02","common_name":"blue","description":"Band
+        2 - Blue","center_wavelength":0.49,"full_width_half_max":0.098}],"proj:shape":[5490,5490],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[20.0,0.0,600000.0,0.0,-20.0,8700000.0],"roles":["data"]},"B01":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R60m/T33XXG_20210610T115639_B01_60m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 1 - Coastal aerosol
+        - 60m","eo:bands":[{"name":"B01","common_name":"coastal","description":"Band
+        1 - Coastal aerosol","center_wavelength":0.443,"full_width_half_max":0.027}],"gsd":60,"proj:shape":[1830,1830],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[60.0,0.0,600000.0,0.0,-60.0,8700000.0],"roles":["data"]},"B02_60m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R60m/T33XXG_20210610T115639_B02_60m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 2 - Blue - 60m","eo:bands":[{"name":"B02","common_name":"blue","description":"Band
+        2 - Blue","center_wavelength":0.49,"full_width_half_max":0.098}],"proj:shape":[1830,1830],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[60.0,0.0,600000.0,0.0,-60.0,8700000.0],"roles":["data"]},"B03_60m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R60m/T33XXG_20210610T115639_B03_60m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 3 - Green - 60m","eo:bands":[{"name":"B03","common_name":"green","description":"Band
+        3 - Green","center_wavelength":0.56,"full_width_half_max":0.045}],"proj:shape":[1830,1830],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[60.0,0.0,600000.0,0.0,-60.0,8700000.0],"roles":["data"]},"B04_60m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R60m/T33XXG_20210610T115639_B04_60m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 4 - Red - 60m","eo:bands":[{"name":"B04","common_name":"red","description":"Band
+        4 - Red","center_wavelength":0.665,"full_width_half_max":0.038}],"proj:shape":[1830,1830],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[60.0,0.0,600000.0,0.0,-60.0,8700000.0],"roles":["data"]},"B05_60m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R60m/T33XXG_20210610T115639_B05_60m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 5 - Vegetation
+        red edge 1 - 60m","eo:bands":[{"name":"B05","common_name":"rededge","description":"Band
+        5 - Vegetation red edge 1","center_wavelength":0.704,"full_width_half_max":0.019}],"proj:shape":[1830,1830],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[60.0,0.0,600000.0,0.0,-60.0,8700000.0],"roles":["data"]},"B06_60m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R60m/T33XXG_20210610T115639_B06_60m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 6 - Vegetation
+        red edge 2 - 60m","eo:bands":[{"name":"B06","common_name":"rededge","description":"Band
+        6 - Vegetation red edge 2","center_wavelength":0.74,"full_width_half_max":0.018}],"proj:shape":[1830,1830],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[60.0,0.0,600000.0,0.0,-60.0,8700000.0],"roles":["data"]},"B07_60m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R60m/T33XXG_20210610T115639_B07_60m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 7 - Vegetation
+        red edge 3 - 60m","eo:bands":[{"name":"B07","common_name":"rededge","description":"Band
+        7 - Vegetation red edge 3","center_wavelength":0.783,"full_width_half_max":0.028}],"proj:shape":[1830,1830],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[60.0,0.0,600000.0,0.0,-60.0,8700000.0],"roles":["data"]},"B8A_60m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R60m/T33XXG_20210610T115639_B8A_60m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 8A - Vegetation
+        red edge 4 - 60m","eo:bands":[{"name":"B8A","common_name":"rededge","description":"Band
+        8A - Vegetation red edge 4","center_wavelength":0.865,"full_width_half_max":0.033}],"proj:shape":[1830,1830],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[60.0,0.0,600000.0,0.0,-60.0,8700000.0],"roles":["data"]},"B09":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R60m/T33XXG_20210610T115639_B09_60m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 9 - Water vapor
+        - 60m","eo:bands":[{"name":"B09","description":"Band 9 - Water vapor","center_wavelength":0.945,"full_width_half_max":0.026}],"gsd":60,"proj:shape":[1830,1830],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[60.0,0.0,600000.0,0.0,-60.0,8700000.0],"roles":["data"]},"B11_60m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R60m/T33XXG_20210610T115639_B11_60m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 11 - SWIR (1.6)
+        - 60m","eo:bands":[{"name":"B11","common_name":"swir16","description":"Band
+        11 - SWIR (1.6)","center_wavelength":1.61,"full_width_half_max":0.143}],"proj:shape":[1830,1830],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[60.0,0.0,600000.0,0.0,-60.0,8700000.0],"roles":["data"]},"B12_60m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R60m/T33XXG_20210610T115639_B12_60m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 12 - SWIR (2.2)
+        - 60m","eo:bands":[{"name":"B12","common_name":"swir22","description":"Band
+        12 - SWIR (2.2)","center_wavelength":2.19,"full_width_half_max":0.242}],"proj:shape":[1830,1830],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[60.0,0.0,600000.0,0.0,-60.0,8700000.0],"roles":["data"]},"SCL-60m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R60m/T33XXG_20210610T115639_SCL_60m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Scene classfication
+        map (SCL)","proj:shape":[1830,1830],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[60.0,0.0,600000.0,0.0,-60.0,8700000.0],"roles":["data"]},"AOT-60m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R60m/T33XXG_20210610T115639_AOT_60m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Aerosol optical thickness
+        (AOT)","proj:shape":[1830,1830],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[60.0,0.0,600000.0,0.0,-60.0,8700000.0],"roles":["data"]},"WVP-60m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R60m/T33XXG_20210610T115639_WVP_60m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Water vapour (WVP)","proj:shape":[1830,1830],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[60.0,0.0,600000.0,0.0,-60.0,8700000.0],"roles":["data"]},"visual-60m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R60m/T33XXG_20210610T115639_TCI_60m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"True color image","eo:bands":[{"name":"B04","common_name":"red","description":"Band
+        4 - Red","center_wavelength":0.665,"full_width_half_max":0.038},{"name":"B03","common_name":"green","description":"Band
+        3 - Green","center_wavelength":0.56,"full_width_half_max":0.045},{"name":"B02","common_name":"blue","description":"Band
+        2 - Blue","center_wavelength":0.49,"full_width_half_max":0.098}],"proj:shape":[1830,1830],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[60.0,0.0,600000.0,0.0,-60.0,8700000.0],"roles":["data"]},"B02":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R10m/T33XXG_20210610T115639_B02_10m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 2 - Blue - 10m","eo:bands":[{"name":"B02","common_name":"blue","description":"Band
+        2 - Blue","center_wavelength":0.49,"full_width_half_max":0.098}],"gsd":10,"proj:shape":[10980,10980],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[10.0,0.0,600000.0,0.0,-10.0,8700000.0],"roles":["data"]},"B03":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R10m/T33XXG_20210610T115639_B03_10m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 3 - Green - 10m","eo:bands":[{"name":"B03","common_name":"green","description":"Band
+        3 - Green","center_wavelength":0.56,"full_width_half_max":0.045}],"gsd":10,"proj:shape":[10980,10980],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[10.0,0.0,600000.0,0.0,-10.0,8700000.0],"roles":["data"]},"B04":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R10m/T33XXG_20210610T115639_B04_10m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 4 - Red - 10m","eo:bands":[{"name":"B04","common_name":"red","description":"Band
+        4 - Red","center_wavelength":0.665,"full_width_half_max":0.038}],"gsd":10,"proj:shape":[10980,10980],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[10.0,0.0,600000.0,0.0,-10.0,8700000.0],"roles":["data"]},"B08":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R10m/T33XXG_20210610T115639_B08_10m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Band 8 - NIR - 10m","eo:bands":[{"name":"B08","common_name":"nir","description":"Band
+        8 - NIR","center_wavelength":0.842,"full_width_half_max":0.145}],"gsd":10,"proj:shape":[10980,10980],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[10.0,0.0,600000.0,0.0,-10.0,8700000.0],"roles":["data"]},"AOT-10m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R10m/T33XXG_20210610T115639_AOT_10m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Aerosol optical thickness
+        (AOT)","proj:shape":[10980,10980],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[10.0,0.0,600000.0,0.0,-10.0,8700000.0],"roles":["data"]},"WVP-10m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R10m/T33XXG_20210610T115639_WVP_10m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Water vapour (WVP)","proj:shape":[10980,10980],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[10.0,0.0,600000.0,0.0,-10.0,8700000.0],"roles":["data"]},"visual-10m":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/IMG_DATA/R10m/T33XXG_20210610T115639_TCI_10m.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"True color image","eo:bands":[{"name":"B04","common_name":"red","description":"Band
+        4 - Red","center_wavelength":0.665,"full_width_half_max":0.038},{"name":"B03","common_name":"green","description":"Band
+        3 - Green","center_wavelength":0.56,"full_width_half_max":0.045},{"name":"B02","common_name":"blue","description":"Band
+        2 - Blue","center_wavelength":0.49,"full_width_half_max":0.098}],"proj:shape":[10980,10980],"proj:bbox":[600000.0,8590200.0,709800.0,8700000.0],"proj:transform":[10.0,0.0,600000.0,0.0,-10.0,8700000.0],"roles":["data"]},"preview":{"href":"https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/33/X/XG/2021/06/10/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE/GRANULE/L2A_T33XXG_A022257_20210610T115641/QI_DATA/T33XXG_20210610T115639_PVI.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["thumbnail"]}},"links":[{"rel":"license","href":"https://sentinel.esa.int/documents/247904/690755/Sentinel_Data_Legal_Notice"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a"},{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a/items/S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE"}],"stac_extensions":["eo","sat","projection"]},{"collection":"naip","id":"fl_m_2608004_nw_17_060_20191215_20200113","type":"Feature","stac_version":"1.0.0-beta.2","properties":{"naip:state":"fl","naip:year":"2019","gsd":0.6,"proj:epsg":26917,"proj:shape":[12240,11040],"proj:bbox":[537006.0,2979366.0,543630.0,2986710.0],"proj:transform":[0.6,0.0,537006.0,0.0,-0.6,2986710.0,0.0,0.0,1.0],"datetime":"2019-12-15T00:00:00Z"},"geometry":{"coordinates":[[[-80.560502,26.93549],[-80.560244,27.001794],[-80.627008,27.001987],[-80.627226,26.935682],[-80.560502,26.93549]]],"type":"Polygon"},"bbox":[-80.627226,26.93549,-80.560244,27.001987],"assets":{"image":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/26080/m_2608004_nw_17_060_20191215.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"RGBIR COG tile","eo:bands":[{"name":"Red","common_name":"red"},{"name":"Green","common_name":"green"},{"name":"Blue","common_name":"blue"},{"name":"NIR","common_name":"nir","description":"near-infrared"}],"roles":["data"]},"metadata":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_fgdc_2019/26080/m_2608004_nw_17_060_20191215.txt","type":"text/plain","title":"FGDC
+        Metdata","roles":["metadata"]},"thumbnail":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/26080/m_2608004_nw_17_060_20191215.200.jpg","type":"image/jpeg","title":"Thumbnail","roles":["thumbnail"]}},"links":[{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/fl_m_2608004_nw_17_060_20191215_20200113"}],"stac_extensions":["eo","projection"]}],"links":[],"bbox":[-80.627226,26.93549,77.25212443924296,78.33903650786452],"numberMatched":2,"numberReturned":2}'
     headers:
-      Access-Control-Allow-Credentials:
-      - 'true'
-      Access-Control-Allow-Headers:
-      - X-Astraea-Catalog-Client
-      - Authorization, Content-Type, X-Requested-With
-      Access-Control-Allow-Origin:
-      - '*'
-      Cache-Control:
-      - no-cache, no-store, must-revalidate
-      Connection:
-      - keep-alive
-      Content-Encoding:
-      - gzip
+      Content-Length:
+      - '28667'
       Content-Type:
-      - application/geo+json
+      - application/json
       Date:
-      - Wed, 14 Apr 2021 16:56:13 GMT
-      Server:
-      - akka-http/10.2.3
-      Transfer-Encoding:
-      - chunked
+      - Wed, 16 Jun 2021 03:09:49 GMT
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      X-Azure-Ref:
+      - 0fWvJYAAAAABfUvCEYtKHQK7EnzxSS70RQk9TMzFFREdFMDQwOQA5MjdhYmZhNi0xOWY2LTRhZjEtYTA5ZC1jOTU5ZDlhMWU2NDQ=
+      X-Cache:
+      - CONFIG_NOCACHE
     status:
       code: 200
       message: OK

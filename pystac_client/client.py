@@ -1,28 +1,20 @@
 from copy import deepcopy
 import os
-from typing import Callable, Optional
-from urllib.request import Request
+from typing import Any, Dict, List, Optional
 
 import pystac
-import pystac.stac_object
+from pystac.link import Link
+from pystac.errors import STACTypeError
 import pystac.validation
-from pystac import STAC_IO
 
-from pystac_client.conformance import ConformanceClasses
-from pystac_client.exceptions import ConformanceError
-from pystac_client.item_search import (
-    BBoxLike,
-    CollectionsLike,
-    DatetimeLike,
-    IDsLike,
-    IntersectsLike,
-    QueryLike,
-    ItemSearch,
-)
-from pystac_client.stac_api_object import STACAPIObjectMixin
+from pystac_client.conformance import ConformanceClasses, ConformanceMixin
+from pystac_client.item_search import (BBoxLike, CollectionsLike, DatetimeLike, IDsLike,
+                                       IntersectsLike, QueryLike, ItemSearch)
+from pystac.serialization import (identify_stac_object, migrate_to_latest)
+from pystac_client.stac_io import StacApiIO
 
 
-class Client(pystac.Catalog, STACAPIObjectMixin):
+class Client(pystac.Catalog, ConformanceMixin):
     """Instances of the ``Client`` class inherit from :class:`pystac.Catalog` and provide a convenient way of interacting
     with Catalogs OR APIs that conform to the `STAC API spec <https://github.com/radiantearth/stac-api-spec>`_. In addition
     to being a valid `STAC Catalog <https://github.com/radiantearth/stac-spec/blob/master/catalog-spec/catalog-spec.md>`_ the
@@ -44,13 +36,13 @@ class Client(pystac.Catalog, STACAPIObjectMixin):
         <http://docs.opengeospatial.org/is/17-069r3/17-069r3.html#_declaration_of_conformance_classes>`_.
     """
     def __init__(self,
-                 id,
-                 description,
-                 title=None,
-                 stac_extensions=None,
-                 extra_fields=None,
-                 href=None,
-                 catalog_type=None,
+                 id: str,
+                 description: str,
+                 title: Optional[str] = None,
+                 stac_extensions: Optional[List[str]] = None,
+                 extra_fields: Optional[Dict[str, Any]] = None,
+                 href: Optional[str] = None,
+                 catalog_type: pystac.CatalogType = pystac.CatalogType.ABSOLUTE_PUBLISHED,
                  conformance=None,
                  headers=None):
         super().__init__(id=id,
@@ -62,18 +54,11 @@ class Client(pystac.Catalog, STACAPIObjectMixin):
                          catalog_type=catalog_type)
 
         self.conformance = conformance
-
-        # Check that the API conforms to the STAC API - Core spec (or ignore if None)
-        if conformance is not None and not self.conforms_to(ConformanceClasses.STAC_API_CORE):
-            allowed_uris = "\n\t".join(ConformanceClasses.STAC_API_CORE.all_uris)
-            raise ConformanceError(
-                'API does not conform to {ConformanceClasses.STAC_API_CORE}. Must contain one of the following '
-                f'URIs to conform (preferably the first):\n\t{allowed_uris}.')
-
+        self.conforms_to(ConformanceClasses.CORE)
         self.headers = headers or {}
 
     def __repr__(self):
-        return '<Catalog id={}>'.format(self.id)
+        return '<Client id={}>'.format(self.id)
 
     @classmethod
     def open(cls, url=None, headers=None):
@@ -88,7 +73,6 @@ class Client(pystac.Catalog, STACAPIObjectMixin):
         -------
         catalog : Client
         """
-        import pystac_client.stac_io
 
         if url is None:
             url = os.environ.get("STAC_URL")
@@ -97,26 +81,18 @@ class Client(pystac.Catalog, STACAPIObjectMixin):
             raise TypeError(
                 "'url' must be specified or the 'STAC_URL' environment variable must be set.")
 
-        def read_text_method(url):
-            request = Request(url, headers=headers or {})
-            return pystac_client.stac_io.read_text_method(request)
+        stac_io = StacApiIO(headers=headers)
 
-        old_read_text_method = STAC_IO.read_text_method
-        STAC_IO.read_text_method = read_text_method
-        try:
-            catalog = cls.from_file(url)
-        finally:
-            STAC_IO.read_text_method = old_read_text_method
-        catalog.headers = headers
+        catalog = cls.from_file(url, stac_io)
         return catalog
 
     @classmethod
-    def from_dict(
-        cls,
-        d,
-        href=None,
-        root=None,
-    ):
+    def from_dict(cls,
+                  d: Dict[str, Any],
+                  href: Optional[str] = None,
+                  migrate: bool = False,
+                  preserve_dict: bool = True,
+                  **kwargs: Any) -> "Client":
         """Overwrites the :meth:`pystac.Catalog.from_dict` method to add the ``user_agent`` initialization argument
         and to check if the content conforms to the STAC API - Core spec.
 
@@ -127,40 +103,33 @@ class Client(pystac.Catalog, STACAPIObjectMixin):
             response or in a ``/conformance``. According to the STAC API - Core spec, services must publish this as
             part of a ``"conformsTo"`` attribute, but some legacy APIs fail to do so.
         """
+        if migrate:
+            info = identify_stac_object(d)
+            d = migrate_to_latest(d, info)
+
+        if not cls.matches_object_type(d):
+            raise STACTypeError(f"{d} does not represent a {cls.__name__} instance")
+
         catalog_type = pystac.CatalogType.determine_type(d)
 
-        d = deepcopy(d)
+        if preserve_dict:
+            d = deepcopy(d)
 
-        id = d.pop('id')
-        description = d.pop('description')
-        title = d.pop('title', None)
-        stac_extensions = d.pop('stac_extensions', None)
-        links = d.pop('links')
-        # allow for no conformance, for now
         conformance = d.pop('conformsTo', None)
+        d.pop("stac_version")
+        links = d.pop("links")
 
-        d.pop('stac_version')
-
-        catalog = cls(
-            id=id,
-            description=description,
-            title=title,
-            stac_extensions=stac_extensions,
-            conformance=conformance,
-            extra_fields=d,
-            href=href,
-            catalog_type=catalog_type,
-        )
+        client = cls(**d, conformance=conformance, catalog_type=catalog_type, **kwargs)
 
         for link in links:
-            if link['rel'] == 'root':
+            if link["rel"] == pystac.RelType.ROOT:
                 # Remove the link that's generated in Catalog's constructor.
-                catalog.remove_links('root')
+                client.remove_links(pystac.RelType.ROOT)
 
-            if link['rel'] != 'self' or href is None:
-                catalog.add_link(pystac.Link.from_dict(link))
+            if link["rel"] != pystac.RelType.SELF or href is None:
+                client.add_link(Link.from_dict(link))
 
-        return catalog
+        return client
 
     def get_collections_list(self):
         """Gets list of available collections from this Catalog. Alias for get_child_links since children
@@ -178,8 +147,7 @@ class Client(pystac.Catalog, STACAPIObjectMixin):
                collections: Optional[CollectionsLike] = None,
                query: Optional[QueryLike] = None,
                max_items: Optional[int] = None,
-               method: Optional[str] = 'POST',
-               next_resolver: Optional[Callable] = None) -> ItemSearch:
+               method: Optional[str] = 'POST') -> ItemSearch:
         """Query the ``/search`` endpoint using the given parameters.
 
         This method returns an :class:`~pystac_client.ItemSearch` instance, see that class's documentation
@@ -240,9 +208,6 @@ class Client(pystac.Catalog, STACAPIObjectMixin):
             ``None``. If ``None``, this will default to ``"POST"`` if the ``intersects`` argument is present and
             ``"GET"`` if not. If a ``"POST"`` request receives a ``405`` status for the response, it will automatically
             retry with a ``"GET"`` request for all subsequent requests.
-        next_resolver: Callable, optional
-            A callable that will be used to construct the next request based on a "next" link and the previous request.
-            Defaults to using the :func:`~pystac_client.paging.simple_stac_resolver`.
 
         Returns
         -------
@@ -255,22 +220,14 @@ class Client(pystac.Catalog, STACAPIObjectMixin):
             <https://github.com/radiantearth/stac-api-spec/tree/master/item-search>`__ or does not have a link with
             a ``"rel"`` type of ``"search"``.
         """
-        if self.conformance is not None and not self.conforms_to(
-                ConformanceClasses.STAC_API_ITEM_SEARCH):
-            spec_name = ConformanceClasses.STAC_API_ITEM_SEARCH.name
-            spec_uris = '\n\t'.join(ConformanceClasses.STAC_API_ITEM_SEARCH.all_uris)
-            msg = f'This service does not conform to the {spec_name} spec and therefore the search method is not ' \
-                  f'implemented. Services must publish one of the following conformance URIs in order to conform to ' \
-                  f'this spec (preferably the first one):\n\t{spec_uris}'
-            raise NotImplementedError(msg)
 
         search_link = self.get_single_link('search')
         if search_link is None:
             raise NotImplementedError(
-                'No link with a "rel" type of "search" could be found in this services\'s '
-                'root catalog.')
+                'No link with "rel" type of "search" could be found in this catalog')
 
         return ItemSearch(search_link.target,
+                          conformance=self.conformance,
                           limit=limit,
                           bbox=bbox,
                           datetime=datetime,
@@ -280,6 +237,4 @@ class Client(pystac.Catalog, STACAPIObjectMixin):
                           query=query,
                           max_items=max_items,
                           method=method,
-                          headers=self.headers,
-                          conformance=self.conformance,
-                          next_resolver=next_resolver)
+                          stac_io=self._stac_io)
