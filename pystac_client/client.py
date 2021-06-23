@@ -8,19 +8,9 @@ from pystac.errors import STACTypeError
 import pystac.validation
 
 from pystac_client.conformance import ConformanceMixin
-from pystac_client.item_search import (
-    BBoxLike,
-    CollectionsLike,
-    DatetimeLike,
-    IDsLike,
-    IntersectsLike,
-    QueryLike,
-    ItemSearch
-)
-from pystac.serialization import (
-    identify_stac_object,
-    migrate_to_latest
-)
+from pystac_client.item_search import (BBoxLike, CollectionsLike, DatetimeLike, IDsLike,
+                                       IntersectsLike, QueryLike, ItemSearch)
+from pystac.serialization import (identify_stac_object, migrate_to_latest)
 from pystac_client.stac_io import StacApiIO
 
 
@@ -97,14 +87,12 @@ class Client(pystac.Catalog, ConformanceMixin):
         return catalog
 
     @classmethod
-    def from_dict(
-        cls,
-        d: Dict[str, Any],
-        href: Optional[str] = None,
-        migrate: bool = False,
-        preserve_dict: bool = True,
-        **kwargs: Any
-    ) -> "Client":
+    def from_dict(cls,
+                  d: Dict[str, Any],
+                  href: Optional[str] = None,
+                  migrate: bool = False,
+                  preserve_dict: bool = True,
+                  **kwargs: Any) -> "Client":
         """Overwrites the :meth:`pystac.Catalog.from_dict` method to add the ``user_agent`` initialization argument
         and to check if the content conforms to the STAC API - Core spec.
 
