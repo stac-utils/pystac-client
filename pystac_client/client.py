@@ -1,22 +1,16 @@
 from copy import deepcopy
 import os
-from typing import Any, cast, Optional
+from typing import Any, Dict, List, Optional
 
 import pystac
-from pystac.stac_object import STACObject
-from pystac.utils import is_absolute_href, make_absolute_href
+from pystac.link import Link
+from pystac.errors import STACTypeError
 import pystac.validation
 
-from pystac_client.conformance import ConformanceMixin
-from pystac_client.item_search import (
-    BBoxLike,
-    CollectionsLike,
-    DatetimeLike,
-    IDsLike,
-    IntersectsLike,
-    QueryLike,
-    ItemSearch,
-)
+from pystac_client.conformance import ConformanceClasses, ConformanceMixin
+from pystac_client.item_search import (BBoxLike, CollectionsLike, DatetimeLike, IDsLike,
+                                       IntersectsLike, QueryLike, ItemSearch)
+from pystac.serialization import (identify_stac_object, migrate_to_latest)
 from pystac_client.stac_io import StacApiIO
 
 
@@ -42,13 +36,13 @@ class Client(pystac.Catalog, ConformanceMixin):
         <http://docs.opengeospatial.org/is/17-069r3/17-069r3.html#_declaration_of_conformance_classes>`_.
     """
     def __init__(self,
-                 id,
-                 description,
-                 title=None,
-                 stac_extensions=None,
-                 extra_fields=None,
-                 href=None,
-                 catalog_type=None,
+                 id: str,
+                 description: str,
+                 title: Optional[str] = None,
+                 stac_extensions: Optional[List[str]] = None,
+                 extra_fields: Optional[Dict[str, Any]] = None,
+                 href: Optional[str] = None,
+                 catalog_type: pystac.CatalogType = pystac.CatalogType.ABSOLUTE_PUBLISHED,
                  conformance=None,
                  headers=None):
         super().__init__(id=id,
@@ -60,7 +54,7 @@ class Client(pystac.Catalog, ConformanceMixin):
                          catalog_type=catalog_type)
 
         self.conformance = conformance
-        self.conforms_to("core")
+        self.conforms_to(ConformanceClasses.CORE)
         self.headers = headers or {}
 
     def __repr__(self):
@@ -93,50 +87,12 @@ class Client(pystac.Catalog, ConformanceMixin):
         return catalog
 
     @classmethod
-    def from_file(cls, href: str, stac_io: Optional[pystac.StacIO] = None) -> "STACObject":
-        """Reads a STACObject implementation from a file.
-
-        Args:
-            href : The HREF to read the object from.
-            stac_io: Optional instance of StacIO to use. If not provided, will use the
-                default instance.
-
-        Returns:
-            The specific STACObject implementation class that is represented
-            by the JSON read from the file located at HREF.
-        """
-        if stac_io is None:
-            stac_io = pystac.StacIO.default()
-
-        if not is_absolute_href(href):
-            href = make_absolute_href(href)
-
-        if cls == STACObject:
-            o = stac_io.read_stac_object(href)
-        else:
-            d = stac_io.read_json(href)
-            o = cls.from_dict(d, href=href)
-            o._stac_io = stac_io
-
-        # Set the self HREF, if it's not already set to something else.
-        if o.get_self_href() is None:
-            o.set_self_href(href)
-
-        # If this is a root catalog, set the root to the catalog instance.
-        root_link = o.get_root_link()
-        if root_link is not None:
-            if not root_link.is_resolved():
-                if root_link.get_absolute_href() == href:
-                    o.set_root(cast(pystac.Catalog, o))
-        return o
-
-    @classmethod
-    def from_dict(
-        cls,
-        d,
-        href=None,
-        root=None,
-    ):
+    def from_dict(cls,
+                  d: Dict[str, Any],
+                  href: Optional[str] = None,
+                  migrate: bool = False,
+                  preserve_dict: bool = True,
+                  **kwargs: Any) -> "Client":
         """Overwrites the :meth:`pystac.Catalog.from_dict` method to add the ``user_agent`` initialization argument
         and to check if the content conforms to the STAC API - Core spec.
 
@@ -147,40 +103,33 @@ class Client(pystac.Catalog, ConformanceMixin):
             response or in a ``/conformance``. According to the STAC API - Core spec, services must publish this as
             part of a ``"conformsTo"`` attribute, but some legacy APIs fail to do so.
         """
+        if migrate:
+            info = identify_stac_object(d)
+            d = migrate_to_latest(d, info)
+
+        if not cls.matches_object_type(d):
+            raise STACTypeError(f"{d} does not represent a {cls.__name__} instance")
+
         catalog_type = pystac.CatalogType.determine_type(d)
 
-        d = deepcopy(d)
+        if preserve_dict:
+            d = deepcopy(d)
 
-        id = d.pop('id')
-        description = d.pop('description')
-        title = d.pop('title', None)
-        stac_extensions = d.pop('stac_extensions', None)
-        links = d.pop('links')
-        # allow for no conformance, for now
         conformance = d.pop('conformsTo', None)
+        d.pop("stac_version")
+        links = d.pop("links")
 
-        d.pop('stac_version')
-
-        catalog = cls(
-            id=id,
-            description=description,
-            title=title,
-            stac_extensions=stac_extensions,
-            conformance=conformance,
-            extra_fields=d,
-            href=href,
-            catalog_type=catalog_type,
-        )
+        client = cls(**d, conformance=conformance, catalog_type=catalog_type, **kwargs)
 
         for link in links:
-            if link['rel'] == 'root':
+            if link["rel"] == pystac.RelType.ROOT:
                 # Remove the link that's generated in Catalog's constructor.
-                catalog.remove_links('root')
+                client.remove_links(pystac.RelType.ROOT)
 
-            if link['rel'] != 'self' or href is None:
-                catalog.add_link(pystac.Link.from_dict(link))
+            if link["rel"] != pystac.RelType.SELF or href is None:
+                client.add_link(Link.from_dict(link))
 
-        return catalog
+        return client
 
     def get_collections_list(self):
         """Gets list of available collections from this Catalog. Alias for get_child_links since children

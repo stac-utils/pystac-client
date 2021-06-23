@@ -2,17 +2,17 @@ from dateutil.tz import tzutc
 from dateutil.relativedelta import relativedelta
 import json
 import re
-import logging
 from collections.abc import Iterable, Mapping
 from copy import deepcopy
 from datetime import timezone, datetime as datetime_
 from typing import Dict, Iterator, List, Optional, Tuple, Union
+import warnings
 
 from pystac import Collection, Item, ItemCollection, Link
 from pystac.stac_io import StacIO
 
 from pystac_client.stac_io import StacApiIO
-from pystac_client.conformance import ConformanceMixin
+from pystac_client.conformance import ConformanceClasses, ConformanceMixin
 
 DATETIME_REGEX = re.compile(
     r"(?P<year>\d{4})(\-(?P<month>\d{2})(\-(?P<day>\d{2})"
@@ -43,8 +43,6 @@ SortbyLike = Union[Sortby, str]
 
 Fields = List[str]
 FieldsLike = Union[Fields, str]
-
-logger = logging.getLogger(__name__)
 
 
 # probably should be in a utils module
@@ -167,7 +165,7 @@ class ItemSearch(ConformanceMixin):
                  stac_io: Optional[StacIO] = None):
         self.url = url
         self.conformance = conformance
-        self.conforms_to("item-search")
+        self.conforms_to(ConformanceClasses.ITEM_SEARCH)
 
         if stac_io:
             self._stac_io = stac_io
@@ -373,9 +371,7 @@ class ItemSearch(ConformanceMixin):
         return deepcopy(getattr(value, '__geo_interface__', value))
 
     def matched(self) -> int:
-        params = {"limit": 0}
-        params.update(self._parameters)
-        params["limit"] = 0
+        params = {**self._parameters, "limit": 0}
         resp = self._stac_io.read_json(self.url, method=self.method, parameters=params)
         found = None
         if 'context' in resp:
@@ -383,7 +379,7 @@ class ItemSearch(ConformanceMixin):
         elif 'numberMatched' in resp:
             found = resp['numberMatched']
         if found is None:
-            logger.warning("numberMatched or context.matched not in response")
+            warnings.warn("numberMatched or context.matched not in response")
         return found
 
     def get_pages(self) -> Iterator[Dict]:
@@ -420,7 +416,7 @@ class ItemSearch(ConformanceMixin):
             yield ItemCollection.from_dict(page)
 
     def item_collections(self) -> Iterator[ItemCollection]:
-        logger.warning("Search.item_collections is deprecated, please use get_item_collections")
+        warnings.warn("Search.item_collections is deprecated, please use get_item_collections")
         return self.get_item_collections()
 
     def get_items(self) -> Iterator[Item]:
@@ -441,7 +437,7 @@ class ItemSearch(ConformanceMixin):
                     return
 
     def items(self) -> Iterator[Item]:
-        logger.warning("Search.items is deprecated, please use get_items")
+        warnings.warn("Search.items is deprecated, please use get_items")
         return self.get_items()
 
     def get_all_items_as_dict(self) -> Dict:

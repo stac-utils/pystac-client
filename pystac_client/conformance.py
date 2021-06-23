@@ -27,40 +27,23 @@ False
 >>> 'http://stacspec.org/spec/api/1.0.0-beta.2' in STAC_API_CORE
 True
 """
-from typing import List
+from enum import Enum
+from typing import List, Optional
 
 STAC_PREFIXES = ['https://api.stacspec.org/v1.0.0-beta.2', 'https://api.stacspec.org/v1.0.0-beta.1']
 
-CONFORMANCE_CLASSES = {
-    "core": {
-        "name": "STAC API - Core",
-        "uris": [f"{p}/core" for p in STAC_PREFIXES]
-    },
-    "item-search": {
-        "name": "STAC API - Item Search",
-        "uris": [f"{p}/item-search" for p in STAC_PREFIXES]
-    },
-    "item-search#context": {
-        "name": "STAC API - Item Search: Context Extension",
-        "uris": [f"{p}/item-search#context" for p in STAC_PREFIXES]
-    },
-    "item-search#fields": {
-        "name": "STAC API - Item Search: Fields Extension",
-        "uris": [f"{p}/item-search#fields" for p in STAC_PREFIXES]
-    },
-    "item-search#sort": {
-        "name": "STAC API - Item Search: Sort Extension",
-        "uris": [f"{p}/item-search#sort" for p in STAC_PREFIXES]
-    },
-    "item-search#query": {
-        "name": "STAC API - Item Search: Query Extension",
-        "uris": [f"{p}/item-search#query" for p in STAC_PREFIXES]
-    },
-    "item-search#filter": {
-        "name": "STAC API - Item Search: Filter Extension",
-        "uris": [f"{p}/item-search#filter" for p in STAC_PREFIXES]
-    },
-}
+
+class ConformanceClasses(Enum):
+    CORE = 'core'
+    ITEM_SEARCH = 'item-search'
+    CONTEXT = 'item-search#context'
+    FIELDS = 'item-search#fields'
+    SORT = 'item-search#sort'
+    QUERY = 'item-search#query'
+    FILTER = 'item-search#filter'
+
+
+CONFORMANCE_URIS = {c.name: [f"{p}/{c.value}" for p in STAC_PREFIXES] for c in ConformanceClasses}
 
 
 class ConformanceMixin:
@@ -69,23 +52,22 @@ class ConformanceMixin:
     _conformance = []
 
     @property
-    def conformance(self) -> List[str]:
-        """Overwrite in the sub-class to list the conformance URIs for this object."""
+    def conformance(self) -> Optional[List[str]]:
         return self._conformance
 
     @conformance.setter
     def conformance(self, value):
         self._conformance = value
 
-    def conforms_to(self, key: str) -> bool:
+    def conforms_to(self, conformance_class: ConformanceClasses) -> bool:
         """Whether the API conforms to the given standard. This method only checks against the ``"conformsTo"``
         property from the API landing page and does not make any additional calls to a ``/conformance`` endpoint
         even if the API provides such an endpoint.
 
         Parameters
         ----------
-        spec : str or ConformanceClass
-            Either a :class:`~pystac_client.conformance.ConformanceClass` instance or the URI string for the spec.
+        key : str
+            The ``ConformanceClasses`` key to check conformance against.
 
         Returns
         -------
@@ -98,15 +80,12 @@ class ConformanceMixin:
         if self.conformance is None:
             return True
 
-        conformance_class = CONFORMANCE_CLASSES[key]
+        uris = CONFORMANCE_URIS.get(conformance_class.name, None)
 
-        def check_conformance():
-            for uri in conformance_class["uris"]:
-                if uri in self.conformance:
-                    return True
-            return False
+        if uris is None:
+            raise Exception(f"Invalid conformance class {conformance_class}")
 
-        if not check_conformance():
-            raise NotImplementedError(f"{conformance_class['name']} not supported")
+        if not any(uri in uris for uri in self.conformance):
+            raise NotImplementedError(f"{conformance_class} not supported")
 
         return True
