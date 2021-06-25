@@ -115,20 +115,34 @@ class Client(pystac.Catalog, ConformanceMixin):
             d = deepcopy(d)
 
         conformance = d.pop('conformsTo', None)
-        d.pop("stac_version")
+
+        id = d.pop("id")
+        description = d.pop("description")
+        title = d.pop("title", None)
+        stac_extensions = d.pop("stac_extensions", None)
         links = d.pop("links")
 
-        client = cls(**d, conformance=conformance, catalog_type=catalog_type, **kwargs)
+        d.pop("stac_version")
+
+        cat = cls(id=id,
+                  description=description,
+                  title=title,
+                  stac_extensions=stac_extensions,
+                  extra_fields=d,
+                  href=href,
+                  catalog_type=catalog_type or pystac.CatalogType.ABSOLUTE_PUBLISHED,
+                  conformance=conformance,
+                  **kwargs)
 
         for link in links:
             if link["rel"] == pystac.RelType.ROOT:
                 # Remove the link that's generated in Catalog's constructor.
-                client.remove_links(pystac.RelType.ROOT)
+                cat.remove_links(pystac.RelType.ROOT)
 
             if link["rel"] != pystac.RelType.SELF or href is None:
-                client.add_link(Link.from_dict(link))
+                cat.add_link(Link.from_dict(link))
 
-        return client
+        return cat
 
     def get_collections_list(self):
         """Gets list of available collections from this Catalog. Alias for get_child_links since children
