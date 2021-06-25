@@ -38,6 +38,12 @@ IntersectsLike = Union[str, Intersects, object]
 Query = dict
 QueryLike = Union[Query, List[str]]
 
+Sortby = List[str]
+SortbyLike = Union[Sortby, str]
+
+Fields = List[str]
+FieldsLike = Union[Fields, str]
+
 
 # probably should be in a utils module
 # from https://gist.github.com/angstwad/bf22d1822c38a92ec0a9#gistcomment-2622319
@@ -152,6 +158,8 @@ class ItemSearch(ConformanceMixin):
                  ids: Optional[IDsLike] = None,
                  collections: Optional[CollectionsLike] = None,
                  query: Optional[QueryLike] = None,
+                 sortby: Optional[SortbyLike] = None,
+                 fields: Optional[FieldsLike] = None,
                  max_items: Optional[int] = None,
                  method: Optional[str] = 'POST',
                  stac_io: Optional[StacIO] = None):
@@ -177,8 +185,11 @@ class ItemSearch(ConformanceMixin):
             'ids': self._format_ids(ids),
             'collections': self._format_collections(collections),
             'intersects': self._format_intersects(intersects),
-            'query': self._format_query(query)
+            'query': self._format_query(query),
+            'sortby': self._format_sortby(sortby),
+            'fields': self._format_fields(fields)
         }
+
         self._parameters = {k: v for k, v in params.items() if v is not None}
 
     '''
@@ -323,6 +334,28 @@ class ItemSearch(ConformanceMixin):
     def _format_ids(value: Optional[IDsLike]) -> Optional[IDs]:
         if value is None:
             return None
+
+        if isinstance(value, str):
+            return tuple(value.split(','))
+
+        return tuple(value)
+
+    def _format_sortby(self, value: Optional[SortbyLike]) -> Optional[Sortby]:
+        if value is None:
+            return None
+
+        self.conforms_to(ConformanceClasses.SORT)
+
+        if isinstance(value, str):
+            return tuple(value.split(','))
+
+        return tuple(value)
+
+    def _format_fields(self, value: Optional[FieldsLike]) -> Optional[Fields]:
+        if value is None:
+            return None
+
+        self.conforms_to(ConformanceClasses.FIELDS)
 
         if isinstance(value, str):
             return tuple(value.split(','))

@@ -31,7 +31,6 @@ def search(url=STAC_URL, matched=False, save=None, headers=None, **kwargs):
                 print(json.dumps(feature_collection))
 
     except Exception as e:
-        logger.error(e, exc_info=True)
         print(e)
         return 1
 
@@ -80,6 +79,7 @@ def parse_args(args):
                               help='Query properties of form '
                               'KEY=VALUE (<, >, <=, >=, = supported)')
     search_group.add_argument('--sortby', help='Sort by fields', nargs='*')
+    search_group.add_argument('--fields', help='Control what fields get returned', nargs='*')
     search_group.add_argument('--max-items',
                               dest='max_items',
                               help='Max items to retrieve from search',

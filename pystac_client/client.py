@@ -8,8 +8,7 @@ from pystac.errors import STACTypeError
 import pystac.validation
 
 from pystac_client.conformance import ConformanceClasses, ConformanceMixin
-from pystac_client.item_search import (BBoxLike, CollectionsLike, DatetimeLike, IDsLike,
-                                       IntersectsLike, QueryLike, ItemSearch)
+from pystac_client.item_search import ItemSearch
 from pystac.serialization import (identify_stac_object, migrate_to_latest)
 from pystac_client.stac_io import StacApiIO
 
@@ -137,17 +136,7 @@ class Client(pystac.Catalog, ConformanceMixin):
         """
         return self.get_child_links()
 
-    def search(self,
-               *,
-               limit: Optional[int] = None,
-               bbox: Optional[BBoxLike] = None,
-               datetime: Optional[DatetimeLike] = None,
-               intersects: Optional[IntersectsLike] = None,
-               ids: Optional[IDsLike] = None,
-               collections: Optional[CollectionsLike] = None,
-               query: Optional[QueryLike] = None,
-               max_items: Optional[int] = None,
-               method: Optional[str] = 'POST') -> ItemSearch:
+    def search(self, **kwargs: Any) -> ItemSearch:
         """Query the ``/search`` endpoint using the given parameters.
 
         This method returns an :class:`~pystac_client.ItemSearch` instance, see that class's documentation
@@ -163,51 +152,8 @@ class Client(pystac.Catalog, ConformanceMixin):
 
         Parameters
         ----------
-        limit : int, optional
-            The maximum number of items to return *per page*. Defaults to ``None``, which falls back to the limit set
-            by the service.
-        bbox: list or tuple or Iterator or str, optional
-            May be a list, tuple, or iterator representing a bounding box of 2D or 3D coordinates. Results will be
-            filtered to only those intersecting the bounding box.
-        datetime: str or datetime.datetime or list or tuple or Iterator, optional
-            Either a single datetime or datetime range used to filter results. You may express a single datetime using a
-            :class:`datetime.datetime` instance, a `RFC 3339-compliant <https://tools.ietf.org/html/rfc3339>`__ timestamp,
-            or a simple date string (see below). Instances of :class:`datetime.datetime` may be either timezone aware or
-            unaware. Timezone aware instances will be converted to a UTC timestamp before being passed to the endpoint.
-            Timezone unaware instances are assumed to represent UTC timestamps. You may represent a datetime range using a
-            ``"/"`` separated string as described in the spec, or a list, tuple, or iterator of 2 timestamps or datetime
-            instances. For open-ended ranges, use either ``".."`` (``'2020-01-01:00:00:00Z/..'``,
-            ``['2020-01-01:00:00:00Z', '..']``) or a value of ``None`` (``['2020-01-01:00:00:00Z', None]``).
-
-            If using a simple date string, the datetime can be specified in ``YYYY-mm-dd`` format, optionally truncating
-            to ``YYYY-mm`` or just ``YYYY``. Simple date strings will be expanded to include the entire time period, for
-            example:
-
-            - ``2017`` expands to ``2017-01-01T00:00:00Z/2017-12-31T23:59:59Z``
-            - ``2017-06`` expands to ``2017-06-01T00:00:00Z/2017-06-30T23:59:59Z``
-            - ``2017-06-10`` expands to ``2017-06-10T00:00:00Z/2017-06-10T23:59:59Z``
-
-            If used in a range, the end of the range expands to the end of that day/month/year, for example:
-
-            - ``2017/2018`` expands to ``2017-01-01T00:00:00Z/2018-12-31T23:59:59Z``
-            - ``2017-06/2017-07`` expands to ``2017-06-01T00:00:00Z/2017-07-31T23:59:59Z``
-            - ``2017-06-10/2017-06-11`` expands to ``2017-06-10T00:00:00Z/2017-06-11T23:59:59Z``
-        intersects: str or dict, optional
-            A GeoJSON-like dictionary or JSON string. Results will be filtered to only those intersecting the geometry
-        ids: list, optional
-            List of Item ids to return. All other filter parameters that further restrict the number of search results
-            (except ``limit``) are ignored.
-        collections: list, optional
-            List of one or more Collection IDs or :class:`pystac.Collection` instances. Only Items in one of the
-            provided Collections will be searched
-        max_items : int or None, optional
-            The maximum number of items to return from the search. *Note that this is not a STAC API - Item Search
-            parameter and is instead used by the client to limit the total number of returned items*.
-        method : str or None, optional
-            The HTTP method to use when making a request to the service. This must be either ``"GET"``, ``"POST"``, or
-            ``None``. If ``None``, this will default to ``"POST"`` if the ``intersects`` argument is present and
-            ``"GET"`` if not. If a ``"POST"`` request receives a ``405`` status for the response, it will automatically
-            retry with a ``"GET"`` request for all subsequent requests.
+        **kwargs : Any pameter to the ItemSearch class, other than `url`, `conformance`, and `stac_io` which are set
+        from this Client instance
 
         Returns
         -------
@@ -225,16 +171,9 @@ class Client(pystac.Catalog, ConformanceMixin):
         if search_link is None:
             raise NotImplementedError(
                 'No link with "rel" type of "search" could be found in this catalog')
+        # TODO - check method in provided search link against method requested here
 
         return ItemSearch(search_link.target,
                           conformance=self.conformance,
-                          limit=limit,
-                          bbox=bbox,
-                          datetime=datetime,
-                          intersects=intersects,
-                          ids=ids,
-                          collections=collections,
-                          query=query,
-                          max_items=max_items,
-                          method=method,
-                          stac_io=self._stac_io)
+                          stac_io=self._stac_io,
+                          **kwargs)
