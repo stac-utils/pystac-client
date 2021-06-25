@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [v0.2.0-beta.1] - 2021-06-25
+
 ### Added
 
 - `Client.open` falls back to the `STAC_URL` environment variable if no url is provided as an argument [#48](https://github.com/stac-utils/pystac-client/pull/48)
@@ -16,6 +18,7 @@ are in a single HTTP session.
 
 ### Changed
 
+- Update to use PySTAC 1.0.0-rc.2
 - IO changed to use PySTAC's new StacIO base class. 
 - `Search.item_collections()` renamed to `Search.get_item_collections()`
 - `Search.item_collections()` renamed to `Search.get_items()`
@@ -62,7 +65,8 @@ are in a single HTTP session.
 
 Initial release.
 
-[Unreleased]: <https://github.com/stac-utils/pystac-client/compare/v0.1.1...main>
+[Unreleased]: <https://github.com/stac-utils/pystac-client/compare/v0.2.0-beta.1...main>
+[v0.2.0-beta.1]: <https://github.com/stac-utils/pystac-client/compare/v0.1.1..v0.2.0-beta.1>
 [v0.1.1]: <https://github.com/stac-utils/pystac-client/compare/v0.1.0..v0.1.1>
 [v0.1.0]: <https://github.com/stac-utils/pystac-client/tree/v0.1.0>
 
