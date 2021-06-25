@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [v0.2.0-beta.1] - 2021-06-25
+## [v0.2.0-beta.2] - 2021-06-25
 
 ### Added
 
@@ -65,8 +65,8 @@ are in a single HTTP session.
 
 Initial release.
 
-[Unreleased]: <https://github.com/stac-utils/pystac-client/compare/v0.2.0-beta.1...main>
-[v0.2.0-beta.1]: <https://github.com/stac-utils/pystac-client/compare/v0.1.1..v0.2.0-beta.1>
+[Unreleased]: <https://github.com/stac-utils/pystac-client/compare/v0.2.0-beta.2...main>
+[v0.2.0-beta.1]: <https://github.com/stac-utils/pystac-client/compare/v0.1.1..v0.2.0-beta.2>
 [v0.1.1]: <https://github.com/stac-utils/pystac-client/compare/v0.1.0..v0.1.1>
 [v0.1.0]: <https://github.com/stac-utils/pystac-client/tree/v0.1.0>
 
