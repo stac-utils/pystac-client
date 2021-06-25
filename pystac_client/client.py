@@ -136,7 +136,7 @@ class Client(pystac.Catalog, ConformanceMixin):
         """
         return self.get_child_links()
 
-    def search(self, method: str = 'POST', **kwargs: Any) -> ItemSearch:
+    def search(self, **kwargs: Any) -> ItemSearch:
         """Query the ``/search`` endpoint using the given parameters.
 
         This method returns an :class:`~pystac_client.ItemSearch` instance, see that class's documentation
@@ -152,7 +152,6 @@ class Client(pystac.Catalog, ConformanceMixin):
 
         Parameters
         ----------
-        method : The request method, 'GET' or 'POST' (default)
         **kwargs : Any pameter to the ItemSearch class, other than `url`, `conformance`, and `stac_io` which are set
         from this Client instance
 
