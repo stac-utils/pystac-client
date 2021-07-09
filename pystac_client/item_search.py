@@ -418,7 +418,7 @@ class ItemSearch(ConformanceMixin):
         item_collection : pystac_client.ItemCollection
         """
         for page in self.get_pages():
-            yield ItemCollection.from_dict(page)
+            yield ItemCollection.from_dict(page, root=self.client)
 
     def item_collections(self) -> Iterator[ItemCollection]:
         warnings.warn("Search.item_collections is deprecated, please use get_item_collections")
