@@ -376,7 +376,7 @@ class ItemSearch(ConformanceMixin):
         return deepcopy(getattr(value, '__geo_interface__', value))
 
     def matched(self) -> int:
-        params = {**self._parameters, "limit": 0}
+        params = {**self._parameters, "limit": 1}
         resp = self._stac_io.read_json(self.url, method=self.method, parameters=params)
         found = None
         if 'context' in resp:
@@ -420,10 +420,6 @@ class ItemSearch(ConformanceMixin):
         for page in self.get_pages():
             yield ItemCollection.from_dict(page, root=self.client)
 
-    def item_collections(self) -> Iterator[ItemCollection]:
-        warnings.warn("Search.item_collections is deprecated, please use get_item_collections")
-        return self.get_item_collections()
-
     def get_items(self) -> Iterator[Item]:
         """Iterator that yields :class:`pystac.Item` instances for each item matching the given search parameters. Calls
         :meth:`ItemSearch.item_collections()` internally and yields from
@@ -440,10 +436,6 @@ class ItemSearch(ConformanceMixin):
                 nitems += 1
                 if self._max_items and nitems >= self._max_items:
                     return
-
-    def items(self) -> Iterator[Item]:
-        warnings.warn("Search.items is deprecated, please use get_items")
-        return self.get_items()
 
     def get_all_items_as_dict(self) -> Dict:
         """Convenience method that gets all items from all pages, up to self._max_items,
