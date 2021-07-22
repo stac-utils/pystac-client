@@ -34,27 +34,6 @@ class Client(pystac.Catalog, ConformanceMixin):
         `OGC API - Features conformance declaration
         <http://docs.opengeospatial.org/is/17-069r3/17-069r3.html#_declaration_of_conformance_classes>`_.
     """
-    def __init__(self,
-                 id: str,
-                 description: str,
-                 title: Optional[str] = None,
-                 stac_extensions: Optional[List[str]] = None,
-                 extra_fields: Optional[Dict[str, Any]] = None,
-                 href: Optional[str] = None,
-                 catalog_type: pystac.CatalogType = pystac.CatalogType.ABSOLUTE_PUBLISHED,
-                 conformance=None,
-                 headers=None):
-        super().__init__(id=id,
-                         description=description,
-                         title=title,
-                         stac_extensions=stac_extensions,
-                         extra_fields=extra_fields,
-                         href=href,
-                         catalog_type=catalog_type)
-
-        self.conformance = conformance
-        self.conforms_to(ConformanceClasses.CORE)
-        self.headers = headers or {}
 
     def __repr__(self):
         return '<Client id={}>'.format(self.id)
@@ -82,19 +61,12 @@ class Client(pystac.Catalog, ConformanceMixin):
 
         stac_io = StacApiIO(headers=headers)
 
-        catalog = cls.from_file(url, stac_io)
-        return catalog
+        cat = cls.from_file(url, stac_io)
+        return cat
 
     @classmethod
-    def from_dict(cls,
-                  d: Dict[str, Any],
-                  href: Optional[str] = None,
-                  root: Optional["Catalog"] = None,
-                  migrate: bool = False,
-                  preserve_dict: bool = True,
-                  **kwargs: Any) -> "Client":
-        """Overwrites the :meth:`pystac.Catalog.from_dict` method to add the ``user_agent`` initialization argument
-        and to check if the content conforms to the STAC API - Core spec.
+    def from_dict(cls, d, *args, **kwargs) -> "Client":
+        """
 
         Raises
         ------
@@ -103,48 +75,11 @@ class Client(pystac.Catalog, ConformanceMixin):
             response or in a ``/conformance``. According to the STAC API - Core spec, services must publish this as
             part of a ``"conformsTo"`` attribute, but some legacy APIs fail to do so.
         """
-        if migrate:
-            info = identify_stac_object(d)
-            d = migrate_to_latest(d, info)
-
-        if not cls.matches_object_type(d):
-            raise STACTypeError(f"{d} does not represent a {cls.__name__} instance")
-
-        catalog_type = pystac.CatalogType.determine_type(d)
-
-        if preserve_dict:
-            d = deepcopy(d)
-
         conformance = d.pop('conformsTo', None)
 
-        id = d.pop("id")
-        description = d.pop("description")
-        title = d.pop("title", None)
-        stac_extensions = d.pop("stac_extensions", None)
-        links = d.pop("links")
-
-        d.pop("stac_version")
-
-        cat = cls(id=id,
-                  description=description,
-                  title=title,
-                  stac_extensions=stac_extensions,
-                  extra_fields=d,
-                  href=href,
-                  catalog_type=catalog_type or pystac.CatalogType.ABSOLUTE_PUBLISHED,
-                  conformance=conformance,
-                  **kwargs)
-
-        for link in links:
-            if link["rel"] == pystac.RelType.ROOT:
-                # Remove the link that's generated in Catalog's constructor.
-                cat.remove_links(pystac.RelType.ROOT)
-
-            if link["rel"] != pystac.RelType.SELF or href is None:
-                cat.add_link(Link.from_dict(link))
-
-        if root:
-            cat.set_root(root)
+        cat = super().from_dict(d, *args, **kwargs)
+        cat.conformance = conformance
+        cat.conforms_to(ConformanceClasses.CORE)
 
         return cat
 

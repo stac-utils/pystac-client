@@ -39,12 +39,13 @@ class TestAPI:
         api_content = read_data_file('planetary-computer-root.json', parse_json=True)
 
         # Set conformsTo URIs to conform with STAC API - Core using official URI
-        api_content['conformsTo'] = ['https://api.stacspec.org/v1.0.0-beta.1/core']
+        conformsTo = ['https://api.stacspec.org/v1.0.0-beta.1/core']
+        api_content['conformsTo'] = conformsTo
         api = Client.from_dict(api_content)
 
         # Must have a conformance property that is the list of URIs from the conformsTo property
         assert hasattr(api, 'conformance')
-        assert api.conformance == api_content['conformsTo']
+        assert api.conformance == conformsTo
         # Check the conformance to STAC API - Core using the ConformanceClass
 
         assert api.conforms_to(ConformanceClasses.CORE)
