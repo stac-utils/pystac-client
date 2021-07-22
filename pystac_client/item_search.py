@@ -181,10 +181,13 @@ class ItemSearch(ConformanceMixin):
         if self._max_items is not None and limit is not None:
             limit = min(limit, self._max_items)
 
+        if limit < 1 or limit > 10000:
+            raise Exception(f"Invalid limit of {limit}, must be between 1 and 10,000")
+
         self.method = method
 
         params = {
-            'limit': int(limit) if limit is not None else None,
+            'limit': limit,
             'bbox': self._format_bbox(bbox),
             'datetime': self._format_datetime(datetime),
             'ids': self._format_ids(ids),
