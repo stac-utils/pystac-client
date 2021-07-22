@@ -27,7 +27,6 @@ if TYPE_CHECKING:
     from pystac.stac_object import STACObject as STACObject_Type
     from pystac.catalog import Catalog as Catalog_Type
 
-
 logger = logging.getLogger(__name__)
 
 
@@ -139,28 +138,32 @@ class StacApiIO(DefaultStacIO):
                 collection_cache = root._resolved_objects.as_collection_cache()
 
             # Merge common properties in case this is an older STAC object.
-            merge_common_properties(
-                d, json_href=href, collection_cache=collection_cache
-            )
+            merge_common_properties(d, json_href=href, collection_cache=collection_cache)
 
         info = identify_stac_object(d)
         d = migrate_to_latest(d, info)
 
         if info.object_type == pystac.STACObjectType.CATALOG:
-            result = pystac_client.Client.from_dict(
-                d, href=href, root=root, migrate=False, preserve_dict=preserve_dict
-            )
+            result = pystac_client.Client.from_dict(d,
+                                                    href=href,
+                                                    root=root,
+                                                    migrate=False,
+                                                    preserve_dict=preserve_dict)
             result._stac_io = self
             return result
 
         if info.object_type == pystac.STACObjectType.COLLECTION:
-            return pystac_client.CollectionClient.from_dict(
-                d, href=href, root=root, migrate=False, preserve_dict=preserve_dict
-            )
+            return pystac_client.CollectionClient.from_dict(d,
+                                                            href=href,
+                                                            root=root,
+                                                            migrate=False,
+                                                            preserve_dict=preserve_dict)
 
         if info.object_type == pystac.STACObjectType.ITEM:
-            return pystac.Item.from_dict(
-                d, href=href, root=root, migrate=False, preserve_dict=preserve_dict
-            )
+            return pystac.Item.from_dict(d,
+                                         href=href,
+                                         root=root,
+                                         migrate=False,
+                                         preserve_dict=preserve_dict)
 
         raise ValueError(f"Unknown STAC object type {info.object_type}")

@@ -30,7 +30,6 @@ class Client(pystac.Catalog, ConformanceMixin):
         `OGC API - Features conformance declaration
         <http://docs.opengeospatial.org/is/17-069r3/17-069r3.html#_declaration_of_conformance_classes>`_.
     """
-
     def __repr__(self):
         return '<Client id={}>'.format(self.id)
 
