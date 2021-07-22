@@ -89,6 +89,7 @@ class Client(pystac.Catalog, ConformanceMixin):
     def from_dict(cls,
                   d: Dict[str, Any],
                   href: Optional[str] = None,
+                  root: Optional["Catalog"] = None,
                   migrate: bool = False,
                   preserve_dict: bool = True,
                   **kwargs: Any) -> "Client":
@@ -141,6 +142,9 @@ class Client(pystac.Catalog, ConformanceMixin):
 
             if link["rel"] != pystac.RelType.SELF or href is None:
                 cat.add_link(Link.from_dict(link))
+
+        if root:
+            cat.set_root(root)
 
         return cat
 

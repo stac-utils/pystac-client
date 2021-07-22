@@ -9,9 +9,17 @@ from typing import (
 from urllib.parse import urlparse
 from requests import Request, Session
 
+import pystac
 from pystac.link import Link
+from pystac.serialization import (
+    merge_common_properties,
+    identify_stac_object_type,
+    identify_stac_object,
+    migrate_to_latest,
+)
 from pystac.stac_io import DefaultStacIO
 
+import pystac_client
 from .exceptions import APIError
 
 logger = logging.getLogger(__name__)
@@ -96,3 +104,57 @@ class StacApiIO(DefaultStacIO):
             raise APIError("Transactions not supported")
         else:
             return super().write_text_to_href(*args, **kwargs)
+
+    def stac_object_from_dict(
+        self,
+        d: Dict[str, Any],
+        href: Optional[str] = None,
+        root: Optional["Catalog_Type"] = None,
+        preserve_dict: bool = True,
+    ) -> "STACObject_Type":
+        """Deserializes a :class:`~pystac.STACObject` sub-class instance from a
+        dictionary.
+
+        Args:
+
+            d : The dictionary to deserialize
+            href : Optional href to associate with the STAC object
+            root : Optional root :class:`~pystac.Catalog` to associate with the
+                STAC object.
+            preserve_dict: If ``False``, the dict parameter ``d`` may be modified
+                during this method call. Otherwise the dict is not mutated.
+                Defaults to ``True``, which results results in a deepcopy of the
+                parameter. Set to ``False`` when possible to avoid the performance
+                hit of a deepcopy.
+        """
+        if identify_stac_object_type(d) == pystac.STACObjectType.ITEM:
+            collection_cache = None
+            if root is not None:
+                collection_cache = root._resolved_objects.as_collection_cache()
+
+            # Merge common properties in case this is an older STAC object.
+            merge_common_properties(
+                d, json_href=href, collection_cache=collection_cache
+            )
+
+        info = identify_stac_object(d)
+        d = migrate_to_latest(d, info)
+
+        if info.object_type == pystac.STACObjectType.CATALOG:
+            result = pystac_client.Client.from_dict(
+                d, href=href, root=root, migrate=False, preserve_dict=preserve_dict
+            )
+            result._stac_io = self
+            return result
+
+        if info.object_type == pystac.STACObjectType.COLLECTION:
+            return pystac.Collection.from_dict(
+                d, href=href, root=root, migrate=False, preserve_dict=preserve_dict
+            )
+
+        if info.object_type == pystac.STACObjectType.ITEM:
+            return pystac.Item.from_dict(
+                d, href=href, root=root, migrate=False, preserve_dict=preserve_dict
+            )
+
+        raise ValueError(f"Unknown STAC object type {info.object_type}")
