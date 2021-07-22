@@ -1,0 +1,55 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.25.1
+    method: GET
+    uri: https://planetarycomputer.microsoft.com/api/stac/v1
+  response:
+    body:
+      string: !!binary |
+        H4sIACL0+GAC/82YXW/bNhSG/8qBdrlIspObwndy4jkB4syIXPRiKIZj6lhiS4ksSTvzivz3HtqW
+        rXZeMaRYlSsBJA/58Lyv+PU5kkU0imoprHZ65WMjoovIS6+Ii2dtMcwVNuTRbuFa12btyUK+yK4h
+        m99x+4KcsNJ4qRuOygmtqHCpCJxBLvRUG21RQc1dFOgR9gFL2ZQwQesrcEJSIwhCrSPvoNLOUwHL
+        LfiK4HsgPL7QzUrb2i10NPojqrw3bpSmaGTiPApnSCTalulmmAySQbzk+OQyFdoSx/7H1pInEbvd
+        zF4U9MunNdntIZQjn56eEm2oKaVLeEJp6CHVpeAe4xWhX1ty8TDl7tIwuy7tC6I1uqvBy8NL0h8c
+        a/v+Igqz/XND1u213k2XO1ay+eg4+Z8jS4rLHalVMNLWBB+hMUqKYIUm3XXEJJZWXNMm0rSyioOq
+        ydGSCReFRKdhaE5wGj1ftMMUWrjTMJ7+8mnla9Wx8O88TTYpHFr+wLC7Hk5DHzyH7NrvTrQFCb9L
+        +u63/Ao6kSAUOkcOZG0U1dQcPS8dOLKbnb1/ALpLeWI/+vgMNmv96xl0OHn/5TSHPjr68e/+f9lE
+        aKVIhM6+kq2SqvgJQ6ZVueyk8HY6HsEt2lo38m/WeKr0khfEsdQ1GwBYI7gcDAd9gHJLi0LJGj11
+        iBeh+PpQ3ANWrZeyuxXp8d0IZmhAr0LaCrlbhPwW7sLm4r9x+M+T2RJ2dX6cZCy0LCt4JKfVOrSC
+        SWhupQi4mRDkenFkgVvegGO2oK/UNq666b3Z1cFsX8dOfUIpe4TEplmjio39J2O2q4I576dew6MU
+        un/Oc7k8cL6WVDb4r4gPOhzBsprYotgjaYGSfXkO9CbUvDLOc97cc74Oa+4pzzlzT9m7MduF6Jzg
+        7UL0WiRvWc+J3rL2LDvyhcnGaug7hFm+mDzC/XDRB5Dj46xsSMWXsbrsapwfK+CeNuGb9cF3VZAJ
+        t7NahQ35hPc2n+ZwdTOZQ36ohJvJrJctm8MKhz5+E4uQxA7k/b4G3vA9uG0Px3z2wdqgw4LqDuND
+        lmecObidLmAzGAx7OUb6ZVfb2WKcj8IfK7224flhYYkTCbKB8do2rDgfK/mY1geq1LFaq+77y8RZ
+        CcNBPKPw4BIkZ7XDnbAXeaX5Stu7+QgediPxESIreYFeq/BywAdyLMnyemh1abHuA7ZE8+0PPeWr
+        Q8aoW8dXa0b7wG2j5/dHmGu+iipdRs9fAJq/LhwTEwAA
+    headers:
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '945'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 22 Jul 2021 04:29:22 GMT
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Vary:
+      - Accept-Encoding
+      X-Azure-Ref:
+      - 0IfT4YAAAAAAC8mH+VgXeSrvAek/1JqEMQk9TMzFFREdFMDQxNQA5MjdhYmZhNi0xOWY2LTRhZjEtYTA5ZC1jOTU5ZDlhMWU2NDQ=
+      X-Cache:
+      - CONFIG_NOCACHE
+    status:
+      code: 200
+      message: OK
+version: 1

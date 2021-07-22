@@ -10,7 +10,7 @@ import pystac.validation
 from pystac_client.conformance import ConformanceClasses, ConformanceMixin
 from pystac_client.item_search import ItemSearch
 from pystac.serialization import (identify_stac_object, migrate_to_latest)
-from pystac_client.stac_io import StacApiIO
+from pystac_client.stac_api_io import StacApiIO
 
 
 class Client(pystac.Catalog, ConformanceMixin):
