@@ -47,7 +47,7 @@ def parse_args(args):
                         version=__version__)
     parent.add_argument('--logging', default='INFO', help='DEBUG, INFO, WARN, ERROR, CRITICAL')
     parent.add_argument('--url', help='Root Catalog URL', default=os.getenv('STAC_URL', None))
-    parent.add_argument('--limit', help='Page size limit', type=int, default=500)
+    parent.add_argument('--limit', help='Page size limit', type=int, default=100)
     parent.add_argument('--headers',
                         nargs='*',
                         help='Additional request headers (KEY=VALUE pairs)',
