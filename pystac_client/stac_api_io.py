@@ -4,6 +4,7 @@ from typing import (
     Any,
     Dict,
     Optional,
+    TYPE_CHECKING,
     Union,
 )
 from urllib.parse import urlparse
@@ -21,6 +22,11 @@ from pystac.stac_io import DefaultStacIO
 
 import pystac_client
 from .exceptions import APIError
+
+if TYPE_CHECKING:
+    from pystac.stac_object import STACObject as STACObject_Type
+    from pystac.catalog import Catalog as Catalog_Type
+
 
 logger = logging.getLogger(__name__)
 

@@ -1,15 +1,11 @@
-from copy import deepcopy
 import os
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 import pystac
-from pystac.link import Link
-from pystac.errors import STACTypeError
 import pystac.validation
 
 from pystac_client.conformance import ConformanceClasses, ConformanceMixin
 from pystac_client.item_search import ItemSearch
-from pystac.serialization import (identify_stac_object, migrate_to_latest)
 from pystac_client.stac_api_io import StacApiIO
 
 
