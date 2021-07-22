@@ -5,7 +5,7 @@ import re
 from collections.abc import Iterable, Mapping
 from copy import deepcopy
 from datetime import timezone, datetime as datetime_
-from typing import Dict, Iterator, List, Optional, Tuple, Union
+from typing import Dict, Iterator, List, Optional, TYPE_CHECKING, Tuple, Union
 import warnings
 
 from pystac import Collection, Item, ItemCollection, Link
@@ -13,6 +13,9 @@ from pystac.stac_io import StacIO
 
 from pystac_client.stac_io import StacApiIO
 from pystac_client.conformance import ConformanceClasses, ConformanceMixin
+
+if TYPE_CHECKING:
+    from pystac_client.client import Client
 
 DATETIME_REGEX = re.compile(
     r"(?P<year>\d{4})(\-(?P<month>\d{2})(\-(?P<day>\d{2})"
@@ -162,10 +165,12 @@ class ItemSearch(ConformanceMixin):
                  fields: Optional[FieldsLike] = None,
                  max_items: Optional[int] = None,
                  method: Optional[str] = 'POST',
-                 stac_io: Optional[StacIO] = None):
+                 stac_io: Optional[StacIO] = None,
+                 client: Optional["Client"] = None):
         self.url = url
         self.conformance = conformance
         self.conforms_to(ConformanceClasses.ITEM_SEARCH)
+        self.client = client
 
         if stac_io:
             self._stac_io = stac_io
@@ -413,7 +418,7 @@ class ItemSearch(ConformanceMixin):
         item_collection : pystac_client.ItemCollection
         """
         for page in self.get_pages():
-            yield ItemCollection.from_dict(page)
+            yield ItemCollection.from_dict(page, root=self.client)
 
     def item_collections(self) -> Iterator[ItemCollection]:
         warnings.warn("Search.item_collections is deprecated, please use get_item_collections")

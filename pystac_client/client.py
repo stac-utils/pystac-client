@@ -190,4 +190,5 @@ class Client(pystac.Catalog, ConformanceMixin):
         return ItemSearch(search_link.target,
                           conformance=self.conformance,
                           stac_io=self._stac_io,
+                          client=self,
                           **kwargs)
