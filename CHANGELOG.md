@@ -65,8 +65,8 @@ are in a single HTTP session.
 
 Initial release.
 
-[Unreleased]: <https://github.com/stac-utils/pystac-client/compare/v0.2.0-beta.2...main>
-[v0.2.0-beta.1]: <https://github.com/stac-utils/pystac-client/compare/v0.1.1..v0.2.0-beta.2>
+[Unreleased]: <https://github.com/stac-utils/pystac-client/compare/v0.2.0-rc.1...main>
+[v0.2.0-rc.1]: <https://github.com/stac-utils/pystac-client/compare/v0.1.1..v0.2.0-rc.1>
 [v0.1.1]: <https://github.com/stac-utils/pystac-client/compare/v0.1.0..v0.1.1>
 [v0.1.0]: <https://github.com/stac-utils/pystac-client/tree/v0.1.0>
 
