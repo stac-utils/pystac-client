@@ -3,6 +3,7 @@ import logging
 from typing import (
     Any,
     Dict,
+    Iterator,
     Optional,
     TYPE_CHECKING,
     Union,
@@ -167,3 +168,22 @@ class StacApiIO(DefaultStacIO):
                                          preserve_dict=preserve_dict)
 
         raise ValueError(f"Unknown STAC object type {info.object_type}")
+
+    def get_pages(self, url, method='GET', parameters={}) -> Iterator[Dict]:
+        """Iterator that yields dictionaries for each page at a STAC paging endpoint, e.g., /collections, /search
+
+        Yields
+        -------
+        Dict : JSON content from a single page
+        """
+        page = self.read_json(url, method=method, parameters=parameters)
+        yield page
+
+        next_link = next((link for link in page.get('links', []) if link['rel'] == 'next'), None)
+        while next_link:
+            link = Link.from_dict(next_link)
+            page = self.read_json(link, parameters=parameters)
+            yield page
+
+            # get the next link and make the next request
+            next_link = next((link for link in page.get('links', []) if link['rel'] == 'next'), None)

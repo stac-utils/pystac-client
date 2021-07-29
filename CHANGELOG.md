@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [v0.2.0-beta.2] - 2021-06-25
+## [v0.2.0-rc.1] - 2021-06-25
 
 ### Added
 
@@ -24,6 +24,7 @@ are in a single HTTP session.
 - `Search.item_collections()` renamed to `Search.get_items()`
 - Conformance is checked by each individual function that requires a particular conformance
 - STAC API testing URLs changed to updated APIs
+- ItemSearch.get_pages function moved to StacApiIO class for general use
 
 ### Fixed
 

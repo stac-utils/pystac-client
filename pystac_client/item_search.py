@@ -390,28 +390,6 @@ class ItemSearch(ConformanceMixin):
             warnings.warn("numberMatched or context.matched not in response")
         return found
 
-    def get_pages(self) -> Iterator[Dict]:
-        """Iterator that yields dictionaries matching the `ItemCollection
-        <https://github.com/radiantearth/stac-api-spec/blob/master/fragments/itemcollection/README.md>`__ spec. Each of
-        these items represents a "page" or results for the search.
-
-        Yields
-        -------
-        item_collection : pystac_client.ItemCollection
-        """
-        page = self._stac_io.read_json(self.url, method=self.method, parameters=self._parameters)
-        yield page
-
-        next_link = next((link for link in page.get('links', []) if link['rel'] == 'next'), None)
-        while next_link:
-            link = Link.from_dict(next_link)
-            page = self._stac_io.read_json(link, parameters=self._parameters)
-            yield page
-
-            # get the next link and make the next request
-            next_link = next((link for link in page.get('links', []) if link['rel'] == 'next'),
-                             None)
-
     def get_item_collections(self) -> Iterator[ItemCollection]:
         """Iterator that yields ItemCollection objects.  Each ItemCollection is a page of results
         from the search.
@@ -420,7 +398,7 @@ class ItemSearch(ConformanceMixin):
         -------
         item_collection : pystac_client.ItemCollection
         """
-        for page in self.get_pages():
+        for page in self._stac_io.get_pages(self.url, self.method, self._parameters):
             yield ItemCollection.from_dict(page, root=self.client)
 
     def get_items(self) -> Iterator[Item]:
@@ -449,7 +427,7 @@ class ItemSearch(ConformanceMixin):
         Dict : A GeoJSON FeatureCollection
         """
         features = []
-        for page in self.get_pages():
+        for page in self._stac_io.get_pages(self.url, self.method, self._parameters):
             for feature in page['features']:
                 features.append(feature)
                 if self._max_items and len(features) >= self._max_items:
