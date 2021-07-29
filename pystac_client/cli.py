@@ -12,12 +12,11 @@ STAC_URL = os.getenv('STAC_URL', None)
 logger = logging.getLogger(__name__)
 
 
-def search(url=STAC_URL, matched=False, save=None, headers=None, **kwargs):
+def search(client, matched=False, save=None, headers=None, **kwargs):
     """ Main function for performing a search """
 
     try:
-        catalog = Client.open(url, headers=headers)
-        search = catalog.search(**kwargs)
+        search = client.search(**kwargs)
 
         if matched:
             matched = search.matched()
@@ -34,6 +33,17 @@ def search(url=STAC_URL, matched=False, save=None, headers=None, **kwargs):
         print(e)
         return 1
 
+def collections(client, save=None, headers=None, **kwargs):
+    """ Fetch collections from collections endpoint """
+    try:
+        collections = client.get_all_collections(**kwargs)
+        collections_dicts = [c.to_dict() for c in collections]
+        if save:
+            with open(save, 'w') as f:
+                f.write(json.dumps(collections_dicts))
+    except Exception as e:
+        print(e)
+        return 1
 
 def parse_args(args):
     desc = 'STAC Client'
@@ -55,13 +65,21 @@ def parse_args(args):
 
     subparsers = parser0.add_subparsers(dest='command')
 
+    # collections command
+    parser = subparsers.add_parser('collections',
+                                   help='Get all collections in this Catalog',
+                                   parents=[parent],
+                                   formatter_class=dhf)
+    output_group = parser.add_argument_group('output options')
+    output_group.add_argument('--save', help='Filename to save collections to', default=None)
+
     # search command
     parser = subparsers.add_parser('search',
                                    help='Perform new search of items',
                                    parents=[parent],
                                    formatter_class=dhf)
-    search_group = parser.add_argument_group('search options')
 
+    search_group = parser.add_argument_group('search options')
     search_group.add_argument('-c', '--collections', help='One or more collection IDs', nargs='*')
     search_group.add_argument('--ids',
                               help='One or more Item IDs (ignores other parameters)',
@@ -139,8 +157,20 @@ def cli():
         raise RuntimeError('No STAC URL provided')
 
     cmd = args.pop('command')
+
+    try:
+        url = args.pop('url')
+        headers = args.pop('headers', {})
+        client = Client.open(url, headers=headers)
+    except Exception as e:
+        print(e)
+        return 1
+
     if cmd == 'search':
-        return search(**args)
+        return search(client, **args)
+    elif cmd == 'collections':
+        args.pop('limit')
+        return collections(client, **args)
 
 
 if __name__ == "__main__":
