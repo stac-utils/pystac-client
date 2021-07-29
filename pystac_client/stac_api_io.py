@@ -4,6 +4,7 @@ from typing import (
     Any,
     Dict,
     Iterator,
+    List,
     Optional,
     TYPE_CHECKING,
     Union,
@@ -23,6 +24,7 @@ from pystac.stac_io import DefaultStacIO
 
 import pystac_client
 from .exceptions import APIError
+from .conformance import ConformanceClasses, CONFORMANCE_URIS
 
 if TYPE_CHECKING:
     from pystac.stac_object import STACObject as STACObject_Type
@@ -32,7 +34,7 @@ logger = logging.getLogger(__name__)
 
 
 class StacApiIO(DefaultStacIO):
-    def __init__(self, headers: Optional[Dict] = None):
+    def __init__(self, headers: Optional[Dict] = None, conformance: Optional[List[str]] = None):
         """Initialize class for API IO
 
         Args:
@@ -44,6 +46,8 @@ class StacApiIO(DefaultStacIO):
         # TODO - this should super() to parent class
         self.session = Session()
         self.session.headers.update(headers or {})
+
+        self._conformance = conformance
 
     def read_text(self,
                   source: Union[str, Link],
@@ -187,3 +191,34 @@ class StacApiIO(DefaultStacIO):
 
             # get the next link and make the next request
             next_link = next((link for link in page.get('links', []) if link['rel'] == 'next'), None)
+
+    def conforms_to(self, conformance_class: ConformanceClasses) -> bool:
+        """Whether the API conforms to the given standard. This method only checks against the ``"conformsTo"``
+        property from the API landing page and does not make any additional calls to a ``/conformance`` endpoint
+        even if the API provides such an endpoint.
+
+        Parameters
+        ----------
+        key : str
+            The ``ConformanceClasses`` key to check conformance against.
+
+        Returns
+        -------
+        bool
+            Indicates if the API conforms to the given spec or URI.
+        """
+
+        # Conformance of None means ignore all conformance as opposed to an
+        #  empty array which would indicate the API conforms to nothing
+        if self._conformance is None:
+            return True
+
+        uris = CONFORMANCE_URIS.get(conformance_class.name, None)
+
+        if uris is None:
+            raise Exception(f"Invalid conformance class {conformance_class}")
+
+        if not any(uri in uris for uri in self._conformance):
+            raise NotImplementedError(f"{conformance_class} not supported")
+
+        return True

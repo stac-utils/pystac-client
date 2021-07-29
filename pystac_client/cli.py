@@ -37,6 +37,7 @@ def collections(client, save=None, **kwargs):
     """ Fetch collections from collections endpoint """
     try:
         collections = client.get_all_collections(**kwargs)
+        breakpoint()
         collections_dicts = [c.to_dict() for c in collections]
         if save:
             with open(save, 'w') as f:
@@ -64,6 +65,7 @@ def parse_args(args):
                         nargs='*',
                         help='Additional request headers (KEY=VALUE pairs)',
                         default=None)
+    parent.add_argument('--ignore-conformance', dest='ignore_conformance', default=False, action='store_true')
 
     subparsers = parser0.add_subparsers(dest='command')
 
@@ -163,7 +165,8 @@ def cli():
     try:
         url = args.pop('url')
         headers = args.pop('headers', {})
-        client = Client.open(url, headers=headers)
+        ignore_conformance = args.pop('ignore_conformance')
+        client = Client.open(url, headers=headers, ignore_conformance=ignore_conformance)
     except Exception as e:
         print(e)
         return 1

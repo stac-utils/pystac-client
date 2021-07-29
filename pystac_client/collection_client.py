@@ -1,17 +1,28 @@
+from typing import (
+    Any,
+    Dict,
+    Iterable,
+    List,
+    Optional,
+    TYPE_CHECKING,
+    Tuple,
+    TypeVar,
+    Union,
+    cast,
+)
+
 import pystac
+from pystac_client.conformance import ConformanceClasses
 
-from pystac_client.conformance import ConformanceMixin
+if TYPE_CHECKING:
+    from pystac.item import Item as Item_Type
+    from pystac.catalog import Catalog as Catalog_Type
 
 
-class CollectionClient(pystac.Collection, ConformanceMixin):
+class CollectionClient(pystac.Collection):
     def __repr__(self):
         return '<CollectionClient id={}>'.format(self.id)
 
-    @classmethod
-    def from_dict(cls, *args, **kwargs) -> "CollectionClient":
-        """
+    #def get_items(self) -> Iterable["Item_Type"]:
+    #    if self.conforms_to(ConformanceClasses.COLLECTIONS):
 
-        """
-        cat = super().from_dict(*args, **kwargs)
-
-        return cat

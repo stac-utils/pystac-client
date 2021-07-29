@@ -35,15 +35,14 @@ are in a single HTTP session.
 - Running `stac-client` with no arguments no longer raises a confusing exception [#52](https://github.com/stac-utils/pystac-client/pull/52)
 - `Client.get_collections_list` [#44](https://github.com/stac-utils/pystac-client/issues/44)
 - The regular expression used for datetime parsing [#59](https://github.com/stac-utils/pystac-client/pull/59)
+- `Client.from_file` now works as expected, using `Client.open` is not required, although it will fetch STAC_URL from an envvar
 
 ### Removed
 
 - `get_pages` and `simple_stac_resolver` functions from `pystac_client.stac_io` (The new StacApiIO class understands `Link` objects)
 - `Client.search()` no longer accepts a `next_resolver` argument
 - pystac.extensions modules, which were based on PySTAC's previous extension implementation, replaced in 1.0.0
-- `stac_api_object.StacApiObjectMixin`, replaced with `conformance.ConformanceMixin`
-- `conformance.ConformanceClass`, replaced with `conformance.ConformanceMixin`
-- `conformance.ConformanceClasses`, replaced with `conformance.ConformanceMixin`
+- `stac_api_object.StacApiObjectMixin`, replaced with conformance checking in `StacApiIO`
 - PySTAC Collection objects can no longer be passed in as `collections` arguments to the `ItemSearch` class (just pass ids)
 - Catalog.get_collection_list (was alias to get_child_links) because made assumption about this being an API only. Also redundant with `Catalog.get_collections`
 - `Search.item_collections()`

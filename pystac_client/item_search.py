@@ -12,7 +12,7 @@ from pystac import Collection, Item, ItemCollection, Link
 from pystac.stac_io import StacIO
 
 from pystac_client.stac_api_io import StacApiIO
-from pystac_client.conformance import ConformanceClasses, ConformanceMixin
+from pystac_client.conformance import ConformanceClasses
 
 if TYPE_CHECKING:
     from pystac_client.client import Client
@@ -80,7 +80,7 @@ def dict_merge(dct, merge_dct, add_keys=True):
     return dct
 
 
-class ItemSearch(ConformanceMixin):
+class ItemSearch(object):
     """Represents a deferred query to an Item Search endpoint as described in the `STAC API - Item Search spec
     <https://github.com/radiantearth/stac-api-spec/tree/master/item-search>`__. No request is sent to the API until
     either the :meth:`ItemSearch.item_collections` or :meth:`ItemSearch.items` method is called and iterated over.
@@ -146,13 +146,9 @@ class ItemSearch(ConformanceMixin):
     collections: list, optional
         List of one or more Collection IDs or :class:`pystac.Collection` instances. Only Items in one of the provided
         Collections will be searched
-    conformance : list, optional
-        A list of conformance URIs indicating the specs that this service conforms to. Note that these are *not*
-        published as part of the ``"search"`` endpoint and must be obtained from the service's landing page.
     """
     def __init__(self,
                  url: str,
-                 conformance: Optional[str] = None,
                  *,
                  limit: Optional[int] = None,
                  bbox: Optional[BBoxLike] = None,
@@ -168,14 +164,13 @@ class ItemSearch(ConformanceMixin):
                  stac_io: Optional[StacIO] = None,
                  client: Optional["Client"] = None):
         self.url = url
-        self.conformance = conformance
-        self.conforms_to(ConformanceClasses.ITEM_SEARCH)
         self.client = client
 
         if stac_io:
             self._stac_io = stac_io
         else:
             self._stac_io = StacApiIO()
+        self._stac_io.conforms_to(ConformanceClasses.ITEM_SEARCH)
 
         self._max_items = max_items
         if self._max_items is not None and limit is not None:
@@ -352,7 +347,7 @@ class ItemSearch(ConformanceMixin):
         if value is None:
             return None
 
-        self.conforms_to(ConformanceClasses.SORT)
+        self._stac_io.conforms_to(ConformanceClasses.SORT)
 
         if isinstance(value, str):
             return tuple(value.split(','))
@@ -363,7 +358,7 @@ class ItemSearch(ConformanceMixin):
         if value is None:
             return None
 
-        self.conforms_to(ConformanceClasses.FIELDS)
+        self._stac_io.conforms_to(ConformanceClasses.FIELDS)
 
         if isinstance(value, str):
             return tuple(value.split(','))

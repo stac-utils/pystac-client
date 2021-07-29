@@ -5,7 +5,7 @@ import pystac
 import pystac.validation
 from pystac_client.collection_client import CollectionClient
 
-from pystac_client.conformance import ConformanceClasses, ConformanceMixin
+from pystac_client.conformance import ConformanceClasses
 from pystac_client.exceptions import APIError
 from pystac_client.item_search import ItemSearch
 from pystac_client.stac_api_io import StacApiIO
@@ -15,7 +15,7 @@ if TYPE_CHECKING:
     from pystac.collection import Collection as Collection_Type
 
 
-class Client(pystac.Catalog, ConformanceMixin):
+class Client(pystac.Catalog):
     """Instances of the ``Client`` class inherit from :class:`pystac.Catalog` and provide a convenient way of interacting
     with Catalogs OR APIs that conform to the `STAC API spec <https://github.com/radiantearth/stac-api-spec>`_. In addition
     to being a valid `STAC Catalog <https://github.com/radiantearth/stac-spec/blob/master/catalog-spec/catalog-spec.md>`_ the
@@ -40,7 +40,7 @@ class Client(pystac.Catalog, ConformanceMixin):
         return '<Client id={}>'.format(self.id)
 
     @classmethod
-    def open(cls, url=None, headers=None):
+    def open(cls, url=None, headers=None, ignore_conformance: bool = False):
         """Alias for PySTAC's STAC Object `from_file` method
 
         Parameters
@@ -60,27 +60,20 @@ class Client(pystac.Catalog, ConformanceMixin):
             raise TypeError(
                 "'url' must be specified or the 'STAC_URL' environment variable must be set.")
 
-        stac_io = StacApiIO(headers=headers)
-
-        cat = cls.from_file(url, stac_io)
-        
+        cat = cls.from_file(url, headers=headers)
+        if ignore_conformance:
+            cat._stac_io._conformance = None        
         return cat
 
     @classmethod
-    def from_dict(cls, d, *args, **kwargs) -> "Client":
-        """
+    def from_file(cls, href: str, stac_io: Optional[pystac.StacIO] = None, 
+                  headers: Optional[Dict] = {}) -> "Client":
+        if stac_io is None:
+            stac_io = StacApiIO(headers=headers)
 
-        Raises
-        ------
-        pystac_client.exceptions.ConformanceError
-            If the Catalog does not publish conformance URIs in either a ``"conformsTo"`` attribute in the landing page
-            response or in a ``/conformance``. According to the STAC API - Core spec, services must publish this as
-            part of a ``"conformsTo"`` attribute, but some legacy APIs fail to do so.
-        """
-        conformance = d.pop('conformsTo', None)
-        cat = super().from_dict(d, *args, **kwargs)
-        cat.conformance = conformance
-        cat.conforms_to(ConformanceClasses.CORE)
+        cat = super().from_file(href, stac_io)
+
+        cat._stac_io._conformance = cat.extra_fields.get('conformsTo', [])
 
         return cat
 
@@ -92,7 +85,7 @@ class Client(pystac.Catalog, ConformanceMixin):
     def get_collections(self) -> Iterable[CollectionClient]:
         """ Get Collections from the /collections endpoint if supported, otherwise fall 
             back to Catalog behavior of following child links """
-        if self.conforms_to(ConformanceClasses.COLLECTIONS):
+        if self._stac_io.conforms_to(ConformanceClasses.COLLECTIONS):
             url = self.get_self_href() + '/collections'
             for page in self._stac_io.get_pages(url):
                 if 'collections' not in page:
@@ -109,7 +102,7 @@ class Client(pystac.Catalog, ConformanceMixin):
         Return:
             Iterable[Item]: Generator of items whose parent is this catalog.
         """
-        if self.conforms_to(ConformanceClasses.ITEM_SEARCH):
+        if self._stac_io.conforms_to(ConformanceClasses.ITEM_SEARCH):
             search = self.search()
             yield from search.get_items()
         else:
@@ -124,7 +117,7 @@ class Client(pystac.Catalog, ConformanceMixin):
                 catalogs or collections connected to this catalog through
                 child links.
         """
-        if self.conforms_to(ConformanceClasses.ITEM_SEARCH):
+        if self._stac_io.conforms_to(ConformanceClasses.ITEM_SEARCH):
             yield from self.get_items()
         else:
             yield from super().get_items()
@@ -167,7 +160,6 @@ class Client(pystac.Catalog, ConformanceMixin):
         # TODO - check method in provided search link against method requested here
 
         return ItemSearch(search_link.target,
-                          conformance=self.conformance,
                           stac_io=self._stac_io,
                           client=self,
                           **kwargs)
