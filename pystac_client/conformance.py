@@ -34,16 +34,17 @@ STAC_PREFIXES = ['https://api.stacspec.org/v1.0.0-beta.2', 'https://api.stacspec
 
 
 class ConformanceClasses(Enum):
-    CORE = 'core'
-    ITEM_SEARCH = 'item-search'
-    CONTEXT = 'item-search#context'
-    FIELDS = 'item-search#fields'
-    SORT = 'item-search#sort'
-    QUERY = 'item-search#query'
-    FILTER = 'item-search#filter'
+    CORE = [f"{p}/core" for p in STAC_PREFIXES]
+    ITEM_SEARCH = [f"{p}/item-search" for p in STAC_PREFIXES]
+    CONTEXT = [f"{p}/item-search#context" for p in STAC_PREFIXES]
+    FIELDS = [f"{p}/item-search#fields" for p in STAC_PREFIXES]
+    SORT = [f"{p}/item-search#sort" for p in STAC_PREFIXES]
+    QUERY = [f"{p}/item-search#query" for p in STAC_PREFIXES]
+    FILTER = [f"{p}/item-search#filter" for p in STAC_PREFIXES]
+    COLLECTIONS = ['http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30']
 
 
-CONFORMANCE_URIS = {c.name: [f"{p}/{c.value}" for p in STAC_PREFIXES] for c in ConformanceClasses}
+CONFORMANCE_URIS = {c.name: c.value for c in ConformanceClasses}
 
 
 class ConformanceMixin:
