@@ -1,9 +1,8 @@
 import os
-from typing import Any, Iterable, Dict, TYPE_CHECKING
+from typing import Any, Iterable, Dict, Optional, TYPE_CHECKING
 
 import pystac
 import pystac.validation
-from pystac_client import collection_client
 from pystac_client.collection_client import CollectionClient
 
 from pystac_client.conformance import ConformanceClasses, ConformanceMixin
@@ -12,6 +11,7 @@ from pystac_client.item_search import ItemSearch
 from pystac_client.stac_api_io import StacApiIO
 
 if TYPE_CHECKING:
+    from pystac.item import Item as Item_Type
     from pystac.collection import Collection as Collection_Type
 
 
@@ -102,6 +102,32 @@ class Client(pystac.Catalog, ConformanceMixin):
                     yield collection
         else:
             yield from super().get_collections()
+
+    def get_items(self) -> Iterable["Item_Type"]:
+        """Return all items of this catalog.
+
+        Return:
+            Iterable[Item]: Generator of items whose parent is this catalog.
+        """
+        if self.conforms_to(ConformanceClasses.ITEM_SEARCH):
+            search = self.search()
+            yield from search.get_items()
+        else:
+            return super().get_items()
+
+    def get_all_items(self) -> Iterable["Item_Type"]:
+        """Get all items from this catalog and all subcatalogs. Will traverse
+        any subcatalogs recursively, or use the /search endpoint if supported
+
+        Returns:
+            Generator[Item]: All items that belong to this catalog, and all
+                catalogs or collections connected to this catalog through
+                child links.
+        """
+        if self.conforms_to(ConformanceClasses.ITEM_SEARCH):
+            yield from self.get_items()
+        else:
+            yield from super().get_items()
 
     def search(self, **kwargs: Any) -> ItemSearch:
         """Query the ``/search`` endpoint using the given parameters.

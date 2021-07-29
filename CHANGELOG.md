@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [v0.2.0-rc.1] - 2021-06-25
+## [v0.2.0-rc.1] - 2021-07-29
 
 ### Added
 
@@ -18,6 +18,7 @@ are in a single HTTP session.
 - `collections` subcommand to CLI, for saving all Collections in catalog as JSON
 - `Client.get_collections` overrides Catalog to use /collections endpoint if API conforms
 - `Client.get_collection(<collection_id>)` for getting specific collection
+- `Client.get_items` and `Client.get_all_items` override Catalog functions to use search endpoint instead of traversing catalog
 
 ### Changed
 
