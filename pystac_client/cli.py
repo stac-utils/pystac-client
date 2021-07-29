@@ -12,7 +12,7 @@ STAC_URL = os.getenv('STAC_URL', None)
 logger = logging.getLogger(__name__)
 
 
-def search(client, matched=False, save=None, headers=None, **kwargs):
+def search(client, matched=False, save=None, **kwargs):
     """ Main function for performing a search """
 
     try:
@@ -33,7 +33,7 @@ def search(client, matched=False, save=None, headers=None, **kwargs):
         print(e)
         return 1
 
-def collections(client, save=None, headers=None, **kwargs):
+def collections(client, save=None, **kwargs):
     """ Fetch collections from collections endpoint """
     try:
         collections = client.get_all_collections(**kwargs)
@@ -41,6 +41,8 @@ def collections(client, save=None, headers=None, **kwargs):
         if save:
             with open(save, 'w') as f:
                 f.write(json.dumps(collections_dicts))
+        else:
+            print(json.dumps(collections_dicts))
     except Exception as e:
         print(e)
         return 1
