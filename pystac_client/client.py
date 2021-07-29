@@ -1,12 +1,17 @@
 import os
-from typing import Any
+from typing import Any, Iterable, Dict, TYPE_CHECKING
 
 import pystac
 import pystac.validation
+from pystac_client.collection_client import CollectionClient
 
 from pystac_client.conformance import ConformanceClasses, ConformanceMixin
+from pystac_client.exceptions import APIError
 from pystac_client.item_search import ItemSearch
 from pystac_client.stac_api_io import StacApiIO
+
+if TYPE_CHECKING:
+    from pystac.collection import Collection as Collection_Type
 
 
 class Client(pystac.Catalog, ConformanceMixin):
@@ -57,6 +62,7 @@ class Client(pystac.Catalog, ConformanceMixin):
         stac_io = StacApiIO(headers=headers)
 
         cat = cls.from_file(url, stac_io)
+        
         return cat
 
     @classmethod
@@ -71,18 +77,25 @@ class Client(pystac.Catalog, ConformanceMixin):
             part of a ``"conformsTo"`` attribute, but some legacy APIs fail to do so.
         """
         conformance = d.pop('conformsTo', None)
-
         cat = super().from_dict(d, *args, **kwargs)
         cat.conformance = conformance
         cat.conforms_to(ConformanceClasses.CORE)
 
         return cat
 
-    def get_collections_list(self):
-        """Gets list of available collections from this Catalog. Alias for get_child_links since children
-            of an API are always and only ever collections
-        """
-        return self.get_child_links()
+    def get_collections(self) -> Iterable[CollectionClient]:
+        """ Get Collections from the /collections endpoint if supported, otherwise fall 
+            back to Catalog behavior of following child links """
+        if self.conforms_to(ConformanceClasses.COLLECTIONS):
+            url = self.get_self_href() + '/collections'
+            for page in self._stac_io.get_pages(url):
+                if 'collections' not in page:
+                    raise APIError("Invalid response from /collections")
+                for col in page['collections']:
+                    collection = CollectionClient.from_dict(col, root=self)
+                    yield collection
+        else:
+            yield from super().get_collections()
 
     def search(self, **kwargs: Any) -> ItemSearch:
         """Query the ``/search`` endpoint using the given parameters.
