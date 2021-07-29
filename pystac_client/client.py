@@ -3,6 +3,7 @@ from typing import Any, Iterable, Dict, TYPE_CHECKING
 
 import pystac
 import pystac.validation
+from pystac_client import collection_client
 from pystac_client.collection_client import CollectionClient
 
 from pystac_client.conformance import ConformanceClasses, ConformanceMixin
@@ -82,6 +83,11 @@ class Client(pystac.Catalog, ConformanceMixin):
         cat.conforms_to(ConformanceClasses.CORE)
 
         return cat
+
+    def get_collection(self, collection_id) -> Iterable[CollectionClient]:
+        for col in self.get_collections():
+            if col.id == collection_id:
+                return col
 
     def get_collections(self) -> Iterable[CollectionClient]:
         """ Get Collections from the /collections endpoint if supported, otherwise fall 

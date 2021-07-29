@@ -17,6 +17,7 @@ are in a single HTTP session.
 - `conformance.CONFORMANCE_CLASSES` dictionary added containing all STAC API Capabilities from stac-api-spec
 - `collections` subcommand to CLI, for saving all Collections in catalog as JSON
 - `Client.get_collections` overrides Catalog to use /collections endpoint if API conforms
+- `Client.get_collection(<collection_id>)` for getting specific collection
 
 ### Changed
 
@@ -44,8 +45,6 @@ are in a single HTTP session.
 - `conformance.ConformanceClasses`, replaced with `conformance.ConformanceMixin`
 - PySTAC Collection objects can no longer be passed in as `collections` arguments to the `ItemSearch` class (just pass ids)
 - Catalog.get_collection_list (was alias to get_child_links) because made assumption about this being an API only. Also redundant with `Catalog.get_collections`
-
-### Deprecated
 - `Search.item_collections()`
 - `Search.items()`
 
