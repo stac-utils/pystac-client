@@ -12,6 +12,7 @@ from .helpers import STAC_URLS, TEST_DATA
 
 
 class TestAPI:
+    @pytest.mark.vcr
     def test_instance(self):
         api = Client.open(STAC_URLS['PLANETARY-COMPUTER'])
 
