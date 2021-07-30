@@ -38,4 +38,3 @@ class CollectionClient(pystac.Collection):
         if self.conforms_to(ConformanceClasses.COLLECTIONS):
             url = f"{self.get_root_link()}/collections/{self.id}/items"
             breakpoint()
-

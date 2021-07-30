@@ -33,6 +33,7 @@ def search(client, matched=False, save=None, **kwargs):
         print(e)
         return 1
 
+
 def collections(client, save=None, **kwargs):
     """ Fetch collections from collections endpoint """
     try:
@@ -47,6 +48,7 @@ def collections(client, save=None, **kwargs):
     except Exception as e:
         print(e)
         return 1
+
 
 def parse_args(args):
     desc = 'STAC Client'
@@ -65,7 +67,10 @@ def parse_args(args):
                         nargs='*',
                         help='Additional request headers (KEY=VALUE pairs)',
                         default=None)
-    parent.add_argument('--ignore-conformance', dest='ignore_conformance', default=False, action='store_true')
+    parent.add_argument('--ignore-conformance',
+                        dest='ignore_conformance',
+                        default=False,
+                        action='store_true')
 
     subparsers = parser0.add_subparsers(dest='command')
 

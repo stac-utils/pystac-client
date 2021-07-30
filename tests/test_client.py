@@ -59,7 +59,7 @@ class TestAPI:
             client.conforms_to(ConformanceClasses.CORE)
 
         with pytest.raises(NotImplementedError):
-            client.conforms_to(ConformanceClasses.ITEM_SEARCH)        
+            client.conforms_to(ConformanceClasses.ITEM_SEARCH)
 
     @pytest.mark.vcr
     def test_no_stac_core_conformance(self):
@@ -70,7 +70,7 @@ class TestAPI:
         with pytest.raises(NotImplementedError):
             client.conforms_to(ConformanceClasses.CORE)
 
-        assert client.conforms_to(ConformanceClasses.ITEM_SEARCH) 
+        assert client.conforms_to(ConformanceClasses.ITEM_SEARCH)
 
     @pytest.mark.vcr
     def test_from_file(self):

@@ -190,7 +190,8 @@ class StacApiIO(DefaultStacIO):
             yield page
 
             # get the next link and make the next request
-            next_link = next((link for link in page.get('links', []) if link['rel'] == 'next'), None)
+            next_link = next((link for link in page.get('links', []) if link['rel'] == 'next'),
+                             None)
 
     def conforms_to(self, conformance_class: ConformanceClasses) -> bool:
         """Whether the API conforms to the given standard. This method only checks against the ``"conformsTo"``

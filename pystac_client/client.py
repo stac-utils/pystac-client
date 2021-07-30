@@ -62,11 +62,13 @@ class Client(pystac.Catalog):
 
         cat = cls.from_file(url, headers=headers)
         if ignore_conformance:
-            cat._stac_io._conformance = None        
+            cat._stac_io._conformance = None
         return cat
 
     @classmethod
-    def from_file(cls, href: str, stac_io: Optional[pystac.StacIO] = None, 
+    def from_file(cls,
+                  href: str,
+                  stac_io: Optional[pystac.StacIO] = None,
                   headers: Optional[Dict] = {}) -> "Client":
         if stac_io is None:
             stac_io = StacApiIO(headers=headers)
@@ -162,7 +164,4 @@ class Client(pystac.Catalog):
                 'No link with "rel" type of "search" could be found in this catalog')
         # TODO - check method in provided search link against method requested here
 
-        return ItemSearch(search_link.target,
-                          stac_io=self._stac_io,
-                          client=self,
-                          **kwargs)
+        return ItemSearch(search_link.target, stac_io=self._stac_io, client=self, **kwargs)

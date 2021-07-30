@@ -45,4 +45,3 @@ class ConformanceClasses(Enum):
 
 
 CONFORMANCE_URIS = {c.name: c.value for c in ConformanceClasses}
-
