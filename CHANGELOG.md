@@ -28,7 +28,7 @@ are in a single HTTP session, handle pagination and respects conformance
 - `Search.item_collections()` renamed to `Search.get_items()`
 - Conformance is checked by each individual function that requires a particular conformance
 - STAC API testing URLs changed to updated APIs
-- ItemSearch.get_pages function moved to StacApiIO class for general use
+- `ItemSearch.get_pages()` function moved to StacApiIO class for general use
 
 ### Fixed
 
