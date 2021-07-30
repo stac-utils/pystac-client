@@ -266,7 +266,7 @@ class TestItemSearch:
         )
         results = list(search.get_items())
 
-        assert len(results) == 2
+        assert len(results) == 1
         assert all(item.id in ids for item in results)
 
     @pytest.mark.vcr

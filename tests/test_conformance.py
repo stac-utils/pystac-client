@@ -1,9 +1,8 @@
-from pystac_client.conformance import ConformanceClasses, ConformanceMixin
+from pystac_client.conformance import ConformanceClasses
 
 
 class TestConformanceMixin:
-    def test_stac_core(self):
-        conformance = ConformanceMixin()
+    def _test_stac_core(self):
         conformance.conformance = ['https://api.stacspec.org/v1.0.0-beta.2/core']
         assert conformance.conforms_to(ConformanceClasses.CORE)
 
