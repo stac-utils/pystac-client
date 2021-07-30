@@ -22,7 +22,7 @@ are in a single HTTP session, handle pagination and respects conformance
 
 ### Changed
 
-- Update to use PySTAC 1.0.0
+- Update to use PySTAC 1.1.0
 - IO changed to use PySTAC's new StacIO base class. 
 - `Search.item_collections()` renamed to `Search.get_item_collections()`
 - `Search.item_collections()` renamed to `Search.get_items()`
@@ -72,4 +72,3 @@ Initial release.
 [v0.2.0-rc.1]: <https://github.com/stac-utils/pystac-client/compare/v0.1.1..v0.2.0-rc.1>
 [v0.1.1]: <https://github.com/stac-utils/pystac-client/compare/v0.1.0..v0.1.1>
 [v0.1.0]: <https://github.com/stac-utils/pystac-client/tree/v0.1.0>
-
