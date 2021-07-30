@@ -61,7 +61,7 @@ class Client(pystac.Catalog):
 
         cat = cls.from_file(url, headers=headers)
         if ignore_conformance:
-            cat._stac_io._conformance = None
+            cat._stac_io.set_conformance(None)
         return cat
 
     @classmethod
