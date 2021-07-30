@@ -195,16 +195,19 @@ class ItemSearch(object):
 
         self._parameters = {k: v for k, v in params.items() if v is not None}
 
-    '''
-    def format_parameters(self, method='GET'):
-        if method == 'POST':
+    def get_parameters(self):
+        if self.method == 'POST':
             return self._parameters
-        elif method == 'GET':
+        elif self.method == 'GET':
             params = deepcopy(self._parameters)
-            params['collections'] = json.dumps(params['collections'])
+            if 'bbox' in params:
+                params['bbox'] = params['bbox'].split(',')
+            if 'ids' in params:
+                params['ids'] = params['ids'].split(',')
+            if 'collections' in params:
+                params['collections'] = params['collections'].split(',')
         else:
-            raise APIError("Unsupported method")
-    '''
+            raise Exception(f"Unsupported method {self.method}")
 
     @staticmethod
     def _format_query(value: List[QueryLike]) -> Optional[dict]:
@@ -374,7 +377,7 @@ class ItemSearch(object):
         return deepcopy(getattr(value, '__geo_interface__', value))
 
     def matched(self) -> int:
-        params = {**self._parameters, "limit": 1}
+        params = {**self.get_parameters(), "limit": 1}
         resp = self._stac_io.read_json(self.url, method=self.method, parameters=params)
         found = None
         if 'context' in resp:
@@ -393,7 +396,7 @@ class ItemSearch(object):
         -------
         item_collection : pystac_client.ItemCollection
         """
-        for page in self._stac_io.get_pages(self.url, self.method, self._parameters):
+        for page in self._stac_io.get_pages(self.url, self.method, self.get_parameters()):
             yield ItemCollection.from_dict(page, root=self.client)
 
     def get_items(self) -> Iterator[Item]:
@@ -422,7 +425,7 @@ class ItemSearch(object):
         Dict : A GeoJSON FeatureCollection
         """
         features = []
-        for page in self._stac_io.get_pages(self.url, self.method, self._parameters):
+        for page in self._stac_io.get_pages(self.url, self.method, self.get_parameters()):
             for feature in page['features']:
                 features.append(feature)
                 if self._max_items and len(features) >= self._max_items:

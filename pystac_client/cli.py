@@ -38,7 +38,6 @@ def collections(client, save=None, **kwargs):
     """ Fetch collections from collections endpoint """
     try:
         collections = client.get_all_collections(**kwargs)
-        breakpoint()
         collections_dicts = [c.to_dict() for c in collections]
         if save:
             with open(save, 'w') as f:

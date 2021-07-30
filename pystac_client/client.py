@@ -161,6 +161,5 @@ class Client(pystac.Catalog):
         if search_link is None:
             raise NotImplementedError(
                 'No link with "rel" type of "search" could be found in this catalog')
-        # TODO - check method in provided search link against method requested here
 
         return ItemSearch(search_link.target, stac_io=self._stac_io, client=self, **kwargs)
