@@ -8,7 +8,7 @@ import pytest
 from pystac_client import Client
 from pystac_client.conformance import ConformanceClasses
 
-from .helpers import STAC_URLS, TEST_DATA, read_data_file
+from .helpers import STAC_URLS, TEST_DATA
 
 
 class TestAPI:
@@ -40,11 +40,6 @@ class TestAPI:
 
         # Set conformsTo URIs to conform with STAC API - Core using official URI
         client._stac_io._conformance = ['https://api.stacspec.org/v1.0.0-beta.1/core']
-
-        # Must have a conformance property that is the list of URIs from the conformsTo property
-        #assert hasattr(api, 'conforms_to')
-        #assert api.conformance == conformsTo
-        # Check the conformance to STAC API - Core using the ConformanceClass
 
         assert client.conforms_to(ConformanceClasses.CORE)
 

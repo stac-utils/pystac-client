@@ -8,7 +8,7 @@ from datetime import timezone, datetime as datetime_
 from typing import Dict, Iterator, List, Optional, TYPE_CHECKING, Tuple, Union
 import warnings
 
-from pystac import Collection, Item, ItemCollection, Link
+from pystac import Collection, Item, ItemCollection
 from pystac.stac_io import StacIO
 
 from pystac_client.stac_api_io import StacApiIO

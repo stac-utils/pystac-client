@@ -1,15 +1,4 @@
-from typing import (
-    Any,
-    Dict,
-    Iterable,
-    List,
-    Optional,
-    TYPE_CHECKING,
-    Tuple,
-    TypeVar,
-    Union,
-    cast,
-)
+from typing import (Iterable, Optional, TYPE_CHECKING)
 
 import pystac
 from pystac_client.conformance import ConformanceClasses
@@ -37,4 +26,7 @@ class CollectionClient(pystac.Collection):
     def get_items(self) -> Iterable["Item_Type"]:
         if self.conforms_to(ConformanceClasses.COLLECTIONS):
             url = f"{self.get_root_link()}/collections/{self.id}/items"
-            breakpoint()
+            search = ItemSearch(url)
+            yield from search.get_items()
+        else:
+            yield from super().get_items()

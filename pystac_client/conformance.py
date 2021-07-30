@@ -28,7 +28,6 @@ False
 True
 """
 from enum import Enum
-from typing import List, Optional
 
 STAC_PREFIXES = ['https://api.stacspec.org/v1.0.0-beta.2', 'https://api.stacspec.org/v1.0.0-beta.1']
 

@@ -12,7 +12,6 @@ from pystac_client.stac_api_io import StacApiIO
 
 if TYPE_CHECKING:
     from pystac.item import Item as Item_Type
-    from pystac.collection import Collection as Collection_Type
 
 
 class Client(pystac.Catalog):
@@ -88,7 +87,7 @@ class Client(pystac.Catalog):
                 return col
 
     def get_collections(self) -> Iterable[CollectionClient]:
-        """ Get Collections from the /collections endpoint if supported, otherwise fall 
+        """ Get Collections from the /collections endpoint if supported, otherwise fall
             back to Catalog behavior of following child links """
         if self.conforms_to(ConformanceClasses.COLLECTIONS):
             url = self.get_self_href() + '/collections'
