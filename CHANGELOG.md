@@ -6,14 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [v0.2.0-rc.1] - 2021-07-29
+## [v0.2.0-rc.1] - 2021-07-30
 
 ### Added
 
 - `Client.open` falls back to the `STAC_URL` environment variable if no url is provided as an argument [#48](https://github.com/stac-utils/pystac-client/pull/48)
 - New Search.get_pages() iterator function to retrieve pages as raw JSON, not as ItemCollections
 - `StacApiIO` class added, subclass from PySTAC `StacIO`. A `StacApiIO` instance is used for all IO for a Client instance, and all requests
-are in a single HTTP session.
+are in a single HTTP session, handle pagination and respects conformance
 - `conformance.CONFORMANCE_CLASSES` dictionary added containing all STAC API Capabilities from stac-api-spec
 - `collections` subcommand to CLI, for saving all Collections in catalog as JSON
 - `Client.get_collections` overrides Catalog to use /collections endpoint if API conforms
@@ -22,7 +22,7 @@ are in a single HTTP session.
 
 ### Changed
 
-- Update to use PySTAC 1.0.0-rc.2
+- Update to use PySTAC 1.0.0
 - IO changed to use PySTAC's new StacIO base class. 
 - `Search.item_collections()` renamed to `Search.get_item_collections()`
 - `Search.item_collections()` renamed to `Search.get_items()`
