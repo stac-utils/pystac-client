@@ -223,3 +223,7 @@ class StacApiIO(DefaultStacIO):
             raise NotImplementedError(f"{conformance_class} not supported")
 
         return True
+        
+    def set_conformance(self, conformance: Optional[List[str]]) -> None:
+        """Sets (or clears) the conformances for this StacIO."""
+        self._conformance = conformance
