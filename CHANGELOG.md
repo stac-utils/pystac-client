@@ -44,7 +44,7 @@ are in a single HTTP session, handle pagination and respects conformance
 - pystac.extensions modules, which were based on PySTAC's previous extension implementation, replaced in 1.0.0
 - `stac_api_object.StacApiObjectMixin`, replaced with conformance checking in `StacApiIO`
 - PySTAC Collection objects can no longer be passed in as `collections` arguments to the `ItemSearch` class (just pass ids)
-- Catalog.get_collection_list (was alias to get_child_links) because made assumption about this being an API only. Also redundant with `Catalog.get_collections`
+- `Catalog.get_collection_list` (was alias to `get_child_links`) because made assumption about this being an API only. Also redundant with `Catalog.get_collections`
 - `Search.item_collections()`
 - `Search.items()`
 
