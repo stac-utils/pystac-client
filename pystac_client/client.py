@@ -77,6 +77,9 @@ class Client(pystac.Catalog):
 
         return cat
 
+    def conforms_to(self, conformance: ConformanceClasses) -> bool:
+        return self._stac_io.conforms_to(conformance)
+
     def get_collection(self, collection_id) -> Iterable[CollectionClient]:
         for col in self.get_collections():
             if col.id == collection_id:
@@ -85,7 +88,7 @@ class Client(pystac.Catalog):
     def get_collections(self) -> Iterable[CollectionClient]:
         """ Get Collections from the /collections endpoint if supported, otherwise fall 
             back to Catalog behavior of following child links """
-        if self._stac_io.conforms_to(ConformanceClasses.COLLECTIONS):
+        if self.conforms_to(ConformanceClasses.COLLECTIONS):
             url = self.get_self_href() + '/collections'
             for page in self._stac_io.get_pages(url):
                 if 'collections' not in page:
@@ -102,7 +105,7 @@ class Client(pystac.Catalog):
         Return:
             Iterable[Item]: Generator of items whose parent is this catalog.
         """
-        if self._stac_io.conforms_to(ConformanceClasses.ITEM_SEARCH):
+        if self.conforms_to(ConformanceClasses.ITEM_SEARCH):
             search = self.search()
             yield from search.get_items()
         else:
@@ -117,7 +120,7 @@ class Client(pystac.Catalog):
                 catalogs or collections connected to this catalog through
                 child links.
         """
-        if self._stac_io.conforms_to(ConformanceClasses.ITEM_SEARCH):
+        if self.conforms_to(ConformanceClasses.ITEM_SEARCH):
             yield from self.get_items()
         else:
             yield from super().get_items()
