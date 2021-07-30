@@ -80,7 +80,7 @@ def dict_merge(dct, merge_dct, add_keys=True):
     return dct
 
 
-class ItemSearch(object):
+class ItemSearch:
     """Represents a deferred query to an Item Search endpoint as described in the `STAC API - Item Search spec
     <https://github.com/radiantearth/stac-api-spec/tree/master/item-search>`__. No request is sent to the API until
     either the :meth:`ItemSearch.item_collections` or :meth:`ItemSearch.items` method is called and iterated over.
