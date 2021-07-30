@@ -26,7 +26,7 @@ class CollectionClient(pystac.Collection):
     def get_items(self) -> Iterable["Item_Type"]:
         if self.conforms_to(ConformanceClasses.COLLECTIONS):
             url = f"{self.get_root_link()}/collections/{self.id}/items"
-            search = ItemSearch(url)
+            search = ItemSearch(url, method='GET')
             yield from search.get_items()
         else:
             yield from super().get_items()
