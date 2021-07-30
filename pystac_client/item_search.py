@@ -201,11 +201,14 @@ class ItemSearch(object):
         elif self.method == 'GET':
             params = deepcopy(self._parameters)
             if 'bbox' in params:
-                params['bbox'] = params['bbox'].split(',')
+                params['bbox'] = ','.join(params['bbox'])
             if 'ids' in params:
-                params['ids'] = params['ids'].split(',')
+                params['ids'] = ','.join(params['ids'])
             if 'collections' in params:
-                params['collections'] = params['collections'].split(',')
+                params['collections'] = ','.join(params['collections'])
+            if 'intersects' in params:
+                params['intersects'] = json.dumps(params['intersects'])
+            return params
         else:
             raise Exception(f"Unsupported method {self.method}")
 
