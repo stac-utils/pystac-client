@@ -13,7 +13,7 @@ class CollectionClient(pystac.Collection):
     def __repr__(self):
         return '<CollectionClient id={}>'.format(self.id)
 
-    def conforms_to(self, conformance: ConformanceClasses) -> bool:
+    def assert_conforms_to(self, conformance: ConformanceClasses) -> bool:
         return self._stac_io.conforms_to(conformance)
 
     @classmethod
@@ -24,7 +24,7 @@ class CollectionClient(pystac.Collection):
         return col
 
     def get_items(self) -> Iterable["Item_Type"]:
-        if self.conforms_to(ConformanceClasses.COLLECTIONS):
+        if self.assert_conforms_to(ConformanceClasses.COLLECTIONS):
             url = f"{self.get_root_link().href}/collections/{self.id}/items"
             search = ItemSearch(url, method='GET')
             yield from search.get_items()

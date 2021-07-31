@@ -193,6 +193,26 @@ class StacApiIO(DefaultStacIO):
             next_link = next((link for link in page.get('links', []) if link['rel'] == 'next'),
                              None)
 
+    def assert_conforms_to(self, conformance_class: ConformanceClasses):
+        """Whether the API conforms to the given standard. This method only checks against the ``"conformsTo"``
+        property from the API landing page and does not make any additional calls to a ``/conformance`` endpoint
+        even if the API provides such an endpoint.
+
+        Parameters
+        ----------
+        key : str
+            The ``ConformanceClasses`` key to check conformance against.
+
+        Returns
+        -------
+        bool
+            Indicates if the API conforms to the given spec or URI.
+        """
+        if not self.conforms_to(conformance_class):
+            raise NotImplementedError(f"{conformance_class} not supported")
+        else:
+            return True
+
     def conforms_to(self, conformance_class: ConformanceClasses) -> bool:
         """Whether the API conforms to the given standard. This method only checks against the ``"conformsTo"``
         property from the API landing page and does not make any additional calls to a ``/conformance`` endpoint
@@ -220,7 +240,7 @@ class StacApiIO(DefaultStacIO):
             raise Exception(f"Invalid conformance class {conformance_class}")
 
         if not any(uri in uris for uri in self._conformance):
-            raise NotImplementedError(f"{conformance_class} not supported")
+            return False
 
         return True
 

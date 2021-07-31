@@ -170,7 +170,7 @@ class ItemSearch:
             self._stac_io = stac_io
         else:
             self._stac_io = StacApiIO()
-        self._stac_io.conforms_to(ConformanceClasses.ITEM_SEARCH)
+        self._stac_io.assert_conforms_to(ConformanceClasses.ITEM_SEARCH)
 
         self._max_items = max_items
         if self._max_items is not None and limit is not None:
@@ -353,7 +353,7 @@ class ItemSearch:
         if value is None:
             return None
 
-        self._stac_io.conforms_to(ConformanceClasses.SORT)
+        self._stac_io.assert_conforms_to(ConformanceClasses.SORT)
 
         if isinstance(value, str):
             return tuple(value.split(','))
@@ -364,7 +364,7 @@ class ItemSearch:
         if value is None:
             return None
 
-        self._stac_io.conforms_to(ConformanceClasses.FIELDS)
+        self._stac_io.assert_conforms_to(ConformanceClasses.FIELDS)
 
         if isinstance(value, str):
             return tuple(value.split(','))
