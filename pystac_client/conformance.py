@@ -28,64 +28,19 @@ False
 True
 """
 from enum import Enum
-from typing import List, Optional
 
 STAC_PREFIXES = ['https://api.stacspec.org/v1.0.0-beta.2', 'https://api.stacspec.org/v1.0.0-beta.1']
 
 
 class ConformanceClasses(Enum):
-    CORE = 'core'
-    ITEM_SEARCH = 'item-search'
-    CONTEXT = 'item-search#context'
-    FIELDS = 'item-search#fields'
-    SORT = 'item-search#sort'
-    QUERY = 'item-search#query'
-    FILTER = 'item-search#filter'
+    CORE = [f"{p}/core" for p in STAC_PREFIXES]
+    ITEM_SEARCH = [f"{p}/item-search" for p in STAC_PREFIXES]
+    CONTEXT = [f"{p}/item-search#context" for p in STAC_PREFIXES]
+    FIELDS = [f"{p}/item-search#fields" for p in STAC_PREFIXES]
+    SORT = [f"{p}/item-search#sort" for p in STAC_PREFIXES]
+    QUERY = [f"{p}/item-search#query" for p in STAC_PREFIXES]
+    FILTER = [f"{p}/item-search#filter" for p in STAC_PREFIXES]
+    COLLECTIONS = ['http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30']
 
 
-CONFORMANCE_URIS = {c.name: [f"{p}/{c.value}" for p in STAC_PREFIXES] for c in ConformanceClasses}
-
-
-class ConformanceMixin:
-    """A mixin class that adds functionality for checking conformance against various STAC API specs."""
-
-    _conformance = []
-
-    @property
-    def conformance(self) -> Optional[List[str]]:
-        return self._conformance
-
-    @conformance.setter
-    def conformance(self, value):
-        self._conformance = value
-
-    def conforms_to(self, conformance_class: ConformanceClasses) -> bool:
-        """Whether the API conforms to the given standard. This method only checks against the ``"conformsTo"``
-        property from the API landing page and does not make any additional calls to a ``/conformance`` endpoint
-        even if the API provides such an endpoint.
-
-        Parameters
-        ----------
-        key : str
-            The ``ConformanceClasses`` key to check conformance against.
-
-        Returns
-        -------
-        bool
-            Indicates if the API conforms to the given spec or URI.
-        """
-
-        # Conformance of None means ignore all conformance as opposed to an
-        #  empty array which would indicate the API conforms to nothing
-        if self.conformance is None:
-            return True
-
-        uris = CONFORMANCE_URIS.get(conformance_class.name, None)
-
-        if uris is None:
-            raise Exception(f"Invalid conformance class {conformance_class}")
-
-        if not any(uri in uris for uri in self.conformance):
-            raise NotImplementedError(f"{conformance_class} not supported")
-
-        return True
+CONFORMANCE_URIS = {c.name: c.value for c in ConformanceClasses}

@@ -5,14 +5,17 @@ import re
 from collections.abc import Iterable, Mapping
 from copy import deepcopy
 from datetime import timezone, datetime as datetime_
-from typing import Dict, Iterator, List, Optional, Tuple, Union
+from typing import Dict, Iterator, List, Optional, TYPE_CHECKING, Tuple, Union
 import warnings
 
-from pystac import Collection, Item, ItemCollection, Link
+from pystac import Collection, Item, ItemCollection
 from pystac.stac_io import StacIO
 
-from pystac_client.stac_io import StacApiIO
-from pystac_client.conformance import ConformanceClasses, ConformanceMixin
+from pystac_client.stac_api_io import StacApiIO
+from pystac_client.conformance import ConformanceClasses
+
+if TYPE_CHECKING:
+    from pystac_client.client import Client
 
 DATETIME_REGEX = re.compile(
     r"(?P<year>\d{4})(\-(?P<month>\d{2})(\-(?P<day>\d{2})"
@@ -77,7 +80,7 @@ def dict_merge(dct, merge_dct, add_keys=True):
     return dct
 
 
-class ItemSearch(ConformanceMixin):
+class ItemSearch:
     """Represents a deferred query to an Item Search endpoint as described in the `STAC API - Item Search spec
     <https://github.com/radiantearth/stac-api-spec/tree/master/item-search>`__. No request is sent to the API until
     either the :meth:`ItemSearch.item_collections` or :meth:`ItemSearch.items` method is called and iterated over.
@@ -143,13 +146,9 @@ class ItemSearch(ConformanceMixin):
     collections: list, optional
         List of one or more Collection IDs or :class:`pystac.Collection` instances. Only Items in one of the provided
         Collections will be searched
-    conformance : list, optional
-        A list of conformance URIs indicating the specs that this service conforms to. Note that these are *not*
-        published as part of the ``"search"`` endpoint and must be obtained from the service's landing page.
     """
     def __init__(self,
                  url: str,
-                 conformance: Optional[str] = None,
                  *,
                  limit: Optional[int] = None,
                  bbox: Optional[BBoxLike] = None,
@@ -162,24 +161,28 @@ class ItemSearch(ConformanceMixin):
                  fields: Optional[FieldsLike] = None,
                  max_items: Optional[int] = None,
                  method: Optional[str] = 'POST',
-                 stac_io: Optional[StacIO] = None):
+                 stac_io: Optional[StacIO] = None,
+                 client: Optional["Client"] = None):
         self.url = url
-        self.conformance = conformance
-        self.conforms_to(ConformanceClasses.ITEM_SEARCH)
+        self.client = client
 
         if stac_io:
             self._stac_io = stac_io
         else:
             self._stac_io = StacApiIO()
+        self._stac_io.assert_conforms_to(ConformanceClasses.ITEM_SEARCH)
 
         self._max_items = max_items
         if self._max_items is not None and limit is not None:
             limit = min(limit, self._max_items)
 
+        if limit is not None and (limit < 1 or limit > 10000):
+            raise Exception(f"Invalid limit of {limit}, must be between 1 and 10,000")
+
         self.method = method
 
         params = {
-            'limit': int(limit) if limit is not None else None,
+            'limit': limit,
             'bbox': self._format_bbox(bbox),
             'datetime': self._format_datetime(datetime),
             'ids': self._format_ids(ids),
@@ -192,16 +195,22 @@ class ItemSearch(ConformanceMixin):
 
         self._parameters = {k: v for k, v in params.items() if v is not None}
 
-    '''
-    def format_parameters(self, method='GET'):
-        if method == 'POST':
+    def get_parameters(self):
+        if self.method == 'POST':
             return self._parameters
-        elif method == 'GET':
+        elif self.method == 'GET':
             params = deepcopy(self._parameters)
-            params['collections'] = json.dumps(params['collections'])
+            if 'bbox' in params:
+                params['bbox'] = ','.join(params['bbox'])
+            if 'ids' in params:
+                params['ids'] = ','.join(params['ids'])
+            if 'collections' in params:
+                params['collections'] = ','.join(params['collections'])
+            if 'intersects' in params:
+                params['intersects'] = json.dumps(params['intersects'])
+            return params
         else:
-            raise APIError("Unsupported method")
-    '''
+            raise Exception(f"Unsupported method {self.method}")
 
     @staticmethod
     def _format_query(value: List[QueryLike]) -> Optional[dict]:
@@ -344,7 +353,7 @@ class ItemSearch(ConformanceMixin):
         if value is None:
             return None
 
-        self.conforms_to(ConformanceClasses.SORT)
+        self._stac_io.assert_conforms_to(ConformanceClasses.SORT)
 
         if isinstance(value, str):
             return tuple(value.split(','))
@@ -355,7 +364,7 @@ class ItemSearch(ConformanceMixin):
         if value is None:
             return None
 
-        self.conforms_to(ConformanceClasses.FIELDS)
+        self._stac_io.assert_conforms_to(ConformanceClasses.FIELDS)
 
         if isinstance(value, str):
             return tuple(value.split(','))
@@ -371,7 +380,7 @@ class ItemSearch(ConformanceMixin):
         return deepcopy(getattr(value, '__geo_interface__', value))
 
     def matched(self) -> int:
-        params = {**self._parameters, "limit": 0}
+        params = {**self.get_parameters(), "limit": 1}
         resp = self._stac_io.read_json(self.url, method=self.method, parameters=params)
         found = None
         if 'context' in resp:
@@ -382,28 +391,6 @@ class ItemSearch(ConformanceMixin):
             warnings.warn("numberMatched or context.matched not in response")
         return found
 
-    def get_pages(self) -> Iterator[Dict]:
-        """Iterator that yields dictionaries matching the `ItemCollection
-        <https://github.com/radiantearth/stac-api-spec/blob/master/fragments/itemcollection/README.md>`__ spec. Each of
-        these items represents a "page" or results for the search.
-
-        Yields
-        -------
-        item_collection : pystac_client.ItemCollection
-        """
-        page = self._stac_io.read_json(self.url, method=self.method, parameters=self._parameters)
-        yield page
-
-        next_link = next((link for link in page.get('links', []) if link['rel'] == 'next'), None)
-        while next_link:
-            link = Link.from_dict(next_link)
-            page = self._stac_io.read_json(link, parameters=self._parameters)
-            yield page
-
-            # get the next link and make the next request
-            next_link = next((link for link in page.get('links', []) if link['rel'] == 'next'),
-                             None)
-
     def get_item_collections(self) -> Iterator[ItemCollection]:
         """Iterator that yields ItemCollection objects.  Each ItemCollection is a page of results
         from the search.
@@ -412,12 +399,8 @@ class ItemSearch(ConformanceMixin):
         -------
         item_collection : pystac_client.ItemCollection
         """
-        for page in self.get_pages():
-            yield ItemCollection.from_dict(page)
-
-    def item_collections(self) -> Iterator[ItemCollection]:
-        warnings.warn("Search.item_collections is deprecated, please use get_item_collections")
-        return self.get_item_collections()
+        for page in self._stac_io.get_pages(self.url, self.method, self.get_parameters()):
+            yield ItemCollection.from_dict(page, root=self.client)
 
     def get_items(self) -> Iterator[Item]:
         """Iterator that yields :class:`pystac.Item` instances for each item matching the given search parameters. Calls
@@ -436,10 +419,6 @@ class ItemSearch(ConformanceMixin):
                 if self._max_items and nitems >= self._max_items:
                     return
 
-    def items(self) -> Iterator[Item]:
-        warnings.warn("Search.items is deprecated, please use get_items")
-        return self.get_items()
-
     def get_all_items_as_dict(self) -> Dict:
         """Convenience method that gets all items from all pages, up to self._max_items,
          and returns an array of dictionaries
@@ -449,7 +428,7 @@ class ItemSearch(ConformanceMixin):
         Dict : A GeoJSON FeatureCollection
         """
         features = []
-        for page in self.get_pages():
+        for page in self._stac_io.get_pages(self.url, self.method, self.get_parameters()):
             for feature in page['features']:
                 features.append(feature)
                 if self._max_items and len(features) >= self._max_items:

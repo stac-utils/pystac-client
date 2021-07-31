@@ -1,19 +1,20 @@
-from copy import deepcopy
 import os
-from typing import Any, Dict, List, Optional
+from typing import Any, Iterable, Dict, Optional, TYPE_CHECKING
 
 import pystac
-from pystac.link import Link
-from pystac.errors import STACTypeError
 import pystac.validation
+from pystac_client.collection_client import CollectionClient
 
-from pystac_client.conformance import ConformanceClasses, ConformanceMixin
+from pystac_client.conformance import ConformanceClasses
+from pystac_client.exceptions import APIError
 from pystac_client.item_search import ItemSearch
-from pystac.serialization import (identify_stac_object, migrate_to_latest)
-from pystac_client.stac_io import StacApiIO
+from pystac_client.stac_api_io import StacApiIO
+
+if TYPE_CHECKING:
+    from pystac.item import Item as Item_Type
 
 
-class Client(pystac.Catalog, ConformanceMixin):
+class Client(pystac.Catalog):
     """Instances of the ``Client`` class inherit from :class:`pystac.Catalog` and provide a convenient way of interacting
     with Catalogs OR APIs that conform to the `STAC API spec <https://github.com/radiantearth/stac-api-spec>`_. In addition
     to being a valid `STAC Catalog <https://github.com/radiantearth/stac-spec/blob/master/catalog-spec/catalog-spec.md>`_ the
@@ -34,33 +35,11 @@ class Client(pystac.Catalog, ConformanceMixin):
         `OGC API - Features conformance declaration
         <http://docs.opengeospatial.org/is/17-069r3/17-069r3.html#_declaration_of_conformance_classes>`_.
     """
-    def __init__(self,
-                 id: str,
-                 description: str,
-                 title: Optional[str] = None,
-                 stac_extensions: Optional[List[str]] = None,
-                 extra_fields: Optional[Dict[str, Any]] = None,
-                 href: Optional[str] = None,
-                 catalog_type: pystac.CatalogType = pystac.CatalogType.ABSOLUTE_PUBLISHED,
-                 conformance=None,
-                 headers=None):
-        super().__init__(id=id,
-                         description=description,
-                         title=title,
-                         stac_extensions=stac_extensions,
-                         extra_fields=extra_fields,
-                         href=href,
-                         catalog_type=catalog_type)
-
-        self.conformance = conformance
-        self.conforms_to(ConformanceClasses.CORE)
-        self.headers = headers or {}
-
     def __repr__(self):
         return '<Client id={}>'.format(self.id)
 
     @classmethod
-    def open(cls, url=None, headers=None):
+    def open(cls, url=None, headers=None, ignore_conformance: bool = False):
         """Alias for PySTAC's STAC Object `from_file` method
 
         Parameters
@@ -80,75 +59,72 @@ class Client(pystac.Catalog, ConformanceMixin):
             raise TypeError(
                 "'url' must be specified or the 'STAC_URL' environment variable must be set.")
 
-        stac_io = StacApiIO(headers=headers)
-
-        catalog = cls.from_file(url, stac_io)
-        return catalog
+        cat = cls.from_file(url, headers=headers)
+        if ignore_conformance:
+            cat._stac_io.set_conformance(None)
+        return cat
 
     @classmethod
-    def from_dict(cls,
-                  d: Dict[str, Any],
-                  href: Optional[str] = None,
-                  migrate: bool = False,
-                  preserve_dict: bool = True,
-                  **kwargs: Any) -> "Client":
-        """Overwrites the :meth:`pystac.Catalog.from_dict` method to add the ``user_agent`` initialization argument
-        and to check if the content conforms to the STAC API - Core spec.
+    def from_file(cls,
+                  href: str,
+                  stac_io: Optional[pystac.StacIO] = None,
+                  headers: Optional[Dict] = {}) -> "Client":
+        if stac_io is None:
+            stac_io = StacApiIO(headers=headers)
 
-        Raises
-        ------
-        pystac_client.exceptions.ConformanceError
-            If the Catalog does not publish conformance URIs in either a ``"conformsTo"`` attribute in the landing page
-            response or in a ``/conformance``. According to the STAC API - Core spec, services must publish this as
-            part of a ``"conformsTo"`` attribute, but some legacy APIs fail to do so.
-        """
-        if migrate:
-            info = identify_stac_object(d)
-            d = migrate_to_latest(d, info)
+        cat = super().from_file(href, stac_io)
 
-        if not cls.matches_object_type(d):
-            raise STACTypeError(f"{d} does not represent a {cls.__name__} instance")
-
-        catalog_type = pystac.CatalogType.determine_type(d)
-
-        if preserve_dict:
-            d = deepcopy(d)
-
-        conformance = d.pop('conformsTo', None)
-
-        id = d.pop("id")
-        description = d.pop("description")
-        title = d.pop("title", None)
-        stac_extensions = d.pop("stac_extensions", None)
-        links = d.pop("links")
-
-        d.pop("stac_version")
-
-        cat = cls(id=id,
-                  description=description,
-                  title=title,
-                  stac_extensions=stac_extensions,
-                  extra_fields=d,
-                  href=href,
-                  catalog_type=catalog_type or pystac.CatalogType.ABSOLUTE_PUBLISHED,
-                  conformance=conformance,
-                  **kwargs)
-
-        for link in links:
-            if link["rel"] == pystac.RelType.ROOT:
-                # Remove the link that's generated in Catalog's constructor.
-                cat.remove_links(pystac.RelType.ROOT)
-
-            if link["rel"] != pystac.RelType.SELF or href is None:
-                cat.add_link(Link.from_dict(link))
+        cat._stac_io._conformance = cat.extra_fields.get('conformsTo', [])
 
         return cat
 
-    def get_collections_list(self):
-        """Gets list of available collections from this Catalog. Alias for get_child_links since children
-            of an API are always and only ever collections
+    def assert_conforms_to(self, conformance: ConformanceClasses) -> bool:
+        return self._stac_io.assert_conforms_to(conformance)
+
+    def get_collection(self, collection_id) -> Iterable[CollectionClient]:
+        for col in self.get_collections():
+            if col.id == collection_id:
+                return col
+
+    def get_collections(self) -> Iterable[CollectionClient]:
+        """ Get Collections from the /collections endpoint if supported, otherwise fall
+            back to Catalog behavior of following child links """
+        if self.assert_conforms_to(ConformanceClasses.COLLECTIONS):
+            url = self.get_self_href() + '/collections'
+            for page in self._stac_io.get_pages(url):
+                if 'collections' not in page:
+                    raise APIError("Invalid response from /collections")
+                for col in page['collections']:
+                    collection = CollectionClient.from_dict(col, root=self)
+                    yield collection
+        else:
+            yield from super().get_collections()
+
+    def get_items(self) -> Iterable["Item_Type"]:
+        """Return all items of this catalog.
+
+        Return:
+            Iterable[Item]: Generator of items whose parent is this catalog.
         """
-        return self.get_child_links()
+        if self.assert_conforms_to(ConformanceClasses.ITEM_SEARCH):
+            search = self.search()
+            yield from search.get_items()
+        else:
+            return super().get_items()
+
+    def get_all_items(self) -> Iterable["Item_Type"]:
+        """Get all items from this catalog and all subcatalogs. Will traverse
+        any subcatalogs recursively, or use the /search endpoint if supported
+
+        Returns:
+            Generator[Item]: All items that belong to this catalog, and all
+                catalogs or collections connected to this catalog through
+                child links.
+        """
+        if self.assert_conforms_to(ConformanceClasses.ITEM_SEARCH):
+            yield from self.get_items()
+        else:
+            yield from super().get_items()
 
     def search(self, **kwargs: Any) -> ItemSearch:
         """Query the ``/search`` endpoint using the given parameters.
@@ -185,9 +161,5 @@ class Client(pystac.Catalog, ConformanceMixin):
         if search_link is None:
             raise NotImplementedError(
                 'No link with "rel" type of "search" could be found in this catalog')
-        # TODO - check method in provided search link against method requested here
 
-        return ItemSearch(search_link.target,
-                          conformance=self.conformance,
-                          stac_io=self._stac_io,
-                          **kwargs)
+        return ItemSearch(search_link.target, stac_io=self._stac_io, client=self, **kwargs)

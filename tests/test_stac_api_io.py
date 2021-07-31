@@ -1,7 +1,7 @@
 import pytest
 
 from pystac_client.exceptions import APIError
-from pystac_client.stac_io import StacApiIO
+from pystac_client.stac_api_io import StacApiIO
 from .helpers import STAC_URLS
 
 

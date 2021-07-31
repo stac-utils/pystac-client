@@ -15,7 +15,7 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIAAZ/A2EC/82YUW/bNhDHv8pBe1xk2clL4Tc58ZwAcWZEHvYwFMOZOktsKZElaWde0e++oyzb
+        H4sIALmLA2EC/82YUW/bNhDHv8pBe1xk2clL4Tc58ZwAcWZEHvYwFMOZOktsKZElaWde0e++oyzb
         aucVQ4pWfjLA4x1/vP+RPOtjJPNoHFVSWO302sdGRFeRl14RD88Pw7BQWJNHu4NbXZmNJwvZMr2F
         dPHA83Nywkrjpa7ZKyO0osSVInAGedBTZbRFBRWHyNEj7B1Wsi5gitaX4ISkWhAEqyPvoNTOUw6r
         HfiS4GsgvL7Q9Vrbyi11NP4jKr03bpwkaOTAeRTOkBhoWyTb0WA4GMYr9h9cJ0JbYt//OVvyJmLX
@@ -40,13 +40,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 30 Jul 2021 04:24:37 GMT
+      - Fri, 30 Jul 2021 05:18:49 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       Vary:
       - Accept-Encoding
       X-Azure-Ref:
-      - 0Bn8DYQAAAACVo2Rb1cHJT7qXTQQ+OjhJQk9TMzFFREdFMDQwNgA5MjdhYmZhNi0xOWY2LTRhZjEtYTA5ZC1jOTU5ZDlhMWU2NDQ=
+      - 0uIsDYQAAAACCaimgBXEAR4uKhNo2y8JuQk9TMzFFREdFMDQxNwA5MjdhYmZhNi0xOWY2LTRhZjEtYTA5ZC1jOTU5ZDlhMWU2NDQ=
       X-Cache:
       - CONFIG_NOCACHE
     status:
@@ -68,7 +68,7 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIAAZ/A2EC/+19iXLbSJLoryD0XsxIuwTvUxMdGzpsWbOWrRHl9s54OxRFEiTRAgEODsnsid54
+        H4sIALmLA2EC/+19iXLbSJLoryD0XsxIuwTvUxMdGzpsWbOWrRHl9s54OxRFEiTRAgEODsnsid54
         v/F+733Jy8wqAIWTIEXKbBsbG9MyWEdWVlbelfWvo7FlGNrY1S3TOTr98q8jfXJ0ejSfjY4qR+5q
         qcE/LoIW8M3QzUfe0NYM+FF3tYUTtmXLpaGPGTauzTTr3391qNfc1qY4rOsundNabWkwU3OZvRpb
         i6XnanZ1oY9ty7GmbhU+1dhSrzkuG9eeGjUJvhqAVeMT/l7xAVgyWzPddAhePrs0kW1ZrzGNoxnT
@@ -480,73 +480,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 30 Jul 2021 04:24:38 GMT
+      - Fri, 30 Jul 2021 05:18:49 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       Vary:
       - Accept-Encoding
       X-Azure-Ref:
-      - 0Bn8DYQAAAABNFf5hCEQvRYv4pjiJ7kfJQk9TMzFFREdFMDQwNgA5MjdhYmZhNi0xOWY2LTRhZjEtYTA5ZC1jOTU5ZDlhMWU2NDQ=
-      X-Cache:
-      - CONFIG_NOCACHE
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.25.1
-    method: GET
-    uri: https://planetarycomputer.microsoft.com/api/stac/v1/collections/hgb
-  response:
-    body:
-      string: !!binary |
-        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
-    headers:
-      Content-Encoding:
-      - gzip
-      Content-Length:
-      - '1343'
-      Content-Type:
-      - application/json
-      Date:
-      - Fri, 30 Jul 2021 04:24:38 GMT
-      Strict-Transport-Security:
-      - max-age=15724800; includeSubDomains
-      Vary:
-      - Accept-Encoding
-      X-Azure-Ref:
-      - 0B38DYQAAAABo0AOnuoB1SYBV6p76kiXsQk9TMzFFREdFMDQwNgA5MjdhYmZhNi0xOWY2LTRhZjEtYTA5ZC1jOTU5ZDlhMWU2NDQ=
+      - 0uYsDYQAAAABnjES4Nkr8R5b9a3kSW2xQQk9TMzFFREdFMDQxNwA5MjdhYmZhNi0xOWY2LTRhZjEtYTA5ZC1jOTU5ZDlhMWU2NDQ=
       X-Cache:
       - CONFIG_NOCACHE
     status:

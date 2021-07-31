@@ -12,12 +12,11 @@ STAC_URL = os.getenv('STAC_URL', None)
 logger = logging.getLogger(__name__)
 
 
-def search(url=STAC_URL, matched=False, save=None, headers=None, **kwargs):
+def search(client, matched=False, save=None, **kwargs):
     """ Main function for performing a search """
 
     try:
-        catalog = Client.open(url, headers=headers)
-        search = catalog.search(**kwargs)
+        search = client.search(**kwargs)
 
         if matched:
             matched = search.matched()
@@ -35,6 +34,21 @@ def search(url=STAC_URL, matched=False, save=None, headers=None, **kwargs):
         return 1
 
 
+def collections(client, save=None, **kwargs):
+    """ Fetch collections from collections endpoint """
+    try:
+        collections = client.get_all_collections(**kwargs)
+        collections_dicts = [c.to_dict() for c in collections]
+        if save:
+            with open(save, 'w') as f:
+                f.write(json.dumps(collections_dicts))
+        else:
+            print(json.dumps(collections_dicts))
+    except Exception as e:
+        print(e)
+        return 1
+
+
 def parse_args(args):
     desc = 'STAC Client'
     dhf = argparse.ArgumentDefaultsHelpFormatter
@@ -47,21 +61,32 @@ def parse_args(args):
                         version=__version__)
     parent.add_argument('--logging', default='INFO', help='DEBUG, INFO, WARN, ERROR, CRITICAL')
     parent.add_argument('--url', help='Root Catalog URL', default=os.getenv('STAC_URL', None))
-    parent.add_argument('--limit', help='Page size limit', type=int, default=500)
     parent.add_argument('--headers',
                         nargs='*',
                         help='Additional request headers (KEY=VALUE pairs)',
                         default=None)
+    parent.add_argument('--ignore-conformance',
+                        dest='ignore_conformance',
+                        default=False,
+                        action='store_true')
 
     subparsers = parser0.add_subparsers(dest='command')
+
+    # collections command
+    parser = subparsers.add_parser('collections',
+                                   help='Get all collections in this Catalog',
+                                   parents=[parent],
+                                   formatter_class=dhf)
+    output_group = parser.add_argument_group('output options')
+    output_group.add_argument('--save', help='Filename to save collections to', default=None)
 
     # search command
     parser = subparsers.add_parser('search',
                                    help='Perform new search of items',
                                    parents=[parent],
                                    formatter_class=dhf)
-    search_group = parser.add_argument_group('search options')
 
+    search_group = parser.add_argument_group('search options')
     search_group.add_argument('-c', '--collections', help='One or more collection IDs', nargs='*')
     search_group.add_argument('--ids',
                               help='One or more Item IDs (ignores other parameters)',
@@ -80,6 +105,7 @@ def parse_args(args):
                               'KEY=VALUE (<, >, <=, >=, = supported)')
     search_group.add_argument('--sortby', help='Sort by fields', nargs='*')
     search_group.add_argument('--fields', help='Control what fields get returned', nargs='*')
+    search_group.add_argument('--limit', help='Page size limit', type=int, default=100)
     search_group.add_argument('--max-items',
                               dest='max_items',
                               help='Max items to retrieve from search',
@@ -139,8 +165,20 @@ def cli():
         raise RuntimeError('No STAC URL provided')
 
     cmd = args.pop('command')
+
+    try:
+        url = args.pop('url')
+        headers = args.pop('headers', {})
+        ignore_conformance = args.pop('ignore_conformance')
+        client = Client.open(url, headers=headers, ignore_conformance=ignore_conformance)
+    except Exception as e:
+        print(e)
+        return 1
+
     if cmd == 'search':
-        return search(**args)
+        return search(client, **args)
+    elif cmd == 'collections':
+        return collections(client, **args)
 
 
 if __name__ == "__main__":

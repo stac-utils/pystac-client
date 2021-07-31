@@ -30,7 +30,7 @@ setup(
     install_requires=[
         "python-dateutil>=2.7.0",
         "requests~=2.25.1",
-        "pystac~=1.0.0rc2"
+        "pystac~=1.1.0"
     ],
     extras_require={
         "validation": ["jsonschema==3.2.0"]

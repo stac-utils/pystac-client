@@ -119,6 +119,13 @@ items.save('items.json')
 
 ## Development
 
+### Install
+
+```shell
+$ pip install -e .
+$ pip install -r requirements-dev.txt
+```
+
 ### Build Docs
 
 ```shell
