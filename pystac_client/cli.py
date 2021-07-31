@@ -61,7 +61,6 @@ def parse_args(args):
                         version=__version__)
     parent.add_argument('--logging', default='INFO', help='DEBUG, INFO, WARN, ERROR, CRITICAL')
     parent.add_argument('--url', help='Root Catalog URL', default=os.getenv('STAC_URL', None))
-    parent.add_argument('--limit', help='Page size limit', type=int, default=100)
     parent.add_argument('--headers',
                         nargs='*',
                         help='Additional request headers (KEY=VALUE pairs)',
@@ -106,6 +105,7 @@ def parse_args(args):
                               'KEY=VALUE (<, >, <=, >=, = supported)')
     search_group.add_argument('--sortby', help='Sort by fields', nargs='*')
     search_group.add_argument('--fields', help='Control what fields get returned', nargs='*')
+    search_group.add_argument('--limit', help='Page size limit', type=int, default=100)
     search_group.add_argument('--max-items',
                               dest='max_items',
                               help='Max items to retrieve from search',
@@ -178,7 +178,6 @@ def cli():
     if cmd == 'search':
         return search(client, **args)
     elif cmd == 'collections':
-        args.pop('limit')
         return collections(client, **args)
 
 
