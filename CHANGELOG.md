@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Logging is now enabled in the CLI in all cases.
+  If data are being printed to stdout, logging goes to stderr.
+  [#79](https://github.com/stac-utils/pystac-client/pull/79)
+
 ## [v0.2.0-rc.1] - 2021-07-30
 
 ### Added
