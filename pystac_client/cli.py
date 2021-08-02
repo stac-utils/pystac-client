@@ -153,11 +153,14 @@ def cli():
         return None
 
     loglevel = args.pop('logging')
-    # don't enable logging if print to stdout
     if args.get('save', False) or args.get('matched', False):
-        logging.basicConfig(stream=sys.stdout, level=loglevel)
-        # quiet loggers
-        logging.getLogger("urllib3").propagate = False
+        # If we are not printing data to stdout, print the logs there instead.
+        stream = sys.stdout
+    else:
+        stream = sys.stderr
+    logging.basicConfig(stream=stream, level=loglevel)
+    # quiet loggers
+    logging.getLogger("urllib3").propagate = False
 
     if args.get('url', None) is None:
         raise RuntimeError('No STAC URL provided')
