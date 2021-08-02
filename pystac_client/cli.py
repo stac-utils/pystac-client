@@ -7,8 +7,6 @@ import sys
 from .client import Client
 from .version import __version__
 
-STAC_URL = os.getenv('STAC_URL', None)
-
 logger = logging.getLogger(__name__)
 
 
@@ -53,14 +51,14 @@ def parse_args(args):
     desc = 'STAC Client'
     dhf = argparse.ArgumentDefaultsHelpFormatter
     parser0 = argparse.ArgumentParser(description=desc)
+    parser0.add_argument('--version',
+                         help='Print version and exit',
+                         action='version',
+                         version=__version__)
 
     parent = argparse.ArgumentParser(add_help=False)
-    parent.add_argument('--version',
-                        help='Print version and exit',
-                        action='version',
-                        version=__version__)
+    parent.add_argument('url', help='Root Catalog URL')
     parent.add_argument('--logging', default='INFO', help='DEBUG, INFO, WARN, ERROR, CRITICAL')
-    parent.add_argument('--url', help='Root Catalog URL', default=os.getenv('STAC_URL', None))
     parent.add_argument('--headers',
                         nargs='*',
                         help='Additional request headers (KEY=VALUE pairs)',

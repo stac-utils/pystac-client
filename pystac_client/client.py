@@ -1,4 +1,3 @@
-import os
 from typing import Any, Iterable, Dict, Optional, TYPE_CHECKING
 
 import pystac
@@ -39,7 +38,7 @@ class Client(pystac.Catalog):
         return '<Client id={}>'.format(self.id)
 
     @classmethod
-    def open(cls, url=None, headers=None, ignore_conformance: bool = False):
+    def open(cls, url, headers=None, ignore_conformance: bool = False):
         """Alias for PySTAC's STAC Object `from_file` method
 
         Parameters
@@ -51,14 +50,6 @@ class Client(pystac.Catalog):
         -------
         catalog : Client
         """
-
-        if url is None:
-            url = os.environ.get("STAC_URL")
-
-        if url is None:
-            raise TypeError(
-                "'url' must be specified or the 'STAC_URL' environment variable must be set.")
-
         cat = cls.from_file(url, headers=headers)
         if ignore_conformance:
             cat._stac_io.set_conformance(None)

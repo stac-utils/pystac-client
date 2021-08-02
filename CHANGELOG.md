@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Removed
+- STAC_URL environment variable in Client.open(). url parameter in Client is now required
+- STAC_URL environment variable in CLI. CLI now has a required positional argument for the URL
+
 ## [v0.2.0-rc.1] - 2021-07-30
 
 ### Added

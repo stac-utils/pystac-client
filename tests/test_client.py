@@ -1,5 +1,4 @@
 from datetime import datetime
-import os
 
 from dateutil.tz import tzutc
 import pystac
@@ -74,29 +73,9 @@ class TestAPI:
 
         assert api.title == 'Microsoft Planetary Computer STAC API'
 
-    @pytest.mark.vcr
-    def test_environment_variable(self):
-        old_stac_url = os.environ.get("STAC_URL")
-        os.environ["STAC_URL"] = STAC_URLS['PLANETARY-COMPUTER']
-        try:
-            client = Client.open()
-            assert client.title == "Microsoft Planetary Computer STAC API"
-        finally:
-            if old_stac_url:
-                os.environ["STAC_URL"] = old_stac_url
-            else:
-                del os.environ["STAC_URL"]
-
-    def test_no_url(self):
-        old_stac_url = os.environ.get("STAC_URL")
-        if old_stac_url:
-            del os.environ["STAC_URL"]
-        try:
-            with pytest.raises(TypeError):
-                Client.open()
-        finally:
-            if old_stac_url:
-                os.environ["STAC_URL"] = old_stac_url
+    def test_invalid_url(self):
+        with pytest.raises(TypeError):
+            Client.open()
 
 
 class TestAPISearch:
