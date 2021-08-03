@@ -154,14 +154,10 @@ def cli():
         return None
 
     loglevel = args.pop('logging')
-    # don't enable logging if print to stdout
     if args.get('save', False) or args.get('matched', False):
         logging.basicConfig(level=loglevel)
         # quiet loggers
         logging.getLogger("urllib3").propagate = False
-
-    if args.get('url', None) is None:
-        raise RuntimeError('No STAC URL provided')
 
     cmd = args.pop('command')
 
