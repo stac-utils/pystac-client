@@ -1,3 +1,4 @@
+from copy import deepcopy
 import json
 import logging
 from typing import (
@@ -92,16 +93,17 @@ class StacApiIO(DefaultStacIO):
                 parameters: Optional[dict] = {}) -> str:
         if method == 'POST':
             request = Request(method=method, url=href, headers=headers, json=parameters)
-            logger.debug(
-                f"POST {request.url}, Payload: {json.dumps(request.json)}, Headers: {self.session.headers}"
-            )
         else:
-            request = Request(method=method, url=href, headers=headers, params=parameters)
-            logger.debug(
-                f"GET {request.url}, Payload: {json.dumps(request.params)}, Headers: {self.session.headers}"
-            )
+            params = deepcopy(parameters)
+            if 'intersects' in params:
+                params['intersects'] = json.dumps(params['intersects'])
+            request = Request(method=method, url=href, headers=headers, params=params)
         try:
             prepped = self.session.prepare_request(request)
+            msg = f"{prepped.method} {prepped.url} Headers: {prepped.headers}"
+            if method == 'POST':
+                msg += f" Payload: {json.dumps(request.json)}"
+            logger.debug(msg)
             resp = self.session.send(prepped)
             if resp.status_code != 200:
                 raise APIError(resp.text)

@@ -10,11 +10,11 @@ from .version import __version__
 logger = logging.getLogger(__name__)
 
 
-def search(client, matched=False, save=None, **kwargs):
+def search(client, method='GET', matched=False, save=None, **kwargs):
     """ Main function for performing a search """
 
     try:
-        search = client.search(**kwargs)
+        search = client.search(method=method, **kwargs)
 
         if matched:
             matched = search.matched()
@@ -108,6 +108,7 @@ def parse_args(args):
                               dest='max_items',
                               help='Max items to retrieve from search',
                               type=int)
+    search_group.add_argument('--method', help='GET or POST', default='POST')
 
     output_group = parser.add_argument_group('output options')
     output_group.add_argument('--matched',
@@ -155,7 +156,7 @@ def cli():
     loglevel = args.pop('logging')
     # don't enable logging if print to stdout
     if args.get('save', False) or args.get('matched', False):
-        logging.basicConfig(stream=sys.stdout, level=loglevel)
+        logging.basicConfig(level=loglevel)
         # quiet loggers
         logging.getLogger("urllib3").propagate = False
 
