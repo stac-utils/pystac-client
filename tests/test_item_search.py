@@ -21,6 +21,7 @@ INTERSECTS_EXAMPLE = {
 ITEM_EXAMPLE = {"collections": "io-lulc", "ids": "60U-2020"}
 
 
+@pytest.mark.skip(reason="Performance testing skipped in normal test run")
 class TestItemPerformance:
     @pytest.fixture(scope='function')
     def single_href(self):

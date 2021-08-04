@@ -104,7 +104,7 @@ mysearch = catalog.search(collections=['sentinel-s2-l2a-cogs'], bbox=[-72.5,40.5
 print(f"{mysearch.matched()} items found")
 ```
 
-The `get_items` function returns an iterator for looping throught he returned items.
+The `get_items` function returns an iterator for looping through he returned items.
 
 ```
 for item in mysearch.get_items():
