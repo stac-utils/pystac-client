@@ -24,8 +24,8 @@ OnDemand landing page.
 
 .. code-block:: python
 
-    >>> from pystac_client.Client import API
-    >>> api = API.from_file('https://eod-catalog-svc-prod.astraea.earth')
+    >>> from pystac_client.Client import Client
+    >>> api = Client.from_file('https://eod-catalog-svc-prod.astraea.earth')
     >>> api.title
     'Astraea Earth OnDemand'
 
