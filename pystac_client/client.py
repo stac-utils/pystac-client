@@ -15,24 +15,24 @@ if TYPE_CHECKING:
 
 class Client(pystac.Catalog):
     """Instances of the ``Client`` class inherit from :class:`pystac.Catalog` and provide a convenient way of interacting
-    with Catalogs OR APIs that conform to the `STAC API spec <https://github.com/radiantearth/stac-api-spec>`_. In addition
-    to being a valid `STAC Catalog <https://github.com/radiantearth/stac-spec/blob/master/catalog-spec/catalog-spec.md>`_ the
-    API must have a ``"conformsTo"`` property that lists the conformance URIs.
+    with STAC Catalogs OR STAC APIs that conform to the `STAC API spec <https://github.com/radiantearth/stac-api-spec>`_. 
+    In addition to being a valid `STAC Catalog <https://github.com/radiantearth/stac-spec/blob/master/catalog-spec/catalog-spec.md>`_ 
+    APIs that have a ``"conformsTo"`` indicate that it supports additional functionality on top of a normal STAC Catalog, such
+    as searching items (e.g., /search endpoint).
 
-    All :class:`~pystac_client.Client` instances must be given a ``conformance`` argument at instantiation, and when calling
-    the :meth:`~pystac_client.Client.from_dict` method the dictionary must contain a ``"conformsTo"`` attribute. If this is
-    not true then a :exc:`KeyError` is raised.
+    PySTAC Client works by defining a new StacIO class to define how the catalog is read and supports HTTP API endpoints.
+    The preferred way to initially open a catalog/API as a Client is to use the ``open`` function. This calls the PySTAC
+    ``from_file`` function. Some functions, such as ``Client.search`` will throw an error if the provided Catalog/API does
+    not support the required Conformance Class. In other cases, such as ``Client.get_collections``, API endpoints will be
+    used if the API conforms, otherwise it will fall back to default behavior provided by :class:`pystac.Catalog`.
+    
+    Users may optionally provide an ``ignore_conformance`` argument when opening, in which case pystac-client will not check 
+    for conformance and will assume this is a fully features API. This can cause unusual errors to be thrown if the API
+    does not in fact conform to the expected behavior.
 
-    In addition to the methods and attributes inherited from :class:`pystac.Catalog`, this class offers some convenience
-    methods to testing conformance to various specs.
-
-    Attributes
-    ----------
-
-    conformance : List[str]
-        The list of conformance URIs detailing the capabilities of the service. This object adheres to the
-        `OGC API - Features conformance declaration
-        <http://docs.opengeospatial.org/is/17-069r3/17-069r3.html#_declaration_of_conformance_classes>`_.
+    In addition to the methods and attributes inherited from :class:`pystac.Catalog`, this class offers more efficient
+    methods (if used with an API) for getting collections and items, as well as a search capability, utilizing the
+    :class:`pystac_client.ItemSearch` class.
     """
     def __repr__(self):
         return '<Client id={}>'.format(self.id)
@@ -45,10 +45,17 @@ class Client(pystac.Catalog):
         ----------
         url : str, optional
             The URL of a STAC Catalog. If not specified, this will use the `STAC_URL` environment variable.
+        headers : Dict[str, str]
+            A dictionary of additional headers to use in all requests made to any part of this Catalog/API.
+
+        ignore_conformance : bool
+            Ignore any advertised Conformance Classes in this Catalog/API. This means that pystac-client will attempt
+            to use API features regardless and not throw a :class:`NotImplementedError`.
 
         Returns
         -------
         catalog : Client
+            An instance of :class:`Client`, which acts as a normal :class:`pystac.Catalog` for static Catalogs.
         """
         cat = cls.from_file(url, headers=headers)
         search_link = cat.get_links('search')
