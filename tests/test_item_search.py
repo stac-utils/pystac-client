@@ -3,8 +3,8 @@ from datetime import datetime, timedelta
 
 import pystac
 import pytest
+import requests
 from dateutil.tz import gettz, tzutc
-
 from pystac_client import Client
 from pystac_client.item_search import ItemSearch
 
@@ -17,6 +17,35 @@ INTERSECTS_EXAMPLE = {
     'coordinates': [[[-73.21, 43.99], [-73.21, 44.05], [-73.12, 44.05], [-73.12, 43.99],
                      [-73.21, 43.99]]]
 }
+
+ITEM_EXAMPLE = {"collections": "io-lulc", "ids": "60U-2020"}
+
+
+class TestItemPerformance:
+    @pytest.fixture(scope='function')
+    def single_href(self):
+        item_href = "https://planetarycomputer.microsoft.com/api/stac/v1/collections/{collections}/items/{ids}".format(
+            collections=ITEM_EXAMPLE['collections'], ids=ITEM_EXAMPLE['ids'])
+        return item_href
+
+    def test_requests(self, benchmark, single_href):
+        response = benchmark(requests.get, single_href)
+        assert response.status_code == 200
+
+        assert response.json()['id'] == ITEM_EXAMPLE["ids"]
+
+    def test_single_item(self, benchmark, single_href):
+        item = benchmark(pystac.Item.from_file, single_href)
+
+        assert item.id == ITEM_EXAMPLE["ids"]
+
+    def test_single_item_search(self, benchmark, single_href):
+        search = ItemSearch(url=SEARCH_URL, **ITEM_EXAMPLE)
+
+        item_collection = benchmark(search.get_all_items)
+
+        assert len(item_collection.items) == 1
+        assert item_collection.items[0].id == ITEM_EXAMPLE["ids"]
 
 
 class TestItemSearchParams:
