@@ -6,18 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-### Removed
-- STAC_URL environment variable in Client.open(). url parameter in Client is now required
-- STAC_URL environment variable in CLI. CLI now has a required positional argument for the URL
-
-### Changed
-
-- Logging is now enabled in the CLI in all cases.
-  If data are being printed to stdout, logging goes to stderr.
-  [#79](https://github.com/stac-utils/pystac-client/pull/79)
-- Improved logging for GET requests (prints encoded URL)
-
-## [v0.2.0-rc.1] - 2021-07-30
+## [v0.2.0] - 2021-08-04
 
 ### Added
 
@@ -40,6 +29,10 @@ are in a single HTTP session, handle pagination and respects conformance
 - Conformance is checked by each individual function that requires a particular conformance
 - STAC API testing URLs changed to updated APIs
 - `ItemSearch.get_pages()` function moved to StacApiIO class for general use
+- Logging is now enabled in the CLI in all cases.
+  If data are being printed to stdout, logging goes to stderr.
+  [#79](https://github.com/stac-utils/pystac-client/pull/79)
+- Improved logging for GET requests (prints encoded URL)
 
 ### Fixed
 
@@ -58,6 +51,8 @@ are in a single HTTP session, handle pagination and respects conformance
 - `Catalog.get_collection_list` (was alias to `get_child_links`) because made assumption about this being an API only. Also redundant with `Catalog.get_collections`
 - `Search.item_collections()`
 - `Search.items()`
+- STAC_URL environment variable in Client.open(). url parameter in Client is now required
+- STAC_URL environment variable in CLI. CLI now has a required positional argument for the URL
 
 ## [v0.1.1] - 2021-04-16
 
@@ -79,7 +74,7 @@ are in a single HTTP session, handle pagination and respects conformance
 
 Initial release.
 
-[Unreleased]: <https://github.com/stac-utils/pystac-client/compare/v0.2.0-rc.1...main>
-[v0.2.0-rc.1]: <https://github.com/stac-utils/pystac-client/compare/v0.1.1..v0.2.0-rc.1>
+[Unreleased]: <https://github.com/stac-utils/pystac-client/compare/v0.2.0...main>
+[v0.2.0]: <https://github.com/stac-utils/pystac-client/compare/v0.1.1..v0.2.0>
 [v0.1.1]: <https://github.com/stac-utils/pystac-client/compare/v0.1.0..v0.1.1>
 [v0.1.0]: <https://github.com/stac-utils/pystac-client/tree/v0.1.0>

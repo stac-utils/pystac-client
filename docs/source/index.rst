@@ -7,7 +7,7 @@ STAC Python Client
 ======================
 
 The STAC Python Client (``pystac_client``) is a Python package for working with APIs that conform to the
-`STAC spec <https://github.com/radiantearth/stac-api-spec>`__ and related specifications.
+`STAC spec <https://github.com/radiantearth/stac-api-spec>`__.
 
 Installation
 ------------
@@ -16,7 +16,7 @@ Installation
 
    $ pip install git+https://github.com/stac-utils/pystac-client.git#egg=pystac_client
 
-``pystac_client`` requires `Python >=3.6 <https://www.python.org/>`__.
+``pystac_client`` requires `Python >=3.7 <https://www.python.org/>`__.
 
 This will also install :doc:`PySTAC <pystac:index>` as its only direct external dependency. Like PySTAC, this library
 aims to keep its dependencies to a minimum.
@@ -28,27 +28,30 @@ This package builds upon the great work of the PySTAC library for working with S
 concepts from the `sat-search <https://github.com/sat-utils/sat-search>`__ library for working with STAC API - Item
 Search endpoints.
 
-*While this library builds on the work of the PySTAC library and tries to follow the patterns of that project as much
-as possible, `pystac-api-client` is a separate project not in any way associated with that library.*
 
 Supported Specifications
 ------------------------
 
-This library is intended to work with services that implement 1 or more of the following specifications:
+This library is intended to work with any STAC static catalog or STAC API. A static catalog will be usable more or less
+the same as with PySTAC, except that pystac-client supports providing custom headers to API endpoints. (e.g., authenticating 
+to an API with a token).
+
+A STAC API is a STAC Catalog that is required to advertise it's capabilities in a `conformsTo` field and implements
+the `STAC API - Core` spec along with other optional specifications:
 
 * `STAC API - Core <https://github.com/radiantearth/stac-api-spec/tree/master/core>`__
 * `STAC API - Item Search <https://github.com/radiantearth/stac-api-spec/tree/master/item-search>`__
-   * `Fields Extension <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/fields>`__ (**COMING SOON**)
-   * `Query Extension <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/query>`__ (**COMING SOON**)
-   * `Sort Extension <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/sort>`__ (**COMING SOON**)
+   * `Fields Extension <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/fields>`__
+   * `Query Extension <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/query>`__
+   * `Sort Extension <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/sort>`__
    * `Context Extension <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/context>`__
 * `STAC API - Features <https://github.com/radiantearth/stac-api-spec/tree/master/ogcapi-features>`__ (based on
-  `OGC API - Features <https://www.ogc.org/standards/ogcapi-features>`__) (**COMING SOON**)
+  `OGC API - Features <https://www.ogc.org/standards/ogcapi-features>`__)
 
 User Guide
 ----------
 
-This section is primarily prose and describes how to use the package to interact with the various endpoints associated
+This section how to use the package to interact with the various endpoints associated
 with a STAC API service. The section is organized by the spec that each set of endpoints is associated with and also
 includes user guides for working with paginated responses (from the ``/collections/{collection_id}/items`` and
 ``/search`` endpoints)..
@@ -70,7 +73,7 @@ with ``pystac_client``.
 .. toctree::
    :maxdepth: 2
 
-   api
+   client
 
 Design Decisions
 ----------------
