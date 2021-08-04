@@ -1,5 +1,5 @@
 Client Reference
-=============
+================
 
 .. module:: pystac_client
 
@@ -7,6 +7,11 @@ Main Package
 ------------
 
 .. autoclass:: pystac_client.Client
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. autoclass:: pystac_client.CollectionClient
     :members:
     :undoc-members:
     :show-inheritance:
@@ -21,17 +26,6 @@ Main Package
     :undoc-members:
     :show-inheritance:
 
-.. autoclass:: pystac_client.ItemCollection
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-.. autoclass:: pystac_client.APIExtensions
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-
 Conformance
 -----------
 
@@ -40,26 +34,10 @@ Conformance
     :undoc-members:
     :show-inheritance:
 
-STAC API Objects
+STAC API IO
 ----------------
 
-.. autoclass:: pystac_client.stac_api_object.APIExtensionIndex
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-.. autoclass:: pystac_client.stac_api_object.STACAPIObjectMixin
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-Extensions
-----------
-
-Context Extension
-+++++++++++++++++
-
-.. automodule:: pystac_client.extensions.context
+.. autoclass:: pystac_client.stac_api_io.StacApiIO
     :members:
     :undoc-members:
     :show-inheritance:
