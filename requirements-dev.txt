@@ -2,6 +2,7 @@ codespell==1.17.1
 coverage==5.2.*
 flake8==3.8.*
 pytest~=6.2.3
+pytest-benchmark~=3.4.1
 pytest-cov~=2.11.1
 pytest-recording~=0.11.0
 pytest-console-scripts~=1.1.0
