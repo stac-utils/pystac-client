@@ -6,6 +6,9 @@
 STAC Python Client
 ======================
 
+**WARNING: This documentation is out of date with the latest 0.2.0 version of pystac-client and will
+be updated by the next release.**
+
 The STAC Python Client (``pystac_client``) is a Python package for working with APIs that conform to the
 `STAC spec <https://github.com/radiantearth/stac-api-spec>`__.
 
