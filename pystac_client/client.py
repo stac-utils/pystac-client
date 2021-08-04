@@ -15,18 +15,19 @@ if TYPE_CHECKING:
 
 class Client(pystac.Catalog):
     """Instances of the ``Client`` class inherit from :class:`pystac.Catalog` and provide a convenient way of interacting
-    with STAC Catalogs OR STAC APIs that conform to the `STAC API spec <https://github.com/radiantearth/stac-api-spec>`_. 
-    In addition to being a valid `STAC Catalog <https://github.com/radiantearth/stac-spec/blob/master/catalog-spec/catalog-spec.md>`_ 
-    APIs that have a ``"conformsTo"`` indicate that it supports additional functionality on top of a normal STAC Catalog, such
-    as searching items (e.g., /search endpoint).
+    with STAC Catalogs OR STAC APIs that conform to the `STAC API spec <https://github.com/radiantearth/stac-api-spec>`_.
+    In addition to being a valid
+    `STAC Catalog <https://github.com/radiantearth/stac-spec/blob/master/catalog-spec/catalog-spec.md>`_
+    APIs that have a ``"conformsTo"`` indicate that it supports additional functionality on top of a normal STAC Catalog,
+    such as searching items (e.g., /search endpoint).
 
     PySTAC Client works by defining a new StacIO class to define how the catalog is read and supports HTTP API endpoints.
     The preferred way to initially open a catalog/API as a Client is to use the ``open`` function. This calls the PySTAC
     ``from_file`` function. Some functions, such as ``Client.search`` will throw an error if the provided Catalog/API does
     not support the required Conformance Class. In other cases, such as ``Client.get_collections``, API endpoints will be
     used if the API conforms, otherwise it will fall back to default behavior provided by :class:`pystac.Catalog`.
-    
-    Users may optionally provide an ``ignore_conformance`` argument when opening, in which case pystac-client will not check 
+
+    Users may optionally provide an ``ignore_conformance`` argument when opening, in which case pystac-client will not check
     for conformance and will assume this is a fully features API. This can cause unusual errors to be thrown if the API
     does not in fact conform to the expected behavior.
 
@@ -59,9 +60,10 @@ class Client(pystac.Catalog):
         """
         cat = cls.from_file(url, headers=headers)
         search_link = cat.get_links('search')
-        # if there is a search link, but no conformsTo advertised, ignore conformance entirely 
+        # if there is a search link, but no conformsTo advertised, ignore conformance entirely
         # NOTE: this behavior to be deprecated as implementations become conformant
-        if ignore_conformance or ('conformsTo' not in cat.extra_fields.keys() and len(search_link) > 0):
+        if ignore_conformance or ('conformsTo' not in cat.extra_fields.keys()
+                                  and len(search_link) > 0):
             cat._stac_io.set_conformance(None)
         return cat
 
