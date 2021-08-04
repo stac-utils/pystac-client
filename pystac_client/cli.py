@@ -8,6 +8,7 @@ from .client import Client
 from .version import __version__
 
 STAC_URL = os.getenv('STAC_URL', None)
+STAC_API_KEY = os.getenv('STAC_API_KEY', None)
 
 logger = logging.getLogger(__name__)
 
@@ -60,7 +61,7 @@ def parse_args(args):
 
     parent = argparse.ArgumentParser(add_help=False)
     parent.add_argument('--logging', default='INFO', help='DEBUG, INFO, WARN, ERROR, CRITICAL')
-    parent.add_argument('--url', help='Root Catalog URL', default=os.getenv('STAC_URL', None))
+    parent.add_argument('--url', help='Root Catalog URL', default=STAC_URL)
     parent.add_argument('--headers',
                         nargs='*',
                         help='Additional request headers (KEY=VALUE pairs)',
@@ -145,6 +146,8 @@ def parse_args(args):
             else:
                 logger.warning(f"Unable to parse header {head}")
         parsed_args['headers'] = new_headers
+    elif STAC_API_KEY is not None:
+        parsed_args['headers'] = {"x-api-key": STAC_API_KEY}
 
     return parsed_args
 
