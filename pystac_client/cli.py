@@ -53,12 +53,12 @@ def parse_args(args):
     desc = 'STAC Client'
     dhf = argparse.ArgumentDefaultsHelpFormatter
     parser0 = argparse.ArgumentParser(description=desc)
-
-    parent = argparse.ArgumentParser(add_help=False)
-    parent.add_argument('--version',
+    parser0.add_argument('--version',
                         help='Print version and exit',
                         action='version',
                         version=__version__)
+
+    parent = argparse.ArgumentParser(add_help=False)
     parent.add_argument('--logging', default='INFO', help='DEBUG, INFO, WARN, ERROR, CRITICAL')
     parent.add_argument('--url', help='Root Catalog URL', default=os.getenv('STAC_URL', None))
     parent.add_argument('--headers',
