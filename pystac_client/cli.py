@@ -7,16 +7,14 @@ import sys
 from .client import Client
 from .version import __version__
 
-STAC_URL = os.getenv('STAC_URL', None)
-
 logger = logging.getLogger(__name__)
 
 
-def search(client, matched=False, save=None, **kwargs):
+def search(client, method='GET', matched=False, save=None, **kwargs):
     """ Main function for performing a search """
 
     try:
-        search = client.search(**kwargs)
+        search = client.search(method=method, **kwargs)
 
         if matched:
             matched = search.matched()
@@ -53,14 +51,14 @@ def parse_args(args):
     desc = 'STAC Client'
     dhf = argparse.ArgumentDefaultsHelpFormatter
     parser0 = argparse.ArgumentParser(description=desc)
+    parser0.add_argument('--version',
+                         help='Print version and exit',
+                         action='version',
+                         version=__version__)
 
     parent = argparse.ArgumentParser(add_help=False)
-    parent.add_argument('--version',
-                        help='Print version and exit',
-                        action='version',
-                        version=__version__)
+    parent.add_argument('url', help='Root Catalog URL')
     parent.add_argument('--logging', default='INFO', help='DEBUG, INFO, WARN, ERROR, CRITICAL')
-    parent.add_argument('--url', help='Root Catalog URL', default=os.getenv('STAC_URL', None))
     parent.add_argument('--headers',
                         nargs='*',
                         help='Additional request headers (KEY=VALUE pairs)',
@@ -110,6 +108,7 @@ def parse_args(args):
                               dest='max_items',
                               help='Max items to retrieve from search',
                               type=int)
+    search_group.add_argument('--method', help='GET or POST', default='POST')
 
     output_group = parser.add_argument_group('output options')
     output_group.add_argument('--matched',
@@ -156,16 +155,9 @@ def cli():
 
     loglevel = args.pop('logging')
     if args.get('save', False) or args.get('matched', False):
-        # If we are not printing data to stdout, print the logs there instead.
-        stream = sys.stdout
-    else:
-        stream = sys.stderr
-    logging.basicConfig(stream=stream, level=loglevel)
-    # quiet loggers
-    logging.getLogger("urllib3").propagate = False
-
-    if args.get('url', None) is None:
-        raise RuntimeError('No STAC URL provided')
+        logging.basicConfig(level=loglevel)
+        # quiet loggers
+        logging.getLogger("urllib3").propagate = False
 
     cmd = args.pop('command')
 
