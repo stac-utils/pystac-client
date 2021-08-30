@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+- Improved performance when constructing `pystac.ItemCollection` objects.
+
 ## [v0.2.0] - 2021-08-04
 
 ### Added
