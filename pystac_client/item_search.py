@@ -400,7 +400,7 @@ class ItemSearch:
         item_collection : pystac_client.ItemCollection
         """
         for page in self._stac_io.get_pages(self.url, self.method, self.get_parameters()):
-            yield ItemCollection.from_dict(page, root=self.client)
+            yield ItemCollection.from_dict(page, preserve_dict=False, root=self.client)
 
     def get_items(self) -> Iterator[Item]:
         """Iterator that yields :class:`pystac.Item` instances for each item matching the given search parameters. Calls
@@ -443,4 +443,4 @@ class ItemSearch:
         item_collection : ItemCollection
         """
         feature_collection = self.get_all_items_as_dict()
-        return ItemCollection(feature_collection['features'])
+        return ItemCollection.from_dict(feature_collection, preserve_dict=False, root=self.client)
