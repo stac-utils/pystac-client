@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - Relax `requests` dependency [#87](https://github.com/stac-utils/pystac-client/pull/87)
+### Fixed
+
+- `ItemSearch` now correctly handles times without a timezone specifier [#92](https://github.com/stac-utils/pystac-client/issues/92)
 
 ## [v0.2.0] - 2021-08-04
 
