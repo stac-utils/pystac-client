@@ -155,6 +155,10 @@ class TestItemSearchParams:
         search = ItemSearch(url=SEARCH_URL, datetime="2019/2020-06-10")
         assert search._parameters['datetime'] == "2019-01-01T00:00:00Z/2020-06-10T23:59:59Z"
 
+    def test_time(self):
+        search = ItemSearch(url=SEARCH_URL, datetime="2019-01-01T00:00:00Z/2019-01-01T00:12:00")
+        assert search._parameters['datetime'] == "2019-01-01T00:00:00Z/2019-01-01T00:12:00Z"
+
     def test_many_datetimes(self):
         datetimes = [
             "1985-04-12T23:20:50.52Z",
