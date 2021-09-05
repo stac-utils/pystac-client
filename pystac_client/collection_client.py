@@ -14,14 +14,7 @@ class CollectionClient(pystac.Collection):
         return '<CollectionClient id={}>'.format(self.id)
 
     def assert_conforms_to(self, conformance: ConformanceClasses) -> bool:
-        return self._stac_io.conforms_to(conformance)
-
-    @classmethod
-    def from_dict(cls, *args, root: Optional["Catalog_Type"] = None, **kwargs):
-        col = super().from_dict(*args, **kwargs)
-        if root is not None:
-            col._stac_io = root._stac_io
-        return col
+        return self.get_root()._stac_io.conforms_to(conformance)
 
     def get_items(self) -> Iterable["Item_Type"]:
         if self.assert_conforms_to(ConformanceClasses.COLLECTIONS):
