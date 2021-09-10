@@ -40,7 +40,7 @@ class ConformanceClasses(Enum):
     SORT = [f"{p}/item-search#sort" for p in STAC_PREFIXES]
     QUERY = [f"{p}/item-search#query" for p in STAC_PREFIXES]
     FILTER = [f"{p}/item-search#filter" for p in STAC_PREFIXES]
-    COLLECTIONS = ['http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30']
+    COLLECTIONS = ['http://www.opengis.net/spec/ogcapi-features-1/1.0/req/oas30']
 
 
 CONFORMANCE_URIS = {c.name: c.value for c in ConformanceClasses}
