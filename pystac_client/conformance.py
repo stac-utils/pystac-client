@@ -1,4 +1,4 @@
-"""This module defines a :class:`ConformanceClass` class that can be used to check conformance to a spec based on the
+"""This module defines a :class:`ConformanceClasses` class that can be used to check conformance to a spec based on the
 presence of a conformance URI. Each instance has a single :attr:`ConformanceClass.uri` property that represents the
 most up-to-date official conformance URI for that spec. Because the STAC API spec has been rapidly evolving, many APIs
 publish other conformance URIs that were defined in previous iterations of the spec, or are defined by other entities.
@@ -29,18 +29,19 @@ True
 """
 from enum import Enum
 
-STAC_PREFIXES = ['https://api.stacspec.org/v1.0.0-beta.2', 'https://api.stacspec.org/v1.0.0-beta.1']
-
-
 class ConformanceClasses(Enum):
-    CORE = [f"{p}/core" for p in STAC_PREFIXES]
-    ITEM_SEARCH = [f"{p}/item-search" for p in STAC_PREFIXES]
-    CONTEXT = [f"{p}/item-search#context" for p in STAC_PREFIXES]
-    FIELDS = [f"{p}/item-search#fields" for p in STAC_PREFIXES]
-    SORT = [f"{p}/item-search#sort" for p in STAC_PREFIXES]
-    QUERY = [f"{p}/item-search#query" for p in STAC_PREFIXES]
-    FILTER = [f"{p}/item-search#filter" for p in STAC_PREFIXES]
-    COLLECTIONS = ['http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30']
+
+    stac_prefix = "\Qhttps://api.stacspec.org/v1.0.\E(.*)"
+
+    # defined conformance classes regexes
+    CORE = f"{stac_prefix}(.*)\Qcore\E"
+    ITEM_SEARCH = f"{stac_prefix}(.*)\Qitem-search\E"
+    CONTEXT = f"{stac_prefix}(.*)\Qitem-search#context\E"
+    FIELDS = f"{stac_prefix}(.*)\Qitem-search#fields\E"
+    SORT = f"{stac_prefix}(.*)\Qitem-search#sort\E"
+    QUERY = f"{stac_prefix}(.*)\Qitem-search#query\E"
+    FILTER = f"{stac_prefix}(.*)\Qitem-search#filter\E"
+    COLLECTIONS = '\Qhttp://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30\E'
 
 
 CONFORMANCE_URIS = {c.name: c.value for c in ConformanceClasses}
