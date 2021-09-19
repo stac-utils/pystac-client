@@ -1,4 +1,4 @@
-from typing import (Iterable, Optional, TYPE_CHECKING)
+from typing import (Iterable, TYPE_CHECKING)
 
 import pystac
 from pystac_client.conformance import ConformanceClasses
@@ -6,7 +6,6 @@ from pystac_client.item_search import ItemSearch
 
 if TYPE_CHECKING:
     from pystac.item import Item as Item_Type
-    from pystac.catalog import Catalog as Catalog_Type
 
 
 class CollectionClient(pystac.Collection):

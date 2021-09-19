@@ -29,19 +29,20 @@ True
 """
 from enum import Enum
 
+
 class ConformanceClasses(Enum):
 
-    stac_prefix = "\Qhttps://api.stacspec.org/v1.0.\E(.*)"
+    stac_prefix = r"\Qhttps://api.stacspec.org/v1.0.\E(.*)"
 
     # defined conformance classes regexes
-    CORE = f"{stac_prefix}(.*)\Qcore\E"
-    ITEM_SEARCH = f"{stac_prefix}(.*)\Qitem-search\E"
-    CONTEXT = f"{stac_prefix}(.*)\Qitem-search#context\E"
-    FIELDS = f"{stac_prefix}(.*)\Qitem-search#fields\E"
-    SORT = f"{stac_prefix}(.*)\Qitem-search#sort\E"
-    QUERY = f"{stac_prefix}(.*)\Qitem-search#query\E"
-    FILTER = f"{stac_prefix}(.*)\Qitem-search#filter\E"
-    COLLECTIONS = '\Qhttp://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30\E'
+    CORE = rf"{stac_prefix}(.*)\Qcore\E"
+    ITEM_SEARCH = rf"{stac_prefix}(.*)\Qitem-search\E"
+    CONTEXT = rf"{stac_prefix}(.*)\Qitem-search#context\E"
+    FIELDS = rf"{stac_prefix}(.*)\Qitem-search#fields\E"
+    SORT = rf"{stac_prefix}(.*)\Qitem-search#sort\E"
+    QUERY = rf"{stac_prefix}(.*)\Qitem-search#query\E"
+    FILTER = rf"{stac_prefix}(.*)\Qitem-search#filter\E"
+    COLLECTIONS = r"\Qhttp://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30\E"
 
 
 CONFORMANCE_URIS = {c.name: c.value for c in ConformanceClasses}
