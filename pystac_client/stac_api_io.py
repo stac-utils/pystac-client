@@ -11,6 +11,7 @@ from typing import (
     Union,
 )
 from urllib.parse import urlparse
+import re
 from requests import Request, Session
 
 import pystac
@@ -236,12 +237,14 @@ class StacApiIO(DefaultStacIO):
         if self._conformance is None:
             return True
 
-        uris = CONFORMANCE_URIS.get(conformance_class.name, None)
+        class_regex = CONFORMANCE_URIS.get(conformance_class.name, None)
 
-        if uris is None:
+        if class_regex is None:
             raise Exception(f"Invalid conformance class {conformance_class}")
 
-        if not any(uri in uris for uri in self._conformance):
+        pattern = re.compile(class_regex)
+
+        if not any(re.match(pattern, uri) for uri in self._conformance):
             return False
 
         return True
