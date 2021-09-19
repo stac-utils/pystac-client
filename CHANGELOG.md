@@ -6,7 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
 - Improved performance when constructing `pystac.ItemCollection` objects.
+- Relax `requests` dependency [#87](https://github.com/stac-utils/pystac-client/pull/87)
 
 ## [v0.2.0] - 2021-08-04
 
