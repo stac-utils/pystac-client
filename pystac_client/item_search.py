@@ -17,9 +17,9 @@ from pystac_client.conformance import ConformanceClasses
 if TYPE_CHECKING:
     from pystac_client.client import Client
 
-DATETIME_REGEX = re.compile(
-    r"(?P<year>\d{4})(\-(?P<month>\d{2})(\-(?P<day>\d{2})"
-    r"(?P<remainder>(T|t)\d{2}:\d{2}:\d{2}(\.\d+)?(Z|([-+])(\d{2}):(\d{2})))?)?)?")
+DATETIME_REGEX = re.compile(r"(?P<year>\d{4})(\-(?P<month>\d{2})(\-(?P<day>\d{2})"
+                            r"(?P<remainder>(T|t)\d{2}:\d{2}:\d{2}(\.\d+)?"
+                            r"(?P<tz_info>Z|([-+])(\d{2}):(\d{2}))?)?)?)?")
 
 DatetimeOrTimestamp = Optional[Union[datetime_, str]]
 Datetime = Union[Tuple[str], Tuple[str, str]]
@@ -270,7 +270,10 @@ class ItemSearch:
                 if not match:
                     raise Exception(f"invalid datetime component: {component}")
                 elif match.group("remainder"):
-                    return component, None
+                    if match.group("tz_info"):
+                        return component, None
+                    else:
+                        return f"{component}Z", None
                 else:
                     year = int(match.group("year"))
                     optional_month = match.group("month")
@@ -400,7 +403,7 @@ class ItemSearch:
         item_collection : pystac_client.ItemCollection
         """
         for page in self._stac_io.get_pages(self.url, self.method, self.get_parameters()):
-            yield ItemCollection.from_dict(page, root=self.client)
+            yield ItemCollection.from_dict(page, preserve_dict=False, root=self.client)
 
     def get_items(self) -> Iterator[Item]:
         """Iterator that yields :class:`pystac.Item` instances for each item matching the given search parameters. Calls
@@ -443,4 +446,4 @@ class ItemSearch:
         item_collection : ItemCollection
         """
         feature_collection = self.get_all_items_as_dict()
-        return ItemCollection(feature_collection['features'])
+        return ItemCollection.from_dict(feature_collection, preserve_dict=False, root=self.client)

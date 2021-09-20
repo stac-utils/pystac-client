@@ -8,8 +8,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
+- Improved performance when constructing `pystac.ItemCollection` objects.
 - Relax `requests` dependency [#87](https://github.com/stac-utils/pystac-client/pull/87)
 - Use regular expressions for checking conformance classes [#97](https://github.com/stac-utils/pystac-client/pull/97)
+
+### Fixed
+
+- `ItemSearch` now correctly handles times without a timezone specifier [#92](https://github.com/stac-utils/pystac-client/issues/92)
 
 ## [v0.2.0] - 2021-08-04
 
