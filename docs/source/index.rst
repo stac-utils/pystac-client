@@ -3,56 +3,62 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-STAC Python Client
+PySTAC Client Documentation
 ======================
 
-**WARNING: This documentation is out of date with the latest 0.2.0 version of pystac-client and will
-be updated by the next release.**
+The STAC Python Client (``pystac_client``) is a Python package for working with STAC Catalogs and APIs
+that conform to the `STAC <https://github.com/radiantearth/stac-spec>`__ and
+`STAC API <https://github.com/radiantearth/stac-api-spec>`__ specs in a seamless way.
+PySTAC Client builds upon PySTAC through higher-level functionality and ability to leverage
+STAC API search endpoints.
 
-The STAC Python Client (``pystac_client``) is a Python package for working with APIs that conform to the
-`STAC spec <https://github.com/radiantearth/stac-api-spec>`__.
+STAC Versions
+=============
+
+.. list-table:: title
+    :widths: 25 25 50
+    :header-rows: 1
+
+* - pystac-client
+  - STAC spec
+  - STAC API spec
+* - 0.3.x
+  - 1.0.x
+  - 1.0.0-beta.1 - 1.0.0-beta.4
+* - 0.2.x
+  - 1.0.x
+  - 1.0.0-beta.1 - 1.0.0-beta.2
 
 Installation
 ------------
 
 .. code-block:: console
 
-   $ pip install git+https://github.com/stac-utils/pystac-client.git#egg=pystac_client
+   $ pip install pystac-client
 
 ``pystac_client`` requires `Python >=3.7 <https://www.python.org/>`__.
 
-This will also install :doc:`PySTAC <pystac:index>` as its only direct external dependency. Like PySTAC, this library
-aims to keep its dependencies to a minimum.
+This will install the dependencies :doc:`PySTAC <pystac:index>`, :doc:`python-dateutil <dateutil:index>`,
+and :doc:`requests <requests:index>`.
 
 Acknowledgements
 ----------------
 
-This package builds upon the great work of the PySTAC library for working with STAC objects in Python. It also uses
-concepts from the `sat-search <https://github.com/sat-utils/sat-search>`__ library for working with STAC API - Item
-Search endpoints.
+This package builds upon the great work of the PySTAC library for working with STAC objects in Python.
+It also uses concepts from the `sat-search <https://github.com/sat-utils/sat-search>`__ library
+for working with STAC API search endpoints.
 
-
-Supported Specifications
-------------------------
-
-This library is intended to work with any STAC static catalog or STAC API. A static catalog will be usable more or less
-the same as with PySTAC, except that pystac-client supports providing custom headers to API endpoints. (e.g., authenticating 
-to an API with a token).
-
-A STAC API is a STAC Catalog that is required to advertise it's capabilities in a `conformsTo` field and implements
-the `STAC API - Core` spec along with other optional specifications:
-
-* `STAC API - Core <https://github.com/radiantearth/stac-api-spec/tree/master/core>`__
-* `STAC API - Item Search <https://github.com/radiantearth/stac-api-spec/tree/master/item-search>`__
-   * `Fields Extension <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/fields>`__
-   * `Query Extension <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/query>`__
-   * `Sort Extension <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/sort>`__
-   * `Context Extension <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/context>`__
-* `STAC API - Features <https://github.com/radiantearth/stac-api-spec/tree/master/ogcapi-features>`__ (based on
-  `OGC API - Features <https://www.ogc.org/standards/ogcapi-features>`__)
-
-User Guide
+Table of Contents
 ----------
+
+.. toctree::
+   :maxdepth: 2
+
+   quickstart
+   concepts
+   api
+   tutorials
+   contributing
 
 This section how to use the package to interact with the various endpoints associated
 with a STAC API service. The section is organized by the spec that each set of endpoints is associated with and also
@@ -64,7 +70,6 @@ includes user guides for working with paginated responses (from the ``/collectio
 
    usage/stac_api
    usage/stac_api_extensions
-   usage/ogc_features
 
 API Documentation
 -----------------

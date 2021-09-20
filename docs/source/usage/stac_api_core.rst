@@ -1,11 +1,9 @@
-Core API
---------
 
-The most basic implementation of a STAC API is simply an endpoint that returns a valid STAC Catalog. Besides being a
-valid STAC Catalog, the JSON object must contain a ``"conformsTo"`` attribute that is a list of conformance URIs for
-the standards that the service conforms to.
+The most basic implementation of a STAC API is an endpoint that returns a valid STAC Catalog, along 
+with a ``"conformsTo"`` attribute that is a list of conformance URIs for the standards that the
+service conforms to.
 
-API Interface
+API Client
 +++++++++++++
 
 The :class:`pystac_client.Client` class is the main interface for working with services that conform to the STAC API spec.
@@ -18,16 +16,36 @@ a Catalog, it also includes convenience methods and attributes for:
 Create an Instance
 __________________
 
-The easiest way to create an :class:`~pystac_client.Client` instance is using the ``pystac_client.Client.from_file`` method (inherited
+The easiest way to create an :class:`~pystac_client.Client` instance is using the ``pystac_client.Client.open`` method (inherited
 from :meth:`pystac.STACObject.from_file`). The following code creates an instance by making a call to the Astraea Earth
 OnDemand landing page.
 
 .. code-block:: python
 
     >>> from pystac_client.Client import Client
-    >>> api = Client.from_file('https://eod-catalog-svc-prod.astraea.earth')
+    >>> api = Client.open('https://planetarycomputer.microsoft.com/api/stac/v1')
     >>> api.title
-    'Astraea Earth OnDemand'
+    'microsoft-pc'
+
+
+Supported Specifications
+------------------------
+
+This library is intended to work with any STAC static catalog or STAC API. A static catalog will be usable more or less
+the same as with PySTAC, except that pystac-client supports providing custom headers to API endpoints. (e.g., authenticating 
+to an API with a token).
+
+A STAC API is a STAC Catalog that is required to advertise it's capabilities in a `conformsTo` field and implements
+the `STAC API - Core` spec along with other optional specifications:
+
+* `STAC API - Core <https://github.com/radiantearth/stac-api-spec/tree/master/core>`__
+* `STAC API - Item Search <https://github.com/radiantearth/stac-api-spec/tree/master/item-search>`__
+   * `Fields Extension <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/fields>`__
+   * `Query Extension <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/query>`__
+   * `Sort Extension <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/sort>`__
+   * `Context Extension <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/context>`__
+* `STAC API - Features <https://github.com/radiantearth/stac-api-spec/tree/master/ogcapi-features>`__ (based on
+  `OGC API - Features <https://www.ogc.org/standards/ogcapi-features>`__)
 
 Check Conformance
 _________________

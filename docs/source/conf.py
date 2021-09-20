@@ -21,8 +21,8 @@ from pystac_client import __version__  # noqa: E402
 
 project = 'pystac-api-client'
 copyright = '2021, Jon Duckworth'
-author = 'Jon Duckworth'
-github_user = 'duckontheweb'
+author = 'Matthew Hanson, Jon Duckworth'
+github_user = 'matthewhanson, duckontheweb'
 github_repo = 'pystac-api-client'
 package_description = 'A Python client for the STAC API spec.'
 
