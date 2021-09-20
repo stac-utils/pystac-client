@@ -15,19 +15,13 @@ STAC API search endpoints.
 STAC Versions
 =============
 
-.. list-table:: title
-    :widths: 25 25 50
-    :header-rows: 1
-
-* - pystac-client
-  - STAC spec
-  - STAC API spec
-* - 0.3.x
-  - 1.0.x
-  - 1.0.0-beta.1 - 1.0.0-beta.4
-* - 0.2.x
-  - 1.0.x
-  - 1.0.0-beta.1 - 1.0.0-beta.2
++---------------+-----------+---------------+
+| pystac-client | STAC spec | STAC API Spec |
++===============+===========+===============+
+| 0.3.x         | 1.0.x     | 1.0.0-beta.1 - 1.0.0-beta.4 |
++---------------+-----------+---------------+
+| 0.2.x         | 1.0.x     | 1.0.0-beta.1 - 1.0.0-beta.2 |
++---------------+-----------+---------------+
 
 Installation
 ------------
@@ -55,18 +49,11 @@ Table of Contents
    :maxdepth: 2
 
    quickstart
+   usage
    concepts
    api
    tutorials
    contributing
-
-
-
-.. toctree::
-   :maxdepth: 2
-
-   usage/stac_api
-   usage/stac_api_extensions
 
 API Documentation
 -----------------

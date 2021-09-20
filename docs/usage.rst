@@ -1,3 +1,5 @@
+Usage
+########
 
 The most basic implementation of a STAC API is an endpoint that returns a valid STAC Catalog, along 
 with a ``"conformsTo"`` attribute that is a list of conformance URIs for the standards that the

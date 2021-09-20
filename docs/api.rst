@@ -8,7 +8,7 @@ to a specific spec item.
 pystac-client
 ------
 
-.. automodule:: pystac-client
+.. module:: pystac-client
 
 Client
 ----------
@@ -19,8 +19,8 @@ conformance, and support for searching and paging through results.
 
 .. autoclass:: pystac_client.Client
    :members:
-   :inherited-members:
    :undoc-members:
+   :show-inheritance:
 
 Collection Client
 ----------
@@ -31,7 +31,6 @@ through items at a search endpoint, if supported.
 
 .. autoclass:: pystac_client.CollectionClient
    :members:
-   :inherited-members:
    :undoc-members:
 
 Item Search
@@ -43,8 +42,8 @@ The `ItemSearch` class rerpesents a search of a STAC API.
    :members:
    :undoc-members:
 
-StacApiIO
-~~~~~~
+STAC API IO
+----------------
 
 The StacApiIO class inherits from the :class:`Collection <pystac.DefaultStacIO>` class and allows
 for reading over http, such as with REST APIs.
@@ -52,4 +51,22 @@ for reading over http, such as with REST APIs.
 .. autoclass:: pystac_client.StacApiIO 
    :members:
    :undoc-members:
+   :show-inheritance:
 
+
+Conformance
+-----------
+
+.. automodule:: pystac_client.conformance
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Exceptions
+----------
+
+.. automodule:: pystac_client.exceptions
+    :members:
+    :undoc-members:
+    :show-inheritance:
