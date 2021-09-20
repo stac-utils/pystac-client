@@ -38,10 +38,12 @@ release = __version__
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
+    'sphinx.ext.viewcode',
     'sphinx.ext.intersphinx',
     'sphinx.ext.napoleon',
-    'sphinx.ext.viewcode',
-    'recommonmark'
+    'sphinx.ext.extlinks',
+    'sphinxcontrib.fulltoc',
+    'nbsphinx'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -79,6 +81,7 @@ intersphinx_mapping = {
     'python': ('https://docs.python.org/3', None),
     'requests': ('https://requests.readthedocs.io/en/master', None),
     'pystac': ('https://pystac.readthedocs.io/en/latest', None),
+    'dateutil': ('https://dateutil.readthedocs.io/en/stable/', None),
 }
 
 # -- Options for autodoc extension -------------------------------------------
