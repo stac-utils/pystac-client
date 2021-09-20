@@ -60,10 +60,7 @@ Table of Contents
    tutorials
    contributing
 
-This section how to use the package to interact with the various endpoints associated
-with a STAC API service. The section is organized by the spec that each set of endpoints is associated with and also
-includes user guides for working with paginated responses (from the ``/collections/{collection_id}/items`` and
-``/search`` endpoints)..
+
 
 .. toctree::
    :maxdepth: 2
