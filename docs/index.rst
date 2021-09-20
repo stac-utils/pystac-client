@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 PySTAC Client Documentation
-======================
+===========================
 
 The STAC Python Client (``pystac_client``) is a Python package for working with STAC Catalogs and APIs
 that conform to the `STAC <https://github.com/radiantearth/stac-spec>`__ and
@@ -15,13 +15,13 @@ STAC API search endpoints.
 STAC Versions
 =============
 
-+---------------+-----------+---------------+
-| pystac-client | STAC spec | STAC API Spec |
-+===============+===========+===============+
++---------------+-----------+-----------------------------+
+| pystac-client | STAC spec | STAC API Spec               |
++===============+===========+=============================+
 | 0.3.x         | 1.0.x     | 1.0.0-beta.1 - 1.0.0-beta.4 |
-+---------------+-----------+---------------+
++---------------+-----------+-----------------------------+
 | 0.2.x         | 1.0.x     | 1.0.0-beta.1 - 1.0.0-beta.2 |
-+---------------+-----------+---------------+
++---------------+-----------+-----------------------------+
 
 Installation
 ------------
@@ -43,7 +43,7 @@ It also uses concepts from the `sat-search <https://github.com/sat-utils/sat-sea
 for working with STAC API search endpoints.
 
 Table of Contents
-----------
+-----------------
 
 .. toctree::
    :maxdepth: 2
@@ -65,7 +65,7 @@ with ``pystac_client``.
 .. toctree::
    :maxdepth: 2
 
-   client
+   api
 
 Design Decisions
 ----------------
