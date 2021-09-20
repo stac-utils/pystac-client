@@ -62,9 +62,14 @@ the specified file.
 $ stac-client search ${STAC_API_URL} -c sentinel-s2-l2a-cogs --bbox -72.5 40.5 -72 41 --datetime 2020-01-01/2020-01-31 --save items.json
 ```
 
-If the Catalog supports the [Query extension](https://github.com/radiantearth/stac-api-spec/tree/master/fragments/query),
-any Item property can also be included in the search. Rather than requiring the JSON syntax the Query extension uses,
-pystac-client uses a simpler syntax that it will translate to the JSON equivalent. 
+If the Catalog supports the
+[Query extension](https://github.com/radiantearth/stac-api-spec/tree/master/fragments/query), 
+any Item property can also be included in the search. Rather than requiring the JSON syntax 
+the Query extension uses, pystac-client uses a simpler syntax that it will translate to the 
+JSON equivalent. Note however that when the simple syntax is used it sends all property values
+to the server as strings, except for `gsd` which it casts to `float`. This means that if there
+are extensions in use with numeric properties these will be sent as strings. Some servers
+may automatically cast this to the appropriate data type, others may not.
 
 ```
 <property><operator><value>

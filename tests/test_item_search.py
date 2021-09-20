@@ -367,3 +367,24 @@ class TestItemSearch:
         )
         item_collection = search.get_all_items()
         assert len(item_collection.items) == 20
+
+
+class TestItemSearchQuery:
+    def test_query_shortcut_syntax(self):
+        search = ItemSearch(url=SEARCH_URL,
+                            bbox=(-73.21, 43.99, -73.12, 44.05),
+                            query=["gsd=10"],
+                            max_items=1)
+        items1 = list(search.get_items())
+
+        search = ItemSearch(url=SEARCH_URL,
+                            bbox=(-73.21, 43.99, -73.12, 44.05),
+                            query={"gsd": {
+                                "eq": 10
+                            }},
+                            max_items=1)
+        items2 = list(search.get_items())
+
+        assert (len(items1) == 1)
+        assert (len(items2) == 1)
+        assert (items1[0].id == items2[0].id)

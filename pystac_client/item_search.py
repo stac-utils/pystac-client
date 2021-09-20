@@ -225,7 +225,11 @@ class ItemSearch:
                 for op in ['>=', '<=', '=', '>', '<']:
                     parts = q.split(op)
                     if len(parts) == 2:
-                        query = dict_merge(query, {parts[0]: {OP_MAP[op]: parts[1]}})
+                        param = parts[0]
+                        val = parts[1]
+                        if param == "gsd":
+                            val = float(val)
+                        query = dict_merge(query, {parts[0]: {OP_MAP[op]: val}})
                         break
         else:
             query = value
