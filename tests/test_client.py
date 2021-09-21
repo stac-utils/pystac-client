@@ -41,7 +41,7 @@ class TestAPI:
         # Set conformsTo URIs to conform with STAC API - Core using official URI
         client._stac_io._conformance = ['https://api.stacspec.org/v1.0.0-beta.1/core']
 
-        assert client.assert_conforms_to(ConformanceClasses.CORE)
+        assert client._stac_io.assert_conforms_to(ConformanceClasses.CORE)
 
     @pytest.mark.vcr
     def test_no_conformance(self):
@@ -51,10 +51,10 @@ class TestAPI:
         client._stac_io._conformance = []
 
         with pytest.raises(NotImplementedError):
-            client.assert_conforms_to(ConformanceClasses.CORE)
+            client._stac_io.assert_conforms_to(ConformanceClasses.CORE)
 
         with pytest.raises(NotImplementedError):
-            client.assert_conforms_to(ConformanceClasses.ITEM_SEARCH)
+            client._stac_io.assert_conforms_to(ConformanceClasses.ITEM_SEARCH)
 
     @pytest.mark.vcr
     def test_no_stac_core_conformance(self):
@@ -63,9 +63,9 @@ class TestAPI:
         client._stac_io._conformance = client._stac_io._conformance[1:]
 
         with pytest.raises(NotImplementedError):
-            client.assert_conforms_to(ConformanceClasses.CORE)
+            client._stac_io.assert_conforms_to(ConformanceClasses.CORE)
 
-        assert client.assert_conforms_to(ConformanceClasses.ITEM_SEARCH)
+        assert client._stac_io.assert_conforms_to(ConformanceClasses.ITEM_SEARCH)
 
     @pytest.mark.vcr
     def test_from_file(self):
