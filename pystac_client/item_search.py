@@ -48,23 +48,23 @@ Fields = List[str]
 FieldsLike = Union[Fields, str]
 
 
-# probably should be in a utils module
 # from https://gist.github.com/angstwad/bf22d1822c38a92ec0a9#gistcomment-2622319
-def dict_merge(dct, merge_dct, add_keys=True):
-    """ Recursive dict merge. Inspired by :meth:``dict.update()``, instead of
+def dict_merge(dct: Dict, merge_dct: Dict, add_keys: bool = True) -> Dict:
+    """ Recursive dict merge.
+    
+    Inspired by :meth:``dict.update()``, instead of
     updating only top-level keys, dict_merge recurses down into dicts nested
     to an arbitrary depth, updating keys. The ``merge_dct`` is merged into
-    ``dct``.
-    This version will return a copy of the dictionary and leave the original
-    arguments untouched.
-    The optional argument ``add_keys``, determines whether keys which are
-    present in ``merge_dict`` but not ``dct`` should be included in the
-    new dict.
+    ``dct``. This version will return a copy of the dictionary and leave the original
+    arguments untouched.  The optional argument ``add_keys``, determines whether keys which are
+    present in ``merge_dict`` but not ``dct`` should be included in the new dict.
+
     Args:
         dct (dict) onto which the merge is executed
         merge_dct (dict): dct merged into dct
         add_keys (bool): whether to add new keys
-    Returns:
+
+    Return:
         dict: updated dict
     """
     dct = dct.copy()
@@ -81,71 +81,56 @@ def dict_merge(dct, merge_dct, add_keys=True):
 
 
 class ItemSearch:
-    """Represents a deferred query to an Item Search endpoint as described in the `STAC API - Item Search spec
-    <https://github.com/radiantearth/stac-api-spec/tree/master/item-search>`__. No request is sent to the API until
-    either the :meth:`ItemSearch.item_collections` or :meth:`ItemSearch.items` method is called and iterated over.
+    """Represents a deferred query to a STAC search endpoint as described in the
+    `STAC API - Item Search spec <https://github.com/radiantearth/stac-api-spec/tree/master/item-search>`__.
 
-    If ``intersects`` is included in the search parameters, then the instance will first try to make a ``POST`` request.
-    If server responds with a ``405 - Method Not Allowed`` status code, then the instance will fall back to using
-    ``GET`` requests for all subsequent requests.
+    No request is sent to the API until a function is called to fetch or iterate through the resulting STAC Items, 
+     either the :meth:`ItemSearch.item_collections` or :meth:`ItemSearch.items` method is called and iterated over.
 
     All "Parameters", with the exception of ``max_items``, ``method``, and ``url`` correspond to query parameters
     described in the `STAC API - Item Search: Query Parameters Table
     <https://github.com/radiantearth/stac-api-spec/tree/master/item-search#query-parameter-table>`__ docs. Please refer
     to those docs for details on how these parameters filter search results.
 
-    "Other Parameters" are other keyword arguments specific to this library's implementation and do not correspond to
-    concepts in the STAC API spec.
+    Args:
+        url : The URL to the item-search endpoint
+        method : The HTTP method to use when making a request to the service. This must be either ``"GET"``, ``"POST"``, or
+            ``None``. If ``None``, this will default to ``"POST"`` if the ``intersects`` argument is present and ``"GET"``
+            if not. If a ``"POST"`` request receives a ``405`` status for the response, it will automatically retry with a
+            ``"GET"`` request for all subsequent requests.
+        max_items : The maximum number of items to return from the search. *Note that this is not a STAC API - Item Search parameter
+            and is instead used by the client to limit the total number of returned items*.
+        limit : The maximum number of items to return *per page*. Defaults to ``None``, which falls back to the limit set by the
+            service.
+        bbox: May be a list, tuple, or iterator representing a bounding box of 2D or 3D coordinates. Results will be filtered
+            to only those intersecting the bounding box.
+        datetime: Either a single datetime or datetime range used to filter results. You may express a single datetime using a
+            :class:`datetime.datetime` instance, a `RFC 3339-compliant <https://tools.ietf.org/html/rfc3339>`__ timestamp,
+            or a simple date string (see below). Instances of :class:`datetime.datetime` may be either timezone aware or
+            unaware. Timezone aware instances will be converted to a UTC timestamp before being passed to the endpoint.
+            Timezone unaware instances are assumed to represent UTC timestamps. You may represent a datetime range using a
+            ``"/"`` separated string as described in the spec, or a list, tuple, or iterator of 2 timestamps or datetime
+            instances. For open-ended ranges, use either ``".."`` (``'2020-01-01:00:00:00Z/..'``,
+            ``['2020-01-01:00:00:00Z', '..']``) or a value of ``None`` (``['2020-01-01:00:00:00Z', None]``).
 
-    Parameters
-    ----------
-    url : str
-        The URL to the item-search endpoint
-    method : str or None, optional
-        The HTTP method to use when making a request to the service. This must be either ``"GET"``, ``"POST"``, or
-        ``None``. If ``None``, this will default to ``"POST"`` if the ``intersects`` argument is present and ``"GET"``
-        if not. If a ``"POST"`` request receives a ``405`` status for the response, it will automatically retry with a
-        ``"GET"`` request for all subsequent requests.
-    max_items : int or None, optional
-        The maximum number of items to return from the search. *Note that this is not a STAC API - Item Search parameter
-        and is instead used by the client to limit the total number of returned items*.
-    limit : int, optional
-        The maximum number of items to return *per page*. Defaults to ``None``, which falls back to the limit set by the
-        service.
-    bbox: list or tuple or Iterator or str, optional
-        May be a list, tuple, or iterator representing a bounding box of 2D or 3D coordinates. Results will be filtered
-        to only those intersecting the bounding box.
-    datetime: str or datetime.datetime or list or tuple or Iterator, optional
-        Either a single datetime or datetime range used to filter results. You may express a single datetime using a
-        :class:`datetime.datetime` instance, a `RFC 3339-compliant <https://tools.ietf.org/html/rfc3339>`__ timestamp,
-        or a simple date string (see below). Instances of :class:`datetime.datetime` may be either timezone aware or
-        unaware. Timezone aware instances will be converted to a UTC timestamp before being passed to the endpoint.
-        Timezone unaware instances are assumed to represent UTC timestamps. You may represent a datetime range using a
-        ``"/"`` separated string as described in the spec, or a list, tuple, or iterator of 2 timestamps or datetime
-        instances. For open-ended ranges, use either ``".."`` (``'2020-01-01:00:00:00Z/..'``,
-        ``['2020-01-01:00:00:00Z', '..']``) or a value of ``None`` (``['2020-01-01:00:00:00Z', None]``).
+            If using a simple date string, the datetime can be specified in ``YYYY-mm-dd`` format, optionally truncating
+            to ``YYYY-mm`` or just ``YYYY``. Simple date strings will be expanded to include the entire time period, for
+            example:
 
-        If using a simple date string, the datetime can be specified in ``YYYY-mm-dd`` format, optionally truncating
-        to ``YYYY-mm`` or just ``YYYY``. Simple date strings will be expanded to include the entire time period, for
-        example:
+            - ``2017`` expands to ``2017-01-01T00:00:00Z/2017-12-31T23:59:59Z``
+            - ``2017-06`` expands to ``2017-06-01T00:00:00Z/2017-06-30T23:59:59Z``
+            - ``2017-06-10`` expands to ``2017-06-10T00:00:00Z/2017-06-10T23:59:59Z``
 
-        - ``2017`` expands to ``2017-01-01T00:00:00Z/2017-12-31T23:59:59Z``
-        - ``2017-06`` expands to ``2017-06-01T00:00:00Z/2017-06-30T23:59:59Z``
-        - ``2017-06-10`` expands to ``2017-06-10T00:00:00Z/2017-06-10T23:59:59Z``
+            If used in a range, the end of the range expands to the end of that day/month/year, for example:
 
-        If used in a range, the end of the range expands to the end of that day/month/year, for example:
-
-        - ``2017/2018`` expands to ``2017-01-01T00:00:00Z/2018-12-31T23:59:59Z``
-        - ``2017-06/2017-07`` expands to ``2017-06-01T00:00:00Z/2017-07-31T23:59:59Z``
-        - ``2017-06-10/2017-06-11`` expands to ``2017-06-10T00:00:00Z/2017-06-11T23:59:59Z``
-    intersects: str or dict, optional
-        A GeoJSON-like dictionary or JSON string. Results will be filtered to only those intersecting the geometry
-    ids: list, optional
-        List of Item ids to return. All other filter parameters that further restrict the number of search results
-        (except ``limit``) are ignored.
-    collections: list, optional
-        List of one or more Collection IDs or :class:`pystac.Collection` instances. Only Items in one of the provided
-        Collections will be searched
+            - ``2017/2018`` expands to ``2017-01-01T00:00:00Z/2018-12-31T23:59:59Z``
+            - ``2017-06/2017-07`` expands to ``2017-06-01T00:00:00Z/2017-07-31T23:59:59Z``
+            - ``2017-06-10/2017-06-11`` expands to ``2017-06-10T00:00:00Z/2017-06-11T23:59:59Z``
+        intersects: A GeoJSON-like dictionary or JSON string. Results will be filtered to only those intersecting the geometry
+        ids: List of Item ids to return. All other filter parameters that further restrict the number of search results
+            (except ``limit``) are ignored.
+        collections: List of one or more Collection IDs or :class:`pystac.Collection` instances. Only Items in one of the provided
+            Collections will be searched
     """
     def __init__(self,
                  url: str,
@@ -387,6 +372,14 @@ class ItemSearch:
         return deepcopy(getattr(value, '__geo_interface__', value))
 
     def matched(self) -> int:
+        """Return number matched for search
+
+        Returns the value from the `numberMatched` or `context.matched` field. Not all APIs
+        will support counts in which case a warning will be issued
+
+        Returns:
+            int: Total count of matched items. If counts are not supported `None` is returned.
+        """
         params = {**self.get_parameters(), "limit": 1}
         resp = self._stac_io.read_json(self.url, method=self.method, parameters=params)
         found = None
@@ -402,9 +395,8 @@ class ItemSearch:
         """Iterator that yields ItemCollection objects.  Each ItemCollection is a page of results
         from the search.
 
-        Yields
-        -------
-        item_collection : pystac_client.ItemCollection
+        Yields:
+            Iterable[Item] : pystac_client.ItemCollection
         """
         for page in self._stac_io.get_pages(self.url, self.method, self.get_parameters()):
             yield ItemCollection.from_dict(page, preserve_dict=False, root=self.client)
@@ -414,9 +406,8 @@ class ItemSearch:
         :meth:`ItemSearch.item_collections()` internally and yields from
         :attr:`ItemCollection.features <pystac_client.ItemCollection.features>` for each page of results.
 
-        Yields
-        ------
-        item : pystac.Item
+        Return:
+            Iterable[Item] : Iterate through resulting Items
         """
         nitems = 0
         for item_collection in self.get_item_collections():
@@ -430,9 +421,8 @@ class ItemSearch:
         """Convenience method that gets all items from all pages, up to self._max_items,
          and returns an array of dictionaries
 
-        Returns
-        ------
-        Dict : A GeoJSON FeatureCollection
+        Return:
+            Dict : A GeoJSON FeatureCollection
         """
         features = []
         for page in self._stac_io.get_pages(self.url, self.method, self.get_parameters()):
@@ -445,9 +435,8 @@ class ItemSearch:
     def get_all_items(self) -> ItemCollection:
         """Convenience method that builds an :class:`ItemCollection` from all items matching the given search parameters.
 
-        Returns
-        ------
-        item_collection : ItemCollection
+        Return:
+            item_collection : ItemCollection
         """
         feature_collection = self.get_all_items_as_dict()
         return ItemCollection.from_dict(feature_collection, preserve_dict=False, root=self.client)
