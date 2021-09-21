@@ -147,6 +147,9 @@ def parse_args(args):
                 logger.warning(f"Unable to parse header {head}")
         parsed_args['headers'] = new_headers
 
+    if 'filter' in parsed_args:
+        parsed_args['filter'] = json.loads(parsed_args['filter'])
+
     return parsed_args
 
 
