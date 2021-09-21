@@ -1,7 +1,6 @@
 from typing import (Iterable, TYPE_CHECKING)
 
 import pystac
-from pystac_client.conformance import ConformanceClasses
 from pystac_client.item_search import ItemSearch
 
 if TYPE_CHECKING:
@@ -15,7 +14,7 @@ class CollectionClient(pystac.Collection):
     def get_items(self) -> Iterable["Item_Type"]:
         """Return all items in this Collection.
 
-        If the Collection contains a link of with a `rel` value of `items`, that link will be 
+        If the Collection contains a link of with a `rel` value of `items`, that link will be
         used to iterate through items. Otherwise, the default PySTAC behavior is assumed.
 
         Return:

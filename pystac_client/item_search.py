@@ -51,7 +51,7 @@ FieldsLike = Union[Fields, str]
 # from https://gist.github.com/angstwad/bf22d1822c38a92ec0a9#gistcomment-2622319
 def dict_merge(dct: Dict, merge_dct: Dict, add_keys: bool = True) -> Dict:
     """ Recursive dict merge.
-    
+
     Inspired by :meth:``dict.update()``, instead of
     updating only top-level keys, dict_merge recurses down into dicts nested
     to an arbitrary depth, updating keys. The ``merge_dct`` is merged into
@@ -84,7 +84,7 @@ class ItemSearch:
     """Represents a deferred query to a STAC search endpoint as described in the
     `STAC API - Item Search spec <https://github.com/radiantearth/stac-api-spec/tree/master/item-search>`__.
 
-    No request is sent to the API until a function is called to fetch or iterate through the resulting STAC Items, 
+    No request is sent to the API until a function is called to fetch or iterate through the resulting STAC Items,
      either the :meth:`ItemSearch.item_collections` or :meth:`ItemSearch.items` method is called and iterated over.
 
     All "Parameters", with the exception of ``max_items``, ``method``, and ``url`` correspond to query parameters
@@ -98,19 +98,19 @@ class ItemSearch:
             ``None``. If ``None``, this will default to ``"POST"`` if the ``intersects`` argument is present and ``"GET"``
             if not. If a ``"POST"`` request receives a ``405`` status for the response, it will automatically retry with a
             ``"GET"`` request for all subsequent requests.
-        max_items : The maximum number of items to return from the search. *Note that this is not a STAC API - Item Search parameter
-            and is instead used by the client to limit the total number of returned items*.
-        limit : The maximum number of items to return *per page*. Defaults to ``None``, which falls back to the limit set by the
-            service.
+        max_items : The maximum number of items to return from the search. *Note that this is not a STAC API - Item Search
+            parameter and is instead used by the client to limit the total number of returned items*.
+        limit : The maximum number of items to return *per page*. Defaults to ``None``, which falls back to the limit set
+            by the service.
         bbox: May be a list, tuple, or iterator representing a bounding box of 2D or 3D coordinates. Results will be filtered
             to only those intersecting the bounding box.
-        datetime: Either a single datetime or datetime range used to filter results. You may express a single datetime using a
-            :class:`datetime.datetime` instance, a `RFC 3339-compliant <https://tools.ietf.org/html/rfc3339>`__ timestamp,
-            or a simple date string (see below). Instances of :class:`datetime.datetime` may be either timezone aware or
-            unaware. Timezone aware instances will be converted to a UTC timestamp before being passed to the endpoint.
-            Timezone unaware instances are assumed to represent UTC timestamps. You may represent a datetime range using a
-            ``"/"`` separated string as described in the spec, or a list, tuple, or iterator of 2 timestamps or datetime
-            instances. For open-ended ranges, use either ``".."`` (``'2020-01-01:00:00:00Z/..'``,
+        datetime: Either a single datetime or datetime range used to filter results. You may express a single datetime
+            using a :class:`datetime.datetime` instance, a `RFC 3339-compliant <https://tools.ietf.org/html/rfc3339>`__
+            timestamp, or a simple date string (see below). Instances of :class:`datetime.datetime` may be either
+            timezone aware or unaware. Timezone aware instances will be converted to a UTC timestamp before being passed
+            to the endpoint. Timezone unaware instances are assumed to represent UTC timestamps. You may represent a
+            datetime range using a ``"/"`` separated string as described in the spec, or a list, tuple, or iterator
+            of 2 timestamps or datetime instances. For open-ended ranges, use either ``".."`` (``'2020-01-01:00:00:00Z/..'``,
             ``['2020-01-01:00:00:00Z', '..']``) or a value of ``None`` (``['2020-01-01:00:00:00Z', None]``).
 
             If using a simple date string, the datetime can be specified in ``YYYY-mm-dd`` format, optionally truncating
@@ -126,11 +126,11 @@ class ItemSearch:
             - ``2017/2018`` expands to ``2017-01-01T00:00:00Z/2018-12-31T23:59:59Z``
             - ``2017-06/2017-07`` expands to ``2017-06-01T00:00:00Z/2017-07-31T23:59:59Z``
             - ``2017-06-10/2017-06-11`` expands to ``2017-06-10T00:00:00Z/2017-06-11T23:59:59Z``
-        intersects: A GeoJSON-like dictionary or JSON string. Results will be filtered to only those intersecting the geometry
+        intersects: A GeoJSON-like dictionary or JSON string. Results filtered to only those intersecting the geometry
         ids: List of Item ids to return. All other filter parameters that further restrict the number of search results
             (except ``limit``) are ignored.
-        collections: List of one or more Collection IDs or :class:`pystac.Collection` instances. Only Items in one of the provided
-            Collections will be searched
+        collections: List of one or more Collection IDs or :class:`pystac.Collection` instances. Only Items in one
+            of the provided Collections will be searched
     """
     def __init__(self,
                  url: str,

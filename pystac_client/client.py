@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 
 class Client(pystac.Catalog):
     """A Client for interacting with the root of a STAC Catalog or API
-    
+
     Instances of the ``Client`` class inherit from :class:`pystac.Catalog` and provide a convenient way of interacting
     with STAC Catalogs OR STAC APIs that conform to the `STAC API spec <https://github.com/radiantearth/stac-api-spec>`_.
     In addition to being a valid
@@ -27,7 +27,10 @@ class Client(pystac.Catalog):
         return '<Client id={}>'.format(self.id)
 
     @classmethod
-    def open(cls, url: str, headers: Dict[str,str] = None, ignore_conformance: bool = False) -> "Client":
+    def open(cls,
+             url: str,
+             headers: Dict[str, str] = None,
+             ignore_conformance: bool = False) -> "Client":
         """Opens a STAC Catalog or API
         This function will read the root catalog of a STAC Catalog or API
 
@@ -84,7 +87,7 @@ class Client(pystac.Catalog):
 
     def get_collections(self) -> Iterable[CollectionClient]:
         """ Get Collections in this Catalog
-        
+
             Gets the collections from the /collections endpoint if supported, otherwise fall
             back to Catalog behavior of following child links
 
