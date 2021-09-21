@@ -101,6 +101,8 @@ def parse_args(args):
                               nargs='*',
                               help='Query properties of form '
                               'KEY=VALUE (<, >, <=, >=, = supported)')
+    search_group.add_argument('--filter',
+                              help='Filter on queryables using CQL JSON')
     search_group.add_argument('--sortby', help='Sort by fields', nargs='*')
     search_group.add_argument('--fields', help='Control what fields get returned', nargs='*')
     search_group.add_argument('--limit', help='Page size limit', type=int, default=100)
