@@ -6,13 +6,7 @@ Tutorials
 PySTAC-Client Introduction
 --------------------------
 
-- :tutorial:`GitHub version <tutorials/pystac-client-introduction.ipynb>`
-- :ref:`Docs version <tutorials/pystac-client-introduction.ipynb>`
+- :tutorial:`GitHub version <pystac-client-introduction.ipynb>`
+- :ref:`Docs version </tutorials/pystac-client-introduction.ipynb>`
 
-This tutorial gives an introduction to PySTAC-Client concepts through code examples.
-
-.. toctree::
-   :glob:
-   :maxdepth: 1
-
-   tutorials/*
+This tutorials gives an introduction to PySTAC-Client concepts through code examples.
