@@ -5,6 +5,7 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -16,6 +17,12 @@ from pathlib import Path
 #
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.resolve()))
 from pystac_client import __version__  # noqa: E402
+
+git_branch = (
+    subprocess.check_output(["git", "rev-parse", "--abbrev-ref", "HEAD"])
+    .decode("utf-8")
+    .strip()
+)
 
 # -- Project information -----------------------------------------------------
 
@@ -45,6 +52,14 @@ extensions = [
     'sphinxcontrib.fulltoc',
     'nbsphinx'
 ]
+
+extlinks = {
+    "tutorial": (
+        "https://github.com/stac-utils/pystac/"
+        "tree/{}/docs/tutorials/%s".format(git_branch),
+        "tutorial",
+    )
+}
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
