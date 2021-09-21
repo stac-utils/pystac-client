@@ -26,11 +26,11 @@ git_branch = (
 
 # -- Project information -----------------------------------------------------
 
-project = 'pystac-api-client'
+project = 'pystac-client'
 copyright = '2021, Jon Duckworth'
 author = 'Matthew Hanson, Jon Duckworth'
 github_user = 'stac-utils'
-github_repo = 'pystac-api-client'
+github_repo = 'pystac-client'
 package_description = 'A Python client for the STAC and STAC-API specs'
 
 # The full version, including alpha/beta/rc tags
