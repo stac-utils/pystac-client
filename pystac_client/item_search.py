@@ -196,7 +196,6 @@ class ItemSearch:
 
         self._parameters = {k: v for k, v in params.items() if v is not None}
 
-
     def get_parameters(self):
         if self.method == 'POST':
             return self._parameters
