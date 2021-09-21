@@ -1,4 +1,4 @@
-STAC API Client
+STAC Client
 ===============
 
 [![CI](https://github.com/stac-utils/pystac-client/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/stac-utils/pystac-client/actions/workflows/continuous-integration.yml)
