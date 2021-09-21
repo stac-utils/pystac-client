@@ -1,9 +1,7 @@
 API Reference
 =============
 
-This API reference is auto-generated for the Python docstrings,
-and organized by the section of the :stac-spec:`STAC Spec <>` they relate to, if related
-to a specific spec item.
+This API reference is auto-generated for the Python docstrings.
 
 pystac-client
 -------------

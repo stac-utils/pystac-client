@@ -9,4 +9,4 @@ library. In general, this library makes an attempt to follow the design patterns
    :glob:
    :maxdepth: 1
 
-   design/*
+   design/*.md
