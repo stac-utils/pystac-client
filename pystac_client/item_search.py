@@ -191,7 +191,11 @@ class ItemSearch:
             'fields': self._format_fields(fields)
         }
 
+        if params['filter'] is not None:
+            params['filter-lang'] = 'cql-json'
+
         self._parameters = {k: v for k, v in params.items() if v is not None}
+
 
     def get_parameters(self):
         if self.method == 'POST':
