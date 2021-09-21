@@ -29,9 +29,9 @@ git_branch = (
 project = 'pystac-api-client'
 copyright = '2021, Jon Duckworth'
 author = 'Matthew Hanson, Jon Duckworth'
-github_user = 'matthewhanson, duckontheweb'
+github_user = 'stac-utils'
 github_repo = 'pystac-api-client'
-package_description = 'A Python client for the STAC API spec.'
+package_description = 'A Python client for the STAC and STAC-API specs'
 
 # The full version, including alpha/beta/rc tags
 version = re.fullmatch(r'^(\d+\.\d+\.\d).*$', __version__).group(1)
@@ -55,7 +55,7 @@ extensions = [
 
 extlinks = {
     "tutorial": (
-        "https://github.com/stac-utils/pystac/"
+        "https://github.com/stac-utils/pystac-client/"
         "tree/{}/docs/tutorials/%s".format(git_branch),
         "tutorial",
     )

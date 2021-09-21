@@ -1,17 +1,31 @@
 Usage
-########
+#####
 
-The most basic implementation of a STAC API is an endpoint that returns a valid STAC Catalog, along 
-with a ``"conformsTo"`` attribute that is a list of conformance URIs for the standards that the
-service conforms to.
+PySTAC-Client (pystac-client) builds upon :ref:`~PySTAC<https://github.com/stac-utils/pystac>` library to add support
+for STAC APIs in addition to static STACs. PySTAC-Client can be used with static or dynamic (i.e., API)
+catalogs. Currently, pystac-client does not offer much in the way of additional functionality if using with
+static catalogs, as the additional features are for support STAC API endpoints such as `search`. However,
+in the future it is expected that pystac-client will offer additional convenience functions that may be 
+useful for static and dynamic catalogs alike.
 
-This section how to use the package to interact with the various endpoints associated
-with a STAC API service. The section is organized by the spec that each set of endpoints is associated with and also
-includes user guides for working with paginated responses (from the ``/collections/{collection_id}/items`` and
-``/search`` endpoints)..
+The most basic implementation of a STAC API is an endpoint that returns a valid STAC Catalog, but also contains
+a ``"conformsTo"`` attribute that is a list of conformance URIs for the standards that the API supports.
 
-API Client
-+++++++++++++
+This section is organized by the classes that are used, which mirror parent classes from PySTAC:
+
++------------------+------------+
+| pystac-client    | pystac     |
++==================+============+
+| Client           | Catalog    |
++------------------+------------+
+| CollectionClient | Collection |
++------------------+------------+
+
+The classes offer all of the same functions for accessing and traversing Catalogs as in PySTAC. The documentation
+for pystac-client only includes new functions, it does not duplicate documentation for inherited functions.
+
+Client
+++++++
 
 The :class:`pystac_client.Client` class is the main interface for working with services that conform to the STAC API spec.
 This class inherits from the :class:`pystac.Catalog` class and in addition to the methods and attributes implemented by
@@ -20,12 +34,11 @@ a Catalog, it also includes convenience methods and attributes for:
 * Checking conformance to various specs
 * Querying a search endpoint (if the API conforms to the STAC API - Item Search spec)
 
-Create an Instance
-__________________
+The preferred way to interact with any STAC Catalog or API is to create an :class:`~pystac_client.Client` instance
+with the ``pystac_client.Client.open` method on a root Catalog. This calls the :meth:`pystac.STACObject.from_file`
+except properly configures conformance and IO for reading from remote servers.
 
-The easiest way to create an :class:`~pystac_client.Client` instance is using the ``pystac_client.Client.open`` method (inherited
-from :meth:`pystac.STACObject.from_file`). The following code creates an instance by making a call to the Astraea Earth
-OnDemand landing page.
+The following code creates an instance by making a call to the Microsoft Planetary Computer root catalog.
 
 .. code-block:: python
 
@@ -35,8 +48,8 @@ OnDemand landing page.
     'microsoft-pc'
 
 
-Supported Specifications
-------------------------
+API Conformance
+---------------
 
 This library is intended to work with any STAC static catalog or STAC API. A static catalog will be usable more or less
 the same as with PySTAC, except that pystac-client supports providing custom headers to API endpoints. (e.g., authenticating 
@@ -51,20 +64,13 @@ the `STAC API - Core` spec along with other optional specifications:
    * `Query Extension <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/query>`__
    * `Sort Extension <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/sort>`__
    * `Context Extension <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/context>`__
+   * `Filter Extension <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/filter>`__
 * `STAC API - Features <https://github.com/radiantearth/stac-api-spec/tree/master/ogcapi-features>`__ (based on
   `OGC API - Features <https://www.ogc.org/standards/ogcapi-features>`__)
 
-Check Conformance
-_________________
-
-You can use the :meth:`pystac_client.Client.conforms_to` method to check conformance against conformance classes (specs)
-commonly used in STAC APIs. This method provides the ability to check both against a single conformance URI (e.g.
-``'https://api.stacspec.org/v1.0.0-beta.1/core'``), or against all known conformance URIs for a given spec. This allows
-the package to be used with older APIs that may publish conformance URIs corresponding to older version of the spec or
-that were not defined explicitly in the spec when the service was created.
-
-To check against all conformance URIs for a given spec, use the attributes of :class:`pystac_client.ConformanceClasses`
-rather than URI strings:
+The :meth:`pystac_client.Client.conforms_to` method is used to check conformance against conformance classes (specs).
+To check an API for support for a given spec, pass the `conforms_to` function the :class:`ConformanceClasses` attribute
+as a parameter.
 
 .. code-block:: python
 
@@ -72,19 +78,8 @@ rather than URI strings:
     >>> api.conforms_to(ConformanceClasses.STAC_API_ITEM_SEARCH)
     True
 
-To check against a single URI you can pass a string to the :meth:`~pystac_client.Client.conforms_to` method. This can be any
-string at all, but you may want to use the :attr:`~pystac_client.conformance.ConformanceClass.uri` of the given conformance
-class as these represent the official conformance URIs defined in the STAC API spec.
-
-.. code-block:: python
-
-    >>> api.conforms_to(ConformanceClasses.STAC_API_ITEM_SEARCH.uri)
-    False
-    >>> ConformanceClasses.STAC_API_ITEM_SEARCH.uri
-    'https://api.stacspec.org/v1.0.0-beta.1/item-search'
-
-Collections
-+++++++++++
+CollectionClient
+++++++++++++++++
 
 STAC APIs may provide a curated list of catalogs and collections via their ``"links"`` attribute. Links with a ``"rel"``
 type of ``"child"`` represent catalogs or collections provided by the API. Since :class:`~pystac_client.Client` instances are
@@ -101,8 +96,9 @@ also :class:`pystac.Catalog` instances, we can use the methods defined on that c
     >>> first_collection.title
     'Landsat 8 C1 T1'
 
-Item Search
------------
+
+ItemSearch
+++++++++++
 
 STAC API services may optionally implement a ``/search`` endpoint as describe in the  `STAC API - Item Search spec
 <https://github.com/radiantearth/stac-api-spec/tree/master/item-search>`__. This endpoint allows clients to query
@@ -125,14 +121,25 @@ The :meth:`pystac_client.Client.search` method provides an interface for making 
 
 Instances of :class:`~pystac_client.ItemSearch` have 2 methods for iterating over results:
 
-* :meth:`ItemSearch.item_collections <pystac_client.ItemSearch.item_collections>`: iterates over *pages* of results,
-  yielding an :class:`~pystac_client.ItemCollection` for each page of results.
-* :meth:`ItemSearch.items <pystac_client.ItemSearch.items>`: iterate over individual results, yielding a
+* :meth:`ItemSearch.get_item_collections <pystac_client.ItemSearch.item_collections>`: iterates over *pages* of results,
+  yielding an :class:`~pystac.ItemCollection` for each page of results.
+* :meth:`ItemSearch.get_items <pystac_client.ItemSearch.items>`: iterate over individual results, yielding a
   :class:`pystac.Item` instance for all items that match the search criteria.
+
+In addition three additional convenience methods are provided:
+
+* :method:`ItemSearch.matched <pystac_client.ItemSearch.matched>`: returns the number of hits (items) for this search.
+  Not all APIs support returning a total count, in which case a .. warning:: "numberMatched or context.matched not in response"
+  will be issued.
+* :method:`ItemSearch.matched <pystac_client.ItemSearch.get_all_items>`: Rather than return an iterator, this function will
+  fetch all items and return them as a single :class:`~pystac.ItemCollection`.
+* :method:`ItemSearch.matched <pystac_client.ItemSearch.get_all_items_as_dict>`: Like `get_all_items` this fetches all items
+  but returns them as a GeoJSON FeatureCollection dictionary rather than a PySTAC object. This can be more efficient if
+  only a dictionary of the results is needed.
 
 .. code-block:: python
 
-    >>> for item in results.items():
+    >>> for item in results.get_items():
     ...     print(item.id)
     S2B_OPER_MSI_L2A_TL_SGS__20190101T200120_A009518_T18TXP_N02.11
     MCD43A4.A2019010.h12v04.006.2019022234410
