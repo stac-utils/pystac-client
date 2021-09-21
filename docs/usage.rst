@@ -47,6 +47,17 @@ The following code creates an instance by making a call to the Microsoft Planeta
     >>> api.title
     'microsoft-pc'
 
+Some functions, such as ``Client.search`` will throw an error if the provided Catalog/API does
+not support the required Conformance Class. In other cases, such as ``Client.get_collections``, API endpoints will be
+used if the API conforms, otherwise it will fall back to default behavior provided by :class:`pystac.Catalog`.
+
+Users may optionally provide an ``ignore_conformance`` argument when opening, in which case pystac-client will not check
+for conformance and will assume this is a fully features API. This can cause unusual errors to be thrown if the API
+does not in fact conform to the expected behavior.
+
+In addition to the methods and attributes inherited from :class:`pystac.Catalog`, this class offers more efficient
+methods (if used with an API) for getting collections and items, as well as a search capability, utilizing the
+:class:`pystac_client.ItemSearch` class.
 
 API Conformance
 ---------------
@@ -96,6 +107,12 @@ also :class:`pystac.Catalog` instances, we can use the methods defined on that c
     >>> first_collection.title
     'Landsat 8 C1 T1'
 
+CollectionClient overrides the :meth:`pystac.Collection.get_items` method. PySTAC will get items by
+iterating through all children until it gets to an `item` link. If the `CollectionClient` instance
+contains an `items` link, this will instead iterate through items using the API endpoint instead:
+`/collections/<collection_id>/items`. If no such link is present it will fall back to the
+PySTAC Collection behavior.
+
 
 ItemSearch
 ++++++++++
@@ -128,12 +145,11 @@ Instances of :class:`~pystac_client.ItemSearch` have 2 methods for iterating ove
 
 In addition three additional convenience methods are provided:
 
-* :method:`ItemSearch.matched <pystac_client.ItemSearch.matched>`: returns the number of hits (items) for this search.
-  Not all APIs support returning a total count, in which case a .. warning:: "numberMatched or context.matched not in response"
-  will be issued.
-* :method:`ItemSearch.matched <pystac_client.ItemSearch.get_all_items>`: Rather than return an iterator, this function will
+* :meth:`ItemSearch.matched <pystac_client.ItemSearch.matched>`: returns the number of hits (items) for this search.
+  Not all APIs support returning a total count, in which case a warning will be issued.
+* :meth:`ItemSearch.matched <pystac_client.ItemSearch.get_all_items>`: Rather than return an iterator, this function will
   fetch all items and return them as a single :class:`~pystac.ItemCollection`.
-* :method:`ItemSearch.matched <pystac_client.ItemSearch.get_all_items_as_dict>`: Like `get_all_items` this fetches all items
+* :meth:`ItemSearch.matched <pystac_client.ItemSearch.get_all_items_as_dict>`: Like `get_all_items` this fetches all items
   but returns them as a GeoJSON FeatureCollection dictionary rather than a PySTAC object. This can be more efficient if
   only a dictionary of the results is needed.
 
@@ -147,8 +163,8 @@ In addition three additional convenience methods are provided:
     MYD11A1.A2019002.h12v04.006.2019003174703
     MYD11A1.A2019001.h12v04.006.2019002165238
 
-The :meth:`~pystac_client.ItemSearch.items` method handles retrieval of successive pages of results by finding any links
-with a ``"rel"`` type of ``"next"`` and parsing them to construct the next request. The default implementation of this
-``"next"`` link parsing assumes that the link follows the spec for an extended STAC link as described in the
-`STAC API - Item Search: Paging <https://github.com/radiantearth/stac-api-spec/tree/master/item-search#paging>`__
+The :meth:`~pystac_client.ItemSearch.get_items` and related methods handle retrieval of successive pages of results 
+by finding links with a ``"rel"`` type of ``"next"`` and parsing them to construct the next request. The default 
+implementation of this ``"next"`` link parsing assumes that the link follows the spec for an extended STAC link as
+described in the `STAC API - Item Search: Paging <https://github.com/radiantearth/stac-api-spec/tree/master/item-search#paging>`__
 section. See the :mod:`Paging <pystac_client.paging>` docs for details on how to customize this behavior.
