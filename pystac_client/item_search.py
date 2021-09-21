@@ -41,6 +41,8 @@ IntersectsLike = Union[str, Intersects, object]
 Query = dict
 QueryLike = Union[Query, List[str]]
 
+FilterLike = dict
+
 Sortby = List[str]
 SortbyLike = Union[Sortby, str]
 
@@ -131,6 +133,15 @@ class ItemSearch:
             (except ``limit``) are ignored.
         collections: List of one or more Collection IDs or :class:`pystac.Collection` instances. Only Items in one
             of the provided Collections will be searched
+        query: List or JSON of query parameters as per the STAC API `query` extension
+        filter: JSON of query parameters as per the STAC API `filter` extension
+        sortby: A single field or list of fields to sort the response by
+        fields: A list of fields to return in the response. Note this may result in invalid JSON.
+            Use `get_all_items_as_dict` to avoid errors
+        max_items: The maximum number of items to get, even if there are more matched items
+        method: The http method, 'GET' or 'POST'
+        stac_io: An instance of of StacIO for retrieving results. Normally comes from the Client that returns this ItemSearch
+        client: An instance of a root Client used to set the root on resulting Items
     """
     def __init__(self,
                  url: str,
@@ -142,6 +153,7 @@ class ItemSearch:
                  ids: Optional[IDsLike] = None,
                  collections: Optional[CollectionsLike] = None,
                  query: Optional[QueryLike] = None,
+                 filter: Optional[FilterLike] = None,
                  sortby: Optional[SortbyLike] = None,
                  fields: Optional[FieldsLike] = None,
                  max_items: Optional[int] = None,
@@ -174,6 +186,7 @@ class ItemSearch:
             'collections': self._format_collections(collections),
             'intersects': self._format_intersects(intersects),
             'query': self._format_query(query),
+            'filter': self._format_filter(filter),
             'sortby': self._format_sortby(sortby),
             'fields': self._format_fields(fields)
         }
@@ -220,6 +233,10 @@ class ItemSearch:
             query = value
 
         return query
+
+    @staticmethod
+    def _format_filter(value: FilterLike) -> Optional[dict]:
+        return value
 
     @staticmethod
     def _format_bbox(value: Optional[BBoxLike]) -> Optional[BBox]:
