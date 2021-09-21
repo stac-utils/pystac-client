@@ -5,6 +5,7 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -17,14 +18,20 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.resolve()))
 from pystac_client import __version__  # noqa: E402
 
+git_branch = (
+    subprocess.check_output(["git", "rev-parse", "--abbrev-ref", "HEAD"])
+    .decode("utf-8")
+    .strip()
+)
+
 # -- Project information -----------------------------------------------------
 
-project = 'pystac-api-client'
+project = 'pystac-client'
 copyright = '2021, Jon Duckworth'
-author = 'Jon Duckworth'
-github_user = 'duckontheweb'
-github_repo = 'pystac-api-client'
-package_description = 'A Python client for the STAC API spec.'
+author = 'Matthew Hanson, Jon Duckworth'
+github_user = 'stac-utils'
+github_repo = 'pystac-client'
+package_description = 'A Python client for the STAC and STAC-API specs'
 
 # The full version, including alpha/beta/rc tags
 version = re.fullmatch(r'^(\d+\.\d+\.\d).*$', __version__).group(1)
@@ -38,11 +45,21 @@ release = __version__
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
+    'sphinx.ext.viewcode',
     'sphinx.ext.intersphinx',
     'sphinx.ext.napoleon',
-    'sphinx.ext.viewcode',
-    'recommonmark'
+    'sphinx.ext.extlinks',
+    'sphinxcontrib.fulltoc',
+    'nbsphinx'
 ]
+
+extlinks = {
+    "tutorial": (
+        "https://github.com/stac-utils/pystac-client/"
+        "tree/{}/docs/tutorials/%s".format(git_branch),
+        "tutorial",
+    )
+}
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -50,6 +67,7 @@ templates_path = ['_templates']
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
+source_suffix = [".rst", "*.md", "*.ipynb"]
 exclude_patterns = []
 
 
@@ -79,6 +97,7 @@ intersphinx_mapping = {
     'python': ('https://docs.python.org/3', None),
     'requests': ('https://requests.readthedocs.io/en/master', None),
     'pystac': ('https://pystac.readthedocs.io/en/latest', None),
+    'dateutil': ('https://dateutil.readthedocs.io/en/stable/', None),
 }
 
 # -- Options for autodoc extension -------------------------------------------

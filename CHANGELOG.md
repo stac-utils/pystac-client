@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Improved performance when constructing `pystac.ItemCollection` objects.
 - Relax `requests` dependency [#87](https://github.com/stac-utils/pystac-client/pull/87)
 - Use regular expressions for checking conformance classes [#97](https://github.com/stac-utils/pystac-client/pull/97)
+- Reorganized documentation, updated all docs
 
 ### Fixed
 

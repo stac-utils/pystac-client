@@ -42,7 +42,7 @@ class StacApiIO(DefaultStacIO):
         Args:
             headers : Optional dictionary of headers to include in all requests
 
-        Returns:
+        Return:
             StacApiIO : StacApiIO instance
         """
         # TODO - this should super() to parent class
@@ -56,9 +56,12 @@ class StacApiIO(DefaultStacIO):
                   *args: Any,
                   parameters: Optional[dict] = {},
                   **kwargs: Any) -> str:
-        """Overwrites the default method for reading text from a URL or file to allow :class:`urllib.request.Request`
+        """Read text from the given URI.
+
+        Overwrites the default method for reading text from a URL or file to allow :class:`urllib.request.Request`
         instances as input. This method also raises any :exc:`urllib.error.HTTPError` exceptions rather than catching
-        them to allow us to handle different response status codes as needed."""
+        them to allow us to handle different response status codes as needed.
+        """
         if isinstance(source, str):
             href = source
             if bool(urlparse(href).scheme):
@@ -92,6 +95,20 @@ class StacApiIO(DefaultStacIO):
                 method: Optional[str] = 'GET',
                 headers: Optional[dict] = {},
                 parameters: Optional[dict] = {}) -> str:
+        """Makes a request to an http endpoint
+
+        Args:
+            href (str): The request URL
+            method (Optional[str], optional): The http method to use, 'GET' or 'POST'. Defaults to 'GET'.
+            headers (Optional[dict], optional): Additional headers to include in request. Defaults to {}.
+            parameters (Optional[dict], optional): parameters to send with request. Defaults to {}.
+
+        Raises:
+            APIError: raised if the server returns an error response
+
+        Return:
+            str: The decoded response from the endpoint
+        """
         if method == 'POST':
             request = Request(method=method, url=href, headers=headers, json=parameters)
         else:
@@ -125,11 +142,8 @@ class StacApiIO(DefaultStacIO):
         root: Optional["Catalog_Type"] = None,
         preserve_dict: bool = True,
     ) -> "STACObject_Type":
-        """Deserializes a :class:`~pystac.STACObject` sub-class instance from a
-        dictionary.
-
+        """Deserializes a :class:`~pystac.STACObject` sub-class instance from a dictionary.
         Args:
-
             d : The dictionary to deserialize
             href : Optional href to associate with the STAC object
             root : Optional root :class:`~pystac.Catalog` to associate with the
@@ -179,9 +193,8 @@ class StacApiIO(DefaultStacIO):
     def get_pages(self, url, method='GET', parameters={}) -> Iterator[Dict]:
         """Iterator that yields dictionaries for each page at a STAC paging endpoint, e.g., /collections, /search
 
-        Yields
-        -------
-        Dict : JSON content from a single page
+        Return:
+            Dict : JSON content from a single page
         """
         page = self.read_json(url, method=method, parameters=parameters)
         yield page
@@ -201,15 +214,11 @@ class StacApiIO(DefaultStacIO):
         property from the API landing page and does not make any additional calls to a ``/conformance`` endpoint
         even if the API provides such an endpoint.
 
-        Parameters
-        ----------
-        key : str
-            The ``ConformanceClasses`` key to check conformance against.
+        Args:
+            key: The ``ConformanceClasses`` key to check conformance against.
 
-        Returns
-        -------
-        bool
-            Indicates if the API conforms to the given spec or URI.
+        Return:
+            bool: Indicates if the API conforms to the given spec or URI.
         """
         if not self.conforms_to(conformance_class):
             raise NotImplementedError(f"{conformance_class} not supported")
@@ -221,15 +230,11 @@ class StacApiIO(DefaultStacIO):
         property from the API landing page and does not make any additional calls to a ``/conformance`` endpoint
         even if the API provides such an endpoint.
 
-        Parameters
-        ----------
-        key : str
-            The ``ConformanceClasses`` key to check conformance against.
+        Args:
+            key : The ``ConformanceClasses`` key to check conformance against.
 
-        Returns
-        -------
-        bool
-            Indicates if the API conforms to the given spec or URI.
+        Return:
+            bool: Indicates if the API conforms to the given spec or URI.
         """
 
         # Conformance of None means ignore all conformance as opposed to an
