@@ -50,7 +50,6 @@ Table of Contents
 
    quickstart
    usage
-   concepts
    api
    tutorials
    contributing
