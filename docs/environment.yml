@@ -9,11 +9,5 @@ dependencies:
   - hvplot
   - geopandas
   - pip:
-    - sphinx_rtd_theme==0.5.1
-    - ipykernel~=6.2
-    - ipython~=7.27
-    - Sphinx~=4.1
-    - sphinxcontrib-fulltoc~=1.2
-    - nbsphinx~=0.8
-    - jinja2<4.0
+    - -r ../requirements-docs.txt
     - -e ../
