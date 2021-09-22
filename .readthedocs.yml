@@ -15,10 +15,5 @@ formats:
   - pdf
   - htmlzip
 
-# Optionally set the version of Python and requirements required to build your docs
-python:
-  version: 3.8
-  install:
-    - method: pip
-      path: .
-    - requirements: requirements-docs.txt
+conda:
+  environment: docs/environment.yml

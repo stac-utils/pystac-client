@@ -172,18 +172,29 @@ section. See the :mod:`Paging <pystac_client.paging>` docs for details on how to
 Query Filter
 ------------
 
-If the server supports the [query filter](https://github.com/radiantearth/stac-api-spec/tree/master/fragments/query)
-arbitrary Item properties can be included in the search parameters. The query parameter to :class:`ItemSearch` accepts
-a JSON structure as in the STAC API spec, but also accepts an abbreviated syntax. Instead of JSON, a list of strings can
-be provided, in which case pystac-client will convert them to the equivalent JSON structure.
+If the Catalog supports the `Query
+extension <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/query>`__,
+any Item property can also be included in the search. Rather than
+requiring the JSON syntax the Query extension uses, pystac-client can use a
+simpler syntax that it will translate to the JSON equivalent. Note
+however that when the simple syntax is used it sends all property values
+to the server as strings, except for ``gsd`` which it casts to
+``float``. This means that if there are extensions in use with numeric
+properties these will be sent as strings. Some servers may automatically
+cast this to the appropriate data type, others may not.
 
-The syntax is simply:
+The query filter will also accept complete JSON as per the specification.
 
-```
-<property><operator><value>
-e.g.,
+::
 
-eo:cloud_cover<10
-view:off_nadir<50
-platform=landsat-8
-```
+  <property><operator><value>
+
+  where operator is one of `>=`, `<=`, `>`, `<`, `=`
+
+  Examples:
+  eo:cloud_cover<10
+  view:off_nadir<50
+  platform=landsat-8
+
+Any number of properties can be included, and each can be included more
+than once to use additional operators.

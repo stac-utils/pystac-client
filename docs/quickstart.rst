@@ -61,6 +61,8 @@ to the server as strings, except for ``gsd`` which it casts to
 properties these will be sent as strings. Some servers may automatically
 cast this to the appropriate data type, others may not.
 
+The query filter will also accept complete JSON as per the specification.
+
 ::
 
     <property><operator><value>

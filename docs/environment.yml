@@ -1,0 +1,9 @@
+name: pystac-client-docs
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.8
+  - pip:
+    - -r ../requirements-docs.txt
+    - -e ../
