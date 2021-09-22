@@ -237,8 +237,11 @@ class ItemSearch:
 
         return query
 
-    @staticmethod
-    def _format_filter(value: FilterLike) -> Optional[dict]:
+    def _format_filter(self, value: FilterLike) -> Optional[dict]:
+        if value is None:
+            return None
+
+        self._stac_io.assert_conforms_to(ConformanceClasses.FILTER)
         return value
 
     @staticmethod
