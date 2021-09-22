@@ -44,13 +44,8 @@ release = __version__
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinx.ext.autodoc',
-    'sphinx.ext.viewcode',
-    'sphinx.ext.intersphinx',
-    'sphinx.ext.napoleon',
-    'sphinx.ext.extlinks',
-    'sphinxcontrib.fulltoc',
-    'nbsphinx'
+    'sphinx.ext.autodoc', 'sphinx.ext.viewcode', 'sphinx.ext.intersphinx', 'sphinx.ext.napoleon',
+    'sphinx.ext.extlinks', 'sphinxcontrib.fulltoc', 'nbsphinx', 'myst_parser'
 ]
 
 extlinks = {

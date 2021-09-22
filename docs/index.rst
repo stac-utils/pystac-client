@@ -53,3 +53,4 @@ Table of Contents
    api
    tutorials
    contributing
+   design/design_decisions
