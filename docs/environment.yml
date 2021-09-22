@@ -3,6 +3,7 @@ channels:
   - conda-forge
   - defaults
 dependencies:
+  - python=3.8
   - cartopy
   - geoviews
   - hvplot
@@ -15,3 +16,4 @@ dependencies:
     - sphinxcontrib-fulltoc~=1.2
     - nbsphinx~=0.8
     - jinja2<4.0
+    - -e ../

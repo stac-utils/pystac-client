@@ -15,9 +15,5 @@ formats:
   - pdf
   - htmlzip
 
-# Optionally set the version of Python and requirements required to build your docs
-python:
-  version: 3.8
-
 conda:
   environment: docs/environment.yml
