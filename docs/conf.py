@@ -44,13 +44,8 @@ release = __version__
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinx.ext.autodoc',
-    'sphinx.ext.viewcode',
-    'sphinx.ext.intersphinx',
-    'sphinx.ext.napoleon',
-    'sphinx.ext.extlinks',
-    'sphinxcontrib.fulltoc',
-    'nbsphinx'
+    'sphinx.ext.autodoc', 'sphinx.ext.viewcode', 'sphinx.ext.intersphinx', 'sphinx.ext.napoleon',
+    'sphinx.ext.extlinks', 'sphinxcontrib.fulltoc', 'nbsphinx', 'myst_parser'
 ]
 
 extlinks = {
@@ -70,7 +65,7 @@ templates_path = ['_templates']
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
 source_suffix = [".rst", "*.md", "*.ipynb"]
-exclude_patterns = []
+exclude_patterns = ['build/*']
 
 
 # -- Options for HTML output -------------------------------------------------

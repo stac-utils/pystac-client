@@ -1,7 +1,7 @@
 Usage
 #####
 
-PySTAC-Client (pystac-client) builds upon :ref:`~PySTAC<https://github.com/stac-utils/pystac>` library to add support
+PySTAC-Client (pystac-client) builds upon :ref:`~PySTAC<https://github.com/stac-utils/pystac>`_ library to add support
 for STAC APIs in addition to static STACs. PySTAC-Client can be used with static or dynamic (i.e., API)
 catalogs. Currently, pystac-client does not offer much in the way of additional functionality if using with
 static catalogs, as the additional features are for support STAC API endpoints such as `search`. However,

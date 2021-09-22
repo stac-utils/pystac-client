@@ -143,6 +143,7 @@ class StacApiIO(DefaultStacIO):
         preserve_dict: bool = True,
     ) -> "STACObject_Type":
         """Deserializes a :class:`~pystac.STACObject` sub-class instance from a dictionary.
+
         Args:
             d : The dictionary to deserialize
             href : Optional href to associate with the STAC object
