@@ -1,7 +1,7 @@
 Usage
 #####
 
-PySTAC-Client (pystac-client) builds upon :ref:`~PySTAC<https://github.com/stac-utils/pystac>`_ library to add support
+PySTAC-Client (pystac-client) builds upon `PySTAC <https://github.com/stac-utils/pystac>`_ library to add support
 for STAC APIs in addition to static STACs. PySTAC-Client can be used with static or dynamic (i.e., API)
 catalogs. Currently, pystac-client does not offer much in the way of additional functionality if using with
 static catalogs, as the additional features are for support STAC API endpoints such as `search`. However,
@@ -34,8 +34,8 @@ a Catalog, it also includes convenience methods and attributes for:
 * Checking conformance to various specs
 * Querying a search endpoint (if the API conforms to the STAC API - Item Search spec)
 
-The preferred way to interact with any STAC Catalog or API is to create an :class:`~pystac_client.Client` instance
-with the ``pystac_client.Client.open` method on a root Catalog. This calls the :meth:`pystac.STACObject.from_file`
+The preferred way to interact with any STAC Catalog or API is to create an :class:`pystac_client.Client` instance
+with the ``pystac_client.Client.open`` method on a root Catalog. This calls the :meth:`pystac.STACObject.from_file`
 except properly configures conformance and IO for reading from remote servers.
 
 The following code creates an instance by making a call to the Microsoft Planetary Computer root catalog.
@@ -52,7 +52,7 @@ not support the required Conformance Class. In other cases, such as ``Client.get
 used if the API conforms, otherwise it will fall back to default behavior provided by :class:`pystac.Catalog`.
 
 Users may optionally provide an ``ignore_conformance`` argument when opening, in which case pystac-client will not check
-for conformance and will assume this is a fully features API. This can cause unusual errors to be thrown if the API
+for conformance and will assume this is a fully featured API. This can cause unusual errors to be thrown if the API
 does not in fact conform to the expected behavior.
 
 In addition to the methods and attributes inherited from :class:`pystac.Catalog`, this class offers more efficient
@@ -66,7 +66,7 @@ This library is intended to work with any STAC static catalog or STAC API. A sta
 the same as with PySTAC, except that pystac-client supports providing custom headers to API endpoints. (e.g., authenticating 
 to an API with a token).
 
-A STAC API is a STAC Catalog that is required to advertise it's capabilities in a `conformsTo` field and implements
+A STAC API is a STAC Catalog that is required to advertise its capabilities in a `conformsTo` field and implements
 the `STAC API - Core` spec along with other optional specifications:
 
 * `STAC API - Core <https://github.com/radiantearth/stac-api-spec/tree/master/core>`__
@@ -147,9 +147,9 @@ In addition three additional convenience methods are provided:
 
 * :meth:`ItemSearch.matched <pystac_client.ItemSearch.matched>`: returns the number of hits (items) for this search.
   Not all APIs support returning a total count, in which case a warning will be issued.
-* :meth:`ItemSearch.matched <pystac_client.ItemSearch.get_all_items>`: Rather than return an iterator, this function will
+* :meth:`ItemSearch.get_all_items <pystac_client.ItemSearch.get_all_items>`: Rather than return an iterator, this function will
   fetch all items and return them as a single :class:`~pystac.ItemCollection`.
-* :meth:`ItemSearch.matched <pystac_client.ItemSearch.get_all_items_as_dict>`: Like `get_all_items` this fetches all items
+* :meth:`ItemSearch.get_all_items_as_dict <pystac_client.ItemSearch.get_all_items_as_dict>`: Like `get_all_items` this fetches all items
   but returns them as a GeoJSON FeatureCollection dictionary rather than a PySTAC object. This can be more efficient if
   only a dictionary of the results is needed.
 
