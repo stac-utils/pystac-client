@@ -84,7 +84,8 @@ than once to use additional operators.
 
 ::
 
-    stac-client search ${STAC_API_URL} -c sentinel-s2-l2a-cogs --bbox -72.5 40.5 -72 41 --datetime 2020-01-01/2020-01-31 -q "eo:cloud_cover<10" "eo:cloud_cover>5" --matched
+    $ stac-client search ${STAC_API_URL} -c sentinel-s2-l2a-cogs --bbox -72.5 40.5 -72 41 --datetime 2020-01-01/2020-01-31 -q "eo:cloud_cover<10" "eo:cloud_cover>5" --matched
+    4 items matched
 
 Python
 ~~~~~~
@@ -123,4 +124,4 @@ Save all found items as a single FeatureCollection
 ::
 
     items = mysearch.get_all_items()
-    items.save('items.json')
+    items.save_object('items.json')
