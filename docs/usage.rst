@@ -168,3 +168,22 @@ by finding links with a ``"rel"`` type of ``"next"`` and parsing them to constru
 implementation of this ``"next"`` link parsing assumes that the link follows the spec for an extended STAC link as
 described in the `STAC API - Item Search: Paging <https://github.com/radiantearth/stac-api-spec/tree/master/item-search#paging>`__
 section. See the :mod:`Paging <pystac_client.paging>` docs for details on how to customize this behavior.
+
+Query Filter
+------------
+
+If the server supports the [query filter](https://github.com/radiantearth/stac-api-spec/tree/master/fragments/query)
+arbitrary Item properties can be included in the search parameters. The query parameter to :class:`ItemSearch` accepts
+a JSON structure as in the STAC API spec, but also accepts an abbreviated syntax. Instead of JSON, a list of strings can
+be provided, in which case pystac-client will convert them to the equivalent JSON structure.
+
+The syntax is simply:
+
+```
+<property><operator><value>
+e.g.,
+
+eo:cloud_cover<10
+view:off_nadir<50
+platform=landsat-8
+```

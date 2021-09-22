@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 - Jupyter Notebook tutorials
+- Basic CQL-JSON filtering [#100](https://github.com/stac-utils/pystac-client/pull/100)
 
 ### Changed
 

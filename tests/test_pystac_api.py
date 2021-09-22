@@ -2,4 +2,4 @@ from pystac_client import __version__
 
 
 def test_version():
-    assert __version__ == '0.3.0a1'
+    assert __version__ == '0.3.0-beta.1'
