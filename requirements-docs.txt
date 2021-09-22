@@ -4,7 +4,3 @@ Sphinx~=4.1
 sphinxcontrib-fulltoc~=1.2
 nbsphinx~=0.8
 jinja2<4.0
-geopandas
-hvplot
-cartopy
-geoviews
