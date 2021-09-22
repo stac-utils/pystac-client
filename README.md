@@ -12,10 +12,10 @@ A Python client for working with [STAC](https://stacspec.org/) Catalogs and APIs
 
 ## Installation
 
-Install from PyPi. Other than PySTAC itself, the only dependency for pystac-client is the Python `requests` library.
+Install from PyPi. Other than [PySTAC](https://pystac.readthedocs.io) itself, the only dependencies for pystac-client is the Python [requests](https://docs.python-requests.org) and [dateutil](https://dateutil.readthedocs.io) libraries.
 
 ```shell
-pip install pystac-client
+$ pip install pystac-client
 ```
 
 ## Documentation
@@ -76,8 +76,9 @@ $ scripts/format
 $ git commit -a -m 'formatting updates'
 ```
 
-To build the documentation, use the `build-docs` script:
+To build the documentation, install the documentation requirements, then use the `build-docs` script:
 
 ```shell
+$ pip install -r requirements-docs.txt
 $ scripts/build-docs
 ```
