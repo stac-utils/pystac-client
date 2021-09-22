@@ -4,10 +4,6 @@ channels:
   - defaults
 dependencies:
   - python=3.8
-  - cartopy
-  - geoviews
-  - hvplot
-  - geopandas
   - pip:
     - -r ../requirements-docs.txt
     - -e ../
