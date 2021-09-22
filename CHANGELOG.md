@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.3.0-beta.1] - 2021-09-22
+
 ### Added
 - Jupyter Notebook tutorials
 - Basic CQL-JSON filtering [#100](https://github.com/stac-utils/pystac-client/pull/100)
@@ -90,7 +92,8 @@ are in a single HTTP session, handle pagination and respects conformance
 
 Initial release.
 
-[Unreleased]: <https://github.com/stac-utils/pystac-client/compare/v0.2.0...main>
+[Unreleased]: <https://github.com/stac-utils/pystac-client/compare/v0.3.0-beta.1...main>
+[v0.3.0-beta.1]: <https://github.com/stac-utils/pystac-client/compare/v0.2.0..v0.3.0-beta.1>
 [v0.2.0]: <https://github.com/stac-utils/pystac-client/compare/v0.1.1..v0.2.0>
 [v0.1.1]: <https://github.com/stac-utils/pystac-client/compare/v0.1.0..v0.1.1>
 [v0.1.0]: <https://github.com/stac-utils/pystac-client/tree/v0.1.0>
