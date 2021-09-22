@@ -6,3 +6,5 @@ nbsphinx~=0.8
 jinja2<4.0
 geopandas
 hvplot
+cartopy
+geoviews
