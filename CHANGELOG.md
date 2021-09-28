@@ -6,11 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-### Fixed
-
-- Documentation lints [#108](https://github.com/stac-utils/pystac-client/pull/108)
-
-## [0.3.0-beta.1] - 2021-09-22
+## [0.3.0] - 2021-09-28
 
 ### Added
 - Jupyter Notebook tutorials
@@ -27,6 +23,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - `ItemSearch` now correctly handles times without a timezone specifier [#92](https://github.com/stac-utils/pystac-client/issues/92)
 - queries including `gsd` cast to string to float when using shortcut query syntax (i.e., "key=val" strings). [#98](https://github.com/stac-utils/pystac-client/pull/97)
+- Documentation lints [#108](https://github.com/stac-utils/pystac-client/pull/108)
 
 ## [v0.2.0] - 2021-08-04
 
@@ -96,8 +93,8 @@ are in a single HTTP session, handle pagination and respects conformance
 
 Initial release.
 
-[Unreleased]: <https://github.com/stac-utils/pystac-client/compare/v0.3.0-beta.1...main>
-[v0.3.0-beta.1]: <https://github.com/stac-utils/pystac-client/compare/v0.2.0..v0.3.0-beta.1>
+[Unreleased]: <https://github.com/stac-utils/pystac-client/compare/v0.3.0...main>
+[v0.3.0]: <https://github.com/stac-utils/pystac-client/compare/v0.2.0..v0.3.0>
 [v0.2.0]: <https://github.com/stac-utils/pystac-client/compare/v0.1.1..v0.2.0>
 [v0.1.1]: <https://github.com/stac-utils/pystac-client/compare/v0.1.0..v0.1.1>
 [v0.1.0]: <https://github.com/stac-utils/pystac-client/tree/v0.1.0>
