@@ -41,7 +41,7 @@ class TestAPI:
         # Set conformsTo URIs to conform with STAC API - Core using official URI
         client._stac_io._conformance = ['https://api.stacspec.org/v1.0.0-beta.1/core']
 
-        assert client._stac_io.assert_conforms_to(ConformanceClasses.CORE)
+        assert client._stac_io.conforms_to(ConformanceClasses.CORE)
 
     @pytest.mark.vcr
     def test_no_conformance(self):
@@ -65,7 +65,7 @@ class TestAPI:
         with pytest.raises(NotImplementedError):
             client._stac_io.assert_conforms_to(ConformanceClasses.CORE)
 
-        assert client._stac_io.assert_conforms_to(ConformanceClasses.ITEM_SEARCH)
+        assert client._stac_io.conforms_to(ConformanceClasses.ITEM_SEARCH)
 
     @pytest.mark.vcr
     def test_from_file(self):
@@ -104,7 +104,6 @@ class TestAPI:
         assert len(history) == 2
         assert history[1].url == collections_link.href
 
-    @pytest.mark.xfail(reason="Raises an exception instead of falling back to using child links.")
     def test_get_collections_without_conformance(self, requests_mock):
         """Checks that the "data" endpoint is used if the API published the collections conformance class."""
         pc_root_dict = read_data_file("planetary-computer-root.json", parse_json=True)
