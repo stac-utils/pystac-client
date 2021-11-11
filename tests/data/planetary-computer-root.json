@@ -10,6 +10,11 @@
             "type": "application/json"
         },
         {
+            "rel": "data",
+            "type": "application/json",
+            "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections"
+        },
+        {
             "href": "https://planetarycomputer.microsoft.com/api/stac/v1/docs",
             "rel": "docs",
             "type": "text/html",

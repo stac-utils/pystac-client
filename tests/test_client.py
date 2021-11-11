@@ -7,7 +7,7 @@ import pytest
 from pystac_client import Client
 from pystac_client.conformance import ConformanceClasses
 
-from .helpers import STAC_URLS, TEST_DATA
+from .helpers import STAC_URLS, TEST_DATA, read_data_file
 
 
 class TestAPI:
@@ -76,6 +76,67 @@ class TestAPI:
     def test_invalid_url(self):
         with pytest.raises(TypeError):
             Client.open()
+
+    def test_get_collections_with_conformance(self, requests_mock):
+        """Checks that the "data" endpoint is used if the API published the collections conformance class."""
+        pc_root_text = read_data_file("planetary-computer-root.json")
+        pc_collection_dict = read_data_file("planetary-computer-aster-l1t-collection.json",
+                                            parse_json=True)
+
+        # Mock the root catalog
+        requests_mock.get(STAC_URLS["PLANETARY-COMPUTER"], status_code=200, text=pc_root_text)
+        api = Client.open(STAC_URLS["PLANETARY-COMPUTER"])
+
+        assert api._stac_io.conforms_to(ConformanceClasses.COLLECTIONS)
+
+        # Get & mock the collections (rel type "data") link
+        collections_link = api.get_single_link("data")
+        requests_mock.get(collections_link.href,
+                          status_code=200,
+                          json={
+                              "collections": [pc_collection_dict],
+                              "links": []
+                          })
+
+        _ = next(api.get_collections())
+
+        history = requests_mock.request_history
+        assert len(history) == 2
+        assert history[1].url == collections_link.href
+
+    @pytest.mark.xfail(reason="Raises an exception instead of falling back to using child links.")
+    def test_get_collections_without_conformance(self, requests_mock):
+        """Checks that the "data" endpoint is used if the API published the collections conformance class."""
+        pc_root_dict = read_data_file("planetary-computer-root.json", parse_json=True)
+        pc_collection_dict = read_data_file("planetary-computer-aster-l1t-collection.json",
+                                            parse_json=True)
+
+        # Remove the collections conformance class
+        pc_root_dict["conformsTo"].remove(
+            "http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30")
+
+        # Remove all child links except for the collection that we are mocking
+        pc_collection_href = next(link["href"] for link in pc_collection_dict["links"]
+                                  if link["rel"] == "self")
+        pc_root_dict["links"] = [
+            link for link in pc_root_dict["links"]
+            if link["rel"] != "child" or link["href"] == pc_collection_href
+        ]
+
+        # Mock the root catalog
+        requests_mock.get(STAC_URLS["PLANETARY-COMPUTER"], status_code=200, json=pc_root_dict)
+        api = Client.open(STAC_URLS["PLANETARY-COMPUTER"])
+
+        assert not api._stac_io.conforms_to(ConformanceClasses.COLLECTIONS)
+
+        # Mock the collection
+        requests_mock.get(pc_collection_href, status_code=200, json=pc_collection_dict)
+
+        _ = next(api.get_collections())
+
+        history = requests_mock.request_history
+        assert len(history) == 2
+        assert history[1].url == pc_collection_href
 
 
 class TestAPISearch:
