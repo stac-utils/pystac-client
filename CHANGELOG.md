@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Developer
+
+- Adds `--block-network` option to all test commands to ensure no network requests are made during unit tests
+  [#119](https://github.com/stac-utils/pystac-client/pull/119)
+
 ## [0.3.0] - 2021-09-28
 
 ### Added
