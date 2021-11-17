@@ -46,6 +46,9 @@ class StacApiIO(DefaultStacIO):
 
         Args:
             headers : Optional dictionary of headers to include in all requests
+            conformance : Optional list of `Conformance Classes
+                <https://github.com/radiantearth/stac-api-spec/blob/master/overview.md#conformance-classes>`__.
+            parameters: Optional dictionary of query string parameters to include in all requests.
 
         Return:
             StacApiIO : StacApiIO instance
