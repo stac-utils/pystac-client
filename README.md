@@ -37,7 +37,7 @@ $ pip install -r requirements-dev.txt
 To run just the tests
 
 ```shell
-$ pytest -v -s --cov pystac_client --cov-report term-missing
+$ pytest -v -s --block-network --cov pystac_client --cov-report term-missing
 ```
 
 The pystac-client tests use [vcrpy](https://vcrpy.readthedocs.io/en/latest/) to mock API calls
@@ -46,7 +46,7 @@ function to indicate `vcrpy` should be used. Record the new responses and commit
 repository.
 
 ```shell
-$ pytest -v -s --record-mode new_episodes
+$ pytest -v -s --record-mode new_episodes --block-network
 $ git add <new files here>
 $ git commit -a -m 'new test episodes'
 ```
@@ -55,7 +55,7 @@ To update pystac-client to use future versions of STAC API, the existing recorde
 should be "re-recorded":
 
 ```shell
-$ pytest -v -s --record-mode rewrite
+$ pytest -v -s --record-mode rewrite --block-network
 $ git commit -a -m 'updated test episodes'
 ```
 

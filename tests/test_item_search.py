@@ -370,6 +370,7 @@ class TestItemSearch:
 
 
 class TestItemSearchQuery:
+    @pytest.mark.vcr
     def test_query_shortcut_syntax(self):
         search = ItemSearch(url=SEARCH_URL,
                             bbox=(-73.21, 43.99, -73.12, 44.05),
