@@ -1,4 +1,5 @@
 from datetime import datetime
+from urllib.parse import urlsplit, parse_qs
 
 from dateutil.tz import tzutc
 import pystac
@@ -97,12 +98,51 @@ class TestAPI:
                               "collections": [pc_collection_dict],
                               "links": []
                           })
-
         _ = next(api.get_collections())
 
         history = requests_mock.request_history
         assert len(history) == 2
         assert history[1].url == collections_link.href
+
+    def test_custom_request_parameters(self, requests_mock):
+        pc_root_text = read_data_file("planetary-computer-root.json")
+        pc_collection_dict = read_data_file("planetary-computer-collection.json", parse_json=True)
+
+        requests_mock.get(STAC_URLS["PLANETARY-COMPUTER"], status_code=200, text=pc_root_text)
+
+        init_qp_name = "my-param"
+        init_qp_value = "some-value"
+
+        api = Client.open(STAC_URLS['PLANETARY-COMPUTER'], parameters={init_qp_name: init_qp_value})
+
+        # Ensure that the the Client will use the /collections endpoint and not fall back
+        # to traversing child links.
+        assert api._stac_io.conforms_to(ConformanceClasses.COLLECTIONS)
+
+        # Get the /collections endpoint
+        collections_link = api.get_single_link("data")
+
+        # Mock the request
+        requests_mock.get(collections_link.href,
+                          status_code=200,
+                          json={
+                              "collections": [pc_collection_dict],
+                              "links": []
+                          })
+
+        # Make the collections request
+        _ = next(api.get_collections())
+
+        history = requests_mock.request_history
+        assert len(history) == 2
+
+        actual_qs = urlsplit(history[1].url).query
+        actual_qp = parse_qs(actual_qs)
+
+        # Check that the param from the init method is present
+        assert init_qp_name in actual_qp
+        assert len(actual_qp[init_qp_name]) == 1
+        assert actual_qp[init_qp_name][0] == init_qp_value
 
     def test_get_collections_without_conformance(self, requests_mock):
         """Checks that the "data" endpoint is used if the API published the collections conformance class."""

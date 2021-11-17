@@ -27,10 +27,13 @@ class Client(pystac.Catalog):
         return '<Client id={}>'.format(self.id)
 
     @classmethod
-    def open(cls,
-             url: str,
-             headers: Dict[str, str] = None,
-             ignore_conformance: bool = False) -> "Client":
+    def open(
+        cls,
+        url: str,
+        headers: Dict[str, str] = None,
+        parameters: Optional[Dict[str, Any]] = None,
+        ignore_conformance: bool = False,
+    ) -> "Client":
         """Opens a STAC Catalog or API
         This function will read the root catalog of a STAC Catalog or API
 
@@ -44,7 +47,7 @@ class Client(pystac.Catalog):
         Return:
             catalog : A :class:`Client` instance for this Catalog/API
         """
-        cat = cls.from_file(url, headers=headers)
+        cat = cls.from_file(url, headers=headers, parameters=parameters)
         search_link = cat.get_links('search')
         # if there is a search link, but no conformsTo advertised, ignore conformance entirely
         # NOTE: this behavior to be deprecated as implementations become conformant
@@ -54,17 +57,20 @@ class Client(pystac.Catalog):
         return cat
 
     @classmethod
-    def from_file(cls,
-                  href: str,
-                  stac_io: Optional[pystac.StacIO] = None,
-                  headers: Optional[Dict] = {}) -> "Client":
+    def from_file(
+        cls,
+        href: str,
+        stac_io: Optional[pystac.StacIO] = None,
+        headers: Optional[Dict] = {},
+        parameters: Optional[Dict] = None,
+    ) -> "Client":
         """Open a STAC Catalog/API
 
         Returns:
             Client: A Client (PySTAC Catalog) of the root Catalog for this Catalog/API
         """
         if stac_io is None:
-            stac_io = StacApiIO(headers=headers)
+            stac_io = StacApiIO(headers=headers, parameters=parameters)
 
         cat = super().from_file(href, stac_io)
 
