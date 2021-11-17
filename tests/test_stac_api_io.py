@@ -1,3 +1,5 @@
+from urllib.parse import parse_qs, urlsplit
+
 import pytest
 from pystac_client.conformance import ConformanceClasses
 
@@ -75,3 +77,32 @@ class TestSTAC_IOOverride:
         assert len(history) == 1
         assert header_name in history[0].headers
         assert history[0].headers[header_name] == header_value
+
+    def test_custom_query_params(self, requests_mock):
+        """Checks that query params passed to the init method are added to requests."""
+        init_qp_name = "my-param"
+        init_qp_value = "something"
+        url = "https://some-url.com/some-file.json"
+        stac_api_io = StacApiIO(parameters={init_qp_name: init_qp_value})
+
+        request_qp_name = "another-param"
+        request_qp_value = "another_value"
+        requests_mock.get(url, status_code=200, json={})
+
+        stac_api_io.read_json(url, parameters={request_qp_name: request_qp_value})
+
+        history = requests_mock.request_history
+        assert len(history) == 1
+
+        actual_qs = urlsplit(history[0].url).query
+        actual_qp = parse_qs(actual_qs)
+
+        # Check that the param from the init method is present
+        assert init_qp_name in actual_qp
+        assert len(actual_qp[init_qp_name]) == 1
+        assert actual_qp[init_qp_name][0] == init_qp_value
+
+        # Check that the param from the request is present
+        assert request_qp_name in actual_qp
+        assert len(actual_qp[request_qp_name]) == 1
+        assert actual_qp[request_qp_name][0] == request_qp_value

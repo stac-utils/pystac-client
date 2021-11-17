@@ -36,7 +36,12 @@ logger = logging.getLogger(__name__)
 
 
 class StacApiIO(DefaultStacIO):
-    def __init__(self, headers: Optional[Dict] = None, conformance: Optional[List[str]] = None):
+    def __init__(
+        self,
+        headers: Optional[Dict] = None,
+        conformance: Optional[List[str]] = None,
+        parameters: Optional[Dict] = None,
+    ):
         """Initialize class for API IO
 
         Args:
@@ -48,6 +53,7 @@ class StacApiIO(DefaultStacIO):
         # TODO - this should super() to parent class
         self.session = Session()
         self.session.headers.update(headers or {})
+        self.session.params.update(parameters or {})
 
         self._conformance = conformance
 
