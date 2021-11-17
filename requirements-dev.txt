@@ -7,6 +7,7 @@ pytest-cov~=2.11.1
 pytest-recording~=0.11.0
 pytest-console-scripts~=1.1.0
 recommonmark~=0.7.1
+requests-mock~=1.9.3
 Sphinx~=3.5.1
 toml~=0.10.2
 yapf==0.30.*

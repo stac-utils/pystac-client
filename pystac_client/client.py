@@ -94,7 +94,7 @@ class Client(pystac.Catalog):
         Return:
             Iterable[CollectionClient]: Iterator through Collections in Catalog/API
         """
-        if self._stac_io.assert_conforms_to(ConformanceClasses.COLLECTIONS):
+        if self._stac_io.conforms_to(ConformanceClasses.COLLECTIONS):
             url = self.get_self_href() + '/collections'
             for page in self._stac_io.get_pages(url):
                 if 'collections' not in page:
@@ -111,7 +111,7 @@ class Client(pystac.Catalog):
         Return:
             Iterable[Item]:: Generator of items whose parent is this catalog.
         """
-        if self._stac_io.assert_conforms_to(ConformanceClasses.ITEM_SEARCH):
+        if self._stac_io.conforms_to(ConformanceClasses.ITEM_SEARCH):
             search = self.search()
             yield from search.get_items()
         else:
@@ -126,7 +126,7 @@ class Client(pystac.Catalog):
                 catalogs or collections connected to this catalog through
                 child links.
         """
-        if self._stac_io.assert_conforms_to(ConformanceClasses.ITEM_SEARCH):
+        if self._stac_io.conforms_to(ConformanceClasses.ITEM_SEARCH):
             yield from self.get_items()
         else:
             yield from super().get_items()
