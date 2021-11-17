@@ -59,3 +59,19 @@ class TestSTAC_IOOverride:
 
         # Check that this does not raise an exception
         assert conformant_io.conforms_to(ConformanceClasses.CORE)
+
+    def test_custom_headers(self, requests_mock):
+        """Checks that headers passed to the init method are added to requests."""
+        header_name = "x-my-header"
+        header_value = "Some Value"
+        url = "https://some-url.com/some-file.json"
+        stac_api_io = StacApiIO(headers={header_name: header_value})
+
+        requests_mock.get(url, status_code=200, json={})
+
+        stac_api_io.read_json(url)
+
+        history = requests_mock.request_history
+        assert len(history) == 1
+        assert header_name in history[0].headers
+        assert history[0].headers[header_name] == header_value
