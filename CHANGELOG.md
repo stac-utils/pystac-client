@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Adds `--block-network` option to all test commands to ensure no network requests are made during unit tests
   [#119](https://github.com/stac-utils/pystac-client/pull/119)
+- `parameters` argument to `StacApiIO`, `Client.open`, and `Client.from_file` to allow query string parameters to be passed to all requests
+  [#118](https://github.com/stac-utils/pystac-client/pull/118)
 
 ### Fixed
 
