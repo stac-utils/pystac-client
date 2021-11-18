@@ -1,6 +1,6 @@
 interactions:
 - request:
-    body: '{"ids": ["S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE",
+    body: '{"limit": 100, "ids": ["S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE",
       "fl_m_2608004_nw_17_060_20191215_20200113"]}'
     headers:
       Accept:
@@ -10,7 +10,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '122'
+      - '136'
       Content-Type:
       - application/json
       User-Agent:
@@ -20,39 +20,39 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIADUyNWEC/8VWbW/aSBD+K5Y/5EuNvV6DAVfopObUqCe1PaX5dAihxR6bzdlea3cJoRX//WbX
-        BnwQtblTokiAzOy8PjP7eH64eteAm7gfgemNhGtRlpBqLmrXc0te/63cZP7DlVCijhRCo7izYE1T
-        8pQZ3eBeWYO1hBxP1lo3KgmCpmQ1aCZ3qaiajQbpVzyVQolc+ygKWMMDpVkaPISBu/cOYRSU+WuF
-        UcBkunb3C8/N24rbAnmGDvNyWS1pTCaEDJf1dhmOlyQmS0rCaUjDET5QQsIwwhRWK/GIhoMJ8WM6
-        pjT2aOxPo9Fw6hnZKCZ0OPTo2EeD6WS88M5wfgLdtA/9qxR/iqCCmvGmh3nDJNT6DQK/+UwVIN69
-        fIUB11Cp4NkT1euEhAcO2/+XTsY0M+mY6EHFmt9Oec1MWlfmYPYf5lxzXRrEPrPGEbljzE8wanjU
-        wVpXpb1PTCnQONB4mSpWgHk4q8BkAJstKO2vSrHCrCX4W15nYqt8rK1F7oEQisAFJh0DYEzSyuYW
-        2JSDn6Xua95rs80jQFH+3um1fIYtb4WNFDkvYZaWYpMNRKN5xb9Dhh6kKC0zuAZRd3EC4vbmw6db
-        5/rrjaPREjVBJCtWZ+1NrllllawPbEol6mUnkygzXe7+3kiA+kKpsNKe2odyAxdaKyPsKX35dHuh
-        U3OJsgxUKnljSQVlSH4DXueS2WQWe8+tcKJsiS/VrbzI0ud361GfTRMOOa/7+B8T7PXg483v185n
-        0FaORej1plphNuXbzBxeFv++Kc7n7r6Bol/JKcteKXdHoakDJ8pSEZZxVEDZH9++fnG2XK+dDHK2
-        KbWDZJ2B5HXxAjRxiOqbnycJQz2bMa5aEphZBK5WPHuchR71op8y/Akhbh7MWLb1QbY8sGEPkdvu
-        zDkx5UszZ+fJb+ri9QA5li0eQNrEF2cThOHdPaKBfIXXQO4sCq3Cn6LcFaIlECEzXjNtnc3n3fox
-        IvS4kiy8+cVSMp4OOzHuL4RM+rvK5VoTT+jJyb9cL0y7eqsLsox5wXvYDdGA1BzsK6FQuGChU88Q
-        KiDPmiIMWoOQDsLRHSGJ/fyFlsZBskOu6lRaZ/dJt3ONIsw39olHp+NpFJun0TCKI2JFk3gc4tOi
-        s4FGFW5C42k47hzjG1uDXfYOftWaGUznIaVD4oUhGR7NtWS1yoWs8Nhkb2Ic45s/AyM9RvUO3xAz
-        QFzMdrDE7qoWGZT6xO3EyHZQmwM7A4dRNUeD05Ff4K3frHwuAhA4nsZBoNI1VMw/LC2/tDSVtN15
-        ysNib+mogm+aVY2FnIYDMh2Q0R0Nk5AkYeRPIhJH0TvbInf/D13xu9Y1DAAA
+        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
     headers:
       Content-Encoding:
       - gzip
       Content-Length:
-      - '1014'
+      - '1008'
       Content-Type:
       - application/json
       Date:
-      - Sun, 05 Sep 2021 21:10:14 GMT
+      - Thu, 18 Nov 2021 21:49:20 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       Vary:
       - Accept-Encoding
       X-Azure-Ref:
-      - 0NTI1YQAAAAD7GdHFwtPGQbiwXsByPS6xQk9TMzFFREdFMDQxOAA5MjdhYmZhNi0xOWY2LTRhZjEtYTA5ZC1jOTU5ZDlhMWU2NDQ=
+      - 0YMqWYQAAAADmiI7ZEZzmTb5j7ZjUOtAKQk9TMzIxMDAwMTEwMDE5ADkyN2FiZmE2LTE5ZjYtNGFmMS1hMDlkLWM5NTlkOWExZTY0NA==
       X-Cache:
       - CONFIG_NOCACHE
     status:

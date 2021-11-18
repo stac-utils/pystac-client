@@ -14,31 +14,19 @@ interactions:
     uri: https://api.radiant.earth/mlhub/v1/search
   response:
     body:
-      string: '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
-
-        <title>401 Unauthorized</title>
-
-        <h1>Unauthorized</h1>
-
-        <p>The server could not verify that you are authorized to access the URL requested.
-        You either supplied the wrong credentials (e.g. a bad password), or your browser
-        doesn&#x27;t understand how to supply the credentials required.</p>
-
-        '
+      string: '{"detail":"Must provide API key or Bearer token to access this route."}'
     headers:
-      Access-Control-Allow-Origin:
-      - '*'
-      Connection:
-      - keep-alive
       Content-Length:
-      - '343'
+      - '71'
       Content-Type:
-      - text/html; charset=utf-8
+      - application/json
       Date:
-      - Sun, 05 Sep 2021 21:10:24 GMT
-      Server:
-      - gunicorn
+      - Thu, 18 Nov 2021 21:49:32 GMT
+      X-Azure-Ref:
+      - 0bcqWYQAAAAAD80PfJafnR4UVHXBbI3yUQk9TMzFFREdFMDUwNwAzODBhYjA3NC1jNDRhLTQ2YWYtYmVlMi03ZGRmMWZkOTNjZTM=
+      X-Cache:
+      - CONFIG_NOCACHE
     status:
       code: 401
-      message: UNAUTHORIZED
+      message: Unauthorized
 version: 1
