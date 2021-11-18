@@ -36,11 +36,19 @@ logger = logging.getLogger(__name__)
 
 
 class StacApiIO(DefaultStacIO):
-    def __init__(self, headers: Optional[Dict] = None, conformance: Optional[List[str]] = None):
+    def __init__(
+        self,
+        headers: Optional[Dict] = None,
+        conformance: Optional[List[str]] = None,
+        parameters: Optional[Dict] = None,
+    ):
         """Initialize class for API IO
 
         Args:
             headers : Optional dictionary of headers to include in all requests
+            conformance : Optional list of `Conformance Classes
+                <https://github.com/radiantearth/stac-api-spec/blob/master/overview.md#conformance-classes>`__.
+            parameters: Optional dictionary of query string parameters to include in all requests.
 
         Return:
             StacApiIO : StacApiIO instance
@@ -48,6 +56,7 @@ class StacApiIO(DefaultStacIO):
         # TODO - this should super() to parent class
         self.session = Session()
         self.session.headers.update(headers or {})
+        self.session.params.update(parameters or {})
 
         self._conformance = conformance
 
