@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.3.1] - 2021-11-17
+
+### Changed
+- Update min PySTAC version to 1.2
+
 ### Added
 
 - Adds `--block-network` option to all test commands to ensure no network requests are made during unit tests
@@ -106,6 +111,7 @@ are in a single HTTP session, handle pagination and respects conformance
 Initial release.
 
 [Unreleased]: <https://github.com/stac-utils/pystac-client/compare/v0.3.0...main>
+[v0.3.1]: <https://github.com/stac-utils/pystac-client/compare/v0.3.0..v0.3.1>
 [v0.3.0]: <https://github.com/stac-utils/pystac-client/compare/v0.2.0..v0.3.0>
 [v0.2.0]: <https://github.com/stac-utils/pystac-client/compare/v0.1.1..v0.2.0>
 [v0.1.1]: <https://github.com/stac-utils/pystac-client/compare/v0.1.0..v0.1.1>
