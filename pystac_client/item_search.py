@@ -146,7 +146,7 @@ class ItemSearch:
     def __init__(self,
                  url: str,
                  *,
-                 limit: Optional[int] = None,
+                 limit: Optional[int] = 100,
                  bbox: Optional[BBoxLike] = None,
                  datetime: Optional[DatetimeLike] = None,
                  intersects: Optional[IntersectsLike] = None,

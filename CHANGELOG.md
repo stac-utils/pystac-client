@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 - Update min PySTAC version to 1.2
+- Default page size limit set to 100 rather than relying on the server default
 
 ### Added
 
