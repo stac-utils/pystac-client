@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+- The tests folder is no longer installed as a package.
+
 ## [0.3.1] - 2021-11-17
 
 ### Changed
