@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Parameter formatting for GET searches in `ItemSearch.get_parameters` [#124](https://github.com/stac-utils/pystac-client/pull/124)
+
 ## [0.3.1] - 2021-11-17
 
 ### Changed
