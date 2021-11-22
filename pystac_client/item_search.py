@@ -202,7 +202,7 @@ class ItemSearch:
         elif self.method == 'GET':
             params = deepcopy(self._parameters)
             if 'bbox' in params:
-                params['bbox'] = ','.join(params['bbox'])
+                params['bbox'] = ','.join(map(str, params['bbox']))
             if 'ids' in params:
                 params['ids'] = ','.join(params['ids'])
             if 'collections' in params:
