@@ -276,6 +276,24 @@ class TestItemSearch:
         search = ItemSearch(url=SEARCH_URL, method='GET', intersects=INTERSECTS_EXAMPLE)
         assert search.method == 'GET'
 
+    def test_method_params(self):
+        params_in = {
+            'bbox': (-72, 41, -71, 42),
+            'ids': ('idone', 'idtwo',),
+            'collections': ('collectionone',),
+            'intersects': INTERSECTS_EXAMPLE
+        }
+        # For POST this is pass through
+        search = ItemSearch(url=SEARCH_URL, **params_in)
+        params = search.get_parameters()
+        assert params == search._parameters
+
+        # For GET requests, parameters are in query string and must be serialized
+        search = ItemSearch(url=SEARCH_URL, method='GET', **params_in)
+        params = search.get_parameters()
+        assert all(key in params for key in params_in)
+        assert all(isinstance(params[key], str) for key in params_in)
+
     @pytest.mark.vcr
     def test_results(self):
         search = ItemSearch(
