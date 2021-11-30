@@ -144,6 +144,111 @@ class TestAPI:
         assert len(actual_qp[init_qp_name]) == 1
         assert actual_qp[init_qp_name][0] == init_qp_value
 
+    def test_custom_query_params_get_collections_propagation(self, requests_mock) -> None:
+        """Checks that query params passed to the init method are added to requests for CollectionClients fetched from
+        the /collections endpoint."""
+        pc_root_text = read_data_file("planetary-computer-root.json")
+        pc_collection_dict = read_data_file("planetary-computer-collection.json", parse_json=True)
+
+        requests_mock.get(STAC_URLS["PLANETARY-COMPUTER"], status_code=200, text=pc_root_text)
+
+        init_qp_name = "my-param"
+        init_qp_value = "some-value"
+
+        client = Client.open(STAC_URLS['PLANETARY-COMPUTER'],
+                             parameters={init_qp_name: init_qp_value})
+
+        # Get the /collections endpoint
+        collections_link = client.get_single_link("data")
+
+        # Mock the request
+        requests_mock.get(collections_link.href,
+                          status_code=200,
+                          json={
+                              "collections": [pc_collection_dict],
+                              "links": []
+                          })
+
+        # Make the collections request
+        collection = next(client.get_collections())
+
+        # Mock the items endpoint
+        items_link = collection.get_single_link('items')
+        assert items_link is not None
+        requests_mock.get(items_link.href,
+                          status_code=200,
+                          json={
+                              "type": "FeatureCollection",
+                              "stac_version": "1.0.0",
+                              "features": [],
+                              "links": []
+                          })
+
+        # Make the items request
+        _ = list(collection.get_items())
+
+        history = requests_mock.request_history
+        assert len(history) == 3
+
+        actual_qs = urlsplit(history[2].url).query
+        actual_qp = parse_qs(actual_qs)
+
+        # Check that the query param from the root Client is present
+        assert init_qp_name in actual_qp
+        assert len(actual_qp[init_qp_name]) == 1
+        assert actual_qp[init_qp_name][0] == init_qp_value
+
+    def test_custom_query_params_get_collection_propagation(self, requests_mock) -> None:
+        """Checks that query params passed to the init method are added to requests for CollectionClients fetched from
+        the /collections endpoint."""
+        pc_root_text = read_data_file("planetary-computer-root.json")
+        pc_collection_dict = read_data_file("planetary-computer-collection.json", parse_json=True)
+        pc_collection_id = pc_collection_dict["id"]
+
+        requests_mock.get(STAC_URLS["PLANETARY-COMPUTER"], status_code=200, text=pc_root_text)
+
+        init_qp_name = "my-param"
+        init_qp_value = "some-value"
+
+        client = Client.open(STAC_URLS['PLANETARY-COMPUTER'],
+                             parameters={init_qp_name: init_qp_value})
+
+        # Get the /collections endpoint
+        collections_link = client.get_single_link("data")
+        collection_href = collections_link.href + "/" + pc_collection_id
+
+        # Mock the request
+        requests_mock.get(collection_href, status_code=200, json=pc_collection_dict)
+
+        # Make the collections request
+        collection = client.get_collection(pc_collection_id)
+
+        # Mock the items endpoint
+        items_link = collection.get_single_link('items')
+        assert items_link is not None
+        requests_mock.get(items_link.href,
+                          status_code=200,
+                          json={
+                              "type": "FeatureCollection",
+                              "stac_version": "1.0.0",
+                              "features": [],
+                              "links": []
+                          })
+
+        # Make the items request
+        _ = list(collection.get_items())
+
+        history = requests_mock.request_history
+        assert len(history) == 3
+
+        actual_qs = urlsplit(history[2].url).query
+        actual_qp = parse_qs(actual_qs)
+
+        # Check that the query param from the root Client is present
+        assert init_qp_name in actual_qp
+        assert len(actual_qp[init_qp_name]) == 1
+        assert actual_qp[init_qp_name][0] == init_qp_value
+
     def test_get_collections_without_conformance(self, requests_mock):
         """Checks that the "data" endpoint is used if the API published the collections conformance class."""
         pc_root_dict = read_data_file("planetary-computer-root.json", parse_json=True)
