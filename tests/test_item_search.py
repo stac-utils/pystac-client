@@ -279,8 +279,11 @@ class TestItemSearch:
     def test_method_params(self):
         params_in = {
             'bbox': (-72, 41, -71, 42),
-            'ids': ('idone', 'idtwo',),
-            'collections': ('collectionone',),
+            'ids': (
+                'idone',
+                'idtwo',
+            ),
+            'collections': ('collectionone', ),
             'intersects': INTERSECTS_EXAMPLE
         }
         # For POST this is pass through
