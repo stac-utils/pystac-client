@@ -41,6 +41,8 @@ IntersectsLike = Union[str, Intersects, object]
 Query = dict
 QueryLike = Union[Query, List[str]]
 
+FilterLangLike = str
+
 FilterLike = dict
 
 Sortby = List[str]
@@ -135,6 +137,7 @@ class ItemSearch:
             of the provided Collections will be searched
         query: List or JSON of query parameters as per the STAC API `query` extension
         filter: JSON of query parameters as per the STAC API `filter` extension
+        filter_lang: Language variant used in the filter body. Defaults to 'cql-json'.
         sortby: A single field or list of fields to sort the response by
         fields: A list of fields to return in the response. Note this may result in invalid JSON.
             Use `get_all_items_as_dict` to avoid errors
@@ -154,6 +157,7 @@ class ItemSearch:
                  collections: Optional[CollectionsLike] = None,
                  query: Optional[QueryLike] = None,
                  filter: Optional[FilterLike] = None,
+                 filter_lang: Optional[FilterLangLike] = None,
                  sortby: Optional[SortbyLike] = None,
                  fields: Optional[FieldsLike] = None,
                  max_items: Optional[int] = None,
@@ -187,12 +191,10 @@ class ItemSearch:
             'intersects': self._format_intersects(intersects),
             'query': self._format_query(query),
             'filter': self._format_filter(filter),
+            'filter-lang': self._format_filter_lang(filter, filter_lang),
             'sortby': self._format_sortby(sortby),
             'fields': self._format_fields(fields)
         }
-
-        if params['filter'] is not None:
-            params['filter-lang'] = 'cql-json'
 
         self._parameters = {k: v for k, v in params.items() if v is not None}
 
@@ -236,6 +238,15 @@ class ItemSearch:
             query = value
 
         return query
+
+    def _format_filter_lang(self, filter: FilterLike, value: FilterLike) -> Optional[str]:
+        if filter is None:
+            return None
+
+        if value is None:
+            return 'cql-json'
+
+        return value
 
     def _format_filter(self, value: FilterLike) -> Optional[dict]:
         if value is None:

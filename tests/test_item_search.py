@@ -260,6 +260,21 @@ class TestItemSearchParams:
         search = ItemSearch(url=SEARCH_URL, intersects=json.dumps(INTERSECTS_EXAMPLE))
         assert search._parameters['intersects'] == INTERSECTS_EXAMPLE
 
+    def test_filter_lang_default(self):
+        # No filter_lang specified
+        search = ItemSearch(url=SEARCH_URL, filter={})
+        assert search._parameters['filter-lang'] == 'cql-json'
+
+    def test_filter_lang(self):
+        # Use specified filter_lang
+        search = ItemSearch(url=SEARCH_URL, filter_lang="cql2-json", filter={})
+        assert search._parameters['filter-lang'] == 'cql2-json'
+
+    def test_filter_lang_without_filter(self):
+        # No filter provided
+        search = ItemSearch(url=SEARCH_URL)
+        assert 'filter-lang' not in search._parameters
+
 
 class TestItemSearch:
     @pytest.fixture(scope='function')
