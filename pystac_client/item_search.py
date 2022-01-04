@@ -239,7 +239,7 @@ class ItemSearch:
 
         return query
 
-    def _format_filter_lang(self, filter: FilterLike, value: FilterLike) -> Optional[str]:
+    def _format_filter_lang(self, filter: FilterLike, value: FilterLangLike) -> Optional[str]:
         if filter is None:
             return None
 
