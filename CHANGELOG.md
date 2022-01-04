@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- `Client.search` accepts an optional `filter_lang` argument for `filter` requests [#128](https://github.com/stac-utils/pystac-client/pull/128)
+
 ### Fixed
 
 - Parameter formatting for GET searches in `ItemSearch.get_parameters` [#124](https://github.com/stac-utils/pystac-client/pull/124)
