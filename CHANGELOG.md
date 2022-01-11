@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [0.3.2] - 2022-01-11
+## [v0.3.2] - 2022-01-11
 
 ### Added
 
@@ -17,7 +17,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   fetched from the same API ([#126](https://github.com/stac-utils/pystac-client/pull/126))
 - The tests folder is no longer installed as a package.
 
-## [0.3.1] - 2021-11-17
+## [v0.3.1] - 2021-11-17
 
 ### Changed
 - Update min PySTAC version to 1.2
@@ -36,7 +36,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Client.get_collections` raised an exception when API did not publish `/collections` conformance class instead of falling back to using child links
   [#120](https://github.com/stac-utils/pystac-client/pull/120)
 
-## [0.3.0] - 2021-09-28
+## [v0.3.0] - 2021-09-28
 
 ### Added
 - Jupyter Notebook tutorials
