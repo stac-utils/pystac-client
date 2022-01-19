@@ -6,11 +6,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Allow only minor version updates to dependencies (`requests` and `pystac`) ([#132](https://github.com/stac-utils/pystac-client/pull/132)) 
+
 ## [v0.3.2] - 2022-01-11
 
 ### Added
 
-- `Client.search` accepts an optional `filter_lang` argument for `filter` requests [#128](https://github.com/stac-utils/pystac-client/pull/128)
+- `Client.search` accepts an optional `filter_lang` argument for `filter` requests ([#128](https://github.com/stac-utils/pystac-client/pull/128))
 
 ### Fixed
 - Values from `parameters` and `headers` arguments to `Client.open` and `Client.from_file` are now also used in requests made from `CollectionClient` instances
