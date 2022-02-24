@@ -1,4 +1,4 @@
-from typing import Any, Iterable, Dict, Optional, TYPE_CHECKING
+from typing import Any, Iterable, Dict, Optional, Union, TYPE_CHECKING
 
 import pystac
 import pystac.validation
@@ -33,13 +33,14 @@ class Client(pystac.Catalog):
         headers: Dict[str, str] = None,
         parameters: Optional[Dict[str, Any]] = None,
         ignore_conformance: bool = False,
-    ) -> "Client":
+        media_type: Optional[Union[str, pystac.MediaType]] = None) -> "Client":
         """Opens a STAC Catalog or API
         This function will read the root catalog of a STAC Catalog or API
 
         Args:
             url : The URL of a STAC Catalog. If not specified, this will use the `STAC_URL` environment variable.
             headers : A dictionary of additional headers to use in all requests made to any part of this Catalog/API.
+            media_type : Select search endpoint based on the specified `media_type`
             ignore_conformance : Ignore any advertised Conformance Classes in this Catalog/API. This means that
                 functions will skip checking conformance, and may throw an unknown error if that feature is
                 not supported, rather than a :class:`NotImplementedError`.
@@ -48,7 +49,7 @@ class Client(pystac.Catalog):
             catalog : A :class:`Client` instance for this Catalog/API
         """
         cat = cls.from_file(url, headers=headers, parameters=parameters)
-        search_link = cat.get_links('search')
+        search_link = cat.get_links('search', media_type=media_type)
         # if there is a search link, but no conformsTo advertised, ignore conformance entirely
         # NOTE: this behavior to be deprecated as implementations become conformant
         if ignore_conformance or ('conformsTo' not in cat.extra_fields.keys()
@@ -142,7 +143,9 @@ class Client(pystac.Catalog):
         else:
             yield from super().get_items()
 
-    def search(self, **kwargs: Any) -> ItemSearch:
+    def search(self,
+               media_type: Optional[Union[str, pystac.MediaType]] = None,
+               **kwargs: Any) -> ItemSearch:
         """Query the ``/search`` endpoint using the given parameters.
 
         This method returns an :class:`~pystac_client.ItemSearch` instance, see that class's documentation
@@ -157,6 +160,7 @@ class Client(pystac.Catalog):
             If the API does not meet either of these criteria, this method will raise a :exc:`NotImplementedError`.
 
         Args:
+            media_type : Select search endpoint based on the specified `media_type`
             **kwargs : Any parameter to the :class:`~pystac_client.ItemSearch` class, other than `url`, `conformance`,
                 and `stac_io` which are set from this Client instance
 
@@ -168,8 +172,7 @@ class Client(pystac.Catalog):
                 <https://github.com/radiantearth/stac-api-spec/tree/master/item-search>`__ or does not have a link with
                 a ``"rel"`` type of ``"search"``.
         """
-
-        search_link = self.get_single_link('search')
+        search_link = self.get_single_link('search', media_type=media_type)
         if search_link is None:
             raise NotImplementedError(
                 'No link with "rel" type of "search" could be found in this catalog')
