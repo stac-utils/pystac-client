@@ -170,7 +170,7 @@ class Client(pystac.Catalog):
                 <https://github.com/radiantearth/stac-api-spec/tree/master/item-search>`__ or does not have a link with
                 a ``"rel"`` type of ``"search"``.
         """
-        search_link = self.get_single_link('search', media_type=media_type)
+        search_link = self.get_single_link('search', media_type=pystac.MediaType.GEOJSON)
         if search_link is None:
             raise NotImplementedError(
                 'No link with "rel" type of "search" could be found in this catalog')
