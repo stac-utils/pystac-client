@@ -1,4 +1,4 @@
-from typing import Any, Iterable, Dict, Optional, Union, TYPE_CHECKING
+from typing import Any, Iterable, Dict, Optional, TYPE_CHECKING
 
 import pystac
 import pystac.validation
