@@ -143,9 +143,7 @@ class Client(pystac.Catalog):
         else:
             yield from super().get_items()
 
-    def search(self,
-               media_type: Optional[Union[str, pystac.MediaType]] = None,
-               **kwargs: Any) -> ItemSearch:
+    def search(self, **kwargs: Any) -> ItemSearch:
         """Query the ``/search`` endpoint using the given parameters.
 
         This method returns an :class:`~pystac_client.ItemSearch` instance, see that class's documentation
