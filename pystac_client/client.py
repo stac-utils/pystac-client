@@ -49,7 +49,7 @@ class Client(pystac.Catalog):
             catalog : A :class:`Client` instance for this Catalog/API
         """
         cat = cls.from_file(url, headers=headers, parameters=parameters)
-        search_link = cat.get_links('search', media_type=media_type)
+        search_link = cat.get_links('search', media_type=pystac.MediaType.GEOJSON)
         # if there is a search link, but no conformsTo advertised, ignore conformance entirely
         # NOTE: this behavior to be deprecated as implementations become conformant
         if ignore_conformance or ('conformsTo' not in cat.extra_fields.keys()
