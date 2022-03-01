@@ -33,7 +33,7 @@ class Client(pystac.Catalog):
         headers: Dict[str, str] = None,
         parameters: Optional[Dict[str, Any]] = None,
         ignore_conformance: bool = False,
-        media_type: Optional[Union[str, pystac.MediaType]] = None) -> "Client":
+    ) -> "Client":
         """Opens a STAC Catalog or API
         This function will read the root catalog of a STAC Catalog or API
 
