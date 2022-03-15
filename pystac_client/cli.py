@@ -101,8 +101,8 @@ def parse_args(args):
                               nargs='*',
                               help='Query properties of form '
                               'KEY=VALUE (<, >, <=, >=, = supported)')
-    search_group.add_argument('--filter',
-                              help='Filter on queryables using language specified in filter-lang parameter')
+    search_group.add_argument(
+        '--filter', help='Filter on queryables using language specified in filter-lang parameter')
     search_group.add_argument('--filter-lang',
                               help='Filter language used within the filter parameter',
                               default="cql-json")
