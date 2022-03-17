@@ -1,0 +1,3 @@
+requests==2.25
+pystac==1.2.0
+jsonschema==3.2.0
