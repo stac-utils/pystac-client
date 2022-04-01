@@ -31,7 +31,7 @@ through items at a search endpoint, if supported.
 Item Search
 -----------
 
-The `ItemSearch` class rerpesents a search of a STAC API.
+The `ItemSearch` class represents a search of a STAC API.
 
 .. autoclass:: pystac_client.ItemSearch
    :members:
