@@ -30,7 +30,7 @@ setup(
     python_requires=">=3.7",
     install_requires=[
         "requests>=2.25",
-        "pystac~=1.2.0"
+        "pystac>=1.2.0"
     ],
     extras_require={
         "validation": ["jsonschema==3.2.0"]

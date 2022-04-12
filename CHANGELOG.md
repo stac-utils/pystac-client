@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- CI checks against minimum versions of all dependencies and any pre-release versions of PySTAC [#144](https://github.com/stac-utils/pystac-client/pull/144)
+
+### Changed
+
+- Relaxed upper bound on PySTAC dependency [#144](https://github.com/stac-utils/pystac-client/pull/144)
+
 ## [v0.3.2] - 2022-01-11
 
 ### Added
