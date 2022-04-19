@@ -40,7 +40,6 @@ class Client(pystac.Catalog):
         Args:
             url : The URL of a STAC Catalog. If not specified, this will use the `STAC_URL` environment variable.
             headers : A dictionary of additional headers to use in all requests made to any part of this Catalog/API.
-            media_type : Select search endpoint based on the specified `media_type`
             ignore_conformance : Ignore any advertised Conformance Classes in this Catalog/API. This means that
                 functions will skip checking conformance, and may throw an unknown error if that feature is
                 not supported, rather than a :class:`NotImplementedError`.
