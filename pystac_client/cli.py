@@ -101,7 +101,11 @@ def parse_args(args):
                               nargs='*',
                               help='Query properties of form '
                               'KEY=VALUE (<, >, <=, >=, = supported)')
-    search_group.add_argument('--filter', help='Filter on queryables using CQL JSON')
+    search_group.add_argument(
+        '--filter', help='Filter on queryables using language specified in filter-lang parameter')
+    search_group.add_argument('--filter-lang',
+                              help='Filter language used within the filter parameter',
+                              default="cql-json")
     search_group.add_argument('--sortby', help='Sort by fields', nargs='*')
     search_group.add_argument('--fields', help='Control what fields get returned', nargs='*')
     search_group.add_argument('--limit', help='Page size limit', type=int, default=100)
@@ -147,7 +151,8 @@ def parse_args(args):
         parsed_args['headers'] = new_headers
 
     if 'filter' in parsed_args:
-        parsed_args['filter'] = json.loads(parsed_args['filter'])
+        if "json" in parsed_args["filter_lang"]:
+            parsed_args['filter'] = json.loads(parsed_args['filter'])
 
     return parsed_args
 
