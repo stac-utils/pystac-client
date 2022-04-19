@@ -5,6 +5,16 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+- Add `--filter-lang` parameter to allow specifying other filter language to be used within the `--filter` parameter
+
+### Added
+
+- CI checks against minimum versions of all dependencies and any pre-release versions of PySTAC [#144](https://github.com/stac-utils/pystac-client/pull/144)
+
+### Changed
+
+- Relaxed upper bound on PySTAC dependency [#144](https://github.com/stac-utils/pystac-client/pull/144)
+- Bumped PySTAC dependency to >= 1.4.0 [#147](https://github.com/stac-utils/pystac-client/pull/147)
 
 ## [v0.3.2] - 2022-01-11
 
@@ -124,7 +134,7 @@ are in a single HTTP session, handle pagination and respects conformance
 
 Initial release.
 
-[Unreleased]: <https://github.com/stac-utils/pystac-client/compare/v0.3.0...main>
+[Unreleased]: <https://github.com/stac-utils/pystac-client/compare/v0.3.2...main>
 [v0.3.2]: <https://github.com/stac-utils/pystac-client/compare/v0.3.1..v0.3.2>
 [v0.3.1]: <https://github.com/stac-utils/pystac-client/compare/v0.3.0..v0.3.1>
 [v0.3.0]: <https://github.com/stac-utils/pystac-client/compare/v0.2.0..v0.3.0>
