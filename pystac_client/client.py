@@ -157,7 +157,6 @@ class Client(pystac.Catalog):
             If the API does not meet either of these criteria, this method will raise a :exc:`NotImplementedError`.
 
         Args:
-            media_type : Select search endpoint based on the specified `media_type`
             **kwargs : Any parameter to the :class:`~pystac_client.ItemSearch` class, other than `url`, `conformance`,
                 and `stac_io` which are set from this Client instance
 
