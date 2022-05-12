@@ -51,6 +51,8 @@ SortbyLike = Union[Sortby, str]
 Fields = List[str]
 FieldsLike = Union[Fields, str]
 
+FreeTextLike = str
+
 
 # from https://gist.github.com/angstwad/bf22d1822c38a92ec0a9#gistcomment-2622319
 def dict_merge(dct: Dict, merge_dct: Dict, add_keys: bool = True) -> Dict:
@@ -145,6 +147,7 @@ class ItemSearch:
         method: The http method, 'GET' or 'POST'
         stac_io: An instance of of StacIO for retrieving results. Normally comes from the Client that returns this ItemSearch
         client: An instance of a root Client used to set the root on resulting Items
+        q: Freetext string as per the STAC API `free-text-search` extension
     """
     def __init__(self,
                  url: str,
@@ -163,7 +166,8 @@ class ItemSearch:
                  max_items: Optional[int] = None,
                  method: Optional[str] = 'POST',
                  stac_io: Optional[StacIO] = None,
-                 client: Optional["Client"] = None):
+                 client: Optional["Client"] = None,
+                 q: Optional[FreeTextLike] = None):
         self.url = url
         self.client = client
 
@@ -193,7 +197,8 @@ class ItemSearch:
             'filter': self._format_filter(filter),
             'filter-lang': self._format_filter_lang(filter, filter_lang),
             'sortby': self._format_sortby(sortby),
-            'fields': self._format_fields(fields)
+            'fields': self._format_fields(fields),
+            'q': self._format_freetext(q)
         }
 
         self._parameters = {k: v for k, v in params.items() if v is not None}
@@ -214,6 +219,13 @@ class ItemSearch:
             return params
         else:
             raise Exception(f"Unsupported method {self.method}")
+
+    def _format_freetext(self, q: Optional[FreeTextLike]) -> Optional[str]:
+        if q is not None:
+            self._stac_io.assert_conforms_to(ConformanceClasses.FREETEXT)
+            return q
+        else:
+            return None
 
     @staticmethod
     def _format_query(value: List[QueryLike]) -> Optional[dict]:

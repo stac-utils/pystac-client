@@ -17,6 +17,7 @@ class ConformanceClasses(Enum):
     SORT = fr"{stac_prefix}(.*){re.escape('/item-search#sort')}"
     QUERY = fr"{stac_prefix}(.*){re.escape('/item-search#query')}"
     FILTER = fr"{stac_prefix}(.*){re.escape('/item-search#filter')}"
+    FREETEXT = fr"{stac_prefix}(.*){re.escape('/item-search#free-text-search')}"
     COLLECTIONS = re.escape("http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30")
 
 
