@@ -4,6 +4,7 @@ from urllib.parse import urlsplit, parse_qs
 from dateutil.tz import tzutc
 import pystac
 import pytest
+from pystac import MediaType
 
 from pystac_client import Client
 from pystac_client.conformance import ConformanceClasses
@@ -319,3 +320,11 @@ class TestAPISearch:
             'limit': 10,
             'datetime': '2020-01-01T00:00:00Z/..'
         }
+
+    def test_json_search_link(self, api: Client) -> None:
+        search_link = api.get_single_link(rel="search")
+        assert search_link
+        api.remove_links(rel="search")
+        search_link.media_type = MediaType.JSON
+        api.add_link(search_link)
+        api.search(limit=1, max_items=1, collections="naip")
