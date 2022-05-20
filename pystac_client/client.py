@@ -1,3 +1,4 @@
+from functools import lru_cache
 from typing import Any, Iterable, Dict, Optional, TYPE_CHECKING
 
 import pystac
@@ -78,6 +79,7 @@ class Client(pystac.Catalog):
 
         return cat
 
+    @lru_cache()
     def get_collection(self, collection_id: str) -> CollectionClient:
         """Get a single collection from this Catalog/API
 

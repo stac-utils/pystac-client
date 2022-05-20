@@ -1,3 +1,4 @@
+from functools import lru_cache
 from dateutil.tz import tzutc
 from dateutil.relativedelta import relativedelta
 import json
@@ -405,6 +406,7 @@ class ItemSearch:
             return json.loads(value)
         return deepcopy(getattr(value, '__geo_interface__', value))
 
+    @lru_cache(1)
     def matched(self) -> int:
         """Return number matched for search
 
@@ -451,6 +453,7 @@ class ItemSearch:
                 if self._max_items and nitems >= self._max_items:
                     return
 
+    @lru_cache(1)
     def get_all_items_as_dict(self) -> Dict:
         """Convenience method that gets all items from all pages, up to self._max_items,
          and returns an array of dictionaries
@@ -466,6 +469,7 @@ class ItemSearch:
                     return {"type": "FeatureCollection", "features": features}
         return {"type": "FeatureCollection", "features": features}
 
+    @lru_cache(1)
     def get_all_items(self) -> ItemCollection:
         """Convenience method that builds an :class:`ItemCollection` from all items matching the given search parameters.
 
