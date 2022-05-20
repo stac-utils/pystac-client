@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
-- Relaxed media type requirement for search links [#160](https://github.com/stac-utils/pystac-client/pull/160)
+- Relaxed media type requirement for search links [#160](https://github.com/stac-utils/pystac-client/pull/160), [#165](https://github.com/stac-utils/pystac-client/pull/165)
 
 ## [v0.3.3] - 2022-04-28
 
