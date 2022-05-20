@@ -1,0 +1,243 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.25.1
+    method: GET
+    uri: https://planetarycomputer.microsoft.com/api/stac/v1
+  response:
+    body:
+      string: !!binary |
+        H4sIAJbRh2IC/72ZbW/bNhDHv8rBA4YWK/0QD0XrYS8U23E8xIlhueiAoRhoipbYUaJK0k69ot99
+        Rz0k7hAUAU33TYxQ4t1PJO/uT/JLxx5K3hl1xtRSqdLOq45I8N9cMK2M2lpSMmyzwkr31qJthqWk
+        BbdUH2Cs8nJnuYZ4HY0hWs7x/YQbpkVphSqwV8ypZhndSA6mpNhoeV4qTSXkaCJBz1B32IgihSnV
+        NgPDBC8YB/fUcGsgU8byBDYHsBmH74Ggf2Mp+3vPtakBBt1+t4/NTBVbpXOzVp3RX53M2nLU693f
+        33dVyYtUmC5a6pmSs55KGS0F2XJqd5obMuihjZ7rj380R1uevVOuPhqE8jagqBn2m+4G++N7Xfe5
+        rl9X6bS3r76WbHBQur8e0z7jbYEzQ0w1XV6dftoKiTMw2lAjGGGf5ElWsD85Giw/I/XPSSaOmsgJ
+        5npoj8vEeHb+tOP64NnXKG2f3/V/q6/z4VVHiuIfg0HzpaO5xIgyXG5dXqiTBy1LKZiL7KLXTpjm
+        W3zSeizbKGVNkHYfMkwXmxxRzxEhSa/z9VXrRitlf4Abl2TO5YYpKTlzxsyRxyYTUUxx33XcJl6X
+        W3vvr+IhHPUEJqkx3IDIS8lzXjwkSGHAcL2vF+op7I+Uj+wP+eEJbExvvzyBDo85xZ/mwQZWjUy5
+        KjWbrp/J9eOYlnfxMRTLhEyexRTF6+kKbgbrYOutR7FkaiIH1gvohhaJoRbeYGVtbcIF3PA9l+Qi
+        HKWs/ZA3hF0QeeHFer2aRiO4FmkGK26U3FWwU+dDCybsASLGuDHhqNEM9UK9jebLEdxWz1ACRSkC
+        7qTLtDDPaYpJHpZapZrm4WALKkov2NndNCYrGEu1S+BnWChhjknDEaYKZQ7LhRflhB4w/mBChTzA
+        rXL6Mco5jisNB5hUPkjifJCCnsIZFcUOZ36JBd0qWAmmgmPSygUptRdnjKVEFC7K22iPwhGaB+MY
+        7L4hFEeT6QKuZ2vY9/uDkIFiaMJzL6qFupyPYEFLUFu4FCoR1Q4Ec8/cbXdsU+wDkeZq4xcsmG+S
+        xTRglXEGcc15way51nQsRU5twLGxziprrPpgvYthzAuzC1gvdpjeapNeeViqDaaMb1dVLc6qSndF
+        mZCu8cXscn71MuDkbsTWWz2gcEBYFw5jWuBGP2CcakYL4pQDcy48J3kWwwzD9RE14LhRv4J7hft1
+        Y3Fu95gmFWoBxxahUDgYEXA1boVf5v1jNYZmLcY7vaW4CXlPbciB+6gZSc29F93UaAGDPllwdx51
+        tAJfYGO1WQoYGUIRuZPsdMFyTh1QyxVPGfAN5TW9p0KcCTA7SfctVGGzsyu/vPZyovZrWc856S3p
+        adPeqNTzDmqjU8OM6ZmWaDucpy3SZjjPxNiMoyfiWJVcF7gNNeBk9ezmjrzth2NkqiQoqkkqlbMb
+        iHB4JsJh319NDCfTJcSc5pKbijRgyR4mvHQHupVtvxOmm7sY3istEwTF7wx4wEClMsR343Q9uxxh
+        YGgMNPEvT+BR7OZYsgFVLlz0BwGnO0s3fju89WU8culGoDRzd1VrzYvEgCjgcqcLnHkUG6jCA+7y
+        7MZvrseZRETTDmLAUKkNk01j2Gs3s1zAfDFdzQLq7TInAotUSrLMr+zV947TzyyjRcrbRViLn4m6
+        LwyjEhfnUquPjVN4cTv9k8wmkyUZL+bL1y/DnkOQgn8maZKU7lysfO31UYN+3laeSg6/M/wbXfz2
+        XLKYNJb9jihuo3U8u4NYCTcDlm4ochNYuzvkgGs5Lag1qSK2thsSdVWdvZ+BVTeGj+899F4wTtwd
+        +tPM+yLpKiqqe2a0X93Q/NZcj/8+rK7G2++5w1ei5Rwao3B8k3/StzS+u9X4PQGvjtgt/2x7mc3l
+        98AU27krL3o6GprC8fzw9T/RbRmhDSEAAA==
+    headers:
+      Accept-Ranges:
+      - bytes
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1450'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 20 May 2022 17:36:22 GMT
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      X-Cache:
+      - CONFIG_NOCACHE
+      content-encoding:
+      - gzip
+      vary:
+      - Accept-Encoding
+      x-azure-ref:
+      - 20220520T173621Z-2vtb9nr461753e6runuwrkw02s00000001kg00000002wkr9
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.25.1
+    method: GET
+    uri: https://planetarycomputer.microsoft.com/api/stac/v1/collections/aster-l1t
+  response:
+    body:
+      string: !!binary |
+        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
+    headers:
+      Accept-Ranges:
+      - bytes
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1754'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 20 May 2022 17:36:22 GMT
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      X-Cache:
+      - CONFIG_NOCACHE
+      content-encoding:
+      - gzip
+      vary:
+      - Accept-Encoding
+      x-azure-ref:
+      - 20220520T173622Z-2vtb9nr461753e6runuwrkw02s00000001kg00000002wkvh
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.25.1
+    method: GET
+    uri: https://planetarycomputer.microsoft.com/api/stac/v1/collections/aster-l1t/items/AST_L1T_00312272006020322_20150518201805
+  response:
+    body:
+      string: !!binary |
+        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
+        GQAA
+    headers:
+      Accept-Ranges:
+      - bytes
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1599'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 20 May 2022 17:36:22 GMT
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      X-Cache:
+      - CONFIG_NOCACHE
+      content-encoding:
+      - gzip
+      vary:
+      - Accept-Encoding
+      x-azure-ref:
+      - 20220520T173622Z-2vtb9nr461753e6runuwrkw02s00000001kg00000002wkx4
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.25.1
+    method: GET
+    uri: https://planetarycomputer.microsoft.com/api/stac/v1/collections/aster-l1t/items/for-sure-not-a-real-id
+  response:
+    body:
+      string: '{"detail":"Item for-sure-not-a-real-id in Collection aster-l1t does
+        not exist."}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '80'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 20 May 2022 17:37:35 GMT
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      X-Cache:
+      - CONFIG_NOCACHE
+      x-azure-ref:
+      - 20220520T173734Z-5gkzkf8b0d2ex948vs77f03zgw00000001m000000000cmza
+    status:
+      code: 404
+      message: Not Found
+version: 1

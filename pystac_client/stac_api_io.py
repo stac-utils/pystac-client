@@ -139,8 +139,11 @@ class StacApiIO(DefaultStacIO):
                 msg += f" Payload: {json.dumps(request.json)}"
             logger.debug(msg)
             resp = self.session.send(prepped)
-            if resp.status_code != 200:
-                raise APIError(resp.text)
+        except Exception as err:
+            raise APIError(str(err))
+        if resp.status_code != 200:
+            raise APIError.from_response(resp)
+        try:
             return resp.content.decode("utf-8")
         except Exception as err:
             raise APIError(str(err))
