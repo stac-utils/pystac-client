@@ -27,6 +27,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [v0.3.4] - 2022-05-18
 
+### Added
+
+- Direct item GET via ogcapi-features, if conformant [#166](https://github.com/stac-utils/pystac-client/pull/166)
+
 ### Changed
 
 - Relaxed media type requirement for search links [#160](https://github.com/stac-utils/pystac-client/pull/160), [#165](https://github.com/stac-utils/pystac-client/pull/165)
