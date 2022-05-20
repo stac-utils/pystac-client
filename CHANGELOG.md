@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- lru_cache to several methods [#167](https://github.com/stac-utils/pystac-client/pull/167)
+
 ## [v0.3.4] - 2022-05-18
 
 ### Changed
