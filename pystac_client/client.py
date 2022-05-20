@@ -33,7 +33,6 @@ class Client(pystac.Catalog):
         headers: Dict[str, str] = None,
         parameters: Optional[Dict[str, Any]] = None,
         ignore_conformance: bool = False,
-        require_geojson_link: bool = False,
     ) -> "Client":
         """Opens a STAC Catalog or API
         This function will read the root catalog of a STAC Catalog or API
@@ -44,19 +43,12 @@ class Client(pystac.Catalog):
             ignore_conformance : Ignore any advertised Conformance Classes in this Catalog/API. This means that
                 functions will skip checking conformance, and may throw an unknown error if that feature is
                 not supported, rather than a :class:`NotImplementedError`.
-            require_geojson_link : Require the "search" link to have a GeoJSON media type, per v1.0.0 of the STAC-API
-                specification. Defaults to false to allow pystac-client to work with older servers that use the JSON media
-                type.
 
         Return:
             catalog : A :class:`Client` instance for this Catalog/API
         """
         cat = cls.from_file(url, headers=headers, parameters=parameters)
-        if require_geojson_link:
-            media_type: Optional[pystac.MediaType] = pystac.MediaType.GEOJSON
-        else:
-            media_type = None
-        search_link = cat.get_links('search', media_type=media_type)
+        search_link = cat.get_search_link()
         # if there is a search link, but no conformsTo advertised, ignore conformance entirely
         # NOTE: this behavior to be deprecated as implementations become conformant
         if ignore_conformance or ('conformsTo' not in cat.extra_fields.keys()
@@ -165,9 +157,6 @@ class Client(pystac.Catalog):
             If the API does not meet either of these criteria, this method will raise a :exc:`NotImplementedError`.
 
         Args:
-            require_geojson_link : Require the "search" link to have a GeoJSON media type, per v1.0.0 of the STAC-API
-                specification. Defaults to false to allow pystac-client to work with older servers that use the JSON media
-                type.
             **kwargs : Any parameter to the :class:`~pystac_client.ItemSearch` class, other than `url`, `conformance`,
                 and `stac_io` which are set from this Client instance
 
@@ -179,13 +168,22 @@ class Client(pystac.Catalog):
                 <https://github.com/radiantearth/stac-api-spec/tree/master/item-search>`__ or does not have a link with
                 a ``"rel"`` type of ``"search"``.
         """
-        if require_geojson_link:
-            media_type: Optional[pystac.MediaType] = pystac.MediaType.GEOJSON
-        else:
-            media_type = None
-        search_link = self.get_single_link('search', media_type=media_type)
+        search_link = self.get_search_link()
         if search_link is None:
             raise NotImplementedError(
                 'No link with "rel" type of "search" could be found in this catalog')
 
         return ItemSearch(search_link.target, stac_io=self._stac_io, client=self, **kwargs)
+
+    def get_search_link(self) -> Optional[pystac.Link]:
+        """Returns this client's search link.
+
+        Searches for a link with rel="search" and either a GEOJSON or JSON media type.
+
+        Returns:
+            Optional[pystac.Link]: The search link, or None if there is not one found.
+        """
+        return next((link for link in self.links
+                     if link.rel == "search" and (link.media_type == pystac.MediaType.GEOJSON
+                                                  or link.media_type == pystac.MediaType.JSON)),
+                    None)
