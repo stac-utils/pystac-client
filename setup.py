@@ -28,7 +28,8 @@ setup(
     url="https://github.com/stac-utils/pystac-client.git",
     packages=find_packages(exclude=("tests",)),
     py_modules=[splitext(basename(path))[0] for path in glob("pystac_client/*.py")],
-    include_package_data=False,
+    include_package_data=True,
+    package_data={"pystac_client": ["py.typed"]},
     python_requires=">=3.7",
     install_requires=[
         "requests>=2.25",
