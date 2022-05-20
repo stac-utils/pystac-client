@@ -18,6 +18,7 @@ class ConformanceClasses(Enum):
     COLLECTIONS = re.escape(
         "http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30"
     )
+    OGCAPI_FEATURES = rf"{stac_prefix}(.*){re.escape('/ogcapi-features')}"
 
 
 CONFORMANCE_URIS = {c.name: c.value for c in ConformanceClasses}
