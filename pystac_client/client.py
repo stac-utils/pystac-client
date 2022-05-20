@@ -170,6 +170,9 @@ class Client(pystac.Catalog):
                 <https://github.com/radiantearth/stac-api-spec/tree/master/item-search>`__ or does not have a link with
                 a ``"rel"`` type of ``"search"``.
         """
+        if not self._stac_io.conforms_to(ConformanceClasses.ITEM_SEARCH):
+            raise NotImplementedError("This catalog does not support search because it "
+                                      f"does not conform to \"{ConformanceClasses.ITEM_SEARCH}\"")
         search_link = self.get_search_link()
         if search_link is None:
             raise NotImplementedError(
