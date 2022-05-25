@@ -10,6 +10,13 @@ STAC Client
 
 A Python client for working with [STAC](https://stacspec.org/) Catalogs and APIs.
 
+## Table of Contents
+
+- [Installation](#installation)
+- [Documentation](#documentation)
+- [Development](#development)
+   - [Pull Requests](#pull-requests)
+
 ## Installation
 
 Install from PyPi. Other than [PySTAC](https://pystac.readthedocs.io) itself, the only dependencies for pystac-client is the Python [requests](https://docs.python-requests.org) and [dateutil](https://dateutil.readthedocs.io) libraries.
@@ -42,7 +49,7 @@ $ pytest -v -s --block-network --cov pystac_client --cov-report term-missing
 
 The pystac-client tests use [vcrpy](https://vcrpy.readthedocs.io/en/latest/) to mock API calls
 with "pre-recorded" API responses. When adding new tests use the `@pytest.mark.vcr` decorator
-function to indicate `vcrpy` should be used. Record the new responses and commit them to the 
+function to indicate `vcrpy` should be used. Record the new responses and commit them to the
 repository.
 
 ```shell
@@ -61,7 +68,7 @@ $ git commit -a -m 'updated test episodes'
 
 ### Pull Requests
 
-To make Pull Requests to pystac-client, the code must pass linting, formatting, and code tests. To run 
+To make Pull Requests to pystac-client, the code must pass linting, formatting, and code tests. To run
 the entire suit of checks and tests that will be run the GitHub Action Pipeline, use the `test` script.
 
 ```shell
