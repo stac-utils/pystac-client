@@ -129,7 +129,7 @@ The :meth:`pystac_client.Client.search` method provides an interface for making 
 .. code-block:: python
 
     >>> from pystac_client import API
-    >>> api = API.from_file('https://eod-catalog-svc-prod.astraea.earth')
+    >>> api = API.from_file('https://planetarycomputer.microsoft.com/api/stac/v1')
     >>> results = api.search(
     ...     bbox=[-73.21, 43.99, -73.12, 44.05],
     ...     datetime=['2019-01-01T00:00:00Z', '2019-01-02T00:00:00Z'],
@@ -169,7 +169,7 @@ implementation of this ``"next"`` link parsing assumes that the link follows the
 described in the `STAC API - Item Search: Paging <https://github.com/radiantearth/stac-api-spec/tree/master/item-search#paging>`__
 section. See the :mod:`Paging <pystac_client.paging>` docs for details on how to customize this behavior.
 
-Query Filter
+Query Extension
 ------------
 
 If the Catalog supports the `Query

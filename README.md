@@ -1,5 +1,4 @@
-STAC Client
-===============
+# STAC Client <!-- omit in toc -->
 
 [![CI](https://github.com/stac-utils/pystac-client/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/stac-utils/pystac-client/actions/workflows/continuous-integration.yml)
 [![Release](https://github.com/stac-utils/pystac-client/actions/workflows/release.yml/badge.svg)](https://github.com/stac-utils/pystac-client/actions/workflows/release.yml)
@@ -9,6 +8,11 @@ STAC Client
 
 
 A Python client for working with [STAC](https://stacspec.org/) Catalogs and APIs.
+
+- [Installation](#installation)
+- [Documentation](#documentation)
+- [Development](#development)
+  - [Pull Requests](#pull-requests)
 
 ## Installation
 
