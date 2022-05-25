@@ -139,7 +139,8 @@ class ItemSearch:
             of the provided Collections will be searched
         query: List or JSON of query parameters as per the STAC API `query` extension
         filter: JSON of query parameters as per the STAC API `filter` extension
-        filter_lang: Language variant used in the filter body. If `filter` is a dictionary or not provided, defaults to 'cql2-json'. If `filter` is a string, defaults to `cql2-text`.
+        filter_lang: Language variant used in the filter body. If `filter` is a dictionary or not provided, defaults
+            to 'cql2-json'. If `filter` is a string, defaults to `cql2-text`.
         sortby: A single field or list of fields to sort the response by
         fields: A list of fields to return in the response. Note this may result in invalid JSON.
             Use `get_all_items_as_dict` to avoid errors
