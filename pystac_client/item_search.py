@@ -43,14 +43,15 @@ Query = dict
 QueryLike = Union[Query, List[str]]
 
 FilterLangLike = str
-
-FilterLike = dict
+FilterLike = Union[dict, str]
 
 Sortby = List[str]
 SortbyLike = Union[Sortby, str]
 
 Fields = List[str]
 FieldsLike = Union[Fields, str]
+
+OP_MAP = {'>=': 'gte', '<=': 'lte', '=': 'eq', '>': 'gt', '<': 'lt'}
 
 
 # from https://gist.github.com/angstwad/bf22d1822c38a92ec0a9#gistcomment-2622319
@@ -138,7 +139,7 @@ class ItemSearch:
             of the provided Collections will be searched
         query: List or JSON of query parameters as per the STAC API `query` extension
         filter: JSON of query parameters as per the STAC API `filter` extension
-        filter_lang: Language variant used in the filter body. Defaults to 'cql-json'.
+        filter_lang: Language variant used in the filter body. If `filter` is a dictionary or not provided, defaults to 'cql2-json'. If `filter` is a string, defaults to `cql2-text`.
         sortby: A single field or list of fields to sort the response by
         fields: A list of fields to return in the response. Note this may result in invalid JSON.
             Use `get_all_items_as_dict` to avoid errors
@@ -221,8 +222,6 @@ class ItemSearch:
         if value is None:
             return None
 
-        OP_MAP = {'>=': 'gte', '<=': 'lte', '=': 'eq', '>': 'gt', '<': 'lt'}
-
         if isinstance(value, list):
             query = {}
             for q in value:
@@ -240,14 +239,21 @@ class ItemSearch:
 
         return query
 
-    def _format_filter_lang(self, filter: FilterLike, value: FilterLangLike) -> Optional[str]:
-        if filter is None:
+    @staticmethod
+    def _format_filter_lang(_filter: FilterLike, value: FilterLangLike) -> Optional[str]:
+        if _filter is None:
             return None
 
-        if value is None:
-            return 'cql-json'
+        if value is not None:
+            return value
 
-        return value
+        if isinstance(_filter, str):
+            return 'cql2-text'
+
+        if isinstance(_filter, dict):
+            return 'cql2-json'
+
+        return None
 
     def _format_filter(self, value: FilterLike) -> Optional[dict]:
         if value is None:

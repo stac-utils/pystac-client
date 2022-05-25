@@ -260,14 +260,22 @@ class TestItemSearchParams:
         search = ItemSearch(url=SEARCH_URL, intersects=json.dumps(INTERSECTS_EXAMPLE))
         assert search._parameters['intersects'] == INTERSECTS_EXAMPLE
 
-    def test_filter_lang_default(self):
-        # No filter_lang specified
+    def test_filter_lang_default_for_dict(self):
         search = ItemSearch(url=SEARCH_URL, filter={})
-        assert search._parameters['filter-lang'] == 'cql-json'
+        assert search._parameters['filter-lang'] == 'cql2-json'
 
-    def test_filter_lang(self):
+    def test_filter_lang_default_for_str(self):
+        search = ItemSearch(url=SEARCH_URL, filter="")
+        assert search._parameters['filter-lang'] == 'cql2-text'
+
+    def test_filter_lang_cql2_text(self):
         # Use specified filter_lang
-        search = ItemSearch(url=SEARCH_URL, filter_lang="cql2-json", filter={})
+        search = ItemSearch(url=SEARCH_URL, filter_lang="cql2-text", filter={})
+        assert search._parameters['filter-lang'] == 'cql2-text'
+
+    def test_filter_lang_cql2_json(self):
+        # Use specified filter_lang
+        search = ItemSearch(url=SEARCH_URL, filter_lang="cql2-json", filter="")
         assert search._parameters['filter-lang'] == 'cql2-json'
 
     def test_filter_lang_without_filter(self):
