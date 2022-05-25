@@ -1,4 +1,7 @@
+import json
+import os.path
 from datetime import datetime
+from tempfile import TemporaryDirectory
 from urllib.parse import urlsplit, parse_qs
 
 from dateutil.tz import tzutc
@@ -306,6 +309,20 @@ class TestAPISearch:
         with pytest.raises(NotImplementedError) as excinfo:
             api.search(limit=10, max_items=10, collections='naip')
         assert 'No link with "rel" type of "search"' in str(excinfo.value)
+
+    def test_no_conforms_to(self):
+        with open(str(TEST_DATA / 'planetary-computer-root.json')) as f:
+            data = json.load(f)
+        del data["conformsTo"]
+        with TemporaryDirectory() as temporary_directory:
+            path = os.path.join(temporary_directory, "catalog.json")
+            with open(path, "w") as f:
+                json.dump(data, f)
+            api = Client.from_file(path)
+
+        with pytest.raises(NotImplementedError) as excinfo:
+            api.search(limit=10, max_items=10, collections='naip')
+        assert 'does not support search' in str(excinfo.value)
 
     def test_search(self, api):
         results = api.search(bbox=[-73.21, 43.99, -73.12, 44.05],

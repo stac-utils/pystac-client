@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - lru_cache to several methods [#167](https://github.com/stac-utils/pystac-client/pull/167)
 
+### Changed
+
+- Better error message when trying to search a non-item-search-conforming catalog [#164](https://github.com/stac-utils/pystac-client/pull/164)
+
 ## [v0.3.4] - 2022-05-18
 
 ### Changed
