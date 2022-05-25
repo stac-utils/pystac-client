@@ -18,7 +18,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Search sortby parameter now has correct typing and correctly handles both GET and POST JSON parameter formats. [#175](https://github.com/stac-utils/pystac-client/pull/175)
 - Search fields parameter now has correct typing and correctly handles both GET and POST JSON parameter formats. [#184](https://github.com/stac-utils/pystac-client/pull/184)
- 
+- Use pytest configuration to skip benchmarks by default (instead of a `skip` mark) [#168](https://github.com/stac-utils/pystac-client/pull/168)
+
 ## [v0.3.5] - 2022-05-26
 
 ### Fixed
