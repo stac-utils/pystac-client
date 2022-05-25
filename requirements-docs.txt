@@ -5,3 +5,5 @@ sphinxcontrib-fulltoc~=1.2
 myst-parser~=0.15.2
 nbsphinx~=0.8
 jinja2<4.0
+geopandas~=0.10.2
+hvplot~=0.8.0
