@@ -40,7 +40,20 @@ $ pip install -e .
 $ pip install -r requirements-dev.txt
 ```
 
-To run just the tests
+[pre-commit](https://pre-commit.com/) is used to ensure a standard set of formatting and
+linting is run before every commit. These hooks should be installed with:
+
+```shell
+$ pre-commit install
+```
+
+These can then be run independent of a commit with:
+
+```shell
+$ pre-commit run --all-files
+```
+
+To run just the tests:
 
 ```shell
 $ pytest -v -s --block-network --cov pystac_client --cov-report term-missing
