@@ -264,10 +264,6 @@ class TestItemSearchParams:
         with pytest.raises(Exception):
             ItemSearch(url=SEARCH_URL, intersects=object())
 
-    def test_intersects_non_geo_interface_object(self):
-        with pytest.raises(Exception):
-            ItemSearch(url=SEARCH_URL, intersects=object())
-
     def test_filter_lang_default_for_dict(self):
         search = ItemSearch(url=SEARCH_URL, filter={})
         assert search.get_parameters()['filter-lang'] == 'cql2-json'

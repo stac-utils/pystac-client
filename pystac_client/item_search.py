@@ -6,7 +6,7 @@ import re
 from collections.abc import Iterable, Mapping
 from copy import deepcopy
 from datetime import timezone, datetime as datetime_
-from typing import Dict, Iterator, List, Optional, TYPE_CHECKING, Tuple, Union, Protocol
+from typing import Dict, Iterator, List, Optional, TYPE_CHECKING, Tuple, Union
 import warnings
 
 from pystac import Collection, Item, ItemCollection
