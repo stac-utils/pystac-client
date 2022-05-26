@@ -6,7 +6,7 @@ import re
 from collections.abc import Iterable, Mapping
 from copy import deepcopy
 from datetime import timezone, datetime as datetime_
-from typing import Dict, Iterator, List, Optional, TYPE_CHECKING, Tuple, Union, Protocol
+from typing import Dict, Iterator, List, Optional, TYPE_CHECKING, Tuple, Union
 import warnings
 
 from pystac import Collection, Item, ItemCollection
@@ -24,9 +24,9 @@ DATETIME_REGEX = re.compile(r"(?P<year>\d{4})(\-(?P<month>\d{2})(\-(?P<day>\d{2}
 
 
 # todo: add runtime_checkable when we drop 3.7 support
-class GeoInterface(Protocol):
-    def __geo_interface__(self) -> dict:
-        ...
+# class GeoInterface(Protocol):
+#     def __geo_interface__(self) -> dict:
+#         ...
 
 
 DatetimeOrTimestamp = Optional[Union[datetime_, str]]
@@ -44,7 +44,7 @@ IDs = Tuple[str, ...]
 IDsLike = Union[IDs, str, List[str], Iterator[str]]
 
 Intersects = dict
-IntersectsLike = Union[str, Intersects, GeoInterface]
+IntersectsLike = Union[str, object, Intersects] #, GeoInterface]
 
 Query = dict
 QueryLike = Union[Query, List[str]]
