@@ -58,17 +58,17 @@ class TestItemSearchParams:
     def test_tuple_bbox(self):
         # Tuple input
         search = ItemSearch(url=SEARCH_URL, bbox=(-104.5, 44.0, -104.0, 45.0))
-        assert search._parameters['bbox'] == (-104.5, 44.0, -104.0, 45.0)
+        assert search.get_parameters()['bbox'] == (-104.5, 44.0, -104.0, 45.0)
 
     def test_list_bbox(self):
         # List input
         search = ItemSearch(url=SEARCH_URL, bbox=[-104.5, 44.0, -104.0, 45.0])
-        assert search._parameters['bbox'] == (-104.5, 44.0, -104.0, 45.0)
+        assert search.get_parameters()['bbox'] == (-104.5, 44.0, -104.0, 45.0)
 
     def test_string_bbox(self):
         # String Input
         search = ItemSearch(url=SEARCH_URL, bbox='-104.5,44.0,-104.0,45.0')
-        assert search._parameters['bbox'] == (-104.5, 44.0, -104.0, 45.0)
+        assert search.get_parameters()['bbox'] == (-104.5, 44.0, -104.0, 45.0)
 
     def test_generator_bbox(self):
         # Generator Input
@@ -76,35 +76,35 @@ class TestItemSearchParams:
             yield from [-104.5, 44.0, -104.0, 45.0]
 
         search = ItemSearch(url=SEARCH_URL, bbox=bboxer())
-        assert search._parameters['bbox'] == (-104.5, 44.0, -104.0, 45.0)
+        assert search.get_parameters()['bbox'] == (-104.5, 44.0, -104.0, 45.0)
 
     def test_single_string_datetime(self):
         # Single timestamp input
         search = ItemSearch(url=SEARCH_URL, datetime='2020-02-01T00:00:00Z')
-        assert search._parameters['datetime'] == '2020-02-01T00:00:00Z'
+        assert search.get_parameters()['datetime'] == '2020-02-01T00:00:00Z'
 
     def test_range_string_datetime(self):
         # Timestamp range input
         search = ItemSearch(url=SEARCH_URL, datetime='2020-02-01T00:00:00Z/2020-02-02T00:00:00Z')
-        assert search._parameters['datetime'] == '2020-02-01T00:00:00Z/2020-02-02T00:00:00Z'
+        assert search.get_parameters()['datetime'] == '2020-02-01T00:00:00Z/2020-02-02T00:00:00Z'
 
     def test_list_of_strings_datetime(self):
         # Timestamp list input
         search = ItemSearch(url=SEARCH_URL,
                             datetime=['2020-02-01T00:00:00Z', '2020-02-02T00:00:00Z'])
-        assert search._parameters['datetime'] == '2020-02-01T00:00:00Z/2020-02-02T00:00:00Z'
+        assert search.get_parameters()['datetime'] == '2020-02-01T00:00:00Z/2020-02-02T00:00:00Z'
 
     def test_open_range_string_datetime(self):
         # Open timestamp range input
         search = ItemSearch(url=SEARCH_URL, datetime='2020-02-01T00:00:00Z/..')
-        assert search._parameters['datetime'] == '2020-02-01T00:00:00Z/..'
+        assert search.get_parameters()['datetime'] == '2020-02-01T00:00:00Z/..'
 
     def test_single_datetime_object(self):
         start = datetime(2020, 2, 1, 0, 0, 0, tzinfo=tzutc())
 
         # Single datetime input
         search = ItemSearch(url=SEARCH_URL, datetime=start)
-        assert search._parameters['datetime'] == '2020-02-01T00:00:00Z'
+        assert search.get_parameters()['datetime'] == '2020-02-01T00:00:00Z'
 
     def test_list_of_datetimes(self):
         start = datetime(2020, 2, 1, 0, 0, 0, tzinfo=tzutc())
@@ -112,52 +112,52 @@ class TestItemSearchParams:
 
         # Datetime range input
         search = ItemSearch(url=SEARCH_URL, datetime=[start, end])
-        assert search._parameters['datetime'] == '2020-02-01T00:00:00Z/2020-02-02T00:00:00Z'
+        assert search.get_parameters()['datetime'] == '2020-02-01T00:00:00Z/2020-02-02T00:00:00Z'
 
     def test_open_list_of_datetimes(self):
         start = datetime(2020, 2, 1, 0, 0, 0, tzinfo=tzutc())
 
         # Open datetime range input
         search = ItemSearch(url=SEARCH_URL, datetime=(start, None))
-        assert search._parameters['datetime'] == '2020-02-01T00:00:00Z/..'
+        assert search.get_parameters()['datetime'] == '2020-02-01T00:00:00Z/..'
 
     def test_localized_datetime_converted_to_utc(self):
         # Localized datetime input (should be converted to UTC)
         start_localized = datetime(2020, 2, 1, 0, 0, 0, tzinfo=gettz('US/Eastern'))
         search = ItemSearch(url=SEARCH_URL, datetime=start_localized)
-        assert search._parameters['datetime'] == '2020-02-01T05:00:00Z'
+        assert search.get_parameters()['datetime'] == '2020-02-01T05:00:00Z'
 
     def test_single_year(self):
         search = ItemSearch(url=SEARCH_URL, datetime='2020')
-        assert search._parameters['datetime'] == "2020-01-01T00:00:00Z/2020-12-31T23:59:59Z"
+        assert search.get_parameters()['datetime'] == "2020-01-01T00:00:00Z/2020-12-31T23:59:59Z"
 
     def test_range_of_years(self):
         search = ItemSearch(url=SEARCH_URL, datetime='2019/2020')
-        assert search._parameters['datetime'] == "2019-01-01T00:00:00Z/2020-12-31T23:59:59Z"
+        assert search.get_parameters()['datetime'] == "2019-01-01T00:00:00Z/2020-12-31T23:59:59Z"
 
     def test_single_month(self):
         search = ItemSearch(url=SEARCH_URL, datetime='2020-06')
-        assert search._parameters['datetime'] == "2020-06-01T00:00:00Z/2020-06-30T23:59:59Z"
+        assert search.get_parameters()['datetime'] == "2020-06-01T00:00:00Z/2020-06-30T23:59:59Z"
 
     def test_range_of_months(self):
         search = ItemSearch(url=SEARCH_URL, datetime='2020-04/2020-06')
-        assert search._parameters['datetime'] == "2020-04-01T00:00:00Z/2020-06-30T23:59:59Z"
+        assert search.get_parameters()['datetime'] == "2020-04-01T00:00:00Z/2020-06-30T23:59:59Z"
 
     def test_single_date(self):
         search = ItemSearch(url=SEARCH_URL, datetime='2020-06-10')
-        assert search._parameters['datetime'] == "2020-06-10T00:00:00Z/2020-06-10T23:59:59Z"
+        assert search.get_parameters()['datetime'] == "2020-06-10T00:00:00Z/2020-06-10T23:59:59Z"
 
     def test_range_of_dates(self):
         search = ItemSearch(url=SEARCH_URL, datetime='2020-06-10/2020-06-20')
-        assert search._parameters['datetime'] == "2020-06-10T00:00:00Z/2020-06-20T23:59:59Z"
+        assert search.get_parameters()['datetime'] == "2020-06-10T00:00:00Z/2020-06-20T23:59:59Z"
 
     def test_mixed_simple_date_strings(self):
         search = ItemSearch(url=SEARCH_URL, datetime="2019/2020-06-10")
-        assert search._parameters['datetime'] == "2019-01-01T00:00:00Z/2020-06-10T23:59:59Z"
+        assert search.get_parameters()['datetime'] == "2019-01-01T00:00:00Z/2020-06-10T23:59:59Z"
 
     def test_time(self):
         search = ItemSearch(url=SEARCH_URL, datetime="2019-01-01T00:00:00Z/2019-01-01T00:12:00")
-        assert search._parameters['datetime'] == "2019-01-01T00:00:00Z/2019-01-01T00:12:00Z"
+        assert search.get_parameters()['datetime'] == "2019-01-01T00:00:00Z/2019-01-01T00:12:00Z"
 
     def test_many_datetimes(self):
         datetimes = [
@@ -198,17 +198,17 @@ class TestItemSearchParams:
     def test_single_collection_string(self):
         # Single ID string
         search = ItemSearch(url=SEARCH_URL, collections='naip')
-        assert search._parameters['collections'] == ('naip', )
+        assert search.get_parameters()['collections'] == ('naip', )
 
     def test_multiple_collection_string(self):
         # Comma-separated ID string
         search = ItemSearch(url=SEARCH_URL, collections='naip,landsat8_l1tp')
-        assert search._parameters['collections'] == ('naip', 'landsat8_l1tp')
+        assert search.get_parameters()['collections'] == ('naip', 'landsat8_l1tp')
 
     def test_list_of_collection_strings(self):
         # List of ID strings
         search = ItemSearch(url=SEARCH_URL, collections=['naip', 'landsat8_l1tp'])
-        assert search._parameters['collections'] == ('naip', 'landsat8_l1tp')
+        assert search.get_parameters()['collections'] == ('naip', 'landsat8_l1tp')
 
     def test_generator_of_collection_strings(self):
         # Generator of ID strings
@@ -216,28 +216,28 @@ class TestItemSearchParams:
             yield from ['naip', 'landsat8_l1tp']
 
         search = ItemSearch(url=SEARCH_URL, collections=collectioner())
-        assert search._parameters['collections'] == ('naip', 'landsat8_l1tp')
+        assert search.get_parameters()['collections'] == ('naip', 'landsat8_l1tp')
 
     def test_single_id_string(self):
         # Single ID
         search = ItemSearch(url=SEARCH_URL, ids='m_3510836_se_12_060_20180508_20190331')
-        assert search._parameters['ids'] == ('m_3510836_se_12_060_20180508_20190331', )
+        assert search.get_parameters()['ids'] == ('m_3510836_se_12_060_20180508_20190331', )
 
     def test_multiple_id_string(self):
         # Comma-separated ID string
         search = ItemSearch(
             url=SEARCH_URL,
             ids='m_3510836_se_12_060_20180508_20190331,m_3510840_se_12_060_20180504_20190331')
-        assert search._parameters['ids'] == ('m_3510836_se_12_060_20180508_20190331',
-                                             'm_3510840_se_12_060_20180504_20190331')
+        assert search.get_parameters()['ids'] == ('m_3510836_se_12_060_20180508_20190331',
+                                                  'm_3510840_se_12_060_20180504_20190331')
 
     def test_list_of_id_strings(self):
         # List of IDs
         search = ItemSearch(
             url=SEARCH_URL,
             ids=['m_3510836_se_12_060_20180508_20190331', 'm_3510840_se_12_060_20180504_20190331'])
-        assert search._parameters['ids'] == ('m_3510836_se_12_060_20180508_20190331',
-                                             'm_3510840_se_12_060_20180504_20190331')
+        assert search.get_parameters()['ids'] == ('m_3510836_se_12_060_20180508_20190331',
+                                                  'm_3510840_se_12_060_20180504_20190331')
 
     def test_generator_of_id_string(self):
         # Generator of IDs
@@ -247,18 +247,18 @@ class TestItemSearchParams:
             ]
 
         search = ItemSearch(url=SEARCH_URL, ids=ids())
-        assert search._parameters['ids'] == ('m_3510836_se_12_060_20180508_20190331',
-                                             'm_3510840_se_12_060_20180504_20190331')
+        assert search.get_parameters()['ids'] == ('m_3510836_se_12_060_20180508_20190331',
+                                                  'm_3510840_se_12_060_20180504_20190331')
 
     def test_intersects_dict(self):
         # Dict input
         search = ItemSearch(url=SEARCH_URL, intersects=INTERSECTS_EXAMPLE)
-        assert search._parameters['intersects'] == INTERSECTS_EXAMPLE
+        assert search.get_parameters()['intersects'] == INTERSECTS_EXAMPLE
 
     def test_intersects_json_string(self):
         # JSON string input
         search = ItemSearch(url=SEARCH_URL, intersects=json.dumps(INTERSECTS_EXAMPLE))
-        assert search._parameters['intersects'] == INTERSECTS_EXAMPLE
+        assert search.get_parameters()['intersects'] == INTERSECTS_EXAMPLE
 
     def test_intersects_non_geo_interface_object(self):
         with pytest.raises(Exception):
@@ -266,26 +266,107 @@ class TestItemSearchParams:
 
     def test_filter_lang_default_for_dict(self):
         search = ItemSearch(url=SEARCH_URL, filter={})
-        assert search._parameters['filter-lang'] == 'cql2-json'
+        assert search.get_parameters()['filter-lang'] == 'cql2-json'
 
     def test_filter_lang_default_for_str(self):
         search = ItemSearch(url=SEARCH_URL, filter="")
-        assert search._parameters['filter-lang'] == 'cql2-text'
+        assert search.get_parameters()['filter-lang'] == 'cql2-text'
 
     def test_filter_lang_cql2_text(self):
         # Use specified filter_lang
         search = ItemSearch(url=SEARCH_URL, filter_lang="cql2-text", filter={})
-        assert search._parameters['filter-lang'] == 'cql2-text'
+        assert search.get_parameters()['filter-lang'] == 'cql2-text'
 
     def test_filter_lang_cql2_json(self):
         # Use specified filter_lang
         search = ItemSearch(url=SEARCH_URL, filter_lang="cql2-json", filter="")
-        assert search._parameters['filter-lang'] == 'cql2-json'
+        assert search.get_parameters()['filter-lang'] == 'cql2-json'
 
     def test_filter_lang_without_filter(self):
         # No filter provided
         search = ItemSearch(url=SEARCH_URL)
-        assert 'filter-lang' not in search._parameters
+        assert 'filter-lang' not in search.get_parameters()
+
+    def test_sortby(self):
+        search = ItemSearch(url=SEARCH_URL, sortby="properties.datetime")
+        assert search.get_parameters()['sortby'] == [{
+            'direction': 'asc',
+            'field': 'properties.datetime'
+        }]
+
+        search = ItemSearch(url=SEARCH_URL, sortby="+properties.datetime")
+        assert search.get_parameters()['sortby'] == [{
+            'direction': 'asc',
+            'field': 'properties.datetime'
+        }]
+
+        search = ItemSearch(url=SEARCH_URL, sortby="-properties.datetime")
+        assert search.get_parameters()['sortby'] == [{
+            'direction': 'desc',
+            'field': 'properties.datetime'
+        }]
+
+        search = ItemSearch(url=SEARCH_URL, sortby="-properties.datetime,+id,collection")
+        assert search.get_parameters()['sortby'] == [{
+            'direction': 'desc',
+            'field': 'properties.datetime'
+        }, {
+            'direction': 'asc',
+            'field': 'id'
+        }, {
+            'direction': 'asc',
+            'field': 'collection'
+        }]
+
+        search = ItemSearch(url=SEARCH_URL,
+                            sortby=[{
+                                'direction': 'desc',
+                                'field': 'properties.datetime'
+                            }, {
+                                'direction': 'asc',
+                                'field': 'id'
+                            }, {
+                                'direction': 'asc',
+                                'field': 'collection'
+                            }])
+        assert search.get_parameters()['sortby'] == [{
+            'direction': 'desc',
+            'field': 'properties.datetime'
+        }, {
+            'direction': 'asc',
+            'field': 'id'
+        }, {
+            'direction': 'asc',
+            'field': 'collection'
+        }]
+
+        search = ItemSearch(url=SEARCH_URL, sortby=['-properties.datetime', 'id', 'collection'])
+        assert search.get_parameters()['sortby'] == [{
+            'direction': 'desc',
+            'field': 'properties.datetime'
+        }, {
+            'direction': 'asc',
+            'field': 'id'
+        }, {
+            'direction': 'asc',
+            'field': 'collection'
+        }]
+
+        search = ItemSearch(url=SEARCH_URL,
+                            method="GET",
+                            sortby=['-properties.datetime', 'id', 'collection'])
+        assert search.get_parameters()['sortby'] == '-properties.datetime,+id,+collection'
+
+        search = ItemSearch(url=SEARCH_URL,
+                            method="GET",
+                            sortby='-properties.datetime,id,collection')
+        assert search.get_parameters()['sortby'] == '-properties.datetime,+id,+collection'
+
+        with pytest.raises(Exception):
+            ItemSearch(url=SEARCH_URL, sortby=1)
+
+        with pytest.raises(Exception):
+            ItemSearch(url=SEARCH_URL, sortby=[1])
 
 
 class TestItemSearch:
@@ -316,7 +397,7 @@ class TestItemSearch:
         # For POST this is pass through
         search = ItemSearch(url=SEARCH_URL, **params_in)
         params = search.get_parameters()
-        assert params == search._parameters
+        assert params == search.get_parameters()
 
         # For GET requests, parameters are in query string and must be serialized
         search = ItemSearch(url=SEARCH_URL, method='GET', **params_in)
