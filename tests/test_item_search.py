@@ -260,6 +260,10 @@ class TestItemSearchParams:
         search = ItemSearch(url=SEARCH_URL, intersects=json.dumps(INTERSECTS_EXAMPLE))
         assert search._parameters['intersects'] == INTERSECTS_EXAMPLE
 
+    def test_intersects_non_geo_interface_object(self):
+        with pytest.raises(Exception):
+            ItemSearch(url=SEARCH_URL, intersects=object())
+
     def test_filter_lang_default_for_dict(self):
         search = ItemSearch(url=SEARCH_URL, filter={})
         assert search._parameters['filter-lang'] == 'cql2-json'
@@ -377,7 +381,9 @@ class TestItemSearch:
 
         # Geo-interface object
         class MockGeoObject:
-            __geo_interface__ = intersects_dict
+            @property
+            def __geo_interface__(self):
+                return intersects_dict
 
         intersects_obj = MockGeoObject()
         search = ItemSearch(url=SEARCH_URL, intersects=intersects_obj, collections='naip')

@@ -22,6 +22,11 @@ DATETIME_REGEX = re.compile(r"(?P<year>\d{4})(\-(?P<month>\d{2})(\-(?P<day>\d{2}
                             r"(?P<remainder>(T|t)\d{2}:\d{2}:\d{2}(\.\d+)?"
                             r"(?P<tz_info>Z|([-+])(\d{2}):(\d{2}))?)?)?)?")
 
+# todo: add runtime_checkable when we drop 3.7 support
+# class GeoInterface(Protocol):
+#     def __geo_interface__(self) -> dict:
+#         ...
+
 DatetimeOrTimestamp = Optional[Union[datetime_, str]]
 Datetime = Union[Tuple[str], Tuple[str, str]]
 DatetimeLike = Union[DatetimeOrTimestamp, Tuple[DatetimeOrTimestamp, DatetimeOrTimestamp],
@@ -37,7 +42,8 @@ IDs = Tuple[str, ...]
 IDsLike = Union[IDs, str, List[str], Iterator[str]]
 
 Intersects = dict
-IntersectsLike = Union[str, Intersects, object]
+IntersectsLike = Union[str, object, Intersects]
+# todo: after 3.7 is dropped, replace object with GeoInterface
 
 Query = dict
 QueryLike = Union[Query, List[str]]
@@ -132,7 +138,9 @@ class ItemSearch:
             - ``2017/2018`` expands to ``2017-01-01T00:00:00Z/2018-12-31T23:59:59Z``
             - ``2017-06/2017-07`` expands to ``2017-06-01T00:00:00Z/2017-07-31T23:59:59Z``
             - ``2017-06-10/2017-06-11`` expands to ``2017-06-10T00:00:00Z/2017-06-11T23:59:59Z``
-        intersects: A GeoJSON-like dictionary or JSON string. Results filtered to only those intersecting the geometry
+        intersects: A string or dictionary representing a GeoJSON geometry, or an object that implements a
+            ``__geo_interface__`` property as supported by several libraries including Shapely, ArcPy, PySAL, and
+            geojson. Results filtered to only those intersecting the geometry.
         ids: List of Item ids to return. All other filter parameters that further restrict the number of search results
             (except ``limit``) are ignored.
         collections: List of one or more Collection IDs or :class:`pystac.Collection` instances. Only Items in one
@@ -142,11 +150,11 @@ class ItemSearch:
         filter_lang: Language variant used in the filter body. If `filter` is a dictionary or not provided, defaults
             to 'cql2-json'. If `filter` is a string, defaults to `cql2-text`.
         sortby: A single field or list of fields to sort the response by
-        fields: A list of fields to return in the response. Note this may result in invalid JSON.
-            Use `get_all_items_as_dict` to avoid errors
-        max_items: The maximum number of items to get, even if there are more matched items
+        fields: A list of fields to include in the response. Note this may result in invalid STAC objects, as they
+            may not have required fields. Use `get_all_items_as_dict` to avoid object unmarshalling errors.
+        max_items: The maximum number of items to get, even if there are more matched items.
         method: The http method, 'GET' or 'POST'
-        stac_io: An instance of of StacIO for retrieving results. Normally comes from the Client that returns this ItemSearch
+        stac_io: An instance of StacIO for retrieving results. Normally comes from the Client that returns this ItemSearch
         client: An instance of a root Client used to set the root on resulting Items
     """
     def __init__(self,
@@ -409,9 +417,15 @@ class ItemSearch:
     def _format_intersects(value: Optional[IntersectsLike]) -> Optional[Intersects]:
         if value is None:
             return None
+        if isinstance(value, dict):
+            return deepcopy(value)
         if isinstance(value, str):
             return json.loads(value)
-        return deepcopy(getattr(value, '__geo_interface__', value))
+        if hasattr(value, '__geo_interface__'):
+            return deepcopy(getattr(value, '__geo_interface__'))
+        raise Exception(
+            "intersects must be of type None, str, dict, or an object that implements __geo_interface__"
+        )
 
     @lru_cache(1)
     def matched(self) -> int:

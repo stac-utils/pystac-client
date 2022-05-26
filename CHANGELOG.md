@@ -33,6 +33,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Bumped PySTAC dependency to >= 1.4.0 [#147](https://github.com/stac-utils/pystac-client/pull/147)
 - Search `filter-lang` defaults to `cql2-json` instead of `cql-json`
 - Search `filter-lang` will be set to `cql2-json` if the `filter` is a dict, or `cql2-text` if it is a string
+- Search parameter `intersects` is now typed to only accept a str, dict, or object that implements `__geo_interface__`
 
 ## Removed
 
