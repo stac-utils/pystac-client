@@ -3,6 +3,7 @@ import json
 import logging
 import os
 import sys
+from typing import Any, Dict, List, Optional
 
 from .client import Client
 from .version import __version__
@@ -10,44 +11,50 @@ from .version import __version__
 logger = logging.getLogger(__name__)
 
 
-def search(client, method="GET", matched=False, save=None, **kwargs):
+def search(
+    client: Client,
+    method: str = "GET",
+    matched: bool = False,
+    save: Optional[str] = None,
+    **kwargs: Dict[str, Any],
+) -> int:
     """Main function for performing a search"""
 
     try:
-        search = client.search(method=method, **kwargs)
+        result = client.search(method=method, **kwargs)
 
         if matched:
-            matched = search.matched()
-            print("%s items matched" % matched)
+            print(f"{result.matched()} items matched")
         else:
-            feature_collection = search.get_all_items_as_dict()
+            feature_collection = result.get_all_items_as_dict()
             if save:
                 with open(save, "w") as f:
                     f.write(json.dumps(feature_collection))
             else:
                 print(json.dumps(feature_collection))
+        return 0
 
     except Exception as e:
         print(e)
         return 1
 
 
-def collections(client, save=None, **kwargs):
+def collections(client: Client, save: Optional[str] = None) -> int:
     """Fetch collections from collections endpoint"""
     try:
-        collections = client.get_all_collections(**kwargs)
-        collections_dicts = [c.to_dict() for c in collections]
+        collections_dicts = [c.to_dict() for c in client.get_all_collections()]
         if save:
             with open(save, "w") as f:
                 f.write(json.dumps(collections_dicts))
         else:
             print(json.dumps(collections_dicts))
+        return 0
     except Exception as e:
         print(e)
         return 1
 
 
-def parse_args(args):
+def parse_args(args: List[str]) -> Dict[str, Any]:
     desc = "STAC Client"
     dhf = argparse.ArgumentDefaultsHelpFormatter
     parser0 = argparse.ArgumentParser(description=desc)
@@ -157,7 +164,7 @@ def parse_args(args):
     }
     if "command" not in parsed_args:
         parser0.print_usage()
-        return []
+        return {}
 
     # if intersects is JSON file, read it in
     if "intersects" in parsed_args:
@@ -189,10 +196,10 @@ def parse_args(args):
     return parsed_args
 
 
-def cli():
+def cli() -> int:
     args = parse_args(sys.argv[1:])
     if not args:
-        return None
+        return 1
 
     loglevel = args.pop("logging")
     if args.get("save", False) or args.get("matched", False):
@@ -217,6 +224,11 @@ def cli():
         return search(client, **args)
     elif cmd == "collections":
         return collections(client, **args)
+    else:
+        print(
+            f"Command '{cmd}' is not a valid command, must be 'search' or 'collections'"
+        )
+        return 1
 
 
 if __name__ == "__main__":

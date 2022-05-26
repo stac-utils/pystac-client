@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class CollectionClient(pystac.Collection):
-    def __repr__(self):
+    def __repr__(self) -> str:
         return "<CollectionClient id={}>".format(self.id)
 
     def get_items(self) -> Iterable["Item_Type"]:
@@ -23,10 +23,8 @@ class CollectionClient(pystac.Collection):
         """
 
         link = self.get_single_link("items")
-        if link is not None:
-            search = ItemSearch(
-                link.href, method="GET", stac_io=self.get_root()._stac_io
-            )
+        if link is not None and (root := self.get_root()):
+            search = ItemSearch(link.href, method="GET", stac_io=root._stac_io)
             yield from search.get_items()
         else:
             yield from super().get_items()

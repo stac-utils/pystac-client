@@ -392,7 +392,7 @@ class ItemSearch:
 
     @staticmethod
     def _format_collections(value: Optional[CollectionsLike]) -> Optional[Collections]:
-        def _format(c):
+        def _format(c: Any) -> Any:
             if isinstance(c, str):
                 return c
             if isinstance(c, Iterable):

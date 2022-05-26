@@ -31,9 +31,9 @@ logger = logging.getLogger(__name__)
 class StacApiIO(DefaultStacIO):
     def __init__(
         self,
-        headers: Optional[Dict] = None,
+        headers: Optional[Dict[str, str]] = None,
         conformance: Optional[List[str]] = None,
-        parameters: Optional[Dict] = None,
+        parameters: Optional[Dict[str, Any]] = None,
     ):
         """Initialize class for API IO
 

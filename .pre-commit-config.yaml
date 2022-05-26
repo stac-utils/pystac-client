@@ -29,8 +29,7 @@ repos:
 #    rev: v0.960
 #    hooks:
 #      - id: mypy
-#        # TODO lint test and scripts too
-##        files: "^pystac_client/.*\\.py$"
+#        files: "^pystac_client/.*\\.py$"
 #        args:
 #          - --ignore-missing-imports
 #        additional_dependencies:
