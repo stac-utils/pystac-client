@@ -41,7 +41,7 @@ another process such as
     $ stac-client search ${STAC_API_URL} -c sentinel-s2-l2a-cogs --bbox -72.5 40.5 -72 41 --datetime 2020-01-01/2020-01-31 | stacterm cal --label platform
 
 .. figure:: images/stacterm-cal.png
-   :alt: 
+   :alt:
 
 If the ``--save`` switch is provided instead, the results will not be
 output to stdout, but instead will be saved to the specified file.

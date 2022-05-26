@@ -1,26 +1,29 @@
-from functools import lru_cache
-from dateutil.tz import tzutc
-from dateutil.relativedelta import relativedelta
 import json
 import re
+import warnings
 from collections.abc import Iterable, Mapping
 from copy import deepcopy
-from datetime import timezone, datetime as datetime_
-from typing import Dict, Iterator, List, Optional, TYPE_CHECKING, Tuple, Union
-import warnings
+from datetime import datetime as datetime_
+from datetime import timezone
+from functools import lru_cache
+from typing import TYPE_CHECKING, Any, Dict, Iterator, List, Optional, Tuple, Union
 
+from dateutil.relativedelta import relativedelta
+from dateutil.tz import tzutc
 from pystac import Collection, Item, ItemCollection
 from pystac.stac_io import StacIO
 
-from pystac_client.stac_api_io import StacApiIO
 from pystac_client.conformance import ConformanceClasses
+from pystac_client.stac_api_io import StacApiIO
 
 if TYPE_CHECKING:
     from pystac_client.client import Client
 
-DATETIME_REGEX = re.compile(r"(?P<year>\d{4})(\-(?P<month>\d{2})(\-(?P<day>\d{2})"
-                            r"(?P<remainder>(T|t)\d{2}:\d{2}:\d{2}(\.\d+)?"
-                            r"(?P<tz_info>Z|([-+])(\d{2}):(\d{2}))?)?)?)?")
+DATETIME_REGEX = re.compile(
+    r"(?P<year>\d{4})(\-(?P<month>\d{2})(\-(?P<day>\d{2})"
+    r"(?P<remainder>(T|t)\d{2}:\d{2}:\d{2}(\.\d+)?"
+    r"(?P<tz_info>Z|([-+])(\d{2}):(\d{2}))?)?)?)?"
+)
 
 # todo: add runtime_checkable when we drop 3.7 support
 # class GeoInterface(Protocol):
@@ -29,8 +32,12 @@ DATETIME_REGEX = re.compile(r"(?P<year>\d{4})(\-(?P<month>\d{2})(\-(?P<day>\d{2}
 
 DatetimeOrTimestamp = Optional[Union[datetime_, str]]
 Datetime = Union[Tuple[str], Tuple[str, str]]
-DatetimeLike = Union[DatetimeOrTimestamp, Tuple[DatetimeOrTimestamp, DatetimeOrTimestamp],
-                     List[DatetimeOrTimestamp], Iterator[DatetimeOrTimestamp]]
+DatetimeLike = Union[
+    DatetimeOrTimestamp,
+    Tuple[DatetimeOrTimestamp, DatetimeOrTimestamp],
+    List[DatetimeOrTimestamp],
+    Iterator[DatetimeOrTimestamp],
+]
 
 BBox = Tuple[float, ...]
 BBoxLike = Union[BBox, List[float], Iterator[float], str]
@@ -57,12 +64,12 @@ SortbyLike = Union[Sortby, str, List[str]]
 Fields = List[str]
 FieldsLike = Union[Fields, str]
 
-OP_MAP = {'>=': 'gte', '<=': 'lte', '=': 'eq', '>': 'gt', '<': 'lt'}
+OP_MAP = {">=": "gte", "<=": "lte", "=": "eq", ">": "gt", "<": "lt"}
 
 
 # from https://gist.github.com/angstwad/bf22d1822c38a92ec0a9#gistcomment-2622319
 def dict_merge(dct: Dict, merge_dct: Dict, add_keys: bool = True) -> Dict:
-    """ Recursive dict merge.
+    """Recursive dict merge.
 
     Inspired by :meth:``dict.update()``, instead of
     updating only top-level keys, dict_merge recurses down into dicts nested
@@ -84,7 +91,7 @@ def dict_merge(dct: Dict, merge_dct: Dict, add_keys: bool = True) -> Dict:
         merge_dct = {k: merge_dct[k] for k in set(dct).intersection(set(merge_dct))}
 
     for k, v in merge_dct.items():
-        if (k in dct and isinstance(dct[k], dict) and isinstance(merge_dct[k], Mapping)):
+        if k in dct and isinstance(dct[k], dict) and isinstance(merge_dct[k], Mapping):
             dct[k] = dict_merge(dct[k], merge_dct[k], add_keys=add_keys)
         else:
             dct[k] = merge_dct[k]
@@ -141,40 +148,48 @@ class ItemSearch:
         intersects: A string or dictionary representing a GeoJSON geometry, or an object that implements a
             ``__geo_interface__`` property as supported by several libraries including Shapely, ArcPy, PySAL, and
             geojson. Results filtered to only those intersecting the geometry.
-        ids: List of Item ids to return. All other filter parameters that further restrict the number of search results
+        ids: List of Item ids to return. All other filter parameters that further
+        restrict the number of search results
             (except ``limit``) are ignored.
         collections: List of one or more Collection IDs or :class:`pystac.Collection` instances. Only Items in one
             of the provided Collections will be searched
         query: List or JSON of query parameters as per the STAC API `query` extension
         filter: JSON of query parameters as per the STAC API `filter` extension
-        filter_lang: Language variant used in the filter body. If `filter` is a dictionary or not provided, defaults
+        filter_lang: Language variant used in the filter body. If `filter` is a
+            dictionary or not provided, defaults
             to 'cql2-json'. If `filter` is a string, defaults to `cql2-text`.
         sortby: A single field or list of fields to sort the response by
-        fields: A list of fields to include in the response. Note this may result in invalid STAC objects, as they
-            may not have required fields. Use `get_all_items_as_dict` to avoid object unmarshalling errors.
-        max_items: The maximum number of items to get, even if there are more matched items.
+        fields: A list of fields to include in the response. Note this may
+            result in invalid STAC objects, as they may not have required fields.
+            Use `get_all_items_as_dict` to avoid object unmarshalling errors.
+        max_items: The maximum number of items to get, even if there are more
+            matched items.
         method: The http method, 'GET' or 'POST'
-        stac_io: An instance of StacIO for retrieving results. Normally comes from the Client that returns this ItemSearch
-        client: An instance of a root Client used to set the root on resulting Items
+        stac_io: An instance of StacIO for retrieving results. Normally comes
+        from the Client that returns this ItemSearch client: An instance of a
+        root Client used to set the root on resulting Items
     """
-    def __init__(self,
-                 url: str,
-                 *,
-                 limit: Optional[int] = 100,
-                 bbox: Optional[BBoxLike] = None,
-                 datetime: Optional[DatetimeLike] = None,
-                 intersects: Optional[IntersectsLike] = None,
-                 ids: Optional[IDsLike] = None,
-                 collections: Optional[CollectionsLike] = None,
-                 query: Optional[QueryLike] = None,
-                 filter: Optional[FilterLike] = None,
-                 filter_lang: Optional[FilterLangLike] = None,
-                 sortby: Optional[SortbyLike] = None,
-                 fields: Optional[FieldsLike] = None,
-                 max_items: Optional[int] = None,
-                 method: Optional[str] = 'POST',
-                 stac_io: Optional[StacIO] = None,
-                 client: Optional["Client"] = None):
+
+    def __init__(
+        self,
+        url: str,
+        *,
+        limit: Optional[int] = 100,
+        bbox: Optional[BBoxLike] = None,
+        datetime: Optional[DatetimeLike] = None,
+        intersects: Optional[IntersectsLike] = None,
+        ids: Optional[IDsLike] = None,
+        collections: Optional[CollectionsLike] = None,
+        query: Optional[QueryLike] = None,
+        filter: Optional[FilterLike] = None,
+        filter_lang: Optional[FilterLangLike] = None,
+        sortby: Optional[SortbyLike] = None,
+        fields: Optional[FieldsLike] = None,
+        max_items: Optional[int] = None,
+        method: Optional[str] = "POST",
+        stac_io: Optional[StacIO] = None,
+        client: Optional["Client"] = None,
+    ):
         self.url = url
         self.client = client
 
@@ -194,49 +209,49 @@ class ItemSearch:
         self.method = method
 
         params = {
-            'limit': limit,
-            'bbox': self._format_bbox(bbox),
-            'datetime': self._format_datetime(datetime),
-            'ids': self._format_ids(ids),
-            'collections': self._format_collections(collections),
-            'intersects': self._format_intersects(intersects),
-            'query': self._format_query(query),
-            'filter': self._format_filter(filter),
-            'filter-lang': self._format_filter_lang(filter, filter_lang),
-            'sortby': self._format_sortby(sortby),
-            'fields': self._format_fields(fields)
+            "limit": limit,
+            "bbox": self._format_bbox(bbox),
+            "datetime": self._format_datetime(datetime),
+            "ids": self._format_ids(ids),
+            "collections": self._format_collections(collections),
+            "intersects": self._format_intersects(intersects),
+            "query": self._format_query(query),
+            "filter": self._format_filter(filter),
+            "filter-lang": self._format_filter_lang(filter, filter_lang),
+            "sortby": self._format_sortby(sortby),
+            "fields": self._format_fields(fields),
         }
 
         self._parameters = {k: v for k, v in params.items() if v is not None}
 
-    def get_parameters(self):
-        if self.method == 'POST':
+    def get_parameters(self) -> Dict[str, Any]:
+        if self.method == "POST":
             return self._parameters
-        elif self.method == 'GET':
+        elif self.method == "GET":
             params = deepcopy(self._parameters)
-            if 'bbox' in params:
-                params['bbox'] = ','.join(map(str, params['bbox']))
-            if 'ids' in params:
-                params['ids'] = ','.join(params['ids'])
-            if 'collections' in params:
-                params['collections'] = ','.join(params['collections'])
-            if 'intersects' in params:
-                params['intersects'] = json.dumps(params['intersects'])
-            if 'sortby' in params:
-                params['sortby'] = self.sortby_json_to_str(params['sortby'])
+            if "bbox" in params:
+                params["bbox"] = ",".join(map(str, params["bbox"]))
+            if "ids" in params:
+                params["ids"] = ",".join(params["ids"])
+            if "collections" in params:
+                params["collections"] = ",".join(params["collections"])
+            if "intersects" in params:
+                params["intersects"] = json.dumps(params["intersects"])
+            if "sortby" in params:
+                params["sortby"] = self.sortby_json_to_str(params["sortby"])
             return params
         else:
             raise Exception(f"Unsupported method {self.method}")
 
     @staticmethod
-    def _format_query(value: List[QueryLike]) -> Optional[dict]:
+    def _format_query(value: List[QueryLike]) -> Optional[Dict[str, Any]]:
         if value is None:
             return None
 
         if isinstance(value, list):
             query = {}
             for q in value:
-                for op in ['>=', '<=', '=', '>', '<']:
+                for op in [">=", "<=", "=", ">", "<"]:
                     parts = q.split(op)
                     if len(parts) == 2:
                         param = parts[0]
@@ -251,7 +266,9 @@ class ItemSearch:
         return query
 
     @staticmethod
-    def _format_filter_lang(_filter: FilterLike, value: FilterLangLike) -> Optional[str]:
+    def _format_filter_lang(
+        _filter: FilterLike, value: FilterLangLike
+    ) -> Optional[str]:
         if _filter is None:
             return None
 
@@ -259,10 +276,10 @@ class ItemSearch:
             return value
 
         if isinstance(_filter, str):
-            return 'cql2-text'
+            return "cql2-text"
 
         if isinstance(_filter, dict):
-            return 'cql2-json'
+            return "cql2-json"
 
         return None
 
@@ -279,7 +296,7 @@ class ItemSearch:
             return None
 
         if isinstance(value, str):
-            bbox = tuple(map(float, value.split(',')))
+            bbox = tuple(map(float, value.split(",")))
         else:
             bbox = tuple(map(float, value))
 
@@ -295,11 +312,14 @@ class ItemSearch:
         def _to_isoformat_range(component: DatetimeOrTimestamp):
             """Converts a single DatetimeOrTimestamp into one or two Datetimes.
 
-            This is required to expand a single value like "2017" out to the whole year. This function returns two values.
-            The first value is always a valid Datetime. The second value can be None or a Datetime. If it is None, this
-            means that the first value was an exactly specified value (e.g. a `datetime.datetime`). If the second value is
-            a Datetime, then it will be the end of the range at the resolution of the component, e.g. if the component
-            were "2017" the second value would be the last second of the last day of 2017.
+            This is required to expand a single value like "2017" out to the whole
+            year. This function returns two values. The first value is always a
+            valid Datetime. The second value can be None or a Datetime. If it is
+            None, this means that the first value was an exactly specified value
+            (e.g. a `datetime.datetime`). If the second value is a Datetime, then
+            it will be the end of the range at the resolution of the component,
+            e.g. if the component were "2017" the second value would be the last
+            second of the last day of 2017.
             """
             if component is None:
                 return "..", None
@@ -321,16 +341,20 @@ class ItemSearch:
                     optional_day = match.group("day")
 
                 if optional_day is not None:
-                    start = datetime_(year,
-                                      int(optional_month),
-                                      int(optional_day),
-                                      0,
-                                      0,
-                                      0,
-                                      tzinfo=tzutc())
+                    start = datetime_(
+                        year,
+                        int(optional_month),
+                        int(optional_day),
+                        0,
+                        0,
+                        0,
+                        tzinfo=tzutc(),
+                    )
                     end = start + relativedelta(days=1, seconds=-1)
                 elif optional_month is not None:
-                    start = datetime_(year, int(optional_month), 1, 0, 0, 0, tzinfo=tzutc())
+                    start = datetime_(
+                        year, int(optional_month), 1, 0, 0, 0, tzinfo=tzutc()
+                    )
                     end = start + relativedelta(months=1, seconds=-1)
                 else:
                     start = datetime_(year, 1, 1, 0, 0, 0, tzinfo=tzutc())
@@ -362,7 +386,9 @@ class ItemSearch:
             return f"{start}/{end or backup_end}"
         else:
             raise Exception(
-                f"too many datetime components (max=2, actual={len(components)}): {value}")
+                "too many datetime components "
+                f"(max=2, actual={len(components)}): {value}"
+            )
 
     @staticmethod
     def _format_collections(value: Optional[CollectionsLike]) -> Optional[Collections]:
@@ -377,9 +403,9 @@ class ItemSearch:
         if value is None:
             return None
         if isinstance(value, str):
-            return tuple(map(_format, value.split(',')))
+            return tuple(map(_format, value.split(",")))
         if isinstance(value, Collection):
-            return _format(value),
+            return (_format(value),)
 
         return _format(value)
 
@@ -389,7 +415,7 @@ class ItemSearch:
             return None
 
         if isinstance(value, str):
-            return tuple(value.split(','))
+            return tuple(value.split(","))
 
         return tuple(value)
 
@@ -400,7 +426,7 @@ class ItemSearch:
         self._stac_io.assert_conforms_to(ConformanceClasses.SORT)
 
         if isinstance(value, str):
-            return [self.sortby_part_to_json(part) for part in value.split(',')]
+            return [self.sortby_part_to_json(part) for part in value.split(",")]
 
         if isinstance(value, list):
             if value and isinstance(value[0], str):
@@ -408,7 +434,9 @@ class ItemSearch:
             elif value and isinstance(value[0], dict):
                 return value
 
-        raise Exception("sortby must be of type None, str, List[str], or List[Dict[str, str]")
+        raise Exception(
+            "sortby must be of type None, str, List[str], or List[Dict[str, str]"
+        )
 
     @staticmethod
     def sortby_part_to_json(part: str) -> Dict[str, str]:
@@ -422,7 +450,11 @@ class ItemSearch:
     @staticmethod
     def sortby_json_to_str(sortby: Sortby) -> str:
         return ",".join(
-            [f"{'+' if sort['direction'] == 'asc' else '-'}{sort['field']}" for sort in sortby])
+            [
+                f"{'+' if sort['direction'] == 'asc' else '-'}{sort['field']}"
+                for sort in sortby
+            ]
+        )
 
     def _format_fields(self, value: Optional[FieldsLike]) -> Optional[Fields]:
         if value is None:
@@ -431,7 +463,7 @@ class ItemSearch:
         self._stac_io.assert_conforms_to(ConformanceClasses.FIELDS)
 
         if isinstance(value, str):
-            return tuple(value.split(','))
+            return tuple(value.split(","))
 
         return tuple(value)
 
@@ -443,47 +475,53 @@ class ItemSearch:
             return deepcopy(value)
         if isinstance(value, str):
             return json.loads(value)
-        if hasattr(value, '__geo_interface__'):
-            return deepcopy(getattr(value, '__geo_interface__'))
+        if hasattr(value, "__geo_interface__"):
+            return deepcopy(getattr(value, "__geo_interface__"))
         raise Exception(
-            "intersects must be of type None, str, dict, or an object that implements __geo_interface__"
+            "intersects must be of type None, str, dict, or an object that "
+            "implements __geo_interface__"
         )
 
     @lru_cache(1)
     def matched(self) -> int:
         """Return number matched for search
 
-        Returns the value from the `numberMatched` or `context.matched` field. Not all APIs
-        will support counts in which case a warning will be issued
+        Returns the value from the `numberMatched` or `context.matched` field.
+        Not all APIs will support counts in which case a warning will be issued
 
         Returns:
-            int: Total count of matched items. If counts are not supported `None` is returned.
+            int: Total count of matched items. If counts are not supported `None`
+            is returned.
         """
         params = {**self.get_parameters(), "limit": 1}
         resp = self._stac_io.read_json(self.url, method=self.method, parameters=params)
         found = None
-        if 'context' in resp:
-            found = resp['context']['matched']
-        elif 'numberMatched' in resp:
-            found = resp['numberMatched']
+        if "context" in resp:
+            found = resp["context"]["matched"]
+        elif "numberMatched" in resp:
+            found = resp["numberMatched"]
         if found is None:
             warnings.warn("numberMatched or context.matched not in response")
         return found
 
     def get_item_collections(self) -> Iterator[ItemCollection]:
-        """Iterator that yields ItemCollection objects.  Each ItemCollection is a page of results
-        from the search.
+        """Iterator that yields ItemCollection objects.  Each ItemCollection is
+        a page of results from the search.
 
         Yields:
             Iterable[Item] : pystac_client.ItemCollection
         """
-        for page in self._stac_io.get_pages(self.url, self.method, self.get_parameters()):
+        for page in self._stac_io.get_pages(
+            self.url, self.method, self.get_parameters()
+        ):
             yield ItemCollection.from_dict(page, preserve_dict=False, root=self.client)
 
     def get_items(self) -> Iterator[Item]:
-        """Iterator that yields :class:`pystac.Item` instances for each item matching the given search parameters. Calls
+        """Iterator that yields :class:`pystac.Item` instances for each item matching
+        the given search parameters. Calls
         :meth:`ItemSearch.item_collections()` internally and yields from
-        :attr:`ItemCollection.features <pystac_client.ItemCollection.features>` for each page of results.
+        :attr:`ItemCollection.features <pystac_client.ItemCollection.features>` for
+        each page of results.
 
         Return:
             Iterable[Item] : Iterate through resulting Items
@@ -505,8 +543,10 @@ class ItemSearch:
             Dict : A GeoJSON FeatureCollection
         """
         features = []
-        for page in self._stac_io.get_pages(self.url, self.method, self.get_parameters()):
-            for feature in page['features']:
+        for page in self._stac_io.get_pages(
+            self.url, self.method, self.get_parameters()
+        ):
+            for feature in page["features"]:
                 features.append(feature)
                 if self._max_items and len(features) >= self._max_items:
                     return {"type": "FeatureCollection", "features": features}
@@ -514,10 +554,13 @@ class ItemSearch:
 
     @lru_cache(1)
     def get_all_items(self) -> ItemCollection:
-        """Convenience method that builds an :class:`ItemCollection` from all items matching the given search parameters.
+        """Convenience method that builds an :class:`ItemCollection` from all items
+            matching the given search parameters.
 
         Return:
             item_collection : ItemCollection
         """
         feature_collection = self.get_all_items_as_dict()
-        return ItemCollection.from_dict(feature_collection, preserve_dict=False, root=self.client)
+        return ItemCollection.from_dict(
+            feature_collection, preserve_dict=False, root=self.client
+        )

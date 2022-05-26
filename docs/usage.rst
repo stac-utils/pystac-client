@@ -5,7 +5,7 @@ PySTAC-Client (pystac-client) builds upon `PySTAC <https://github.com/stac-utils
 for STAC APIs in addition to static STACs. PySTAC-Client can be used with static or dynamic (i.e., API)
 catalogs. Currently, pystac-client does not offer much in the way of additional functionality if using with
 static catalogs, as the additional features are for support STAC API endpoints such as `search`. However,
-in the future it is expected that pystac-client will offer additional convenience functions that may be 
+in the future it is expected that pystac-client will offer additional convenience functions that may be
 useful for static and dynamic catalogs alike.
 
 The most basic implementation of a STAC API is an endpoint that returns a valid STAC Catalog, but also contains
@@ -63,7 +63,7 @@ API Conformance
 ---------------
 
 This library is intended to work with any STAC static catalog or STAC API. A static catalog will be usable more or less
-the same as with PySTAC, except that pystac-client supports providing custom headers to API endpoints. (e.g., authenticating 
+the same as with PySTAC, except that pystac-client supports providing custom headers to API endpoints. (e.g., authenticating
 to an API with a token).
 
 A STAC API is a STAC Catalog that is required to advertise its capabilities in a `conformsTo` field and implements
@@ -163,14 +163,14 @@ In addition three additional convenience methods are provided:
     MYD11A1.A2019002.h12v04.006.2019003174703
     MYD11A1.A2019001.h12v04.006.2019002165238
 
-The :meth:`~pystac_client.ItemSearch.get_items` and related methods handle retrieval of successive pages of results 
-by finding links with a ``"rel"`` type of ``"next"`` and parsing them to construct the next request. The default 
+The :meth:`~pystac_client.ItemSearch.get_items` and related methods handle retrieval of successive pages of results
+by finding links with a ``"rel"`` type of ``"next"`` and parsing them to construct the next request. The default
 implementation of this ``"next"`` link parsing assumes that the link follows the spec for an extended STAC link as
 described in the `STAC API - Item Search: Paging <https://github.com/radiantearth/stac-api-spec/tree/master/item-search#paging>`__
 section. See the :mod:`Paging <pystac_client.paging>` docs for details on how to customize this behavior.
 
 Query Extension
-------------
+---------------
 
 If the Catalog supports the `Query
 extension <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/query>`__,

@@ -24,5 +24,5 @@ CQL Filtering
 
 - :tutorial:`GitHub version <cql2-filter.ipynb>`
 
-This tutorial gives an introduction to using CQL-JSON filtering in searches to 
+This tutorial gives an introduction to using CQL-JSON filtering in searches to
 search by arbitrary STAC Item properties.

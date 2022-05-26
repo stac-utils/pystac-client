@@ -1,7 +1,8 @@
 import os
-from imp import load_source
-from setuptools import setup, find_packages
 from glob import glob
+from imp import load_source
+
+from setuptools import find_packages, setup
 
 __version__ = load_source(
     "pystac_client.version", "pystac_client/version.py"
