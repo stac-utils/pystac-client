@@ -51,8 +51,8 @@ QueryLike = Union[Query, List[str]]
 FilterLangLike = str
 FilterLike = Union[dict, str]
 
-Sortby = List[str]
-SortbyLike = Union[Sortby, str]
+Sortby = List[Dict[str, str]]
+SortbyLike = Union[Sortby, str, List[str]]
 
 Fields = List[str]
 FieldsLike = Union[Fields, str]
@@ -222,6 +222,8 @@ class ItemSearch:
                 params['collections'] = ','.join(params['collections'])
             if 'intersects' in params:
                 params['intersects'] = json.dumps(params['intersects'])
+            if 'sortby' in params:
+                params['sortby'] = self.sortby_json_to_str(params['sortby'])
             return params
         else:
             raise Exception(f"Unsupported method {self.method}")
@@ -398,9 +400,29 @@ class ItemSearch:
         self._stac_io.assert_conforms_to(ConformanceClasses.SORT)
 
         if isinstance(value, str):
-            return tuple(value.split(','))
+            return [self.sortby_part_to_json(part) for part in value.split(',')]
 
-        return tuple(value)
+        if isinstance(value, list):
+            if value and isinstance(value[0], str):
+                return [self.sortby_part_to_json(v) for v in value]
+            elif value and isinstance(value[0], dict):
+                return value
+
+        raise Exception("sortby must be of type None, str, List[str], or List[Dict[str, str]")
+
+    @staticmethod
+    def sortby_part_to_json(part: str) -> Dict[str, str]:
+        if part.startswith("-"):
+            return {"field": part[1:], "direction": "desc"}
+        elif part.startswith("+"):
+            return {"field": part[1:], "direction": "asc"}
+        else:
+            return {"field": part, "direction": "asc"}
+
+    @staticmethod
+    def sortby_json_to_str(sortby: Sortby) -> str:
+        return ",".join(
+            [f"{'+' if sort['direction'] == 'asc' else '-'}{sort['field']}" for sort in sortby])
 
     def _format_fields(self, value: Optional[FieldsLike]) -> Optional[Fields]:
         if value is None:
