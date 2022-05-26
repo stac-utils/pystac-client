@@ -23,6 +23,7 @@ DATETIME_REGEX = re.compile(r"(?P<year>\d{4})(\-(?P<month>\d{2})(\-(?P<day>\d{2}
                             r"(?P<tz_info>Z|([-+])(\d{2}):(\d{2}))?)?)?)?")
 
 
+# todo: add runtime_checkable when
 class GeoInterface(Protocol):
     def __geo_interface__(self) -> dict:
         ...
