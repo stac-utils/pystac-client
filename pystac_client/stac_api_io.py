@@ -41,7 +41,8 @@ class StacApiIO(DefaultStacIO):
             headers : Optional dictionary of headers to include in all requests
             conformance : Optional list of `Conformance Classes
                 <https://github.com/radiantearth/stac-api-spec/blob/master/overview.md#conformance-classes>`__.
-            parameters: Optional dictionary of query string parameters to include in all requests.
+            parameters: Optional dictionary of query string parameters to
+              include in all requests.
 
         Return:
             StacApiIO : StacApiIO instance
@@ -62,8 +63,9 @@ class StacApiIO(DefaultStacIO):
     ) -> str:
         """Read text from the given URI.
 
-        Overwrites the default method for reading text from a URL or file to allow :class:`urllib.request.Request`
-        instances as input. This method also raises any :exc:`urllib.error.HTTPError` exceptions rather than catching
+        Overwrites the default method for reading text from a URL or file to allow
+        :class:`urllib.request.Request` instances as input. This method also raises
+        any :exc:`urllib.error.HTTPError` exceptions rather than catching
         them to allow us to handle different response status codes as needed.
         """
         if isinstance(source, str):
@@ -77,12 +79,15 @@ class StacApiIO(DefaultStacIO):
         elif isinstance(source, Link):
             link = source.to_dict()
             href = link["href"]
-            # get headers and body from Link and add to request from simple stac resolver
+            # get headers and body from Link and add to request from simple STAC
+            # resolver
             merge = bool(link.get("merge", False))
 
-            # If the link object includes a "method" property, use that. If not fall back to 'GET'.
+            # If the link object includes a "method" property, use that. If not
+            # fall back to 'GET'.
             method = link.get("method", "GET")
-            # If the link object includes a "headers" property, use that and respect the "merge" property.
+            # If the link object includes a "headers" property, use that and
+            # respect the "merge" property.
             headers = link.get("headers", None)
 
             # If "POST" use the body object that and respect the "merge" property.
@@ -107,9 +112,12 @@ class StacApiIO(DefaultStacIO):
 
         Args:
             href (str): The request URL
-            method (Optional[str], optional): The http method to use, 'GET' or 'POST'. Defaults to 'GET'.
-            headers (Optional[dict], optional): Additional headers to include in request. Defaults to {}.
-            parameters (Optional[dict], optional): parameters to send with request. Defaults to {}.
+            method (Optional[str], optional): The http method to use, 'GET' or 'POST'.
+              Defaults to 'GET'.
+            headers (Optional[dict], optional): Additional headers to include in
+              request. Defaults to {}.
+            parameters (Optional[dict], optional): parameters to send with request.
+              Defaults to {}.
 
         Raises:
             APIError: raised if the server returns an error response
@@ -196,7 +204,8 @@ class StacApiIO(DefaultStacIO):
         raise ValueError(f"Unknown STAC object type {info.object_type}")
 
     def get_pages(self, url, method="GET", parameters={}) -> Iterator[Dict]:
-        """Iterator that yields dictionaries for each page at a STAC paging endpoint, e.g., /collections, /search
+        """Iterator that yields dictionaries for each page at a STAC paging
+        endpoint, e.g., /collections, /search
 
         Return:
             Dict : JSON content from a single page
@@ -218,20 +227,23 @@ class StacApiIO(DefaultStacIO):
             )
 
     def assert_conforms_to(self, conformance_class: ConformanceClasses) -> None:
-        """Raises a :exc:`NotImplementedError` if the API does not publish the given conformance class. This method
-        only checks against the ``"conformsTo"`` property from the API landing page and does not make any additional
+        """Raises a :exc:`NotImplementedError` if the API does not publish the given
+        conformance class. This method only checks against the ``"conformsTo"``
+        property from the API landing page and does not make any additional
         calls to a ``/conformance`` endpoint even if the API provides such an endpoint.
 
         Args:
-            conformance_class: The ``ConformanceClasses`` key to check conformance against.
+            conformance_class: The ``ConformanceClasses`` key to check conformance
+            against.
         """
         if not self.conforms_to(conformance_class):
             raise NotImplementedError(f"{conformance_class} not supported")
 
     def conforms_to(self, conformance_class: ConformanceClasses) -> bool:
-        """Whether the API conforms to the given standard. This method only checks against the ``"conformsTo"``
-        property from the API landing page and does not make any additional calls to a ``/conformance`` endpoint
-        even if the API provides such an endpoint.
+        """Whether the API conforms to the given standard. This method only checks
+        against the ``"conformsTo"`` property from the API landing page and does not
+        make any additional calls to a ``/conformance`` endpoint even if the API
+        provides such an endpoint.
 
         Args:
             key : The ``ConformanceClasses`` key to check conformance against.

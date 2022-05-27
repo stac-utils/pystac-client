@@ -15,8 +15,9 @@ class CollectionClient(pystac.Collection):
     def get_items(self) -> Iterable["Item_Type"]:
         """Return all items in this Collection.
 
-        If the Collection contains a link of with a `rel` value of `items`, that link will be
-        used to iterate through items. Otherwise, the default PySTAC behavior is assumed.
+        If the Collection contains a link of with a `rel` value of `items`,
+        that link will be used to iterate through items. Otherwise, the default
+        PySTAC behavior is assumed.
 
         Return:
             Iterable[Item]: Generator of items whose parent is this catalog.

@@ -42,7 +42,8 @@ class TestAPI:
         assert isinstance(first_collection, pystac.Collection)
 
     def test_spec_conformance(self):
-        """Testing conformance against a ConformanceClass should allow APIs using legacy URIs to pass."""
+        """Testing conformance against a ConformanceClass should allow APIs using legacy
+        URIs to pass."""
         client = Client.from_file(str(TEST_DATA / "planetary-computer-root.json"))
 
         # Set conformsTo URIs to conform with STAC API - Core using official URI
@@ -52,8 +53,9 @@ class TestAPI:
 
     @pytest.mark.vcr
     def test_no_conformance(self):
-        """Should raise a NotImplementedError if no conformance info can be found. Luckily, the test API doesn't publish
-        a "conformance" link so we can just remove the "conformsTo" attribute to test this."""
+        """Should raise a NotImplementedError if no conformance info can be found.
+        Luckily, the test API doesn't publish a "conformance" link so we can just
+        remove the "conformsTo" attribute to test this."""
         client = Client.from_file(str(TEST_DATA / "planetary-computer-root.json"))
         client._stac_io._conformance = []
 
@@ -65,7 +67,8 @@ class TestAPI:
 
     @pytest.mark.vcr
     def test_no_stac_core_conformance(self):
-        """Should raise a NotImplementedError if the API does not conform to the STAC API - Core spec."""
+        """Should raise a NotImplementedError if the API does not conform to the
+        STAC API - Core spec."""
         client = Client.from_file(str(TEST_DATA / "planetary-computer-root.json"))
         client._stac_io._conformance = client._stac_io._conformance[1:]
 
@@ -85,7 +88,8 @@ class TestAPI:
             Client.open()
 
     def test_get_collections_with_conformance(self, requests_mock):
-        """Checks that the "data" endpoint is used if the API published the collections conformance class."""
+        """Checks that the "data" endpoint is used if the API published the
+        STAC API Collections conformance class."""
         pc_root_text = read_data_file("planetary-computer-root.json")
         pc_collection_dict = read_data_file(
             "planetary-computer-aster-l1t-collection.json", parse_json=True
@@ -129,7 +133,7 @@ class TestAPI:
             STAC_URLS["PLANETARY-COMPUTER"], parameters={init_qp_name: init_qp_value}
         )
 
-        # Ensure that the the Client will use the /collections endpoint and not fall back
+        # Ensure that the Client will use the /collections endpoint and not fall back
         # to traversing child links.
         assert api._stac_io.conforms_to(ConformanceClasses.COLLECTIONS)
 
@@ -160,7 +164,8 @@ class TestAPI:
     def test_custom_query_params_get_collections_propagation(
         self, requests_mock
     ) -> None:
-        """Checks that query params passed to the init method are added to requests for CollectionClients fetched from
+        """Checks that query params passed to the init method are added to requests for
+        CollectionClients fetched from
         the /collections endpoint."""
         pc_root_text = read_data_file("planetary-computer-root.json")
         pc_collection_dict = read_data_file(
@@ -222,8 +227,8 @@ class TestAPI:
     def test_custom_query_params_get_collection_propagation(
         self, requests_mock
     ) -> None:
-        """Checks that query params passed to the init method are added to requests for CollectionClients fetched from
-        the /collections endpoint."""
+        """Checks that query params passed to the init method are added to
+        requests for CollectionClients fetched from the /collections endpoint."""
         pc_root_text = read_data_file("planetary-computer-root.json")
         pc_collection_dict = read_data_file(
             "planetary-computer-collection.json", parse_json=True
@@ -280,7 +285,8 @@ class TestAPI:
         assert actual_qp[init_qp_name][0] == init_qp_value
 
     def test_get_collections_without_conformance(self, requests_mock):
-        """Checks that the "data" endpoint is used if the API published the collections conformance class."""
+        """Checks that the "data" endpoint is used if the API published
+        the Collections conformance class."""
         pc_root_dict = read_data_file("planetary-computer-root.json", parse_json=True)
         pc_collection_dict = read_data_file(
             "planetary-computer-aster-l1t-collection.json", parse_json=True
@@ -327,7 +333,8 @@ class TestAPISearch:
         return Client.from_file(str(TEST_DATA / "planetary-computer-root.json"))
 
     def test_search_conformance_error(self, api):
-        """Should raise a NotImplementedError if the API doesn't conform to the Item Search spec. Message should
+        """Should raise a NotImplementedError if the API doesn't conform
+        to the Item Search spec. Message should
         include information about the spec that was not conformed to."""
         # Set the conformance to only STAC API - Core
         api._stac_io._conformance = [api._stac_io._conformance[0]]

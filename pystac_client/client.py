@@ -17,11 +17,15 @@ if TYPE_CHECKING:
 class Client(pystac.Catalog):
     """A Client for interacting with the root of a STAC Catalog or API
 
-    Instances of the ``Client`` class inherit from :class:`pystac.Catalog` and provide a convenient way of interacting
-    with STAC Catalogs OR STAC APIs that conform to the `STAC API spec <https://github.com/radiantearth/stac-api-spec>`_.
+    Instances of the ``Client`` class inherit from :class:`pystac.Catalog`
+    and provide a convenient way of interacting
+    with STAC Catalogs OR STAC APIs that conform to the `STAC API spec
+    <https://github.com/radiantearth/stac-api-spec>`_.
     In addition to being a valid
-    `STAC Catalog <https://github.com/radiantearth/stac-spec/blob/master/catalog-spec/catalog-spec.md>`_
-    APIs that have a ``"conformsTo"`` indicate that it supports additional functionality on top of a normal STAC Catalog,
+    `STAC Catalog
+    <https://github.com/radiantearth/stac-spec/blob/master/catalog-spec/catalog-spec.md>`_
+    APIs that have a ``"conformsTo"`` indicate that it supports additional
+    functionality on top of a normal STAC Catalog,
     such as searching items (e.g., /search endpoint).
     """
 
@@ -40,10 +44,14 @@ class Client(pystac.Catalog):
         This function will read the root catalog of a STAC Catalog or API
 
         Args:
-            url : The URL of a STAC Catalog. If not specified, this will use the `STAC_URL` environment variable.
-            headers : A dictionary of additional headers to use in all requests made to any part of this Catalog/API.
-            ignore_conformance : Ignore any advertised Conformance Classes in this Catalog/API. This means that
-                functions will skip checking conformance, and may throw an unknown error if that feature is
+            url : The URL of a STAC Catalog. If not specified, this will use the
+                `STAC_URL` environment variable.
+            headers : A dictionary of additional headers to use in all requests
+                made to any part of this Catalog/API.
+            ignore_conformance : Ignore any advertised Conformance Classes in this
+                Catalog/API. This means that
+                functions will skip checking conformance, and may throw an unknown
+                error if that feature is
                 not supported, rather than a :class:`NotImplementedError`.
 
         Return:
@@ -51,7 +59,8 @@ class Client(pystac.Catalog):
         """
         cat = cls.from_file(url, headers=headers, parameters=parameters)
         search_link = cat.get_search_link()
-        # if there is a search link, but no conformsTo advertised, ignore conformance entirely
+        # if there is a search link, but no conformsTo advertised, ignore
+        # conformance entirely
         # NOTE: this behavior to be deprecated as implementations become conformant
         if ignore_conformance or (
             "conformsTo" not in cat.extra_fields.keys()
@@ -108,8 +117,8 @@ class Client(pystac.Catalog):
     def get_collections(self) -> Iterable[CollectionClient]:
         """Get Collections in this Catalog
 
-            Gets the collections from the /collections endpoint if supported, otherwise fall
-            back to Catalog behavior of following child links
+            Gets the collections from the /collections endpoint if supported,
+            otherwise fall back to Catalog behavior of following child links
 
         Return:
             Iterable[CollectionClient]: Iterator through Collections in Catalog/API
@@ -154,27 +163,32 @@ class Client(pystac.Catalog):
     def search(self, **kwargs: Any) -> ItemSearch:
         """Query the ``/search`` endpoint using the given parameters.
 
-        This method returns an :class:`~pystac_client.ItemSearch` instance, see that class's documentation
-        for details on how to get the number of matches and iterate over results. All keyword arguments are passed
-        directly to the :class:`~pystac_client.ItemSearch` instance.
+        This method returns an :class:`~pystac_client.ItemSearch` instance, see that
+        class's documentation for details on how to get the number of matches and
+        iterate over results. All keyword arguments are passed directly to the
+        :class:`~pystac_client.ItemSearch` instance.
 
         .. warning::
 
             This method is only implemented if the API conforms to the
-            `STAC API - Item Search <https://github.com/radiantearth/stac-api-spec/tree/master/item-search>`__ spec
-            *and* contains a link with a ``"rel"`` type of ``"search"`` in its root catalog.
-            If the API does not meet either of these criteria, this method will raise a :exc:`NotImplementedError`.
+            `STAC API - Item Search
+            <https://github.com/radiantearth/stac-api-spec/tree/master/item-search>`__
+            spec *and* contains a link with a ``"rel"`` type of ``"search"`` in its
+            root catalog. If the API does not meet either of these criteria, this
+            method will raise a :exc:`NotImplementedError`.
 
         Args:
-            **kwargs : Any parameter to the :class:`~pystac_client.ItemSearch` class, other than `url`, `conformance`,
-                and `stac_io` which are set from this Client instance
+            **kwargs : Any parameter to the :class:`~pystac_client.ItemSearch` class,
+             other than `url`, `conformance`, and `stac_io` which are set from this
+             Client instance
 
         Returns:
             search : An ItemSearch instance that can be used to iterate through Items.
 
         Raises:
             NotImplementedError: If the API does not conform to the `Item Search spec
-                <https://github.com/radiantearth/stac-api-spec/tree/master/item-search>`__ or does not have a link with
+                <https://github.com/radiantearth/stac-api-spec/tree/master/item-search>`__
+                or does not have a link with
                 a ``"rel"`` type of ``"search"``.
         """
         if not self._stac_io.conforms_to(ConformanceClasses.ITEM_SEARCH):

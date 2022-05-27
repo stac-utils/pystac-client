@@ -16,10 +16,6 @@ repos:
     rev: 0.11.1
     hooks:
       - id: doc8
-#  - repo: https://github.com/myint/rstcheck
-#    rev: v6.0.0rc2
-#    hooks:
-#      - id: rstcheck
   - repo: https://github.com/PyCQA/flake8
     rev: 4.0.1
     hooks:
