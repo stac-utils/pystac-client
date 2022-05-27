@@ -3,12 +3,12 @@ Usage
 
 PySTAC-Client (pystac-client) builds upon
 `PySTAC <https://github.com/stac-utils/pystac>`_ library to add support
-for STAC APIs in addition to static STACs. PySTAC-Client can be used with static or
-dynamic (i.e., API) catalogs. Currently, pystac-client does not offer much in the way of
-additional functionality if using with static catalogs, as the additional features are
-for support STAC API endpoints such as `search`. However, in the future it is expected
-that pystac-client will offer additional convenience functions that may be useful for
-static and dynamic catalogs alike.
+for STAC APIs in addition to static STAC catalogs. PySTAC-Client can be used with static
+or dynamic (i.e., API) catalogs. Currently, pystac-client does not offer much in the way
+of additional functionality if using with static catalogs, as the additional features
+are for support STAC API endpoints such as `search`. However, in the future it is
+expected that pystac-client will offer additional convenience functions that may be
+useful for static and dynamic catalogs alike.
 
 The most basic implementation of a STAC API is an endpoint that returns a valid STAC
 Catalog, but also contains a ``"conformsTo"`` attribute that is a list of conformance
@@ -148,8 +148,8 @@ requests to a service's "search" endpoint. This method returns a
 
 .. code-block:: python
 
-    >>> from pystac_client import API
-    >>> api = API.from_file('https://planetarycomputer.microsoft.com/api/stac/v1')
+    >>> from pystac_client import Client
+    >>> api = Client.from_file('https://planetarycomputer.microsoft.com/api/stac/v1')
     >>> results = api.search(
     ...     bbox=[-73.21, 43.99, -73.12, 44.05],
     ...     datetime=['2019-01-01T00:00:00Z', '2019-01-02T00:00:00Z'],
@@ -160,16 +160,16 @@ Instances of :class:`~pystac_client.ItemSearch` have 2 methods for iterating
 over results:
 
 * :meth:`ItemSearch.get_item_collections <pystac_client.ItemSearch.item_collections>`:
-  iterates over *pages* of results,
+  an iterable over *pages* of results,
   yielding an :class:`~pystac.ItemCollection` for each page of results.
-* :meth:`ItemSearch.get_items <pystac_client.ItemSearch.items>`: iterate over
-  individual results, yielding a :class:`pystac.Item` instance for all items
-  that match the search criteria.
+* :meth:`ItemSearch.get_items <pystac_client.ItemSearch.items>`: an iterable over
+  individual Item objects, yielding a :class:`pystac.Item` instance for Item
+  that matches the search criteria.
 
 In addition three additional convenience methods are provided:
 
 * :meth:`ItemSearch.matched <pystac_client.ItemSearch.matched>`: returns the number
-  of hits (items) for this search.
+  of hits (items) for this search if the API supports the STAC API Context Extension.
   Not all APIs support returning a total count, in which case a warning will be issued.
 * :meth:`ItemSearch.get_all_items <pystac_client.ItemSearch.get_all_items>`: Rather
   than return an iterator, this function will
@@ -230,3 +230,35 @@ The query filter will also accept complete JSON as per the specification.
 
 Any number of properties can be included, and each can be included more
 than once to use additional operators.
+
+Sort Extension
+---------------
+
+If the Catalog supports the `Sort
+extension <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/sort>`__,
+the search request can specify the order in which the results should be sorted with
+the ``sortby`` parameter.  The ``sortby`` parameter can either be a string
+(e.g., ``"-properties.datetime,+id,collection"``), a list of strings
+(e.g., ``["-properties.datetime", "+id", "+collection"]``), or a dictionary representing
+the POST JSON format of sortby. In the string and list formats, a ``-`` prefix means a
+descending sort and a ``+`` prefix or no prefix means an ascending sort.
+
+.. code-block:: python
+
+    >>> from pystac_client import Client
+    >>> results = Client.from_file('https://planetarycomputer.microsoft.com/api/stac/v1').search(
+    ...     sortby="properties.datetime"
+    ... )
+    >>> results = Client.from_file('https://planetarycomputer.microsoft.com/api/stac/v1').search(
+    ...     sortby="-properties.datetime,+id,+collection"
+    ... )
+    >>> results = Client.from_file('https://planetarycomputer.microsoft.com/api/stac/v1').search(
+    ...     sortby=["-properties.datetime", "+id" , "+collection" ]
+    ... )
+    >>> results = Client.from_file('https://planetarycomputer.microsoft.com/api/stac/v1').search(
+    ...     sortby=[
+                {"direction": "desc", "field": "properties.datetime"},
+                {"direction": "asc", "field": "id"},
+                {"direction": "asc", "field": "collection"},
+            ]
+    ... )
