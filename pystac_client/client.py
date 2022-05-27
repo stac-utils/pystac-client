@@ -54,7 +54,10 @@ class Client(pystac.Catalog):
         # if there is a search link, but no conformsTo advertised, ignore conformance entirely
         # NOTE: this behavior to be deprecated as implementations become conformant
         if ignore_conformance or (
-            "conformsTo" not in cat.extra_fields.keys() and len(search_link) > 0
+            "conformsTo" not in cat.extra_fields.keys()
+            and search_link
+            and search_link.href
+            and len(search_link.href) > 0
         ):
             cat._stac_io.set_conformance(None)
         return cat
