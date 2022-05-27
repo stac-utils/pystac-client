@@ -434,9 +434,6 @@ class ItemSearch:
 
         self._stac_io.assert_conforms_to(ConformanceClasses.FIELDS)
 
-        Fields = Dict[str, List[str]]
-        FieldsLike = Union[Fields, str, List[str]]
-
         if isinstance(value, str):
             return self.fields_to_json(value.split(','))
         if isinstance(value, list):
