@@ -22,4 +22,5 @@ class TestCLI:
     def test_no_arguments(self, script_runner: ScriptRunner):
         args = ["stac-client"]
         result = script_runner.run(*args, print_result=False)
-        assert result.success
+        assert not result.success
+        assert result.returncode == 1
