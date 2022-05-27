@@ -158,7 +158,6 @@ class ItemSearch:
         stac_io: An instance of StacIO for retrieving results. Normally comes from the Client that returns this ItemSearch
         client: An instance of a root Client used to set the root on resulting Items
     """
-
     def __init__(self,
                  url: str,
                  *,
