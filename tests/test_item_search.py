@@ -368,6 +368,31 @@ class TestItemSearchParams:
         with pytest.raises(Exception):
             ItemSearch(url=SEARCH_URL, sortby=[1])
 
+    def test_fields(self):
+
+        with pytest.raises(Exception):
+            ItemSearch(url=SEARCH_URL, fields=1)
+
+        with pytest.raises(Exception):
+            ItemSearch(url=SEARCH_URL, fields=[1])
+
+        search = ItemSearch(url=SEARCH_URL, fields="id,collection,+foo,-bar")
+        assert search.get_parameters()['fields'] == {'excludes': ["bar"], 'includes': ['id', 'collection', 'foo']}
+
+        search = ItemSearch(url=SEARCH_URL, fields=["id","collection", "+foo", "-bar"])
+        assert search.get_parameters()['fields'] == {'excludes': ["bar"], 'includes': ['id', 'collection', 'foo']}
+
+        search = ItemSearch(url=SEARCH_URL, fields={'excludes': ["bar"], 'includes': ['id', 'collection']})
+        assert search.get_parameters()['fields'] == {'excludes': ["bar"], 'includes': ['id', 'collection']}
+
+        search = ItemSearch(url=SEARCH_URL, method="GET", fields="id,collection,+foo,-bar")
+        assert search.get_parameters()['fields'] == "+id,+collection,+foo,-bar"
+
+        search = ItemSearch(url=SEARCH_URL, method="GET", fields=["id","collection", "+foo", "-bar"])
+        assert search.get_parameters()['fields'] == "+id,+collection,+foo,-bar"
+
+        search = ItemSearch(url=SEARCH_URL, method="GET", fields={'excludes': ["bar"], 'includes': ['id', 'collection']})
+        assert search.get_parameters()['fields'] == "+id,+collection,-bar"
 
 class TestItemSearch:
     @pytest.fixture(scope='function')

@@ -8,6 +8,7 @@ from copy import deepcopy
 from datetime import timezone, datetime as datetime_
 from typing import Dict, Iterator, List, Optional, TYPE_CHECKING, Tuple, Union
 import warnings
+from itertools import chain
 
 from pystac import Collection, Item, ItemCollection
 from pystac.stac_io import StacIO
@@ -54,8 +55,8 @@ FilterLike = Union[dict, str]
 Sortby = List[Dict[str, str]]
 SortbyLike = Union[Sortby, str, List[str]]
 
-Fields = List[str]
-FieldsLike = Union[Fields, str]
+Fields = Dict[str, List[str]]
+FieldsLike = Union[Fields, str, List[str]]
 
 OP_MAP = {'>=': 'gte', '<=': 'lte', '=': 'eq', '>': 'gt', '<': 'lt'}
 
@@ -157,6 +158,7 @@ class ItemSearch:
         stac_io: An instance of StacIO for retrieving results. Normally comes from the Client that returns this ItemSearch
         client: An instance of a root Client used to set the root on resulting Items
     """
+
     def __init__(self,
                  url: str,
                  *,
@@ -224,6 +226,8 @@ class ItemSearch:
                 params['intersects'] = json.dumps(params['intersects'])
             if 'sortby' in params:
                 params['sortby'] = self.sortby_json_to_str(params['sortby'])
+            if 'fields' in params:
+                params['fields'] = self.fields_json_to_str(params['fields'])
             return params
         else:
             raise Exception(f"Unsupported method {self.method}")
@@ -430,10 +434,36 @@ class ItemSearch:
 
         self._stac_io.assert_conforms_to(ConformanceClasses.FIELDS)
 
-        if isinstance(value, str):
-            return tuple(value.split(','))
+        Fields = Dict[str, List[str]]
+        FieldsLike = Union[Fields, str, List[str]]
 
-        return tuple(value)
+        if isinstance(value, str):
+            return self.fields_to_json(value.split(','))
+        if isinstance(value, list):
+            return self.fields_to_json(value)
+        if isinstance(value, dict):
+            return value
+
+        raise Exception("sortby must be of type None, str, List[str], or List[Dict[str, str]")
+
+    @staticmethod
+    def fields_to_json(fields: List[str]) -> Fields:
+        includes: List[str] = []
+        excludes: List[str] = []
+        for field in fields:
+            if field.startswith("-"):
+                excludes.append(field[1:])
+            elif field.startswith("+"):
+                includes.append(field[1:])
+            else:
+                includes.append(field)
+        return {"includes": includes, "excludes": excludes}
+
+    @staticmethod
+    def fields_json_to_str(fields: Fields) -> str:
+        includes = [f"+{x}" for x in fields.get('includes', [])]
+        excludes = [f"-{x}" for x in fields.get('excludes', [])]
+        return ",".join(chain(includes, excludes))
 
     @staticmethod
     def _format_intersects(value: Optional[IntersectsLike]) -> Optional[Intersects]:
