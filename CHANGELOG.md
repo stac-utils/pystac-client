@@ -4,11 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [v0.3.5] - 2022-05-26
-
-### Fixed
-
-- Search against earth-search v0 failed with message "object of type 'Link' has no len()" [#179](https://github.com/stac-utils/pystac-client/pull/179)
+## [Unreleased] - TBD
 
 ### Added
 
@@ -21,6 +17,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - Search sortby parameter now has correct typing and correctly handles both GET and POST JSON parameter formats. [#175](https://github.com/stac-utils/pystac-client/pull/175)
+- Search fields parameter now has correct typing and correctly handles both GET and POST JSON parameter formats. [#184](https://github.com/stac-utils/pystac-client/pull/184)
+ 
+## [v0.3.5] - 2022-05-26
+
+### Fixed
+
+- Search against earth-search v0 failed with message "object of type 'Link' has no len()" [#179](https://github.com/stac-utils/pystac-client/pull/179)
 
 ## [v0.3.4] - 2022-05-18
 
