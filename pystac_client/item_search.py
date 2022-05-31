@@ -6,6 +6,7 @@ from copy import deepcopy
 from datetime import datetime as datetime_
 from datetime import timezone
 from functools import lru_cache
+from itertools import chain
 from typing import TYPE_CHECKING, Any, Dict, Iterator, List, Optional, Tuple, Union
 
 from dateutil.relativedelta import relativedelta
@@ -61,8 +62,8 @@ FilterLike = Union[dict, str]
 Sortby = List[Dict[str, str]]
 SortbyLike = Union[Sortby, str, List[str]]
 
-Fields = List[str]
-FieldsLike = Union[Fields, str]
+Fields = Dict[str, List[str]]
+FieldsLike = Union[Fields, str, List[str]]
 
 OP_MAP = {">=": "gte", "<=": "lte", "=": "eq", ">": "gt", "<": "lt"}
 
@@ -267,7 +268,9 @@ class ItemSearch:
             if "intersects" in params:
                 params["intersects"] = json.dumps(params["intersects"])
             if "sortby" in params:
-                params["sortby"] = self.sortby_json_to_str(params["sortby"])
+                params["sortby"] = self.sortby_dict_to_str(params["sortby"])
+            if "fields" in params:
+                params["fields"] = self.fields_dict_to_str(params["fields"])
             return params
         else:
             raise Exception(f"Unsupported method {self.method}")
@@ -455,11 +458,11 @@ class ItemSearch:
         self._stac_io.assert_conforms_to(ConformanceClasses.SORT)
 
         if isinstance(value, str):
-            return [self.sortby_part_to_json(part) for part in value.split(",")]
+            return [self.sortby_part_to_dict(part) for part in value.split(",")]
 
         if isinstance(value, list):
             if value and isinstance(value[0], str):
-                return [self.sortby_part_to_json(v) for v in value]
+                return [self.sortby_part_to_dict(v) for v in value]
             elif value and isinstance(value[0], dict):
                 return value
 
@@ -468,7 +471,7 @@ class ItemSearch:
         )
 
     @staticmethod
-    def sortby_part_to_json(part: str) -> Dict[str, str]:
+    def sortby_part_to_dict(part: str) -> Dict[str, str]:
         if part.startswith("-"):
             return {"field": part[1:], "direction": "desc"}
         elif part.startswith("+"):
@@ -477,7 +480,7 @@ class ItemSearch:
             return {"field": part, "direction": "asc"}
 
     @staticmethod
-    def sortby_json_to_str(sortby: Sortby) -> str:
+    def sortby_dict_to_str(sortby: Sortby) -> str:
         return ",".join(
             [
                 f"{'+' if sort['direction'] == 'asc' else '-'}{sort['field']}"
@@ -492,9 +495,34 @@ class ItemSearch:
         self._stac_io.assert_conforms_to(ConformanceClasses.FIELDS)
 
         if isinstance(value, str):
-            return tuple(value.split(","))
+            return self.fields_to_dict(value.split(","))
+        if isinstance(value, list):
+            return self.fields_to_dict(value)
+        if isinstance(value, dict):
+            return value
 
-        return tuple(value)
+        raise Exception(
+            "sortby must be of type None, str, List[str], or List[Dict[str, str]"
+        )
+
+    @staticmethod
+    def fields_to_dict(fields: List[str]) -> Fields:
+        includes: List[str] = []
+        excludes: List[str] = []
+        for field in fields:
+            if field.startswith("-"):
+                excludes.append(field[1:])
+            elif field.startswith("+"):
+                includes.append(field[1:])
+            else:
+                includes.append(field)
+        return {"includes": includes, "excludes": excludes}
+
+    @staticmethod
+    def fields_dict_to_str(fields: Fields) -> str:
+        includes = [f"+{x}" for x in fields.get("includes", [])]
+        excludes = [f"-{x}" for x in fields.get("excludes", [])]
+        return ",".join(chain(includes, excludes))
 
     @staticmethod
     def _format_intersects(value: Optional[IntersectsLike]) -> Optional[Intersects]:
