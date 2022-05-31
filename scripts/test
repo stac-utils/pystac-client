@@ -17,22 +17,8 @@ if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
     if [ "${1:-}" = "--help" ]; then
         usage
     else
-        # Lint
-        flake8 pystac_client tests
-
-        # Code formatting
-        yapf -dpr pystac_client tests
-
-        # Code spelling
-        codespell -I .codespellignore -f \
-            pystac_client/*.py pystac_client/**/*.py \
-            tests/*.py tests/**/*.py \
-            docs/*.rst docs/**/*.rst \
-            docs/*.ipynb docs/**/*.ipynb \
-            scripts/* \
-            *.py \
-            *.md
-
+        ./scripts/lint
+        ./scripts/format
         # Test suite with coverage enabled
         pytest -s --block-network --cov pystac_client --cov-report term-missing
         coverage xml
