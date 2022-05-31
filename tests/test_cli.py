@@ -8,8 +8,13 @@ class TestCLI:
     @pytest.mark.vcr
     def test_item_search(self, script_runner: ScriptRunner):
         args = [
-            "stac-client", "search", STAC_URLS['PLANETARY-COMPUTER'], "-c", "naip", "--max-items",
-            "20"
+            "stac-client",
+            "search",
+            STAC_URLS["PLANETARY-COMPUTER"],
+            "-c",
+            "naip",
+            "--max-items",
+            "20",
         ]
         result = script_runner.run(*args, print_result=False)
         assert result.success
@@ -17,4 +22,5 @@ class TestCLI:
     def test_no_arguments(self, script_runner: ScriptRunner):
         args = ["stac-client"]
         result = script_runner.run(*args, print_result=False)
-        assert result.success
+        assert not result.success
+        assert result.returncode == 1
