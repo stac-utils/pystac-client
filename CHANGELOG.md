@@ -9,16 +9,24 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - lru_cache to several methods [#167](https://github.com/stac-utils/pystac-client/pull/167)
+- Direct item GET via ogcapi-features, if conformant [#166](https://github.com/stac-utils/pystac-client/pull/166)
 
 ### Changed
 
 - Better error message when trying to search a non-item-search-conforming catalog [#164](https://github.com/stac-utils/pystac-client/pull/164)
+- Search `filter-lang` defaults to `cql2-json` instead of `cql-json`
+- Search `filter-lang` will be set to `cql2-json` if the `filter` is a dict, or `cql2-text` if it is a string
+- Search parameter `intersects` is now typed to only accept a str, dict, or object that implements `__geo_interface__`
 
 ### Fixed
 
 - Search sortby parameter now has correct typing and correctly handles both GET and POST JSON parameter formats. [#175](https://github.com/stac-utils/pystac-client/pull/175)
 - Search fields parameter now has correct typing and correctly handles both GET and POST JSON parameter formats. [#184](https://github.com/stac-utils/pystac-client/pull/184)
 - Use pytest configuration to skip benchmarks by default (instead of a `skip` mark) [#168](https://github.com/stac-utils/pystac-client/pull/168)
+
+## Removed
+
+- Client parameter `require_geojson_link` has been removed.
 
 ## [v0.3.5] - 2022-05-26
 
@@ -27,10 +35,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Search against earth-search v0 failed with message "object of type 'Link' has no len()" [#179](https://github.com/stac-utils/pystac-client/pull/179)
 
 ## [v0.3.4] - 2022-05-18
-
-### Added
-
-- Direct item GET via ogcapi-features, if conformant [#166](https://github.com/stac-utils/pystac-client/pull/166)
 
 ### Changed
 
@@ -47,13 +51,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Relaxed upper bound on PySTAC dependency [#144](https://github.com/stac-utils/pystac-client/pull/144)
 - Bumped PySTAC dependency to >= 1.4.0 [#147](https://github.com/stac-utils/pystac-client/pull/147)
-- Search `filter-lang` defaults to `cql2-json` instead of `cql-json`
-- Search `filter-lang` will be set to `cql2-json` if the `filter` is a dict, or `cql2-text` if it is a string
-- Search parameter `intersects` is now typed to only accept a str, dict, or object that implements `__geo_interface__`
-
-## Removed
-
-- Client parameter `require_geojson_link` has been removed.
 
 ## [v0.3.2] - 2022-01-11
 
