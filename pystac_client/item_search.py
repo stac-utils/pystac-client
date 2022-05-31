@@ -268,9 +268,9 @@ class ItemSearch:
             if "intersects" in params:
                 params["intersects"] = json.dumps(params["intersects"])
             if "sortby" in params:
-                params["sortby"] = self.sortby_json_to_str(params["sortby"])
+                params["sortby"] = self.sortby_dict_to_str(params["sortby"])
             if "fields" in params:
-                params["fields"] = self.fields_json_to_str(params["fields"])
+                params["fields"] = self.fields_dict_to_str(params["fields"])
             return params
         else:
             raise Exception(f"Unsupported method {self.method}")
@@ -458,11 +458,11 @@ class ItemSearch:
         self._stac_io.assert_conforms_to(ConformanceClasses.SORT)
 
         if isinstance(value, str):
-            return [self.sortby_part_to_json(part) for part in value.split(",")]
+            return [self.sortby_part_to_dict(part) for part in value.split(",")]
 
         if isinstance(value, list):
             if value and isinstance(value[0], str):
-                return [self.sortby_part_to_json(v) for v in value]
+                return [self.sortby_part_to_dict(v) for v in value]
             elif value and isinstance(value[0], dict):
                 return value
 
@@ -471,7 +471,7 @@ class ItemSearch:
         )
 
     @staticmethod
-    def sortby_part_to_json(part: str) -> Dict[str, str]:
+    def sortby_part_to_dict(part: str) -> Dict[str, str]:
         if part.startswith("-"):
             return {"field": part[1:], "direction": "desc"}
         elif part.startswith("+"):
@@ -480,7 +480,7 @@ class ItemSearch:
             return {"field": part, "direction": "asc"}
 
     @staticmethod
-    def sortby_json_to_str(sortby: Sortby) -> str:
+    def sortby_dict_to_str(sortby: Sortby) -> str:
         return ",".join(
             [
                 f"{'+' if sort['direction'] == 'asc' else '-'}{sort['field']}"
@@ -495,9 +495,9 @@ class ItemSearch:
         self._stac_io.assert_conforms_to(ConformanceClasses.FIELDS)
 
         if isinstance(value, str):
-            return self.fields_to_json(value.split(","))
+            return self.fields_to_dict(value.split(","))
         if isinstance(value, list):
-            return self.fields_to_json(value)
+            return self.fields_to_dict(value)
         if isinstance(value, dict):
             return value
 
@@ -506,7 +506,7 @@ class ItemSearch:
         )
 
     @staticmethod
-    def fields_to_json(fields: List[str]) -> Fields:
+    def fields_to_dict(fields: List[str]) -> Fields:
         includes: List[str] = []
         excludes: List[str] = []
         for field in fields:
@@ -519,7 +519,7 @@ class ItemSearch:
         return {"includes": includes, "excludes": excludes}
 
     @staticmethod
-    def fields_json_to_str(fields: Fields) -> str:
+    def fields_dict_to_str(fields: Fields) -> str:
         includes = [f"+{x}" for x in fields.get("includes", [])]
         excludes = [f"-{x}" for x in fields.get("excludes", [])]
         return ",".join(chain(includes, excludes))
