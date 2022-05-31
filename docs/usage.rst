@@ -3,21 +3,12 @@ Usage
 
 PySTAC-Client (pystac-client) builds upon
 `PySTAC <https://github.com/stac-utils/pystac>`_ library to add support
-<<<<<<< HEAD
 for STAC APIs in addition to static STAC catalogs. PySTAC-Client can be used with static
 or dynamic (i.e., API) catalogs. Currently, pystac-client does not offer much in the way
 of additional functionality if using with static catalogs, as the additional features
 are for support STAC API endpoints such as `search`. However, in the future it is
 expected that pystac-client will offer additional convenience functions that may be
 useful for static and dynamic catalogs alike.
-=======
-for STAC APIs in addition to static STACs. PySTAC-Client can be used with static or
-dynamic (i.e., API) catalogs. Currently, pystac-client does not offer much in the way of
-additional functionality if using with static catalogs, as the additional features are
-for support STAC API endpoints such as `search`. However, in the future it is expected
-that pystac-client will offer additional convenience functions that may be useful for
-static and dynamic catalogs alike.
->>>>>>> main
 
 The most basic implementation of a STAC API is an endpoint that returns a valid STAC
 Catalog, but also contains a ``"conformsTo"`` attribute that is a list of conformance
