@@ -507,7 +507,7 @@ class TestItemSearch:
             max_items=20,
             limit=10,
         )
-        results = search.get_items()
+        results = search.items()
 
         assert all(isinstance(item, pystac.Item) for item in results)
 
@@ -521,7 +521,7 @@ class TestItemSearch:
             url=SEARCH_URL,
             ids=ids,
         )
-        results = list(search.get_items())
+        results = list(search.items())
 
         assert len(results) == 1
         assert all(item.id in ids for item in results)
@@ -531,13 +531,13 @@ class TestItemSearch:
         # Datetime range string
         datetime_ = "2019-01-01T00:00:01Z/2019-01-01T00:00:10Z"
         search = ItemSearch(url=SEARCH_URL, datetime=datetime_)
-        results = list(search.get_items())
+        results = list(search.items())
         assert len(results) == 33
 
         min_datetime = datetime(2019, 1, 1, 0, 0, 1, tzinfo=tzutc())
         max_datetime = datetime(2019, 1, 1, 0, 0, 10, tzinfo=tzutc())
         search = ItemSearch(url=SEARCH_URL, datetime=(min_datetime, max_datetime))
-        results = search.get_items()
+        results = search.items()
         assert all(
             min_datetime <= item.datetime <= (max_datetime + timedelta(seconds=1))
             for item in results
@@ -561,7 +561,7 @@ class TestItemSearch:
         search = ItemSearch(
             url=SEARCH_URL, intersects=intersects_dict, collections="naip"
         )
-        results = list(search.get_items())
+        results = list(search.items())
         assert len(results) == 30
 
         # Geo-interface object
@@ -574,7 +574,7 @@ class TestItemSearch:
         search = ItemSearch(
             url=SEARCH_URL, intersects=intersects_obj, collections="naip"
         )
-        results = search.get_items()
+        results = search.items()
         assert all(isinstance(item, pystac.Item) for item in results)
 
     @pytest.mark.vcr
@@ -588,7 +588,7 @@ class TestItemSearch:
         )
 
         # Check that the current page changes on the ItemSearch instance when a new page is requested
-        pages = list(search.get_item_collections())
+        pages = list(search.item_collections())
 
         assert pages[1] != pages[2]
         assert pages[1].items != pages[2].items
@@ -606,7 +606,7 @@ class TestItemSearch:
         assert len(item_collection.items) == 20
 
     @pytest.mark.vcr
-    def test_get_items_as_dicts(self) -> None:
+    def test_items_as_dicts(self) -> None:
         search = ItemSearch(
             url=SEARCH_URL,
             bbox=(-73.21, 43.99, -73.12, 44.05),
@@ -614,7 +614,7 @@ class TestItemSearch:
             limit=10,
             max_items=20,
         )
-        assert len(list(search.get_items_as_dicts())) == 20
+        assert len(list(search.items_as_dicts())) == 20
 
 
 class TestItemSearchQuery:
@@ -626,7 +626,7 @@ class TestItemSearchQuery:
             query=["gsd=10"],
             max_items=1,
         )
-        items1 = list(search.get_items())
+        items1 = list(search.items())
 
         search = ItemSearch(
             url=SEARCH_URL,
@@ -634,7 +634,7 @@ class TestItemSearchQuery:
             query={"gsd": {"eq": 10}},
             max_items=1,
         )
-        items2 = list(search.get_items())
+        items2 = list(search.items())
 
         assert len(items1) == 1
         assert len(items2) == 1

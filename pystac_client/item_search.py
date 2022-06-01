@@ -110,7 +110,7 @@ class ItemSearch:
 
     No request is sent to the API until a function is called to fetch or iterate
      through the resulting STAC Items,
-     either the :meth:`ItemSearch.get_item_collections` or :meth:`ItemSearch.get_items`
+     either the :meth:`ItemSearch.item_collections` or :meth:`ItemSearch.items`
      method is called and iterated over.
 
     All "Parameters", with the exception of ``max_items``, ``method``, and
@@ -193,7 +193,7 @@ class ItemSearch:
         sortby: A single field or list of fields to sort the response by
         fields: A list of fields to include in the response. Note this may
             result in invalid STAC objects, as they may not have required fields.
-            Use `get_items_as_dicts` to avoid object unmarshalling errors.
+            Use `items_as_dicts` to avoid object unmarshalling errors.
         max_items: The maximum number of items to get, even if there are more
             matched items.
         method: The http method, 'GET' or 'POST'
@@ -564,6 +564,19 @@ class ItemSearch:
         return found
 
     def get_item_collections(self) -> Iterator[ItemCollection]:
+        """DEPRECATED. Use :meth:`ItemSearch.item_collections` instead.
+
+        Yields:
+            ItemCollection : a group of Items matching the search criteria within an
+            ItemCollection
+        """
+        warnings.warn(
+            "get_item_collections() is deprecated, use item_collections() instead",
+            DeprecationWarning,
+        )
+        return self.item_collections()
+
+    def item_collections(self) -> Iterator[ItemCollection]:
         """Iterator that yields ItemCollection objects.  Each ItemCollection is
         a page of results from the search.
 
@@ -577,9 +590,21 @@ class ItemSearch:
             yield ItemCollection.from_dict(page, preserve_dict=False, root=self.client)
 
     def get_items(self) -> Iterator[Item]:
+        """DEPRECATED. Use :meth:`ItemSearch.items` instead.
+
+        Yields:
+            Item : each Item matching the search criteria
+        """
+        warnings.warn(
+            "get_items() is deprecated, use items() instead",
+            DeprecationWarning,
+        )
+        return self.items()
+
+    def items(self) -> Iterator[Item]:
         """Iterator that yields :class:`pystac.Item` instances for each item matching
         the given search parameters. Calls
-        :meth:`ItemSearch.get_item_collections` internally and yields from
+        :meth:`ItemSearch.item_collections` internally and yields from
         :attr:`ItemCollection.features <pystac_client.ItemCollection.features>` for
         each page of results.
 
@@ -587,17 +612,17 @@ class ItemSearch:
             Item : each Item matching the search criteria
         """
         nitems = 0
-        for item_collection in self.get_item_collections():
+        for item_collection in self.item_collections():
             for item in item_collection:
                 yield item
                 nitems += 1
                 if self._max_items and nitems >= self._max_items:
                     return
 
-    def get_items_as_dicts(self) -> Iterator[Dict[str, Any]]:
+    def items_as_dicts(self) -> Iterator[Dict[str, Any]]:
         """Iterator that yields :class:`dict` instances for each item matching
         the given search parameters. Calls
-        :meth:`ItemSearch.get_item_collections` internally and yields from
+        :meth:`ItemSearch.item_collections` internally and yields from
         :attr:`ItemCollection.features <pystac_client.ItemCollection.features>` for
         each page of results.
 

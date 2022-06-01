@@ -159,13 +159,13 @@ requests to a service's "search" endpoint. This method returns a
 Instances of :class:`~pystac_client.ItemSearch` have 2 methods for iterating
 over results:
 
-* :meth:`ItemSearch.get_item_collections
-  <pystac_client.ItemSearch.get_item_collections>`: iterator over *pages* of results,
+* :meth:`ItemSearch.item_collections
+  <pystac_client.ItemSearch.item_collections>`: iterator over *pages* of results,
   yielding an :class:`~pystac.ItemCollection` for each page of results.
-* :meth:`ItemSearch.get_items <pystac_client.ItemSearch.get_items>`: an iterator over
+* :meth:`ItemSearch.items <pystac_client.ItemSearch.items>`: an iterator over
   individual Item objects, yielding a :class:`pystac.Item` instance for all Items
   that match the search criteria.
-* :meth:`ItemSearch.get_items_as_dicts <pystac_client.ItemSearch.get_items_as_dicts>`:
+* :meth:`ItemSearch.items_as_dicts <pystac_client.ItemSearch.items_as_dicts>`:
   iterate over individual results, yielding a :class:`dict` instance representing each
   item that matches the search criteria. This eliminates the overhead of creating
   class:`pystac.Item` objects
@@ -179,7 +179,7 @@ how many total items matched the query:
 
 .. code-block:: python
 
-    >>> for item in results.get_items():
+    >>> for item in results.items():
     ...     print(item.id)
     S2B_OPER_MSI_L2A_TL_SGS__20190101T200120_A009518_T18TXP_N02.11
     MCD43A4.A2019010.h12v04.006.2019022234410
@@ -187,7 +187,7 @@ how many total items matched the query:
     MYD11A1.A2019002.h12v04.006.2019003174703
     MYD11A1.A2019001.h12v04.006.2019002165238
 
-The :meth:`~pystac_client.ItemSearch.get_items` and related methods handle retrieval of
+The :meth:`~pystac_client.ItemSearch.items` and related methods handle retrieval of
 successive pages of results
 by finding links with a ``"rel"`` type of ``"next"`` and parsing them to construct the
 next request. The default
@@ -203,7 +203,7 @@ ItemCollection is one page of results retrieved from search:
 
 .. code-block:: python
 
-    >>> for ic in results.get_item_collections():
+    >>> for ic in results.item_collections():
     ...     for item in ic.items:
     ...         print(item.id)
     S2B_OPER_MSI_L2A_TL_SGS__20190101T200120_A009518_T18TXP_N02.11
@@ -213,13 +213,13 @@ ItemCollection is one page of results retrieved from search:
     MYD11A1.A2019001.h12v04.006.2019002165238
 
 If you do not need the :class:`pystac.Item` instances, you can instead use
-:meth:`ItemSearch.get_items_as_dicts <pystac_client.ItemSearch.get_items_as_dicts>`
-to retrive dictionary representation of the items, without incurring the cost of
+:meth:`ItemSearch.items_as_dicts <pystac_client.ItemSearch.items_as_dicts>`
+to retrieve dictionary representation of the items, without incurring the cost of
 creating the Item objects.
 
 .. code-block:: python
 
-    >>> for item_dict in results.get_items_as_dicts():
+    >>> for item_dict in results.items_as_dicts():
     ...     print(item_dict["id"])
     S2B_OPER_MSI_L2A_TL_SGS__20190101T200120_A009518_T18TXP_N02.11
     MCD43A4.A2019010.h12v04.006.2019022234410

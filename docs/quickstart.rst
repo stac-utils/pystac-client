@@ -106,11 +106,11 @@ Create a search:
     my_search = catalog_client.search(collections=['sentinel-s2-l2a-cogs'], bbox=[-72.5,40.5,-72,41], max_items=10)
     print(f"{mysearch.matched()} items found")
 
-The ``get_items`` generator function can be used to iterate through all resulting items.
+The ``items()`` generator method can be used to iterate through all resulting items.
 
 .. code-block:: python
 
-    for item in my_search.get_items():
+    for item in my_search.items():
         print(item.id)
 
 To convert all of Items from a search as a single `PySTAC
@@ -125,5 +125,5 @@ Save all found items as a single FeatureCollection:
 
     from pystac import ItemCollection
 
-    my_itemcollection = ItemCollection(items = list(my_search.get_items()))
+    my_itemcollection = ItemCollection(items = list(my_search.items()))
     my_itemcollection.save_object('my_itemcollection.json')
