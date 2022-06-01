@@ -67,6 +67,8 @@ FieldsLike = Union[Fields, str, List[str]]
 
 OP_MAP = {">=": "gte", "<=": "lte", "=": "eq", ">": "gt", "<": "lt"}
 
+DEFAULT_LIMIT_AND_MAX_ITEMS = 100
+
 
 # from https://gist.github.com/angstwad/bf22d1822c38a92ec0a9#gistcomment-2622319
 def dict_merge(
@@ -108,37 +110,52 @@ class ItemSearch:
     `STAC API - Item Search spec
     <https://github.com/radiantearth/stac-api-spec/tree/master/item-search>`__.
 
-    No request is sent to the API until a function is called to fetch or iterate
-     through the resulting STAC Items,
-     either the :meth:`ItemSearch.item_collections` or :meth:`ItemSearch.items`
-     method is called and iterated over.
+    No request is sent to the API until a method is called to iterate
+    through the resulting STAC Items, either :meth:`ItemSearch.item_collections`,
+    :meth:`ItemSearch.items`, or :meth:`ItemSearch.items_as_dicts`.
 
-    All "Parameters", with the exception of ``max_items``, ``method``, and
-    ``url`` correspond to query parameters
+    All parameters except `url``, ``method``, ``max_items``, ``stac_io``, and ``client``
+    correspond to query parameters
     described in the `STAC API - Item Search: Query Parameters Table
     <https://github.com/radiantearth/stac-api-spec/tree/master/item-search#query-parameter-table>`__
     docs. Please refer
     to those docs for details on how these parameters filter search results.
 
     Args:
-        url : The URL to the item-search endpoint
+        url: The URL to the root / landing page of the STAC API
+            implementing the Item Search endpoint.
         method : The HTTP method to use when making a request to the service.
             This must be either ``"GET"``, ``"POST"``, or
-            ``None``. If ``None``, this will default to ``"POST"`` if the
-            ``intersects`` argument is present and ``"GET"``
-            if not. If a ``"POST"`` request receives a ``405`` status for
-            the response, it will automatically retry with a
-            ``"GET"`` request for all subsequent requests.
-        max_items : The maximum number of items to return from the search. *Note
-            that this is not a STAC API - Item Search
-            parameter and is instead used by the client to limit the total number
-            of returned items*.
-        limit : The maximum number of items to return *per page*. Defaults to
-            ``None``, which falls back to the limit set
-            by the service.
-        bbox: May be a list, tuple, or iterator representing a bounding box of 2D
-         or 3D coordinates. Results will be filtered
+            ``None``. If ``None``, this will default to ``"POST"``.
+            If a ``"POST"`` request receives a ``405`` status for
+            the response, it will automatically retry with
+            ``"GET"`` for all subsequent requests.
+        max_items : The maximum number of items to return from the search, even
+            if there are more matching results. This client to limit the
+            total number of Items returned from the :meth:`items`,
+            :meth:`item_collections`, and :meth:`items_as_dicts methods`. The client
+            will continue to request pages of items until the number of max items is
+            reached. This parameter defaults to 100. Setting this to ``None`` will
+            allow iteration over a possibly very large number of results.
+        stac_io: An instance of StacIO for retrieving results. Normally comes
+            from the Client that returns this ItemSearch client: An instance of a
+            root Client used to set the root on resulting Items.
+        client: An instance of Client for retrieving results. This is normally populated
+            by the client that returns this ItemSearch instance.
+        limit: A recommendation to the service as to the number of items to return
+            *per page* of results. Defaults to 100.
+        ids: List of one or more Item ids to filter on.
+        collections: List of one or more Collection IDs or :class:`pystac.Collection`
+            instances. Only Items in one
+            of the provided Collections will be searched
+        bbox: A list, tuple, or iterator representing a bounding box of 2D
+            or 3D coordinates. Results will be filtered
             to only those intersecting the bounding box.
+        intersects: A string or dictionary representing a GeoJSON geometry, or
+            an object that implements a
+            ``__geo_interface__`` property, as supported by several libraries
+            including Shapely, ArcPy, PySAL, and
+            geojson. Results filtered to only those intersecting the geometry.
         datetime: Either a single datetime or datetime range used to filter results.
             You may express a single datetime using a :class:`datetime.datetime`
              instance, a `RFC 3339-compliant <https://tools.ietf.org/html/rfc3339>`__
@@ -174,17 +191,7 @@ class ItemSearch:
               ``2017-06-01T00:00:00Z/2017-07-31T23:59:59Z``
             - ``2017-06-10/2017-06-11`` expands to
               ``2017-06-10T00:00:00Z/2017-06-11T23:59:59Z``
-        intersects: A string or dictionary representing a GeoJSON geometry, or
-            an object that implements a
-            ``__geo_interface__`` property as supported by several libraries
-            including Shapely, ArcPy, PySAL, and
-            geojson. Results filtered to only those intersecting the geometry.
-        ids: List of Item ids to return. All other filter parameters that further
-        restrict the number of search results
-            (except ``limit``) are ignored.
-        collections: List of one or more Collection IDs or :class:`pystac.Collection`
-         instances. Only Items in one
-            of the provided Collections will be searched
+
         query: List or JSON of query parameters as per the STAC API `query` extension
         filter: JSON of query parameters as per the STAC API `filter` extension
         filter_lang: Language variant used in the filter body. If `filter` is a
@@ -194,33 +201,27 @@ class ItemSearch:
         fields: A list of fields to include in the response. Note this may
             result in invalid STAC objects, as they may not have required fields.
             Use `items_as_dicts` to avoid object unmarshalling errors.
-        max_items: The maximum number of items to get, even if there are more
-            matched items.
-        method: The http method, 'GET' or 'POST'
-        stac_io: An instance of StacIO for retrieving results. Normally comes
-        from the Client that returns this ItemSearch client: An instance of a
-        root Client used to set the root on resulting Items
     """
 
     def __init__(
         self,
         url: str,
         *,
-        limit: Optional[int] = 100,
-        bbox: Optional[BBoxLike] = None,
-        datetime: Optional[DatetimeLike] = None,
-        intersects: Optional[IntersectsLike] = None,
+        method: Optional[str] = "POST",
+        max_items: Optional[int] = DEFAULT_LIMIT_AND_MAX_ITEMS,
+        stac_io: Optional[StacIO] = None,
+        client: Optional["Client"] = None,
+        limit: Optional[int] = DEFAULT_LIMIT_AND_MAX_ITEMS,
         ids: Optional[IDsLike] = None,
         collections: Optional[CollectionsLike] = None,
+        bbox: Optional[BBoxLike] = None,
+        intersects: Optional[IntersectsLike] = None,
+        datetime: Optional[DatetimeLike] = None,
         query: Optional[QueryLike] = None,
         filter: Optional[FilterLike] = None,
         filter_lang: Optional[FilterLangLike] = None,
         sortby: Optional[SortbyLike] = None,
         fields: Optional[FieldsLike] = None,
-        max_items: Optional[int] = None,
-        method: Optional[str] = "POST",
-        stac_io: Optional[StacIO] = None,
-        client: Optional["Client"] = None,
     ):
         self.url = url
         self.client = client
