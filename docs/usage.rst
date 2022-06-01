@@ -215,7 +215,7 @@ ItemCollection is one page of results retrieved from search:
 If you do not need the :class:`pystac.Item` instances, you can instead use
 :meth:`ItemSearch.get_items_as_dicts <pystac_client.ItemSearch.get_items_as_dicts>`
 to retrive dictionary representation of the items, without incurring the cost of
-creating the pydantic Item objects.
+creating the Item objects.
 
 .. code-block:: python
 
