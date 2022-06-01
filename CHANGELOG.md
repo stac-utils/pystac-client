@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased] - TBD
 
+### Deprecated
+
+- Item Search methods `get_all_items` and `get_all_items_as_dict` are now deprecated.
+  These have been deprecated because they have the potential to perform a large number
+  of requests to the server and instantiate a large number of objects in memory.
+  To a user, this is only visible as a large delay in the method call and/or the
+  exhaustion of all available memory. The iterator methods `get_items` or
+  `get_itemcollections` should be used instead.
+
 ### Added
 
 - lru_cache to several methods [#167](https://github.com/stac-utils/pystac-client/pull/167)

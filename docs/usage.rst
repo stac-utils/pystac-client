@@ -159,26 +159,23 @@ requests to a service's "search" endpoint. This method returns a
 Instances of :class:`~pystac_client.ItemSearch` have 2 methods for iterating
 over results:
 
-* :meth:`ItemSearch.get_item_collections <pystac_client.ItemSearch.item_collections>`:
-  iterator over *pages* of results,
+* :meth:`ItemSearch.get_item_collections
+  <pystac_client.ItemSearch.get_item_collections>`: iterator over *pages* of results,
   yielding an :class:`~pystac.ItemCollection` for each page of results.
 * :meth:`ItemSearch.get_items <pystac_client.ItemSearch.get_items>`: an iterator over
-  individual Item objects, yielding a :class:`pystac.Item` instance for Item
-  that matches the search criteria.
+  individual Item objects, yielding a :class:`pystac.Item` instance for all Items
+  that match the search criteria.
+* :meth:`ItemSearch.get_items_as_dicts <pystac_client.ItemSearch.get_items_as_dicts>`:
+  iterate over individual results, yielding a :class:`dict` instance representing each
+  item that matches the search criteria. This eliminates the overhead of creating
+  class:`pystac.Item` objects with pydantic
 
-In addition three additional convenience methods are provided:
+Additionally, the ``matched`` method can be used to access result metadata about
+how many total items matched the query:
 
 * :meth:`ItemSearch.matched <pystac_client.ItemSearch.matched>`: returns the number
   of hits (items) for this search if the API supports the STAC API Context Extension.
   Not all APIs support returning a total count, in which case a warning will be issued.
-* :meth:`ItemSearch.get_all_items <pystac_client.ItemSearch.get_all_items>`: Rather
-  than return an iterator, this function will
-  fetch all items and return them as a single :class:`~pystac.ItemCollection`.
-* :meth:`ItemSearch.get_all_items_as_dict
-  <pystac_client.ItemSearch.get_all_items_as_dict>` : Like `get_all_items` this fetches
-  all items but returns them as a GeoJSON FeatureCollection dictionary rather than a
-  PySTAC object. This can be more efficient if only a dictionary of the results is
-  needed.
 
 .. code-block:: python
 
@@ -200,6 +197,35 @@ described in the
 `STAC API - Item Search: Paging <https://github.com/radiantearth/stac-api-spec/tree/master/item-search#paging>`__
 section. See the :mod:`Paging <pystac_client.paging>` docs for details on how to
 customize this behavior.
+
+Alternatively, the Items can be returned within ItemCollections, where each
+ItemCollection is one page of results retrieved from search:
+
+.. code-block:: python
+
+    >>> for ic in results.get_item_collections():
+    ...     for item in ic.items:
+    ...         print(item.id)
+    S2B_OPER_MSI_L2A_TL_SGS__20190101T200120_A009518_T18TXP_N02.11
+    MCD43A4.A2019010.h12v04.006.2019022234410
+    MCD43A4.A2019009.h12v04.006.2019022222645
+    MYD11A1.A2019002.h12v04.006.2019003174703
+    MYD11A1.A2019001.h12v04.006.2019002165238
+
+If you do not need the :class:`pystac.Item` instances, you can instead use
+:meth:`ItemSearch.get_items_as_dicts <pystac_client.ItemSearch.get_items_as_dicts>`
+to retrive dictionary representation of the items, without incurring the cost of
+creating the pydantic Item objects.
+
+.. code-block:: python
+
+    >>> for item_dict in results.get_items_as_dicts():
+    ...     print(item_dict["id"])
+    S2B_OPER_MSI_L2A_TL_SGS__20190101T200120_A009518_T18TXP_N02.11
+    MCD43A4.A2019010.h12v04.006.2019022234410
+    MCD43A4.A2019009.h12v04.006.2019022222645
+    MYD11A1.A2019002.h12v04.006.2019003174703
+    MYD11A1.A2019001.h12v04.006.2019002165238
 
 Query Extension
 ---------------

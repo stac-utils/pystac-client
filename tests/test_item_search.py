@@ -605,6 +605,17 @@ class TestItemSearch:
         item_collection = search.get_all_items()
         assert len(item_collection.items) == 20
 
+    @pytest.mark.vcr
+    def test_get_items_as_dicts(self) -> None:
+        search = ItemSearch(
+            url=SEARCH_URL,
+            bbox=(-73.21, 43.99, -73.12, 44.05),
+            collections="naip",
+            limit=10,
+            max_items=20,
+        )
+        assert len(list(search.get_items_as_dicts())) == 20
+
 
 class TestItemSearchQuery:
     @pytest.mark.vcr
