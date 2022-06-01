@@ -168,7 +168,7 @@ over results:
 * :meth:`ItemSearch.get_items_as_dicts <pystac_client.ItemSearch.get_items_as_dicts>`:
   iterate over individual results, yielding a :class:`dict` instance representing each
   item that matches the search criteria. This eliminates the overhead of creating
-  class:`pystac.Item` objects with pydantic
+  class:`pystac.Item` objects
 
 Additionally, the ``matched`` method can be used to access result metadata about
 how many total items matched the query:
