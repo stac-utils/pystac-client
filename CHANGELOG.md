@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   Since the `limit` parameter also defaults to 100, in an ideal situation, only one request
   will be made to the server to retrieve all 100 items. Both of these parameters can be
   carefully adjusted upwards to align with the server's capabilities and the expected
-  number of search results.
+  number of search results. [#208](https://github.com/stac-utils/pystac-client/pull/208)
 - Item Search methods `get_items()` and `get_item_collections()` have been renamed to
   `items()` and `item_collections()`. The original methods are now deprecated 
   and may be removed as early as v0.5.0. [#206](https://github.com/stac-utils/pystac-client/pull/206)
