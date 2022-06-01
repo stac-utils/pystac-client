@@ -61,6 +61,21 @@ jobs:
       - name: Test
         run: ./scripts/test
 
+  docs:
+    name: docs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v3
+        with:
+          python-version: 3.9
+          cache: 'pip'
+          cache-dependency-path: 'requirements-docs.txt'
+      - name: Install docs requirements
+        run: pip install -r requirements-docs.txt
+      - name: Build docs
+        run: ./scripts/build-docs
+
   pre-release:
     name: pre-release
     runs-on: ubuntu-latest
