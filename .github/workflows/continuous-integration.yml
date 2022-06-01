@@ -72,7 +72,7 @@ jobs:
           cache: 'pip'
           cache-dependency-path: 'requirements-docs.txt'
       - name: Install pandoc
-        run: apt-get update && apt-get -y install pandoc
+        run: sudo apt-get update && sudo apt-get -y install pandoc
       - name: Install docs requirements
         run: pip install -r requirements-docs.txt
       - name: Install pystac_client
