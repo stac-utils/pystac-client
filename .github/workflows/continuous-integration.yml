@@ -52,8 +52,8 @@ jobs:
           python-version: 3.9
           cache: 'pip'
           cache-dependency-path: 'requirements-min.txt'
-      - name: Install minimum requirements
-        run: pip install -r requirements-min.txt
+#      - name: Install minimum requirements
+#        run: pip install -r requirements-min.txt
       - name: Install
         run: pip install .
       - name: Install dev requirements
