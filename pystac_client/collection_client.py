@@ -30,7 +30,7 @@ class CollectionClient(pystac.Collection):
         root = self.get_root()
         if link is not None and root is not None:
             search = ItemSearch(link.href, method="GET", stac_io=root._stac_io)
-            yield from search.get_items()
+            yield from search.items()
         else:
             yield from super().get_items()
 

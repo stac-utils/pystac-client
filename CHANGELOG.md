@@ -6,6 +6,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased] - TBD
 
+### Deprecated
+
+- Item Search methods `get_items()` and `get_item_collections()` have been renamed to
+  `items()` and `item_collections()`. The original methods are now deprecated 
+  and may be removed as early as v0.5.0. [#206](https://github.com/stac-utils/pystac-client/pull/206)
+- Item Search methods `get_all_items()` and `get_all_items_as_dict()` are now deprecated,
+  and may be removed as early as v0.5.0.
+  These have been deprecated because they have the potential to perform a large number
+  of requests to the server and instantiate a large number of objects in memory.
+  To a user, this is only visible as a large delay in the method call and/or the
+  exhaustion of all available memory. The iterator methods `items()` or
+  `item_collections()` should be used instead. [#206](https://github.com/stac-utils/pystac-client/pull/206)
+
 ### Added
 
 - lru_cache to several methods [#167](https://github.com/stac-utils/pystac-client/pull/167)
@@ -15,9 +28,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - Better error message when trying to search a non-item-search-conforming catalog [#164](https://github.com/stac-utils/pystac-client/pull/164)
-- Search `filter-lang` defaults to `cql2-json` instead of `cql-json`
-- Search `filter-lang` will be set to `cql2-json` if the `filter` is a dict, or `cql2-text` if it is a string
-- Search parameter `intersects` is now typed to only accept a str, dict, or object that implements `__geo_interface__`
+- Search `filter-lang` defaults to `cql2-json` instead of `cql-json` [#169](https://github.com/stac-utils/pystac-client/pull/169)
+- Search `filter-lang` will be set to `cql2-json` if the `filter` is a dict, or `cql2-text` if it is a string [#169](https://github.com/stac-utils/pystac-client/pull/169)
+- Search parameter `intersects` is now typed to only accept a str, dict, or object that implements `__geo_interface__` [#169](https://github.com/stac-utils/pystac-client/pull/169)
 
 ### Fixed
 
@@ -27,7 +40,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Removed
 
-- Client parameter `require_geojson_link` has been removed.
+- Client parameter `require_geojson_link` has been removed. [#169](https://github.com/stac-utils/pystac-client/pull/169)
 
 ## [v0.3.5] - 2022-05-26
 
@@ -122,7 +135,7 @@ are in a single HTTP session, handle pagination and respects conformance
 - Update to use PySTAC 1.1.0
 - IO changed to use PySTAC's new StacIO base class. 
 - `Search.item_collections()` renamed to `Search.get_item_collections()`
-- `Search.item_collections()` renamed to `Search.get_items()`
+- `Search.item()` renamed to `Search.get_items()`
 - Conformance is checked by each individual function that requires a particular conformance
 - STAC API testing URLs changed to updated APIs
 - `ItemSearch.get_pages()` function moved to StacApiIO class for general use

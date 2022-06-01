@@ -142,7 +142,7 @@ class Client(pystac.Catalog):
         """
         if self._stac_io.conforms_to(ConformanceClasses.ITEM_SEARCH):
             search = self.search()
-            yield from search.get_items()
+            yield from search.items()
         else:
             return super().get_items()
 
