@@ -73,6 +73,8 @@ jobs:
           cache-dependency-path: 'requirements-docs.txt'
       - name: Install docs requirements
         run: pip install -r requirements-docs.txt
+      - name: Install pystac_client
+        run: pip install .
       - name: Build docs
         run: ./scripts/build-docs
 
