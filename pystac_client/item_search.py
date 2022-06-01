@@ -110,7 +110,7 @@ class ItemSearch:
 
     No request is sent to the API until a function is called to fetch or iterate
      through the resulting STAC Items,
-     either the :meth:`ItemSearch.item_collections` or :meth:`ItemSearch.items`
+     either the :meth:`ItemSearch.get_item_collections` or :meth:`ItemSearch.get_items`
      method is called and iterated over.
 
     All "Parameters", with the exception of ``max_items``, ``method``, and
@@ -579,7 +579,7 @@ class ItemSearch:
     def get_items(self) -> Iterator[Item]:
         """Iterator that yields :class:`pystac.Item` instances for each item matching
         the given search parameters. Calls
-        :meth:`ItemSearch.get_item_collections()` internally and yields from
+        :meth:`ItemSearch.get_item_collections` internally and yields from
         :attr:`ItemCollection.features <pystac_client.ItemCollection.features>` for
         each page of results.
 
@@ -597,7 +597,7 @@ class ItemSearch:
     def get_items_as_dicts(self) -> Iterator[Dict[str, Any]]:
         """Iterator that yields :class:`dict` instances for each item matching
         the given search parameters. Calls
-        :meth:`ItemSearch.get_item_collections()` internally and yields from
+        :meth:`ItemSearch.get_item_collections` internally and yields from
         :attr:`ItemCollection.features <pystac_client.ItemCollection.features>` for
         each page of results.
 
@@ -616,16 +616,17 @@ class ItemSearch:
 
     @lru_cache(1)
     def get_all_items_as_dict(self) -> Dict[str, Any]:
-        """DEPRECATED. Use get_items or get_itemcollections instead.
+        """DEPRECATED. Use :meth:`get_items` or :meth:`get_item_collections` instead.
             Convenience method that gets all items from all pages, up to
-            self._max_items, and returns an array of dictionaries.
+            the number provided by the max_items parameter, and returns an array of
+            dictionaries.
 
         Return:
             Dict : A GeoJSON FeatureCollection
         """
         warnings.warn(
             "get_all_items_as_dict is deprecated, use get_items or"
-            " get_itemcollections instead",
+            " get_item_collections instead",
             DeprecationWarning,
         )
         features = []
@@ -640,7 +641,7 @@ class ItemSearch:
 
     @lru_cache(1)
     def get_all_items(self) -> ItemCollection:
-        """DEPRECATED. Use get_items or get_itemcollections instead.
+        """DEPRECATED. Use :meth:`get_items` or :meth:`get_item_collections` instead.
             Convenience method that builds an :class:`ItemCollection` from all items
             matching the given search parameters.
 
@@ -648,7 +649,8 @@ class ItemSearch:
             item_collection : ItemCollection
         """
         warnings.warn(
-            "get_all_items is deprecated, use get_items or get_itemcollections instead",
+            "get_all_items is deprecated, use get_items or "
+            "get_item_collections instead",
             DeprecationWarning,
         )
         feature_collection = self.get_all_items_as_dict()
