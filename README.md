@@ -95,7 +95,8 @@ $ scripts/format
 $ git commit -a -m 'formatting updates'
 ```
 
-To build the documentation, install the documentation requirements, then use the `build-docs` script:
+To build the documentation, [install Pandoc](https://pandoc.org/installing.html), install the
+Python documentation requirements via pip, then use the `build-docs` script:
 
 ```shell
 $ pip install -r requirements-docs.txt
