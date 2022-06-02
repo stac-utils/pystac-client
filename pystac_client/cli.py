@@ -6,6 +6,7 @@ import sys
 from typing import Any, Dict, List, Optional
 
 from .client import Client
+from .item_search import OPS
 from .version import __version__
 
 logger = logging.getLogger(__name__)
@@ -124,10 +125,9 @@ def parse_args(args: List[str]) -> Dict[str, Any]:
         "(e.g., 2017-01-01/2017-02-15)",
     )
     search_group.add_argument(
-        "-q",
         "--query",
         nargs="*",
-        help="Query properties of form " "KEY=VALUE (<, >, <=, >=, = supported)",
+        help=f"Query properties of form KEY=VALUE ({','.join(OPS)} supported)",
     )
     search_group.add_argument(
         "--filter",
