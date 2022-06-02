@@ -6,6 +6,26 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased] - TBD
 
+### Added
+
+- lru_cache to several methods [#167](https://github.com/stac-utils/pystac-client/pull/167)
+- Direct item GET via ogcapi-features, if conformant [#166](https://github.com/stac-utils/pystac-client/pull/166)
+- `py.typed` for downstream type checking [#163](https://github.com/stac-utils/pystac-client/pull/163)
+
+### Changed
+
+- Item Search no longer defaults to returning an unlimited number of result Items from
+  its "items" methods. The `max_items` parameter now defaults to 100 instead of None.
+  Since the `limit` parameter also defaults to 100, in an ideal situation, only one request
+  will be made to the server to retrieve all 100 items. Both of these parameters can be
+  carefully adjusted upwards to align with the server's capabilities and the expected
+  number of search results. [#208](https://github.com/stac-utils/pystac-client/pull/208)
+- Better error message when trying to search a non-item-search-conforming catalog [#164](https://github.com/stac-utils/pystac-client/pull/164)
+- Search `filter-lang` defaults to `cql2-json` instead of `cql-json` [#169](https://github.com/stac-utils/pystac-client/pull/169)
+- Search `filter-lang` will be set to `cql2-json` if the `filter` is a dict, or `cql2-text` if it is a string [#169](https://github.com/stac-utils/pystac-client/pull/169)
+- Search parameter `intersects` is now typed to only accept a str, dict, or object that implements `__geo_interface__` [#169](https://github.com/stac-utils/pystac-client/pull/169)
+
+
 ### Deprecated
 
 - Item Search no longer defaults to returning an unlimited number of result Items from
@@ -25,28 +45,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   exhaustion of all available memory. The iterator methods `items()` or
   `item_collections()` should be used instead. [#206](https://github.com/stac-utils/pystac-client/pull/206)
 
-### Added
 
-- lru_cache to several methods [#167](https://github.com/stac-utils/pystac-client/pull/167)
-- Direct item GET via ogcapi-features, if conformant [#166](https://github.com/stac-utils/pystac-client/pull/166)
-- `py.typed` for downstream type checking [#163](https://github.com/stac-utils/pystac-client/pull/163)
+## Removed
 
-### Changed
-
-- Better error message when trying to search a non-item-search-conforming catalog [#164](https://github.com/stac-utils/pystac-client/pull/164)
-- Search `filter-lang` defaults to `cql2-json` instead of `cql-json` [#169](https://github.com/stac-utils/pystac-client/pull/169)
-- Search `filter-lang` will be set to `cql2-json` if the `filter` is a dict, or `cql2-text` if it is a string [#169](https://github.com/stac-utils/pystac-client/pull/169)
-- Search parameter `intersects` is now typed to only accept a str, dict, or object that implements `__geo_interface__` [#169](https://github.com/stac-utils/pystac-client/pull/169)
+- Client parameter `require_geojson_link` has been removed. [#169](https://github.com/stac-utils/pystac-client/pull/169)
 
 ### Fixed
 
 - Search sortby parameter now has correct typing and correctly handles both GET and POST JSON parameter formats. [#175](https://github.com/stac-utils/pystac-client/pull/175)
 - Search fields parameter now has correct typing and correctly handles both GET and POST JSON parameter formats. [#184](https://github.com/stac-utils/pystac-client/pull/184)
 - Use pytest configuration to skip benchmarks by default (instead of a `skip` mark) [#168](https://github.com/stac-utils/pystac-client/pull/168)
-
-## Removed
-
-- Client parameter `require_geojson_link` has been removed. [#169](https://github.com/stac-utils/pystac-client/pull/169)
 
 ## [v0.3.5] - 2022-05-26
 
@@ -86,17 +94,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [v0.3.1] - 2021-11-17
 
-### Changed
-- Update min PySTAC version to 1.2
-- Default page size limit set to 100 rather than relying on the server default
-- Fetch single collection directly from endpoint in API rather than iterating through children (Issue #114)[https://github.com/stac-utils/pystac-client/issues/114]
-
 ### Added
 
 - Adds `--block-network` option to all test commands to ensure no network requests are made during unit tests
   [#119](https://github.com/stac-utils/pystac-client/pull/119)
 - `parameters` argument to `StacApiIO`, `Client.open`, and `Client.from_file` to allow query string parameters to be passed to all requests
   [#118](https://github.com/stac-utils/pystac-client/pull/118)
+
+### Changed
+- Update min PySTAC version to 1.2
+- Default page size limit set to 100 rather than relying on the server default
+- Fetch single collection directly from endpoint in API rather than iterating through children (Issue #114)[https://github.com/stac-utils/pystac-client/issues/114]
 
 ### Fixed
 
@@ -150,13 +158,6 @@ are in a single HTTP session, handle pagination and respects conformance
   [#79](https://github.com/stac-utils/pystac-client/pull/79)
 - Improved logging for GET requests (prints encoded URL)
 
-### Fixed
-
-- Running `stac-client` with no arguments no longer raises a confusing exception [#52](https://github.com/stac-utils/pystac-client/pull/52)
-- `Client.get_collections_list` [#44](https://github.com/stac-utils/pystac-client/issues/44)
-- The regular expression used for datetime parsing [#59](https://github.com/stac-utils/pystac-client/pull/59)
-- `Client.from_file` now works as expected, using `Client.open` is not required, although it will fetch STAC_URL from an envvar
-
 ### Removed
 
 - `get_pages` and `simple_stac_resolver` functions from `pystac_client.stac_io` (The new StacApiIO class understands `Link` objects)
@@ -170,6 +171,13 @@ are in a single HTTP session, handle pagination and respects conformance
 - STAC_URL environment variable in Client.open(). url parameter in Client is now required
 - STAC_URL environment variable in CLI. CLI now has a required positional argument for the URL
 
+### Fixed
+
+- Running `stac-client` with no arguments no longer raises a confusing exception [#52](https://github.com/stac-utils/pystac-client/pull/52)
+- `Client.get_collections_list` [#44](https://github.com/stac-utils/pystac-client/issues/44)
+- The regular expression used for datetime parsing [#59](https://github.com/stac-utils/pystac-client/pull/59)
+- `Client.from_file` now works as expected, using `Client.open` is not required, although it will fetch STAC_URL from an envvar
+
 ## [v0.1.1] - 2021-04-16
 
 ### Added
@@ -177,14 +185,14 @@ are in a single HTTP session, handle pagination and respects conformance
 - `ItemSearch.items_as_collection` [#37](https://github.com/stac-utils/pystac-client/pull/37)
 - Documentation [published on ReadTheDocs](https://pystac-client.readthedocs.io/en/latest/) [#46](https://github.com/stac-utils/pystac-client/pull/46)
 
+### Changed
+
+- CLI: pass in heades as list of KEY=VALUE pairs
+
 ### Fixed
 
 - Include headers in STAC_IO [#38](https://github.com/stac-utils/pystac-client/pull/38)
 - README updated to reflect actual CLI behavior
-
-### Changed
-
-- CLI: pass in heades as list of KEY=VALUE pairs
 
 ## [v0.1.0] - 2021-04-14
 
