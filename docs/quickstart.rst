@@ -97,13 +97,16 @@ specific STAC API (use the root URL):
 
     from pystac_client import Client
 
-    catalog_client = Client.open("https://earth-search.aws.element84.com/v0")
+    client = Client.open("https://earth-search.aws.element84.com/v0")
 
 Create a search:
 
 .. code-block:: python
 
-    my_search = catalog_client.search(collections=['sentinel-s2-l2a-cogs'], bbox=[-72.5,40.5,-72,41], max_items=10)
+    my_search = client.search(
+        max_items=10,
+        collections=['sentinel-s2-l2a-cogs'],
+        bbox=[-72.5,40.5,-72,41])
     print(f"{mysearch.matched()} items found")
 
 The ``items()`` generator method can be used to iterate through all resulting items.

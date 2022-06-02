@@ -151,9 +151,9 @@ requests to a service's "search" endpoint. This method returns a
     >>> from pystac_client import Client
     >>> api = Client.from_file('https://planetarycomputer.microsoft.com/api/stac/v1')
     >>> results = api.search(
+    ...     max_items=5
     ...     bbox=[-73.21, 43.99, -73.12, 44.05],
     ...     datetime=['2019-01-01T00:00:00Z', '2019-01-02T00:00:00Z'],
-    ...     max_items=5
     ... )
 
 Instances of :class:`~pystac_client.ItemSearch` have 2 methods for iterating
