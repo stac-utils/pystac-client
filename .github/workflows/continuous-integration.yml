@@ -71,9 +71,8 @@ jobs:
           python-version: 3.9
           cache: 'pip'
           cache-dependency-path: 'requirements-docs.txt'
-      - run: pip --version
       - name: Install pandoc
-        run: sudo apt-get update && sudo apt-get -y install pandoc proj-bin
+        run: sudo apt-get update && sudo apt-get -y install pandoc
       - name: Install docs requirements
         run: pip install -r requirements-docs.txt
       - name: Install pystac_client
