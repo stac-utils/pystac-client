@@ -24,7 +24,7 @@ CQL2 Filtering
 
 - :tutorial:`GitHub version <cql2-filter.ipynb>`
 
-This tutorial gives an introduction to using CQL-JSON filtering in searches to
+This tutorial gives an introduction to using CQL2-JSON filtering in searches to
 search by arbitrary STAC Item properties.
 
 Calculating Coverage Percentage of the AOI by an Item
