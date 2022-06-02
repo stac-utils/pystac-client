@@ -36,7 +36,7 @@ setup(
         "pystac>=1.4.0",
         "python-dateutil>=2.7.0",
     ],
-    extras_require={"validation": ["jsonschema==4.5.1"]},
+    extras_require={"validation": ["jsonschema==4.6.0"]},
     license="Apache Software License 2.0",
     zip_safe=False,
     keywords=["pystac", "imagery", "raster", "catalog", "STAC"],
