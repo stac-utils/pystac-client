@@ -200,7 +200,7 @@ class StacApiIO(DefaultStacIO):
             )
 
         if info.object_type == pystac.STACObjectType.ITEM:
-            return pystac.Item.from_dict(
+            return pystac_client.ItemClient.from_dict(
                 d, href=href, root=root, migrate=False, preserve_dict=preserve_dict
             )
 
