@@ -7,3 +7,4 @@ nbsphinx~=0.8
 jinja2<4.0
 geopandas~=0.10.2
 hvplot~=0.8.0
+matplotlib~=3.5.2
