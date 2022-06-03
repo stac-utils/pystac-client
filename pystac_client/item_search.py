@@ -49,11 +49,11 @@ CollectionsLike = Union[List[str], Iterator[str], str]
 IDs = Tuple[str, ...]
 IDsLike = Union[IDs, str, List[str], Iterator[str]]
 
-Intersects = dict
+Intersects = Dict[str, Any]
 IntersectsLike = Union[str, object, Intersects]
 # todo: after 3.7 is dropped, replace object with GeoInterface
 
-Query = dict
+Query = Dict[str, Any]
 QueryLike = Union[Query, List[str]]
 
 FilterLangLike = str
@@ -289,24 +289,31 @@ class ItemSearch:
             raise Exception(f"Unsupported method {self.method}")
 
     @staticmethod
-    def _format_query(value: List[QueryLike]) -> Optional[Dict[str, Any]]:
+    def _format_query(value: QueryLike) -> Optional[Dict[str, Any]]:
         if value is None:
             return None
-
-        if isinstance(value, list):
-            query = {}
+        elif isinstance(value, dict):
+            return value
+        elif isinstance(value, list):
+            query: Dict[str, Any] = {}
             for q in value:
-                for op in OPS:
-                    parts = q.split(op)
-                    if len(parts) == 2:
-                        param = parts[0]
-                        val = parts[1]
-                        if param == "gsd":
-                            val = float(val)
-                        query = dict_merge(query, {parts[0]: {OP_MAP[op]: val}})
-                        break
+                if isinstance(q, str):
+                    try:
+                        query = dict_merge(query, json.loads(q))
+                    except json.decoder.JSONDecodeError:
+                        for op in OPS:
+                            parts = q.split(op)
+                            if len(parts) == 2:
+                                param = parts[0]
+                                val: Union[str, float] = parts[1]
+                                if param == "gsd":
+                                    val = float(val)
+                                query = dict_merge(query, {parts[0]: {OP_MAP[op]: val}})
+                                break
+                else:
+                    raise Exception("Unsupported query format, must be a List[str].")
         else:
-            query = value
+            raise Exception("Unsupported query format, must be a Dict or List[str].")
 
         return query
 

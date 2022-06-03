@@ -639,3 +639,43 @@ class TestItemSearchQuery:
         assert len(items1) == 1
         assert len(items2) == 1
         assert items1[0].id == items2[0].id
+
+    @pytest.mark.vcr
+    def test_query_json_syntax(self) -> None:
+
+        # with a list of json strs (format of CLI argument to ItemSearch)
+        search = ItemSearch(
+            url=SEARCH_URL,
+            bbox=(-73.21, 43.99, -73.12, 44.05),
+            query=['{"eo:cloud_cover": { "gte": 0, "lte": 1 }}'],
+            max_items=1,
+        )
+        item1 = list(search.items())[0]
+        assert item1.properties["eo:cloud_cover"] <= 1
+
+        # with a single dict
+        search = ItemSearch(
+            url=SEARCH_URL,
+            bbox=(-73.21, 43.99, -73.12, 44.05),
+            query={"eo:cloud_cover": {"gte": 0, "lte": 1}},
+            max_items=1,
+        )
+        item2 = list(search.items())[0]
+        assert item2.properties["eo:cloud_cover"] <= 1
+
+        assert item1.id == item2.id
+
+
+def test_query_json_syntax() -> None:
+    assert ItemSearch._format_query(['{"eo:cloud_cover": { "gte": 0, "lte": 1 }}']) == {
+        "eo:cloud_cover": {"gte": 0, "lte": 1}
+    }
+    assert ItemSearch._format_query({"eo:cloud_cover": {"gte": 0, "lte": 1}}) == {
+        "eo:cloud_cover": {"gte": 0, "lte": 1}
+    }
+    assert ItemSearch._format_query(["eo:cloud_cover<=1"]) == {
+        "eo:cloud_cover": {"lte": "1"}
+    }
+    assert ItemSearch._format_query(["eo:cloud_cover<=1", "eo:cloud_cover>0"]) == {
+        "eo:cloud_cover": {"lte": "1", "gt": "0"}
+    }
