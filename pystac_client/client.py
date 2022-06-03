@@ -36,7 +36,7 @@ class Client(pystac.Catalog):
     def open(
         cls,
         url: str,
-        headers: Dict[str, str] = None,
+        headers: Optional[Dict[str, str]] = None,
         parameters: Optional[Dict[str, Any]] = None,
         ignore_conformance: bool = False,
     ) -> "Client":
@@ -48,6 +48,8 @@ class Client(pystac.Catalog):
                 `STAC_URL` environment variable.
             headers : A dictionary of additional headers to use in all requests
                 made to any part of this Catalog/API.
+            parameters: Optional dictionary of query string parameters to
+                include in all requests.
             ignore_conformance : Ignore any advertised Conformance Classes in this
                 Catalog/API. This means that
                 functions will skip checking conformance, and may throw an unknown
@@ -76,8 +78,8 @@ class Client(pystac.Catalog):
         cls,
         href: str,
         stac_io: Optional[pystac.StacIO] = None,
-        headers: Optional[Dict] = {},
-        parameters: Optional[Dict] = None,
+        headers: Optional[Dict[str, str]] = None,
+        parameters: Optional[Dict[str, Any]] = None,
     ) -> "Client":
         """Open a STAC Catalog/API
 
@@ -213,7 +215,10 @@ class Client(pystac.Catalog):
             )
 
         return ItemSearch(
-            search_link.target, stac_io=self._stac_io, client=self, **kwargs
+            search_link.target,
+            stac_io=self._stac_io,
+            client=self,
+            **kwargs,
         )
 
     def get_search_link(self) -> Optional[pystac.Link]:

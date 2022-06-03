@@ -9,16 +9,18 @@ class ConformanceClasses(Enum):
 
     # defined conformance classes regexes
     CORE = rf"{stac_prefix}(.*){re.escape('/core')}"
+    COLLECTIONS = rf"{stac_prefix}(.*){re.escape('/collections')}"
+
+    # this is ogcapi-features instead of just features for historical reasons,
+    # even thought this is a STAC API conformance class
+    FEATURES = rf"{stac_prefix}(.*){re.escape('/ogcapi-features')}"
     ITEM_SEARCH = rf"{stac_prefix}(.*){re.escape('/item-search')}"
+
     CONTEXT = rf"{stac_prefix}(.*){re.escape('/item-search#context')}"
     FIELDS = rf"{stac_prefix}(.*){re.escape('/item-search#fields')}"
     SORT = rf"{stac_prefix}(.*){re.escape('/item-search#sort')}"
     QUERY = rf"{stac_prefix}(.*){re.escape('/item-search#query')}"
     FILTER = rf"{stac_prefix}(.*){re.escape('/item-search#filter')}"
-    COLLECTIONS = rf"{stac_prefix}(.*){re.escape('/collections')}"
-    # this is ogcapi-features instead of just features for historical reasons,
-    # even thought this is a STAC API conformance class
-    FEATURES = rf"{stac_prefix}(.*){re.escape('/ogcapi-features')}"
 
 
 CONFORMANCE_URIS = {c.name: c.value for c in ConformanceClasses}

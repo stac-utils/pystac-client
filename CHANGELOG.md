@@ -53,7 +53,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Methods retrieving collections incorrectly checked the existence of the OAFeat OpenAPI 3.0 conformance class
   (http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30) instead of the `STAC API - Collections`
   (https://api.stacspec.org/v1.0.0-beta.1/collections) or `STAC API - Features` 
-  (https://api.stacspec.org/v1.0.0-beta.1/ogcapi-features) conformance classes. []()
+  (https://api.stacspec.org/v1.0.0-beta.1/ogcapi-features) conformance classes. [223](https://github.com/stac-utils/pystac-client/pull/223)
 
 ## [v0.3.5] - 2022-05-26
 
