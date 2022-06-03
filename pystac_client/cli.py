@@ -131,7 +131,7 @@ def parse_args(args: List[str]) -> Dict[str, Any]:
     search_group.add_argument(
         "-q",
         nargs="*",
-        help="DEPRECATED. Query properties of form "
+        help="DEPRECATED. Use --query instead. Query properties of form "
         "KEY=VALUE (<, >, <=, >=, = supported)",
     )
     search_group.add_argument(
