@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Search `filter-lang` defaults to `cql2-json` instead of `cql-json` [#169](https://github.com/stac-utils/pystac-client/pull/169)
 - Search `filter-lang` will be set to `cql2-json` if the `filter` is a dict, or `cql2-text` if it is a string [#169](https://github.com/stac-utils/pystac-client/pull/169)
 - Search parameter `intersects` is now typed to only accept a str, dict, or object that implements `__geo_interface__` [#169](https://github.com/stac-utils/pystac-client/pull/169)
+- Better error message when trying to open a Collection with `Client.open` [#222](https://github.com/stac-utils/pystac-client/pull/222)
 
 
 ### Deprecated
