@@ -29,7 +29,7 @@ class Client(pystac.Catalog):
     such as searching items (e.g., /search endpoint).
     """
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return "<Client id={}>".format(self.id)
 
     @classmethod
@@ -93,6 +93,16 @@ class Client(pystac.Catalog):
 
         return cat
 
+    def _supports_collections(self) -> bool:
+        return self._conforms_to(ConformanceClasses.COLLECTIONS) or self._conforms_to(
+            ConformanceClasses.FEATURES
+        )
+
+    def _conforms_to(self, conformance_class: ConformanceClasses) -> bool:
+        if isinstance(self._stac_io, StacApiIO):
+            return self._stac_io.conforms_to(conformance_class)
+        return True
+
     @lru_cache()
     def get_collection(self, collection_id: str) -> CollectionClient:
         """Get a single collection from this Catalog/API
@@ -103,7 +113,7 @@ class Client(pystac.Catalog):
         Returns:
             CollectionClient: A STAC Collection
         """
-        if self._stac_io.conforms_to(ConformanceClasses.COLLECTIONS):
+        if self._supports_collections():
             url = f"{self.get_self_href()}/collections/{collection_id}"
             collection = CollectionClient.from_dict(
                 self._stac_io.read_json(url), root=self
@@ -123,7 +133,7 @@ class Client(pystac.Catalog):
         Return:
             Iterable[CollectionClient]: Iterator through Collections in Catalog/API
         """
-        if self._stac_io.conforms_to(ConformanceClasses.COLLECTIONS):
+        if self._supports_collections():
             url = self.get_self_href() + "/collections"
             for page in self._stac_io.get_pages(url):
                 if "collections" not in page:
@@ -140,7 +150,7 @@ class Client(pystac.Catalog):
         Return:
             Iterable[Item]:: Generator of items whose parent is this catalog.
         """
-        if self._stac_io.conforms_to(ConformanceClasses.ITEM_SEARCH):
+        if self._conforms_to(ConformanceClasses.ITEM_SEARCH):
             search = self.search()
             yield from search.items()
         else:
@@ -155,7 +165,7 @@ class Client(pystac.Catalog):
                 catalogs or collections connected to this catalog through
                 child links.
         """
-        if self._stac_io.conforms_to(ConformanceClasses.ITEM_SEARCH):
+        if self._conforms_to(ConformanceClasses.ITEM_SEARCH):
             yield from self.get_items()
         else:
             yield from super().get_items()
@@ -191,7 +201,7 @@ class Client(pystac.Catalog):
                 or does not have a link with
                 a ``"rel"`` type of ``"search"``.
         """
-        if not self._stac_io.conforms_to(ConformanceClasses.ITEM_SEARCH):
+        if not self._conforms_to(ConformanceClasses.ITEM_SEARCH):
             raise NotImplementedError(
                 "This catalog does not support search because it "
                 f'does not conform to "{ConformanceClasses.ITEM_SEARCH}"'

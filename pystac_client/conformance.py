@@ -15,10 +15,10 @@ class ConformanceClasses(Enum):
     SORT = rf"{stac_prefix}(.*){re.escape('/item-search#sort')}"
     QUERY = rf"{stac_prefix}(.*){re.escape('/item-search#query')}"
     FILTER = rf"{stac_prefix}(.*){re.escape('/item-search#filter')}"
-    COLLECTIONS = re.escape(
-        "http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30"
-    )
-    OGCAPI_FEATURES = rf"{stac_prefix}(.*){re.escape('/ogcapi-features')}"
+    COLLECTIONS = rf"{stac_prefix}(.*){re.escape('/collections')}"
+    # this is ogcapi-features instead of just features for historical reasons,
+    # even thought this is a STAC API conformance class
+    FEATURES = rf"{stac_prefix}(.*){re.escape('/ogcapi-features')}"
 
 
 CONFORMANCE_URIS = {c.name: c.value for c in ConformanceClasses}

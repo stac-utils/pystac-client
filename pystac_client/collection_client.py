@@ -58,10 +58,7 @@ class CollectionClient(pystac.Collection):
             assert stac_io
             assert isinstance(stac_io, StacApiIO)
             link = self.get_single_link("items")
-            if (
-                stac_io.conforms_to(ConformanceClasses.OGCAPI_FEATURES)
-                and link is not None
-            ):
+            if stac_io.conforms_to(ConformanceClasses.FEATURES) and link is not None:
                 url = f"{link.href}/{id}"
                 try:
                     item = stac_io.read_stac_object(url, root=self)

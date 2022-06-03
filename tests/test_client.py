@@ -294,7 +294,7 @@ class TestAPI:
 
         # Remove the collections conformance class
         pc_root_dict["conformsTo"].remove(
-            "http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30"
+            "https://api.stacspec.org/v1.0.0-beta.1/collections"
         )
 
         # Remove all child links except for the collection that we are mocking

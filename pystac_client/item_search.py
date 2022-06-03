@@ -57,7 +57,7 @@ Query = Dict[str, Any]
 QueryLike = Union[Query, List[str]]
 
 FilterLangLike = str
-FilterLike = Union[dict, str]
+FilterLike = Union[Dict[str, Any], str]
 
 Sortby = List[Dict[str, str]]
 SortbyLike = Union[Sortby, str, List[str]]
@@ -240,7 +240,8 @@ class ItemSearch:
             self._stac_io = stac_io
         else:
             self._stac_io = StacApiIO()
-        self._stac_io.assert_conforms_to(ConformanceClasses.ITEM_SEARCH)
+
+        self._assert_conforms_to(ConformanceClasses.ITEM_SEARCH)
 
         self._max_items = max_items
         if self._max_items is not None and limit is not None:
@@ -267,6 +268,10 @@ class ItemSearch:
 
         self._parameters = {k: v for k, v in params.items() if v is not None}
 
+    def _assert_conforms_to(self, conformance_class: ConformanceClasses) -> None:
+        if isinstance(self._stac_io, StacApiIO):
+            self._stac_io.assert_conforms_to(conformance_class)
+
     def get_parameters(self) -> Dict[str, Any]:
         if self.method == "POST":
             return self._parameters
@@ -281,18 +286,20 @@ class ItemSearch:
             if "intersects" in params:
                 params["intersects"] = json.dumps(params["intersects"])
             if "sortby" in params:
-                params["sortby"] = self.sortby_dict_to_str(params["sortby"])
+                params["sortby"] = self._sortby_dict_to_str(params["sortby"])
             if "fields" in params:
-                params["fields"] = self.fields_dict_to_str(params["fields"])
+                params["fields"] = self._fields_dict_to_str(params["fields"])
             return params
         else:
             raise Exception(f"Unsupported method {self.method}")
 
-    @staticmethod
-    def _format_query(value: QueryLike) -> Optional[Dict[str, Any]]:
+    def _format_query(self, value: QueryLike) -> Optional[Dict[str, Any]]:
         if value is None:
             return None
-        elif isinstance(value, dict):
+
+        self._assert_conforms_to(ConformanceClasses.QUERY)
+
+        if isinstance(value, dict):
             return value
         elif isinstance(value, list):
             query: Dict[str, Any] = {}
@@ -319,7 +326,7 @@ class ItemSearch:
 
     @staticmethod
     def _format_filter_lang(
-        _filter: FilterLike, value: FilterLangLike
+        _filter: Optional[FilterLike], value: Optional[FilterLangLike]
     ) -> Optional[str]:
         if _filter is None:
             return None
@@ -335,11 +342,12 @@ class ItemSearch:
 
         return None
 
-    def _format_filter(self, value: FilterLike) -> Optional[dict]:
+    def _format_filter(self, value: Optional[FilterLike]) -> Optional[FilterLike]:
         if value is None:
             return None
 
-        self._stac_io.assert_conforms_to(ConformanceClasses.FILTER)
+        self._assert_conforms_to(ConformanceClasses.FILTER)
+
         return value
 
     @staticmethod
@@ -475,14 +483,14 @@ class ItemSearch:
         if value is None:
             return None
 
-        self._stac_io.assert_conforms_to(ConformanceClasses.SORT)
+        self._assert_conforms_to(ConformanceClasses.SORT)
 
         if isinstance(value, str):
-            return [self.sortby_part_to_dict(part) for part in value.split(",")]
+            return [self._sortby_part_to_dict(part) for part in value.split(",")]
 
         if isinstance(value, list):
             if value and isinstance(value[0], str):
-                return [self.sortby_part_to_dict(v) for v in value]
+                return [self._sortby_part_to_dict(v) for v in value]
             elif value and isinstance(value[0], dict):
                 return value
 
@@ -491,7 +499,7 @@ class ItemSearch:
         )
 
     @staticmethod
-    def sortby_part_to_dict(part: str) -> Dict[str, str]:
+    def _sortby_part_to_dict(part: str) -> Dict[str, str]:
         if part.startswith("-"):
             return {"field": part[1:], "direction": "desc"}
         elif part.startswith("+"):
@@ -500,7 +508,7 @@ class ItemSearch:
             return {"field": part, "direction": "asc"}
 
     @staticmethod
-    def sortby_dict_to_str(sortby: Sortby) -> str:
+    def _sortby_dict_to_str(sortby: Sortby) -> str:
         return ",".join(
             [
                 f"{'+' if sort['direction'] == 'asc' else '-'}{sort['field']}"
@@ -512,12 +520,12 @@ class ItemSearch:
         if value is None:
             return None
 
-        self._stac_io.assert_conforms_to(ConformanceClasses.FIELDS)
+        self._assert_conforms_to(ConformanceClasses.FIELDS)
 
         if isinstance(value, str):
-            return self.fields_to_dict(value.split(","))
+            return self._fields_to_dict(value.split(","))
         if isinstance(value, list):
-            return self.fields_to_dict(value)
+            return self._fields_to_dict(value)
         if isinstance(value, dict):
             return value
 
@@ -526,7 +534,7 @@ class ItemSearch:
         )
 
     @staticmethod
-    def fields_to_dict(fields: List[str]) -> Fields:
+    def _fields_to_dict(fields: List[str]) -> Fields:
         includes: List[str] = []
         excludes: List[str] = []
         for field in fields:
@@ -539,7 +547,7 @@ class ItemSearch:
         return {"includes": includes, "excludes": excludes}
 
     @staticmethod
-    def fields_dict_to_str(fields: Fields) -> str:
+    def _fields_dict_to_str(fields: Fields) -> str:
         includes = [f"+{x}" for x in fields.get("includes", [])]
         excludes = [f"-{x}" for x in fields.get("excludes", [])]
         return ",".join(chain(includes, excludes))
