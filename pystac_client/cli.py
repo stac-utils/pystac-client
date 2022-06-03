@@ -6,6 +6,7 @@ import sys
 from typing import Any, Dict, List, Optional
 
 from .client import Client
+from .item_search import OPS
 from .version import __version__
 
 logger = logging.getLogger(__name__)
@@ -126,7 +127,7 @@ def parse_args(args: List[str]) -> Dict[str, Any]:
     search_group.add_argument(
         "--query",
         nargs="*",
-        help="Query properties of form " "KEY=VALUE (<, >, <=, >=, = supported)",
+        help=f"Query properties of form KEY=VALUE ({','.join(OPS)} supported)",
     )
     search_group.add_argument(
         "-q",

@@ -65,7 +65,17 @@ SortbyLike = Union[Sortby, str, List[str]]
 Fields = Dict[str, List[str]]
 FieldsLike = Union[Fields, str, List[str]]
 
-OP_MAP = {">=": "gte", "<=": "lte", "=": "eq", ">": "gt", "<": "lt"}
+# these cannot be reordered or parsing will fail!
+OP_MAP = {
+    ">=": "gte",
+    "<=": "lte",
+    "=": "eq",
+    "<>": "neq",
+    ">": "gt",
+    "<": "lt",
+}
+
+OPS = list(OP_MAP.keys())
 
 DEFAULT_LIMIT_AND_MAX_ITEMS = 100
 
@@ -286,7 +296,7 @@ class ItemSearch:
         if isinstance(value, list):
             query = {}
             for q in value:
-                for op in [">=", "<=", "=", ">", "<"]:
+                for op in OPS:
                     parts = q.split(op)
                     if len(parts) == 2:
                         param = parts[0]
