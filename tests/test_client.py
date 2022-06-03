@@ -11,6 +11,7 @@ from pystac import MediaType
 
 from pystac_client import Client
 from pystac_client.conformance import ConformanceClasses
+from pystac_client.errors import ClientTypeError
 
 from .helpers import STAC_URLS, TEST_DATA, read_data_file
 
@@ -325,6 +326,11 @@ class TestAPI:
         history = requests_mock.request_history
         assert len(history) == 2
         assert history[1].url == pc_collection_href
+
+    def test_opening_a_collection(self) -> None:
+        path = str(TEST_DATA / "planetary-computer-aster-l1t-collection.json")
+        with pytest.raises(ClientTypeError):
+            Client.open(path)
 
 
 class TestAPISearch:
