@@ -38,7 +38,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   To a user, this is only visible as a large delay in the method call and/or the
   exhaustion of all available memory. The iterator methods `items()` or
   `item_collections()` should be used instead. [#206](https://github.com/stac-utils/pystac-client/pull/206)
-- CLI parameter `-q` is now deprecated and may be removed as early as v0.5.0. Use `--query` instead.
+- CLI parameter `-q` is now deprecated and may be removed as early as v0.5.0. Use `--query` instead. [#215](https://github.com/stac-utils/pystac-client/pull/215)
 
 
 ## Removed
