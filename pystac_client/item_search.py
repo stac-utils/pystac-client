@@ -12,13 +12,12 @@ from typing import TYPE_CHECKING, Any, Dict, Iterator, List, Optional, Tuple, Un
 from dateutil.relativedelta import relativedelta
 from dateutil.tz import tzutc
 from pystac import Collection, Item, ItemCollection
-from pystac.stac_io import StacIO
 
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.stac_api_io import StacApiIO
 
 if TYPE_CHECKING:
-    from pystac_client.client import Client
+    from pystac_client import client
 
 DATETIME_REGEX = re.compile(
     r"(?P<year>\d{4})(\-(?P<month>\d{2})(\-(?P<day>\d{2})"
@@ -219,8 +218,8 @@ class ItemSearch:
         *,
         method: Optional[str] = "POST",
         max_items: Optional[int] = DEFAULT_LIMIT_AND_MAX_ITEMS,
-        stac_io: Optional[StacIO] = None,
-        client: Optional["Client"] = None,
+        stac_io: Optional[StacApiIO] = None,
+        client: Optional["client.Client"] = None,
         limit: Optional[int] = DEFAULT_LIMIT_AND_MAX_ITEMS,
         ids: Optional[IDsLike] = None,
         collections: Optional[CollectionsLike] = None,
@@ -293,7 +292,7 @@ class ItemSearch:
         else:
             raise Exception(f"Unsupported method {self.method}")
 
-    def _format_query(self, value: QueryLike) -> Optional[Dict[str, Any]]:
+    def _format_query(self, value: Optional[QueryLike]) -> Optional[Dict[str, Any]]:
         if value is None:
             return None
 
@@ -367,7 +366,7 @@ class ItemSearch:
         def _to_utc_isoformat(dt: datetime_) -> str:
             dt = dt.astimezone(timezone.utc)
             dt = dt.replace(tzinfo=None)
-            return dt.isoformat("T") + "Z"
+            return f'{dt.isoformat("T")}Z'
 
         def _to_isoformat_range(
             component: DatetimeOrTimestamp,
@@ -454,20 +453,20 @@ class ItemSearch:
 
     @staticmethod
     def _format_collections(value: Optional[CollectionsLike]) -> Optional[Collections]:
-        def _format(c: Any) -> Any:
+        def _format(c: Any) -> Collections:
             if isinstance(c, str):
-                return c
+                return (c,)
             if isinstance(c, Iterable):
-                return tuple(map(_format, c))
+                return tuple(map(lambda x: _format(x)[0], c))
 
-            return c.id
+            return (c.id,)
 
         if value is None:
             return None
         if isinstance(value, str):
-            return tuple(map(_format, value.split(",")))
+            return tuple(map(lambda x: _format(x)[0], value.split(",")))
         if isinstance(value, Collection):
-            return (_format(value),)
+            return _format(value)
 
         return _format(value)
 
@@ -492,7 +491,7 @@ class ItemSearch:
 
         if isinstance(value, list):
             if value and isinstance(value[0], str):
-                return [self._sortby_part_to_dict(v) for v in value]
+                return [self._sortby_part_to_dict(str(v)) for v in value]
             elif value and isinstance(value[0], dict):
                 return value
 
@@ -561,9 +560,9 @@ class ItemSearch:
         if isinstance(value, dict):
             return deepcopy(value)
         if isinstance(value, str):
-            return json.loads(value)
+            return dict(json.loads(value))
         if hasattr(value, "__geo_interface__"):
-            return deepcopy(getattr(value, "__geo_interface__"))
+            return dict(deepcopy(getattr(value, "__geo_interface__")))
         raise Exception(
             "intersects must be of type None, str, dict, or an object that "
             "implements __geo_interface__"
@@ -612,10 +611,13 @@ class ItemSearch:
             ItemCollection : a group of Items matching the search criteria within an
             ItemCollection
         """
-        for page in self._stac_io.get_pages(
-            self.url, self.method, self.get_parameters()
-        ):
-            yield ItemCollection.from_dict(page, preserve_dict=False, root=self.client)
+        if isinstance(self._stac_io, StacApiIO):
+            for page in self._stac_io.get_pages(
+                self.url, self.method, self.get_parameters()
+            ):
+                yield ItemCollection.from_dict(
+                    page, preserve_dict=False, root=self.client
+                )
 
     def get_items(self) -> Iterator[Item]:
         """DEPRECATED. Use :meth:`ItemSearch.items` instead.

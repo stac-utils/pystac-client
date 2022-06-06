@@ -104,7 +104,7 @@ class StacApiIO(DefaultStacIO):
     def request(
         self,
         href: str,
-        method: Optional[str] = "GET",
+        method: Optional[str] = None,
         headers: Optional[Dict[str, str]] = None,
         parameters: Optional[Dict[str, Any]] = None,
     ) -> str:
@@ -113,7 +113,7 @@ class StacApiIO(DefaultStacIO):
         Args:
             href (str): The request URL
             method (Optional[str], optional): The http method to use, 'GET' or 'POST'.
-              Defaults to 'GET'.
+              Defaults to None, which will result in 'GET' being used.
             headers (Optional[Dict[str, str]], optional): Additional headers to include
                 in request. Defaults to None.
             parameters (Optional[Dict[str, Any]], optional): parameters to send with
@@ -131,7 +131,7 @@ class StacApiIO(DefaultStacIO):
             params = deepcopy(parameters) or {}
             if "intersects" in params:
                 params["intersects"] = json.dumps(params["intersects"])
-            request = Request(method=method, url=href, headers=headers, params=params)
+            request = Request(method="GET", url=href, headers=headers, params=params)
         try:
             prepped = self.session.prepare_request(request)
             msg = f"{prepped.method} {prepped.url} Headers: {prepped.headers}"
@@ -207,7 +207,10 @@ class StacApiIO(DefaultStacIO):
         raise ValueError(f"Unknown STAC object type {info.object_type}")
 
     def get_pages(
-        self, url: str, method: str = "GET", parameters: Optional[Dict[str, str]] = None
+        self,
+        url: str,
+        method: Optional[str] = None,
+        parameters: Optional[Dict[str, Any]] = None,
     ) -> Iterator[Dict[str, Any]]:
         """Iterator that yields dictionaries for each page at a STAC paging
         endpoint, e.g., /collections, /search
@@ -275,5 +278,5 @@ class StacApiIO(DefaultStacIO):
         return True
 
     def set_conformance(self, conformance: Optional[List[str]]) -> None:
-        """Sets (or clears) the conformances for this StacIO."""
+        """Sets (or clears) the conformance classes for this StacIO."""
         self._conformance = conformance
