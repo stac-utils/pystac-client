@@ -6,6 +6,7 @@ import pystac.validation
 
 from pystac_client.collection_client import CollectionClient
 from pystac_client.conformance import ConformanceClasses
+from pystac_client.errors import ClientTypeError
 from pystac_client.exceptions import APIError
 from pystac_client.item_search import ItemSearch
 from pystac_client.stac_api_io import StacApiIO
@@ -104,6 +105,25 @@ class Client(pystac.Catalog):
         if isinstance(self._stac_io, StacApiIO):
             return self._stac_io.conforms_to(conformance_class)
         return True
+
+    @classmethod
+    def from_dict(
+        cls,
+        d: Dict[str, Any],
+        href: Optional[str] = None,
+        root: Optional[pystac.Catalog] = None,
+        migrate: bool = False,
+        preserve_dict: bool = True,
+    ) -> "Client":
+        try:
+            return super().from_dict(
+                d=d, href=href, root=root, migrate=migrate, preserve_dict=preserve_dict
+            )
+        except pystac.STACTypeError:
+            raise ClientTypeError(
+                f"Could not open Client (href={href}), "
+                f"expected type=Catalog, found type={d.get('type', None)}"
+            )
 
     @lru_cache()
     def get_collection(self, collection_id: str) -> CollectionClient:
