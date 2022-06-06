@@ -58,7 +58,7 @@ class StacApiIO(DefaultStacIO):
         self,
         source: Union[str, Link],
         *args: Any,
-        parameters: Optional[dict] = {},
+        parameters: Optional[Dict[str, Any]] = None,
         **kwargs: Any,
     ) -> str:
         """Read text from the given URI.
@@ -105,8 +105,8 @@ class StacApiIO(DefaultStacIO):
         self,
         href: str,
         method: Optional[str] = "GET",
-        headers: Optional[dict] = {},
-        parameters: Optional[dict] = {},
+        headers: Optional[Dict[str, str]] = None,
+        parameters: Optional[Dict[str, Any]] = None,
     ) -> str:
         """Makes a request to an http endpoint
 
@@ -114,10 +114,10 @@ class StacApiIO(DefaultStacIO):
             href (str): The request URL
             method (Optional[str], optional): The http method to use, 'GET' or 'POST'.
               Defaults to 'GET'.
-            headers (Optional[dict], optional): Additional headers to include in
-              request. Defaults to {}.
-            parameters (Optional[dict], optional): parameters to send with request.
-              Defaults to {}.
+            headers (Optional[Dict[str, str]], optional): Additional headers to include
+                in request. Defaults to None.
+            parameters (Optional[Dict[str, Any]], optional): parameters to send with
+                request. Defaults to None.
 
         Raises:
             APIError: raised if the server returns an error response
@@ -128,7 +128,7 @@ class StacApiIO(DefaultStacIO):
         if method == "POST":
             request = Request(method=method, url=href, headers=headers, json=parameters)
         else:
-            params = deepcopy(parameters)
+            params = deepcopy(parameters) or {}
             if "intersects" in params:
                 params["intersects"] = json.dumps(params["intersects"])
             request = Request(method=method, url=href, headers=headers, params=params)
@@ -188,14 +188,14 @@ class StacApiIO(DefaultStacIO):
         d = migrate_to_latest(d, info)
 
         if info.object_type == pystac.STACObjectType.CATALOG:
-            result = pystac_client.Client.from_dict(
+            result = pystac_client.client.Client.from_dict(
                 d, href=href, root=root, migrate=False, preserve_dict=preserve_dict
             )
             result._stac_io = self
             return result
 
         if info.object_type == pystac.STACObjectType.COLLECTION:
-            return pystac_client.CollectionClient.from_dict(
+            return pystac_client.collection_client.CollectionClient.from_dict(
                 d, href=href, root=root, migrate=False, preserve_dict=preserve_dict
             )
 
@@ -206,7 +206,9 @@ class StacApiIO(DefaultStacIO):
 
         raise ValueError(f"Unknown STAC object type {info.object_type}")
 
-    def get_pages(self, url, method="GET", parameters={}) -> Iterator[Dict]:
+    def get_pages(
+        self, url: str, method: str = "GET", parameters: Optional[Dict[str, str]] = None
+    ) -> Iterator[Dict[str, Any]]:
         """Iterator that yields dictionaries for each page at a STAC paging
         endpoint, e.g., /collections, /search
 

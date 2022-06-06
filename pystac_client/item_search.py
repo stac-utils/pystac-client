@@ -364,12 +364,14 @@ class ItemSearch:
 
     @staticmethod
     def _format_datetime(value: Optional[DatetimeLike]) -> Optional[Datetime]:
-        def _to_utc_isoformat(dt):
+        def _to_utc_isoformat(dt: datetime_) -> str:
             dt = dt.astimezone(timezone.utc)
             dt = dt.replace(tzinfo=None)
             return dt.isoformat("T") + "Z"
 
-        def _to_isoformat_range(component: DatetimeOrTimestamp):
+        def _to_isoformat_range(
+            component: DatetimeOrTimestamp,
+        ) -> Tuple[Optional[str], Optional[str]]:
             """Converts a single DatetimeOrTimestamp into one or two Datetimes.
 
             This is required to expand a single value like "2017" out to the whole
