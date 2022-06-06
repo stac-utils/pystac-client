@@ -30,14 +30,14 @@ class Client(pystac.Catalog):
     such as searching items (e.g., /search endpoint).
     """
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return "<Client id={}>".format(self.id)
 
     @classmethod
     def open(
         cls,
         url: str,
-        headers: Dict[str, str] = None,
+        headers: Optional[Dict[str, str]] = None,
         parameters: Optional[Dict[str, Any]] = None,
         ignore_conformance: bool = False,
     ) -> "Client":
@@ -49,6 +49,8 @@ class Client(pystac.Catalog):
                 `STAC_URL` environment variable.
             headers : A dictionary of additional headers to use in all requests
                 made to any part of this Catalog/API.
+            parameters: Optional dictionary of query string parameters to
+                include in all requests.
             ignore_conformance : Ignore any advertised Conformance Classes in this
                 Catalog/API. This means that
                 functions will skip checking conformance, and may throw an unknown
@@ -77,8 +79,8 @@ class Client(pystac.Catalog):
         cls,
         href: str,
         stac_io: Optional[pystac.StacIO] = None,
-        headers: Optional[Dict] = {},
-        parameters: Optional[Dict] = None,
+        headers: Optional[Dict[str, str]] = None,
+        parameters: Optional[Dict[str, Any]] = None,
     ) -> "Client":
         """Open a STAC Catalog/API
 
@@ -93,6 +95,15 @@ class Client(pystac.Catalog):
         cat._stac_io._conformance = cat.extra_fields.get("conformsTo", [])
 
         return cat
+
+    def _supports_collections(self) -> bool:
+        return self._conforms_to(ConformanceClasses.COLLECTIONS) or self._conforms_to(
+            ConformanceClasses.FEATURES
+        )
+
+    # TODO: fix this with the stac_api_io() method in a future PR
+    def _conforms_to(self, conformance_class: ConformanceClasses) -> bool:
+        return self._stac_io.conforms_to(conformance_class)  # type: ignore
 
     @classmethod
     def from_dict(
@@ -123,7 +134,7 @@ class Client(pystac.Catalog):
         Returns:
             CollectionClient: A STAC Collection
         """
-        if self._stac_io.conforms_to(ConformanceClasses.COLLECTIONS):
+        if self._supports_collections():
             url = f"{self.get_self_href()}/collections/{collection_id}"
             collection = CollectionClient.from_dict(
                 self._stac_io.read_json(url), root=self
@@ -143,7 +154,7 @@ class Client(pystac.Catalog):
         Return:
             Iterable[CollectionClient]: Iterator through Collections in Catalog/API
         """
-        if self._stac_io.conforms_to(ConformanceClasses.COLLECTIONS):
+        if self._supports_collections():
             url = self.get_self_href() + "/collections"
             for page in self._stac_io.get_pages(url):
                 if "collections" not in page:
@@ -160,7 +171,7 @@ class Client(pystac.Catalog):
         Return:
             Iterable[Item]:: Generator of items whose parent is this catalog.
         """
-        if self._stac_io.conforms_to(ConformanceClasses.ITEM_SEARCH):
+        if self._conforms_to(ConformanceClasses.ITEM_SEARCH):
             search = self.search()
             yield from search.items()
         else:
@@ -175,7 +186,7 @@ class Client(pystac.Catalog):
                 catalogs or collections connected to this catalog through
                 child links.
         """
-        if self._stac_io.conforms_to(ConformanceClasses.ITEM_SEARCH):
+        if self._conforms_to(ConformanceClasses.ITEM_SEARCH):
             yield from self.get_items()
         else:
             yield from super().get_items()
@@ -211,7 +222,7 @@ class Client(pystac.Catalog):
                 or does not have a link with
                 a ``"rel"`` type of ``"search"``.
         """
-        if not self._stac_io.conforms_to(ConformanceClasses.ITEM_SEARCH):
+        if not self._conforms_to(ConformanceClasses.ITEM_SEARCH):
             raise NotImplementedError(
                 "This catalog does not support search because it "
                 f'does not conform to "{ConformanceClasses.ITEM_SEARCH}"'
@@ -223,7 +234,10 @@ class Client(pystac.Catalog):
             )
 
         return ItemSearch(
-            search_link.target, stac_io=self._stac_io, client=self, **kwargs
+            search_link.target,
+            stac_io=self._stac_io,
+            client=self,
+            **kwargs,
         )
 
     def get_search_link(self) -> Optional[pystac.Link]:

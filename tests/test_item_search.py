@@ -667,15 +667,16 @@ class TestItemSearchQuery:
 
 
 def test_query_json_syntax() -> None:
-    assert ItemSearch._format_query(['{"eo:cloud_cover": { "gte": 0, "lte": 1 }}']) == {
+    item_search = ItemSearch("")
+    assert item_search._format_query(
+        ['{"eo:cloud_cover": { "gte": 0, "lte": 1 }}']
+    ) == {"eo:cloud_cover": {"gte": 0, "lte": 1}}
+    assert item_search._format_query({"eo:cloud_cover": {"gte": 0, "lte": 1}}) == {
         "eo:cloud_cover": {"gte": 0, "lte": 1}
     }
-    assert ItemSearch._format_query({"eo:cloud_cover": {"gte": 0, "lte": 1}}) == {
-        "eo:cloud_cover": {"gte": 0, "lte": 1}
-    }
-    assert ItemSearch._format_query(["eo:cloud_cover<=1"]) == {
+    assert item_search._format_query(["eo:cloud_cover<=1"]) == {
         "eo:cloud_cover": {"lte": "1"}
     }
-    assert ItemSearch._format_query(["eo:cloud_cover<=1", "eo:cloud_cover>0"]) == {
+    assert item_search._format_query(["eo:cloud_cover<=1", "eo:cloud_cover>0"]) == {
         "eo:cloud_cover": {"lte": "1", "gt": "0"}
     }
