@@ -41,7 +41,7 @@ DATETIME_REGEX = re.compile(
 #         ...
 
 DatetimeOrTimestamp = Optional[Union[datetime_, str]]
-Datetime = Union[Tuple[str], Tuple[str, str]]
+Datetime = str
 DatetimeLike = Union[
     DatetimeOrTimestamp,
     Tuple[DatetimeOrTimestamp, DatetimeOrTimestamp],
@@ -372,88 +372,88 @@ class ItemSearch:
         return bbox
 
     @staticmethod
-    def _format_datetime(value: Optional[DatetimeLike]) -> Optional[Datetime]:
-        def _to_utc_isoformat(dt: datetime_) -> str:
-            dt = dt.astimezone(timezone.utc)
-            dt = dt.replace(tzinfo=None)
-            return f'{dt.isoformat("T")}Z'
+    def _to_utc_isoformat(dt: datetime_) -> str:
+        dt = dt.astimezone(timezone.utc)
+        dt = dt.replace(tzinfo=None)
+        return f'{dt.isoformat("T")}Z'
 
-        def _to_isoformat_range(
-            component: DatetimeOrTimestamp,
-        ) -> Tuple[Optional[str], Optional[str]]:
-            """Converts a single DatetimeOrTimestamp into one or two Datetimes.
+    def _to_isoformat_range(
+        self,
+        component: DatetimeOrTimestamp,
+    ) -> Tuple[Optional[str], Optional[str]]:
+        """Converts a single DatetimeOrTimestamp into one or two Datetimes.
 
-            This is required to expand a single value like "2017" out to the whole
-            year. This function returns two values. The first value is always a
-            valid Datetime. The second value can be None or a Datetime. If it is
-            None, this means that the first value was an exactly specified value
-            (e.g. a `datetime.datetime`). If the second value is a Datetime, then
-            it will be the end of the range at the resolution of the component,
-            e.g. if the component were "2017" the second value would be the last
-            second of the last day of 2017.
-            """
-            if component is None:
-                return "..", None
-            elif isinstance(component, str):
-                if component == "..":
+        This is required to expand a single value like "2017" out to the whole
+        year. This function returns two values. The first value is always a
+        valid Datetime. The second value can be None or a Datetime. If it is
+        None, this means that the first value was an exactly specified value
+        (e.g. a `datetime.datetime`). If the second value is a Datetime, then
+        it will be the end of the range at the resolution of the component,
+        e.g. if the component were "2017" the second value would be the last
+        second of the last day of 2017.
+        """
+        if component is None:
+            return "..", None
+        elif isinstance(component, str):
+            if component == "..":
+                return component, None
+
+            match = DATETIME_REGEX.match(component)
+            if not match:
+                raise Exception(f"invalid datetime component: {component}")
+            elif match.group("remainder"):
+                if match.group("tz_info"):
                     return component, None
-
-                match = DATETIME_REGEX.match(component)
-                if not match:
-                    raise Exception(f"invalid datetime component: {component}")
-                elif match.group("remainder"):
-                    if match.group("tz_info"):
-                        return component, None
-                    else:
-                        return f"{component}Z", None
                 else:
-                    year = int(match.group("year"))
-                    optional_month = match.group("month")
-                    optional_day = match.group("day")
-
-                if optional_day is not None:
-                    start = datetime_(
-                        year,
-                        int(optional_month),
-                        int(optional_day),
-                        0,
-                        0,
-                        0,
-                        tzinfo=tzutc(),
-                    )
-                    end = start + relativedelta(days=1, seconds=-1)
-                elif optional_month is not None:
-                    start = datetime_(
-                        year, int(optional_month), 1, 0, 0, 0, tzinfo=tzutc()
-                    )
-                    end = start + relativedelta(months=1, seconds=-1)
-                else:
-                    start = datetime_(year, 1, 1, 0, 0, 0, tzinfo=tzutc())
-                    end = start + relativedelta(years=1, seconds=-1)
-                return _to_utc_isoformat(start), _to_utc_isoformat(end)
+                    return f"{component}Z", None
             else:
-                return _to_utc_isoformat(component), None
+                year = int(match.group("year"))
+                optional_month = match.group("month")
+                optional_day = match.group("day")
 
+            if optional_day is not None:
+                start = datetime_(
+                    year,
+                    int(optional_month),
+                    int(optional_day),
+                    0,
+                    0,
+                    0,
+                    tzinfo=tzutc(),
+                )
+                end = start + relativedelta(days=1, seconds=-1)
+            elif optional_month is not None:
+                start = datetime_(year, int(optional_month), 1, 0, 0, 0, tzinfo=tzutc())
+                end = start + relativedelta(months=1, seconds=-1)
+            else:
+                start = datetime_(year, 1, 1, 0, 0, 0, tzinfo=tzutc())
+                end = start + relativedelta(years=1, seconds=-1)
+            return self._to_utc_isoformat(start), self._to_utc_isoformat(end)
+        else:
+            return self._to_utc_isoformat(component), None
+
+    def _format_datetime(self, value: Optional[DatetimeLike]) -> Optional[Datetime]:
         if value is None:
             return None
         elif isinstance(value, datetime_):
-            return _to_utc_isoformat(value)
+            return self._to_utc_isoformat(value)
         elif isinstance(value, str):
             components = value.split("/")
         else:
-            components = list(value)
+            # maybe we can make it a list?
+            components = list(value)  # type: ignore
 
         if not components:
             return None
         elif len(components) == 1:
-            start, end = _to_isoformat_range(components[0])
+            start, end = self._to_isoformat_range(components[0])
             if end is not None:
                 return f"{start}/{end}"
             else:
                 return start
         elif len(components) == 2:
-            start, _ = _to_isoformat_range(components[0])
-            backup_end, end = _to_isoformat_range(components[1])
+            start, _ = self._to_isoformat_range(components[0])
+            backup_end, end = self._to_isoformat_range(components[1])
             return f"{start}/{end or backup_end}"
         else:
             raise Exception(
