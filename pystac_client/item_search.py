@@ -27,11 +27,11 @@ from pystac_client.conformance import ConformanceClasses
 from pystac_client.stac_api_io import StacApiIO
 
 if TYPE_CHECKING:
-    from pystac_client import client
+    from pystac_client import client as _client
 
 DATETIME_REGEX = re.compile(
-    r"(?P<year>\d{4})(\-(?P<month>\d{2})(\-(?P<day>\d{2})"
-    r"(?P<remainder>(T|t)\d{2}:\d{2}:\d{2}(\.\d+)?"
+    r"(?P<year>\d{4})(-(?P<month>\d{2})(-(?P<day>\d{2})"
+    r"(?P<remainder>([Tt])\d{2}:\d{2}:\d{2}(\.\d+)?"
     r"(?P<tz_info>Z|([-+])(\d{2}):(\d{2}))?)?)?)?"
 )
 
@@ -229,7 +229,7 @@ class ItemSearch:
         method: Optional[str] = "POST",
         max_items: Optional[int] = DEFAULT_LIMIT_AND_MAX_ITEMS,
         stac_io: Optional[StacApiIO] = None,
-        client: Optional["client.Client"] = None,
+        client: Optional["_client.Client"] = None,
         limit: Optional[int] = DEFAULT_LIMIT_AND_MAX_ITEMS,
         ids: Optional[IDsLike] = None,
         collections: Optional[CollectionsLike] = None,
@@ -275,7 +275,9 @@ class ItemSearch:
             "fields": self._format_fields(fields),
         }
 
-        self._parameters = {k: v for k, v in params.items() if v is not None}
+        self._parameters: Dict[str, Any] = {
+            k: v for k, v in params.items() if v is not None
+        }
 
     def _assert_conforms_to(self, conformance_class: ConformanceClasses) -> None:
         if isinstance(self._stac_io, StacApiIO):
@@ -503,7 +505,7 @@ class ItemSearch:
             if value and isinstance(value[0], str):
                 return [self._sortby_part_to_dict(str(v)) for v in value]
             elif value and isinstance(value[0], dict):
-                return value
+                return value  # type: ignore
 
         raise Exception(
             "sortby must be of type None, str, List[str], or List[Dict[str, str]"
