@@ -2,7 +2,7 @@ import json
 import logging
 import re
 from copy import deepcopy
-from typing import TYPE_CHECKING, Any, Dict, Iterator, List, Optional, Union
+from typing import TYPE_CHECKING, Any, Dict, Generator, List, Optional, Union
 from urllib.parse import urlparse
 
 import pystac
@@ -211,12 +211,12 @@ class StacApiIO(DefaultStacIO):
         url: str,
         method: Optional[str] = None,
         parameters: Optional[Dict[str, Any]] = None,
-    ) -> Iterator[Dict[str, Any]]:
-        """Iterator that yields dictionaries for each page at a STAC paging
+    ) -> Generator[Dict[str, Any], None, None]:
+        """Generator that yields dictionaries for each page at a STAC paging
         endpoint, e.g., /collections, /search
 
         Return:
-            Dict : JSON content from a single page
+            Dict[str, Any] : JSON content from a single page
         """
         page = self.read_json(url, method=method, parameters=parameters)
         yield page

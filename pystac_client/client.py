@@ -1,5 +1,5 @@
 from functools import lru_cache
-from typing import TYPE_CHECKING, Any, Dict, Iterable, Optional
+from typing import TYPE_CHECKING, Any, Dict, Generator, Optional
 
 import pystac
 import pystac.validation
@@ -134,14 +134,14 @@ class Client(pystac.Catalog):
 
         return None
 
-    def get_collections(self) -> Iterable[Collection]:
+    def get_collections(self) -> Generator[Collection, None, None]:
         """Get Collections in this Catalog
 
             Gets the collections from the /collections endpoint if supported,
             otherwise fall back to Catalog behavior of following child links
 
         Return:
-            Iterable[CollectionClient]: Iterator through Collections in Catalog/API
+            Generator[Collection, None, None]: Generator over Collections in Catalog/API
         """
         if self._supports_collections() and self.get_self_href() is not None:
             url = f"{self.get_self_href()}/collections"
@@ -149,29 +149,29 @@ class Client(pystac.Catalog):
                 if "collections" not in page:
                     raise APIError("Invalid response from /collections")
                 for col in page["collections"]:
-                    collection = CollectionClient.from_dict(col, root=self)
-                    yield collection
+                    yield CollectionClient.from_dict(col, root=self)
         else:
             yield from super().get_collections()
 
-    def get_items(self) -> Iterable["Item_Type"]:
+    def get_items(self) -> Generator["Item_Type", None, None]:
         """Return all items of this catalog.
 
         Return:
-            Iterable[Item]:: Generator of items whose parent is this catalog.
+            Generator[Item, None, None]:: Generator of items whose parent is this
+                catalog.
         """
         if self._conforms_to(ConformanceClasses.ITEM_SEARCH):
             search = self.search()
             yield from search.items()
         else:
-            return super().get_items()
+            yield from super().get_items()
 
-    def get_all_items(self) -> Iterable["Item_Type"]:
+    def get_all_items(self) -> Generator["Item_Type", None, None]:
         """Get all items from this catalog and all subcatalogs. Will traverse
         any subcatalogs recursively, or use the /search endpoint if supported
 
         Returns:
-            Iterable[Item]:: All items that belong to this catalog, and all
+            Generator[Item, None, None]:: All items that belong to this catalog, and all
                 catalogs or collections connected to this catalog through
                 child links.
         """
