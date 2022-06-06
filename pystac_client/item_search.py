@@ -268,9 +268,9 @@ class ItemSearch:
 
         self._parameters = {k: v for k, v in params.items() if v is not None}
 
+    # TODO: fix this with the stac_api_io() method in a future PR
     def _assert_conforms_to(self, conformance_class: ConformanceClasses) -> None:
-        if isinstance(self._stac_io, StacApiIO):
-            self._stac_io.assert_conforms_to(conformance_class)
+        self._stac_io.assert_conforms_to(conformance_class)  # type: ignore
 
     def get_parameters(self) -> Dict[str, Any]:
         if self.method == "POST":

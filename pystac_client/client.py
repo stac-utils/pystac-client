@@ -101,10 +101,9 @@ class Client(pystac.Catalog):
             ConformanceClasses.FEATURES
         )
 
+    # TODO: fix this with the stac_api_io() method in a future PR
     def _conforms_to(self, conformance_class: ConformanceClasses) -> bool:
-        if isinstance(self._stac_io, StacApiIO):
-            return self._stac_io.conforms_to(conformance_class)
-        return True
+        return self._stac_io.conforms_to(conformance_class)  # type: ignore
 
     @classmethod
     def from_dict(
