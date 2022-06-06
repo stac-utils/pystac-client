@@ -121,7 +121,7 @@ def parse_args(args: List[str]) -> Dict[str, Any]:
     )
     search_group.add_argument(
         "--datetime",
-        help="Single date/time or begin and end date/time "
+        help="Single datetime or begin and end datetime "
         "(e.g., 2017-01-01/2017-02-15)",
     )
     search_group.add_argument(
@@ -130,19 +130,25 @@ def parse_args(args: List[str]) -> Dict[str, Any]:
         help=f"Query properties of form KEY=VALUE ({','.join(OPS)} supported)",
     )
     search_group.add_argument(
+        "-q",
+        nargs="*",
+        help="DEPRECATED. Use --query instead. Query properties of form "
+        "KEY=VALUE (<, >, <=, >=, = supported)",
+    )
+    search_group.add_argument(
         "--filter",
         help="Filter on queryables using language specified in filter-lang parameter",
     )
     search_group.add_argument(
         "--filter-lang",
         help="Filter language used within the filter parameter",
-        default="cql-json",
+        default="cql2-json",
     )
     search_group.add_argument("--sortby", help="Sort by fields", nargs="*")
     search_group.add_argument(
         "--fields", help="Control what fields get returned", nargs="*"
     )
-    search_group.add_argument("--limit", help="Page size limit", type=int, default=100)
+    search_group.add_argument("--limit", help="Page size limit", type=int)
     search_group.add_argument(
         "--max-items",
         dest="max_items",
@@ -192,6 +198,14 @@ def parse_args(args: List[str]) -> Dict[str, Any]:
     if "filter" in parsed_args:
         if "json" in parsed_args["filter_lang"]:
             parsed_args["filter"] = json.loads(parsed_args["filter"])
+
+    if "q" in parsed_args:
+        logger.warning("Argument -q is deprecated, use --query instead")
+        if "query" not in parsed_args:
+            parsed_args["query"] = parsed_args["q"]
+        else:
+            logger.error("Both -q and --query arguments specified, ignoring -q")
+        del parsed_args["q"]
 
     return parsed_args
 

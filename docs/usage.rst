@@ -149,7 +149,7 @@ requests to a service's "search" endpoint. This method returns a
 .. code-block:: python
 
     >>> from pystac_client import Client
-    >>> api = Client.from_file('https://planetarycomputer.microsoft.com/api/stac/v1')
+    >>> api = Client.open('https://planetarycomputer.microsoft.com/api/stac/v1')
     >>> results = api.search(
     ...     max_items=5
     ...     bbox=[-73.21, 43.99, -73.12, 44.05],
@@ -272,16 +272,16 @@ descending sort and a ``+`` prefix or no prefix means an ascending sort.
 .. code-block:: python
 
     >>> from pystac_client import Client
-    >>> results = Client.from_file('https://planetarycomputer.microsoft.com/api/stac/v1').search(
+    >>> results = Client.open('https://planetarycomputer.microsoft.com/api/stac/v1').search(
     ...     sortby="properties.datetime"
     ... )
-    >>> results = Client.from_file('https://planetarycomputer.microsoft.com/api/stac/v1').search(
+    >>> results = Client.open('https://planetarycomputer.microsoft.com/api/stac/v1').search(
     ...     sortby="-properties.datetime,+id,+collection"
     ... )
-    >>> results = Client.from_file('https://planetarycomputer.microsoft.com/api/stac/v1').search(
+    >>> results = Client.open('https://planetarycomputer.microsoft.com/api/stac/v1').search(
     ...     sortby=["-properties.datetime", "+id" , "+collection" ]
     ... )
-    >>> results = Client.from_file('https://planetarycomputer.microsoft.com/api/stac/v1').search(
+    >>> results = Client.open('https://planetarycomputer.microsoft.com/api/stac/v1').search(
     ...     sortby=[
                 {"direction": "desc", "field": "properties.datetime"},
                 {"direction": "asc", "field": "id"},
