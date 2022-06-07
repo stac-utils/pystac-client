@@ -109,7 +109,7 @@ Create a search:
         bbox=[-72.5,40.5,-72,41])
     print(f"{mysearch.matched()} items found")
 
-The ``items()`` generator method can be used to iterate through all resulting items.
+The ``items()`` iterator method can be used to iterate through all resulting items.
 
 .. code-block:: python
 

@@ -216,7 +216,7 @@ class StacApiIO(DefaultStacIO):
         endpoint, e.g., /collections, /search
 
         Return:
-            Dict : JSON content from a single page
+            Dict[str, Any] : JSON content from a single page
         """
         page = self.read_json(url, method=method, parameters=parameters)
         yield page
