@@ -58,7 +58,7 @@ class StacApiIO(DefaultStacIO):
         self,
         source: Union[str, Link],
         *args: Any,
-        parameters: Optional[dict] = {},
+        parameters: Optional[Dict[str, Any]] = None,
         **kwargs: Any,
     ) -> str:
         """Read text from the given URI.
@@ -104,20 +104,20 @@ class StacApiIO(DefaultStacIO):
     def request(
         self,
         href: str,
-        method: Optional[str] = "GET",
-        headers: Optional[dict] = {},
-        parameters: Optional[dict] = {},
+        method: Optional[str] = None,
+        headers: Optional[Dict[str, str]] = None,
+        parameters: Optional[Dict[str, Any]] = None,
     ) -> str:
         """Makes a request to an http endpoint
 
         Args:
             href (str): The request URL
             method (Optional[str], optional): The http method to use, 'GET' or 'POST'.
-              Defaults to 'GET'.
-            headers (Optional[dict], optional): Additional headers to include in
-              request. Defaults to {}.
-            parameters (Optional[dict], optional): parameters to send with request.
-              Defaults to {}.
+              Defaults to None, which will result in 'GET' being used.
+            headers (Optional[Dict[str, str]], optional): Additional headers to include
+                in request. Defaults to None.
+            parameters (Optional[Dict[str, Any]], optional): parameters to send with
+                request. Defaults to None.
 
         Raises:
             APIError: raised if the server returns an error response
@@ -128,10 +128,10 @@ class StacApiIO(DefaultStacIO):
         if method == "POST":
             request = Request(method=method, url=href, headers=headers, json=parameters)
         else:
-            params = deepcopy(parameters)
+            params = deepcopy(parameters) or {}
             if "intersects" in params:
                 params["intersects"] = json.dumps(params["intersects"])
-            request = Request(method=method, url=href, headers=headers, params=params)
+            request = Request(method="GET", url=href, headers=headers, params=params)
         try:
             prepped = self.session.prepare_request(request)
             msg = f"{prepped.method} {prepped.url} Headers: {prepped.headers}"
@@ -188,14 +188,14 @@ class StacApiIO(DefaultStacIO):
         d = migrate_to_latest(d, info)
 
         if info.object_type == pystac.STACObjectType.CATALOG:
-            result = pystac_client.Client.from_dict(
+            result = pystac_client.client.Client.from_dict(
                 d, href=href, root=root, migrate=False, preserve_dict=preserve_dict
             )
             result._stac_io = self
             return result
 
         if info.object_type == pystac.STACObjectType.COLLECTION:
-            return pystac_client.CollectionClient.from_dict(
+            return pystac_client.collection_client.CollectionClient.from_dict(
                 d, href=href, root=root, migrate=False, preserve_dict=preserve_dict
             )
 
@@ -206,7 +206,12 @@ class StacApiIO(DefaultStacIO):
 
         raise ValueError(f"Unknown STAC object type {info.object_type}")
 
-    def get_pages(self, url, method="GET", parameters={}) -> Iterator[Dict]:
+    def get_pages(
+        self,
+        url: str,
+        method: Optional[str] = None,
+        parameters: Optional[Dict[str, Any]] = None,
+    ) -> Iterator[Dict[str, Any]]:
         """Iterator that yields dictionaries for each page at a STAC paging
         endpoint, e.g., /collections, /search
 
@@ -273,5 +278,5 @@ class StacApiIO(DefaultStacIO):
         return True
 
     def set_conformance(self, conformance: Optional[List[str]]) -> None:
-        """Sets (or clears) the conformances for this StacIO."""
+        """Sets (or clears) the conformance classes for this StacIO."""
         self._conformance = conformance

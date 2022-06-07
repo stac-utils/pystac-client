@@ -355,7 +355,9 @@ class TestAPISearch:
 
         with pytest.raises(NotImplementedError) as excinfo:
             api.search(limit=10, max_items=10, collections="naip")
-        assert 'No link with "rel" type of "search"' in str(excinfo.value)
+        assert "No link with rel=search could be found in this catalog" in str(
+            excinfo.value
+        )
 
     def test_no_conforms_to(self) -> None:
         with open(str(TEST_DATA / "planetary-computer-root.json")) as f:

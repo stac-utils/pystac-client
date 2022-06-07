@@ -3,6 +3,7 @@ from typing import TYPE_CHECKING, Any, Dict, Iterable, Optional
 
 import pystac
 import pystac.validation
+from pystac import Collection
 
 from pystac_client.collection_client import CollectionClient
 from pystac_client.conformance import ConformanceClasses
@@ -60,25 +61,30 @@ class Client(pystac.Catalog):
         Return:
             catalog : A :class:`Client` instance for this Catalog/API
         """
-        cat = cls.from_file(url, headers=headers, parameters=parameters)
-        search_link = cat.get_search_link()
+        client: Client = cls.from_file(url, headers=headers, parameters=parameters)
+        search_link = client.get_search_link()
         # if there is a search link, but no conformsTo advertised, ignore
         # conformance entirely
         # NOTE: this behavior to be deprecated as implementations become conformant
-        if ignore_conformance or (
-            "conformsTo" not in cat.extra_fields.keys()
-            and search_link
-            and search_link.href
-            and len(search_link.href) > 0
+        if client._stac_io and (
+            ignore_conformance
+            or (
+                client
+                and "conformsTo" not in client.extra_fields.keys()
+                and search_link
+                and search_link.href
+                and len(search_link.href) > 0
+            )
         ):
-            cat._stac_io.set_conformance(None)
-        return cat
+            client._stac_io.set_conformance(None)  # type: ignore
+
+        return client
 
     @classmethod
-    def from_file(
+    def from_file(  # type: ignore
         cls,
         href: str,
-        stac_io: Optional[pystac.StacIO] = None,
+        stac_io: Optional[StacApiIO] = None,
         headers: Optional[Dict[str, str]] = None,
         parameters: Optional[Dict[str, Any]] = None,
     ) -> "Client":
@@ -90,20 +96,21 @@ class Client(pystac.Catalog):
         if stac_io is None:
             stac_io = StacApiIO(headers=headers, parameters=parameters)
 
-        cat = super().from_file(href, stac_io)
+        client: Client = super().from_file(href, stac_io)  # type: ignore
 
-        cat._stac_io._conformance = cat.extra_fields.get("conformsTo", [])
+        client._stac_io._conformance = client.extra_fields.get(  # type: ignore
+            "conformsTo", []
+        )
 
-        return cat
+        return client
 
     def _supports_collections(self) -> bool:
         return self._conforms_to(ConformanceClasses.COLLECTIONS) or self._conforms_to(
             ConformanceClasses.FEATURES
         )
 
-    # TODO: fix this with the stac_api_io() method in a future PR
     def _conforms_to(self, conformance_class: ConformanceClasses) -> bool:
-        return self._stac_io.conforms_to(conformance_class)  # type: ignore
+        return self._stac_io.conforms_to(conformance_class)
 
     @classmethod
     def from_dict(
@@ -125,7 +132,7 @@ class Client(pystac.Catalog):
             )
 
     @lru_cache()
-    def get_collection(self, collection_id: str) -> CollectionClient:
+    def get_collection(self, collection_id: str) -> Optional[Collection]:
         """Get a single collection from this Catalog/API
 
         Args:
@@ -134,7 +141,7 @@ class Client(pystac.Catalog):
         Returns:
             CollectionClient: A STAC Collection
         """
-        if self._supports_collections():
+        if self._supports_collections() and self._stac_io:
             url = f"{self.get_self_href()}/collections/{collection_id}"
             collection = CollectionClient.from_dict(
                 self._stac_io.read_json(url), root=self
@@ -145,7 +152,9 @@ class Client(pystac.Catalog):
                 if col.id == collection_id:
                     return col
 
-    def get_collections(self) -> Iterable[CollectionClient]:
+        return None
+
+    def get_collections(self) -> Iterable[Collection]:
         """Get Collections in this Catalog
 
             Gets the collections from the /collections endpoint if supported,
@@ -154,9 +163,9 @@ class Client(pystac.Catalog):
         Return:
             Iterable[CollectionClient]: Iterator through Collections in Catalog/API
         """
-        if self._supports_collections():
-            url = self.get_self_href() + "/collections"
-            for page in self._stac_io.get_pages(url):
+        if self._supports_collections() and self.get_self_href() is not None:
+            url = f"{self.get_self_href()}/collections"
+            for page in self._stac_io.get_pages(url):  # type: ignore
                 if "collections" not in page:
                     raise APIError("Invalid response from /collections")
                 for col in page["collections"]:
@@ -228,14 +237,21 @@ class Client(pystac.Catalog):
                 f'does not conform to "{ConformanceClasses.ITEM_SEARCH}"'
             )
         search_link = self.get_search_link()
-        if search_link is None:
+        if search_link:
+            if isinstance(search_link.target, str):
+                search_href = search_link.target
+            else:
+                raise NotImplementedError(
+                    "Link with rel=search was an object rather than a URI"
+                )
+        else:
             raise NotImplementedError(
-                'No link with "rel" type of "search" could be found in this catalog'
+                "No link with rel=search could be found in this catalog"
             )
 
         return ItemSearch(
-            search_link.target,
-            stac_io=self._stac_io,
+            url=search_href,
+            stac_io=self._stac_io,  # type: ignore
             client=self,
             **kwargs,
         )
