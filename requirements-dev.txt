@@ -7,7 +7,7 @@ recommonmark~=0.7.1
 requests-mock~=1.9.3
 Sphinx~=3.5.1
 
-mypy~=0.960
+mypy~=0.961
 flake8~=4.0.1
 black~=22.3.0
 codespell~=2.1.0

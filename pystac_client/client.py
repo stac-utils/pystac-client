@@ -1,5 +1,5 @@
 from functools import lru_cache
-from typing import TYPE_CHECKING, Any, Dict, Generator, Optional
+from typing import TYPE_CHECKING, Any, Dict, Iterator, Optional
 
 import pystac
 import pystac.validation
@@ -154,14 +154,14 @@ class Client(pystac.Catalog):
 
         return None
 
-    def get_collections(self) -> Generator[Collection, None, None]:
+    def get_collections(self) -> Iterator[Collection]:
         """Get Collections in this Catalog
 
             Gets the collections from the /collections endpoint if supported,
             otherwise fall back to Catalog behavior of following child links
 
         Return:
-            Generator[Collection, None, None]: Generator over Collections in Catalog/API
+            Iterator[Collection]: Iterator over Collections in Catalog/API
         """
         if self._supports_collections() and self.get_self_href() is not None:
             url = f"{self.get_self_href()}/collections"
@@ -173,11 +173,11 @@ class Client(pystac.Catalog):
         else:
             yield from super().get_collections()
 
-    def get_items(self) -> Generator["Item_Type", None, None]:
+    def get_items(self) -> Iterator["Item_Type"]:
         """Return all items of this catalog.
 
         Return:
-            Generator[Item, None, None]:: Generator of items whose parent is this
+            Iterator[Item]:: Iterator of items whose parent is this
                 catalog.
         """
         if self._conforms_to(ConformanceClasses.ITEM_SEARCH):
@@ -186,12 +186,12 @@ class Client(pystac.Catalog):
         else:
             yield from super().get_items()
 
-    def get_all_items(self) -> Generator["Item_Type", None, None]:
+    def get_all_items(self) -> Iterator["Item_Type"]:
         """Get all items from this catalog and all subcatalogs. Will traverse
         any subcatalogs recursively, or use the /search endpoint if supported
 
         Returns:
-            Generator[Item, None, None]:: All items that belong to this catalog, and all
+            Iterator[Item]:: All items that belong to this catalog, and all
                 catalogs or collections connected to this catalog through
                 child links.
         """
