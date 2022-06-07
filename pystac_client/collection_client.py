@@ -1,4 +1,4 @@
-from typing import TYPE_CHECKING, Generator, Optional, cast
+from typing import TYPE_CHECKING, Iterator, Optional, cast
 
 import pystac
 
@@ -15,7 +15,7 @@ class CollectionClient(pystac.Collection):
     def __repr__(self) -> str:
         return "<CollectionClient id={}>".format(self.id)
 
-    def get_items(self) -> Generator["Item_Type", None, None]:
+    def get_items(self) -> Iterator["Item_Type"]:
         """Return all items in this Collection.
 
         If the Collection contains a link of with a `rel` value of `items`,
@@ -23,7 +23,7 @@ class CollectionClient(pystac.Collection):
         PySTAC behavior is assumed.
 
         Return:
-            Iterable[Item]: Generator of items whose parent is this catalog.
+            Iterator[Item]: Iterator of items whose parent is this catalog.
         """
 
         link = self.get_single_link("items")

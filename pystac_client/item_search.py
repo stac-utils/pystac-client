@@ -7,17 +7,7 @@ from datetime import datetime as datetime_
 from datetime import timezone
 from functools import lru_cache
 from itertools import chain
-from typing import (
-    TYPE_CHECKING,
-    Any,
-    Dict,
-    Generator,
-    Iterator,
-    List,
-    Optional,
-    Tuple,
-    Union,
-)
+from typing import TYPE_CHECKING, Any, Dict, Iterator, List, Optional, Tuple, Union
 
 from dateutil.relativedelta import relativedelta
 from dateutil.tz import tzutc
@@ -441,7 +431,6 @@ class ItemSearch:
         elif isinstance(value, str):
             components = value.split("/")
         else:
-            # maybe we can make it a list?
             components = list(value)  # type: ignore
 
         if not components:
@@ -601,7 +590,7 @@ class ItemSearch:
             warnings.warn("numberMatched or context.matched not in response")
         return found
 
-    def get_item_collections(self) -> Generator[ItemCollection, None, None]:
+    def get_item_collections(self) -> Iterator[ItemCollection]:
         """DEPRECATED. Use :meth:`ItemSearch.item_collections` instead.
 
         Yields:
@@ -614,8 +603,8 @@ class ItemSearch:
         )
         return self.item_collections()
 
-    def item_collections(self) -> Generator[ItemCollection, None, None]:
-        """Generator that yields ItemCollection objects.  Each ItemCollection is
+    def item_collections(self) -> Iterator[ItemCollection]:
+        """Iterator that yields ItemCollection objects.  Each ItemCollection is
         a page of results from the search.
 
         Yields:
@@ -642,8 +631,8 @@ class ItemSearch:
         )
         return self.items()
 
-    def items(self) -> Generator[Item, None, None]:
-        """Generator that yields :class:`pystac.Item` instances for each item matching
+    def items(self) -> Iterator[Item]:
+        """Iterator that yields :class:`pystac.Item` instances for each item matching
         the given search parameters. Calls
         :meth:`ItemSearch.item_collections` internally and yields from
         :attr:`ItemCollection.features <pystac_client.ItemCollection.features>` for
@@ -660,8 +649,8 @@ class ItemSearch:
                 if self._max_items and nitems >= self._max_items:
                     return
 
-    def items_as_dicts(self) -> Generator[Dict[str, Any], None, None]:
-        """Generator that yields :class:`dict` instances for each item matching
+    def items_as_dicts(self) -> Iterator[Dict[str, Any]]:
+        """Iterator that yields :class:`dict` instances for each item matching
         the given search parameters. Calls
         :meth:`ItemSearch.item_collections` internally and yields from
         :attr:`ItemCollection.features <pystac_client.ItemCollection.features>` for
