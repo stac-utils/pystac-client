@@ -439,7 +439,6 @@ class ItemSearch:
         elif isinstance(value, str):
             components = value.split("/")
         else:
-            # maybe we can make it a list?
             components = list(value)  # type: ignore
 
         if not components:
