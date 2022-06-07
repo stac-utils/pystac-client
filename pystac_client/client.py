@@ -161,7 +161,7 @@ class Client(pystac.Catalog):
             otherwise fall back to Catalog behavior of following child links
 
         Return:
-            Iterator[Collection, None, None]: Iterator over Collections in Catalog/API
+            Iterator[Collection]: Iterator over Collections in Catalog/API
         """
         if self._supports_collections() and self.get_self_href() is not None:
             url = f"{self.get_self_href()}/collections"
