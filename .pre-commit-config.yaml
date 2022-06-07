@@ -30,7 +30,7 @@ repos:
     hooks:
       - id: mypy
         files: ".*\\.py$"
-        exclude: ^(docs/.*|tests/.*)$
+        exclude: ^tests/.*$
         args:
           - --ignore-missing-imports
         additional_dependencies:

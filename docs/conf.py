@@ -8,6 +8,7 @@ import re
 import subprocess
 import sys
 from pathlib import Path
+from typing import List
 
 # -- Path setup --------------------------------------------------------------
 
@@ -16,7 +17,7 @@ from pathlib import Path
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.resolve()))
-from pystac_client import __version__  # noqa: E402
+from pystac_client import __version__  # type: ignore # noqa: E402
 
 git_branch = (
     subprocess.check_output(["git", "rev-parse", "--abbrev-ref", "HEAD"])
@@ -34,7 +35,7 @@ github_repo = "pystac-client"
 package_description = "A Python client for the STAC and STAC-API specs"
 
 # The full version, including alpha/beta/rc tags
-version = re.fullmatch(r"^(\d+\.\d+\.\d).*$", __version__).group(1)
+version = re.fullmatch(r"^(\d+\.\d+\.\d).*$", __version__).group(1)  # type: ignore
 release = __version__
 
 
@@ -92,7 +93,7 @@ html_theme_options = {
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = []
+html_static_path: List[str] = []
 
 # -- Options for intersphinx extension ---------------------------------------
 
