@@ -110,7 +110,7 @@ class Client(pystac.Catalog):
         )
 
     def _conforms_to(self, conformance_class: ConformanceClasses) -> bool:
-        return self._stac_io.conforms_to(conformance_class)
+        return self._stac_io.conforms_to(conformance_class)  # type: ignore
 
     @classmethod
     def from_dict(
@@ -122,7 +122,8 @@ class Client(pystac.Catalog):
         preserve_dict: bool = True,
     ) -> "Client":
         try:
-            return super().from_dict(
+            # this will return a Client because we have used a StacApiIO instance
+            return super().from_dict(  # type: ignore
                 d=d, href=href, root=root, migrate=migrate, preserve_dict=preserve_dict
             )
         except pystac.STACTypeError:

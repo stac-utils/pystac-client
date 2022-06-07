@@ -17,7 +17,7 @@ from pystac_client.conformance import ConformanceClasses
 from pystac_client.stac_api_io import StacApiIO
 
 if TYPE_CHECKING:
-    from pystac_client import client as _client
+    from pystac_client.client import Client
 
 DATETIME_REGEX = re.compile(
     r"(?P<year>\d{4})(-(?P<month>\d{2})(-(?P<day>\d{2})"
@@ -219,7 +219,7 @@ class ItemSearch:
         method: Optional[str] = "POST",
         max_items: Optional[int] = DEFAULT_LIMIT_AND_MAX_ITEMS,
         stac_io: Optional[StacApiIO] = None,
-        client: Optional["_client.Client"] = None,
+        client: Optional[Client] = None,
         limit: Optional[int] = DEFAULT_LIMIT_AND_MAX_ITEMS,
         ids: Optional[IDsLike] = None,
         collections: Optional[CollectionsLike] = None,
