@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - lru_cache to several methods [#167](https://github.com/stac-utils/pystac-client/pull/167)
 - Direct item GET via ogcapi-features, if conformant [#166](https://github.com/stac-utils/pystac-client/pull/166)
 - `py.typed` for downstream type checking [#163](https://github.com/stac-utils/pystac-client/pull/163)
+- Added tutorial for using various geometry objects (e.g., shapely, geojson) as an Item Search intersects argument [#232](https://github.com/stac-utils/pystac-client/pull/232)
 
 ### Changed
 
