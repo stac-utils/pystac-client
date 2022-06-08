@@ -25,15 +25,13 @@ repos:
     hooks:
       - id: isort
         name: isort (python)
-#  - repo: https://github.com/pre-commit/mirrors-mypy
-#    rev: v0.960
-#    hooks:
-#      - id: mypy
-#        files: ".*\\.py$"
-#        exclude: ^(docs/.*|tests/.*)$
-#        args:
-#          - --ignore-missing-imports
-#        additional_dependencies:
-#          - pystac
-#          - types-requests
-#          - types-python-dateutil
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v0.960
+    hooks:
+      - id: mypy
+        files: ".*\\.py$"
+        exclude: ^tests/.*$
+        additional_dependencies:
+          - pystac
+          - types-requests
+          - types-python-dateutil

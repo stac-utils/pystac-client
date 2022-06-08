@@ -2,7 +2,7 @@ import json
 import logging
 import re
 from copy import deepcopy
-from typing import TYPE_CHECKING, Any, Dict, Iterator, List, Optional, Union
+from typing import TYPE_CHECKING, Any, Dict, Iterator, List, Optional
 from urllib.parse import urlparse
 
 import pystac
@@ -50,17 +50,11 @@ class StacApiIO(DefaultStacIO):
         # TODO - this should super() to parent class
         self.session = Session()
         self.session.headers.update(headers or {})
-        self.session.params.update(parameters or {})
+        self.session.params.update(parameters or {})  # type: ignore
 
         self._conformance = conformance
 
-    def read_text(
-        self,
-        source: Union[str, Link],
-        *args: Any,
-        parameters: Optional[Dict[str, Any]] = None,
-        **kwargs: Any,
-    ) -> str:
+    def read_text(self, source: pystac.link.HREF, *args: Any, **kwargs: Any) -> str:
         """Read text from the given URI.
 
         Overwrites the default method for reading text from a URL or file to allow
@@ -68,15 +62,7 @@ class StacApiIO(DefaultStacIO):
         any :exc:`urllib.error.HTTPError` exceptions rather than catching
         them to allow us to handle different response status codes as needed.
         """
-        if isinstance(source, str):
-            href = source
-            if bool(urlparse(href).scheme):
-                return self.request(href, *args, parameters=parameters, **kwargs)
-            else:
-                with open(href) as f:
-                    href_contents = f.read()
-                return href_contents
-        elif isinstance(source, Link):
+        if isinstance(source, Link):
             link = source.to_dict()
             href = link["href"]
             # get headers and body from Link and add to request from simple STAC
@@ -93,13 +79,26 @@ class StacApiIO(DefaultStacIO):
             # If "POST" use the body object that and respect the "merge" property.
             link_body = link.get("body", {})
             if method == "POST":
-                parameters = {**parameters, **link_body} if merge else link_body
+                parameters = (
+                    {**(kwargs.get("parameters", {})), **link_body}
+                    if merge
+                    else link_body
+                )
             else:
                 # parameters are already in the link href
                 parameters = {}
+
             return self.request(
-                href, *args, method=method, headers=headers, parameters=parameters
+                href, method=method, headers=headers, parameters=parameters
             )
+        else:  # str or something that can be str'ed
+            href = str(source)
+            if bool(urlparse(href).scheme):
+                return self.request(href, *args, **kwargs)
+            else:
+                with open(href) as f:
+                    href_contents = f.read()
+                return href_contents
 
     def request(
         self,
@@ -157,7 +156,7 @@ class StacApiIO(DefaultStacIO):
     def stac_object_from_dict(
         self,
         d: Dict[str, Any],
-        href: Optional[str] = None,
+        href: Optional[pystac.link.HREF] = None,
         root: Optional["Catalog_Type"] = None,
         preserve_dict: bool = True,
     ) -> "STACObject_Type":
@@ -181,7 +180,7 @@ class StacApiIO(DefaultStacIO):
 
             # Merge common properties in case this is an older STAC object.
             merge_common_properties(
-                d, json_href=href, collection_cache=collection_cache
+                d, json_href=str(href), collection_cache=collection_cache
             )
 
         info = identify_stac_object(d)
@@ -189,19 +188,19 @@ class StacApiIO(DefaultStacIO):
 
         if info.object_type == pystac.STACObjectType.CATALOG:
             result = pystac_client.client.Client.from_dict(
-                d, href=href, root=root, migrate=False, preserve_dict=preserve_dict
+                d, href=str(href), root=root, migrate=False, preserve_dict=preserve_dict
             )
             result._stac_io = self
             return result
 
         if info.object_type == pystac.STACObjectType.COLLECTION:
             return pystac_client.collection_client.CollectionClient.from_dict(
-                d, href=href, root=root, migrate=False, preserve_dict=preserve_dict
+                d, href=str(href), root=root, migrate=False, preserve_dict=preserve_dict
             )
 
         if info.object_type == pystac.STACObjectType.ITEM:
             return pystac.Item.from_dict(
-                d, href=href, root=root, migrate=False, preserve_dict=preserve_dict
+                d, href=str(href), root=root, migrate=False, preserve_dict=preserve_dict
             )
 
         raise ValueError(f"Unknown STAC object type {info.object_type}")
@@ -254,7 +253,8 @@ class StacApiIO(DefaultStacIO):
         provides such an endpoint.
 
         Args:
-            key : The ``ConformanceClasses`` key to check conformance against.
+            conformance_class : The ``ConformanceClasses`` key to check conformance
+                against.
 
         Return:
             bool: Indicates if the API conforms to the given spec or URI.
