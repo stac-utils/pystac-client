@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased] - TBD
 
+None
+
+## [v0.4.0] - 2022-06-08
+
 ### Added
 
 - Significantly improved type hints
@@ -201,7 +205,8 @@ are in a single HTTP session, handle pagination and respects conformance
 
 Initial release.
 
-[Unreleased]: <https://github.com/stac-utils/pystac-client/compare/v0.3.5...main>
+[Unreleased]: <https://github.com/stac-utils/pystac-client/compare/v0.4.0...main>
+[v0.4.0]: <https://github.com/stac-utils/pystac-client/compare/v0.3.5...v0.4.0>
 [v0.3.5]: <https://github.com/stac-utils/pystac-client/compare/v0.3.4..v0.3.5>
 [v0.3.4]: <https://github.com/stac-utils/pystac-client/compare/v0.3.3..v0.3.4>
 [v0.3.3]: <https://github.com/stac-utils/pystac-client/compare/v0.3.2..v0.3.3>
