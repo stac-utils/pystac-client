@@ -50,11 +50,7 @@ class StacApiIO(DefaultStacIO):
         # TODO - this should super() to parent class
         self.session = Session()
         self.session.headers.update(headers or {})
-
-        if hasattr(self.session.params, "update"):
-            self.session.params.update(parameters or {})  # type: ignore
-        else:
-            logger.error("Parameters could not be set.")
+        self.session.params.update(parameters or {})  # type: ignore
 
         self._conformance = conformance
 
