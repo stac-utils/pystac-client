@@ -7,9 +7,8 @@
 4. Update [CHANGELOG.md](CHANGELOG.md).
    1. Add a new header under "Unreleased" with the new version and the date, e.g. `## [vX.Y.Z] - YYYY-MM-DD`.
    2. Audit the changelog section to ensure all changes are captured.
-   3. Add a new link reference at the bottom of the changelog with the new version.
+   3. Add a link reference for the new version after the Unreleased link reference at the bottom of the file.
       Follow the format from the previous version links.
-   4. Update the "Unreleased" link to reference your new version.
 5. (optional) Build the package locally and inspect its contents: `pip install build && python -m build`
 6. Open a pull request for your `release/vX.Y.Z` branch against the appropriate branch (either `main` or a version branch, e.g. `v0.3`).
    Include a section in the pull request description with the CHANGELOG contents for this version.
