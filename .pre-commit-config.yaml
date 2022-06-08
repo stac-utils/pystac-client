@@ -31,8 +31,6 @@ repos:
       - id: mypy
         files: ".*\\.py$"
         exclude: ^tests/.*$
-        args:
-          - --ignore-missing-imports
         additional_dependencies:
           - pystac
           - types-requests
