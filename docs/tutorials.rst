@@ -28,6 +28,16 @@ CQL2 Filtering
 This tutorial gives an introduction to using CQL2-JSON filtering in searches to
 search by arbitrary STAC Item properties.
 
+Item Search with Intersects
+-----------------------------------------------------
+
+- :tutorial:`GitHub version <item-search-intersects.ipynb>`
+- :ref:`Docs version </tutorials/item-search-intersects.ipynb>`
+
+This tutorial demonstrates the use of different Python library
+object types that can be used for the `intersects`
+search parameter.
+
 Calculating Coverage Percentage of the AOI by an Item
 -----------------------------------------------------
 
