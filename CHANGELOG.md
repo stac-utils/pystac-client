@@ -6,7 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased] - TBD
 
-None
+### Added
+
+- Added the free-text search parameter `q` to `ItemSearch` [#158](https://github.com/stac-utils/pystac-client/pull/158)
 
 ## [v0.4.0] - 2022-06-08
 
