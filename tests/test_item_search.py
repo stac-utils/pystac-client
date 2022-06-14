@@ -275,6 +275,10 @@ class TestItemSearchParams:
         search = ItemSearch(url=SEARCH_URL)
         assert 'filter-lang' not in search._parameters
 
+    def test_freetext(self):
+        search = ItemSearch(url=SEARCH_URL, q="*")
+        assert search._parameters['q'] == "*"
+
 
 class TestItemSearch:
     @pytest.fixture(scope='function')
@@ -375,6 +379,20 @@ class TestItemSearch:
         search = ItemSearch(url=SEARCH_URL, intersects=intersects_obj, collections='naip')
         results = search.get_items()
         assert all(isinstance(item, pystac.Item) for item in results)
+
+    def test_freetext_results(self):
+        search = ItemSearch(
+            url=f"{STAC_URLS['CEDA']}/search",
+            collections='cmip6',
+            limit=10,
+            max_items=20,
+            q="aerchemm*"
+        )
+        results = search.get_items()
+        item = next(results)
+
+        assert all(isinstance(item, pystac.Item) for item in results)
+        assert all(item.properties['activity_id'][0].lower().startswith("aerchemm") for item in results)
 
     @pytest.mark.vcr
     def test_result_paging(self):

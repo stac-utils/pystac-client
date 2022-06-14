@@ -147,7 +147,7 @@ class ItemSearch:
         method: The http method, 'GET' or 'POST'
         stac_io: An instance of of StacIO for retrieving results. Normally comes from the Client that returns this ItemSearch
         client: An instance of a root Client used to set the root on resulting Items
-        q: Freetext string as per the STAC API `free-text-search` extension
+        q: Freetext string as per the STAC API `free-text-search extension <https://github.com/cedadev/stac-freetext-search>`
     """
     def __init__(self,
                  url: str,
