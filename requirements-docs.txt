@@ -1,7 +1,12 @@
-ipykernel~=6.2
-ipython~=7.27
+ipykernel~=6.13
+ipython~=8.4
 Sphinx~=4.1
 sphinxcontrib-fulltoc~=1.2
-myst-parser~=0.15.2
+myst-parser~=0.18.0
 nbsphinx~=0.8
 jinja2<4.0
+geopandas~=0.10.2
+hvplot~=0.8.0
+matplotlib~=3.5.2
+geojson~=2.5.0
+pygeoif~=0.7

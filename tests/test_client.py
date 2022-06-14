@@ -1,12 +1,17 @@
+import json
+import os.path
 from datetime import datetime
-from urllib.parse import urlsplit, parse_qs
+from tempfile import TemporaryDirectory
+from urllib.parse import parse_qs, urlsplit
 
-from dateutil.tz import tzutc
 import pystac
 import pytest
+from dateutil.tz import tzutc
+from pystac import MediaType
 
 from pystac_client import Client
 from pystac_client.conformance import ConformanceClasses
+from pystac_client.errors import ClientTypeError
 
 from .helpers import STAC_URLS, TEST_DATA, read_data_file
 
@@ -14,41 +19,45 @@ from .helpers import STAC_URLS, TEST_DATA, read_data_file
 class TestAPI:
     @pytest.mark.vcr
     def test_instance(self):
-        api = Client.open(STAC_URLS['PLANETARY-COMPUTER'])
+        api = Client.open(STAC_URLS["PLANETARY-COMPUTER"])
 
         # An API instance is also a Catalog instance
         assert isinstance(api, pystac.Catalog)
 
-        assert str(api) == '<Client id=microsoft-pc>'
+        assert str(api) == "<Client id=microsoft-pc>"
 
     @pytest.mark.vcr
     def test_links(self):
-        api = Client.open(STAC_URLS['PLANETARY-COMPUTER'])
+        api = Client.open(STAC_URLS["PLANETARY-COMPUTER"])
 
         # Should be able to get collections via links as with a typical PySTAC Catalog
-        collection_links = api.get_links('child')
+        collection_links = api.get_links("child")
         assert len(collection_links) > 0
 
         collections = list(api.get_collections())
         assert len(collection_links) == len(collections)
 
-        first_collection = api.get_single_link('child').resolve_stac_object(root=api).target
+        first_collection = (
+            api.get_single_link("child").resolve_stac_object(root=api).target
+        )
         assert isinstance(first_collection, pystac.Collection)
 
     def test_spec_conformance(self):
-        """Testing conformance against a ConformanceClass should allow APIs using legacy URIs to pass."""
-        client = Client.from_file(str(TEST_DATA / 'planetary-computer-root.json'))
+        """Testing conformance against a ConformanceClass should allow APIs using legacy
+        URIs to pass."""
+        client = Client.from_file(str(TEST_DATA / "planetary-computer-root.json"))
 
         # Set conformsTo URIs to conform with STAC API - Core using official URI
-        client._stac_io._conformance = ['https://api.stacspec.org/v1.0.0-beta.1/core']
+        client._stac_io._conformance = ["https://api.stacspec.org/v1.0.0-beta.1/core"]
 
         assert client._stac_io.conforms_to(ConformanceClasses.CORE)
 
     @pytest.mark.vcr
     def test_no_conformance(self):
-        """Should raise a NotImplementedError if no conformance info can be found. Luckily, the test API doesn't publish
-        a "conformance" link so we can just remove the "conformsTo" attribute to test this."""
-        client = Client.from_file(str(TEST_DATA / 'planetary-computer-root.json'))
+        """Should raise a NotImplementedError if no conformance info can be found.
+        Luckily, the test API doesn't publish a "conformance" link so we can just
+        remove the "conformsTo" attribute to test this."""
+        client = Client.from_file(str(TEST_DATA / "planetary-computer-root.json"))
         client._stac_io._conformance = []
 
         with pytest.raises(NotImplementedError):
@@ -59,8 +68,9 @@ class TestAPI:
 
     @pytest.mark.vcr
     def test_no_stac_core_conformance(self):
-        """Should raise a NotImplementedError if the API does not conform to the STAC API - Core spec."""
-        client = Client.from_file(str(TEST_DATA / 'planetary-computer-root.json'))
+        """Should raise a NotImplementedError if the API does not conform to the
+        STAC API - Core spec."""
+        client = Client.from_file(str(TEST_DATA / "planetary-computer-root.json"))
         client._stac_io._conformance = client._stac_io._conformance[1:]
 
         with pytest.raises(NotImplementedError):
@@ -70,34 +80,37 @@ class TestAPI:
 
     @pytest.mark.vcr
     def test_from_file(self):
-        api = Client.from_file(STAC_URLS['PLANETARY-COMPUTER'])
+        api = Client.from_file(STAC_URLS["PLANETARY-COMPUTER"])
 
-        assert api.title == 'Microsoft Planetary Computer STAC API'
+        assert api.title == "Microsoft Planetary Computer STAC API"
 
     def test_invalid_url(self):
         with pytest.raises(TypeError):
             Client.open()
 
     def test_get_collections_with_conformance(self, requests_mock):
-        """Checks that the "data" endpoint is used if the API published the collections conformance class."""
+        """Checks that the "data" endpoint is used if the API published the
+        STAC API Collections conformance class."""
         pc_root_text = read_data_file("planetary-computer-root.json")
-        pc_collection_dict = read_data_file("planetary-computer-aster-l1t-collection.json",
-                                            parse_json=True)
+        pc_collection_dict = read_data_file(
+            "planetary-computer-aster-l1t-collection.json", parse_json=True
+        )
 
         # Mock the root catalog
-        requests_mock.get(STAC_URLS["PLANETARY-COMPUTER"], status_code=200, text=pc_root_text)
+        requests_mock.get(
+            STAC_URLS["PLANETARY-COMPUTER"], status_code=200, text=pc_root_text
+        )
         api = Client.open(STAC_URLS["PLANETARY-COMPUTER"])
 
         assert api._stac_io.conforms_to(ConformanceClasses.COLLECTIONS)
 
         # Get & mock the collections (rel type "data") link
         collections_link = api.get_single_link("data")
-        requests_mock.get(collections_link.href,
-                          status_code=200,
-                          json={
-                              "collections": [pc_collection_dict],
-                              "links": []
-                          })
+        requests_mock.get(
+            collections_link.href,
+            status_code=200,
+            json={"collections": [pc_collection_dict], "links": []},
+        )
         _ = next(api.get_collections())
 
         history = requests_mock.request_history
@@ -106,16 +119,22 @@ class TestAPI:
 
     def test_custom_request_parameters(self, requests_mock):
         pc_root_text = read_data_file("planetary-computer-root.json")
-        pc_collection_dict = read_data_file("planetary-computer-collection.json", parse_json=True)
+        pc_collection_dict = read_data_file(
+            "planetary-computer-collection.json", parse_json=True
+        )
 
-        requests_mock.get(STAC_URLS["PLANETARY-COMPUTER"], status_code=200, text=pc_root_text)
+        requests_mock.get(
+            STAC_URLS["PLANETARY-COMPUTER"], status_code=200, text=pc_root_text
+        )
 
         init_qp_name = "my-param"
         init_qp_value = "some-value"
 
-        api = Client.open(STAC_URLS['PLANETARY-COMPUTER'], parameters={init_qp_name: init_qp_value})
+        api = Client.open(
+            STAC_URLS["PLANETARY-COMPUTER"], parameters={init_qp_name: init_qp_value}
+        )
 
-        # Ensure that the the Client will use the /collections endpoint and not fall back
+        # Ensure that the Client will use the /collections endpoint and not fall back
         # to traversing child links.
         assert api._stac_io.conforms_to(ConformanceClasses.COLLECTIONS)
 
@@ -123,12 +142,11 @@ class TestAPI:
         collections_link = api.get_single_link("data")
 
         # Mock the request
-        requests_mock.get(collections_link.href,
-                          status_code=200,
-                          json={
-                              "collections": [pc_collection_dict],
-                              "links": []
-                          })
+        requests_mock.get(
+            collections_link.href,
+            status_code=200,
+            json={"collections": [pc_collection_dict], "links": []},
+        )
 
         # Make the collections request
         _ = next(api.get_collections())
@@ -144,45 +162,54 @@ class TestAPI:
         assert len(actual_qp[init_qp_name]) == 1
         assert actual_qp[init_qp_name][0] == init_qp_value
 
-    def test_custom_query_params_get_collections_propagation(self, requests_mock) -> None:
-        """Checks that query params passed to the init method are added to requests for CollectionClients fetched from
+    def test_custom_query_params_get_collections_propagation(
+        self, requests_mock
+    ) -> None:
+        """Checks that query params passed to the init method are added to requests for
+        CollectionClients fetched from
         the /collections endpoint."""
         pc_root_text = read_data_file("planetary-computer-root.json")
-        pc_collection_dict = read_data_file("planetary-computer-collection.json", parse_json=True)
+        pc_collection_dict = read_data_file(
+            "planetary-computer-collection.json", parse_json=True
+        )
 
-        requests_mock.get(STAC_URLS["PLANETARY-COMPUTER"], status_code=200, text=pc_root_text)
+        requests_mock.get(
+            STAC_URLS["PLANETARY-COMPUTER"], status_code=200, text=pc_root_text
+        )
 
         init_qp_name = "my-param"
         init_qp_value = "some-value"
 
-        client = Client.open(STAC_URLS['PLANETARY-COMPUTER'],
-                             parameters={init_qp_name: init_qp_value})
+        client = Client.open(
+            STAC_URLS["PLANETARY-COMPUTER"], parameters={init_qp_name: init_qp_value}
+        )
 
         # Get the /collections endpoint
         collections_link = client.get_single_link("data")
 
         # Mock the request
-        requests_mock.get(collections_link.href,
-                          status_code=200,
-                          json={
-                              "collections": [pc_collection_dict],
-                              "links": []
-                          })
+        requests_mock.get(
+            collections_link.href,
+            status_code=200,
+            json={"collections": [pc_collection_dict], "links": []},
+        )
 
         # Make the collections request
         collection = next(client.get_collections())
 
         # Mock the items endpoint
-        items_link = collection.get_single_link('items')
+        items_link = collection.get_single_link("items")
         assert items_link is not None
-        requests_mock.get(items_link.href,
-                          status_code=200,
-                          json={
-                              "type": "FeatureCollection",
-                              "stac_version": "1.0.0",
-                              "features": [],
-                              "links": []
-                          })
+        requests_mock.get(
+            items_link.href,
+            status_code=200,
+            json={
+                "type": "FeatureCollection",
+                "stac_version": "1.0.0",
+                "features": [],
+                "links": [],
+            },
+        )
 
         # Make the items request
         _ = list(collection.get_items())
@@ -198,20 +225,27 @@ class TestAPI:
         assert len(actual_qp[init_qp_name]) == 1
         assert actual_qp[init_qp_name][0] == init_qp_value
 
-    def test_custom_query_params_get_collection_propagation(self, requests_mock) -> None:
-        """Checks that query params passed to the init method are added to requests for CollectionClients fetched from
-        the /collections endpoint."""
+    def test_custom_query_params_get_collection_propagation(
+        self, requests_mock
+    ) -> None:
+        """Checks that query params passed to the init method are added to
+        requests for CollectionClients fetched from the /collections endpoint."""
         pc_root_text = read_data_file("planetary-computer-root.json")
-        pc_collection_dict = read_data_file("planetary-computer-collection.json", parse_json=True)
+        pc_collection_dict = read_data_file(
+            "planetary-computer-collection.json", parse_json=True
+        )
         pc_collection_id = pc_collection_dict["id"]
 
-        requests_mock.get(STAC_URLS["PLANETARY-COMPUTER"], status_code=200, text=pc_root_text)
+        requests_mock.get(
+            STAC_URLS["PLANETARY-COMPUTER"], status_code=200, text=pc_root_text
+        )
 
         init_qp_name = "my-param"
         init_qp_value = "some-value"
 
-        client = Client.open(STAC_URLS['PLANETARY-COMPUTER'],
-                             parameters={init_qp_name: init_qp_value})
+        client = Client.open(
+            STAC_URLS["PLANETARY-COMPUTER"], parameters={init_qp_name: init_qp_value}
+        )
 
         # Get the /collections endpoint
         collections_link = client.get_single_link("data")
@@ -224,16 +258,18 @@ class TestAPI:
         collection = client.get_collection(pc_collection_id)
 
         # Mock the items endpoint
-        items_link = collection.get_single_link('items')
+        items_link = collection.get_single_link("items")
         assert items_link is not None
-        requests_mock.get(items_link.href,
-                          status_code=200,
-                          json={
-                              "type": "FeatureCollection",
-                              "stac_version": "1.0.0",
-                              "features": [],
-                              "links": []
-                          })
+        requests_mock.get(
+            items_link.href,
+            status_code=200,
+            json={
+                "type": "FeatureCollection",
+                "stac_version": "1.0.0",
+                "features": [],
+                "links": [],
+            },
+        )
 
         # Make the items request
         _ = list(collection.get_items())
@@ -250,25 +286,34 @@ class TestAPI:
         assert actual_qp[init_qp_name][0] == init_qp_value
 
     def test_get_collections_without_conformance(self, requests_mock):
-        """Checks that the "data" endpoint is used if the API published the collections conformance class."""
+        """Checks that the "data" endpoint is used if the API published
+        the Collections conformance class."""
         pc_root_dict = read_data_file("planetary-computer-root.json", parse_json=True)
-        pc_collection_dict = read_data_file("planetary-computer-aster-l1t-collection.json",
-                                            parse_json=True)
+        pc_collection_dict = read_data_file(
+            "planetary-computer-aster-l1t-collection.json", parse_json=True
+        )
 
         # Remove the collections conformance class
         pc_root_dict["conformsTo"].remove(
-            "http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30")
+            "https://api.stacspec.org/v1.0.0-beta.1/collections"
+        )
 
         # Remove all child links except for the collection that we are mocking
-        pc_collection_href = next(link["href"] for link in pc_collection_dict["links"]
-                                  if link["rel"] == "self")
+        pc_collection_href = next(
+            link["href"]
+            for link in pc_collection_dict["links"]
+            if link["rel"] == "self"
+        )
         pc_root_dict["links"] = [
-            link for link in pc_root_dict["links"]
+            link
+            for link in pc_root_dict["links"]
             if link["rel"] != "child" or link["href"] == pc_collection_href
         ]
 
         # Mock the root catalog
-        requests_mock.get(STAC_URLS["PLANETARY-COMPUTER"], status_code=200, json=pc_root_dict)
+        requests_mock.get(
+            STAC_URLS["PLANETARY-COMPUTER"], status_code=200, json=pc_root_dict
+        )
         api = Client.open(STAC_URLS["PLANETARY-COMPUTER"])
 
         assert not api._stac_io.conforms_to(ConformanceClasses.COLLECTIONS)
@@ -282,40 +327,72 @@ class TestAPI:
         assert len(history) == 2
         assert history[1].url == pc_collection_href
 
+    def test_opening_a_collection(self) -> None:
+        path = str(TEST_DATA / "planetary-computer-aster-l1t-collection.json")
+        with pytest.raises(ClientTypeError):
+            Client.open(path)
+
 
 class TestAPISearch:
-    @pytest.fixture(scope='function')
+    @pytest.fixture(scope="function")
     def api(self):
-        return Client.from_file(str(TEST_DATA / 'planetary-computer-root.json'))
+        return Client.from_file(str(TEST_DATA / "planetary-computer-root.json"))
 
     def test_search_conformance_error(self, api):
-        """Should raise a NotImplementedError if the API doesn't conform to the Item Search spec. Message should
+        """Should raise a NotImplementedError if the API doesn't conform
+        to the Item Search spec. Message should
         include information about the spec that was not conformed to."""
         # Set the conformance to only STAC API - Core
         api._stac_io._conformance = [api._stac_io._conformance[0]]
 
         with pytest.raises(NotImplementedError) as excinfo:
-            api.search(limit=10, max_items=10, collections='mr-peebles')
+            api.search(limit=10, max_items=10, collections="mr-peebles")
         assert str(ConformanceClasses.ITEM_SEARCH) in str(excinfo.value)
 
     def test_no_search_link(self, api):
         # Remove the search link
-        api.remove_links('search')
+        api.remove_links("search")
 
         with pytest.raises(NotImplementedError) as excinfo:
-            api.search(limit=10, max_items=10, collections='naip')
-        assert 'No link with "rel" type of "search"' in str(excinfo.value)
+            api.search(limit=10, max_items=10, collections="naip")
+        assert "No link with rel=search could be found in this catalog" in str(
+            excinfo.value
+        )
+
+    def test_no_conforms_to(self) -> None:
+        with open(str(TEST_DATA / "planetary-computer-root.json")) as f:
+            data = json.load(f)
+        del data["conformsTo"]
+        with TemporaryDirectory() as temporary_directory:
+            path = os.path.join(temporary_directory, "catalog.json")
+            with open(path, "w") as f:
+                json.dump(data, f)
+            api = Client.from_file(path)
+
+        with pytest.raises(NotImplementedError) as excinfo:
+            api.search(limit=10, max_items=10, collections="naip")
+        assert "does not support search" in str(excinfo.value)
 
     def test_search(self, api):
-        results = api.search(bbox=[-73.21, 43.99, -73.12, 44.05],
-                             collections='naip',
-                             limit=10,
-                             max_items=20,
-                             datetime=[datetime(2020, 1, 1, 0, 0, 0, tzinfo=tzutc()), None])
+        results = api.search(
+            bbox=[-73.21, 43.99, -73.12, 44.05],
+            collections="naip",
+            limit=10,
+            max_items=20,
+            datetime=[datetime(2020, 1, 1, 0, 0, 0, tzinfo=tzutc()), None],
+        )
 
         assert results._parameters == {
-            'bbox': (-73.21, 43.99, -73.12, 44.05),
-            'collections': ('naip', ),
-            'limit': 10,
-            'datetime': '2020-01-01T00:00:00Z/..'
+            "bbox": (-73.21, 43.99, -73.12, 44.05),
+            "collections": ("naip",),
+            "limit": 10,
+            "datetime": "2020-01-01T00:00:00Z/..",
         }
+
+    def test_json_search_link(self, api: Client) -> None:
+        search_link = api.get_single_link(rel="search")
+        assert search_link
+        api.remove_links(rel="search")
+        search_link.media_type = MediaType.JSON
+        api.add_link(search_link)
+        api.search(limit=1, max_items=1, collections="naip")

@@ -13,7 +13,7 @@ The ``--matched`` switch performs a search with limit=1 so does not get
 any Items, but gets the total number of matches which will be output to
 the screen (if supported by the STAC API).
 
-::
+.. code-block:: console
 
     $ stac-client search https://earth-search.aws.element84.com/v0 -c sentinel-s2-l2a-cogs --bbox -72.5 40.5 -72 41 --matched
     2179 items matched
@@ -21,7 +21,7 @@ the screen (if supported by the STAC API).
 If the same URL is to be used over and over, define an environment
 variable to be used in the CLI call:
 
-::
+.. code-block:: console
 
     $ export STAC_API_URL=https://earth-search.aws.element84.com/v0
     $ stac-client search ${STAC_API_URL} -c sentinel-s2-l2a-cogs --bbox -72.5 40.5 -72 41 --datetime 2020-01-01/2020-01-31 --matched
@@ -36,17 +36,17 @@ another process such as
 `geojsonio-cli <https://github.com/mapbox/geojsonio-cli>`__, or
 `jq <https://stedolan.github.io/jq/>`__.
 
-::
+.. code-block:: console
 
     $ stac-client search ${STAC_API_URL} -c sentinel-s2-l2a-cogs --bbox -72.5 40.5 -72 41 --datetime 2020-01-01/2020-01-31 | stacterm cal --label platform
 
 .. figure:: images/stacterm-cal.png
-   :alt: 
+   :alt:
 
 If the ``--save`` switch is provided instead, the results will not be
 output to stdout, but instead will be saved to the specified file.
 
-::
+.. code-block:: console
 
     $ stac-client search ${STAC_API_URL} -c sentinel-s2-l2a-cogs --bbox -72.5 40.5 -72 41 --datetime 2020-01-01/2020-01-31 --save items.json
 
@@ -77,12 +77,12 @@ The query filter will also accept complete JSON as per the specification.
 Any number of properties can be included, and each can be included more
 than once to use additional operators.
 
-::
+.. code-block:: console
 
     $ stac-client search ${STAC_API_URL} -c sentinel-s2-l2a-cogs --bbox -72.5 40.5 -72 41 --datetime 2020-01-01/2020-01-31 -q "eo:cloud_cover<10" --matched
     10 items matched
 
-::
+.. code-block:: console
 
     $ stac-client search ${STAC_API_URL} -c sentinel-s2-l2a-cogs --bbox -72.5 40.5 -72 41 --datetime 2020-01-01/2020-01-31 -q "eo:cloud_cover<10" "eo:cloud_cover>5" --matched
     4 items matched
@@ -91,37 +91,42 @@ Python
 ~~~~~~
 
 To use the Python library, first a Client instance is created for a
-specific STAC API (use the root URL)
+specific STAC API (use the root URL):
 
-::
+.. code-block:: python
 
     from pystac_client import Client
 
-    catalog = Client.open("https://earth-search.aws.element84.com/v0")
+    client = Client.open("https://earth-search.aws.element84.com/v0")
 
-Create a search
+Create a search:
 
-::
+.. code-block:: python
 
-    mysearch = catalog.search(collections=['sentinel-s2-l2a-cogs'], bbox=[-72.5,40.5,-72,41], max_items=10)
+    my_search = client.search(
+        max_items=10,
+        collections=['sentinel-s2-l2a-cogs'],
+        bbox=[-72.5,40.5,-72,41])
     print(f"{mysearch.matched()} items found")
 
-The ``get_items`` function returns an iterator for looping through he
-returned items.
+The ``items()`` iterator method can be used to iterate through all resulting items.
 
-::
+.. code-block:: python
 
-    for item in mysearch.get_items():
+    for item in my_search.items():
         print(item.id)
 
-To get all of Items from a search as a single `PySTAC
-ItemCollection <https://pystac.readthedocs.io/en/latest/api.html#itemcollection>`__
-use the ``get_all_items`` function. The ``ItemCollection`` can then be
-saved as a GeoJSON FeatureCollection.
+To convert all of Items from a search as a single `PySTAC
+ItemCollection <https://pystac.readthedocs.io/en/latest/api/pystac.html#pystac.ItemCollection>`__,
+you must first do a limited iteration on the iterator to get a list of Items, and then
+create an ItemCollection with that. The ``ItemCollection`` can then be saved as a
+GeoJSON FeatureCollection.
 
-Save all found items as a single FeatureCollection
+Save all found items as a single FeatureCollection:
 
-::
+.. code-block:: python
 
-    items = mysearch.get_all_items()
-    items.save_object('items.json')
+    from pystac import ItemCollection
+
+    my_itemcollection = ItemCollection(items = list(my_search.items()))
+    my_itemcollection.save_object('my_itemcollection.json')

@@ -7,8 +7,8 @@ way is to coordinate with the core developers via an issue or pull request conve
 
 Development installation
 ^^^^^^^^^^^^^^^^^^^^^^^^
-Fork PySTAC-Client into your GitHub account. Then, clone the repo and install it locally with
-pip as follows:
+Fork PySTAC-Client into your GitHub account. Then, clone the repo and install
+it locally with pip as follows:
 
 .. code-block:: bash
 
