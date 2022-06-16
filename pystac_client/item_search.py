@@ -657,7 +657,7 @@ class ItemSearch:
         each page of results.
 
         Yields:
-            Item : each Item matching the search criteria
+            Dict[str, Any] : each Item matching the search criteria as a JSON dictionary
         """
         nitems = 0
         for page in self._stac_io.get_pages(
