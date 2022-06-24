@@ -5,8 +5,8 @@ from tests.helpers import STAC_URLS
 
 
 class TestCLI:
-    @pytest.mark.vcr
-    def test_item_search(self, script_runner: ScriptRunner):
+    @pytest.mark.vcr  # type: ignore[misc]
+    def test_item_search(self, script_runner: ScriptRunner) -> None:
         args = [
             "stac-client",
             "search",
@@ -19,7 +19,7 @@ class TestCLI:
         result = script_runner.run(*args, print_result=False)
         assert result.success
 
-    def test_no_arguments(self, script_runner: ScriptRunner):
+    def test_no_arguments(self, script_runner: ScriptRunner) -> None:
         args = ["stac-client"]
         result = script_runner.run(*args, print_result=False)
         assert not result.success

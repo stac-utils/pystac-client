@@ -2,6 +2,7 @@ from pathlib import Path
 from urllib.parse import parse_qs, urlsplit
 
 import pytest
+from requests_mock.mocker import Mocker
 
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.exceptions import APIError
@@ -11,20 +12,20 @@ from .helpers import STAC_URLS
 
 
 class TestSTAC_IOOverride:
-    @pytest.mark.vcr
+    @pytest.mark.vcr  # type: ignore[misc]
     def test_request_input(self) -> None:
         stac_api_io = StacApiIO()
         response = stac_api_io.read_text(STAC_URLS["PLANETARY-COMPUTER"])
         assert isinstance(response, str)
 
-    @pytest.mark.vcr
+    @pytest.mark.vcr  # type: ignore[misc]
     def test_str_input(self) -> None:
         stac_api_io = StacApiIO()
         response = stac_api_io.read_text(STAC_URLS["PLANETARY-COMPUTER"])
 
         assert isinstance(response, str)
 
-    @pytest.mark.vcr
+    @pytest.mark.vcr  # type: ignore[misc]
     def test_http_error(self) -> None:
         stac_api_io = StacApiIO()
         # Attempt to access an authenticated endpoint
@@ -68,7 +69,7 @@ class TestSTAC_IOOverride:
         # Check that this does not raise an exception
         assert conformant_io.conforms_to(ConformanceClasses.CORE)
 
-    def test_custom_headers(self, requests_mock):
+    def test_custom_headers(self, requests_mock: Mocker) -> None:
         """Checks that headers passed to the init method are added to requests."""
         header_name = "x-my-header"
         header_value = "Some Value"
@@ -84,7 +85,7 @@ class TestSTAC_IOOverride:
         assert header_name in history[0].headers
         assert history[0].headers[header_name] == header_value
 
-    def test_custom_query_params(self, requests_mock):
+    def test_custom_query_params(self, requests_mock: Mocker) -> None:
         """Checks that query params passed to the init method are added to requests."""
         init_qp_name = "my-param"
         init_qp_value = "something"
