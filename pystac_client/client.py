@@ -31,6 +31,8 @@ class Client(pystac.Catalog):
     such as searching items (e.g., /search endpoint).
     """
 
+    _stac_io: Optional[StacApiIO]
+
     def __repr__(self) -> str:
         return "<Client id={}>".format(self.id)
 
@@ -76,7 +78,7 @@ class Client(pystac.Catalog):
                 and len(search_link.href) > 0
             )
         ):
-            client._stac_io.set_conformance(None)  # type: ignore
+            client._stac_io.set_conformance(None)
 
         return client
 
@@ -252,7 +254,7 @@ class Client(pystac.Catalog):
 
         return ItemSearch(
             url=search_href,
-            stac_io=self._stac_io,  # type: ignore
+            stac_io=self._stac_io,
             client=self,
             **kwargs,
         )
