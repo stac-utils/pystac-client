@@ -27,7 +27,7 @@ INTERSECTS_EXAMPLE = {
     ],
 }
 
-ITEM_EXAMPLE = {"collections": "io-lulc", "ids": "60U-2020"}
+ITEM_EXAMPLE: Dict[str, Any] = {"collections": "io-lulc", "ids": "60U-2020"}
 
 
 class TestItemPerformance:
@@ -49,7 +49,9 @@ class TestItemPerformance:
 
         assert item.id == ITEM_EXAMPLE["ids"]
 
-    def test_single_item_search(self, benchmark: BenchmarkFixture, single_href: str) -> None:
+    def test_single_item_search(
+        self, benchmark: BenchmarkFixture, single_href: str
+    ) -> None:
         search = ItemSearch(url=SEARCH_URL, **ITEM_EXAMPLE)
 
         item_collection = benchmark(search.get_all_items)
@@ -413,18 +415,18 @@ class TestItemSearchParams:
         )
 
         with pytest.raises(Exception):
-            ItemSearch(url=SEARCH_URL, sortby=1)
+            ItemSearch(url=SEARCH_URL, sortby=1)  # type: ignore[arg-type]
 
         with pytest.raises(Exception):
-            ItemSearch(url=SEARCH_URL, sortby=[1])
+            ItemSearch(url=SEARCH_URL, sortby=[1])  # type: ignore[arg-type]
 
     def test_fields(self) -> None:
 
         with pytest.raises(Exception):
-            ItemSearch(url=SEARCH_URL, fields=1)
+            ItemSearch(url=SEARCH_URL, fields=1)  # type: ignore[arg-type]
 
         with pytest.raises(Exception):
-            ItemSearch(url=SEARCH_URL, fields=[1])
+            ItemSearch(url=SEARCH_URL, fields=[1])  # type: ignore[list-item]
 
         search = ItemSearch(url=SEARCH_URL, fields="id,collection,+foo,-bar")
         assert search.get_parameters()["fields"] == {
@@ -481,7 +483,7 @@ class TestItemSearch:
         assert search.method == "GET"
 
     def test_method_params(self) -> None:
-        params_in = {
+        params_in: Dict[str, Any] = {
             "bbox": (-72, 41, -71, 42),
             "ids": (
                 "idone",
@@ -540,10 +542,12 @@ class TestItemSearch:
         max_datetime = datetime(2019, 1, 1, 0, 0, 10, tzinfo=tzutc())
         search = ItemSearch(url=SEARCH_URL, datetime=(min_datetime, max_datetime))
         new_results = search.items()
-        assert all(
-            min_datetime <= item.datetime <= (max_datetime + timedelta(seconds=1))
-            for item in new_results
-        )
+
+        for item in new_results:
+            assert item.datetime is not None
+            assert (
+                min_datetime <= item.datetime <= (max_datetime + timedelta(seconds=1))
+            )
 
     @pytest.mark.vcr  # type: ignore[misc]
     def test_intersects_results(self) -> None:

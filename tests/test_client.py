@@ -76,6 +76,7 @@ class TestAPI:
         STAC API - Core spec."""
         client = Client.from_file(str(TEST_DATA / "planetary-computer-root.json"))
         assert client._stac_io is not None
+        assert client._stac_io._conformance is not None
         client._stac_io._conformance = client._stac_io._conformance[1:]
 
         with pytest.raises(NotImplementedError):
@@ -358,6 +359,7 @@ class TestAPISearch:
         include information about the spec that was not conformed to."""
         # Set the conformance to only STAC API - Core
         assert api._stac_io is not None
+        assert api._stac_io._conformance is not None
         api._stac_io._conformance = [api._stac_io._conformance[0]]
 
         with pytest.raises(NotImplementedError) as excinfo:
