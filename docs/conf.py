@@ -17,7 +17,7 @@ from typing import List
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.resolve()))
-from pystac_client import __version__  # type: ignore # noqa: E402
+from pystac_client import __version__  # noqa: E402
 
 git_branch = (
     subprocess.check_output(["git", "rev-parse", "--abbrev-ref", "HEAD"])

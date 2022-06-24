@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+from typing import Any
 
 TEST_DATA = Path(__file__).parent / "data"
 
@@ -10,7 +11,7 @@ STAC_URLS = {
 }
 
 
-def read_data_file(file_name: str, mode="r", parse_json=False):
+def read_data_file(file_name: str, mode: str = "r", parse_json: bool = False) -> Any:
     file_path = TEST_DATA / file_name
     with file_path.open(mode=mode) as src:
         if parse_json:
