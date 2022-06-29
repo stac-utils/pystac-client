@@ -589,7 +589,9 @@ class ItemSearch:
         return found
 
     def get_item_collections(self) -> Iterator[ItemCollection]:
-        """DEPRECATED. Use :meth:`item_collections` instead.
+        """
+        .. deprecated:: 0.5.0
+           Use :meth:`item_collections` instead.
 
         Yields:
             ItemCollection : a group of Items matching the search criteria within an
@@ -618,7 +620,9 @@ class ItemSearch:
                 )
 
     def get_items(self) -> Iterator[Item]:
-        """DEPRECATED. Use :meth:`items` instead.
+        """
+        .. deprecated:: 0.5.1
+           Use :meth:`items` instead.
 
         Yields:
             Item : each Item matching the search criteria
@@ -669,10 +673,12 @@ class ItemSearch:
 
     @lru_cache(1)
     def get_all_items_as_dict(self) -> Dict[str, Any]:
-        """DEPRECATED. Use :meth:`items_as_dicts` instead.
-            Convenience method that gets all items from all pages, up to
-            the number provided by the max_items parameter, and returns an array of
-            dictionaries.
+        """
+        .. deprecated:: 0.5.0
+           Use :meth:`items_as_dicts` instead.
+        
+        Convenience method that gets all items from all pages, up to the number
+        provided by the max_items parameter, and returns an array of dictionaries.
 
         Return:
             Dict : A GeoJSON FeatureCollection
@@ -694,9 +700,12 @@ class ItemSearch:
 
     @lru_cache(1)
     def get_all_items(self) -> ItemCollection:
-        """DEPRECATED. Use :meth:`items` instead.
-            Convenience method that builds an :class:`ItemCollection` from all items
-            matching the given search parameters.
+        """
+        .. deprecated:: 0.5.0
+           Use :meth:`items` instead.
+        
+        Convenience method that builds an :class:`ItemCollection` from all items
+        matching the given search parameters.
 
         Return:
             item_collection : ItemCollection
