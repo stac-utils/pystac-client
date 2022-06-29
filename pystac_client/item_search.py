@@ -671,7 +671,7 @@ class ItemSearch:
 
     @lru_cache(1)
     def get_all_items_as_dict(self) -> Dict[str, Any]:
-        """DEPRECATED. Use :meth:`get_items` or :meth:`get_item_collections` instead.
+        """DEPRECATED. Use :meth:`items_as_dicts` instead.
             Convenience method that gets all items from all pages, up to
             the number provided by the max_items parameter, and returns an array of
             dictionaries.
@@ -696,7 +696,7 @@ class ItemSearch:
 
     @lru_cache(1)
     def get_all_items(self) -> ItemCollection:
-        """DEPRECATED. Use :meth:`get_items` or :meth:`get_item_collections` instead.
+        """DEPRECATED. Use :meth:`items` instead.
             Convenience method that builds an :class:`ItemCollection` from all items
             matching the given search parameters.
 
