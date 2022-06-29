@@ -591,7 +591,7 @@ class ItemSearch:
         return found
 
     def get_item_collections(self) -> Iterator[ItemCollection]:
-        """DEPRECATED. Use :meth:`ItemSearch.item_collections` instead.
+        """DEPRECATED. Use :meth:`item_collections` instead.
 
         Yields:
             ItemCollection : a group of Items matching the search criteria within an
@@ -604,8 +604,8 @@ class ItemSearch:
         return self.item_collections()
 
     def item_collections(self) -> Iterator[ItemCollection]:
-        """Iterator that yields ItemCollection objects.  Each ItemCollection is
-        a page of results from the search.
+        """Iterator that yields :class:`~pystac.ItemCollection` objects. Each
+        :class:`~pystac.ItemCollection` is a page of results from the search.
 
         Yields:
             ItemCollection : a group of Items matching the search criteria within an
@@ -620,7 +620,7 @@ class ItemSearch:
                 )
 
     def get_items(self) -> Iterator[Item]:
-        """DEPRECATED. Use :meth:`ItemSearch.items` instead.
+        """DEPRECATED. Use :meth:`items` instead.
 
         Yields:
             Item : each Item matching the search criteria
@@ -634,7 +634,7 @@ class ItemSearch:
     def items(self) -> Iterator[Item]:
         """Iterator that yields :class:`pystac.Item` instances for each item matching
         the given search parameters. Calls
-        :meth:`ItemSearch.item_collections` internally and yields from
+        :meth:`item_collections` internally and yields from
         :attr:`ItemCollection.features <pystac_client.ItemCollection.features>` for
         each page of results.
 
@@ -652,7 +652,7 @@ class ItemSearch:
     def items_as_dicts(self) -> Iterator[Dict[str, Any]]:
         """Iterator that yields :class:`dict` instances for each item matching
         the given search parameters. Calls
-        :meth:`ItemSearch.item_collections` internally and yields from
+        :meth:`item_collections` internally and yields from
         :attr:`ItemCollection.features <pystac_client.ItemCollection.features>` for
         each page of results.
 
