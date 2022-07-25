@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - Fix type annotation of `Client._stac_io` and avoid implicit re-exports in `pystac_client.__init__.py` [#249](https://github.com/stac-utils/pystac-client/pull/249)
+- Restored the previous behavior of ``.search()`` to return an unlimited number of items by default.
+
 
 ## [v0.4.0] - 2022-06-08
 
