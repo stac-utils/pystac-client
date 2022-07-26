@@ -414,6 +414,7 @@ class TestAPISearch:
         api.add_link(search_link)
         api.search(limit=1, max_items=1, collections="naip")
 
+    @pytest.mark.vcr  # type: ignore[misc]
     def test_search_max_items_unlimited_default(self, api: Client) -> None:
         search = api.search(
             bbox=[-73.21, 43.99, -73.12, 45.05],
