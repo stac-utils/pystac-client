@@ -54,7 +54,7 @@ class TestItemPerformance:
     ) -> None:
         search = ItemSearch(url=SEARCH_URL, **ITEM_EXAMPLE)
 
-        item_collection = benchmark(search.get_all_items)
+        item_collection = benchmark(search.item_collection())
 
         assert len(item_collection.items) == 1
         assert item_collection.items[0].id == ITEM_EXAMPLE["ids"]
@@ -600,7 +600,7 @@ class TestItemSearch:
         assert pages[1].items != pages[2].items
 
     @pytest.mark.vcr  # type: ignore[misc]
-    def test_get_all_items(self) -> None:
+    def test_item_collection(self) -> None:
         search = ItemSearch(
             url=SEARCH_URL,
             bbox=(-73.21, 43.99, -73.12, 44.05),
@@ -608,7 +608,21 @@ class TestItemSearch:
             limit=10,
             max_items=20,
         )
-        item_collection = search.get_all_items()
+        item_collection = search.item_collection()
+        assert isinstance(item_collection, pystac.ItemCollection)
+        assert len(item_collection) == 20
+
+    @pytest.mark.vcr  # type: ignore[misc]
+    def test_get_all_items_deprecated(self) -> None:
+        search = ItemSearch(
+            url=SEARCH_URL,
+            bbox=(-73.21, 43.99, -73.12, 44.05),
+            collections="naip",
+            limit=10,
+            max_items=20,
+        )
+        with pytest.warns(DeprecationWarning, match="get_all_items"):
+            item_collection = search.get_all_items()
         assert len(item_collection.items) == 20
 
     @pytest.mark.vcr  # type: ignore[misc]
