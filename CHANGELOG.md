@@ -16,7 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - (Reverted change in 0.4.0) Item Search now returns an unlimited number of result Items from
   its "items" methods. The `max_items` parameter no longer defaults to 100, but instead to None.
   It is recommended to set `max_items` to avoid the possibility of exhausting memory if there are a
-  very large number of results with methods like `ItemSearch.item_collection()`
+  very large number of results with methods like `ItemSearch.item_collection()` [#278](https://github.com/stac-utils/pystac-client/pull/278)
 
 ## [v0.4.0] - 2022-06-08
 
