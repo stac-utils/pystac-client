@@ -11,6 +11,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fix type annotation of `Client._stac_io` and avoid implicit re-exports in `pystac_client.__init__.py` [#249](https://github.com/stac-utils/pystac-client/pull/249)
 - Added `ItemSearch.item_collection()` as a replacement for the deprecated `ItemSearch.get_all_items()` [#237](https://github.com/stac-utils/pystac-client/issues/237)
 
+## Changed
+
+- (Reverted change in 0.4.0) Item Search now returns an unlimited number of result Items from
+  its "items" methods. The `max_items` parameter no longer defaults to 100, but instead to None.
+  It is recommended to set `max_items` to avoid the possibility of exhausting memory if there are a
+  very large number of results with methods like `ItemSearch.item_collection()`
+
 ## [v0.4.0] - 2022-06-08
 
 ### Added
