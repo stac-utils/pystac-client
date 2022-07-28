@@ -1,10 +1,21 @@
 from functools import lru_cache
-from typing import TYPE_CHECKING, Any, Dict, Iterator, Optional
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Callable,
+    Dict,
+    Iterator,
+    List,
+    Optional,
+    Union,
+    cast,
+)
 
 import pystac
 import pystac.validation
-from pystac import Collection
+from pystac import CatalogType, Collection
 
+from pystac_client._utils import Modifiable, no_modifier
 from pystac_client.collection_client import CollectionClient
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.errors import ClientTypeError
@@ -33,6 +44,29 @@ class Client(pystac.Catalog):
 
     _stac_io: Optional[StacApiIO]
 
+    def __init__(
+        self,
+        id: str,
+        description: str,
+        title: Optional[str] = None,
+        stac_extensions: Optional[List[str]] = None,
+        extra_fields: Optional[Dict[str, Any]] = None,
+        href: Optional[str] = None,
+        catalog_type: CatalogType = CatalogType.ABSOLUTE_PUBLISHED,
+        *,
+        modifier: Callable[[Modifiable], None] = no_modifier,
+    ):
+        super().__init__(
+            id,
+            description,
+            title=title,
+            stac_extensions=stac_extensions,
+            extra_fields=extra_fields,
+            href=href,
+            catalog_type=catalog_type,
+        )
+        self.modifier = modifier
+
     def __repr__(self) -> str:
         return "<Client id={}>".format(self.id)
 
@@ -43,6 +77,7 @@ class Client(pystac.Catalog):
         headers: Optional[Dict[str, str]] = None,
         parameters: Optional[Dict[str, Any]] = None,
         ignore_conformance: bool = False,
+        modifier: Callable[[Modifiable], None] = no_modifier,
     ) -> "Client":
         """Opens a STAC Catalog or API
         This function will read the root catalog of a STAC Catalog or API
@@ -59,11 +94,33 @@ class Client(pystac.Catalog):
                 functions will skip checking conformance, and may throw an unknown
                 error if that feature is
                 not supported, rather than a :class:`NotImplementedError`.
+            modifier : A callable that modifies the children collection and items
+                returned by this Client. This can be useful for injecting
+                authentication parameters into child assets to access data
+                from non-public sources.
+
+                The callable should expect a single argument, which will be one
+                of the following types:
+
+                * :class:`pystac.Collection`
+                * :class:`pystac.Item`
+                * :class:`pystac.ItemCollection`
+                * A STAC item-like :class:`dict`
+                * A STAC collection-like :class:`dict`
+
+                The callable should mutate the argument in place and return ``None``.
+
+                ``modifier`` propagates recursively to children of this Client.
+                After getting a child collection with, e.g.
+                :meth:`Client.get_collection`, the child items of that collection
+                will still be signed with ``modifier``.
 
         Return:
             catalog : A :class:`Client` instance for this Catalog/API
         """
-        client: Client = cls.from_file(url, headers=headers, parameters=parameters)
+        client: Client = cls.from_file(
+            url, headers=headers, parameters=parameters, modifier=modifier
+        )
         search_link = client.get_search_link()
         # if there is a search link, but no conformsTo advertised, ignore
         # conformance entirely
@@ -89,6 +146,7 @@ class Client(pystac.Catalog):
         stac_io: Optional[StacApiIO] = None,
         headers: Optional[Dict[str, str]] = None,
         parameters: Optional[Dict[str, Any]] = None,
+        modifier: Callable[[Modifiable], None] = no_modifier,
     ) -> "Client":
         """Open a STAC Catalog/API
 
@@ -103,6 +161,7 @@ class Client(pystac.Catalog):
         client._stac_io._conformance = client.extra_fields.get(  # type: ignore
             "conformsTo", []
         )
+        client.modifier = modifier
 
         return client
 
@@ -122,10 +181,11 @@ class Client(pystac.Catalog):
         root: Optional[pystac.Catalog] = None,
         migrate: bool = False,
         preserve_dict: bool = True,
+        modifier: Callable[[Modifiable], None] = no_modifier,
     ) -> "Client":
         try:
             # this will return a Client because we have used a StacApiIO instance
-            return super().from_dict(  # type: ignore
+            result = super().from_dict(
                 d=d, href=href, root=root, migrate=migrate, preserve_dict=preserve_dict
             )
         except pystac.STACTypeError:
@@ -133,6 +193,13 @@ class Client(pystac.Catalog):
                 f"Could not open Client (href={href}), "
                 f"expected type=Catalog, found type={d.get('type', None)}"
             )
+        # cast require for mypy to believe that we have a Client, rather than
+        # the super type.
+        # https://github.com/stac-utils/pystac/issues/862
+        result = cast(Client, result)
+
+        result.modifier = modifier
+        return result
 
     @lru_cache()
     def get_collection(self, collection_id: str) -> Optional[Collection]:
@@ -147,12 +214,16 @@ class Client(pystac.Catalog):
         if self._supports_collections() and self._stac_io:
             url = f"{self.get_self_href()}/collections/{collection_id}"
             collection = CollectionClient.from_dict(
-                self._stac_io.read_json(url), root=self
+                self._stac_io.read_json(url),
+                root=self,
+                modifier=self.modifier,
             )
+            self.modifier(collection)
             return collection
         else:
             for col in self.get_collections():
                 if col.id == collection_id:
+                    self.modifier(col)
                     return col
 
         return None
@@ -166,15 +237,23 @@ class Client(pystac.Catalog):
         Return:
             Iterator[Collection]: Iterator over Collections in Catalog/API
         """
+        collection: Union[Collection, CollectionClient]
+
         if self._supports_collections() and self.get_self_href() is not None:
             url = f"{self.get_self_href()}/collections"
             for page in self._stac_io.get_pages(url):  # type: ignore
                 if "collections" not in page:
                     raise APIError("Invalid response from /collections")
                 for col in page["collections"]:
-                    yield CollectionClient.from_dict(col, root=self)
+                    collection = CollectionClient.from_dict(
+                        col, root=self, modifier=self.modifier
+                    )
+                    self.modifier(collection)
+                    yield collection
         else:
-            yield from super().get_collections()
+            for collection in super().get_collections():
+                self.modifier(collection)
+                yield collection
 
     def get_items(self) -> Iterator["Item_Type"]:
         """Return all items of this catalog.
@@ -187,7 +266,9 @@ class Client(pystac.Catalog):
             search = self.search()
             yield from search.items()
         else:
-            yield from super().get_items()
+            for item in super().get_items():
+                self.modifier(item)
+                yield item
 
     def get_all_items(self) -> Iterator["Item_Type"]:
         """Get all items from this catalog and all subcatalogs. Will traverse
@@ -199,9 +280,12 @@ class Client(pystac.Catalog):
                 child links.
         """
         if self._conforms_to(ConformanceClasses.ITEM_SEARCH):
+            # these are already modified
             yield from self.get_items()
         else:
-            yield from super().get_items()
+            for item in super().get_items():
+                self.modifier(item)
+                yield item
 
     def search(self, **kwargs: Any) -> ItemSearch:
         """Query the ``/search`` endpoint using the given parameters.
@@ -256,6 +340,7 @@ class Client(pystac.Catalog):
             url=search_href,
             stac_io=self._stac_io,
             client=self,
+            modifier=self.modifier,
             **kwargs,
         )
 

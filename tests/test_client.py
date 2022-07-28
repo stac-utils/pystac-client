@@ -2,6 +2,7 @@ import json
 import os.path
 from datetime import datetime
 from tempfile import TemporaryDirectory
+from typing import Any
 from urllib.parse import parse_qs, urlsplit
 
 import pystac
@@ -10,7 +11,7 @@ from dateutil.tz import tzutc
 from pystac import MediaType
 from requests_mock import Mocker
 
-from pystac_client import Client
+from pystac_client import Client, CollectionClient
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.errors import ClientTypeError
 
@@ -413,3 +414,51 @@ class TestAPISearch:
         search_link.media_type = MediaType.JSON
         api.add_link(search_link)
         api.search(limit=1, max_items=1, collections="naip")
+
+
+class MySign:
+    def __init__(self) -> None:
+        self.call_count = 0
+
+    def __call__(self, x: Any) -> None:
+        self.call_count += 1
+
+
+class TestSigning:
+    @pytest.mark.vcr  # type: ignore[misc]
+    def test_signing(self) -> None:
+        sign = MySign()
+        # sign is callable, but mypy keeps trying to interpret it as a "MySign" object.
+        client = Client.open(STAC_URLS["PLANETARY-COMPUTER"], modifier=sign)
+        assert client.modifier is sign  # type: ignore
+
+        collection = client.get_collection("cil-gdpcir-cc0")
+        assert collection
+        assert isinstance(collection, CollectionClient)
+        assert collection.modifier is sign  # type: ignore
+        assert sign.call_count == 1
+
+        collection.get_item("cil-gdpcir-INM-INM-CM5-0-ssp585-r1i1p1f1-day")
+        assert sign.call_count == 2
+
+        next(client.get_collections())
+        assert sign.call_count == 3
+
+        next(client.get_items())
+        assert sign.call_count == 4
+
+        next(client.get_all_items())
+        assert sign.call_count == 5
+
+        search = client.search(collections=["sentinel-2-l2a"], max_items=10)
+        next(search.items())
+        assert sign.call_count == 6
+
+        next(search.item_collections())
+        assert sign.call_count == 7
+
+        next(search.items_as_dicts())
+        assert sign.call_count == 8
+
+        search.item_collection()
+        assert sign.call_count == 9
