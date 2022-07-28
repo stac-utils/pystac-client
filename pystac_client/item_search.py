@@ -683,6 +683,7 @@ class ItemSearch:
             "get_all_items_as_dict is deprecated, use get_items or"
             " get_item_collections instead",
             DeprecationWarning,
+            stacklevel=2,
         )
         features = []
         for page in self._stac_io.get_pages(
@@ -696,18 +697,32 @@ class ItemSearch:
 
     @lru_cache(1)
     def get_all_items(self) -> ItemCollection:
-        """DEPRECATED. Use :meth:`get_items` or :meth:`get_item_collections` instead.
-            Convenience method that builds an :class:`ItemCollection` from all items
-            matching the given search parameters.
+        """
+        Get the matching items as a :ref:`pystac.ItemCollection`.
+
+        .. deprecated:: 0.4.0
+           Use :meth:`ItemSearch.item_collection` instead.
 
         Return:
             item_collection : ItemCollection
         """
         warnings.warn(
-            "get_all_items is deprecated, use get_items or "
-            "get_item_collections instead",
+            "get_all_items is deprecated, use 'item_collection' instead.",
             DeprecationWarning,
         )
+        feature_collection = self.get_all_items_as_dict()
+        return ItemCollection.from_dict(
+            feature_collection, preserve_dict=False, root=self.client
+        )
+
+    @lru_cache(1)
+    def item_collection(self) -> ItemCollection:
+        """
+        Get the matching items as a :ref:`pystac.ItemCollection`.
+
+        Return:
+            item_collection: ItemCollection
+        """
         feature_collection = self.get_all_items_as_dict()
         return ItemCollection.from_dict(
             feature_collection, preserve_dict=False, root=self.client
