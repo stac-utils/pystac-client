@@ -639,6 +639,13 @@ class ItemSearch:
                 )
 
     def pages_as_dicts(self) -> Iterator[Dict[str, Any]]:
+        """Iterator that yields :class:`dict` instances for each page
+        of results from the search.
+
+        Yields:
+            dict : a group of items matching the search
+            criteria as a feature-collection-like dictionary.
+        """
         if isinstance(self._stac_io, StacApiIO):
             for page in self._stac_io.get_pages(
                 self.url, self.method, self.get_parameters()
