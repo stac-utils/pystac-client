@@ -653,37 +653,6 @@ class TestItemSearch:
 
         assert result == expected
 
-        # result = [x.to_dict() for x in result]
-        # expected = [x.to_dict() for x in search.pages()]
-        # assert result == expected
-
-        # with pytest.warns(DeprecationWarning, match="item_collections"):
-        #     result = search.item_collections()
-
-        # result = [x.to_dict() for x in result]
-        # for a, b in zip(result, expected):
-        #     assert a.to_dict() == b.to_dict()
-
-        # with pytest.warns(DeprecationWarning, match="get_items"):
-        #     result = search.get_items()
-
-        # result = [x.to_dict() for x in result]
-        # expected = [x.to_dict() for x in search.items()]
-        # assert result == expected
-
-        # with pytest.warns(DeprecationWarning, match="get_all_items"):
-        #     result = search.get_all_items()
-
-        # result = [x.to_dict() for x in result]
-        # expected = [x.to_dict() for x in search.item_collection()]
-        # assert result == expected
-
-        # with pytest.warns(DeprecationWarning, match="get_all_items_as_dict"):
-        #     result = search.get_all_items_as_dict()
-
-        # expected = search.item_collection_as_dict()
-        # assert result == expected
-
     @pytest.mark.vcr  # type: ignore[misc]
     def test_items_as_dicts(self) -> None:
         search = ItemSearch(
