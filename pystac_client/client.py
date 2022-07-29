@@ -55,6 +55,7 @@ class Client(pystac.Catalog):
         catalog_type: CatalogType = CatalogType.ABSOLUTE_PUBLISHED,
         *,
         modifier: Callable[[Modifiable], None] = no_modifier,
+        **kwargs: Dict[str, Any],
     ):
         super().__init__(
             id,
@@ -64,6 +65,7 @@ class Client(pystac.Catalog):
             extra_fields=extra_fields,
             href=href,
             catalog_type=catalog_type,
+            **kwargs,
         )
         self.modifier = modifier
 

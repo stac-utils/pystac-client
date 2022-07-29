@@ -33,7 +33,9 @@ class CollectionClient(pystac.Collection):
         summaries: Optional[pystac.Summaries] = None,
         *,
         modifier: Callable[[Modifiable], None] = no_modifier,
+        **kwargs: Dict[str, Any],
     ):
+        # TODO(pystac==1.6.0): Add `assets` as a regular keyword
         super().__init__(
             id,
             description,
@@ -47,6 +49,7 @@ class CollectionClient(pystac.Collection):
             keywords,
             providers,
             summaries,
+            **kwargs,
         )
         # error: Cannot assign to a method  [assignment]
         # https://github.com/python/mypy/issues/2427
