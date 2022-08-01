@@ -23,7 +23,7 @@ from dateutil.relativedelta import relativedelta
 from dateutil.tz import tzutc
 from pystac import Collection, Item, ItemCollection
 
-from pystac_client._utils import Modifiable, no_modifier
+from pystac_client._utils import Modifiable, call_modifier, no_modifier
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.stac_api_io import StacApiIO
 
@@ -651,7 +651,7 @@ class ItemSearch:
                 ic = ItemCollection.from_dict(
                     page, preserve_dict=False, root=self.client
                 )
-                self.modifier(ic)
+                call_modifier(self.modifier, ic)
                 yield ic
 
     def get_items(self) -> Iterator[Item]:
@@ -699,7 +699,7 @@ class ItemSearch:
             self.url, self.method, self.get_parameters()
         ):
             for item in page.get("features", []):
-                self.modifier(item)
+                call_modifier(self.modifier, item)
                 yield item
                 nitems += 1
                 if self._max_items and nitems >= self._max_items:
@@ -732,10 +732,10 @@ class ItemSearch:
                         "type": "FeatureCollection",
                         "features": features,
                     }
-                    self.modifier(feature_collection)
+                    call_modifier(self.modifier, feature_collection)
                     return feature_collection
         feature_collection = {"type": "FeatureCollection", "features": features}
-        self.modifier(feature_collection)
+        call_modifier(self.modifier, feature_collection)
         return feature_collection
 
     @lru_cache(1)

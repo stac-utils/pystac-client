@@ -1,5 +1,6 @@
 import json
 import os.path
+import warnings
 from datetime import datetime
 from tempfile import TemporaryDirectory
 from typing import Any
@@ -13,7 +14,7 @@ from requests_mock import Mocker
 
 from pystac_client import Client, CollectionClient
 from pystac_client.conformance import ConformanceClasses
-from pystac_client.errors import ClientTypeError
+from pystac_client.errors import ClientTypeError, IgnoredResultWarning
 
 from .helpers import STAC_URLS, TEST_DATA, read_data_file
 
@@ -462,3 +463,20 @@ class TestSigning:
 
         search.item_collection()
         assert sign.call_count == 9
+
+    @pytest.mark.vcr  # type: ignore[misc]
+    def test_sign_with_return_warns(self) -> None:
+        def modifier_ok(x: Any) -> Any:
+            return x
+
+        def modifier_bad(x: Any) -> Any:
+            return 0
+
+        client = Client.open(STAC_URLS["PLANETARY-COMPUTER"], modifier=modifier_ok)
+        with warnings.catch_warnings():
+            warnings.simplefilter("error")
+            client.get_collection("sentinel-2-l2a")
+
+        client = Client.open(STAC_URLS["PLANETARY-COMPUTER"], modifier=modifier_bad)
+        with pytest.warns(IgnoredResultWarning):
+            client.get_collection("sentinel-2-l2a")

@@ -313,3 +313,8 @@ modify the STAC objects returned by the STAC API.
 
 Without the modifier, we would have received a 404 error because the asset
 is in a private storage container.
+
+``pystac-client`` expects that the ``modifier`` callable modifies the result
+object in-place and returns no result. A warning is emitted if your
+``modifier`` returns a non-None result that is not the same object as the
+input.

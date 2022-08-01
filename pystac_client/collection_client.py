@@ -2,7 +2,7 @@ from typing import TYPE_CHECKING, Any, Callable, Dict, Iterator, List, Optional,
 
 import pystac
 
-from pystac_client._utils import Modifiable, no_modifier
+from pystac_client._utils import Modifiable, call_modifier, no_modifier
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.exceptions import APIError
 from pystac_client.item_search import ItemSearch
@@ -107,7 +107,7 @@ class CollectionClient(pystac.Collection):
             for item in super().get_items():
                 # what is going on with mypy here?
                 # error: Too many arguments  [call-arg]
-                self.modifier(item)  # type: ignore
+                call_modifier(self.modifier, item)  # type: ignore
                 yield item
 
     def get_item(self, id: str, recursive: bool = False) -> Optional["Item_Type"]:
@@ -156,6 +156,6 @@ class CollectionClient(pystac.Collection):
 
         if item:
             # error: Too many arguments  [call-arg]
-            self.modifier(item)  # type: ignore
+            call_modifier(self.modifier, item)  # type: ignore
 
         return item

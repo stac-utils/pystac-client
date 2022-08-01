@@ -15,7 +15,7 @@ import pystac
 import pystac.validation
 from pystac import CatalogType, Collection
 
-from pystac_client._utils import Modifiable, no_modifier
+from pystac_client._utils import Modifiable, call_modifier, no_modifier
 from pystac_client.collection_client import CollectionClient
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.errors import ClientTypeError
@@ -220,12 +220,12 @@ class Client(pystac.Catalog):
                 root=self,
                 modifier=self.modifier,
             )
-            self.modifier(collection)
+            call_modifier(self.modifier, collection)
             return collection
         else:
             for col in self.get_collections():
                 if col.id == collection_id:
-                    self.modifier(col)
+                    call_modifier(self.modifier, col)
                     return col
 
         return None
@@ -250,11 +250,11 @@ class Client(pystac.Catalog):
                     collection = CollectionClient.from_dict(
                         col, root=self, modifier=self.modifier
                     )
-                    self.modifier(collection)
+                    call_modifier(self.modifier, collection)
                     yield collection
         else:
             for collection in super().get_collections():
-                self.modifier(collection)
+                call_modifier(self.modifier, collection)
                 yield collection
 
     def get_items(self) -> Iterator["Item_Type"]:
@@ -269,7 +269,7 @@ class Client(pystac.Catalog):
             yield from search.items()
         else:
             for item in super().get_items():
-                self.modifier(item)
+                call_modifier(self.modifier, item)
                 yield item
 
     def get_all_items(self) -> Iterator["Item_Type"]:
@@ -286,7 +286,7 @@ class Client(pystac.Catalog):
             yield from self.get_items()
         else:
             for item in super().get_items():
-                self.modifier(item)
+                call_modifier(self.modifier, item)
                 yield item
 
     def search(self, **kwargs: Any) -> ItemSearch:
