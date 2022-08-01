@@ -76,7 +76,10 @@ OP_MAP = {
 
 OPS = list(OP_MAP.keys())
 
-DEFAULT_LIMIT_AND_MAX_ITEMS = 100
+# Previously named DEFAULT_LIMIT_AND_MAX_ITEMS
+# aliased for backwards compat
+# https://github.com/stac-utils/pystac-client/pull/273
+DEFAUL_LIMIT = DEFAULT_LIMIT_AND_MAX_ITEMS = 100
 
 
 # from https://gist.github.com/angstwad/bf22d1822c38a92ec0a9#gistcomment-2622319
