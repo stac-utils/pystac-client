@@ -156,11 +156,11 @@ requests to a service's "search" endpoint. This method returns a
     ...     datetime=['2019-01-01T00:00:00Z', '2019-01-02T00:00:00Z'],
     ... )
 
-Instances of :class:`~pystac_client.ItemSearch` a handful of methods for
-getting matching items. The method to use depends on how many of the matches you
-want to consume (a single item at a time, a page at a time, or everything)
-and whether you want "raw" Python dictionaries representing the items, or
-proper ``pystac`` objects.
+Instances of :class:`~pystac_client.ItemSearch` have a handful of methods for
+getting matching items into Python objects. The method to use depends on how
+many of the matches you want to consume (a single item at a time, a
+page at a time, or everything) and whether you want "raw" Python dictionaries
+representing the items, or proper ``pystac`` objects.
 
 * :meth:`ItemCollection.items()` returns an iterator over individual items,
   each being a :class:`pystac.Item`.
