@@ -157,23 +157,22 @@ requests to a service's "search" endpoint. This method returns a
     ... )
 
 Instances of :class:`~pystac_client.ItemSearch` have a handful of methods for
-getting matching items into Python objects. The method to use depends on how
-many of the matches you want to consume (a single item at a time, a
-page at a time, or everything) and whether you want "raw" Python dictionaries
+getting matching items into Python objects. The right method to use depends on
+how many of the matches you want to consume (a single item at a time, a
+page at a time, or everything) and whether you want plain Python dictionaries
 representing the items, or proper ``pystac`` objects.
 
-* :meth:`ItemCollection.items()` returns an iterator over individual items,
-  each being a :class:`pystac.Item`.
-* :meth:`ItemCollection.items_as_dicts()` returns an iterator over individual
-  items, each being an item-like :class:`dict`.
-* :meth:`ItemCollection.pages()` returns an iterator over pages of the
-  matching items, each being a :class:`pystac.ItemCollection`
-* :meth:`ItemCollection.pages_as_dicts()` returns an iterator over pages of the
-  matching items, each being feature-collection-like :class:`dict`.
-* :meth:`ItemCollection.item_collection()` returns all of the matching items
-  as a single :class:`pystac.ItemCollection`
-* :meth:`ItemCollection.item_collection_as_dict()` returns  all of the matching
-  items as a single feature-collection-like :class:`dict`.
+The following table shows the :class:`pystac_client.ItemSearch` methods for fetching
+matches, according to which set of matches to return, and whether to return them as
+``pystac`` objects or plain dictionaries.
+
+================= =================================== ===========================================
+Matches to return PySTAC objects                      Plain dictionaries
+================= =================================== ===========================================
+**Single items**  :meth:`~ItemSearch.items`           :meth:`~ItemSearch.items_as_dicts`
+**Pages**         :meth:`~ItemSearch.pages`           :meth:`~ItemSearch.pages_as_dicts`
+**Everything**    :meth:`~ItemSearch.item_collection` :meth:`~ItemSearch.item_collection_as_dict`
+================= =================================== ===========================================
 
 Additionally, the ``matched`` method can be used to access result metadata about
 how many total items matched the query:
