@@ -22,10 +22,11 @@ def search(
     """Main function for performing a search"""
 
     try:
+        # https://github.com/python/mypy/issues/4441
         # the type: ignore is to silence the mypy error
         # error: Argument 2 to "search" of "Client" has incompatible
         # type "**Dict[str, Dict[str, Any]]"; expected "Optional[int]"  [arg-type]
-        result = client.search(method=method, **kwargs)  # type: ignore
+        result = client.search(method=method, **kwargs)  # type: ignore[arg-type]
 
         if matched:
             print(f"{result.matched()} items matched")
