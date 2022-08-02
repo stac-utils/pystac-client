@@ -162,17 +162,17 @@ how many of the matches you want to consume (a single item at a time, a
 page at a time, or everything) and whether you want plain Python dictionaries
 representing the items, or proper ``pystac`` objects.
 
-The following table shows the :class:`pystac_client.ItemSearch` methods for fetching
-matches, according to which set of matches to return, and whether to return them as
+The following table shows the :class:`~pystac_client.ItemSearch` methods for fetching
+matches, according to which set of matches to return and whether to return them as
 ``pystac`` objects or plain dictionaries.
 
-================= =================================== ===========================================
-Matches to return PySTAC objects                      Plain dictionaries
-================= =================================== ===========================================
-**Single items**  :meth:`~ItemSearch.items`           :meth:`~ItemSearch.items_as_dicts`
-**Pages**         :meth:`~ItemSearch.pages`           :meth:`~ItemSearch.pages_as_dicts`
-**Everything**    :meth:`~ItemSearch.item_collection` :meth:`~ItemSearch.item_collection_as_dict`
-================= =================================== ===========================================
+================= ================================================= =========================================================
+Matches to return PySTAC objects                                    Plain dictionaries
+================= ================================================= =========================================================
+**Single items**  :meth:`~pystac_client.ItemSearch.items`           :meth:`~pystac_client.ItemSearch.items_as_dicts`
+**Pages**         :meth:`~pystac_client.ItemSearch.pages`           :meth:`~pystac_client.ItemSearch.pages_as_dicts`
+**Everything**    :meth:`~pystac_client.ItemSearch.item_collection` :meth:`~pystac_client.ItemSearch.item_collection_as_dict`
+================= ================================================= =========================================================
 
 Additionally, the ``matched`` method can be used to access result metadata about
 how many total items matched the query:
