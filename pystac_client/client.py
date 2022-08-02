@@ -15,7 +15,7 @@ import pystac
 import pystac.validation
 from pystac import CatalogType, Collection
 
-from pystac_client._utils import Modifiable, call_modifier, no_modifier
+from pystac_client._utils import Modifiable, call_modifier
 from pystac_client.collection_client import CollectionClient
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.errors import ClientTypeError
@@ -54,7 +54,7 @@ class Client(pystac.Catalog):
         href: Optional[str] = None,
         catalog_type: CatalogType = CatalogType.ABSOLUTE_PUBLISHED,
         *,
-        modifier: Callable[[Modifiable], None] = no_modifier,
+        modifier: Optional[Callable[[Modifiable], None]] = None,
         **kwargs: Dict[str, Any],
     ):
         super().__init__(
@@ -79,7 +79,7 @@ class Client(pystac.Catalog):
         headers: Optional[Dict[str, str]] = None,
         parameters: Optional[Dict[str, Any]] = None,
         ignore_conformance: bool = False,
-        modifier: Callable[[Modifiable], None] = no_modifier,
+        modifier: Optional[Callable[[Modifiable], None]] = None,
     ) -> "Client":
         """Opens a STAC Catalog or API
         This function will read the root catalog of a STAC Catalog or API
@@ -148,7 +148,7 @@ class Client(pystac.Catalog):
         stac_io: Optional[StacApiIO] = None,
         headers: Optional[Dict[str, str]] = None,
         parameters: Optional[Dict[str, Any]] = None,
-        modifier: Callable[[Modifiable], None] = no_modifier,
+        modifier: Optional[Callable[[Modifiable], None]] = None,
     ) -> "Client":
         """Open a STAC Catalog/API
 
@@ -183,7 +183,7 @@ class Client(pystac.Catalog):
         root: Optional[pystac.Catalog] = None,
         migrate: bool = False,
         preserve_dict: bool = True,
-        modifier: Callable[[Modifiable], None] = no_modifier,
+        modifier: Optional[Callable[[Modifiable], None]] = None,
     ) -> "Client":
         try:
             # this will return a Client because we have used a StacApiIO instance

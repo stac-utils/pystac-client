@@ -2,7 +2,7 @@ from typing import TYPE_CHECKING, Any, Callable, Dict, Iterator, List, Optional,
 
 import pystac
 
-from pystac_client._utils import Modifiable, call_modifier, no_modifier
+from pystac_client._utils import Modifiable, call_modifier
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.exceptions import APIError
 from pystac_client.item_search import ItemSearch
@@ -32,7 +32,7 @@ class CollectionClient(pystac.Collection):
         providers: Optional[List[pystac.Provider]] = None,
         summaries: Optional[pystac.Summaries] = None,
         *,
-        modifier: Callable[[Modifiable], None] = no_modifier,
+        modifier: Optional[Callable[[Modifiable], None]] = None,
         **kwargs: Dict[str, Any],
     ):
         # TODO(pystac==1.6.0): Add `assets` as a regular keyword
@@ -63,7 +63,7 @@ class CollectionClient(pystac.Collection):
         root: Optional[pystac.Catalog] = None,
         migrate: bool = False,
         preserve_dict: bool = True,
-        modifier: Callable[[Modifiable], None] = no_modifier,
+        modifier: Optional[Callable[[Modifiable], None]] = None,
     ) -> "CollectionClient":
         result = super().from_dict(d, href, root, migrate, preserve_dict)
         # error: Cannot assign to a method  [assignment]

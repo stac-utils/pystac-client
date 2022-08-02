@@ -23,7 +23,7 @@ from dateutil.relativedelta import relativedelta
 from dateutil.tz import tzutc
 from pystac import Collection, Item, ItemCollection
 
-from pystac_client._utils import Modifiable, call_modifier, no_modifier
+from pystac_client._utils import Modifiable, call_modifier
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.stac_api_io import StacApiIO
 
@@ -265,7 +265,7 @@ class ItemSearch:
         filter_lang: Optional[FilterLangLike] = None,
         sortby: Optional[SortbyLike] = None,
         fields: Optional[FieldsLike] = None,
-        modifier: Callable[[Modifiable], None] = no_modifier,
+        modifier: Optional[Callable[[Modifiable], None]] = None,
     ):
         self.url = url
         self.client = client
