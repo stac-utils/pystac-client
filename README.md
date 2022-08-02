@@ -11,10 +11,12 @@ A Python client for working with [STAC](https://stacspec.org/) Catalogs and APIs
 
 ## Table of Contents
 
+- [Table of Contents](#table-of-contents)
 - [Installation](#installation)
 - [Documentation](#documentation)
 - [Development](#development)
-   - [Pull Requests](#pull-requests)
+  - [Pull Requests](#pull-requests)
+  - [Benchmark](#benchmark)
 
 ## Installation
 
@@ -70,7 +72,7 @@ $ git add <new files here>
 $ git commit -a -m 'new test episodes'
 ```
 
-To update pystac-client to use future versions of STAC API, the existing recorded API responsees
+To update pystac-client to use future versions of STAC API, the existing recorded API responses
 should be "re-recorded":
 
 ```shell
