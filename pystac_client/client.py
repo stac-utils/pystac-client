@@ -20,7 +20,20 @@ from pystac_client.collection_client import CollectionClient
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.errors import ClientTypeError
 from pystac_client.exceptions import APIError
-from pystac_client.item_search import ItemSearch
+from pystac_client.item_search import (
+    DEFAULT_LIMIT_AND_MAX_ITEMS,
+    BBoxLike,
+    CollectionsLike,
+    DatetimeLike,
+    FieldsLike,
+    FilterLangLike,
+    FilterLike,
+    IDsLike,
+    IntersectsLike,
+    ItemSearch,
+    QueryLike,
+    SortbyLike,
+)
 from pystac_client.stac_api_io import StacApiIO
 
 if TYPE_CHECKING:
@@ -289,13 +302,29 @@ class Client(pystac.Catalog):
                 call_modifier(self.modifier, item)
                 yield item
 
-    def search(self, **kwargs: Any) -> ItemSearch:
+    def search(
+        self,
+        *,
+        method: Optional[str] = "POST",
+        max_items: Optional[int] = None,
+        limit: Optional[int] = DEFAULT_LIMIT_AND_MAX_ITEMS,
+        ids: Optional[IDsLike] = None,
+        collections: Optional[CollectionsLike] = None,
+        bbox: Optional[BBoxLike] = None,
+        intersects: Optional[IntersectsLike] = None,
+        datetime: Optional[DatetimeLike] = None,
+        query: Optional[QueryLike] = None,
+        filter: Optional[FilterLike] = None,
+        filter_lang: Optional[FilterLangLike] = None,
+        sortby: Optional[SortbyLike] = None,
+        fields: Optional[FieldsLike] = None,
+    ) -> ItemSearch:
         """Query the ``/search`` endpoint using the given parameters.
 
-        This method returns an :class:`~pystac_client.ItemSearch` instance, see that
+        This method returns an :class:`~pystac_client.ItemSearch` instance. See that
         class's documentation for details on how to get the number of matches and
-        iterate over results. All keyword arguments are passed directly to the
-        :class:`~pystac_client.ItemSearch` instance.
+        iterate over results. The ``url``, `stac_io``, and ``client`` keywords are
+        supplied by this Client instance.
 
         .. warning::
 
@@ -307,9 +336,80 @@ class Client(pystac.Catalog):
             method will raise a :exc:`NotImplementedError`.
 
         Args:
-            **kwargs : Any parameter to the :class:`~pystac_client.ItemSearch` class,
-             other than `url`, `conformance`, and `stac_io` which are set from this
-             Client instance
+            method : The HTTP method to use when making a request to the service.
+                This must be either ``"GET"``, ``"POST"``, or
+                ``None``. If ``None``, this will default to ``"POST"``.
+                If a ``"POST"`` request receives a ``405`` status for
+                the response, it will automatically retry with
+                ``"GET"`` for all subsequent requests.
+            max_items : The maximum number of items to return from the search, even
+                if there are more matching results. This client to limit the
+                total number of Items returned from the :meth:`items`,
+                :meth:`item_collections`, and :meth:`items_as_dicts methods`. The client
+                will continue to request pages of items until the number of max items is
+                reached. This parameter defaults to 100. Setting this to ``None`` will
+                allow iteration over a possibly very large number of results.
+            limit: A recommendation to the service as to the number of items to return
+                *per page* of results. Defaults to 100.
+            ids: List of one or more Item ids to filter on.
+            collections: List of one or more Collection IDs or
+                :class:`pystac.Collection` instances. Only Items in one
+                of the provided Collections will be searched
+            bbox: A list, tuple, or iterator representing a bounding box of 2D
+                or 3D coordinates. Results will be filtered
+                to only those intersecting the bounding box.
+            intersects: A string or dictionary representing a GeoJSON geometry, or
+                an object that implements a
+                ``__geo_interface__`` property, as supported by several libraries
+                including Shapely, ArcPy, PySAL, and
+                geojson. Results filtered to only those intersecting the geometry.
+            datetime: Either a single datetime or datetime range used to filter results.
+                You may express a single datetime using a :class:`datetime.datetime`
+                instance, a `RFC 3339-compliant <https://tools.ietf.org/html/rfc3339>`__
+                timestamp, or a simple date string (see below). Instances of
+                 :class:`datetime.datetime` may be either
+                timezone aware or unaware. Timezone aware instances will be converted to
+                 a UTC timestamp before being passed
+                to the endpoint. Timezone unaware instances are assumed to represent UTC
+                 timestamps. You may represent a
+                datetime range using a ``"/"`` separated string as described in the
+                spec, or a list, tuple, or iterator
+                of 2 timestamps or datetime instances. For open-ended ranges, use either
+                ``".."`` (``'2020-01-01:00:00:00Z/..'``,
+                ``['2020-01-01:00:00:00Z', '..']``) or a value of ``None``
+                (``['2020-01-01:00:00:00Z', None]``).
+
+                If using a simple date string, the datetime can be specified in
+                 ``YYYY-mm-dd`` format, optionally truncating
+                to ``YYYY-mm`` or just ``YYYY``. Simple date strings will be expanded to
+                 include the entire time period, for
+                example:
+
+                - ``2017`` expands to ``2017-01-01T00:00:00Z/2017-12-31T23:59:59Z``
+                - ``2017-06`` expands to ``2017-06-01T00:00:00Z/2017-06-30T23:59:59Z``
+                - ``2017-06-10`` expands to
+                  ``2017-06-10T00:00:00Z/2017-06-10T23:59:59Z``
+
+                If used in a range, the end of the range expands to the end of that
+                day/month/year, for example:
+
+                - ``2017/2018`` expands to
+                  ``2017-01-01T00:00:00Z/2018-12-31T23:59:59Z``
+                - ``2017-06/2017-07`` expands to
+                  ``2017-06-01T00:00:00Z/2017-07-31T23:59:59Z``
+                - ``2017-06-10/2017-06-11`` expands to
+                  ``2017-06-10T00:00:00Z/2017-06-11T23:59:59Z``
+
+            query: List or JSON of query parameters as per the STAC API `query`
+                extension
+            filter: JSON of query parameters as per the STAC API `filter` extension
+            filter_lang: Language variant used in the filter body. If `filter` is a
+                dictionary or not provided, defaults
+                to 'cql2-json'. If `filter` is a string, defaults to `cql2-text`.
+            sortby: A single field or list of fields to sort the response by
+            fields: A list of fields to include in the response. Note this may
+                result in invalid STAC objects, as they may not have required fields.
+                Use `items_as_dicts` to avoid object unmarshalling errors.
 
         Returns:
             search : An ItemSearch instance that can be used to iterate through Items.
@@ -340,10 +440,22 @@ class Client(pystac.Catalog):
 
         return ItemSearch(
             url=search_href,
+            method=method,
+            max_items=max_items,
             stac_io=self._stac_io,
             client=self,
+            limit=limit,
+            ids=ids,
+            collections=collections,
+            bbox=bbox,
+            intersects=intersects,
+            datetime=datetime,
+            query=query,
+            filter=filter,
+            filter_lang=filter_lang,
+            sortby=sortby,
+            fields=fields,
             modifier=self.modifier,
-            **kwargs,
         )
 
     def get_search_link(self) -> Optional[pystac.Link]:
