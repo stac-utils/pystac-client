@@ -220,7 +220,7 @@ class Client(pystac.Catalog):
         self,
         *,
         method: Optional[str] = "POST",
-        max_items: Optional[int] = DEFAULT_LIMIT_AND_MAX_ITEMS,
+        max_items: Optional[int] = None,
         limit: Optional[int] = DEFAULT_LIMIT_AND_MAX_ITEMS,
         ids: Optional[IDsLike] = None,
         collections: Optional[CollectionsLike] = None,
