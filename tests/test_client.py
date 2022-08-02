@@ -416,6 +416,16 @@ class TestAPISearch:
         api.add_link(search_link)
         api.search(limit=1, max_items=1, collections="naip")
 
+    @pytest.mark.vcr  # type: ignore[misc]
+    def test_search_max_items_unlimited_default(self, api: Client) -> None:
+        search = api.search(
+            bbox=[-73.21, 43.99, -73.12, 45.05],
+            collections="naip",
+            datetime="2014-01-01/2020-12-31",
+        )
+        items = list(search.items())
+        assert len(items) > 100
+
 
 class MySign:
     def __init__(self) -> None:

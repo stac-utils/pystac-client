@@ -87,7 +87,10 @@ OP_MAP = {
 
 OPS = list(OP_MAP.keys())
 
-DEFAULT_LIMIT_AND_MAX_ITEMS = 100
+# Previously named DEFAULT_LIMIT_AND_MAX_ITEMS
+# aliased for backwards compat
+# https://github.com/stac-utils/pystac-client/pull/273
+DEFAUL_LIMIT = DEFAULT_LIMIT_AND_MAX_ITEMS = 100
 
 
 # from https://gist.github.com/angstwad/bf22d1822c38a92ec0a9#gistcomment-2622319
@@ -151,12 +154,12 @@ class ItemSearch:
             the response, it will automatically retry with
             ``"GET"`` for all subsequent requests.
         max_items : The maximum number of items to return from the search, even
-            if there are more matching results. This client to limit the
+            if there are more matching results. This allows the client to limit the
             total number of Items returned from the :meth:`items`,
             :meth:`item_collections`, and :meth:`items_as_dicts methods`. The client
             will continue to request pages of items until the number of max items is
-            reached. This parameter defaults to 100. Setting this to ``None`` will
-            allow iteration over a possibly very large number of results.
+            reached. By default (``max_items=None``) all items matching the query
+            will be returned.
         stac_io: An instance of StacIO for retrieving results. Normally comes
             from the Client that returns this ItemSearch client: An instance of a
             root Client used to set the root on resulting Items.
@@ -248,7 +251,7 @@ class ItemSearch:
         url: str,
         *,
         method: Optional[str] = "POST",
-        max_items: Optional[int] = DEFAULT_LIMIT_AND_MAX_ITEMS,
+        max_items: Optional[int] = None,
         stac_io: Optional[StacApiIO] = None,
         client: Optional["_client.Client"] = None,
         limit: Optional[int] = DEFAULT_LIMIT_AND_MAX_ITEMS,
