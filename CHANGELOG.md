@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fix type annotation of `Client._stac_io` and avoid implicit re-exports in `pystac_client.__init__.py` [#249](https://github.com/stac-utils/pystac-client/pull/249)
 - Added `ItemSearch.pages`, `ItemSearch.pages_as_dicts`, `ItemSearch.item_collection`, and `ItemSearch.item_collection_as_dict`
   as replacements for various deprecated methods [#237](https://github.com/stac-utils/pystac-client/issues/237)
+- Restored the previous behavior of ``Client.search()`` to return an unlimited number of items by default. [#273](https://github.com/stac-utils/pystac-client/pull/273)
 
 ## [v0.4.0] - 2022-06-08
 
