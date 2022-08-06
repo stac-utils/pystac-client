@@ -15,6 +15,7 @@ from requests_mock import Mocker
 from pystac_client import Client, CollectionClient
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.errors import ClientTypeError, IgnoredResultWarning
+from pystac_client._utils import Modifiable
 
 from .helpers import STAC_URLS, TEST_DATA, read_data_file
 
@@ -431,7 +432,7 @@ class MySign:
     def __init__(self) -> None:
         self.call_count = 0
 
-    def __call__(self, x: Any) -> None:
+    def __call__(self, x: Modifiable) -> None:
         self.call_count += 1
 
 
@@ -441,7 +442,7 @@ class TestSigning:
         sign = MySign()
         # sign is callable, but mypy keeps trying to interpret it as a "MySign" object.
         client = Client.open(STAC_URLS["PLANETARY-COMPUTER"], modifier=sign)
-        assert client.modifier is sign  # type: ignore
+        assert client.modifier is sign
 
         collection = client.get_collection("cil-gdpcir-cc0")
         assert collection
