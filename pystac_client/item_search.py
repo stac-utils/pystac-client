@@ -7,12 +7,23 @@ from datetime import datetime as datetime_
 from datetime import timezone
 from functools import lru_cache
 from itertools import chain
-from typing import TYPE_CHECKING, Any, Dict, Iterator, List, Optional, Tuple, Union
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Callable,
+    Dict,
+    Iterator,
+    List,
+    Optional,
+    Tuple,
+    Union,
+)
 
 from dateutil.relativedelta import relativedelta
 from dateutil.tz import tzutc
 from pystac import Collection, Item, ItemCollection
 
+from pystac_client._utils import Modifiable, call_modifier
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.stac_api_io import StacApiIO
 
@@ -213,6 +224,26 @@ class ItemSearch:
         fields: A list of fields to include in the response. Note this may
             result in invalid STAC objects, as they may not have required fields.
             Use `items_as_dicts` to avoid object unmarshalling errors.
+        modifier : A callable that modifies the children collection and items
+            returned by this Client. This can be useful for injecting
+            authentication parameters into child assets to access data
+            from non-public sources.
+
+            The callable should expect a single argument, which will be one
+            of the following types:
+
+            * :class:`pystac.Collection`
+            * :class:`pystac.Item`
+            * :class:`pystac.ItemCollection`
+            * A STAC item-like :class:`dict`
+            * A STAC collection-like :class:`dict`
+
+            The callable should mutate the argument in place and return ``None``.
+
+            ``modifier`` propagates recursively to children of this Client.
+            After getting a child collection with, e.g.
+            :meth:`Client.get_collection`, the child items of that collection
+            will still be signed with ``modifier``.
     """
 
     def __init__(
@@ -234,6 +265,7 @@ class ItemSearch:
         filter_lang: Optional[FilterLangLike] = None,
         sortby: Optional[SortbyLike] = None,
         fields: Optional[FieldsLike] = None,
+        modifier: Optional[Callable[[Modifiable], None]] = None,
     ):
         self.url = url
         self.client = client
@@ -253,6 +285,7 @@ class ItemSearch:
             raise Exception(f"Invalid limit of {limit}, must be between 1 and 10,000")
 
         self.method = method
+        self.modifier = modifier
 
         params = {
             "limit": limit,
@@ -618,9 +651,11 @@ class ItemSearch:
             for page in self._stac_io.get_pages(
                 self.url, self.method, self.get_parameters()
             ):
-                yield ItemCollection.from_dict(
+                ic = ItemCollection.from_dict(
                     page, preserve_dict=False, root=self.client
                 )
+                call_modifier(self.modifier, ic)
+                yield ic
 
     def get_items(self) -> Iterator[Item]:
         """DEPRECATED. Use :meth:`ItemSearch.items` instead.
@@ -647,7 +682,7 @@ class ItemSearch:
         nitems = 0
         for item_collection in self.item_collections():
             for item in item_collection:
-                yield item
+                yield item  # already sign in item_collections
                 nitems += 1
                 if self._max_items and nitems >= self._max_items:
                     return
@@ -667,6 +702,7 @@ class ItemSearch:
             self.url, self.method, self.get_parameters()
         ):
             for item in page.get("features", []):
+                call_modifier(self.modifier, item)
                 yield item
                 nitems += 1
                 if self._max_items and nitems >= self._max_items:
@@ -695,8 +731,15 @@ class ItemSearch:
             for feature in page["features"]:
                 features.append(feature)
                 if self._max_items and len(features) >= self._max_items:
-                    return {"type": "FeatureCollection", "features": features}
-        return {"type": "FeatureCollection", "features": features}
+                    feature_collection = {
+                        "type": "FeatureCollection",
+                        "features": features,
+                    }
+                    call_modifier(self.modifier, feature_collection)
+                    return feature_collection
+        feature_collection = {"type": "FeatureCollection", "features": features}
+        call_modifier(self.modifier, feature_collection)
+        return feature_collection
 
     @lru_cache(1)
     def get_all_items(self) -> ItemCollection:
@@ -713,10 +756,7 @@ class ItemSearch:
             "get_all_items is deprecated, use 'item_collection' instead.",
             DeprecationWarning,
         )
-        feature_collection = self.get_all_items_as_dict()
-        return ItemCollection.from_dict(
-            feature_collection, preserve_dict=False, root=self.client
-        )
+        return self.item_collection()
 
     @lru_cache(1)
     def item_collection(self) -> ItemCollection:
@@ -727,6 +767,8 @@ class ItemSearch:
             item_collection: ItemCollection
         """
         feature_collection = self.get_all_items_as_dict()
-        return ItemCollection.from_dict(
+        # already modified, don't modify again.
+        ic = ItemCollection.from_dict(
             feature_collection, preserve_dict=False, root=self.client
         )
+        return ic
