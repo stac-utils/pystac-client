@@ -681,7 +681,7 @@ class ItemSearch:
         of results from the search.
 
         Yields:
-            dict : a group of items matching the search
+            Dict : a group of items matching the search
             criteria as a feature-collection-like dictionary.
         """
         if isinstance(self._stac_io, StacApiIO):
@@ -700,7 +700,7 @@ class ItemSearch:
         Get the matching items as a :ref:`pystac.ItemCollection`.
 
         Return:
-            item_collection: ItemCollection
+            ItemCollection: The item collection
         """
         # Bypass the cache here, so that we can pass __preserve_dict__
         # without mutating what's in the cache.
@@ -722,7 +722,7 @@ class ItemSearch:
             for the matching items.
 
         Return:
-            item_collection : dict
+            Dict : A GeoJSON FeatureCollection
         """
         features = []
         for page in self._stac_io.get_pages(
