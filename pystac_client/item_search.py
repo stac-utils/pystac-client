@@ -671,6 +671,7 @@ class ItemSearch:
         """
         if isinstance(self._stac_io, StacApiIO):
             for page in self.pages_as_dicts():
+                # already signed in pages_as_dicts
                 yield ItemCollection.from_dict(
                     page, preserve_dict=False, root=self.client
                 )
@@ -687,6 +688,7 @@ class ItemSearch:
             for page in self._stac_io.get_pages(
                 self.url, self.method, self.get_parameters()
             ):
+                call_modifier(self.modifier, page)
                 yield page
 
     # ------------------------------------------------------------------------
@@ -703,6 +705,7 @@ class ItemSearch:
         # Bypass the cache here, so that we can pass __preserve_dict__
         # without mutating what's in the cache.
         feature_collection = self.item_collection_as_dict.__wrapped__(self)
+        # already signed in item_collection_as_dict
         return ItemCollection.from_dict(
             feature_collection, preserve_dict=False, root=self.client
         )

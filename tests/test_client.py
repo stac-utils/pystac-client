@@ -463,17 +463,23 @@ class TestSigning:
         assert sign.call_count == 5
 
         search = client.search(collections=["sentinel-2-l2a"], max_items=10)
-        next(search.items())
+        next(search.items_as_dicts())
         assert sign.call_count == 6
 
-        next(search.item_collections())
+        next(search.items())
         assert sign.call_count == 7
 
-        next(search.items_as_dicts())
+        next(search.pages_as_dicts())
         assert sign.call_count == 8
 
-        search.item_collection()
+        next(search.pages())
         assert sign.call_count == 9
+
+        search.item_collection_as_dict()
+        assert sign.call_count == 10
+
+        search.item_collection()
+        assert sign.call_count == 11
 
     @pytest.mark.vcr  # type: ignore[misc]
     def test_sign_with_return_warns(self) -> None:
