@@ -31,7 +31,7 @@ def search(
         if matched:
             print(f"{result.matched()} items matched")
         else:
-            feature_collection = result.get_all_items_as_dict()
+            feature_collection = result.item_collection_as_dict()
             if save:
                 with open(save, "w") as f:
                     f.write(json.dumps(feature_collection))

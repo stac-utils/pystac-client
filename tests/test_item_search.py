@@ -1,4 +1,5 @@
 import json
+import operator
 from datetime import datetime, timedelta
 from typing import Any, Dict, Iterator
 
@@ -594,7 +595,7 @@ class TestItemSearch:
         )
 
         # Check that the current page changes on the ItemSearch instance when a new page is requested
-        pages = list(search.item_collections())
+        pages = list(search.pages())
 
         assert pages[1] != pages[2]
         assert pages[1].items != pages[2].items
@@ -613,7 +614,19 @@ class TestItemSearch:
         assert len(item_collection) == 20
 
     @pytest.mark.vcr  # type: ignore[misc]
-    def test_get_all_items_deprecated(self) -> None:
+    @pytest.mark.parametrize(  # type: ignore[misc]
+        "method, alternative, is_sequence, is_pystac",
+        [
+            ("get_item_collections", "pages", True, True),
+            ("item_collections", "pages", True, True),
+            ("get_items", "items", True, True),
+            ("get_all_items", "item_collection", False, True),
+            ("get_all_items_as_dict", "item_collection_as_dict", False, False),
+        ],
+    )
+    def test_deprecations(
+        self, method: str, alternative: str, is_sequence: bool, is_pystac: bool
+    ) -> None:
         search = ItemSearch(
             url=SEARCH_URL,
             bbox=(-73.21, 43.99, -73.12, 44.05),
@@ -621,9 +634,24 @@ class TestItemSearch:
             limit=10,
             max_items=20,
         )
-        with pytest.warns(DeprecationWarning, match="get_all_items"):
-            item_collection = search.get_all_items()
-        assert len(item_collection.items) == 20
+
+        with pytest.warns(DeprecationWarning, match=method):
+            result = operator.methodcaller(method)(search)
+
+        expected = operator.methodcaller(alternative)(search)
+
+        if is_sequence:
+            result = list(result)
+            expected = list(expected)
+            if is_pystac:
+                result = [x.to_dict() for x in result]
+                expected = [x.to_dict() for x in expected]
+        else:
+            if is_pystac:
+                result = result.to_dict()
+                expected = expected.to_dict()
+
+        assert result == expected
 
     @pytest.mark.vcr  # type: ignore[misc]
     def test_items_as_dicts(self) -> None:

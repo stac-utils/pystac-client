@@ -626,73 +626,24 @@ class ItemSearch:
             warnings.warn("numberMatched or context.matched not in response")
         return found
 
-    def get_item_collections(self) -> Iterator[ItemCollection]:
-        """DEPRECATED. Use :meth:`ItemSearch.item_collections` instead.
-
-        Yields:
-            ItemCollection : a group of Items matching the search criteria within an
-            ItemCollection
-        """
-        warnings.warn(
-            "get_item_collections() is deprecated, use item_collections() instead",
-            DeprecationWarning,
-        )
-        return self.item_collections()
-
-    def item_collections(self) -> Iterator[ItemCollection]:
-        """Iterator that yields ItemCollection objects.  Each ItemCollection is
-        a page of results from the search.
-
-        Yields:
-            ItemCollection : a group of Items matching the search criteria within an
-            ItemCollection
-        """
-        if isinstance(self._stac_io, StacApiIO):
-            for page in self._stac_io.get_pages(
-                self.url, self.method, self.get_parameters()
-            ):
-                ic = ItemCollection.from_dict(
-                    page, preserve_dict=False, root=self.client
-                )
-                call_modifier(self.modifier, ic)
-                yield ic
-
-    def get_items(self) -> Iterator[Item]:
-        """DEPRECATED. Use :meth:`ItemSearch.items` instead.
-
-        Yields:
-            Item : each Item matching the search criteria
-        """
-        warnings.warn(
-            "get_items() is deprecated, use items() instead",
-            DeprecationWarning,
-        )
-        return self.items()
-
+    # ------------------------------------------------------------------------
+    # Result sets
+    # ------------------------------------------------------------------------
+    # By item
     def items(self) -> Iterator[Item]:
         """Iterator that yields :class:`pystac.Item` instances for each item matching
-        the given search parameters. Calls
-        :meth:`ItemSearch.item_collections` internally and yields from
-        :attr:`ItemCollection.features <pystac_client.ItemCollection.features>` for
-        each page of results.
+        the given search parameters.
 
         Yields:
             Item : each Item matching the search criteria
         """
-        nitems = 0
-        for item_collection in self.item_collections():
-            for item in item_collection:
-                yield item  # already sign in item_collections
-                nitems += 1
-                if self._max_items and nitems >= self._max_items:
-                    return
+        for item in self.items_as_dicts():
+            # already signed in items_as_dicts
+            yield Item.from_dict(item, root=self.client, preserve_dict=False)
 
     def items_as_dicts(self) -> Iterator[Dict[str, Any]]:
         """Iterator that yields :class:`dict` instances for each item matching
-        the given search parameters. Calls
-        :meth:`ItemSearch.item_collections` internally and yields from
-        :attr:`ItemCollection.features <pystac_client.ItemCollection.features>` for
-        each page of results.
+        the given search parameters.
 
         Yields:
             Item : each Item matching the search criteria
@@ -708,22 +659,71 @@ class ItemSearch:
                 if self._max_items and nitems >= self._max_items:
                     return
 
+    # ------------------------------------------------------------------------
+    # By Page
+    def pages(self) -> Iterator[ItemCollection]:
+        """Iterator that yields ItemCollection objects.  Each ItemCollection is
+        a page of results from the search.
+
+        Yields:
+            ItemCollection : a group of Items matching the search criteria within an
+            ItemCollection
+        """
+        if isinstance(self._stac_io, StacApiIO):
+            for page in self.pages_as_dicts():
+                # already signed in pages_as_dicts
+                yield ItemCollection.from_dict(
+                    page, preserve_dict=False, root=self.client
+                )
+
+    def pages_as_dicts(self) -> Iterator[Dict[str, Any]]:
+        """Iterator that yields :class:`dict` instances for each page
+        of results from the search.
+
+        Yields:
+            Dict : a group of items matching the search
+            criteria as a feature-collection-like dictionary.
+        """
+        if isinstance(self._stac_io, StacApiIO):
+            for page in self._stac_io.get_pages(
+                self.url, self.method, self.get_parameters()
+            ):
+                call_modifier(self.modifier, page)
+                yield page
+
+    # ------------------------------------------------------------------------
+    # Everything
+
     @lru_cache(1)
-    def get_all_items_as_dict(self) -> Dict[str, Any]:
-        """DEPRECATED. Use :meth:`get_items` or :meth:`get_item_collections` instead.
-            Convenience method that gets all items from all pages, up to
-            the number provided by the max_items parameter, and returns an array of
-            dictionaries.
+    def item_collection(self) -> ItemCollection:
+        """
+        Get the matching items as a :ref:`pystac.ItemCollection`.
+
+        Return:
+            ItemCollection: The item collection
+        """
+        # Bypass the cache here, so that we can pass __preserve_dict__
+        # without mutating what's in the cache.
+        feature_collection = self.item_collection_as_dict.__wrapped__(self)
+        # already signed in item_collection_as_dict
+        return ItemCollection.from_dict(
+            feature_collection, preserve_dict=False, root=self.client
+        )
+
+    @lru_cache(1)
+    def item_collection_as_dict(self) -> Dict[str, Any]:
+        """
+        Get the matching items as an item-collection-like dict.
+
+        The dictionary will have two keys:
+
+        1. ``'type'`` with the value ``'FeatureCollection'``
+        2. ``'features'`` with the value being a list of dictionaries
+            for the matching items.
 
         Return:
             Dict : A GeoJSON FeatureCollection
         """
-        warnings.warn(
-            "get_all_items_as_dict is deprecated, use get_items or"
-            " get_item_collections instead",
-            DeprecationWarning,
-            stacklevel=2,
-        )
         features = []
         for page in self._stac_io.get_pages(
             self.url, self.method, self.get_parameters()
@@ -741,7 +741,48 @@ class ItemSearch:
         call_modifier(self.modifier, feature_collection)
         return feature_collection
 
-    @lru_cache(1)
+    # Deprecated methods
+    # not caching these, since they're cached in the implementation
+
+    def get_item_collections(self) -> Iterator[ItemCollection]:
+        """DEPRECATED. Use :meth:`ItemSearch.item_collections` instead.
+
+        Yields:
+            ItemCollection : a group of Items matching the search criteria within an
+            ItemCollection
+        """
+        warnings.warn(
+            "get_item_collections() is deprecated, use pages() instead",
+            DeprecationWarning,
+        )
+        return self.pages()
+
+    def item_collections(self) -> Iterator[ItemCollection]:
+        """Iterator that yields ItemCollection objects.  Each ItemCollection is
+        a page of results from the search.
+
+        Yields:
+            ItemCollection : a group of Items matching the search criteria within an
+            ItemCollection
+        """
+        warnings.warn(
+            "'item_collections()' is deprecated, use 'pages()' instead",
+            DeprecationWarning,
+        )
+        return self.pages()
+
+    def get_items(self) -> Iterator[Item]:
+        """DEPRECATED. Use :meth:`ItemSearch.items` instead.
+
+        Yields:
+            Item : each Item matching the search criteria
+        """
+        warnings.warn(
+            "get_items() is deprecated, use items() instead",
+            DeprecationWarning,
+        )
+        return self.items()
+
     def get_all_items(self) -> ItemCollection:
         """
         Get the matching items as a :ref:`pystac.ItemCollection`.
@@ -758,17 +799,19 @@ class ItemSearch:
         )
         return self.item_collection()
 
-    @lru_cache(1)
-    def item_collection(self) -> ItemCollection:
-        """
-        Get the matching items as a :ref:`pystac.ItemCollection`.
+    def get_all_items_as_dict(self) -> Dict[str, Any]:
+        """Get items as a FeatureCollection dictionary.
+
+        Convenience method that gets all items from all pages, up to
+        the number provided by the max_items parameter, and returns an array of
+        dictionaries.
 
         Return:
-            item_collection: ItemCollection
+            Dict : A GeoJSON FeatureCollection
         """
-        feature_collection = self.get_all_items_as_dict()
-        # already modified, don't modify again.
-        ic = ItemCollection.from_dict(
-            feature_collection, preserve_dict=False, root=self.client
+        warnings.warn(
+            "'get_all_items_as_dict' is deprecated, use 'item_collection_as_dict' "
+            "instead.",
+            DeprecationWarning,
         )
-        return ic
+        return self.item_collection_as_dict()
