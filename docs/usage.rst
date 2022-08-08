@@ -292,3 +292,33 @@ descending sort and a ``+`` prefix or no prefix means an ascending sort.
                 {"direction": "asc", "field": "collection"},
             ]
     ... )
+
+Automatically modifying results
+-------------------------------
+
+Some systems, like the `Microsoft Planetary Computer <http://planetarycomputer.microsoft.com/>`__,
+have public STAC metadata but require require some `authentication <https://planetarycomputer.microsoft.com/docs/concepts/sas/>`__
+to access the actual assets.
+
+``pystac-client`` provides a ``modifier`` keyword that can automatically
+modify the STAC objects returned by the STAC API.
+
+.. code-block:: python
+
+   >>> from pystac_client import Client
+   >>> import planetary_computer, requests
+   >>> api = Client.open(
+   ...    'https://planetarycomputer.microsoft.com/api/stac/v1',
+   ...    modifier=planetary_computer.sign_inplace,
+   ... )
+   >>> item = next(catalog.get_collection("sentinel-2-l2a").get_all_items())
+   >>> requests.head(item.assets["B02"].href).status_code
+   200
+
+Without the modifier, we would have received a 404 error because the asset
+is in a private storage container.
+
+``pystac-client`` expects that the ``modifier`` callable modifies the result
+object in-place and returns no result. A warning is emitted if your
+``modifier`` returns a non-None result that is not the same object as the
+input.

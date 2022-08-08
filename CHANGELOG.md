@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased] - TBD
 
+### Added
+
+- Added a new keyword `modifier` to various constructors like `Client.open()` [#259](https://github.com/stac-utils/pystac-client/issues/259)
+
 ### Fixed
 
 - Fix type annotation of `Client._stac_io` and avoid implicit re-exports in `pystac_client.__init__.py` [#249](https://github.com/stac-utils/pystac-client/pull/249)
