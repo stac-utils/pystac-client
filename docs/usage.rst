@@ -297,7 +297,7 @@ Automatically modifying results
 -------------------------------
 
 Some systems, like the `Microsoft Planetary Computer <http://planetarycomputer.microsoft.com/>`__,
-have public STAC metadata but require require some `authentication <https://planetarycomputer.microsoft.com/docs/concepts/sas/>`__
+have public STAC metadata but require some `authentication <https://planetarycomputer.microsoft.com/docs/concepts/sas/>`__
 to access the actual assets.
 
 ``pystac-client`` provides a ``modifier`` keyword that can automatically
