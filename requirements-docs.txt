@@ -7,6 +7,6 @@ nbsphinx~=0.8
 jinja2<4.0
 geopandas~=0.11.1
 hvplot~=0.8.0
-matplotlib~=3.5.2
+matplotlib~=3.5.3
 geojson~=2.5.0
 pygeoif~=0.7
