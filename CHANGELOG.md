@@ -17,6 +17,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   as replacements for various deprecated methods [#237](https://github.com/stac-utils/pystac-client/issues/237)
 - Restored the previous behavior of ``Client.search()`` to return an unlimited number of items by default. [#273](https://github.com/stac-utils/pystac-client/pull/273)
 
+### Deprecated
+
+- `ItemSearch.item_collections` has been deprecated in favor of `ItemSearch.pages`. [#237](https://github.com/stac-utils/pystac-client/issues/237)
+
 ## [v0.4.0] - 2022-06-08
 
 ### Added
