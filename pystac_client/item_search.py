@@ -181,25 +181,24 @@ class ItemSearch:
             geojson. Results filtered to only those intersecting the geometry.
         datetime: Either a single datetime or datetime range used to filter results.
             You may express a single datetime using a :class:`datetime.datetime`
-             instance, a `RFC 3339-compliant <https://tools.ietf.org/html/rfc3339>`__
+            instance, a `RFC 3339-compliant <https://tools.ietf.org/html/rfc3339>`__
             timestamp, or a simple date string (see below). Instances of
-             :class:`datetime.datetime` may be either
+            :class:`datetime.datetime` may be either
             timezone aware or unaware. Timezone aware instances will be converted to
-             a UTC timestamp before being passed
+            a UTC timestamp before being passed
             to the endpoint. Timezone unaware instances are assumed to represent UTC
-             timestamps. You may represent a
+            timestamps. You may represent a
             datetime range using a ``"/"`` separated string as described in the spec,
-             or a list, tuple, or iterator
+            or a list, tuple, or iterator
             of 2 timestamps or datetime instances. For open-ended ranges, use either
             ``".."`` (``'2020-01-01:00:00:00Z/..'``,
             ``['2020-01-01:00:00:00Z', '..']``) or a value of ``None``
             (``['2020-01-01:00:00:00Z', None]``).
 
             If using a simple date string, the datetime can be specified in
-             ``YYYY-mm-dd`` format, optionally truncating
+            ``YYYY-mm-dd`` format, optionally truncating
             to ``YYYY-mm`` or just ``YYYY``. Simple date strings will be expanded to
-             include the entire time period, for
-            example:
+            include the entire time period, for example:
 
             - ``2017`` expands to ``2017-01-01T00:00:00Z/2017-12-31T23:59:59Z``
             - ``2017-06`` expands to ``2017-06-01T00:00:00Z/2017-06-30T23:59:59Z``
@@ -697,7 +696,7 @@ class ItemSearch:
     @lru_cache(1)
     def item_collection(self) -> ItemCollection:
         """
-        Get the matching items as a :ref:`pystac.ItemCollection`.
+        Get the matching items as a :py:class:`pystac.ItemCollection`.
 
         Return:
             ItemCollection: The item collection
@@ -745,11 +744,13 @@ class ItemSearch:
     # not caching these, since they're cached in the implementation
 
     def get_item_collections(self) -> Iterator[ItemCollection]:
-        """DEPRECATED. Use :meth:`ItemSearch.item_collections` instead.
+        """DEPRECATED
+
+        .. deprecated:: 0.4.0
+            Use :meth:`ItemSearch.pages` instead.
 
         Yields:
-            ItemCollection : a group of Items matching the search criteria within an
-            ItemCollection
+            ItemCollection : a group of Items matching the search criteria.
         """
         warnings.warn(
             "get_item_collections() is deprecated, use pages() instead",
@@ -758,21 +759,26 @@ class ItemSearch:
         return self.pages()
 
     def item_collections(self) -> Iterator[ItemCollection]:
-        """Iterator that yields ItemCollection objects.  Each ItemCollection is
-        a page of results from the search.
+        """DEPRECATED
+
+        .. deprecated:: 0.5.0
+            Use :meth:`ItemSearch.pages` instead.
 
         Yields:
             ItemCollection : a group of Items matching the search criteria within an
             ItemCollection
         """
         warnings.warn(
-            "'item_collections()' is deprecated, use 'pages()' instead",
+            "item_collections() is deprecated, use pages() instead",
             DeprecationWarning,
         )
         return self.pages()
 
     def get_items(self) -> Iterator[Item]:
-        """DEPRECATED. Use :meth:`ItemSearch.items` instead.
+        """DEPRECATED.
+
+        .. deprecated:: 0.4.0
+            Use :meth:`ItemSearch.items` instead.
 
         Yields:
             Item : each Item matching the search criteria
@@ -784,8 +790,7 @@ class ItemSearch:
         return self.items()
 
     def get_all_items(self) -> ItemCollection:
-        """
-        Get the matching items as a :ref:`pystac.ItemCollection`.
+        """DEPRECATED
 
         .. deprecated:: 0.4.0
            Use :meth:`ItemSearch.item_collection` instead.
@@ -794,23 +799,22 @@ class ItemSearch:
             item_collection : ItemCollection
         """
         warnings.warn(
-            "get_all_items is deprecated, use 'item_collection' instead.",
+            "get_all_items() is deprecated, use item_collection() instead.",
             DeprecationWarning,
         )
         return self.item_collection()
 
     def get_all_items_as_dict(self) -> Dict[str, Any]:
-        """Get items as a FeatureCollection dictionary.
+        """DEPRECATED
 
-        Convenience method that gets all items from all pages, up to
-        the number provided by the max_items parameter, and returns an array of
-        dictionaries.
+        .. deprecated:: 0.4.0
+           Use :meth:`ItemSearch.item_collection_as_dict` instead.
 
         Return:
             Dict : A GeoJSON FeatureCollection
         """
         warnings.warn(
-            "'get_all_items_as_dict' is deprecated, use 'item_collection_as_dict' "
+            "get_all_items_as_dict() is deprecated, use item_collection_as_dict() "
             "instead.",
             DeprecationWarning,
         )

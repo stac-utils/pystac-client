@@ -367,11 +367,11 @@ class Client(pystac.Catalog):
                 You may express a single datetime using a :class:`datetime.datetime`
                 instance, a `RFC 3339-compliant <https://tools.ietf.org/html/rfc3339>`__
                 timestamp, or a simple date string (see below). Instances of
-                 :class:`datetime.datetime` may be either
+                :class:`datetime.datetime` may be either
                 timezone aware or unaware. Timezone aware instances will be converted to
-                 a UTC timestamp before being passed
+                a UTC timestamp before being passed
                 to the endpoint. Timezone unaware instances are assumed to represent UTC
-                 timestamps. You may represent a
+                timestamps. You may represent a
                 datetime range using a ``"/"`` separated string as described in the
                 spec, or a list, tuple, or iterator
                 of 2 timestamps or datetime instances. For open-ended ranges, use either
@@ -380,10 +380,9 @@ class Client(pystac.Catalog):
                 (``['2020-01-01:00:00:00Z', None]``).
 
                 If using a simple date string, the datetime can be specified in
-                 ``YYYY-mm-dd`` format, optionally truncating
+                ``YYYY-mm-dd`` format, optionally truncating
                 to ``YYYY-mm`` or just ``YYYY``. Simple date strings will be expanded to
-                 include the entire time period, for
-                example:
+                include the entire time period, for example:
 
                 - ``2017`` expands to ``2017-01-01T00:00:00Z/2017-12-31T23:59:59Z``
                 - ``2017-06`` expands to ``2017-06-01T00:00:00Z/2017-06-30T23:59:59Z``
