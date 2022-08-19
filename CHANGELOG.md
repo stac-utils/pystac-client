@@ -1,10 +1,23 @@
 # Changelog
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased] - TBD
+
+### Added
+
+### Changed
+
+### Fixed
+
+## Removed
+
+### Deprecated
+
+## [v0.5.0] - 2022-08-19
 
 ### Added
 
@@ -42,14 +55,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Better error message when trying to search a non-item-search-conforming catalog [#164](https://github.com/stac-utils/pystac-client/pull/164)
 - Search `filter-lang` defaults to `cql2-json` instead of `cql-json` [#169](https://github.com/stac-utils/pystac-client/pull/169)
 - Search `filter-lang` will be set to `cql2-json` if the `filter` is a dict, or `cql2-text` if it is a string [#169](https://github.com/stac-utils/pystac-client/pull/169)
-- Search parameter `intersects` is now typed to only accept a str, dict, or object that implements `__geo_interface__` [#169](https://github.com/stac-utils/pystac-client/pull/169)
+- Search parameter `intersects` is now typed to only accept a str, dict, or object that implements `__geo_interface__` [#174](https://github.com/stac-utils/pystac-client/pull/174)
 - Better error message when trying to open a Collection with `Client.open` [#222](https://github.com/stac-utils/pystac-client/pull/222)
-
 
 ### Deprecated
 
 - Item Search methods `get_items()` and `get_item_collections()` have been renamed to
-  `items()` and `item_collections()`. The original methods are now deprecated 
+  `items()` and `item_collections()`. The original methods are now deprecated
   and may be removed as early as v0.5.0. [#206](https://github.com/stac-utils/pystac-client/pull/206)
 - Item Search methods `get_all_items()` and `get_all_items_as_dict()` are now deprecated,
   and may be removed as early as v0.5.0.
@@ -60,10 +72,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   `item_collections()` should be used instead. [#206](https://github.com/stac-utils/pystac-client/pull/206)
 - CLI parameter `-q` is now deprecated and may be removed as early as v0.5.0. Use `--query` instead. [#215](https://github.com/stac-utils/pystac-client/pull/215)
 
-
 ## Removed
 
-- Client parameter `require_geojson_link` has been removed. [#169](https://github.com/stac-utils/pystac-client/pull/169)
+- Client parameter `require_geojson_link` has been removed. [#165](https://github.com/stac-utils/pystac-client/pull/165)
 
 ### Fixed
 
@@ -72,9 +83,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Search fields parameter now has correct typing and handles both GET and POST JSON parameter formats. [#184](https://github.com/stac-utils/pystac-client/pull/184)
 - Use pytest configuration to skip benchmarks by default (instead of a `skip` mark). [#168](https://github.com/stac-utils/pystac-client/pull/168)
 - Methods retrieving collections incorrectly checked the existence of the OAFeat OpenAPI 3.0 conformance class
-  (http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30) instead of the `STAC API - Collections`
-  (https://api.stacspec.org/v1.0.0-beta.1/collections) or `STAC API - Features` 
-  (https://api.stacspec.org/v1.0.0-beta.1/ogcapi-features) conformance classes. [223](https://github.com/stac-utils/pystac-client/pull/223)
+  (<http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30>) instead of the `STAC API - Collections`
+  (<https://api.stacspec.org/v1.0.0-beta.1/collections>) or `STAC API - Features`
+  (<https://api.stacspec.org/v1.0.0-beta.1/ogcapi-features>) conformance classes. [223](https://github.com/stac-utils/pystac-client/pull/223)
 
 ## [v0.3.5] - 2022-05-26
 
@@ -108,6 +119,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Added support for filtering the search endpoint using the `media_type` in `Client.open` [#142](https://github.com/stac-utils/pystac-client/pull/142)
 
 ### Fixed
+
 - Values from `parameters` and `headers` arguments to `Client.open` and `Client.from_file` are now also used in requests made from `CollectionClient` instances
   fetched from the same API ([#126](https://github.com/stac-utils/pystac-client/pull/126))
 - The tests folder is no longer installed as a package.
@@ -122,9 +134,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   [#118](https://github.com/stac-utils/pystac-client/pull/118)
 
 ### Changed
+
 - Update min PySTAC version to 1.2
 - Default page size limit set to 100 rather than relying on the server default
-- Fetch single collection directly from endpoint in API rather than iterating through children (Issue #114)[https://github.com/stac-utils/pystac-client/issues/114]
+- Fetch single collection directly from endpoint in API rather than iterating through children [Issue #114](https://github.com/stac-utils/pystac-client/issues/114)
 
 ### Fixed
 
@@ -134,6 +147,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [v0.3.0] - 2021-09-28
 
 ### Added
+
 - Jupyter Notebook tutorials
 - Basic CQL-JSON filtering [#100](https://github.com/stac-utils/pystac-client/pull/100)
 
@@ -167,7 +181,7 @@ are in a single HTTP session, handle pagination and respects conformance
 ### Changed
 
 - Update to use PySTAC 1.1.0
-- IO changed to use PySTAC's new StacIO base class. 
+- IO changed to use PySTAC's new StacIO base class.
 - `Search.item_collections()` renamed to `Search.get_item_collections()`
 - `Search.item()` renamed to `Search.get_items()`
 - Conformance is checked by each individual function that requires a particular conformance
@@ -218,7 +232,8 @@ are in a single HTTP session, handle pagination and respects conformance
 
 Initial release.
 
-[Unreleased]: <https://github.com/stac-utils/pystac-client/compare/v0.4.0...main>
+[Unreleased]: <https://github.com/stac-utils/pystac-client/compare/v0.5.0...main>
+[v0.5.0]: <https://github.com/stac-utils/pystac-client/compare/v0.4.0...v0.5.0>
 [v0.4.0]: <https://github.com/stac-utils/pystac-client/compare/v0.3.5...v0.4.0>
 [v0.3.5]: <https://github.com/stac-utils/pystac-client/compare/v0.3.4..v0.3.5>
 [v0.3.4]: <https://github.com/stac-utils/pystac-client/compare/v0.3.3..v0.3.4>
