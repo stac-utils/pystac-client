@@ -90,6 +90,15 @@ class TestItemSearchParams:
         search = ItemSearch(url=SEARCH_URL, bbox=bboxer())
         assert search.get_parameters()["bbox"] == (-104.5, 44.0, -104.0, 45.0)
 
+    def test_url_with_parameters(self) -> None:
+        # Single timestamp input
+        search = ItemSearch(
+            url=SEARCH_URL,
+            datetime="2020-02-01T00:00:00Z",
+            bbox=[-104.5, 44.0, -104.0, 45.0],
+        )
+        assert "bbox=-104.5,44.0,-104.0,45.0" in search.url_with_parameters()
+
     def test_single_string_datetime(self) -> None:
         # Single timestamp input
         search = ItemSearch(url=SEARCH_URL, datetime="2020-02-01T00:00:00Z")

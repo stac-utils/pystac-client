@@ -328,6 +328,15 @@ class ItemSearch:
         else:
             raise Exception(f"Unsupported method {self.method}")
 
+    def url_with_parameters(self) -> str:
+        params_list = [
+            f'{k}={",".join(map(str, v))}'
+            if isinstance(v, List) or isinstance(v, Tuple)
+            else f'{k}={v}'
+            for k, v in self._parameters.items()
+        ]
+        return f'{self.url}{"&".join(params_list)}'
+        
     def _format_query(self, value: Optional[QueryLike]) -> Optional[Dict[str, Any]]:
         if value is None:
             return None
