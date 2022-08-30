@@ -1,5 +1,6 @@
 import json
 import re
+import urllib.parse
 import warnings
 from collections.abc import Iterable, Mapping
 from copy import deepcopy
@@ -22,6 +23,7 @@ from typing import (
 from dateutil.relativedelta import relativedelta
 from dateutil.tz import tzutc
 from pystac import Collection, Item, ItemCollection
+from requests import Request
 
 from pystac_client._utils import Modifiable, call_modifier
 from pystac_client.conformance import ConformanceClasses
@@ -311,29 +313,33 @@ class ItemSearch:
         if self.method == "POST":
             return self._parameters
         elif self.method == "GET":
-            params = deepcopy(self._parameters)
-            if "bbox" in params:
-                params["bbox"] = ",".join(map(str, params["bbox"]))
-            if "ids" in params:
-                params["ids"] = ",".join(params["ids"])
-            if "collections" in params:
-                params["collections"] = ",".join(params["collections"])
-            if "intersects" in params:
-                params["intersects"] = json.dumps(params["intersects"])
-            if "sortby" in params:
-                params["sortby"] = self._sortby_dict_to_str(params["sortby"])
-            if "fields" in params:
-                params["fields"] = self._fields_dict_to_str(params["fields"])
-            return params
+            return self._clean_params_for_get_request()
         else:
             raise Exception(f"Unsupported method {self.method}")
 
+    def _clean_params_for_get_request(self) -> Dict[str, Any]:
+        params = deepcopy(self._parameters)
+        if "bbox" in params:
+            params["bbox"] = ",".join(map(str, params["bbox"]))
+        if "ids" in params:
+            params["ids"] = ",".join(params["ids"])
+        if "collections" in params:
+            params["collections"] = ",".join(params["collections"])
+        if "intersects" in params:
+            params["intersects"] = json.dumps(params["intersects"])
+        if "sortby" in params:
+            params["sortby"] = self._sortby_dict_to_str(params["sortby"])
+        if "fields" in params:
+            params["fields"] = self._fields_dict_to_str(params["fields"])
+        return params
+
     def url_with_parameters(self) -> str:
-        params_list = [
-            f'{k}={",".join(map(str, v))}' if isinstance(v, Iterable) else f"{k}={v}"
-            for k, v in self._parameters.items()
-        ]
-        return f'{self.url}?{"&".join(params_list)}'
+        params = self._clean_params_for_get_request()
+        request = Request("GET", self.url, params=params)
+        url = request.prepare().url
+        if url is None:
+            raise ValueError("Could not construct a full url")
+        return urllib.parse.unquote(url)
 
     def _format_query(self, value: Optional[QueryLike]) -> Optional[Dict[str, Any]]:
         if value is None:
