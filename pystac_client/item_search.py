@@ -333,7 +333,7 @@ class ItemSearch:
             f'{k}={",".join(map(str, v))}' if isinstance(v, Iterable) else f"{k}={v}"
             for k, v in self._parameters.items()
         ]
-        return f'{self.url}{"&".join(params_list)}'
+        return f'{self.url}?{"&".join(params_list)}'
 
     def _format_query(self, value: Optional[QueryLike]) -> Optional[Dict[str, Any]]:
         if value is None:

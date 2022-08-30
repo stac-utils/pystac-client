@@ -99,6 +99,18 @@ class TestItemSearchParams:
         )
         assert "bbox=-104.5,44.0,-104.0,45.0" in search.url_with_parameters()
 
+        # Motivating example: https://github.com/stac-utils/pystac-client/issues/299
+        search = ItemSearch(
+            url="https://planetarycomputer.microsoft.com/api/stac/v1/search",
+            collections=["cop-dem-glo-30"],
+            bbox=[88.214, 27.927, 88.302, 28.034],
+        )
+        assert (
+            search.url_with_parameters()
+            == "https://planetarycomputer.microsoft.com/api/stac/v1/search?"
+            "limit=100&bbox=88.214,27.927,88.302,28.034&collections=cop-dem-glo-30"
+        )
+
     def test_single_string_datetime(self) -> None:
         # Single timestamp input
         search = ItemSearch(url=SEARCH_URL, datetime="2020-02-01T00:00:00Z")
