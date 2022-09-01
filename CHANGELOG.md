@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+- Added `ItemSearch.url_with_parameters` to get a formatted search url [#304](https://github.com/stac-utils/pystac-client/issues/304)
+
 ### Changed
 
 ### Fixed
