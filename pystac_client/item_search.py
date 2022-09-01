@@ -334,6 +334,24 @@ class ItemSearch:
         return params
 
     def url_with_parameters(self) -> str:
+        """Returns this item search url with parameters, appropriate for a GET request.
+
+        Examples:
+
+        >>> search = ItemSearch(
+        ...    url="https://planetarycomputer.microsoft.com/api/stac/v1/search",
+        ...    collections=["cop-dem-glo-30"],
+        ...    bbox=[88.214, 27.927, 88.302, 28.034],
+        ... )
+        >>> assert (
+        ...    search.url_with_parameters()
+        ...    == "https://planetarycomputer.microsoft.com/api/stac/v1/search?"
+        ...    "limit=100&bbox=88.214,27.927,88.302,28.034&collections=cop-dem-glo-30"
+        ... )
+
+        Returns:
+            str: The search url with parameters.
+        """
         params = self._clean_params_for_get_request()
         request = Request("GET", self.url, params=params)
         url = request.prepare().url
