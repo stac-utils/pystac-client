@@ -85,7 +85,7 @@ be upgrading versions (e.g. an improvement to the CI system).
 For changelog entries, please link to the PR of that change. This needs to happen in a
 few steps:
 
-- Make a PR to PySTAC with your changes
+- Make a PR to PySTAC-Client with your changes
 - Record the link to the PR
 - Push an additional commit to your branch with the changelog entry with the link to the
   PR.
