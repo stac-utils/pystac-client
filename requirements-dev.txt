@@ -11,7 +11,7 @@ mypy~=0.971
 types-requests~=2.28.9
 types-python-dateutil~=2.8.19
 flake8~=5.0.4
-black~=22.6.0
+black~=22.8.0
 codespell~=2.2.1
 
 jsonschema~=4.6.0
