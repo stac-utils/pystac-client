@@ -113,3 +113,11 @@ class TestSTAC_IOOverride:
         assert request_qp_name in actual_qp
         assert len(actual_qp[request_qp_name]) == 1
         assert actual_qp[request_qp_name][0] == request_qp_value
+
+    def test_write(self, tmp_path: Path) -> None:
+        stac_api_io = StacApiIO()
+        test_file = tmp_path / "test.txt"
+        stac_api_io.write_text_to_href(str(test_file), "Hi there!")
+        with open(test_file) as file:
+            data = file.read()
+        assert data == "Hi there!"
