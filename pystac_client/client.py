@@ -98,8 +98,7 @@ class Client(pystac.Catalog):
         This function will read the root catalog of a STAC Catalog or API
 
         Args:
-            url : The URL of a STAC Catalog. If not specified, this will use the
-                `STAC_URL` environment variable.
+            url : The URL of a STAC Catalog.
             headers : A dictionary of additional headers to use in all requests
                 made to any part of this Catalog/API.
             parameters: Optional dictionary of query string parameters to
