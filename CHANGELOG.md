@@ -9,19 +9,25 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- Added `ItemSearch.url_with_parameters` to get a formatted search url [#304](https://github.com/stac-utils/pystac-client/issues/304)
-
 ### Changed
+
+### Fixed
+
+### Removed
+
+### Deprecated
+
+## [v0.5.1] - 2022-09-19
+
+### Added
+
+- Added `ItemSearch.url_with_parameters` to get a formatted search url [#304](https://github.com/stac-utils/pystac-client/issues/304)
 
 ### Fixed
 
 - Fix variable name in quickstart example [#316](https://github.com/stac-utils/pystac-client/pull/316)
 - `StacApiIO.write_text_to_href` [#312](https://github.com/stac-utils/pystac-client/pull/312)
 - Removed mention of STAC_URL in `Client.open` docstring [#317](https://github.com/stac-utils/pystac-client/pull/317)
-
-## Removed
-
-### Deprecated
 
 ## [v0.5.0] - 2022-08-19
 
@@ -238,7 +244,8 @@ are in a single HTTP session, handle pagination and respects conformance
 
 Initial release.
 
-[Unreleased]: <https://github.com/stac-utils/pystac-client/compare/v0.5.0...main>
+[Unreleased]: <https://github.com/stac-utils/pystac-client/compare/v0.5.1...main>
+[v0.5.1]: <https://github.com/stac-utils/pystac-client/compare/v0.5.0...v0.5.1>
 [v0.5.0]: <https://github.com/stac-utils/pystac-client/compare/v0.4.0...v0.5.0>
 [v0.4.0]: <https://github.com/stac-utils/pystac-client/compare/v0.3.5...v0.4.0>
 [v0.3.5]: <https://github.com/stac-utils/pystac-client/compare/v0.3.4..v0.3.5>
