@@ -15,7 +15,7 @@ black~=22.8.0
 codespell~=2.2.1
 
 jsonschema~=4.6.0
-coverage~=6.4
+coverage~=6.5
 doc8~=1.0.0
 
 pre-commit==2.20.0
