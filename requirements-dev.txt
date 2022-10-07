@@ -15,7 +15,7 @@ codespell~=2.2.1
 
 jsonschema~=4.6.0
 coverage~=6.5
-doc8~=1.0.0
+doc8~=0.11.2
 
 pre-commit==2.20.0
 
