@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
+- Dependency conflicts between requirements-dev.txt and requirements-doc.txt [#333](https://github.com/stac-utils/pystac-client/pull/333)
+
 ### Removed
 
 ### Deprecated
