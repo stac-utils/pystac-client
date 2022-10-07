@@ -30,7 +30,9 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           cache: "pip"
-          cache-dependency-path: "setup.py"
+          cache-dependency-path: |
+            setup.py
+            requirements-dev.txt
 
       - name: Execute linters and test suites
         run: ./scripts/cibuild
