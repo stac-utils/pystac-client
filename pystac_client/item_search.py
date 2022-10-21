@@ -328,7 +328,9 @@ class ItemSearch:
         if "collections" in params:
             params["collections"] = ",".join(params["collections"])
         if "intersects" in params:
-            params["intersects"] = json.dumps(params["intersects"])
+            params["intersects"] = json.dumps(
+                params["intersects"], separators=(",", ":")
+            )
         if "sortby" in params:
             params["sortby"] = self._sortby_dict_to_str(params["sortby"])
         if "fields" in params:
