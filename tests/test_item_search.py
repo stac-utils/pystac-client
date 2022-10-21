@@ -1,5 +1,6 @@
 import json
 import operator
+import urllib.parse
 from datetime import datetime, timedelta
 from typing import Any, Dict, Iterator
 
@@ -8,8 +9,11 @@ import pytest
 import requests
 from dateutil.tz import gettz, tzutc
 from pytest_benchmark.fixture import BenchmarkFixture
+from pytest_httpserver import HTTPServer
+from werkzeug.wrappers import Request, Response
 
 from pystac_client import Client
+from pystac_client.exceptions import APIError
 from pystac_client.item_search import ItemSearch
 
 from .helpers import STAC_URLS, read_data_file
@@ -618,6 +622,47 @@ class TestItemSearch:
         )
         new_results = search.items()
         assert all(isinstance(item, pystac.Item) for item in new_results)
+
+    def test_intersects_get(self, httpserver: HTTPServer) -> None:
+        intersects_dict = {
+            "type": "Polygon",
+            "coordinates": [
+                [[100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0]]
+            ],
+        }
+
+        def handler(request: Request) -> Response:
+            assert request.args["intersects"] == (
+                "%7B%22type%22%3A%22Polygon%22%2C%22coordinates"
+                "%22%3A%5B%5B%5B100.0%2C0.0%5D%2C%5B101.0%2C0.0"
+                "%5D%2C%5B101.0%2C1.0%5D%2C%5B100.0%2C1.0%5D%2C%5B100.0"
+                "%2C0.0%5D%5D%5D%7D"
+            )
+            intersects = json.loads(urllib.parse.unquote(request.args["intersects"]))
+            assert intersects == intersects_dict
+            item = pystac.Item("an-id", None, None, datetime.now(), {})
+            return Response(
+                json.dumps(
+                    {
+                        "type": "FeatureCollection",
+                        "features": [item.to_dict()],
+                        "links": [],
+                    }
+                )
+            )
+
+        httpserver.expect_request("/search").respond_with_handler(handler)
+        search = ItemSearch(
+            url=httpserver.url_for("/search"),
+            intersects=intersects_dict,
+            method="GET",
+        )
+        try:
+            next(search.items())
+        except APIError:
+            # catch the api error that is raised if the assertion fails
+            pass
+        httpserver.check_assertions()
 
     @pytest.mark.vcr  # type: ignore[misc]
     def test_result_paging(self) -> None:

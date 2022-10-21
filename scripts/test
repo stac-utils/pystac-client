@@ -20,7 +20,8 @@ if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
         ./scripts/lint
         ./scripts/format
         # Test suite with coverage enabled
-        pytest -Werror -s --block-network --cov pystac_client --cov-report term-missing
+        # The -Wi::pytest.PytestUnraisableExceptionWarning flag is for an ignored exception from pytest-httpserver
+        pytest -Werror -Wi::pytest.PytestUnraisableExceptionWarning -s --block-network --cov pystac_client --cov-report term-missing
         coverage xml
     fi
 fi

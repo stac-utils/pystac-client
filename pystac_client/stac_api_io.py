@@ -3,7 +3,7 @@ import logging
 import re
 from copy import deepcopy
 from typing import TYPE_CHECKING, Any, Callable, Dict, Iterator, List, Optional, Union
-from urllib.parse import urlparse
+from urllib.parse import quote_plus, urlparse
 
 import pystac
 from pystac.link import Link
@@ -136,7 +136,7 @@ class StacApiIO(DefaultStacIO):
         else:
             params = deepcopy(parameters) or {}
             if "intersects" in params:
-                params["intersects"] = json.dumps(params["intersects"])
+                params["intersects"] = quote_plus(params["intersects"])
             request = Request(method="GET", url=href, headers=headers, params=params)
         try:
             modified = self._req_modifier(request) if self._req_modifier else None
