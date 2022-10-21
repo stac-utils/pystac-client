@@ -168,3 +168,76 @@ class TestSTAC_IOOverride:
         with open(test_file) as file:
             data = file.read()
         assert data == "Hi there!"
+
+    def test_stop_on_empty_page(self, requests_mock: Mocker) -> None:
+        requests_mock.get(
+            "https://pystac-client.test/search",
+            status_code=200,
+            json={
+                "features": [{"foo": "bar"}],
+                "links": [
+                    {
+                        "rel": "next",
+                        "href": "https://pystac-client.test/search?token=baz",
+                    }
+                ],
+            },
+        )
+        requests_mock.get(
+            "https://pystac-client.test/search?token=baz",
+            status_code=200,
+            json={
+                "features": [],
+                "links": [
+                    {
+                        "rel": "next",
+                        "href": "https://pystac-client.test/search?token=baw",
+                    }
+                ],
+            },
+        )
+        requests_mock.get(
+            "https://pystac-client.test/search?token=baw",
+            status_code=500,
+            json={},
+        )
+        stac_api_io = StacApiIO()
+        pages = list(stac_api_io.get_pages("https://pystac-client.test/search"))
+        assert len(pages) == 1
+        assert pages[0]["features"][0]["foo"] == "bar"
+
+    def test_stop_on_featureless_page(self, requests_mock: Mocker) -> None:
+        requests_mock.get(
+            "https://pystac-client.test/search",
+            status_code=200,
+            json={
+                "features": [{"foo": "bar"}],
+                "links": [
+                    {
+                        "rel": "next",
+                        "href": "https://pystac-client.test/search?token=baz",
+                    }
+                ],
+            },
+        )
+        requests_mock.get(
+            "https://pystac-client.test/search?token=baz",
+            status_code=200,
+            json={
+                "links": [
+                    {
+                        "rel": "next",
+                        "href": "https://pystac-client.test/search?token=baw",
+                    }
+                ],
+            },
+        )
+        requests_mock.get(
+            "https://pystac-client.test/search?token=baw",
+            status_code=500,
+            json={},
+        )
+        stac_api_io = StacApiIO()
+        pages = list(stac_api_io.get_pages("https://pystac-client.test/search"))
+        assert len(pages) == 1
+        assert pages[0]["features"][0]["foo"] == "bar"

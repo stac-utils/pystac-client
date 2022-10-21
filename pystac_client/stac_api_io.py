@@ -235,6 +235,8 @@ class StacApiIO(DefaultStacIO):
         while next_link:
             link = Link.from_dict(next_link)
             page = self.read_json(link, parameters=parameters)
+            if not page.get("features", False):
+                return None
             yield page
 
             # get the next link and make the next request
