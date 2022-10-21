@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Some mishandled cases for datetime intervals [#363](https://github.com/stac-utils/pystac-client/pull/363)
 - Collection requests when the Client's url ends in a '/' [#373](https://github.com/stac-utils/pystac-client/pull/373)
 - Parse datetimes more strictly [#364](https://github.com/stac-utils/pystac-client/pull/364)
+- Double-encoding of intersects for GET parameters [#337](https://github.com/stac-utils/pystac-client/pull/337)
 
 ### Removed
 
