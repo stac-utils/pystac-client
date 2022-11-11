@@ -21,4 +21,4 @@ doc8~=1.0.0
 pre-commit==2.20.0
 
 # optional dependencies
-orjson==3.8.0
+orjson==3.8.1
