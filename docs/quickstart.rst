@@ -107,7 +107,7 @@ Create a search:
         max_items=10,
         collections=['sentinel-s2-l2a-cogs'],
         bbox=[-72.5,40.5,-72,41])
-    print(f"{mysearch.matched()} items found")
+    print(f"{my_search.matched()} items found")
 
 The ``items()`` iterator method can be used to iterate through all resulting items.
 

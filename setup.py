@@ -32,7 +32,7 @@ setup(
     package_data={"pystac_client": ["py.typed"]},
     python_requires=">=3.7",
     install_requires=[
-        "requests>=2.25",
+        "requests>=2.27.1",
         "pystac>=1.4.0",
         "python-dateutil>=2.7.0",
     ],

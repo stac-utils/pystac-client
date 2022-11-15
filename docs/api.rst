@@ -37,6 +37,7 @@ The `ItemSearch` class represents a search of a STAC API.
 .. autoclass:: pystac_client.ItemSearch
    :members:
    :undoc-members:
+   :member-order: bysource
 
 STAC API IO
 -----------

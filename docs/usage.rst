@@ -156,19 +156,23 @@ requests to a service's "search" endpoint. This method returns a
     ...     datetime=['2019-01-01T00:00:00Z', '2019-01-02T00:00:00Z'],
     ... )
 
-Instances of :class:`~pystac_client.ItemSearch` have 2 methods for iterating
-over results:
+Instances of :class:`~pystac_client.ItemSearch` have a handful of methods for
+getting matching items into Python objects. The right method to use depends on
+how many of the matches you want to consume (a single item at a time, a
+page at a time, or everything) and whether you want plain Python dictionaries
+representing the items, or proper ``pystac`` objects.
 
-* :meth:`ItemSearch.item_collections
-  <pystac_client.ItemSearch.item_collections>`: iterator over *pages* of results,
-  yielding an :class:`~pystac.ItemCollection` for each page of results.
-* :meth:`ItemSearch.items <pystac_client.ItemSearch.items>`: an iterator over
-  individual Item objects, yielding a :class:`pystac.Item` instance for all Items
-  that match the search criteria.
-* :meth:`ItemSearch.items_as_dicts <pystac_client.ItemSearch.items_as_dicts>`:
-  iterate over individual results, yielding a :class:`dict` instance representing each
-  item that matches the search criteria. This eliminates the overhead of creating
-  class:`pystac.Item` objects
+The following table shows the :class:`~pystac_client.ItemSearch` methods for fetching
+matches, according to which set of matches to return and whether to return them as
+``pystac`` objects or plain dictionaries.
+
+================= ================================================= =========================================================
+Matches to return PySTAC objects                                    Plain dictionaries
+================= ================================================= =========================================================
+**Single items**  :meth:`~pystac_client.ItemSearch.items`           :meth:`~pystac_client.ItemSearch.items_as_dicts`
+**Pages**         :meth:`~pystac_client.ItemSearch.pages`           :meth:`~pystac_client.ItemSearch.pages_as_dicts`
+**Everything**    :meth:`~pystac_client.ItemSearch.item_collection` :meth:`~pystac_client.ItemSearch.item_collection_as_dict`
+================= ================================================= =========================================================
 
 Additionally, the ``matched`` method can be used to access result metadata about
 how many total items matched the query:
@@ -203,7 +207,7 @@ ItemCollection is one page of results retrieved from search:
 
 .. code-block:: python
 
-    >>> for ic in results.item_collections():
+    >>> for ic in results.pages():
     ...     for item in ic.items:
     ...         print(item.id)
     S2B_OPER_MSI_L2A_TL_SGS__20190101T200120_A009518_T18TXP_N02.11
@@ -288,3 +292,33 @@ descending sort and a ``+`` prefix or no prefix means an ascending sort.
                 {"direction": "asc", "field": "collection"},
             ]
     ... )
+
+Automatically modifying results
+-------------------------------
+
+Some systems, like the `Microsoft Planetary Computer <http://planetarycomputer.microsoft.com/>`__,
+have public STAC metadata but require some `authentication <https://planetarycomputer.microsoft.com/docs/concepts/sas/>`__
+to access the actual assets.
+
+``pystac-client`` provides a ``modifier`` keyword that can automatically
+modify the STAC objects returned by the STAC API.
+
+.. code-block:: python
+
+   >>> from pystac_client import Client
+   >>> import planetary_computer, requests
+   >>> api = Client.open(
+   ...    'https://planetarycomputer.microsoft.com/api/stac/v1',
+   ...    modifier=planetary_computer.sign_inplace,
+   ... )
+   >>> item = next(catalog.get_collection("sentinel-2-l2a").get_all_items())
+   >>> requests.head(item.assets["B02"].href).status_code
+   200
+
+Without the modifier, we would have received a 404 error because the asset
+is in a private storage container.
+
+``pystac-client`` expects that the ``modifier`` callable modifies the result
+object in-place and returns no result. A warning is emitted if your
+``modifier`` returns a non-None result that is not the same object as the
+input.

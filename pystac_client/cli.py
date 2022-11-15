@@ -22,12 +22,16 @@ def search(
     """Main function for performing a search"""
 
     try:
-        result = client.search(method=method, **kwargs)
+        # https://github.com/python/mypy/issues/4441
+        # the type: ignore is to silence the mypy error
+        # error: Argument 2 to "search" of "Client" has incompatible
+        # type "**Dict[str, Dict[str, Any]]"; expected "Optional[int]"  [arg-type]
+        result = client.search(method=method, **kwargs)  # type: ignore[arg-type]
 
         if matched:
             print(f"{result.matched()} items matched")
         else:
-            feature_collection = result.get_all_items_as_dict()
+            feature_collection = result.item_collection_as_dict()
             if save:
                 with open(save, "w") as f:
                     f.write(json.dumps(feature_collection))

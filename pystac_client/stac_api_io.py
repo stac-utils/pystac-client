@@ -151,7 +151,7 @@ class StacApiIO(DefaultStacIO):
         if bool(urlparse(href).scheme):
             raise APIError("Transactions not supported")
         else:
-            return super().write_text_to_href(*args, **kwargs)
+            return super().write_text_to_href(href, *args, **kwargs)
 
     def stac_object_from_dict(
         self,

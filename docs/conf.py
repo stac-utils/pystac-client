@@ -17,7 +17,7 @@ from typing import List
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.resolve()))
-from pystac_client import __version__  # type: ignore # noqa: E402
+from pystac_client import __version__  # noqa: E402
 
 git_branch = (
     subprocess.check_output(["git", "rev-parse", "--abbrev-ref", "HEAD"])
@@ -80,20 +80,39 @@ exclude_patterns = ["build/*"]
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = "alabaster"
+html_theme = "pydata_sphinx_theme"
 
+# Theme options are theme-specific and customize the look and feel of a theme
+# further.  For a list of options available for each theme, see the
+# documentation.
+#
 html_theme_options = {
-    # 'sidebar_collapse': False,
-    "fixed_sidebar": True,
-    "github_button": True,
-    "github_user": github_user,
-    "github_repo": github_repo,
-    "description": package_description,
+    "icon_links": [
+        {
+            "name": "GitHub",
+            "url": "https://github.com/stac-utils/pystac-client",
+            "icon": "fab fa-github-square",
+        },
+        {
+            "name": "Gitter",
+            "url": "https://gitter.im/SpatioTemporal-Asset-Catalog/"
+            "python?utm_source=share-link&utm_medium=link&utm_campaign=share-link",
+            "icon": "fab fa-gitter",
+        },
+    ],
+    "external_links": [
+        {"name": "STAC Spec", "url": "https://github.com/radiantearth/stac-spec"}
+    ],
+    # "navbar_end": ["navbar-icon-links.html", "search-field.html"]
 }
+
+html_logo = "_static/STAC-03.png"
+
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path: List[str] = []
+html_static_path: List[str] = ["_static"]
+
 
 # -- Options for intersphinx extension ---------------------------------------
 

@@ -1,5 +1,6 @@
 import json
 import re
+import urllib.parse
 import warnings
 from collections.abc import Iterable, Mapping
 from copy import deepcopy
@@ -7,12 +8,24 @@ from datetime import datetime as datetime_
 from datetime import timezone
 from functools import lru_cache
 from itertools import chain
-from typing import TYPE_CHECKING, Any, Dict, Iterator, List, Optional, Tuple, Union
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Callable,
+    Dict,
+    Iterator,
+    List,
+    Optional,
+    Tuple,
+    Union,
+)
 
 from dateutil.relativedelta import relativedelta
 from dateutil.tz import tzutc
 from pystac import Collection, Item, ItemCollection
+from requests import Request
 
+from pystac_client._utils import Modifiable, call_modifier
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.stac_api_io import StacApiIO
 
@@ -76,7 +89,10 @@ OP_MAP = {
 
 OPS = list(OP_MAP.keys())
 
-DEFAULT_LIMIT_AND_MAX_ITEMS = 100
+# Previously named DEFAULT_LIMIT_AND_MAX_ITEMS
+# aliased for backwards compat
+# https://github.com/stac-utils/pystac-client/pull/273
+DEFAUL_LIMIT = DEFAULT_LIMIT_AND_MAX_ITEMS = 100
 
 
 # from https://gist.github.com/angstwad/bf22d1822c38a92ec0a9#gistcomment-2622319
@@ -140,12 +156,12 @@ class ItemSearch:
             the response, it will automatically retry with
             ``"GET"`` for all subsequent requests.
         max_items : The maximum number of items to return from the search, even
-            if there are more matching results. This client to limit the
+            if there are more matching results. This allows the client to limit the
             total number of Items returned from the :meth:`items`,
             :meth:`item_collections`, and :meth:`items_as_dicts methods`. The client
             will continue to request pages of items until the number of max items is
-            reached. This parameter defaults to 100. Setting this to ``None`` will
-            allow iteration over a possibly very large number of results.
+            reached. By default (``max_items=None``) all items matching the query
+            will be returned.
         stac_io: An instance of StacIO for retrieving results. Normally comes
             from the Client that returns this ItemSearch client: An instance of a
             root Client used to set the root on resulting Items.
@@ -167,25 +183,24 @@ class ItemSearch:
             geojson. Results filtered to only those intersecting the geometry.
         datetime: Either a single datetime or datetime range used to filter results.
             You may express a single datetime using a :class:`datetime.datetime`
-             instance, a `RFC 3339-compliant <https://tools.ietf.org/html/rfc3339>`__
+            instance, a `RFC 3339-compliant <https://tools.ietf.org/html/rfc3339>`__
             timestamp, or a simple date string (see below). Instances of
-             :class:`datetime.datetime` may be either
+            :class:`datetime.datetime` may be either
             timezone aware or unaware. Timezone aware instances will be converted to
-             a UTC timestamp before being passed
+            a UTC timestamp before being passed
             to the endpoint. Timezone unaware instances are assumed to represent UTC
-             timestamps. You may represent a
+            timestamps. You may represent a
             datetime range using a ``"/"`` separated string as described in the spec,
-             or a list, tuple, or iterator
+            or a list, tuple, or iterator
             of 2 timestamps or datetime instances. For open-ended ranges, use either
             ``".."`` (``'2020-01-01:00:00:00Z/..'``,
             ``['2020-01-01:00:00:00Z', '..']``) or a value of ``None``
             (``['2020-01-01:00:00:00Z', None]``).
 
             If using a simple date string, the datetime can be specified in
-             ``YYYY-mm-dd`` format, optionally truncating
+            ``YYYY-mm-dd`` format, optionally truncating
             to ``YYYY-mm`` or just ``YYYY``. Simple date strings will be expanded to
-             include the entire time period, for
-            example:
+            include the entire time period, for example:
 
             - ``2017`` expands to ``2017-01-01T00:00:00Z/2017-12-31T23:59:59Z``
             - ``2017-06`` expands to ``2017-06-01T00:00:00Z/2017-06-30T23:59:59Z``
@@ -210,6 +225,26 @@ class ItemSearch:
         fields: A list of fields to include in the response. Note this may
             result in invalid STAC objects, as they may not have required fields.
             Use `items_as_dicts` to avoid object unmarshalling errors.
+        modifier : A callable that modifies the children collection and items
+            returned by this Client. This can be useful for injecting
+            authentication parameters into child assets to access data
+            from non-public sources.
+
+            The callable should expect a single argument, which will be one
+            of the following types:
+
+            * :class:`pystac.Collection`
+            * :class:`pystac.Item`
+            * :class:`pystac.ItemCollection`
+            * A STAC item-like :class:`dict`
+            * A STAC collection-like :class:`dict`
+
+            The callable should mutate the argument in place and return ``None``.
+
+            ``modifier`` propagates recursively to children of this Client.
+            After getting a child collection with, e.g.
+            :meth:`Client.get_collection`, the child items of that collection
+            will still be signed with ``modifier``.
     """
 
     def __init__(
@@ -217,7 +252,7 @@ class ItemSearch:
         url: str,
         *,
         method: Optional[str] = "POST",
-        max_items: Optional[int] = DEFAULT_LIMIT_AND_MAX_ITEMS,
+        max_items: Optional[int] = None,
         stac_io: Optional[StacApiIO] = None,
         client: Optional["_client.Client"] = None,
         limit: Optional[int] = DEFAULT_LIMIT_AND_MAX_ITEMS,
@@ -231,6 +266,7 @@ class ItemSearch:
         filter_lang: Optional[FilterLangLike] = None,
         sortby: Optional[SortbyLike] = None,
         fields: Optional[FieldsLike] = None,
+        modifier: Optional[Callable[[Modifiable], None]] = None,
     ):
         self.url = url
         self.client = client
@@ -250,6 +286,7 @@ class ItemSearch:
             raise Exception(f"Invalid limit of {limit}, must be between 1 and 10,000")
 
         self.method = method
+        self.modifier = modifier
 
         params = {
             "limit": limit,
@@ -276,22 +313,51 @@ class ItemSearch:
         if self.method == "POST":
             return self._parameters
         elif self.method == "GET":
-            params = deepcopy(self._parameters)
-            if "bbox" in params:
-                params["bbox"] = ",".join(map(str, params["bbox"]))
-            if "ids" in params:
-                params["ids"] = ",".join(params["ids"])
-            if "collections" in params:
-                params["collections"] = ",".join(params["collections"])
-            if "intersects" in params:
-                params["intersects"] = json.dumps(params["intersects"])
-            if "sortby" in params:
-                params["sortby"] = self._sortby_dict_to_str(params["sortby"])
-            if "fields" in params:
-                params["fields"] = self._fields_dict_to_str(params["fields"])
-            return params
+            return self._clean_params_for_get_request()
         else:
             raise Exception(f"Unsupported method {self.method}")
+
+    def _clean_params_for_get_request(self) -> Dict[str, Any]:
+        params = deepcopy(self._parameters)
+        if "bbox" in params:
+            params["bbox"] = ",".join(map(str, params["bbox"]))
+        if "ids" in params:
+            params["ids"] = ",".join(params["ids"])
+        if "collections" in params:
+            params["collections"] = ",".join(params["collections"])
+        if "intersects" in params:
+            params["intersects"] = json.dumps(params["intersects"])
+        if "sortby" in params:
+            params["sortby"] = self._sortby_dict_to_str(params["sortby"])
+        if "fields" in params:
+            params["fields"] = self._fields_dict_to_str(params["fields"])
+        return params
+
+    def url_with_parameters(self) -> str:
+        """Returns this item search url with parameters, appropriate for a GET request.
+
+        Examples:
+
+        >>> search = ItemSearch(
+        ...    url="https://planetarycomputer.microsoft.com/api/stac/v1/search",
+        ...    collections=["cop-dem-glo-30"],
+        ...    bbox=[88.214, 27.927, 88.302, 28.034],
+        ... )
+        >>> assert (
+        ...    search.url_with_parameters()
+        ...    == "https://planetarycomputer.microsoft.com/api/stac/v1/search?"
+        ...    "limit=100&bbox=88.214,27.927,88.302,28.034&collections=cop-dem-glo-30"
+        ... )
+
+        Returns:
+            str: The search url with parameters.
+        """
+        params = self._clean_params_for_get_request()
+        request = Request("GET", self.url, params=params)
+        url = request.prepare().url
+        if url is None:
+            raise ValueError("Could not construct a full url")
+        return urllib.parse.unquote(url)
 
     def _format_query(self, value: Optional[QueryLike]) -> Optional[Dict[str, Any]]:
         if value is None:
@@ -590,20 +656,42 @@ class ItemSearch:
             warnings.warn("numberMatched or context.matched not in response")
         return found
 
-    def get_item_collections(self) -> Iterator[ItemCollection]:
-        """DEPRECATED. Use :meth:`ItemSearch.item_collections` instead.
+    # ------------------------------------------------------------------------
+    # Result sets
+    # ------------------------------------------------------------------------
+    # By item
+    def items(self) -> Iterator[Item]:
+        """Iterator that yields :class:`pystac.Item` instances for each item matching
+        the given search parameters.
 
         Yields:
-            ItemCollection : a group of Items matching the search criteria within an
-            ItemCollection
+            Item : each Item matching the search criteria
         """
-        warnings.warn(
-            "get_item_collections() is deprecated, use item_collections() instead",
-            DeprecationWarning,
-        )
-        return self.item_collections()
+        for item in self.items_as_dicts():
+            # already signed in items_as_dicts
+            yield Item.from_dict(item, root=self.client, preserve_dict=False)
 
-    def item_collections(self) -> Iterator[ItemCollection]:
+    def items_as_dicts(self) -> Iterator[Dict[str, Any]]:
+        """Iterator that yields :class:`dict` instances for each item matching
+        the given search parameters.
+
+        Yields:
+            Item : each Item matching the search criteria
+        """
+        nitems = 0
+        for page in self._stac_io.get_pages(
+            self.url, self.method, self.get_parameters()
+        ):
+            for item in page.get("features", []):
+                call_modifier(self.modifier, item)
+                yield item
+                nitems += 1
+                if self._max_items and nitems >= self._max_items:
+                    return
+
+    # ------------------------------------------------------------------------
+    # By Page
+    def pages(self) -> Iterator[ItemCollection]:
         """Iterator that yields ItemCollection objects.  Each ItemCollection is
         a page of results from the search.
 
@@ -612,15 +700,116 @@ class ItemSearch:
             ItemCollection
         """
         if isinstance(self._stac_io, StacApiIO):
-            for page in self._stac_io.get_pages(
-                self.url, self.method, self.get_parameters()
-            ):
+            for page in self.pages_as_dicts():
+                # already signed in pages_as_dicts
                 yield ItemCollection.from_dict(
                     page, preserve_dict=False, root=self.client
                 )
 
+    def pages_as_dicts(self) -> Iterator[Dict[str, Any]]:
+        """Iterator that yields :class:`dict` instances for each page
+        of results from the search.
+
+        Yields:
+            Dict : a group of items matching the search
+            criteria as a feature-collection-like dictionary.
+        """
+        if isinstance(self._stac_io, StacApiIO):
+            for page in self._stac_io.get_pages(
+                self.url, self.method, self.get_parameters()
+            ):
+                call_modifier(self.modifier, page)
+                yield page
+
+    # ------------------------------------------------------------------------
+    # Everything
+
+    @lru_cache(1)
+    def item_collection(self) -> ItemCollection:
+        """
+        Get the matching items as a :py:class:`pystac.ItemCollection`.
+
+        Return:
+            ItemCollection: The item collection
+        """
+        # Bypass the cache here, so that we can pass __preserve_dict__
+        # without mutating what's in the cache.
+        feature_collection = self.item_collection_as_dict.__wrapped__(self)
+        # already signed in item_collection_as_dict
+        return ItemCollection.from_dict(
+            feature_collection, preserve_dict=False, root=self.client
+        )
+
+    @lru_cache(1)
+    def item_collection_as_dict(self) -> Dict[str, Any]:
+        """
+        Get the matching items as an item-collection-like dict.
+
+        The dictionary will have two keys:
+
+        1. ``'type'`` with the value ``'FeatureCollection'``
+        2. ``'features'`` with the value being a list of dictionaries
+            for the matching items.
+
+        Return:
+            Dict : A GeoJSON FeatureCollection
+        """
+        features = []
+        for page in self._stac_io.get_pages(
+            self.url, self.method, self.get_parameters()
+        ):
+            for feature in page["features"]:
+                features.append(feature)
+                if self._max_items and len(features) >= self._max_items:
+                    feature_collection = {
+                        "type": "FeatureCollection",
+                        "features": features,
+                    }
+                    call_modifier(self.modifier, feature_collection)
+                    return feature_collection
+        feature_collection = {"type": "FeatureCollection", "features": features}
+        call_modifier(self.modifier, feature_collection)
+        return feature_collection
+
+    # Deprecated methods
+    # not caching these, since they're cached in the implementation
+
+    def get_item_collections(self) -> Iterator[ItemCollection]:
+        """DEPRECATED
+
+        .. deprecated:: 0.4.0
+            Use :meth:`ItemSearch.pages` instead.
+
+        Yields:
+            ItemCollection : a group of Items matching the search criteria.
+        """
+        warnings.warn(
+            "get_item_collections() is deprecated, use pages() instead",
+            DeprecationWarning,
+        )
+        return self.pages()
+
+    def item_collections(self) -> Iterator[ItemCollection]:
+        """DEPRECATED
+
+        .. deprecated:: 0.5.0
+            Use :meth:`ItemSearch.pages` instead.
+
+        Yields:
+            ItemCollection : a group of Items matching the search criteria within an
+            ItemCollection
+        """
+        warnings.warn(
+            "item_collections() is deprecated, use pages() instead",
+            DeprecationWarning,
+        )
+        return self.pages()
+
     def get_items(self) -> Iterator[Item]:
-        """DEPRECATED. Use :meth:`ItemSearch.items` instead.
+        """DEPRECATED.
+
+        .. deprecated:: 0.4.0
+            Use :meth:`ItemSearch.items` instead.
 
         Yields:
             Item : each Item matching the search criteria
@@ -631,84 +820,33 @@ class ItemSearch:
         )
         return self.items()
 
-    def items(self) -> Iterator[Item]:
-        """Iterator that yields :class:`pystac.Item` instances for each item matching
-        the given search parameters. Calls
-        :meth:`ItemSearch.item_collections` internally and yields from
-        :attr:`ItemCollection.features <pystac_client.ItemCollection.features>` for
-        each page of results.
-
-        Yields:
-            Item : each Item matching the search criteria
-        """
-        nitems = 0
-        for item_collection in self.item_collections():
-            for item in item_collection:
-                yield item
-                nitems += 1
-                if self._max_items and nitems >= self._max_items:
-                    return
-
-    def items_as_dicts(self) -> Iterator[Dict[str, Any]]:
-        """Iterator that yields :class:`dict` instances for each item matching
-        the given search parameters. Calls
-        :meth:`ItemSearch.item_collections` internally and yields from
-        :attr:`ItemCollection.features <pystac_client.ItemCollection.features>` for
-        each page of results.
-
-        Yields:
-            Item : each Item matching the search criteria
-        """
-        nitems = 0
-        for page in self._stac_io.get_pages(
-            self.url, self.method, self.get_parameters()
-        ):
-            for item in page.get("features", []):
-                yield item
-                nitems += 1
-                if self._max_items and nitems >= self._max_items:
-                    return
-
-    @lru_cache(1)
-    def get_all_items_as_dict(self) -> Dict[str, Any]:
-        """DEPRECATED. Use :meth:`get_items` or :meth:`get_item_collections` instead.
-            Convenience method that gets all items from all pages, up to
-            the number provided by the max_items parameter, and returns an array of
-            dictionaries.
-
-        Return:
-            Dict : A GeoJSON FeatureCollection
-        """
-        warnings.warn(
-            "get_all_items_as_dict is deprecated, use get_items or"
-            " get_item_collections instead",
-            DeprecationWarning,
-        )
-        features = []
-        for page in self._stac_io.get_pages(
-            self.url, self.method, self.get_parameters()
-        ):
-            for feature in page["features"]:
-                features.append(feature)
-                if self._max_items and len(features) >= self._max_items:
-                    return {"type": "FeatureCollection", "features": features}
-        return {"type": "FeatureCollection", "features": features}
-
-    @lru_cache(1)
     def get_all_items(self) -> ItemCollection:
-        """DEPRECATED. Use :meth:`get_items` or :meth:`get_item_collections` instead.
-            Convenience method that builds an :class:`ItemCollection` from all items
-            matching the given search parameters.
+        """DEPRECATED
+
+        .. deprecated:: 0.4.0
+           Use :meth:`ItemSearch.item_collection` instead.
 
         Return:
             item_collection : ItemCollection
         """
         warnings.warn(
-            "get_all_items is deprecated, use get_items or "
-            "get_item_collections instead",
+            "get_all_items() is deprecated, use item_collection() instead.",
             DeprecationWarning,
         )
-        feature_collection = self.get_all_items_as_dict()
-        return ItemCollection.from_dict(
-            feature_collection, preserve_dict=False, root=self.client
+        return self.item_collection()
+
+    def get_all_items_as_dict(self) -> Dict[str, Any]:
+        """DEPRECATED
+
+        .. deprecated:: 0.4.0
+           Use :meth:`ItemSearch.item_collection_as_dict` instead.
+
+        Return:
+            Dict : A GeoJSON FeatureCollection
+        """
+        warnings.warn(
+            "get_all_items_as_dict() is deprecated, use item_collection_as_dict() "
+            "instead.",
+            DeprecationWarning,
         )
+        return self.item_collection_as_dict()

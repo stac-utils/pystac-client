@@ -1,10 +1,13 @@
 import json
+import operator
 from datetime import datetime, timedelta
+from typing import Any, Dict, Iterator
 
 import pystac
 import pytest
 import requests
 from dateutil.tz import gettz, tzutc
+from pytest_benchmark.fixture import BenchmarkFixture
 
 from pystac_client import Client
 from pystac_client.item_search import ItemSearch
@@ -25,40 +28,42 @@ INTERSECTS_EXAMPLE = {
     ],
 }
 
-ITEM_EXAMPLE = {"collections": "io-lulc", "ids": "60U-2020"}
+ITEM_EXAMPLE: Dict[str, Any] = {"collections": "io-lulc", "ids": "60U-2020"}
 
 
 class TestItemPerformance:
-    @pytest.fixture(scope="function")
-    def single_href(self) -> None:
+    @pytest.fixture(scope="function")  # type: ignore[misc]
+    def single_href(self) -> str:
         item_href = "https://planetarycomputer.microsoft.com/api/stac/v1/collections/{collections}/items/{ids}".format(
             collections=ITEM_EXAMPLE["collections"], ids=ITEM_EXAMPLE["ids"]
         )
         return item_href
 
-    def test_requests(self, benchmark, single_href):
+    def test_requests(self, benchmark: BenchmarkFixture, single_href: str) -> None:
         response = benchmark(requests.get, single_href)
         assert response.status_code == 200
 
         assert response.json()["id"] == ITEM_EXAMPLE["ids"]
 
-    def test_single_item(self, benchmark, single_href):
+    def test_single_item(self, benchmark: BenchmarkFixture, single_href: str) -> None:
         item = benchmark(pystac.Item.from_file, single_href)
 
         assert item.id == ITEM_EXAMPLE["ids"]
 
-    def test_single_item_search(self, benchmark, single_href):
+    def test_single_item_search(
+        self, benchmark: BenchmarkFixture, single_href: str
+    ) -> None:
         search = ItemSearch(url=SEARCH_URL, **ITEM_EXAMPLE)
 
-        item_collection = benchmark(search.get_all_items)
+        item_collection = benchmark(search.item_collection())
 
         assert len(item_collection.items) == 1
         assert item_collection.items[0].id == ITEM_EXAMPLE["ids"]
 
 
 class TestItemSearchParams:
-    @pytest.fixture(scope="function")
-    def sample_client(self) -> None:
+    @pytest.fixture(scope="function")  # type: ignore[misc]
+    def sample_client(self) -> Client:
         api_content = read_data_file("planetary-computer-root.json", parse_json=True)
         return Client.from_dict(api_content)
 
@@ -79,11 +84,32 @@ class TestItemSearchParams:
 
     def test_generator_bbox(self) -> None:
         # Generator Input
-        def bboxer():
+        def bboxer() -> Iterator[float]:
             yield from [-104.5, 44.0, -104.0, 45.0]
 
         search = ItemSearch(url=SEARCH_URL, bbox=bboxer())
         assert search.get_parameters()["bbox"] == (-104.5, 44.0, -104.0, 45.0)
+
+    def test_url_with_parameters(self) -> None:
+        # Single timestamp input
+        search = ItemSearch(
+            url=SEARCH_URL,
+            datetime="2020-02-01T00:00:00Z",
+            bbox=[-104.5, 44.0, -104.0, 45.0],
+        )
+        assert "bbox=-104.5,44.0,-104.0,45.0" in search.url_with_parameters()
+
+        # Motivating example: https://github.com/stac-utils/pystac-client/issues/299
+        search = ItemSearch(
+            url="https://planetarycomputer.microsoft.com/api/stac/v1/search",
+            collections=["cop-dem-glo-30"],
+            bbox=[88.214, 27.927, 88.302, 28.034],
+        )
+        assert (
+            search.url_with_parameters()
+            == "https://planetarycomputer.microsoft.com/api/stac/v1/search?"
+            "limit=100&bbox=88.214,27.927,88.302,28.034&collections=cop-dem-glo-30"
+        )
 
     def test_single_string_datetime(self) -> None:
         # Single timestamp input
@@ -257,7 +283,7 @@ class TestItemSearchParams:
 
     def test_generator_of_collection_strings(self) -> None:
         # Generator of ID strings
-        def collectioner():
+        def collectioner() -> Iterator[str]:
             yield from ["naip", "landsat8_l1tp"]
 
         search = ItemSearch(url=SEARCH_URL, collections=collectioner())
@@ -297,7 +323,7 @@ class TestItemSearchParams:
 
     def test_generator_of_id_string(self) -> None:
         # Generator of IDs
-        def ids():
+        def ids() -> Iterator[str]:
             yield from [
                 "m_3510836_se_12_060_20180508_20190331",
                 "m_3510840_se_12_060_20180504_20190331",
@@ -411,18 +437,18 @@ class TestItemSearchParams:
         )
 
         with pytest.raises(Exception):
-            ItemSearch(url=SEARCH_URL, sortby=1)
+            ItemSearch(url=SEARCH_URL, sortby=1)  # type: ignore[arg-type]
 
         with pytest.raises(Exception):
-            ItemSearch(url=SEARCH_URL, sortby=[1])
+            ItemSearch(url=SEARCH_URL, sortby=[1])  # type: ignore[arg-type]
 
-    def test_fields(self):
-
-        with pytest.raises(Exception):
-            ItemSearch(url=SEARCH_URL, fields=1)
+    def test_fields(self) -> None:
 
         with pytest.raises(Exception):
-            ItemSearch(url=SEARCH_URL, fields=[1])
+            ItemSearch(url=SEARCH_URL, fields=1)  # type: ignore[arg-type]
+
+        with pytest.raises(Exception):
+            ItemSearch(url=SEARCH_URL, fields=[1])  # type: ignore[list-item]
 
         search = ItemSearch(url=SEARCH_URL, fields="id,collection,+foo,-bar")
         assert search.get_parameters()["fields"] == {
@@ -464,8 +490,8 @@ class TestItemSearchParams:
 
 
 class TestItemSearch:
-    @pytest.fixture(scope="function")
-    def astraea_api(self) -> None:
+    @pytest.fixture(scope="function")  # type: ignore[misc]
+    def astraea_api(self) -> Client:
         api_content = read_data_file("astraea_api.json", parse_json=True)
         return Client.from_dict(api_content)
 
@@ -479,7 +505,7 @@ class TestItemSearch:
         assert search.method == "GET"
 
     def test_method_params(self) -> None:
-        params_in = {
+        params_in: Dict[str, Any] = {
             "bbox": (-72, 41, -71, 42),
             "ids": (
                 "idone",
@@ -499,7 +525,7 @@ class TestItemSearch:
         assert all(key in params for key in params_in)
         assert all(isinstance(params[key], str) for key in params_in)
 
-    @pytest.mark.vcr
+    @pytest.mark.vcr  # type: ignore[misc]
     def test_results(self) -> None:
         search = ItemSearch(
             url=SEARCH_URL,
@@ -511,7 +537,7 @@ class TestItemSearch:
 
         assert all(isinstance(item, pystac.Item) for item in results)
 
-    @pytest.mark.vcr
+    @pytest.mark.vcr  # type: ignore[misc]
     def test_ids_results(self) -> None:
         ids = [
             "S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE",
@@ -526,7 +552,7 @@ class TestItemSearch:
         assert len(results) == 1
         assert all(item.id in ids for item in results)
 
-    @pytest.mark.vcr
+    @pytest.mark.vcr  # type: ignore[misc]
     def test_datetime_results(self) -> None:
         # Datetime range string
         datetime_ = "2019-01-01T00:00:01Z/2019-01-01T00:00:10Z"
@@ -537,13 +563,15 @@ class TestItemSearch:
         min_datetime = datetime(2019, 1, 1, 0, 0, 1, tzinfo=tzutc())
         max_datetime = datetime(2019, 1, 1, 0, 0, 10, tzinfo=tzutc())
         search = ItemSearch(url=SEARCH_URL, datetime=(min_datetime, max_datetime))
-        results = search.items()
-        assert all(
-            min_datetime <= item.datetime <= (max_datetime + timedelta(seconds=1))
-            for item in results
-        )
+        new_results = search.items()
 
-    @pytest.mark.vcr
+        for item in new_results:
+            assert item.datetime is not None
+            assert (
+                min_datetime <= item.datetime <= (max_datetime + timedelta(seconds=1))
+            )
+
+    @pytest.mark.vcr  # type: ignore[misc]
     def test_intersects_results(self) -> None:
         # GeoJSON-like dict
         intersects_dict = {
@@ -567,17 +595,17 @@ class TestItemSearch:
         # Geo-interface object
         class MockGeoObject:
             @property
-            def __geo_interface__(self) -> None:
+            def __geo_interface__(self) -> Dict[str, Any]:
                 return intersects_dict
 
         intersects_obj = MockGeoObject()
         search = ItemSearch(
             url=SEARCH_URL, intersects=intersects_obj, collections="naip"
         )
-        results = search.items()
-        assert all(isinstance(item, pystac.Item) for item in results)
+        new_results = search.items()
+        assert all(isinstance(item, pystac.Item) for item in new_results)
 
-    @pytest.mark.vcr
+    @pytest.mark.vcr  # type: ignore[misc]
     def test_result_paging(self) -> None:
         search = ItemSearch(
             url=SEARCH_URL,
@@ -588,13 +616,13 @@ class TestItemSearch:
         )
 
         # Check that the current page changes on the ItemSearch instance when a new page is requested
-        pages = list(search.item_collections())
+        pages = list(search.pages())
 
         assert pages[1] != pages[2]
         assert pages[1].items != pages[2].items
 
-    @pytest.mark.vcr
-    def test_get_all_items(self) -> None:
+    @pytest.mark.vcr  # type: ignore[misc]
+    def test_item_collection(self) -> None:
         search = ItemSearch(
             url=SEARCH_URL,
             bbox=(-73.21, 43.99, -73.12, 44.05),
@@ -602,10 +630,51 @@ class TestItemSearch:
             limit=10,
             max_items=20,
         )
-        item_collection = search.get_all_items()
-        assert len(item_collection.items) == 20
+        item_collection = search.item_collection()
+        assert isinstance(item_collection, pystac.ItemCollection)
+        assert len(item_collection) == 20
 
-    @pytest.mark.vcr
+    @pytest.mark.vcr  # type: ignore[misc]
+    @pytest.mark.parametrize(  # type: ignore[misc]
+        "method, alternative, is_sequence, is_pystac",
+        [
+            ("get_item_collections", "pages", True, True),
+            ("item_collections", "pages", True, True),
+            ("get_items", "items", True, True),
+            ("get_all_items", "item_collection", False, True),
+            ("get_all_items_as_dict", "item_collection_as_dict", False, False),
+        ],
+    )
+    def test_deprecations(
+        self, method: str, alternative: str, is_sequence: bool, is_pystac: bool
+    ) -> None:
+        search = ItemSearch(
+            url=SEARCH_URL,
+            bbox=(-73.21, 43.99, -73.12, 44.05),
+            collections="naip",
+            limit=10,
+            max_items=20,
+        )
+
+        with pytest.warns(DeprecationWarning, match=method):
+            result = operator.methodcaller(method)(search)
+
+        expected = operator.methodcaller(alternative)(search)
+
+        if is_sequence:
+            result = list(result)
+            expected = list(expected)
+            if is_pystac:
+                result = [x.to_dict() for x in result]
+                expected = [x.to_dict() for x in expected]
+        else:
+            if is_pystac:
+                result = result.to_dict()
+                expected = expected.to_dict()
+
+        assert result == expected
+
+    @pytest.mark.vcr  # type: ignore[misc]
     def test_items_as_dicts(self) -> None:
         search = ItemSearch(
             url=SEARCH_URL,
@@ -618,7 +687,7 @@ class TestItemSearch:
 
 
 class TestItemSearchQuery:
-    @pytest.mark.vcr
+    @pytest.mark.vcr  # type: ignore[misc]
     def test_query_shortcut_syntax(self) -> None:
         search = ItemSearch(
             url=SEARCH_URL,
@@ -640,7 +709,7 @@ class TestItemSearchQuery:
         assert len(items2) == 1
         assert items1[0].id == items2[0].id
 
-    @pytest.mark.vcr
+    @pytest.mark.vcr  # type: ignore[misc]
     def test_query_json_syntax(self) -> None:
 
         # with a list of json strs (format of CLI argument to ItemSearch)
