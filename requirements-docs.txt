@@ -10,4 +10,4 @@ hvplot~=0.8.1
 matplotlib~=3.6.0
 geojson~=2.5.0
 pygeoif~=1.0
-pydata-sphinx-theme~=0.10
+pydata-sphinx-theme~=0.11
