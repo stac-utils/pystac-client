@@ -9,11 +9,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+- Python 3.11 support [#347](https://github.com/stac-utils/pystac-client/pull/347)
+
 ### Changed
 
 ### Fixed
 
 ### Removed
+
+- Python 3.7 support [#347](https://github.com/stac-utils/pystac-client/pull/347)
 
 ### Deprecated
 

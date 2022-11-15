@@ -347,7 +347,7 @@ class TestItemSearchParams:
 
     def test_intersects_non_geo_interface_object(self) -> None:
         with pytest.raises(Exception):
-            ItemSearch(url=SEARCH_URL, intersects=object())
+            ItemSearch(url=SEARCH_URL, intersects=object())  # type: ignore
 
     def test_filter_lang_default_for_dict(self) -> None:
         search = ItemSearch(url=SEARCH_URL, filter={})
