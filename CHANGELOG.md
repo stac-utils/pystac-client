@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+- Python 3.11 support [#347](https://github.com/stac-utils/pystac-client/pull/347)
+
 ### Changed
 
 ### Fixed
@@ -16,6 +18,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Dependency conflicts between requirements-dev.txt and requirements-doc.txt [#333](https://github.com/stac-utils/pystac-client/pull/333)
 
 ### Removed
+
+- Python 3.7 support [#347](https://github.com/stac-utils/pystac-client/pull/347)
 
 ### Deprecated
 

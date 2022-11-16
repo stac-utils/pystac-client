@@ -35,7 +35,7 @@ Installation
 
    $ pip install pystac-client
 
-``pystac_client`` requires `Python >=3.7 <https://www.python.org/>`__.
+``pystac_client`` requires `Python >=3.8 <https://www.python.org/>`__.
 
 This will install the dependencies :doc:`PySTAC <pystac:index>`,
 :doc:`python-dateutil <dateutil:index>`, and :doc:`requests <requests:index>`.
