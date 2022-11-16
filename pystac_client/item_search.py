@@ -16,6 +16,7 @@ from typing import (
     Iterator,
     List,
     Optional,
+    Protocol,
     Tuple,
     Union,
 )
@@ -38,10 +39,12 @@ DATETIME_REGEX = re.compile(
     r"(?P<tz_info>Z|([-+])(\d{2}):(\d{2}))?)?)?)?"
 )
 
-# todo: add runtime_checkable when we drop 3.7 support
-# class GeoInterface(Protocol):
-#     def __geo_interface__(self) -> dict:
-#         ...
+
+class GeoInterface(Protocol):
+    @property
+    def __geo_interface__(self) -> Dict[str, Any]:
+        ...
+
 
 DatetimeOrTimestamp = Optional[Union[datetime_, str]]
 Datetime = str
@@ -62,8 +65,7 @@ IDs = Tuple[str, ...]
 IDsLike = Union[IDs, str, List[str], Iterator[str]]
 
 Intersects = Dict[str, Any]
-IntersectsLike = Union[str, object, Intersects]
-# todo: after 3.7 is dropped, replace object with GeoInterface
+IntersectsLike = Union[str, GeoInterface, Intersects]
 
 Query = Dict[str, Any]
 QueryLike = Union[Query, List[str]]

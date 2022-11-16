@@ -30,7 +30,7 @@ setup(
     py_modules=[splitext(basename(path))[0] for path in glob("pystac_client/*.py")],
     include_package_data=True,
     package_data={"pystac_client": ["py.typed"]},
-    python_requires=">=3.7",
+    python_requires=">=3.8",
     install_requires=[
         "requests>=2.27.1",
         "pystac>=1.4.0",
@@ -43,10 +43,10 @@ setup(
     classifiers=[
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
         "Operating System :: OS Independent",
         "Natural Language :: English",
         "Development Status :: 3 - Alpha",
