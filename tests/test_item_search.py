@@ -276,6 +276,10 @@ class TestItemSearchParams:
         with pytest.raises(Exception):
             ItemSearch(url=SEARCH_URL, datetime=[None])
 
+    def test_poorly_formed_datetimes(self) -> None:
+        with pytest.raises(Exception):
+            ItemSearch(url=SEARCH_URL, datetime="2020-7/2020-8")
+
     def test_single_collection_string(self) -> None:
         # Single ID string
         search = ItemSearch(url=SEARCH_URL, collections="naip")
