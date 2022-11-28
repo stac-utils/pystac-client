@@ -8,6 +8,7 @@ import pytest
 import requests
 from dateutil.tz import gettz, tzutc
 from pytest_benchmark.fixture import BenchmarkFixture
+from requests_mock import Mocker
 
 from pystac_client import Client
 from pystac_client.item_search import ItemSearch
@@ -618,6 +619,23 @@ class TestItemSearch:
         )
         new_results = search.items()
         assert all(isinstance(item, pystac.Item) for item in new_results)
+
+    def test_get_with_query(self, requests_mock: Mocker) -> None:
+        requests_mock.get(
+            (
+                f"{SEARCH_URL}?query=%7B%22eo%3Acloud_cover%22%3A%7B%22gte%22%3A0%2C%22lte%22%3A10%7D%7D"
+            ),
+            status_code=200,
+            json={"features": [{"foo": "bar"}], "links": []},
+        )
+        items = list(
+            ItemSearch(
+                url=SEARCH_URL,
+                method="GET",
+                query={"eo:cloud_cover": {"gte": 0, "lte": 10}},
+            ).items_as_dicts()
+        )
+        assert len(items) == 1
 
     @pytest.mark.vcr
     def test_result_paging(self) -> None:

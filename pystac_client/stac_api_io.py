@@ -154,8 +154,6 @@ class StacApiIO(DefaultStacIO):
             request = Request(method=method, url=href, headers=headers, json=parameters)
         else:
             params = deepcopy(parameters) or {}
-            if "intersects" in params:
-                params["intersects"] = json.dumps(params["intersects"])
             request = Request(method="GET", url=href, headers=headers, params=params)
         try:
             modified = self._req_modifier(request) if self._req_modifier else None
