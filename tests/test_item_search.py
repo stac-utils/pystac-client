@@ -254,6 +254,8 @@ class TestItemSearchParams:
             "2020-07-23T00:00:00+03:00",
             "2020-07-23T00:00:00.000+03:00",
             "2020-07-23T00:00:00.000z",
+            "/2023-01-01T00:00:00Z",
+            "2023-01-01T00:00:00Z/",
         ]
         for date_time in datetimes:
             ItemSearch(url=SEARCH_URL, datetime=date_time)

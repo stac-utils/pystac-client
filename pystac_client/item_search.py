@@ -456,6 +456,8 @@ class ItemSearch:
         elif isinstance(component, str):
             if component == "..":
                 return component, None
+            elif component == "":
+                return "..", None
 
             match = DATETIME_REGEX.match(component)
             if not match:
