@@ -1,13 +1,13 @@
 ipykernel~=6.17
 ipython~=8.6
-Sphinx~=4.1
+Sphinx~=5.3
 sphinxcontrib-fulltoc~=1.2
 myst-parser~=0.18.1
 nbsphinx~=0.8
 jinja2<4.0
 geopandas~=0.12.1
-hvplot~=0.8.1
+hvplot~=0.8.2
 matplotlib~=3.6.2
 geojson~=2.5.0
 pygeoif~=1.0
-pydata-sphinx-theme~=0.11
+pydata-sphinx-theme~=0.12

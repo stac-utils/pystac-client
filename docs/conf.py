@@ -118,7 +118,7 @@ html_static_path: List[str] = ["_static"]
 
 intersphinx_mapping = {
     "python": ("https://docs.python.org/3", None),
-    "requests": ("https://requests.readthedocs.io/en/master", None),
+    "requests": ("https://requests.readthedocs.io/en/latest", None),
     "pystac": ("https://pystac.readthedocs.io/en/latest", None),
     "dateutil": ("https://dateutil.readthedocs.io/en/stable/", None),
 }
