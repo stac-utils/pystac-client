@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - Some mishandled cases for datetime intervals [#363](https://github.com/stac-utils/pystac-client/pull/363)
+- Parse datetimes more strictly [#364](https://github.com/stac-utils/pystac-client/pull/364)
 
 ### Removed
 
