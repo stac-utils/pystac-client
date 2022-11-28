@@ -504,12 +504,16 @@ class ItemSearch:
         if not components:
             return None
         elif len(components) == 1:
+            if components[0] is None:
+                raise Exception("cannot create a datetime query with None")
             start, end = self._to_isoformat_range(components[0])
             if end is not None:
                 return f"{start}/{end}"
             else:
                 return start
         elif len(components) == 2:
+            if all(c is None for c in components):
+                raise Exception("cannot create a double open-ended interval")
             start, _ = self._to_isoformat_range(components[0])
             backup_end, end = self._to_isoformat_range(components[1])
             return f"{start}/{end or backup_end}"

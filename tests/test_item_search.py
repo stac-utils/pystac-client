@@ -266,6 +266,14 @@ class TestItemSearchParams:
         with pytest.raises(Exception):
             ItemSearch(url=SEARCH_URL, datetime=[start, middle, end])
 
+    def test_double_open_ended_interval(self) -> None:
+        with pytest.raises(Exception):
+            ItemSearch(url=SEARCH_URL, datetime=[None, None])
+
+    def test_datetime_list_of_one_none(self) -> None:
+        with pytest.raises(Exception):
+            ItemSearch(url=SEARCH_URL, datetime=[None])
+
     def test_single_collection_string(self) -> None:
         # Single ID string
         search = ItemSearch(url=SEARCH_URL, collections="naip")
