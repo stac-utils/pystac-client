@@ -439,7 +439,7 @@ class ItemSearch:
     def _to_isoformat_range(
         self,
         component: DatetimeOrTimestamp,
-    ) -> Tuple[Optional[str], Optional[str]]:
+    ) -> Tuple[str, Optional[str]]:
         """Converts a single DatetimeOrTimestamp into one or two Datetimes.
 
         This is required to expand a single value like "2017" out to the whole
@@ -456,6 +456,8 @@ class ItemSearch:
         elif isinstance(component, str):
             if component == "..":
                 return component, None
+            elif component == "":
+                return "..", None
 
             match = DATETIME_REGEX.match(component)
             if not match:
@@ -504,12 +506,16 @@ class ItemSearch:
         if not components:
             return None
         elif len(components) == 1:
+            if components[0] is None:
+                raise Exception("cannot create a datetime query with None")
             start, end = self._to_isoformat_range(components[0])
             if end is not None:
                 return f"{start}/{end}"
             else:
                 return start
         elif len(components) == 2:
+            if all(c is None for c in components):
+                raise Exception("cannot create a double open-ended interval")
             start, _ = self._to_isoformat_range(components[0])
             backup_end, end = self._to_isoformat_range(components[1])
             return f"{start}/{end or backup_end}"
