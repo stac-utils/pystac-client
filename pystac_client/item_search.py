@@ -439,7 +439,7 @@ class ItemSearch:
     def _to_isoformat_range(
         self,
         component: DatetimeOrTimestamp,
-    ) -> Tuple[Optional[str], Optional[str]]:
+    ) -> Tuple[str, Optional[str]]:
         """Converts a single DatetimeOrTimestamp into one or two Datetimes.
 
         This is required to expand a single value like "2017" out to the whole
