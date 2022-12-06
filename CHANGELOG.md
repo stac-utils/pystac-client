@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - Python 3.11 support [#347](https://github.com/stac-utils/pystac-client/pull/347)
+- Added `modifier` to `StacApiIO` to allow for additional authentication mechanisms (e.g. AWS SigV4) [#371](https://github.com/stac-utils/pystac-client/issues/371).
 
 ### Changed
 
