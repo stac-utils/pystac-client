@@ -128,6 +128,24 @@ class TestAPI:
         assert len(history) == 2
         assert history[1].url == collections_link.href
 
+    def test_get_collections_single_slash(self, requests_mock: Mocker) -> None:
+        pc_root_text = read_data_file("planetary-computer-root.json")
+        root_url = "http://pystac-client.test/"
+        requests_mock.get(root_url, status_code=200, text=pc_root_text)
+        api = Client.open(root_url)
+        pc_collection_dict = read_data_file(
+            "planetary-computer-aster-l1t-collection.json", parse_json=True
+        )
+        requests_mock.get(
+            f"{root_url}collections",  # note the lack of the slash
+            status_code=200,
+            json={"collections": [pc_collection_dict], "links": []},
+        )
+        _ = next(api.get_collections())
+        history = requests_mock.request_history
+        assert len(history) == 2
+        assert history[1].url == f"{root_url}collections"
+
     def test_custom_request_parameters(self, requests_mock: Mocker) -> None:
         pc_root_text = read_data_file("planetary-computer-root.json")
         pc_collection_dict = read_data_file(
