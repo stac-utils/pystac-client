@@ -47,3 +47,13 @@ Calculating Coverage Percentage of the AOI by an Item
 This tutorial demonstrates the use of pystac-client to calculate the
 percentage an Item's geometry that intesects with the area of interest
 (AOI) specified in the search by the `intersects` parameter.
+
+Authentication
+--------------
+
+- :tutorial:`GitHub version <authentication.md>`
+- :ref:`Docs version </tutorials/authentication.md>`
+
+This tutorial demontrates different ways the pystac-client can be
+used to access a private stac api, when protected with various
+authentication mechanisms.

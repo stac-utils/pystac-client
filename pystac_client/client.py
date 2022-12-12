@@ -14,6 +14,7 @@ from typing import (
 import pystac
 import pystac.validation
 from pystac import CatalogType, Collection
+from requests import Request
 
 from pystac_client._utils import Modifiable, call_modifier
 from pystac_client.collection_client import CollectionClient
@@ -93,6 +94,8 @@ class Client(pystac.Catalog):
         parameters: Optional[Dict[str, Any]] = None,
         ignore_conformance: bool = False,
         modifier: Optional[Callable[[Modifiable], None]] = None,
+        request_modifier: Optional[Callable[[Request], Union[Request, None]]] = None,
+        stac_io: Optional[StacApiIO] = None,
     ) -> "Client":
         """Opens a STAC Catalog or API
         This function will read the root catalog of a STAC Catalog or API
@@ -128,13 +131,32 @@ class Client(pystac.Catalog):
                 After getting a child collection with, e.g.
                 :meth:`Client.get_collection`, the child items of that collection
                 will still be signed with ``modifier``.
+            request_modifier: A callable that eitehr modifies a `Request` instance or
+                returns a new one. This can be useful for injecting Authentication
+                headers and/or signing fully-formed requests (e.g. signing requests
+                using AWS SigV4).
+
+                The callable should expect a single argument, which will be an instance
+                of :class:`requests.Request`.
+
+                If the callable returns a `requests.Request`, that will be used.
+                Alternately, the calable may simply modify the provided request object
+                and return `None`.
+            stac_io: A `StacApiIO` object to use for I/O requests. Generally, leave
+                this to the default. However in cases where customized I/O processing
+                is required, a custom instance can be provided here.
 
         Return:
             catalog : A :class:`Client` instance for this Catalog/API
         """
         url = url.rstrip("/")
         client: Client = cls.from_file(
-            url, headers=headers, parameters=parameters, modifier=modifier
+            url,
+            headers=headers,
+            parameters=parameters,
+            modifier=modifier,
+            request_modifier=request_modifier,
+            stac_io=stac_io,
         )
         search_link = client.get_search_link()
         # if there is a search link, but no conformsTo advertised, ignore
@@ -162,6 +184,7 @@ class Client(pystac.Catalog):
         headers: Optional[Dict[str, str]] = None,
         parameters: Optional[Dict[str, Any]] = None,
         modifier: Optional[Callable[[Modifiable], None]] = None,
+        request_modifier: Optional[Callable[[Request], Union[Request, None]]] = None,
     ) -> "Client":
         """Open a STAC Catalog/API
 
@@ -169,7 +192,11 @@ class Client(pystac.Catalog):
             Client: A Client (PySTAC Catalog) of the root Catalog for this Catalog/API
         """
         if stac_io is None:
-            stac_io = StacApiIO(headers=headers, parameters=parameters)
+            stac_io = StacApiIO(
+                headers=headers,
+                parameters=parameters,
+                request_modifier=request_modifier,
+            )
 
         client: Client = super().from_file(href, stac_io)  # type: ignore
 
