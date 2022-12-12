@@ -1,3 +1,4 @@
+import typing
 from pathlib import Path
 from urllib.parse import parse_qs, urlsplit
 
@@ -84,6 +85,52 @@ class TestSTAC_IOOverride:
         assert len(history) == 1
         assert header_name in history[0].headers
         assert history[0].headers[header_name] == header_value
+
+    def test_modifier(self, requests_mock: Mocker) -> None:
+        """Verify the modifier is correctly called with a returned object."""
+        header_name = "x-my-header"
+        header_value = "Some Value"
+        url = "https://some-url.com/some-file.json"
+
+        def custom_modifier(request: typing.Any) -> typing.Union[typing.Any, None]:
+            request.headers["x-pirate-name"] = "yellowbeard"
+            return request
+
+        stac_api_io = StacApiIO(
+            headers={header_name: header_value}, request_modifier=custom_modifier
+        )
+
+        requests_mock.get(url, status_code=200, json={})
+
+        stac_api_io.read_json(url)
+
+        history = requests_mock.request_history
+        assert len(history) == 1
+        assert header_name in history[0].headers
+        assert history[0].headers["x-pirate-name"] == "yellowbeard"
+
+    def test_modifier_noreturn(self, requests_mock: Mocker) -> None:
+        """Verify the modifier is correctly called when None is returned."""
+        header_name = "x-my-header"
+        header_value = "Some Value"
+        url = "https://some-url.com/some-file.json"
+
+        def custom_modifier(request: typing.Any) -> typing.Union[typing.Any, None]:
+            request.headers["x-pirate-name"] = "yellowbeard"
+            return None
+
+        stac_api_io = StacApiIO(
+            headers={header_name: header_value}, request_modifier=custom_modifier
+        )
+
+        requests_mock.get(url, status_code=200, json={})
+
+        stac_api_io.read_json(url)
+
+        history = requests_mock.request_history
+        assert len(history) == 1
+        assert header_name in history[0].headers
+        assert history[0].headers["x-pirate-name"] == "yellowbeard"
 
     def test_custom_query_params(self, requests_mock: Mocker) -> None:
         """Checks that query params passed to the init method are added to requests."""
