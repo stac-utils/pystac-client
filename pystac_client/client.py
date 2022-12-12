@@ -132,8 +132,7 @@ class Client(pystac.Catalog):
         Return:
             catalog : A :class:`Client` instance for this Catalog/API
         """
-        if url.endswith("/"):
-            url = url[0:-1]
+        url = url.rstrip("/")
         client: Client = cls.from_file(
             url, headers=headers, parameters=parameters, modifier=modifier
         )
