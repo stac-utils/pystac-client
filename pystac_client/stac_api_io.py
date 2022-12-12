@@ -2,7 +2,7 @@ import json
 import logging
 import re
 from copy import deepcopy
-from typing import TYPE_CHECKING, Any, Dict, Iterator, List, Optional
+from typing import TYPE_CHECKING, Any, Callable, Dict, Iterator, List, Optional, Union
 from urllib.parse import urlparse
 
 import pystac
@@ -34,6 +34,7 @@ class StacApiIO(DefaultStacIO):
         headers: Optional[Dict[str, str]] = None,
         conformance: Optional[List[str]] = None,
         parameters: Optional[Dict[str, Any]] = None,
+        request_modifier: Optional[Callable[[Request], Union[Request, None]]] = None,
     ):
         """Initialize class for API IO
 
@@ -43,6 +44,10 @@ class StacApiIO(DefaultStacIO):
                 <https://github.com/radiantearth/stac-api-spec/blob/master/overview.md#conformance-classes>`__.
             parameters: Optional dictionary of query string parameters to
               include in all requests.
+            request_modifier: Optional callable that can be used to modify Request
+              objects before they are sent. If provided, the callable receives a
+              `request.Request` and must either modify the object directly or return
+              a new / modified request instance.
 
         Return:
             StacApiIO : StacApiIO instance
@@ -53,6 +58,8 @@ class StacApiIO(DefaultStacIO):
         self.session.params.update(parameters or {})  # type: ignore
 
         self._conformance = conformance
+
+        self._req_modifier = request_modifier
 
     def read_text(self, source: pystac.link.HREF, *args: Any, **kwargs: Any) -> str:
         """Read text from the given URI.
@@ -132,7 +139,8 @@ class StacApiIO(DefaultStacIO):
                 params["intersects"] = json.dumps(params["intersects"])
             request = Request(method="GET", url=href, headers=headers, params=params)
         try:
-            prepped = self.session.prepare_request(request)
+            modified = self._req_modifier(request) if self._req_modifier else None
+            prepped = self.session.prepare_request(modified or request)
             msg = f"{prepped.method} {prepped.url} Headers: {prepped.headers}"
             if method == "POST":
                 msg += f" Payload: {json.dumps(request.json)}"
