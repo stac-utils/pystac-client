@@ -51,8 +51,8 @@ percentage an Item's geometry that intesects with the area of interest
 Authentication
 --------------
 
-- :tutorial:`GitHub version <authentication.ipynb>`
-- :ref:`Docs version </tutorials/authentication.ipynb>`
+- :tutorial:`GitHub version <authentication.md>`
+- :ref:`Docs version </tutorials/authentication.md>`
 
 This tutorial demontrates different ways the pystac-client can be
 used to access a private stac api, when protected with various
