@@ -20,7 +20,7 @@ jobs:
           - "3.11"
         os:
           - ubuntu-latest
-#          - windows-latest
+    #          - windows-latest
     steps:
       - uses: actions/checkout@v3
 
@@ -28,8 +28,10 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
-          cache: 'pip'
-          cache-dependency-path: 'setup.py'
+          cache: "pip"
+          cache-dependency-path: |
+            setup.py
+            requirements-dev.txt
 
       - name: Execute linters and test suites
         run: ./scripts/cibuild
@@ -39,7 +41,7 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           file: ./coverage.xml
-          fail_ci_if_error: false 
+          fail_ci_if_error: false
 
   min-versions:
     name: min-versions
@@ -49,8 +51,8 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: 3.9
-          cache: 'pip'
-          cache-dependency-path: 'requirements-min.txt'
+          cache: "pip"
+          cache-dependency-path: "requirements-min.txt"
       - name: Install minimum requirements
         run: pip install -r requirements-min.txt
       - name: Install
@@ -68,8 +70,8 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: 3.9
-          cache: 'pip'
-          cache-dependency-path: 'requirements-docs.txt'
+          cache: "pip"
+          cache-dependency-path: "requirements-docs.txt"
       - name: Install pandoc
         run: sudo apt-get update && sudo apt-get -y install pandoc
       - name: Install docs requirements
@@ -87,8 +89,8 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: 3.9
-          cache: 'pip'
-          cache-dependency-path: 'setup.py'
+          cache: "pip"
+          cache-dependency-path: "setup.py"
       - name: Install
         run: pip install .
       - name: Install any pre-releases of pystac
@@ -97,3 +99,18 @@ jobs:
         run: pip install -r requirements-dev.txt
       - name: Test
         run: ./scripts/test
+
+  dev-and-docs-requirements:
+    name: dev and docs requirements check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+          cache: "pip"
+          cache-dependency-path: "setup.py"
+      - name: Install
+        run: pip install .
+      - name: Install dev and docs requirements
+        run: pip install -r requirements-dev.txt -r requirements-docs.txt
