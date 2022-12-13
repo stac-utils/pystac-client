@@ -20,7 +20,8 @@ jobs:
           - "3.11"
         os:
           - ubuntu-latest
-    #          - windows-latest
+          - windows-latest
+          - macos-latest
     steps:
       - uses: actions/checkout@v3
 
@@ -33,8 +34,20 @@ jobs:
             setup.py
             requirements-dev.txt
 
-      - name: Execute linters and test suites
-        run: ./scripts/cibuild
+      - name: Install package
+        run: pip install .
+
+      - name: Install dev requirements
+        run: pip install -r requirements-dev.txt
+
+      - name: Run pre-commit
+        run: pre-commit run --all-files
+
+      - name: Run pytest
+        run: pytest -Werror -s --block-network --cov pystac_client --cov-report term-missing
+
+      - name: Run coverage
+        run: coverage xml
 
       - name: Upload All coverage to Codecov
         uses: codecov/codecov-action@v3
