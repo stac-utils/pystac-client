@@ -114,6 +114,9 @@ class CollectionClient(pystac.Collection):
         If the collection conforms to
         [ogcapi-features](https://github.com/radiantearth/stac-api-spec/blob/738f4837ac6bea041dc226219e6d13b2c577fb19/ogcapi-features/README.md),
         this will use the `/collections/{collectionId}/items/{featureId}`.
+        If not, and the collection conforms to [item
+        search](https://github.com/radiantearth/stac-api-spec/blob/2d3c0cf644af9976eecbf32aec77b9a137268e12/item-search/README.md),
+        this will use `/search?ids={featureId}&collections={collectionId}`.
         Otherwise, the default PySTAC behavior is used.
 
         Args:
@@ -131,9 +134,16 @@ class CollectionClient(pystac.Collection):
             stac_io = root._stac_io
             assert stac_io
             assert isinstance(stac_io, StacApiIO)
-            link = self.get_single_link("items")
-            if stac_io.conforms_to(ConformanceClasses.FEATURES) and link is not None:
-                url = f"{link.href}/{id}"
+            items_link = self.get_single_link("items")
+            if root:
+                search_link = root.get_single_link("search")
+            else:
+                search_link = None
+            if (
+                stac_io.conforms_to(ConformanceClasses.FEATURES)
+                and items_link is not None
+            ):
+                url = f"{items_link.href}/{id}"
                 try:
                     obj = stac_io.read_stac_object(url, root=self)
                     item = cast(Optional[pystac.Item], obj)
@@ -143,14 +153,24 @@ class CollectionClient(pystac.Collection):
                     else:
                         raise err
                 assert isinstance(item, pystac.Item)
+            elif (
+                stac_io.conforms_to(ConformanceClasses.ITEM_SEARCH)
+                and search_link
+                and search_link.href
+            ):
+                item_search = ItemSearch(
+                    url=search_link.href,
+                    method="GET",
+                    stac_io=self._stac_io,
+                    ids=[id],
+                    collections=[self.id],
+                    modifier=self.modifier,
+                )
+                item = next(item_search.items(), None)
             else:
                 item = super().get_item(id, recursive=False)
         else:
-            for root, _, _ in self.walk():
-                item = cast(pystac.Item, root.get_item(id, recursive=False))
-                if item is not None:
-                    assert isinstance(item, pystac.Item)
-                    break
+            super().get_item(id, recursive=True)
 
         if item:
             call_modifier(self.modifier, item)
