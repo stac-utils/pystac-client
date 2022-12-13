@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `request_modifier` to `StacApiIO` to allow for additional authentication mechanisms (e.g. AWS SigV4) [#372](https://github.com/stac-utils/pystac-client/pull/372)
 - *Authentication* tutorial, demonstrating how to use to the provided hooks to use both basic and AWS SigV4 authentication [#372](https://github.com/stac-utils/pystac-client/pull/372)
 - CI checks for Windows and MacOS [#378](https://github.com/stac-utils/pystac-client/pull/378)
+- Fallback to `STAC API - Item Search` when finding a single item in `CollectionClient` if `STAC API - Features` is not implemented [#379](https://github.com/stac-utils/pystac-client/pull/379)
 
 ### Changed
 
