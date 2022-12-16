@@ -11,4 +11,4 @@ matplotlib~=3.6.2
 geojson~=2.5.0
 pygeoif~=1.0
 pydata-sphinx-theme~=0.12
-boto3~=1.26.30
+boto3~=1.26.31
