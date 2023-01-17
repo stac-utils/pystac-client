@@ -131,7 +131,7 @@ class Client(pystac.Catalog):
                 After getting a child collection with, e.g.
                 :meth:`Client.get_collection`, the child items of that collection
                 will still be signed with ``modifier``.
-            request_modifier: A callable that eitehr modifies a `Request` instance or
+            request_modifier: A callable that either modifies a `Request` instance or
                 returns a new one. This can be useful for injecting Authentication
                 headers and/or signing fully-formed requests (e.g. signing requests
                 using AWS SigV4).
@@ -140,7 +140,7 @@ class Client(pystac.Catalog):
                 of :class:`requests.Request`.
 
                 If the callable returns a `requests.Request`, that will be used.
-                Alternately, the calable may simply modify the provided request object
+                Alternately, the callable may simply modify the provided request object
                 and return `None`.
             stac_io: A `StacApiIO` object to use for I/O requests. Generally, leave
                 this to the default. However in cases where customized I/O processing
