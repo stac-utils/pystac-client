@@ -100,7 +100,7 @@ class StacApiIO(DefaultStacIO):
             )
         else:  # str or something that can be str'ed
             href = str(source)
-            if bool(urlparse(href).scheme):
+            if _is_url(href):
                 return self.request(href, *args, **kwargs)
             else:
                 with open(href) as f:
@@ -156,7 +156,7 @@ class StacApiIO(DefaultStacIO):
             raise APIError(str(err))
 
     def write_text_to_href(self, href: str, *args: Any, **kwargs: Any) -> None:
-        if bool(urlparse(href).scheme):
+        if _is_url(href):
             raise APIError("Transactions not supported")
         else:
             return super().write_text_to_href(href, *args, **kwargs)
@@ -289,3 +289,8 @@ class StacApiIO(DefaultStacIO):
     def set_conformance(self, conformance: Optional[List[str]]) -> None:
         """Sets (or clears) the conformance classes for this StacIO."""
         self._conformance = conformance
+
+
+def _is_url(href: str) -> bool:
+    url = urlparse(href)
+    return bool(url.scheme) and bool(url.netloc)
