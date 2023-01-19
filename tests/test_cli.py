@@ -5,7 +5,7 @@ from tests.helpers import STAC_URLS
 
 
 class TestCLI:
-    @pytest.mark.vcr  # type: ignore[misc]
+    @pytest.mark.vcr
     def test_item_search(self, script_runner: ScriptRunner) -> None:
         args = [
             "stac-client",

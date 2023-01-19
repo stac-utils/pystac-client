@@ -21,7 +21,7 @@ from .helpers import STAC_URLS, TEST_DATA, read_data_file
 
 
 class TestAPI:
-    @pytest.mark.vcr  # type: ignore[misc]
+    @pytest.mark.vcr
     def test_instance(self) -> None:
         api = Client.open(STAC_URLS["PLANETARY-COMPUTER"])
 
@@ -30,7 +30,7 @@ class TestAPI:
 
         assert str(api) == "<Client id=microsoft-pc>"
 
-    @pytest.mark.vcr  # type: ignore[misc]
+    @pytest.mark.vcr
     def test_links(self) -> None:
         api = Client.open(STAC_URLS["PLANETARY-COMPUTER"])
 
@@ -57,7 +57,7 @@ class TestAPI:
 
         assert client._stac_io.conforms_to(ConformanceClasses.CORE)
 
-    @pytest.mark.vcr  # type: ignore[misc]
+    @pytest.mark.vcr
     def test_no_conformance(self) -> None:
         """Should raise a NotImplementedError if no conformance info can be found.
         Luckily, the test API doesn't publish a "conformance" link so we can just
@@ -73,7 +73,7 @@ class TestAPI:
         with pytest.raises(NotImplementedError):
             client._stac_io.assert_conforms_to(ConformanceClasses.ITEM_SEARCH)
 
-    @pytest.mark.vcr  # type: ignore[misc]
+    @pytest.mark.vcr
     def test_no_stac_core_conformance(self) -> None:
         """Should raise a NotImplementedError if the API does not conform to the
         STAC API - Core spec."""
@@ -87,7 +87,7 @@ class TestAPI:
 
         assert client._stac_io.conforms_to(ConformanceClasses.ITEM_SEARCH)
 
-    @pytest.mark.vcr  # type: ignore[misc]
+    @pytest.mark.vcr
     def test_from_file(self) -> None:
         api = Client.from_file(STAC_URLS["PLANETARY-COMPUTER"])
 
@@ -448,7 +448,7 @@ class TestAPI:
 
 
 class TestAPISearch:
-    @pytest.fixture(scope="function")  # type: ignore[misc]
+    @pytest.fixture(scope="function")
     def api(self) -> Client:
         return Client.from_file(str(TEST_DATA / "planetary-computer-root.json"))
 
@@ -513,7 +513,7 @@ class TestAPISearch:
         api.add_link(search_link)
         api.search(limit=1, max_items=1, collections="naip")
 
-    @pytest.mark.vcr  # type: ignore[misc]
+    @pytest.mark.vcr
     def test_search_max_items_unlimited_default(self, api: Client) -> None:
         search = api.search(
             bbox=[-73.21, 43.99, -73.12, 45.05],
@@ -533,7 +533,7 @@ class MySign:
 
 
 class TestSigning:
-    @pytest.mark.vcr  # type: ignore[misc]
+    @pytest.mark.vcr
     def test_signing(self) -> None:
         sign = MySign()
         # sign is callable, but mypy keeps trying to interpret it as a "MySign" object.
@@ -543,7 +543,7 @@ class TestSigning:
         collection = client.get_collection("cil-gdpcir-cc0")
         assert collection
         assert isinstance(collection, CollectionClient)
-        assert collection.modifier is sign  # type: ignore
+        assert collection.modifier is sign
         assert sign.call_count == 1
 
         collection.get_item("cil-gdpcir-INM-INM-CM5-0-ssp585-r1i1p1f1-day")
@@ -577,7 +577,7 @@ class TestSigning:
         search.item_collection()
         assert sign.call_count == 11
 
-    @pytest.mark.vcr  # type: ignore[misc]
+    @pytest.mark.vcr
     def test_sign_with_return_warns(self) -> None:
         def modifier_ok(x: Any) -> Any:
             return x

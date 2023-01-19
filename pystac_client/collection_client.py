@@ -100,14 +100,12 @@ class CollectionClient(pystac.Collection):
                 url=link.href,
                 method="GET",
                 stac_io=stac_io,
-                modifier=self.modifier,  # type: ignore
+                modifier=self.modifier,
             )
             yield from search.items()
         else:
             for item in super().get_items():
-                # what is going on with mypy here?
-                # error: Too many arguments  [call-arg]
-                call_modifier(self.modifier, item)  # type: ignore
+                call_modifier(self.modifier, item)
                 yield item
 
     def get_item(self, id: str, recursive: bool = False) -> Optional["Item_Type"]:
@@ -155,7 +153,6 @@ class CollectionClient(pystac.Collection):
                     break
 
         if item:
-            # error: Too many arguments  [call-arg]
-            call_modifier(self.modifier, item)  # type: ignore
+            call_modifier(self.modifier, item)
 
         return item

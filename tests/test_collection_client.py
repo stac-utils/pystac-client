@@ -7,7 +7,7 @@ from .helpers import STAC_URLS
 
 
 class TestCollectionClient:
-    @pytest.mark.vcr  # type: ignore[misc]
+    @pytest.mark.vcr
     def test_instance(self) -> None:
         client = Client.open(STAC_URLS["PLANETARY-COMPUTER"])
         collection = client.get_collection("aster-l1t")
@@ -15,7 +15,7 @@ class TestCollectionClient:
         assert isinstance(collection, CollectionClient)
         assert str(collection) == "<CollectionClient id=aster-l1t>"
 
-    @pytest.mark.vcr  # type: ignore[misc]
+    @pytest.mark.vcr
     def test_get_items(self) -> None:
         client = Client.open(STAC_URLS["PLANETARY-COMPUTER"])
         collection = client.get_collection("aster-l1t")
@@ -24,7 +24,7 @@ class TestCollectionClient:
             assert item.collection_id == collection.id
             return
 
-    @pytest.mark.vcr  # type: ignore[misc]
+    @pytest.mark.vcr
     def test_get_item(self) -> None:
         client = Client.open(STAC_URLS["PLANETARY-COMPUTER"])
         collection = client.get_collection("aster-l1t")
