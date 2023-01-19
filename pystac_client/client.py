@@ -505,7 +505,7 @@ class Client(pystac.Catalog):
             None,
         )
 
-    def _get_collections_href(self, id: Optional[str] = None) -> str:
+    def _get_collections_href(self, collection_id: Optional[str] = None) -> str:
         self_href = self.get_self_href()
         if self_href is None:
             data_link = self.get_single_link("data")
@@ -521,10 +521,10 @@ class Client(pystac.Catalog):
         if not pystac.utils.is_absolute_href(collections_href):
             collections_href = self._make_absolute_href(collections_href)
 
-        if id is None:
+        if collection_id is None:
             return collections_href
         else:
-            return f"{collections_href.rstrip('/')}/{id}"
+            return f"{collections_href.rstrip('/')}/{collection_id}"
 
     def _make_absolute_href(self, href: str) -> str:
         self_link = self.get_single_link("self")
