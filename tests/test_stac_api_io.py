@@ -13,20 +13,20 @@ from .helpers import STAC_URLS
 
 
 class TestSTAC_IOOverride:
-    @pytest.mark.vcr  # type: ignore[misc]
+    @pytest.mark.vcr
     def test_request_input(self) -> None:
         stac_api_io = StacApiIO()
         response = stac_api_io.read_text(STAC_URLS["PLANETARY-COMPUTER"])
         assert isinstance(response, str)
 
-    @pytest.mark.vcr  # type: ignore[misc]
+    @pytest.mark.vcr
     def test_str_input(self) -> None:
         stac_api_io = StacApiIO()
         response = stac_api_io.read_text(STAC_URLS["PLANETARY-COMPUTER"])
 
         assert isinstance(response, str)
 
-    @pytest.mark.vcr  # type: ignore[misc]
+    @pytest.mark.vcr
     def test_http_error(self) -> None:
         stac_api_io = StacApiIO()
         # Attempt to access an authenticated endpoint

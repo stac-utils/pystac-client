@@ -4,7 +4,7 @@ While not integrated into this library directly, pystac-client provides a series
 
 ## Basic auth
 
-Pystac-client supports HTTP basic authentication by simply exposing the ability to define headers to be used when sending requets.  Simply encode the token and provide the header.
+Pystac-client supports HTTP basic authentication by simply exposing the ability to define headers to be used when sending requests.  Simply encode the token and provide the header.
 
 ```python
 import base64
