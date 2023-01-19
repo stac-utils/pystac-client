@@ -523,10 +523,8 @@ class Client(pystac.Catalog):
 
         if id is None:
             return collections_href
-        elif collections_href.endswith("/"):
-            return f"{collections_href}{id}"
         else:
-            return f"{collections_href}/{id}"
+            return f"{collections_href.rstrip('/')}/{id}"
 
     def _make_absolute_href(self, href: str) -> str:
         self_link = self.get_single_link("self")
