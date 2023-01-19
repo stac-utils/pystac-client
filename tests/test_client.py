@@ -3,7 +3,7 @@ import os.path
 import warnings
 from datetime import datetime
 from tempfile import TemporaryDirectory
-from typing import Any
+from typing import Any, Dict
 from urllib.parse import parse_qs, urlsplit
 
 import pystac
@@ -145,6 +145,84 @@ class TestAPI:
         history = requests_mock.request_history
         assert len(history) == 2
         assert history[1].url == f"{root_url}collections"
+
+    def test_keep_trailing_slash_on_root(self, requests_mock: Mocker) -> None:
+        pc_root_text = read_data_file("planetary-computer-root.json")
+        root_url = "http://pystac-client.test/"
+        requests_mock.get(root_url, status_code=200, text=pc_root_text)
+        client = Client.open(root_url)
+        self_href = client.get_self_href()
+        assert self_href
+        assert self_href.endswith("/")
+
+    def test_fall_back_to_data_link_for_collections(
+        self, requests_mock: Mocker
+    ) -> None:
+        pc_root_text = read_data_file("planetary-computer-root.json")
+        root_url = "http://pystac-client.test/"
+        requests_mock.get(root_url, status_code=200, text=pc_root_text)
+        api = Client.open(root_url)
+        api.set_self_href(None)
+        pc_collection_dict = read_data_file(
+            "planetary-computer-aster-l1t-collection.json", parse_json=True
+        )
+        requests_mock.get(
+            # the href of the data link
+            "https://planetarycomputer.microsoft.com/api/stac/v1/collections",
+            status_code=200,
+            json={"collections": [pc_collection_dict], "links": []},
+        )
+        _ = next(api.get_collections())
+        history = requests_mock.request_history
+        assert len(history) == 2
+        assert (
+            history[1].url
+            == "https://planetarycomputer.microsoft.com/api/stac/v1/collections"
+        )
+
+    def test_build_absolute_href_from_data_link(self, requests_mock: Mocker) -> None:
+        pc_root = read_data_file("planetary-computer-root.json", parse_json=True)
+        assert isinstance(pc_root, Dict)
+        for link in pc_root["links"]:
+            if link["rel"] == "data":
+                link["href"] = "./collections"
+        root_url = "http://pystac-client.test/"
+        requests_mock.get(root_url, status_code=200, text=json.dumps(pc_root))
+        api = Client.open(root_url)
+        api.set_self_href(None)
+        api.add_link(
+            pystac.Link(
+                rel="self",
+                target="https://planetarycomputer.microsoft.com/api/stac/v1/",
+            )
+        )
+        pc_collection_dict = read_data_file(
+            "planetary-computer-aster-l1t-collection.json", parse_json=True
+        )
+        requests_mock.get(
+            # the href of the data link
+            "https://planetarycomputer.microsoft.com/api/stac/v1/collections",
+            status_code=200,
+            json={"collections": [pc_collection_dict], "links": []},
+        )
+        _ = next(api.get_collections())
+        history = requests_mock.request_history
+        assert len(history) == 2
+        assert (
+            history[1].url
+            == "https://planetarycomputer.microsoft.com/api/stac/v1/collections"
+        )
+
+    def test_error_if_no_self_href_or_data_link(self, requests_mock: Mocker) -> None:
+        pc_root = read_data_file("planetary-computer-root.json", parse_json=True)
+        assert isinstance(pc_root, Dict)
+        pc_root["links"] = [link for link in pc_root["links"] if link["rel"] != "data"]
+        root_url = "http://pystac-client.test/"
+        requests_mock.get(root_url, status_code=200, text=json.dumps(pc_root))
+        api = Client.open(root_url)
+        api.set_self_href(None)
+        with pytest.raises(ValueError):
+            _ = api.get_collection("an-id")
 
     def test_custom_request_parameters(self, requests_mock: Mocker) -> None:
         pc_root_text = read_data_file("planetary-computer-root.json")

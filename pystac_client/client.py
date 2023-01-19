@@ -12,6 +12,7 @@ from typing import (
 )
 
 import pystac
+import pystac.utils
 import pystac.validation
 from pystac import CatalogType, Collection
 from requests import Request
@@ -131,7 +132,7 @@ class Client(pystac.Catalog):
                 After getting a child collection with, e.g.
                 :meth:`Client.get_collection`, the child items of that collection
                 will still be signed with ``modifier``.
-            request_modifier: A callable that eitehr modifies a `Request` instance or
+            request_modifier: A callable that either modifies a `Request` instance or
                 returns a new one. This can be useful for injecting Authentication
                 headers and/or signing fully-formed requests (e.g. signing requests
                 using AWS SigV4).
@@ -140,7 +141,7 @@ class Client(pystac.Catalog):
                 of :class:`requests.Request`.
 
                 If the callable returns a `requests.Request`, that will be used.
-                Alternately, the calable may simply modify the provided request object
+                Alternately, the callable may simply modify the provided request object
                 and return `None`.
             stac_io: A `StacApiIO` object to use for I/O requests. Generally, leave
                 this to the default. However in cases where customized I/O processing
@@ -149,7 +150,6 @@ class Client(pystac.Catalog):
         Return:
             catalog : A :class:`Client` instance for this Catalog/API
         """
-        url = url.rstrip("/")
         client: Client = cls.from_file(
             url,
             headers=headers,
@@ -254,7 +254,7 @@ class Client(pystac.Catalog):
             CollectionClient: A STAC Collection
         """
         if self._supports_collections() and self._stac_io:
-            url = f"{self.get_self_href()}/collections/{collection_id}"
+            url = self._get_collections_href(collection_id)
             collection = CollectionClient.from_dict(
                 self._stac_io.read_json(url),
                 root=self,
@@ -281,9 +281,9 @@ class Client(pystac.Catalog):
         """
         collection: Union[Collection, CollectionClient]
 
-        if self._supports_collections() and self.get_self_href() is not None:
-            url = f"{self.get_self_href()}/collections"
-            for page in self._stac_io.get_pages(url):  # type: ignore
+        if self._supports_collections() and self._stac_io:
+            url = self._get_collections_href()
+            for page in self._stac_io.get_pages(url):
                 if "collections" not in page:
                     raise APIError("Invalid response from /collections")
                 for col in page["collections"]:
@@ -504,3 +504,36 @@ class Client(pystac.Catalog):
             ),
             None,
         )
+
+    def _get_collections_href(self, collection_id: Optional[str] = None) -> str:
+        self_href = self.get_self_href()
+        if self_href is None:
+            data_link = self.get_single_link("data")
+            if data_link is None:
+                raise ValueError(
+                    "cannot build a collections href without a self href or a data link"
+                )
+            else:
+                collections_href = data_link.href
+        else:
+            collections_href = f"{self_href.rstrip('/')}/collections"
+
+        if not pystac.utils.is_absolute_href(collections_href):
+            collections_href = self._make_absolute_href(collections_href)
+
+        if collection_id is None:
+            return collections_href
+        else:
+            return f"{collections_href.rstrip('/')}/{collection_id}"
+
+    def _make_absolute_href(self, href: str) -> str:
+        self_link = self.get_single_link("self")
+        if self_link is None:
+            raise ValueError("cannot build an absolute href without a self link")
+        elif not pystac.utils.is_absolute_href(self_link.href):
+            raise ValueError(
+                "cannot build an absolute href from "
+                f"a relative self link: {self_link.href}"
+            )
+        else:
+            return pystac.utils.make_absolute_href(href, self_link.href)
