@@ -515,10 +515,8 @@ class Client(pystac.Catalog):
                 )
             else:
                 collections_href = data_link.href
-        elif self_href.endswith("/"):
-            collections_href = f"{self_href}collections"
         else:
-            collections_href = f"{self_href}/collections"
+            collections_href = f"{self_href.rstrip('/')}/collections"
 
         if not pystac.utils.is_absolute_href(collections_href):
             collections_href = self._make_absolute_href(collections_href)
