@@ -169,75 +169,113 @@ class TestSTAC_IOOverride:
             data = file.read()
         assert data == "Hi there!"
 
-    def test_stop_on_empty_page(self, requests_mock: Mocker) -> None:
+    @pytest.mark.parametrize(
+        ("attribute", "endpoint"),
+        (("features", "search"), ("collections", "collections")),
+    )
+    def test_stop_on_empty_page(
+        self, requests_mock: Mocker, attribute: str, endpoint: str
+    ) -> None:
+        url = f"https://pystac-client.test/{endpoint}"
         requests_mock.get(
-            "https://pystac-client.test/search",
+            url,
             status_code=200,
             json={
-                "features": [{"foo": "bar"}],
+                attribute: [{"foo": "bar"}],
                 "links": [
                     {
                         "rel": "next",
-                        "href": "https://pystac-client.test/search?token=baz",
+                        "href": url + "?token=baz",
                     }
                 ],
             },
         )
         requests_mock.get(
-            "https://pystac-client.test/search?token=baz",
+            url + "?token=baz",
             status_code=200,
             json={
-                "features": [],
+                attribute: [],
                 "links": [
                     {
                         "rel": "next",
-                        "href": "https://pystac-client.test/search?token=baw",
+                        "href": url + "?token=bam",
                     }
                 ],
             },
         )
         requests_mock.get(
-            "https://pystac-client.test/search?token=baw",
+            url + "?token=bam",
             status_code=500,
-            json={},
         )
         stac_api_io = StacApiIO()
-        pages = list(stac_api_io.get_pages("https://pystac-client.test/search"))
+        pages = list(stac_api_io.get_pages(url))
         assert len(pages) == 1
-        assert pages[0]["features"][0]["foo"] == "bar"
+        assert pages[0][attribute][0]["foo"] == "bar"
 
-    def test_stop_on_featureless_page(self, requests_mock: Mocker) -> None:
+    @pytest.mark.parametrize(
+        ("attribute", "endpoint"),
+        (("features", "search"), ("collections", "collections")),
+    )
+    def test_stop_on_attributeless_page(
+        self, requests_mock: Mocker, attribute: str, endpoint: str
+    ) -> None:
+        url = f"https://pystac-client.test/{endpoint}"
         requests_mock.get(
-            "https://pystac-client.test/search",
+            url,
             status_code=200,
             json={
-                "features": [{"foo": "bar"}],
+                attribute: [{"foo": "bar"}],
                 "links": [
                     {
                         "rel": "next",
-                        "href": "https://pystac-client.test/search?token=baz",
+                        "href": url + "?token=baz",
                     }
                 ],
             },
         )
         requests_mock.get(
-            "https://pystac-client.test/search?token=baz",
+            url + "?token=baz",
             status_code=200,
             json={
                 "links": [
                     {
                         "rel": "next",
-                        "href": "https://pystac-client.test/search?token=baw",
+                        "href": url + "?token=bam",
                     }
                 ],
             },
         )
         requests_mock.get(
-            "https://pystac-client.test/search?token=baw",
+            url + "?token=bam",
             status_code=500,
-            json={},
         )
         stac_api_io = StacApiIO()
-        pages = list(stac_api_io.get_pages("https://pystac-client.test/search"))
+        pages = list(stac_api_io.get_pages(url))
         assert len(pages) == 1
-        assert pages[0]["features"][0]["foo"] == "bar"
+        assert pages[0][attribute][0]["foo"] == "bar"
+
+    @pytest.mark.parametrize(
+        ("attribute", "endpoint"),
+        (("features", "search"), ("collections", "collections")),
+    )
+    def test_stop_on_first_empty_page(
+        self, requests_mock: Mocker, attribute: str, endpoint: str
+    ) -> None:
+        url = f"https://pystac-client.test/{endpoint}"
+        requests_mock.get(
+            url,
+            status_code=200,
+            json={
+                attribute: [],
+                "links": [
+                    {
+                        "rel": "next",
+                        "href": url + "?token=bam",
+                    }
+                ],
+            },
+        )
+        requests_mock.get(url + "?token=bam", status_code=500)
+        stac_api_io = StacApiIO()
+        pages = list(stac_api_io.get_pages(url))
+        assert len(pages) == 0
