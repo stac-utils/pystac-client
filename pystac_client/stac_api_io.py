@@ -227,6 +227,8 @@ class StacApiIO(DefaultStacIO):
             Dict[str, Any] : JSON content from a single page
         """
         page = self.read_json(url, method=method, parameters=parameters)
+        if not (page.get("features") or page.get("collections")):
+            return None
         yield page
 
         next_link = next(
@@ -235,6 +237,8 @@ class StacApiIO(DefaultStacIO):
         while next_link:
             link = Link.from_dict(next_link)
             page = self.read_json(link, parameters=parameters)
+            if not (page.get("features") or page.get("collections")):
+                return None
             yield page
 
             # get the next link and make the next request
