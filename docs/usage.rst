@@ -323,6 +323,21 @@ object in-place and returns no result. A warning is emitted if your
 ``modifier`` returns a non-None result that is not the same object as the
 input.
 
+Using custom certificates
+-------------------------
+
+If you need to use custom certificates in your ``pystac-client`` requests, you can
+customize the :class:`StacApiIO<pystac_client.stac_api_io.StacApiIO>` instance before
+creating your :class:`Client<pystac_client.Client>`.
+
+.. code-block:: python
+
+    >>> from pystac_client.stac_api_io import StacApiIO
+    >>> from pystac_client.client import Client
+    >>> stac_api_io = StacApiIO()
+    >>> stac_api_io.session.verify = "/path/to/certfile"
+    >>> client = Client.open("https://planetarycomputer.microsoft.com/api/stac/v1", stac_io=stac_api_io)
+
 Loading data
 ++++++++++++
 
