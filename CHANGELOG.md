@@ -5,7 +5,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - TBD
+## [Unreleased]
+
+## [v0.6.0] - 2023-01-27
 
 ### Added
 
@@ -14,8 +16,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - *Authentication* tutorial, demonstrating how to use to the provided hooks to use both basic and AWS SigV4 authentication [#372](https://github.com/stac-utils/pystac-client/pull/372)
 - CI checks for Windows and MacOS [#378](https://github.com/stac-utils/pystac-client/pull/378)
 - Fallback to `STAC API - Item Search` when finding a single item in `CollectionClient` if `STAC API - Features` is not implemented [#379](https://github.com/stac-utils/pystac-client/pull/379)
-
-### Changed
 
 ### Fixed
 
@@ -27,8 +27,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Removed
 
 - Python 3.7 support [#347](https://github.com/stac-utils/pystac-client/pull/347)
-
-### Deprecated
 
 ## [v0.5.1] - 2022-09-19
 
@@ -257,7 +255,8 @@ are in a single HTTP session, handle pagination and respects conformance
 
 Initial release.
 
-[Unreleased]: <https://github.com/stac-utils/pystac-client/compare/v0.5.1...main>
+[Unreleased]: <https://github.com/stac-utils/pystac-client/compare/v0.6.0...main>
+[v0.6.0]: <https://github.com/stac-utils/pystac-client/compare/v0.5.1...v0.6.0>
 [v0.5.1]: <https://github.com/stac-utils/pystac-client/compare/v0.5.0...v0.5.1>
 [v0.5.0]: <https://github.com/stac-utils/pystac-client/compare/v0.4.0...v0.5.0>
 [v0.4.0]: <https://github.com/stac-utils/pystac-client/compare/v0.3.5...v0.4.0>
