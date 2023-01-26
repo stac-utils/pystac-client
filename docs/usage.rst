@@ -322,3 +322,45 @@ is in a private storage container.
 object in-place and returns no result. A warning is emitted if your
 ``modifier`` returns a non-None result that is not the same object as the
 input.
+
+Loading data
+++++++++++++
+
+Once you've fetched your STAC :class:`Items<pystac.Item>` with ``pystac-client``, you
+now can work with the data referenced by your :class:`Assets<pystac.Asset>`.  This is
+out of scope for ``pystac-client``, but there's a wide variety of tools and options
+available, and the correct choices depend on your type of data, your environment, and
+the type of analysis you're doing.
+
+For simple workflows, it can be easiest to load data directly using `rasterio
+<https://rasterio.readthedocs.io>`_, `fiona <https://fiona.readthedocs.io/>`_, and
+similar tools. Here is a simple example using **rasterio** to display data from a raster
+file.
+
+.. code-block:: python
+
+    >>> import rasterio.plot.show
+    >>> with rasterio.open(item.assets["data"].href) as dataset:
+    ...     rasterio.plot.show(dataset)
+
+For larger sets of data and more complex workflows, a common tool for working with a
+large number of raster files is `xarray <https://docs.xarray.dev>`_, which provides data
+structures for labelled multi-dimensional arrays. `stackstac
+<https://stackstac.readthedocs.io>`_ and `odc-stac <https://odc-stac.readthedocs.io>`_
+are two similar tools that can load asset data from :class:`Items<pystac.Item>` or an
+:class:`ItemCollection<pystac.ItemCollection>` into an **xarray**. Here's a simple
+example from **odc-stac**'s documentation:
+
+.. code-block:: python
+
+    >>> catalog = pystac_client.Client.open(...)
+    >>> query = catalog.search(...)
+    >>> xx = odc.stac.load(
+    ...     query.get_items(),
+    ...     bands=["red", "green", "blue"],
+    ...     resolution=100,
+    ... )
+    >>> xx.red.plot.imshow(col="time")
+
+
+See each packages's respective documentation for more examples and tutorials.
