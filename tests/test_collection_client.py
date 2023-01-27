@@ -54,3 +54,9 @@ class TestCollectionClient:
 
         item = collection.get_item("for-sure-not-a-real-id")
         assert item is None
+
+        item = collection.get_item(
+            "AST_L1T_00312272006020322_20150518201805", recursive=True
+        )
+        assert item
+        assert item.id == "AST_L1T_00312272006020322_20150518201805"

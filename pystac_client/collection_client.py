@@ -170,7 +170,7 @@ class CollectionClient(pystac.Collection):
             else:
                 item = super().get_item(id, recursive=False)
         else:
-            super().get_item(id, recursive=True)
+            item = super().get_item(id, recursive=True)
 
         if item:
             call_modifier(self.modifier, item)
