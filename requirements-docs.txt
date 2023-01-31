@@ -1,4 +1,4 @@
-ipykernel~=6.20
+ipykernel~=6.21
 ipython~=8.9
 Sphinx~=5.3
 sphinxcontrib-fulltoc~=1.2
