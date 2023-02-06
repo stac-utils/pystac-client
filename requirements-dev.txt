@@ -17,7 +17,7 @@ jsonschema~=4.17.3
 coverage~=7.1
 doc8~=1.1.1
 
-pre-commit==3.0.3
+pre-commit==3.0.4
 
 # optional dependencies
 orjson==3.8.5
