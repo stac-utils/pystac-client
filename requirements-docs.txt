@@ -8,7 +8,7 @@ jinja2<4.0
 geopandas~=0.12.2
 hvplot~=0.8.2
 matplotlib~=3.7.0
-geojson~=2.5.0
+geojson~=3.0.1
 pygeoif~=1.0
 pydata-sphinx-theme~=0.12
 boto3~=1.26
