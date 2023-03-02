@@ -16,6 +16,7 @@ from pystac_client import Client, CollectionClient
 from pystac_client._utils import Modifiable
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.errors import ClientTypeError, IgnoredResultWarning
+from pystac_client.stac_api_io import StacApiIO
 
 from .helpers import STAC_URLS, TEST_DATA, read_data_file
 
@@ -445,6 +446,19 @@ class TestAPI:
         path = str(TEST_DATA / "planetary-computer-aster-l1t-collection.json")
         with pytest.raises(ClientTypeError):
             Client.open(path)
+
+    def test_headers_with_custom_stac_io(self, requests_mock: Mocker) -> None:
+        pc_root_dict = read_data_file("planetary-computer-root.json", parse_json=True)
+        requests_mock.get(
+            STAC_URLS["PLANETARY-COMPUTER"],
+            status_code=200,
+            json=pc_root_dict,
+            request_headers={"ski": "pow", "shred": "gnar"},
+        )
+        stac_io = StacApiIO(headers={"ski": "pow"})
+        _ = Client.open(
+            STAC_URLS["PLANETARY-COMPUTER"], headers={"shred": "gnar"}, stac_io=stac_io
+        )
 
 
 class TestAPISearch:

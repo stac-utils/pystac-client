@@ -197,6 +197,12 @@ class Client(pystac.Catalog):
                 parameters=parameters,
                 request_modifier=request_modifier,
             )
+        else:
+            stac_io.update(
+                headers=headers,
+                parameters=parameters,
+                request_modifier=request_modifier,
+            )
 
         client: Client = super().from_file(href, stac_io)  # type: ignore
 
