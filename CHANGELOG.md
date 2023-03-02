@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix parse fail when header has multiple '=' characters [#440](https://github.com/stac-utils/pystac-client/pull/440)
+
 ## [v0.6.0] - 2023-01-27
 
 ### Added

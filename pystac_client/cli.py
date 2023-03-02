@@ -2,6 +2,7 @@ import argparse
 import json
 import logging
 import os
+import re
 import sys
 from typing import Any, Dict, List, Optional
 
@@ -191,10 +192,11 @@ def parse_args(args: List[str]) -> Dict[str, Any]:
     # if headers provided, parse it
     if "headers" in parsed_args:
         new_headers = {}
+        splitter = re.compile("^([^=]+)=(.+)$")
         for head in parsed_args["headers"]:
-            parts = head.split("=")
-            if len(parts) == 2:
-                new_headers[parts[0]] = parts[1]
+            match = splitter.match(head)
+            if match:
+                new_headers[match.group(1)] = match.group(2)
             else:
                 logger.warning(f"Unable to parse header {head}")
         parsed_args["headers"] = new_headers
