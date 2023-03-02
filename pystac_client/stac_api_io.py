@@ -54,11 +54,30 @@ class StacApiIO(DefaultStacIO):
         """
         # TODO - this should super() to parent class
         self.session = Session()
+        self._conformance = conformance
+        self.update(
+            headers=headers, parameters=parameters, request_modifier=request_modifier
+        )
+
+    def update(
+        self,
+        headers: Optional[Dict[str, str]] = None,
+        parameters: Optional[Dict[str, Any]] = None,
+        request_modifier: Optional[Callable[[Request], Union[Request, None]]] = None,
+    ) -> None:
+        """Updates this StacApi's headers, parameters, and/or request_modifer.
+
+        Args:
+            headers : Optional dictionary of headers to include in all requests
+            parameters: Optional dictionary of query string parameters to
+              include in all requests.
+            request_modifier: Optional callable that can be used to modify Request
+              objects before they are sent. If provided, the callable receives a
+              `request.Request` and must either modify the object directly or return
+              a new / modified request instance.
+        """
         self.session.headers.update(headers or {})
         self.session.params.update(parameters or {})  # type: ignore
-
-        self._conformance = conformance
-
         self._req_modifier = request_modifier
 
     def read_text(self, source: pystac.link.HREF, *args: Any, **kwargs: Any) -> str:
