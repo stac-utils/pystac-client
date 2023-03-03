@@ -2,7 +2,7 @@ ipykernel~=6.21
 ipython~=8.11
 Sphinx~=5.3
 sphinxcontrib-fulltoc~=1.2
-myst-parser~=0.19.0
+myst-parser~=0.19.1
 nbsphinx~=0.8
 jinja2<4.0
 geopandas~=0.12.2
