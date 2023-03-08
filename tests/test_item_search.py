@@ -34,8 +34,9 @@ ITEM_EXAMPLE: Dict[str, Any] = {"collections": "io-lulc", "ids": "60U-2020"}
 class TestItemPerformance:
     @pytest.fixture(scope="function")
     def single_href(self) -> str:
-        item_href = "https://planetarycomputer.microsoft.com/api/stac/v1/collections/{collections}/items/{ids}".format(
-            collections=ITEM_EXAMPLE["collections"], ids=ITEM_EXAMPLE["ids"]
+        item_href = (
+            "https://planetarycomputer.microsoft.com/api/stac/v1/collections/"
+            f"{ITEM_EXAMPLE['collections']}/items/{ITEM_EXAMPLE['ids']}"
         )
         return item_href
 
@@ -457,7 +458,6 @@ class TestItemSearchParams:
             ItemSearch(url=SEARCH_URL, sortby=[1])  # type: ignore
 
     def test_fields(self) -> None:
-
         with pytest.raises(Exception):
             ItemSearch(url=SEARCH_URL, fields=1)  # type: ignore
 
@@ -629,7 +629,8 @@ class TestItemSearch:
             max_items=20,
         )
 
-        # Check that the current page changes on the ItemSearch instance when a new page is requested
+        # Check that the current page changes on the ItemSearch instance when a new page
+        # is requested
         pages = list(search.pages())
 
         assert pages[1] != pages[2]
@@ -725,7 +726,6 @@ class TestItemSearchQuery:
 
     @pytest.mark.vcr
     def test_query_json_syntax(self) -> None:
-
         # with a list of json strs (format of CLI argument to ItemSearch)
         search = ItemSearch(
             url=SEARCH_URL,

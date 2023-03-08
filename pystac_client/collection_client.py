@@ -13,7 +13,6 @@ if TYPE_CHECKING:
 
 
 class CollectionClient(pystac.Collection):
-
     modifier: Callable[[Modifiable], None]
     _stac_io: Optional[StacApiIO]
 
@@ -69,8 +68,7 @@ class CollectionClient(pystac.Collection):
         # error: Cannot assign to a method  [assignment]
         # https://github.com/python/mypy/issues/2427
         setattr(result, "modifier", modifier)
-        # ignore the return type: https://github.com/stac-utils/pystac/issues/862
-        return result  # type: ignore
+        return result
 
     def __repr__(self) -> str:
         return "<CollectionClient id={}>".format(self.id)
