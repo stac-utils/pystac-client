@@ -1,15 +1,5 @@
 from functools import lru_cache
-from typing import (
-    TYPE_CHECKING,
-    Any,
-    Callable,
-    Dict,
-    Iterator,
-    List,
-    Optional,
-    Union,
-    cast,
-)
+from typing import TYPE_CHECKING, Any, Callable, Dict, Iterator, List, Optional, Union
 
 import pystac
 import pystac.utils
@@ -204,7 +194,7 @@ class Client(pystac.Catalog):
                 request_modifier=request_modifier,
             )
 
-        client: Client = super().from_file(href, stac_io)  # type: ignore
+        client: Client = super().from_file(href, stac_io)
 
         client._stac_io._conformance = client.extra_fields.get(  # type: ignore
             "conformsTo", []
@@ -241,10 +231,6 @@ class Client(pystac.Catalog):
                 f"Could not open Client (href={href}), "
                 f"expected type=Catalog, found type={d.get('type', None)}"
             )
-        # cast require for mypy to believe that we have a Client, rather than
-        # the super type.
-        # https://github.com/stac-utils/pystac/issues/862
-        result = cast(Client, result)
 
         result.modifier = modifier
         return result

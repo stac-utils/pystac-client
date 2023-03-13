@@ -33,7 +33,7 @@ setup(
     python_requires=">=3.8",
     install_requires=[
         "requests>=2.27.1",
-        "pystac>=1.4.0",
+        "pystac>=1.7.0",
         "python-dateutil>=2.7.0",
     ],
     extras_require={"validation": ["jsonschema>=4.5.1"]},
