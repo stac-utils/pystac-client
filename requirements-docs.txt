@@ -3,7 +3,7 @@ ipython~=8.11
 Sphinx~=5.3
 sphinxcontrib-fulltoc~=1.2
 myst-parser~=1.0.0
-nbsphinx~=0.8
+nbsphinx~=0.9
 jinja2<4.0
 geopandas~=0.12.2
 hvplot~=0.8.2
