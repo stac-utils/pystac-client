@@ -6,7 +6,7 @@ myst-parser~=1.0.0
 nbsphinx~=0.9
 jinja2<4.0
 geopandas~=0.12.2
-hvplot~=0.8.2
+hvplot~=0.8.3
 matplotlib~=3.7.1
 geojson~=3.0.1
 pygeoif~=1.0
