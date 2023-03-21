@@ -1,0 +1,15 @@
+[tool.ruff]
+ignore = [
+    "E722",
+    "E731",
+]
+line-length = 88
+select = [
+    "E",
+    "F",
+    "W",
+]
+
+[tool.ruff.per-file-ignores]
+"__init__.py" = ["F401"]
+"test_item_search.py" = ["E501"]

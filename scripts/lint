@@ -19,7 +19,7 @@ if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
     else
         pre-commit run codespell --all-files
         pre-commit run doc8 --all-files
-        pre-commit run flake8 --all-files
+        pre-commit run ruff --all-files
         pre-commit run mypy --all-files
     fi
 fi
