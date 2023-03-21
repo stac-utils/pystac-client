@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+- Switched to Ruff from isort/flake8 [#457](https://github.com/stac-utils/pystac-client/pull/457)
+
 ## [v0.6.1] - 2023-03-14
 
 ### Changed
