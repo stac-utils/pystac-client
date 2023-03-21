@@ -1,4 +1,3 @@
-# flake8: noqa
 __all__ = [
     "Client",
     "CollectionClient",
