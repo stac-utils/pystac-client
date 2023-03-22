@@ -1,0 +1,44 @@
+#!/usr/bin/env python3
+
+import sys
+from pathlib import Path
+
+import importlib_metadata
+from packaging.requirements import Requirement
+
+requirements_min = Path(__file__).parents[1] / "requirements-min.txt"
+with open(requirements_min) as file:
+    min_requirements = [Requirement(line) for line in file]
+min_requirements = dict(
+    (requirement.name, requirement) for requirement in min_requirements
+)
+
+package_requirements = [
+    Requirement(requirement)
+    for requirement in importlib_metadata.requires("pystac_client")
+]
+incorrect_requirements = list()
+for package_requirement in package_requirements:
+    if package_requirement.marker is not None:
+        continue
+    if package_requirement.name not in min_requirements:
+        incorrect_requirements.append((package_requirement, None))
+        continue
+    min_requirement = min_requirements[package_requirement.name]
+    for package_specifier, min_specifier in zip(
+        package_requirement.specifier, min_requirement.specifier
+    ):
+        if (
+            package_specifier.operator == ">="
+            and package_specifier.version != min_specifier.version
+        ):
+            incorrect_requirements.append((package_requirement, min_requirement))
+
+if incorrect_requirements:
+    print("ERROR: Incorrect min-requirements.txt!")
+    for package_requirement, min_requirement in incorrect_requirements:
+        print(f"- package: {package_requirement}, min: {min_requirement}")
+    sys.exit(1)
+else:
+    print("OK")
+    sys.exit(0)
