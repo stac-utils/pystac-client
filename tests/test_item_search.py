@@ -671,7 +671,7 @@ class TestItemSearch:
             max_items=20,
         )
 
-        with pytest.warns(DeprecationWarning, match=method):
+        with pytest.warns(FutureWarning, match=method):
             result = operator.methodcaller(method)(search)
 
         expected = operator.methodcaller(alternative)(search)
