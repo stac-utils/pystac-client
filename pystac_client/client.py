@@ -1,5 +1,15 @@
 from functools import lru_cache
-from typing import TYPE_CHECKING, Any, Callable, Dict, Iterator, List, Optional, Union
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Callable,
+    Dict,
+    Iterator,
+    List,
+    Optional,
+    Tuple,
+    Union,
+)
 
 import pystac
 import pystac.utils
@@ -88,6 +98,7 @@ class Client(pystac.Catalog, QueryablesMixin):
         modifier: Optional[Callable[[Modifiable], None]] = None,
         request_modifier: Optional[Callable[[Request], Union[Request, None]]] = None,
         stac_io: Optional[StacApiIO] = None,
+        timeout: Optional[Union[float, Tuple[float, float], Tuple[float, None]]] = None,
     ) -> "Client":
         """Opens a STAC Catalog or API
         This function will read the root catalog of a STAC Catalog or API
@@ -148,6 +159,7 @@ class Client(pystac.Catalog, QueryablesMixin):
             modifier=modifier,
             request_modifier=request_modifier,
             stac_io=stac_io,
+            timeout=timeout,
         )
         search_link = client.get_search_link()
         # if there is a search link, but no conformsTo advertised, ignore
@@ -176,6 +188,7 @@ class Client(pystac.Catalog, QueryablesMixin):
         parameters: Optional[Dict[str, Any]] = None,
         modifier: Optional[Callable[[Modifiable], None]] = None,
         request_modifier: Optional[Callable[[Request], Union[Request, None]]] = None,
+        timeout: Optional[Union[float, Tuple[float, float], Tuple[float, None]]] = None,
     ) -> "Client":
         """Open a STAC Catalog/API
 
@@ -187,6 +200,7 @@ class Client(pystac.Catalog, QueryablesMixin):
                 headers=headers,
                 parameters=parameters,
                 request_modifier=request_modifier,
+                timeout=timeout,
             )
         else:
             stac_io.update(

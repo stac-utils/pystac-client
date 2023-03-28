@@ -99,6 +99,10 @@ class TestAPI:
         with pytest.raises(TypeError):
             Client.open()  # type: ignore[call-arg]
 
+    def test_client_open_timeout(self) -> None:
+        with pytest.raises(APIError):
+            Client.open("http://10.255.255.1", timeout=1)
+
     def test_get_collections_with_conformance(self, requests_mock: Mocker) -> None:
         """Checks that the "data" endpoint is used if the API published the
         STAC API Collections conformance class."""
