@@ -793,7 +793,7 @@ class ItemSearch:
         """
         warnings.warn(
             "get_item_collections() is deprecated, use pages() instead",
-            DeprecationWarning,
+            FutureWarning,
         )
         return self.pages()
 
@@ -809,7 +809,7 @@ class ItemSearch:
         """
         warnings.warn(
             "item_collections() is deprecated, use pages() instead",
-            DeprecationWarning,
+            FutureWarning,
         )
         return self.pages()
 
@@ -824,7 +824,7 @@ class ItemSearch:
         """
         warnings.warn(
             "get_items() is deprecated, use items() instead",
-            DeprecationWarning,
+            FutureWarning,
         )
         return self.items()
 
@@ -839,7 +839,7 @@ class ItemSearch:
         """
         warnings.warn(
             "get_all_items() is deprecated, use item_collection() instead.",
-            DeprecationWarning,
+            FutureWarning,
         )
         return self.item_collection()
 
@@ -855,6 +855,6 @@ class ItemSearch:
         warnings.warn(
             "get_all_items_as_dict() is deprecated, use item_collection_as_dict() "
             "instead.",
-            DeprecationWarning,
+            FutureWarning,
         )
         return self.item_collection_as_dict()
