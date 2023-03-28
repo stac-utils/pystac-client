@@ -5,6 +5,7 @@ from datetime import datetime
 from tempfile import TemporaryDirectory
 from typing import Any, Dict
 from urllib.parse import parse_qs, urlsplit
+from urllib3.exceptions import TimeoutError
 
 import pystac
 import pytest
@@ -16,7 +17,6 @@ from pystac_client import Client, CollectionClient
 from pystac_client._utils import Modifiable
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.errors import ClientTypeError, IgnoredResultWarning
-from pystac_client.exceptions import APIError
 from pystac_client.stac_api_io import StacApiIO
 
 from .helpers import STAC_URLS, TEST_DATA, read_data_file
@@ -100,7 +100,7 @@ class TestAPI:
             Client.open()  # type: ignore[call-arg]
 
     def test_client_open_timeout(self) -> None:
-        with pytest.raises(APIError):
+        with pytest.raises(TimeoutError):
             Client.open("http://10.255.255.1", timeout=1)
 
     def test_get_collections_with_conformance(self, requests_mock: Mocker) -> None:
