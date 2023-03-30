@@ -10,6 +10,7 @@ from typing import (
     Tuple,
     Union,
 )
+from typing_extensions import TypeAlias
 
 import pystac
 import pystac.utils
@@ -41,6 +42,9 @@ from pystac_client.stac_api_io import StacApiIO
 
 if TYPE_CHECKING:
     from pystac.item import Item as Item_Type
+
+
+Timeout: TypeAlias = Optional[Union[float, Tuple[float, float], Tuple[float, None]]]
 
 
 class Client(pystac.Catalog, QueryablesMixin):
@@ -98,7 +102,7 @@ class Client(pystac.Catalog, QueryablesMixin):
         modifier: Optional[Callable[[Modifiable], None]] = None,
         request_modifier: Optional[Callable[[Request], Union[Request, None]]] = None,
         stac_io: Optional[StacApiIO] = None,
-        timeout: Optional[Union[float, Tuple[float, float], Tuple[float, None]]] = None,
+        timeout: Timeout = None,
     ) -> "Client":
         """Opens a STAC Catalog or API
         This function will read the root catalog of a STAC Catalog or API
@@ -188,7 +192,7 @@ class Client(pystac.Catalog, QueryablesMixin):
         parameters: Optional[Dict[str, Any]] = None,
         modifier: Optional[Callable[[Modifiable], None]] = None,
         request_modifier: Optional[Callable[[Request], Union[Request, None]]] = None,
-        timeout: Optional[Union[float, Tuple[float, float], Tuple[float, None]]] = None,
+        timeout: Timeout = None,
     ) -> "Client":
         """Open a STAC Catalog/API
 

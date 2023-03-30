@@ -1,14 +1,17 @@
 import json
 import os.path
+import time
 import warnings
 from datetime import datetime
 from tempfile import TemporaryDirectory
 from typing import Any, Dict
 from urllib.parse import parse_qs, urlsplit
+
 from urllib3.exceptions import TimeoutError
 
 import pystac
 import pytest
+import requests
 from dateutil.tz import tzutc
 from pystac import MediaType
 from requests_mock import Mocker
@@ -99,9 +102,24 @@ class TestAPI:
         with pytest.raises(TypeError):
             Client.open()  # type: ignore[call-arg]
 
-    def test_client_open_timeout(self) -> None:
+    # def test_client_open_timeout(self) -> None:
+    #     with pytest.raises(TimeoutError):
+    #         Client.open("http://10.255.255.1", timeout=1)
+
+    def test_client_open_timeout(self, requests_mock: Mocker) -> None:
+        def timeout_callback(request: requests.Request, context: Any) -> Any:
+            time.sleep(2)
+            context.status_code = 200
+            pc_root_text = read_data_file("planetary-computer-root.json")
+            return pc_root_text
+
+        requests_mock.register_uri(
+            "GET", "mock://test.uri/timeout", text=timeout_callback, status_code=400
+        )
         with pytest.raises(TimeoutError):
-            Client.open("http://10.255.255.1", timeout=1)
+            Client.open("mock://test.uri/timeout", timeout=1)
+
+        Client.open("mock://test.uri/timeout", timeout=3)
 
     def test_get_collections_with_conformance(self, requests_mock: Mocker) -> None:
         """Checks that the "data" endpoint is used if the API published the
