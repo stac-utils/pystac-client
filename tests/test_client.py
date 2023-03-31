@@ -7,8 +7,6 @@ from tempfile import TemporaryDirectory
 from typing import Any, Dict
 from urllib.parse import parse_qs, urlsplit
 
-from urllib3.exceptions import TimeoutError
-
 import pystac
 import pytest
 import requests
@@ -20,6 +18,7 @@ from pystac_client import Client, CollectionClient
 from pystac_client._utils import Modifiable
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.errors import ClientTypeError, IgnoredResultWarning
+from pystac_client.exceptions import APIError
 from pystac_client.stac_api_io import StacApiIO
 
 from .helpers import STAC_URLS, TEST_DATA, read_data_file
@@ -114,12 +113,19 @@ class TestAPI:
             return pc_root_text
 
         requests_mock.register_uri(
-            "GET", "mock://test.uri/timeout", text=timeout_callback, status_code=400
+            "GET",
+            "mock://test.uri/timeout",
+            exc=requests.exceptions.ConnectTimeout,
         )
-        with pytest.raises(TimeoutError):
+        requests_mock.register_uri(
+            "GET",
+            "mock://test.uri/notimeout",
+            text=timeout_callback,
+            status_code=400,
+        )
+        with pytest.raises(APIError):
             Client.open("mock://test.uri/timeout", timeout=1)
-
-        Client.open("mock://test.uri/timeout", timeout=3)
+        Client.open("mock://test.uri/notimeout", timeout=3)
 
     def test_get_collections_with_conformance(self, requests_mock: Mocker) -> None:
         """Checks that the "data" endpoint is used if the API published the
