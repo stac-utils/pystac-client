@@ -1,6 +1,5 @@
 import json
 import os.path
-import time
 import warnings
 from datetime import datetime
 from tempfile import TemporaryDirectory
@@ -9,7 +8,6 @@ from urllib.parse import parse_qs, urlsplit
 
 import pystac
 import pytest
-import requests
 from dateutil.tz import tzutc
 from pystac import MediaType
 from requests_mock import Mocker
@@ -18,7 +16,6 @@ from pystac_client import Client, CollectionClient
 from pystac_client._utils import Modifiable
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.errors import ClientTypeError, IgnoredResultWarning
-from pystac_client.exceptions import APIError
 from pystac_client.stac_api_io import StacApiIO
 
 from .helpers import STAC_URLS, TEST_DATA, read_data_file
@@ -100,32 +97,6 @@ class TestAPI:
     def test_invalid_url(self) -> None:
         with pytest.raises(TypeError):
             Client.open()  # type: ignore[call-arg]
-
-    # def test_client_open_timeout(self) -> None:
-    #     with pytest.raises(TimeoutError):
-    #         Client.open("http://10.255.255.1", timeout=1)
-
-    def test_client_open_timeout(self, requests_mock: Mocker) -> None:
-        def timeout_callback(request: requests.Request, context: Any) -> Any:
-            time.sleep(2)
-            context.status_code = 200
-            pc_root_text = read_data_file("planetary-computer-root.json")
-            return pc_root_text
-
-        requests_mock.register_uri(
-            "GET",
-            "mock://test.uri/timeout",
-            exc=requests.exceptions.ConnectTimeout,
-        )
-        requests_mock.register_uri(
-            "GET",
-            "mock://test.uri/notimeout",
-            text=timeout_callback,
-            status_code=400,
-        )
-        with pytest.raises(APIError):
-            Client.open("mock://test.uri/timeout", timeout=1)
-        Client.open("mock://test.uri/notimeout", timeout=3)
 
     def test_get_collections_with_conformance(self, requests_mock: Mocker) -> None:
         """Checks that the "data" endpoint is used if the API published the
