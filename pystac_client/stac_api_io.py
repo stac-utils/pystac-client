@@ -13,6 +13,7 @@ from typing import (
     Tuple,
     Union,
 )
+from typing_extensions import TypeAlias
 from urllib.parse import urlparse
 
 import pystac
@@ -38,6 +39,9 @@ if TYPE_CHECKING:
 logger = logging.getLogger(__name__)
 
 
+Timeout: TypeAlias = Optional[Union[float, Tuple[float, float], Tuple[float, None]]]
+
+
 class StacApiIO(DefaultStacIO):
     def __init__(
         self,
@@ -45,7 +49,7 @@ class StacApiIO(DefaultStacIO):
         conformance: Optional[List[str]] = None,
         parameters: Optional[Dict[str, Any]] = None,
         request_modifier: Optional[Callable[[Request], Union[Request, None]]] = None,
-        timeout: Optional[Union[float, Tuple[float, float], Tuple[float, None]]] = None,
+        timeout: Timeout = None,
     ):
         """Initialize class for API IO
 

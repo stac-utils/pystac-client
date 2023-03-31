@@ -7,10 +7,8 @@ from typing import (
     Iterator,
     List,
     Optional,
-    Tuple,
     Union,
 )
-from typing_extensions import TypeAlias
 
 import pystac
 import pystac.utils
@@ -38,13 +36,10 @@ from pystac_client.item_search import (
     SortbyLike,
 )
 from pystac_client.mixins import QueryablesMixin
-from pystac_client.stac_api_io import StacApiIO
+from pystac_client.stac_api_io import StacApiIO, Timeout
 
 if TYPE_CHECKING:
     from pystac.item import Item as Item_Type
-
-
-Timeout: TypeAlias = Optional[Union[float, Tuple[float, float], Tuple[float, None]]]
 
 
 class Client(pystac.Catalog, QueryablesMixin):
