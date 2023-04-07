@@ -4,7 +4,7 @@ coverage~=7.2
 doc8~=1.1.1
 importlib-metadata~=6.1.0
 jsonschema~=4.17.3
-mypy~=1.1
+mypy~=1.2
 orjson==3.8.9
 pre-commit==3.2.2
 pytest-benchmark~=4.0.0
