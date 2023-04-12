@@ -1,9 +1,9 @@
 import warnings
 from typing import Callable, Optional, Union
-
 import pystac
 
 from pystac_client.errors import IgnoredResultWarning
+
 
 Modifiable = Union[pystac.Collection, pystac.Item, pystac.ItemCollection, dict]
 

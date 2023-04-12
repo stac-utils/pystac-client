@@ -236,7 +236,9 @@ class Client(pystac.Catalog):
         return result
 
     @lru_cache()
-    def get_collection(self, collection_id: str) -> Optional[Collection]:
+    def get_collection(
+        self, collection_id: str
+    ) -> Optional[Union[Collection, CollectionClient]]:
         """Get a single collection from this Catalog/API
 
         Args:
@@ -262,7 +264,7 @@ class Client(pystac.Catalog):
 
         return None
 
-    def get_collections(self) -> Iterator[Collection]:
+    def get_collections(self) -> Iterator[Union[Collection, CollectionClient]]:
         """Get Collections in this Catalog
 
             Gets the collections from the /collections endpoint if supported,
@@ -496,6 +498,29 @@ class Client(pystac.Catalog):
             ),
             None,
         )
+
+    def get_queryables(self) -> Dict[str, Any]:
+        """Return all queryables.
+
+        Output is a dictionary that can be used in ``jsonshema.validate``
+
+        Return:
+            Dict[str, Any]: Dictionary containing queryable fields
+        """
+        assert self._stac_io is not None
+        self._stac_io.assert_conforms_to(ConformanceClasses.FILTER)
+
+        self_href = self.get_self_href()
+        if self_href is None:
+            raise ValueError("cannot build a queryable href without a self href")
+
+        url = f"{self_href.rstrip('/')}/queryables"
+
+        result = self._stac_io.read_json(url)
+        if "properties" not in result:
+            raise APIError("Invalid response from /queryables")
+
+        return result
 
     def _get_collections_href(self, collection_id: Optional[str] = None) -> str:
         self_href = self.get_self_href()

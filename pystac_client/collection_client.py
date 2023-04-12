@@ -14,7 +14,6 @@ if TYPE_CHECKING:
 
 class CollectionClient(pystac.Collection):
     modifier: Callable[[Modifiable], None]
-    _stac_io: Optional[StacApiIO]
 
     def __init__(
         self,
@@ -159,7 +158,7 @@ class CollectionClient(pystac.Collection):
                 item_search = ItemSearch(
                     url=search_link.href,
                     method="GET",
-                    stac_io=self._stac_io,
+                    stac_io=stac_io,
                     ids=[id],
                     collections=[self.id],
                     modifier=self.modifier,
@@ -174,3 +173,31 @@ class CollectionClient(pystac.Collection):
             call_modifier(self.modifier, item)
 
         return item
+
+    def get_queryables(self) -> Dict[str, Any]:
+        """Return all queryables.
+
+        Output is a dictionary that can be used in ``jsonshema.validate``
+
+        Return:
+            Dict[str, Any]: Dictionary containing queryable fields
+        """
+        root = self.get_root()
+        assert root
+        stac_io = root._stac_io
+        assert stac_io
+        assert isinstance(stac_io, StacApiIO)
+
+        stac_io.assert_conforms_to(ConformanceClasses.FILTER)
+
+        self_href = self.get_self_href()
+        if self_href is None:
+            raise ValueError("cannot build a queryable href without a self href")
+
+        url = f"{self_href.rstrip('/')}/queryables"
+
+        result = stac_io.read_json(url)
+        if "properties" not in result:
+            raise APIError("Invalid response from /queryables")
+
+        return result
