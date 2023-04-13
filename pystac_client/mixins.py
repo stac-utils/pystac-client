@@ -11,7 +11,7 @@ QUERYABLES_ENDPOINT = "/queryables"
 class StacAPIProtocol(Protocol):
     _stac_io: Optional[StacApiIO]
 
-    def get_self_href(self) -> str:
+    def get_self_href(self) -> Optional[str]:
         ...
 
     def get_single_link(
@@ -22,10 +22,10 @@ class StacAPIProtocol(Protocol):
         ...
 
 
-class QueryablesMixin:
+class QueryablesMixin(StacAPIProtocol):
     """Mixin for adding support for /queryables endpoint"""
 
-    def get_queryables(self: StacAPIProtocol) -> Dict[str, Any]:
+    def get_queryables(self) -> Dict[str, Any]:
         """Return all queryables.
 
         Output is a dictionary that can be used in ``jsonshema.validate``
@@ -37,20 +37,22 @@ class QueryablesMixin:
             raise APIError("API access is not properly configured")
 
         self._stac_io.assert_conforms_to(ConformanceClasses.FILTER)
-
-        # The queryables link should be defined at the root, but if it is not
-        # try to guess the url
-        link = self.get_single_link(QUERYABLES_REL)
-        if link is not None:
-            url = link.href
-        else:
-            self_href = self.get_self_href()
-            if self_href is None:
-                raise ValueError("Cannot build a queryable href without a self href")
-            url = f"{self_href.rstrip('/')}{QUERYABLES_ENDPOINT}"
-
+        url = self._get_queryables_href()
         result = self._stac_io.read_json(url)
         if "properties" not in result:
             raise APIError(f"Invalid response from {QUERYABLES_ENDPOINT}")
 
         return result
+
+    def _get_queryables_href(self) -> str:
+        link = self.get_single_link(QUERYABLES_REL)
+        if link is not None:
+            url = link.href
+        else:
+            # The queryables link should be defined at the root, but if it is not
+            # try to guess the url
+            self_href = self.get_self_href()
+            if self_href is None:
+                raise ValueError("Cannot build a queryable href without a self href")
+            url = f"{self_href.rstrip('/')}{QUERYABLES_ENDPOINT}"
+        return url

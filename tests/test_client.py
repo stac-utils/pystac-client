@@ -16,6 +16,7 @@ from pystac_client import Client, CollectionClient
 from pystac_client._utils import Modifiable
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.errors import ClientTypeError, IgnoredResultWarning
+from pystac_client.exceptions import APIError
 from pystac_client.stac_api_io import StacApiIO
 
 from .helpers import STAC_URLS, TEST_DATA, read_data_file
@@ -617,7 +618,7 @@ class TestQueryables:
         assert "properties" in result
         assert "id" in result["properties"]
 
-    def test_get_queryables_fails_if_no_self_link(self, requests_mock: Mocker) -> None:
+    def test_get_queryables_errors(self, requests_mock: Mocker) -> None:
         pc_root_text = read_data_file("planetary-computer-root.json")
         root_url = "http://pystac-client.test/"
         requests_mock.get(root_url, status_code=200, text=pc_root_text)
@@ -629,4 +630,8 @@ class TestQueryables:
         api._stac_io._conformance = None
         api.set_self_href(None)
         with pytest.raises(ValueError, match="queryable href without a self href"):
+            api.get_queryables()
+
+        api._stac_io = None
+        with pytest.raises(APIError, match="API access is not properly configured"):
             api.get_queryables()
