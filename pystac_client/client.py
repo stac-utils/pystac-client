@@ -7,7 +7,7 @@ import pystac.validation
 from pystac import CatalogType, Collection
 from requests import Request
 
-from pystac_client._utils import Modifiable, call_modifier
+from pystac_client._utils import Modifiable, call_modifier, respond
 from pystac_client.collection_client import CollectionClient
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.errors import ClientTypeError
@@ -204,12 +204,13 @@ class Client(pystac.Catalog):
         return client
 
     def _supports_collections(self) -> bool:
-        return self._conforms_to(ConformanceClasses.COLLECTIONS) or self._conforms_to(
-            ConformanceClasses.FEATURES
-        )
-
-    def _conforms_to(self, conformance_class: ConformanceClasses) -> bool:
-        return self._stac_io.conforms_to(conformance_class)  # type: ignore
+        if not (
+            self._stac_io._conforms_to(ConformanceClasses.COLLECTIONS)
+            or self._stac_io._conforms_to(ConformanceClasses.FEATURES)
+        ):
+            respond("does_not_conform_to", "collections are not supported")
+            return False
+        return True
 
     @classmethod
     def from_dict(
@@ -255,10 +256,11 @@ class Client(pystac.Catalog):
             call_modifier(self.modifier, collection)
             return collection
         else:
-            for col in super().get_collections():
-                if col.id == collection_id:
-                    call_modifier(self.modifier, col)
-                    return col
+            respond("fallback_to_pystac", "Falling back to pystac. This might be slow.")
+            for collection in super().get_collections():
+                if collection.id == collection_id:
+                    call_modifier(self.modifier, collection)
+                    return collection
 
         return None
 
@@ -285,6 +287,7 @@ class Client(pystac.Catalog):
                     call_modifier(self.modifier, collection)
                     yield collection
         else:
+            respond("fallback_to_pystac", "Falling back to pystac. This might be slow.")
             for collection in super().get_collections():
                 call_modifier(self.modifier, collection)
                 yield collection
@@ -296,10 +299,11 @@ class Client(pystac.Catalog):
             Iterator[Item]:: Iterator of items whose parent is this
                 catalog.
         """
-        if self._conforms_to(ConformanceClasses.ITEM_SEARCH):
+        if self._stac_io.conforms_to(ConformanceClasses.ITEM_SEARCH):
             search = self.search()
             yield from search.items()
         else:
+            respond("fallback_to_pystac", "Falling back to pystac. This might be slow.")
             for item in super().get_items():
                 call_modifier(self.modifier, item)
                 yield item
@@ -313,13 +317,7 @@ class Client(pystac.Catalog):
                 catalogs or collections connected to this catalog through
                 child links.
         """
-        if self._conforms_to(ConformanceClasses.ITEM_SEARCH):
-            # these are already modified
-            yield from self.get_items()
-        else:
-            for item in super().get_items():
-                call_modifier(self.modifier, item)
-                yield item
+        yield from self.get_items()
 
     def search(
         self,
@@ -438,26 +436,10 @@ class Client(pystac.Catalog):
                 or does not have a link with
                 a ``"rel"`` type of ``"search"``.
         """
-        if not self._conforms_to(ConformanceClasses.ITEM_SEARCH):
-            raise NotImplementedError(
-                "This catalog does not support search because it "
-                f'does not conform to "{ConformanceClasses.ITEM_SEARCH}"'
-            )
-        search_link = self.get_search_link()
-        if search_link:
-            if isinstance(search_link.target, str):
-                search_href = search_link.target
-            else:
-                raise NotImplementedError(
-                    "Link with rel=search was an object rather than a URI"
-                )
-        else:
-            raise NotImplementedError(
-                "No link with rel=search could be found in this catalog"
-            )
+        self._stac_io.conforms_to(ConformanceClasses.ITEM_SEARCH)
 
         return ItemSearch(
-            url=search_href,
+            url=self._get_search_href(),
             method=method,
             max_items=max_items,
             stac_io=self._stac_io,
@@ -497,35 +479,32 @@ class Client(pystac.Catalog):
             None,
         )
 
-    def _get_collections_href(self, collection_id: Optional[str] = None) -> str:
-        self_href = self.get_self_href()
-        if self_href is None:
-            data_link = self.get_single_link("data")
-            if data_link is None:
-                raise ValueError(
-                    "cannot build a collections href without a self href or a data link"
-                )
-            else:
-                collections_href = data_link.href
+    def _get_search_href(self) -> str:
+        search_link = self.get_search_link()
+        if search_link and isinstance(search_link.href, str):
+            href = search_link.href
+            if not pystac.utils.is_absolute_href(href):
+                href = pystac.utils.make_absolute_href(href, self.self_href)
+            return href
         else:
-            collections_href = f"{self_href.rstrip('/')}/collections"
+            respond(
+                "missing_link", "No link with rel=search could be found in this catalog"
+            )
+            return f"{self.self_href.rsplit('/')}/search"
 
-        if not pystac.utils.is_absolute_href(collections_href):
-            collections_href = self._make_absolute_href(collections_href)
+    def _get_collections_href(self, collection_id: Optional[str] = None) -> str:
+        data_link = self.get_single_link("data")
+        if data_link and isinstance(data_link.href, str):
+            href = data_link.href
+            if not pystac.utils.is_absolute_href(href):
+                href = pystac.utils.make_absolute_href(href, self.self_href)
+        else:
+            respond(
+                "missing_link", "No link with rel=data could be found in this catalog"
+            )
+            href = f"{self.self_href.rstrip('/')}/collections"
 
         if collection_id is None:
-            return collections_href
+            return href
         else:
-            return f"{collections_href.rstrip('/')}/{collection_id}"
-
-    def _make_absolute_href(self, href: str) -> str:
-        self_link = self.get_single_link("self")
-        if self_link is None:
-            raise ValueError("cannot build an absolute href without a self link")
-        elif not pystac.utils.is_absolute_href(self_link.href):
-            raise ValueError(
-                "cannot build an absolute href from "
-                f"a relative self link: {self_link.href}"
-            )
-        else:
-            return pystac.utils.make_absolute_href(href, self_link.href)
+            return f"{href.rstrip('/')}/{collection_id}"

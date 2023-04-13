@@ -7,6 +7,7 @@ from requests_mock.mocker import Mocker
 
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.exceptions import APIError
+from pystac_client.options import set_options
 from pystac_client.stac_api_io import StacApiIO
 
 from .helpers import STAC_URLS
@@ -45,18 +46,19 @@ class TestSTAC_IOOverride:
 
         assert response == "Hi there!"
 
-    def test_assert_conforms_to(self) -> None:
+    def test_conforms_to_with_option_as_error(self) -> None:
         nonconformant = StacApiIO(conformance=[])
 
-        with pytest.raises(NotImplementedError):
-            nonconformant.assert_conforms_to(ConformanceClasses.CORE)
+        with set_options(on_does_not_conform_to="error"):
+            with pytest.raises(NotImplementedError):
+                nonconformant.conforms_to(ConformanceClasses.CORE)
 
-        conformant_io = StacApiIO(
-            conformance=["https://api.stacspec.org/v1.0.0-beta.1/core"]
-        )
+            conformant_io = StacApiIO(
+                conformance=["https://api.stacspec.org/v1.0.0-beta.1/core"]
+            )
 
-        # Check that this does not raise an exception
-        conformant_io.assert_conforms_to(ConformanceClasses.CORE)
+            # Check that this does not raise an exception
+            assert conformant_io.conforms_to(ConformanceClasses.CORE)
 
     def test_conforms_to(self) -> None:
         nonconformant = StacApiIO(conformance=[])

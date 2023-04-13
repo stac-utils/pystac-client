@@ -1,33 +1,32 @@
 from __future__ import annotations
-
 from typing import TYPE_CHECKING, Literal, TypedDict
 
 if TYPE_CHECKING:
     Options = Literal[
-        "enforce_conformance",
-        "fallback_to_pystac",
+        "on_does_not_conform_to",
+        "on_missing_link",
         "on_fallback_to_pystac",
-
     ]
 
     class T_Options(TypedDict):
-        enforce_conformance: bool
-        fallback_to_pystac: bool
+        on_does_not_conform_to: Literal["ignore", "warn", "error"]
+        on_missing_link: Literal["ignore", "warn", "error"]
         on_fallback_to_pystac: Literal["ignore", "warn", "error"]
 
+
 OPTIONS: T_Options = {
-    "enforce_conformance": True,
-    "fallback_to_pystac": True,
+    "on_does_not_conform_to": "warn",
+    "on_missing_link": "ignore",
     "on_fallback_to_pystac": "ignore",
 }
 
-_ON_FALLBACK_TO_PYSTAC = frozenset(["ignore", "warn", "error"])
+_ON_OPTIONS = frozenset(["ignore", "warn", "error"])
 
 
 _VALIDATORS = {
-    "enforce_conformance": lambda value: isinstance(value, bool),
-    "fallback_to_pystac": lambda value: isinstance(value, bool),
-    "on_fallback_to_pystac": _ON_FALLBACK_TO_PYSTAC.__contains__,
+    "on_does_not_conform_to": _ON_OPTIONS.__contains__,
+    "on_missing_link": _ON_OPTIONS.__contains__,
+    "on_fallback_to_pystac": _ON_OPTIONS.__contains__,
 }
 
 
@@ -37,12 +36,21 @@ class set_options:
 
     Parameters
     ----------
-    enforce_conformance : bool, default: True
-        Whether to enforce that conformance classes are properly set up.
-    fallback_to_pystac : bool, default: True
-        Whether to fall back to pystac implementation of methods if API
-        implementation is not available.
-    on_fallback_to_pystac : {"ignore", "warn", "error"}, default: "ignore
+    on_does_not_conform_to : {"ignore", "warn", "error"}, default: "warn"
+        How to inform user when client does not conform to extension
+
+        * ``ignore`` : to silently allow
+        * ``warn`` : to raise a warning
+        * ``error`` : to raise an error
+
+    on_missing_link : {"ignore", "warn", "error"}, default: "ignore"
+        How to inform user when link is properly implemented
+
+        * ``ignore`` : to silently allow
+        * ``warn`` : to raise a warning
+        * ``error`` : to raise an error
+
+    on_fallback_to_pystac : {"ignore", "warn", "error"}, default: "ignore"
         How to inform user when falling back to pystac implementation
 
         * ``ignore`` : to silently allow
@@ -53,12 +61,12 @@ class set_options:
     --------
     It is possible to use ``set_options`` either as a context manager:
 
-    >>> with set_options(enforce_conformance=False):
+    >>> with set_options(on_does_not_conform_to="ignore"):
     ...     Client.open(url)
 
     Or to set global options:
 
-    >>> set_options(fallback_to_pystac=False)
+    >>> set_options(on_fallback_to_pystac="error")
     """
 
     def __init__(self, **kwargs):
@@ -69,8 +77,7 @@ class set_options:
                     f"argument name {k!r} is not in the set of valid options {set(OPTIONS)!r}"
                 )
             if k in _VALIDATORS and not _VALIDATORS[k](v):
-                if k == "on_fallback_to_pystac":
-                    expected = f"Expected one of {_ON_FALLBACK_TO_PYSTAC!r}"
+                expected = f"Expected one of {_ON_OPTIONS!r}"
                 raise ValueError(
                     f"option {k!r} given an invalid value: {v!r}." + expected
                 )
@@ -87,7 +94,7 @@ class set_options:
         self._apply_update(self.old)
 
 
-def get_options(*fields: str):
+def get_options():
     """
     Get options for pystac-client
 
@@ -97,14 +104,3 @@ def get_options(*fields: str):
 
     """
     return OPTIONS
-
-
-# from dataclasses import dataclass, field
-
-
-# @dataclass
-# class Options:
-#     """Options for pystac"""
-#     enforce_conformance: bool = field(default=True)
-#     fallback_to_pystac: bool = field(default=True)
-#     on_fallback_to_pystac: Literal["ignore", "warn", "error"] = field(default="ignore")
