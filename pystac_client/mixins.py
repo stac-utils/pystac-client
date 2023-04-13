@@ -1,4 +1,4 @@
-from typing import Optional, Protocol, Dict, Any, Union
+from typing import Optional, Dict, Any
 import pystac
 from pystac_client.exceptions import APIError
 from pystac_client.conformance import ConformanceClasses
@@ -8,21 +8,11 @@ QUERYABLES_REL = "http://www.opengis.net/def/rel/ogc/1.0/queryables"
 QUERYABLES_ENDPOINT = "/queryables"
 
 
-class StacAPIProtocol(Protocol):
+class StacAPIObject(pystac.STACObject):
     _stac_io: Optional[StacApiIO]
 
-    def get_self_href(self) -> Optional[str]:
-        ...
 
-    def get_single_link(
-        self,
-        rel: Optional[Union[str, pystac.RelType]] = None,
-        media_type: Optional[Union[str, pystac.MediaType]] = None,
-    ) -> Optional[pystac.Link]:
-        ...
-
-
-class QueryablesMixin(StacAPIProtocol):
+class QueryablesMixin(StacAPIObject):
     """Mixin for adding support for /queryables endpoint"""
 
     def get_queryables(self) -> Dict[str, Any]:
