@@ -629,7 +629,7 @@ class TestQueryables:
         assert api._stac_io is not None
         api._stac_io._conformance = None
         api.set_self_href(None)
-        with pytest.raises(ValueError, match="queryable href without a self href"):
+        with pytest.raises(ValueError, match="does not have a self_href set"):
             api.get_queryables()
 
         api._stac_io = None

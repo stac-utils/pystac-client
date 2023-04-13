@@ -28,6 +28,7 @@ class QueryablesMixin(StacAPIObject):
 
         self._stac_io.assert_conforms_to(ConformanceClasses.FILTER)
         url = self._get_queryables_href()
+
         result = self._stac_io.read_json(url)
         if "properties" not in result:
             raise APIError(f"Invalid response from {QUERYABLES_ENDPOINT}")
@@ -41,8 +42,5 @@ class QueryablesMixin(StacAPIObject):
         else:
             # The queryables link should be defined at the root, but if it is not
             # try to guess the url
-            self_href = self.get_self_href()
-            if self_href is None:
-                raise ValueError("Cannot build a queryable href without a self href")
-            url = f"{self_href.rstrip('/')}{QUERYABLES_ENDPOINT}"
+            url = f"{self.self_href.rstrip('/')}{QUERYABLES_ENDPOINT}"
         return url
