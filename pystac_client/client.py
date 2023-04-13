@@ -7,7 +7,7 @@ import pystac.validation
 from pystac import CatalogType, Collection
 from requests import Request
 
-from pystac_client._utils import Modifiable, call_modifier, QueryableMixin
+from pystac_client._utils import Modifiable, call_modifier
 from pystac_client.collection_client import CollectionClient
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.errors import ClientTypeError
@@ -26,13 +26,14 @@ from pystac_client.item_search import (
     QueryLike,
     SortbyLike,
 )
+from pystac_client.mixins import QueryablesMixin
 from pystac_client.stac_api_io import StacApiIO
 
 if TYPE_CHECKING:
     from pystac.item import Item as Item_Type
 
 
-class Client(pystac.Catalog, QueryableMixin):
+class Client(pystac.Catalog, QueryablesMixin):
     """A Client for interacting with the root of a STAC Catalog or API
 
     Instances of the ``Client`` class inherit from :class:`pystac.Catalog`

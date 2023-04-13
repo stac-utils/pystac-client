@@ -2,17 +2,18 @@ from typing import TYPE_CHECKING, Any, Callable, Dict, Iterator, List, Optional,
 
 import pystac
 
-from pystac_client._utils import Modifiable, call_modifier, QueryableMixin
+from pystac_client._utils import Modifiable, call_modifier
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.exceptions import APIError
 from pystac_client.item_search import ItemSearch
+from pystac_client.mixins import QueryablesMixin
 from pystac_client.stac_api_io import StacApiIO
 
 if TYPE_CHECKING:
     from pystac.item import Item as Item_Type
 
 
-class CollectionClient(pystac.Collection, QueryableMixin):
+class CollectionClient(pystac.Collection, QueryablesMixin):
     modifier: Callable[[Modifiable], None]
     _stac_io: Optional[StacApiIO]
 
@@ -94,19 +95,11 @@ class CollectionClient(pystac.Collection, QueryableMixin):
         """
 
         link = self.get_single_link("items")
-        root = self.get_root()
-        if link is not None and root is not None:
-            # error: Argument "stac_io" to "ItemSearch" has incompatible type
-            # "Optional[StacIO]"; expected "Optional[StacApiIO]"  [arg-type]
-            # so we add these asserts
-            stac_io = root._stac_io
-            assert stac_io
-            assert isinstance(stac_io, StacApiIO)
-
+        if link is not None and self._stac_io is not None:
             search = ItemSearch(
                 url=link.href,
                 method="GET",
-                stac_io=stac_io,
+                stac_io=self._stac_io,
                 modifier=self.modifier,
             )
             yield from search.items()
@@ -137,43 +130,39 @@ class CollectionClient(pystac.Collection, QueryableMixin):
         """
         if not recursive:
             root = self.get_root()
-            assert root
-            stac_io = root._stac_io
-            assert stac_io
-            assert isinstance(stac_io, StacApiIO)
-            items_link = self.get_single_link("items")
-            if root:
+            if root and self._stac_io:
+                items_link = self.get_single_link("items")
                 search_link = root.get_single_link("search")
-            else:
-                search_link = None
-            if (
-                stac_io.conforms_to(ConformanceClasses.FEATURES)
-                and items_link is not None
-            ):
-                url = f"{items_link.href}/{id}"
-                try:
-                    obj = stac_io.read_stac_object(url, root=self)
-                    item = cast(Optional[pystac.Item], obj)
-                except APIError as err:
-                    if err.status_code and err.status_code == 404:
-                        return None
-                    else:
-                        raise err
-                assert isinstance(item, pystac.Item)
-            elif (
-                stac_io.conforms_to(ConformanceClasses.ITEM_SEARCH)
-                and search_link
-                and search_link.href
-            ):
-                item_search = ItemSearch(
-                    url=search_link.href,
-                    method="GET",
-                    stac_io=stac_io,
-                    ids=[id],
-                    collections=[self.id],
-                    modifier=self.modifier,
-                )
-                item = next(item_search.items(), None)
+                if (
+                    self._stac_io.conforms_to(ConformanceClasses.FEATURES)
+                    and items_link is not None
+                ):
+                    url = f"{items_link.href}/{id}"
+                    try:
+                        obj = self._stac_io.read_stac_object(url, root=self)
+                        item = cast(Optional[pystac.Item], obj)
+                    except APIError as err:
+                        if err.status_code and err.status_code == 404:
+                            return None
+                        else:
+                            raise err
+                    assert isinstance(item, pystac.Item)
+                elif (
+                    self._stac_io.conforms_to(ConformanceClasses.ITEM_SEARCH)
+                    and search_link
+                    and search_link.href
+                ):
+                    item_search = ItemSearch(
+                        url=search_link.href,
+                        method="GET",
+                        stac_io=self._stac_io,
+                        ids=[id],
+                        collections=[self.id],
+                        modifier=self.modifier,
+                    )
+                    item = next(item_search.items(), None)
+                else:
+                    item = super().get_item(id, recursive=False)
             else:
                 item = super().get_item(id, recursive=False)
         else:
