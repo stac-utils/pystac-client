@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Switched to Ruff from isort/flake8 [#457](https://github.com/stac-utils/pystac-client/pull/457)
 - Move to `FutureWarning` from `DeprecationWarning` for item search interface functions that are to be removed [#464](https://github.com/stac-utils/pystac-client/pull/464)
-- Consolidate contributing docs into one place [#442](https://github.com/stac-utils/pystac-client/issues/442)
+- Consolidate contributing docs into one place [#478](https://github.com/stac-utils/pystac-client/issues/478)
 
 ### Fixed
 
