@@ -255,7 +255,7 @@ class Client(pystac.Catalog):
             call_modifier(self.modifier, collection)
             return collection
         else:
-            for col in self.get_collections():
+            for col in super().get_collections():
                 if col.id == collection_id:
                     call_modifier(self.modifier, col)
                     return col
