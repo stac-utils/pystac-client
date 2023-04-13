@@ -2,7 +2,7 @@ from typing import TYPE_CHECKING, Any, Callable, Dict, Iterator, List, Optional,
 
 import pystac
 
-from pystac_client._utils import Modifiable, call_modifier
+from pystac_client._utils import Modifiable, call_modifier, QueryableMixin
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.exceptions import APIError
 from pystac_client.item_search import ItemSearch
@@ -12,8 +12,9 @@ if TYPE_CHECKING:
     from pystac.item import Item as Item_Type
 
 
-class CollectionClient(pystac.Collection):
+class CollectionClient(pystac.Collection, QueryableMixin):
     modifier: Callable[[Modifiable], None]
+    _stac_io: Optional[StacApiIO]
 
     def __init__(
         self,
@@ -68,6 +69,15 @@ class CollectionClient(pystac.Collection):
         # https://github.com/python/mypy/issues/2427
         setattr(result, "modifier", modifier)
         return result
+
+    def set_root(self, root: Optional[pystac.Catalog]) -> None:
+        # hook in to set_root and use it for setting _stac_io
+        super().set_root(root=root)
+        if root is not None and root._stac_io is not None:
+            if not isinstance(root._stac_io, StacApiIO):
+                raise ValueError("Root should be a Client object")
+            else:
+                self._stac_io = root._stac_io
 
     def __repr__(self) -> str:
         return "<CollectionClient id={}>".format(self.id)
@@ -173,31 +183,3 @@ class CollectionClient(pystac.Collection):
             call_modifier(self.modifier, item)
 
         return item
-
-    def get_queryables(self) -> Dict[str, Any]:
-        """Return all queryables.
-
-        Output is a dictionary that can be used in ``jsonshema.validate``
-
-        Return:
-            Dict[str, Any]: Dictionary containing queryable fields
-        """
-        root = self.get_root()
-        assert root
-        stac_io = root._stac_io
-        assert stac_io
-        assert isinstance(stac_io, StacApiIO)
-
-        stac_io.assert_conforms_to(ConformanceClasses.FILTER)
-
-        self_href = self.get_self_href()
-        if self_href is None:
-            raise ValueError("cannot build a queryable href without a self href")
-
-        url = f"{self_href.rstrip('/')}/queryables"
-
-        result = stac_io.read_json(url)
-        if "properties" not in result:
-            raise APIError("Invalid response from /queryables")
-
-        return result

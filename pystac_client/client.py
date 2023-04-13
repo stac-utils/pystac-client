@@ -7,7 +7,7 @@ import pystac.validation
 from pystac import CatalogType, Collection
 from requests import Request
 
-from pystac_client._utils import Modifiable, call_modifier
+from pystac_client._utils import Modifiable, call_modifier, QueryableMixin
 from pystac_client.collection_client import CollectionClient
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.errors import ClientTypeError
@@ -32,7 +32,7 @@ if TYPE_CHECKING:
     from pystac.item import Item as Item_Type
 
 
-class Client(pystac.Catalog):
+class Client(pystac.Catalog, QueryableMixin):
     """A Client for interacting with the root of a STAC Catalog or API
 
     Instances of the ``Client`` class inherit from :class:`pystac.Catalog`
@@ -498,29 +498,6 @@ class Client(pystac.Catalog):
             ),
             None,
         )
-
-    def get_queryables(self) -> Dict[str, Any]:
-        """Return all queryables.
-
-        Output is a dictionary that can be used in ``jsonshema.validate``
-
-        Return:
-            Dict[str, Any]: Dictionary containing queryable fields
-        """
-        assert self._stac_io is not None
-        self._stac_io.assert_conforms_to(ConformanceClasses.FILTER)
-
-        self_href = self.get_self_href()
-        if self_href is None:
-            raise ValueError("cannot build a queryable href without a self href")
-
-        url = f"{self_href.rstrip('/')}/queryables"
-
-        result = self._stac_io.read_json(url)
-        if "properties" not in result:
-            raise APIError("Invalid response from /queryables")
-
-        return result
 
     def _get_collections_href(self, collection_id: Optional[str] = None) -> str:
         self_href = self.get_self_href()
