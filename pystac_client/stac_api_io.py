@@ -265,15 +265,30 @@ class StacApiIO(DefaultStacIO):
                 (link for link in page.get("links", []) if link["rel"] == "next"), None
             )
 
-    def conforms_to(self, *conformance_classes: ConformanceClasses) -> bool:
-        """Raises a :exc:`NotImplementedError` if the API does not publish the given
+    def assert_conforms_to(self, *conformance_classes: ConformanceClasses) -> None:
+        """Raises a :exc:`DoesNotConformTo` if the API does not publish the given
         conformance class. This method only checks against the ``"conformsTo"``
         property from the API landing page and does not make any additional
         calls to a ``/conformance`` endpoint even if the API provides such an endpoint.
 
         Args:
-            conformance_class: The ``ConformanceClasses`` key to check conformance
-            against.
+            conformance_classes: The ``ConformanceClasses`` key to check conformance
+            against. If any match, this passes.
+        """
+        with warnings.catch_warnings(action="error", category=DoesNotConformTo):
+            self.conforms_to(*conformance_classes)
+
+    def conforms_to(self, *conformance_classes: ConformanceClasses) -> bool:
+        """Whether the API conforms to the given standards.
+
+        If False this method raises a ``DoesNotConformTo`` warning.
+        This method only checks against the ``"conformsTo"``
+        property from the API landing page and does not make any additional
+        calls to a ``/conformance`` endpoint even if the API provides such an endpoint.
+
+        Args:
+            conformance_classes: The ``ConformanceClasses`` key to check conformance
+            against. If any match, this returns True and does not warn.
         Return:
             bool: Indicates if the API conforms to the given spec or URI.
 

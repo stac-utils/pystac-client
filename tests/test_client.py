@@ -17,7 +17,7 @@ from pystac_client._utils import Modifiable
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.errors import ClientTypeError, IgnoredResultWarning
 from pystac_client.stac_api_io import StacApiIO
-from pystac_client.warnings import DoesNotConformTo, MissingLink, strict
+from pystac_client.warnings import DoesNotConformTo, MissingLink, strict, NoConformsTo
 
 from .helpers import STAC_URLS, TEST_DATA, read_data_file
 
@@ -501,7 +501,8 @@ class TestAPISearch:
             path = os.path.join(temporary_directory, "catalog.json")
             with open(path, "w") as f:
                 json.dump(data, f)
-            api = Client.from_file(path)
+            with pytest.warns(NoConformsTo, match="does not have 'conformsTo' set"):
+                api = Client.from_file(path)
 
         with strict():
             with pytest.raises(DoesNotConformTo, match="ITEM_SEARCH"):

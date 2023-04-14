@@ -28,7 +28,12 @@ from pystac_client.item_search import (
     SortbyLike,
 )
 from pystac_client.stac_api_io import StacApiIO
-from pystac_client.warnings import FALLBACK_MSG, FallbackToPystac, MissingLink
+from pystac_client.warnings import (
+    FALLBACK_MSG,
+    FallbackToPystac,
+    MissingLink,
+    NoConformsTo,
+)
 
 if TYPE_CHECKING:
     from pystac.item import Item as Item_Type
@@ -150,20 +155,8 @@ class Client(pystac.Catalog):
             request_modifier=request_modifier,
             stac_io=stac_io,
         )
-        search_link = client.get_search_link()
-        # if there is a search link, but no conformsTo advertised, ignore
-        # conformance entirely
-        # NOTE: this behavior to be deprecated as implementations become conformant
-        if client._stac_io and (
-            ignore_conformance
-            or (
-                client
-                and "conformsTo" not in client.extra_fields.keys()
-                and search_link
-                and search_link.href
-                and len(search_link.href) > 0
-            )
-        ):
+
+        if client._stac_io and ignore_conformance:
             client._stac_io.set_conformance(None)
 
         return client
@@ -198,9 +191,10 @@ class Client(pystac.Catalog):
 
         client: Client = super().from_file(href, stac_io)
 
-        client._stac_io._conformance = client.extra_fields.get(  # type: ignore
-            "conformsTo", []
-        )
+        stac_io._conformance = client.extra_fields.get("conformsTo", [])
+        if stac_io._conformance:
+            warnings.warn("Client does not have 'conformsTo' set", NoConformsTo)
+
         client.modifier = modifier
 
         return client
