@@ -145,7 +145,8 @@ class TestAPI:
             json={"collections": [pc_collection_dict], "links": []},
         )
         api.remove_links("data")
-        _ = next(api.get_collections())
+        with pytest.warns(MissingLink, match="No link with rel='data'"):
+            _ = next(api.get_collections())
         history = requests_mock.request_history
         assert len(history) == 2
         assert history[1].url == f"{root_url}collections"
@@ -225,8 +226,9 @@ class TestAPI:
         requests_mock.get(root_url, status_code=200, text=json.dumps(pc_root))
         api = Client.open(root_url)
         api.set_self_href(None)
-        with pytest.raises(ValueError):
-            _ = api.get_collection("an-id")
+        with pytest.warns(MissingLink, match="No link with rel='data'"):
+            with pytest.raises(ValueError, match="does not have a self_href set"):
+                _ = api.get_collection("an-id")
 
     def test_custom_request_parameters(self, requests_mock: Mocker) -> None:
         pc_root_text = read_data_file("planetary-computer-root.json")
@@ -432,14 +434,15 @@ class TestAPI:
             STAC_URLS["PLANETARY-COMPUTER"], status_code=200, json=pc_root_dict
         )
         api = Client.open(STAC_URLS["PLANETARY-COMPUTER"])
-        assert api._stac_io is not None
 
-        assert not api._stac_io.conforms_to(ConformanceClasses.COLLECTIONS)
+        with pytest.warns(DoesNotConformTo, match="COLLECTIONS"):
+            assert not api.conforms_to(ConformanceClasses.COLLECTIONS)
 
         # Mock the collection
         requests_mock.get(pc_collection_href, status_code=200, json=pc_collection_dict)
 
-        _ = next(api.get_collections())
+        with pytest.warns(DoesNotConformTo, match="COLLECTIONS, FEATURES"):
+            _ = next(api.get_collections())
 
         history = requests_mock.request_history
         assert len(history) == 2

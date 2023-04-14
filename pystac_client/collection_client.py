@@ -138,7 +138,7 @@ class CollectionClient(pystac.Collection):
             else:
                 search_link = None
             if (
-                stac_io.conforms_to(ConformanceClasses.FEATURES)
+                stac_io._conforms_to(ConformanceClasses.FEATURES)
                 and items_link is not None
             ):
                 url = f"{items_link.href}/{id}"
@@ -152,7 +152,7 @@ class CollectionClient(pystac.Collection):
                         raise err
                 assert isinstance(item, pystac.Item)
             elif (
-                stac_io.conforms_to(ConformanceClasses.ITEM_SEARCH)
+                stac_io._conforms_to(ConformanceClasses.ITEM_SEARCH)
                 and search_link
                 and search_link.href
             ):
