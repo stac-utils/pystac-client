@@ -158,6 +158,17 @@ class Client(pystac.Catalog):
 
         if client._stac_io and ignore_conformance:
             client._stac_io.set_conformance(None)
+        elif client._stac_io and (
+            "conformsTo" not in client.extra_fields.keys() and client._get_search_href()
+        ):
+            warnings.warn(
+                (
+                    "Client does not have conformance set. This is equivalent to "
+                    "setting `ignore_conformace=True`"
+                ),
+                NoConformsTo,
+            )
+            client._stac_io.set_conformance(None)
 
         return client
 
@@ -191,10 +202,9 @@ class Client(pystac.Catalog):
 
         client: Client = super().from_file(href, stac_io)
 
-        stac_io._conformance = client.extra_fields.get("conformsTo", [])
-        if stac_io._conformance:
-            warnings.warn("Client does not have 'conformsTo' set", NoConformsTo)
-
+        client._stac_io._conformance = client.extra_fields.get(  # type: ignore
+            "conformsTo", []
+        )
         client.modifier = modifier
 
         return client
