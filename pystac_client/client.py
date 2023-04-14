@@ -439,8 +439,6 @@ class Client(pystac.Catalog):
                 or does not have a link with
                 a ``"rel"`` type of ``"search"``.
         """
-        self.conforms_to(ConformanceClasses.ITEM_SEARCH)
-
         return ItemSearch(
             url=self._get_search_href(),
             method=method,

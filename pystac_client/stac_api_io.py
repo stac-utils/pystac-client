@@ -279,7 +279,10 @@ class StacApiIO(DefaultStacIO):
         if any(map(self._conforms_to, conformance_classes)):
             return True
         else:
-            msg = f"{conformance_classes} not supported"
+            msg = (
+                "Catalog does not conform to "
+                f"{', '.join(c.name for c in conformance_classes)}"
+            )
             pystac_client._utils.respond("does_not_conform_to", msg)
             return False
 
