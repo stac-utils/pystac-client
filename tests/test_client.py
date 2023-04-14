@@ -16,8 +16,8 @@ from pystac_client import Client, CollectionClient
 from pystac_client._utils import Modifiable
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.errors import ClientTypeError, IgnoredResultWarning
-from pystac_client.options import set_options
 from pystac_client.stac_api_io import StacApiIO
+from pystac_client.warnings import DoesNotConformTo, MissingLink, strict
 
 from .helpers import STAC_URLS, TEST_DATA, read_data_file
 
@@ -69,27 +69,27 @@ class TestAPI:
         client._stac_io._conformance = []
         assert client._stac_io is not None
 
-        with set_options(on_does_not_conform_to="error"):
-            with pytest.raises(NotImplementedError):
-                client._stac_io.conforms_to(ConformanceClasses.CORE)
+        with strict():
+            with pytest.raises(DoesNotConformTo):
+                client.conforms_to(ConformanceClasses.CORE)
 
-            with pytest.raises(NotImplementedError):
-                client._stac_io.conforms_to(ConformanceClasses.ITEM_SEARCH)
+            with pytest.raises(DoesNotConformTo):
+                client.conforms_to(ConformanceClasses.ITEM_SEARCH)
 
     @pytest.mark.vcr
     def test_no_stac_core_conformance(self) -> None:
-        """Should raise a NotImplementedError if the API does not conform to the
+        """Should raise a DoesNotConformTo if the API does not conform to the
         STAC API - Core spec."""
         client = Client.from_file(str(TEST_DATA / "planetary-computer-root.json"))
         assert client._stac_io is not None
         assert client._stac_io._conformance is not None
         client._stac_io._conformance = client._stac_io._conformance[1:]
 
-        with set_options(on_does_not_conform_to="error"):
-            with pytest.raises(NotImplementedError):
-                client._stac_io.conforms_to(ConformanceClasses.CORE)
+        with strict():
+            with pytest.raises(DoesNotConformTo):
+                client.conforms_to(ConformanceClasses.CORE)
 
-        assert client._stac_io.conforms_to(ConformanceClasses.ITEM_SEARCH)
+        assert client.conforms_to(ConformanceClasses.ITEM_SEARCH)
 
     @pytest.mark.vcr
     def test_from_file(self) -> None:
@@ -114,9 +114,8 @@ class TestAPI:
             STAC_URLS["PLANETARY-COMPUTER"], status_code=200, text=pc_root_text
         )
         api = Client.open(STAC_URLS["PLANETARY-COMPUTER"])
-        assert api._stac_io is not None
 
-        assert api._stac_io.conforms_to(ConformanceClasses.COLLECTIONS)
+        assert api.conforms_to(ConformanceClasses.COLLECTIONS)
 
         # Get & mock the collections (rel type "data") link
         collections_link = api.get_single_link("data")
@@ -471,25 +470,22 @@ class TestAPISearch:
         return Client.from_file(str(TEST_DATA / "planetary-computer-root.json"))
 
     def test_search_conformance_error(self, api: Client) -> None:
-        """Should raise a NotImplementedError if the API doesn't conform
-        to the Item Search spec. Message should
-        include information about the spec that was not conformed to."""
         # Set the conformance to only STAC API - Core
         assert api._stac_io is not None
         assert api._stac_io._conformance is not None
         api._stac_io._conformance = [api._stac_io._conformance[0]]
 
-        with set_options(on_does_not_conform_to="error"):
-            with pytest.raises(NotImplementedError, match="ITEM_SEARCH"):
+        with strict():
+            with pytest.raises(DoesNotConformTo, match="ITEM_SEARCH"):
                 api.search(limit=10, max_items=10, collections="mr-peebles")
 
     def test_no_search_link(self, api: Client) -> None:
         # Remove the search link
         api.remove_links("search")
 
-        with set_options(on_missing_link="error"):
+        with strict():
             with pytest.raises(
-                NotImplementedError,
+                MissingLink,
                 match="No link with rel='search' could be found in this catalog",
             ):
                 api.search(limit=10, max_items=10, collections="naip")
@@ -504,8 +500,8 @@ class TestAPISearch:
                 json.dump(data, f)
             api = Client.from_file(path)
 
-        with set_options(on_does_not_conform_to="error"):
-            with pytest.raises(NotImplementedError, match="ITEM_SEARCH"):
+        with strict():
+            with pytest.raises(DoesNotConformTo, match="ITEM_SEARCH"):
                 api.search(limit=10, max_items=10, collections="naip")
 
     def test_search(self, api: Client) -> None:

@@ -1,5 +1,6 @@
 from functools import lru_cache
 from typing import TYPE_CHECKING, Any, Callable, Dict, Iterator, List, Optional, Union
+import warnings
 
 import pystac
 import pystac.utils
@@ -7,7 +8,7 @@ import pystac.validation
 from pystac import CatalogType, Collection
 from requests import Request
 
-from pystac_client._utils import Modifiable, call_modifier, respond
+from pystac_client._utils import Modifiable, call_modifier
 from pystac_client.collection_client import CollectionClient
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.errors import ClientTypeError
@@ -27,6 +28,7 @@ from pystac_client.item_search import (
     SortbyLike,
 )
 from pystac_client.stac_api_io import StacApiIO
+from pystac_client.warnings import FALLBACK_MSG, FallbackToPystac, MissingLink
 
 if TYPE_CHECKING:
     from pystac.item import Item as Item_Type
@@ -259,7 +261,7 @@ class Client(pystac.Catalog):
             call_modifier(self.modifier, collection)
             return collection
         else:
-            respond("fallback_to_pystac", "Falling back to pystac. This might be slow.")
+            warnings.warn(FALLBACK_MSG, category=FallbackToPystac)
             for collection in super().get_collections():
                 if collection.id == collection_id:
                     call_modifier(self.modifier, collection)
@@ -290,7 +292,7 @@ class Client(pystac.Catalog):
                     call_modifier(self.modifier, collection)
                     yield collection
         else:
-            respond("fallback_to_pystac", "Falling back to pystac. This might be slow.")
+            warnings.warn(FALLBACK_MSG, category=FallbackToPystac)
             for collection in super().get_collections():
                 call_modifier(self.modifier, collection)
                 yield collection
@@ -306,7 +308,7 @@ class Client(pystac.Catalog):
             search = self.search()
             yield from search.items()
         else:
-            respond("fallback_to_pystac", "Falling back to pystac. This might be slow.")
+            warnings.warn(FALLBACK_MSG, category=FallbackToPystac)
             for item in super().get_items():
                 call_modifier(self.modifier, item)
                 yield item
@@ -499,8 +501,9 @@ class Client(pystac.Catalog):
             if not pystac.utils.is_absolute_href(href):
                 href = pystac.utils.make_absolute_href(href, self.self_href)
         else:
-            respond(
-                "missing_link", f"No link with {rel=} could be found in this catalog"
+            warnings.warn(
+                f"No link with {rel=} could be found in this catalog",
+                category=MissingLink,
             )
             href = f"{self.self_href.rstrip('/')}/{endpoint}"
         return href

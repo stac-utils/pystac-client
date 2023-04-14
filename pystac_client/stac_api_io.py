@@ -4,6 +4,7 @@ import re
 from copy import deepcopy
 from typing import TYPE_CHECKING, Any, Callable, Dict, Iterator, List, Optional, Union
 from urllib.parse import urlparse
+import warnings
 
 import pystac
 from pystac.link import Link
@@ -20,6 +21,7 @@ import pystac_client
 
 from .conformance import CONFORMANCE_URIS, ConformanceClasses
 from .exceptions import APIError
+from .warnings import DoesNotConformTo
 
 if TYPE_CHECKING:
     from pystac.catalog import Catalog as Catalog_Type
@@ -279,11 +281,13 @@ class StacApiIO(DefaultStacIO):
         if any(map(self._conforms_to, conformance_classes)):
             return True
         else:
-            msg = (
-                "Catalog does not conform to "
-                f"{', '.join(c.name for c in conformance_classes)}"
+            warnings.warn(
+                (
+                    "Catalog does not conform to "
+                    f"{', '.join(c.name for c in conformance_classes)}"
+                ),
+                category=DoesNotConformTo,
             )
-            pystac_client._utils.respond("does_not_conform_to", msg)
             return False
 
     def _conforms_to(self, conformance_class: ConformanceClasses) -> bool:
