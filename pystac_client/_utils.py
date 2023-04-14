@@ -1,10 +1,10 @@
 import warnings
-from typing import Callable, Optional, Union, Literal
+from typing import Callable, Optional, Union, Literal, cast
 
 import pystac
 
 from pystac_client.errors import IgnoredResultWarning
-from pystac_client.options import get_options
+from pystac_client.options import get_options, T_Keys
 
 Modifiable = Union[pystac.Collection, pystac.Item, pystac.ItemCollection, dict]
 
@@ -29,9 +29,9 @@ def call_modifier(
 def respond(
     event: Literal["does_not_conform_to", "missing_link", "fallback_to_pystac"],
     msg: str,
-):
+) -> None:
     """Response to event based on user-configured options"""
-    on_event = get_options()[f"on_{event}"]
+    on_event = get_options()[cast(T_Keys, f"on_{event}")]
     if on_event == "ignore":
         pass
     elif on_event == "warn":

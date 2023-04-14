@@ -263,7 +263,7 @@ class StacApiIO(DefaultStacIO):
                 (link for link in page.get("links", []) if link["rel"] == "next"), None
             )
 
-    def conforms_to(self, conformance_class: ConformanceClasses) -> bool:
+    def conforms_to(self, *conformance_classes: ConformanceClasses) -> bool:
         """Raises a :exc:`NotImplementedError` if the API does not publish the given
         conformance class. This method only checks against the ``"conformsTo"``
         property from the API landing page and does not make any additional
@@ -276,10 +276,10 @@ class StacApiIO(DefaultStacIO):
             bool: Indicates if the API conforms to the given spec or URI.
 
         """
-        if self._conforms_to(conformance_class):
+        if any(map(self._conforms_to, conformance_classes)):
             return True
         else:
-            msg = f"{conformance_class} not supported"
+            msg = f"{conformance_classes} not supported"
             pystac_client._utils.respond("does_not_conform_to", msg)
             return False
 

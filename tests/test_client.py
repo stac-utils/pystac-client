@@ -490,7 +490,7 @@ class TestAPISearch:
         with set_options(on_missing_link="error"):
             with pytest.raises(
                 NotImplementedError,
-                match="No link with rel=search could be found in this catalog",
+                match="No link with rel='search' could be found in this catalog",
             ):
                 api.search(limit=10, max_items=10, collections="naip")
 

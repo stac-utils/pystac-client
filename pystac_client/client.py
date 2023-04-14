@@ -203,14 +203,13 @@ class Client(pystac.Catalog):
 
         return client
 
+    def conforms_to(self, *conformance_classes: ConformanceClasses) -> bool:
+        return bool(self._stac_io and self._stac_io.conforms_to(*conformance_classes))
+
     def _supports_collections(self) -> bool:
-        if not (
-            self._stac_io._conforms_to(ConformanceClasses.COLLECTIONS)
-            or self._stac_io._conforms_to(ConformanceClasses.FEATURES)
-        ):
-            respond("does_not_conform_to", "collections are not supported")
-            return False
-        return True
+        return self.conforms_to(
+            ConformanceClasses.COLLECTIONS, ConformanceClasses.FEATURES
+        )
 
     @classmethod
     def from_dict(
@@ -237,15 +236,19 @@ class Client(pystac.Catalog):
         return result
 
     @lru_cache()
-    def get_collection(self, collection_id: str) -> Optional[Collection]:
+    def get_collection(
+        self, collection_id: str
+    ) -> Optional[Union[Collection, CollectionClient]]:
         """Get a single collection from this Catalog/API
 
         Args:
             collection_id: The Collection ID to get
 
         Returns:
-            CollectionClient: A STAC Collection
+            Union[Collection, CollectionClient]: A STAC Collection
         """
+        collection: Union[Collection, CollectionClient]
+
         if self._supports_collections() and self._stac_io:
             url = self._get_collections_href(collection_id)
             collection = CollectionClient.from_dict(
@@ -264,14 +267,14 @@ class Client(pystac.Catalog):
 
         return None
 
-    def get_collections(self) -> Iterator[Collection]:
+    def get_collections(self) -> Iterator[Union[Collection, CollectionClient]]:
         """Get Collections in this Catalog
 
             Gets the collections from the /collections endpoint if supported,
             otherwise fall back to Catalog behavior of following child links
 
         Return:
-            Iterator[Collection]: Iterator over Collections in Catalog/API
+            Iterator[Union[Collection, CollectionClient]]: Collections in Catalog/API
         """
         collection: Union[Collection, CollectionClient]
 
@@ -299,7 +302,7 @@ class Client(pystac.Catalog):
             Iterator[Item]:: Iterator of items whose parent is this
                 catalog.
         """
-        if self._stac_io.conforms_to(ConformanceClasses.ITEM_SEARCH):
+        if self.conforms_to(ConformanceClasses.ITEM_SEARCH):
             search = self.search()
             yield from search.items()
         else:
@@ -436,7 +439,7 @@ class Client(pystac.Catalog):
                 or does not have a link with
                 a ``"rel"`` type of ``"search"``.
         """
-        self._stac_io.conforms_to(ConformanceClasses.ITEM_SEARCH)
+        self.conforms_to(ConformanceClasses.ITEM_SEARCH)
 
         return ItemSearch(
             url=self._get_search_href(),
@@ -481,30 +484,25 @@ class Client(pystac.Catalog):
 
     def _get_search_href(self) -> str:
         search_link = self.get_search_link()
-        if search_link and isinstance(search_link.href, str):
-            href = search_link.href
-            if not pystac.utils.is_absolute_href(href):
-                href = pystac.utils.make_absolute_href(href, self.self_href)
-            return href
-        else:
-            respond(
-                "missing_link", "No link with rel=search could be found in this catalog"
-            )
-            return f"{self.self_href.rsplit('/')}/search"
+        href = self._get_href("search", search_link, "search")
+        return href
 
     def _get_collections_href(self, collection_id: Optional[str] = None) -> str:
         data_link = self.get_single_link("data")
-        if data_link and isinstance(data_link.href, str):
-            href = data_link.href
-            if not pystac.utils.is_absolute_href(href):
-                href = pystac.utils.make_absolute_href(href, self.self_href)
-        else:
-            respond(
-                "missing_link", "No link with rel=data could be found in this catalog"
-            )
-            href = f"{self.self_href.rstrip('/')}/collections"
-
+        href = self._get_href("data", data_link, "collections")
         if collection_id is None:
             return href
         else:
             return f"{href.rstrip('/')}/{collection_id}"
+
+    def _get_href(self, rel: str, link: Optional[pystac.Link], endpoint: str) -> str:
+        if link and isinstance(link.href, str):
+            href = link.href
+            if not pystac.utils.is_absolute_href(href):
+                href = pystac.utils.make_absolute_href(href, self.self_href)
+        else:
+            respond(
+                "missing_link", f"No link with {rel=} could be found in this catalog"
+            )
+            href = f"{self.self_href.rstrip('/')}/{endpoint}"
+        return href
