@@ -163,8 +163,8 @@ class Client(pystac.Catalog):
         ):
             warnings.warn(
                 (
-                    "Client does not have conformance set. This is equivalent to "
-                    "setting `ignore_conformace=True`"
+                    "Server does not advertise any conformance classes. This is equivalent to "
+                    "setting `ignore_conformace=True` on the client."
                 ),
                 NoConformsTo,
             )

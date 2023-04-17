@@ -36,7 +36,7 @@ class FallbackToPystac(PystacClientWarning):
 
 
 @contextmanager
-def strict():  # type: ignore
+def strict() -> Iterator[None]:
     """Context manager for raising all pystac-client warnings as errors
 
     For more fine-grained control or to set filter warnings in the whole
@@ -55,7 +55,7 @@ def strict():  # type: ignore
 
 
 @contextmanager
-def lax():  # type: ignore
+def ignore():  # type: ignore
     """Context manager for ignoring all pystac-client warnings
 
     For more fine-grained control or to set filter warnings in the whole
