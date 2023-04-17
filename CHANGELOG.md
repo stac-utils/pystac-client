@@ -17,6 +17,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `query` parameter in GET requests [#362](https://github.com/stac-utils/pystac-client/pull/362)
 - Double encoding of `intersects` parameter in GET requests [#362](https://github.com/stac-utils/pystac-client/pull/362)
 
+### Added
+
+- Support for fetching catalog queryables [#477](https://github.com/stac-utils/pystac-client/pull/477)
+
 ## [v0.6.1] - 2023-03-14
 
 ### Changed
