@@ -2,7 +2,7 @@ black~=23.3.0
 codespell~=2.2.4
 coverage~=7.2
 doc8~=1.1.1
-importlib-metadata~=6.3.0
+importlib-metadata~=6.4.1
 jsonschema~=4.17.3
 mypy~=1.2
 orjson==3.8.10
