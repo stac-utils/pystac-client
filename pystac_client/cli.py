@@ -82,12 +82,6 @@ def parse_args(args: List[str]) -> Dict[str, Any]:
         help="Additional request headers (KEY=VALUE pairs)",
         default=None,
     )
-    parent.add_argument(
-        "--ignore-conformance",
-        dest="ignore_conformance",
-        default=False,
-        action="store_true",
-    )
 
     subparsers = parser0.add_subparsers(dest="command")
 
@@ -232,10 +226,7 @@ def cli() -> int:
     try:
         url = args.pop("url")
         headers = args.pop("headers", {})
-        ignore_conformance = args.pop("ignore_conformance")
-        client = Client.open(
-            url, headers=headers, ignore_conformance=ignore_conformance
-        )
+        client = Client.open(url, headers=headers)
     except Exception as e:
         print(e)
         return 1

@@ -8,7 +8,7 @@ from requests_mock.mocker import Mocker
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.exceptions import APIError
 from pystac_client.stac_api_io import StacApiIO
-from pystac_client.warnings import lax, strict, DoesNotConformTo
+from pystac_client.warnings import ignore, strict, DoesNotConformTo
 
 from .helpers import STAC_URLS
 
@@ -63,7 +63,7 @@ class TestSTAC_IOOverride:
     def test_conforms_to(self) -> None:
         nonconformant = StacApiIO(conformance=[])
 
-        with lax():
+        with ignore():
             assert not nonconformant.conforms_to(ConformanceClasses.CORE)
 
         conformant_io = StacApiIO(

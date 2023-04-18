@@ -90,7 +90,6 @@ class Client(pystac.Catalog):
         url: str,
         headers: Optional[Dict[str, str]] = None,
         parameters: Optional[Dict[str, Any]] = None,
-        ignore_conformance: bool = False,
         modifier: Optional[Callable[[Modifiable], None]] = None,
         request_modifier: Optional[Callable[[Request], Union[Request, None]]] = None,
         stac_io: Optional[StacApiIO] = None,
@@ -104,11 +103,6 @@ class Client(pystac.Catalog):
                 made to any part of this Catalog/API.
             parameters: Optional dictionary of query string parameters to
                 include in all requests.
-            ignore_conformance : Ignore any advertised Conformance Classes in this
-                Catalog/API. This means that
-                functions will skip checking conformance, and may throw an unknown
-                error if that feature is
-                not supported, rather than a :class:`NotImplementedError`.
             modifier : A callable that modifies the children collection and items
                 returned by this Client. This can be useful for injecting
                 authentication parameters into child assets to access data
@@ -156,16 +150,11 @@ class Client(pystac.Catalog):
             stac_io=stac_io,
         )
 
-        if client._stac_io and ignore_conformance:
-            client._stac_io.set_conformance(None)
-        elif client._stac_io and (
+        if client._stac_io and (
             "conformsTo" not in client.extra_fields.keys() and client._get_search_href()
         ):
             warnings.warn(
-                (
-                    "Server does not advertise any conformance classes. This is equivalent to "
-                    "setting `ignore_conformace=True` on the client."
-                ),
+                "Server does not advertise any conformance classes.",
                 NoConformsTo,
             )
             client._stac_io.set_conformance(None)

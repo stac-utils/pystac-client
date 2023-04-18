@@ -1,4 +1,5 @@
 from contextlib import contextmanager
+from typing import Iterator
 import warnings
 
 
@@ -45,13 +46,14 @@ def strict() -> Iterator[None]:
     Examples:
 
     >>> import warnings
-    ... warnings.filterwarnings("error", category=FallbackToPystac)
+    >>> warnings.filterwarnings("error", category=FallbackToPystac)
     """
+
     warnings.filterwarnings("error", category=PystacClientWarning)
     try:
         yield
     finally:
-        warnings.resetwarnings()
+        warnings.filterwarnings("default", category=PystacClientWarning)
 
 
 @contextmanager
@@ -64,10 +66,10 @@ def ignore():  # type: ignore
     Examples:
 
     >>> import warnings
-    ... warnings.filterwarnings("ignore", category=FallbackToPystac)
+    >>> warnings.filterwarnings("ignore", category=FallbackToPystac)
     """
     warnings.filterwarnings("ignore", category=PystacClientWarning)
     try:
         yield
     finally:
-        warnings.resetwarnings()
+        warnings.filterwarnings("default", category=PystacClientWarning)
