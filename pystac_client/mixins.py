@@ -1,5 +1,7 @@
 from typing import Optional, Dict, Any
+
 import pystac
+
 from pystac_client.exceptions import APIError
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.stac_api_io import StacApiIO
@@ -31,7 +33,10 @@ class QueryablesMixin(StacAPIObject):
 
         result = self._stac_io.read_json(url)
         if "properties" not in result:
-            raise APIError(f"Invalid response from {QUERYABLES_ENDPOINT}: expected 'properties' attribute")
+            raise APIError(
+                f"Invalid response from {QUERYABLES_ENDPOINT}: "
+                "expected 'properties' attribute"
+            )
 
         return result
 
