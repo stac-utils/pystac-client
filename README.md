@@ -6,7 +6,6 @@
 [![Documentation](https://readthedocs.org/projects/pystac-client/badge/?version=latest)](https://pystac-client.readthedocs.io/en/latest/)
 [![codecov](https://codecov.io/gh/stac-utils/pystac-client/branch/main/graph/badge.svg)](https://codecov.io/gh/stac-utils/pystac-client)
 
-
 A Python client for working with [STAC](https://stacspec.org/) Catalogs and APIs.
 
 ## Table of Contents
@@ -21,7 +20,7 @@ A Python client for working with [STAC](https://stacspec.org/) Catalogs and APIs
 Install from PyPi. Other than [PySTAC](https://pystac.readthedocs.io) itself, the only dependencies for pystac-client is the Python [requests](https://docs.python-requests.org) and [dateutil](https://dateutil.readthedocs.io) libraries.
 
 ```shell
-$ pip install pystac-client
+pip install pystac-client
 ```
 
 ## Documentation
@@ -30,4 +29,4 @@ See the [documentation page](https://pystac-client.readthedocs.io/en/latest/) fo
 
 ## Development
 
-See the [contributing page](https://pystac-client.readthedocs.io/en/latest/contributing) for the latest development instructions.
+See the [contributing page](https://pystac-client.readthedocs.io/en/latest/contributing.html) for the latest development instructions.
