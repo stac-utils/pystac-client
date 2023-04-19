@@ -31,7 +31,7 @@ class QueryablesMixin(StacAPIObject):
 
         result = self._stac_io.read_json(url)
         if "properties" not in result:
-            raise APIError(f"Invalid response from {QUERYABLES_ENDPOINT}")
+            raise APIError(f"Invalid response from {QUERYABLES_ENDPOINT}: expected 'properties' attribute")
 
         return result
 
