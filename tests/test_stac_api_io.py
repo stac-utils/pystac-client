@@ -5,10 +5,8 @@ from urllib.parse import parse_qs, urlsplit
 import pytest
 from requests_mock.mocker import Mocker
 
-from pystac_client.conformance import ConformanceClasses
 from pystac_client.exceptions import APIError
 from pystac_client.stac_api_io import StacApiIO
-from pystac_client.warnings import ignore, strict, DoesNotConformTo
 
 from .helpers import STAC_URLS
 
@@ -45,33 +43,6 @@ class TestSTAC_IOOverride:
         response = stac_api_io.read_text(str(test_file))
 
         assert response == "Hi there!"
-
-    def test_conforms_to_with_option_as_error(self) -> None:
-        nonconformant = StacApiIO(conformance=[])
-
-        with strict():
-            with pytest.raises(DoesNotConformTo):
-                nonconformant.conforms_to(ConformanceClasses.CORE)
-
-            conformant_io = StacApiIO(
-                conformance=["https://api.stacspec.org/v1.0.0-beta.1/core"]
-            )
-
-            # Check that this does not raise an exception
-            assert conformant_io.conforms_to(ConformanceClasses.CORE)
-
-    def test_conforms_to(self) -> None:
-        nonconformant = StacApiIO(conformance=[])
-
-        with ignore():
-            assert not nonconformant.conforms_to(ConformanceClasses.CORE)
-
-        conformant_io = StacApiIO(
-            conformance=["https://api.stacspec.org/v1.0.0-beta.1/core"]
-        )
-
-        # Check that this does not raise an exception
-        assert conformant_io.conforms_to(ConformanceClasses.CORE)
 
     def test_custom_headers(self, requests_mock: Mocker) -> None:
         """Checks that headers passed to the init method are added to requests."""

@@ -2,6 +2,7 @@ import pytest
 
 from pystac_client import CollectionClient
 from pystac_client.client import Client
+from pystac_client.warnings import FallbackToPystac
 
 from .helpers import STAC_URLS
 
@@ -41,22 +42,23 @@ class TestCollectionClient:
         client = Client.open(STAC_URLS["PLANETARY-COMPUTER"])
         collection = client.get_collection("aster-l1t")
         assert collection is not None
-        assert client._stac_io
-        client._stac_io.set_conformance(
+
+        client.set_conforms_to(
             [
                 "https://api.stacspec.org/v1.0.0-rc.2/core",
                 "https://api.stacspec.org/v1.0.0-rc.2/item-search",
             ]
         )
+
         item = collection.get_item("AST_L1T_00312272006020322_20150518201805")
         assert item
         assert item.id == "AST_L1T_00312272006020322_20150518201805"
 
         item = collection.get_item("for-sure-not-a-real-id")
         assert item is None
-
-        item = collection.get_item(
-            "AST_L1T_00312272006020322_20150518201805", recursive=True
-        )
+        with pytest.warns(FallbackToPystac):
+            item = collection.get_item(
+                "AST_L1T_00312272006020322_20150518201805", recursive=True
+            )
         assert item
         assert item.id == "AST_L1T_00312272006020322_20150518201805"

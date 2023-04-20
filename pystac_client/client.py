@@ -1,5 +1,16 @@
 from functools import lru_cache
-from typing import TYPE_CHECKING, Any, Callable, Dict, Iterator, List, Optional, Union
+import re
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Callable,
+    cast,
+    Dict,
+    Iterator,
+    List,
+    Optional,
+    Union,
+)
 import warnings
 
 import pystac
@@ -10,7 +21,8 @@ from requests import Request
 
 from pystac_client._utils import Modifiable, call_modifier
 from pystac_client.collection_client import CollectionClient
-from pystac_client.conformance import ConformanceClasses
+from pystac_client.conformance import CONFORMANCE_URIS, ConformanceClasses
+
 from pystac_client.errors import ClientTypeError
 from pystac_client.exceptions import APIError
 from pystac_client.item_search import (
@@ -29,9 +41,10 @@ from pystac_client.item_search import (
 )
 from pystac_client.stac_api_io import StacApiIO
 from pystac_client.warnings import (
+    DOES_NOT_CONFORM_TO,
+    DoesNotConformTo,
     FALLBACK_MSG,
     FallbackToPystac,
-    MissingLink,
     NoConformsTo,
 )
 
@@ -150,14 +163,11 @@ class Client(pystac.Catalog):
             stac_io=stac_io,
         )
 
-        if client._stac_io and (
-            "conformsTo" not in client.extra_fields.keys() and client._get_search_href()
-        ):
+        if not client.has_conforms_to():
             warnings.warn(
                 "Server does not advertise any conformance classes.",
                 NoConformsTo,
             )
-            client._stac_io.set_conformance(None)
 
         return client
 
@@ -190,21 +200,43 @@ class Client(pystac.Catalog):
             )
 
         client: Client = super().from_file(href, stac_io)
-
-        client._stac_io._conformance = client.extra_fields.get(  # type: ignore
-            "conformsTo", []
-        )
         client.modifier = modifier
 
         return client
 
-    def conforms_to(self, *conformance_classes: ConformanceClasses) -> bool:
-        return bool(self._stac_io and self._stac_io.conforms_to(*conformance_classes))
+    def has_conforms_to(self) -> bool:
+        return bool(self._stac_io and "conformsTo" in self.extra_fields)
 
-    def _supports_collections(self) -> bool:
-        return self.conforms_to(
-            ConformanceClasses.COLLECTIONS, ConformanceClasses.FEATURES
-        )
+    def get_conforms_to(self) -> List[str]:
+        return cast(List[str], self.extra_fields.get("conformsTo", []).copy())
+
+    def set_conforms_to(self, conformance_classes: List[str]) -> None:
+        self.extra_fields["conformsTo"] = conformance_classes
+
+    def conforms_to(self, conformance_class: ConformanceClasses) -> bool:
+        """Whether the API conforms to the given standard. This method only checks
+        against the ``"conformsTo"`` property from the API landing page and does not
+        make any additional calls to a ``/conformance`` endpoint even if the API
+        provides such an endpoint.
+
+        Args:
+            conformance_class : The ``ConformanceClasses`` key to check conformance
+                against.
+
+        Return:
+            bool: Indicates if the API conforms to the given spec or URI.
+        """
+        class_regex = CONFORMANCE_URIS.get(conformance_class.name, None)
+
+        if class_regex is None:
+            raise Exception(f"Invalid conformance class {conformance_class}")
+
+        pattern = re.compile(class_regex)
+
+        if not any(re.match(pattern, uri) for uri in self.get_conforms_to()):
+            return False
+
+        return True
 
     @classmethod
     def from_dict(
@@ -244,23 +276,30 @@ class Client(pystac.Catalog):
         """
         collection: Union[Collection, CollectionClient]
 
-        if self._supports_collections() and self._stac_io:
-            url = self._get_collections_href(collection_id)
+        if self.conforms_to(ConformanceClasses.COLLECTIONS) or self.conforms_to(
+            ConformanceClasses.FEATURES
+        ):
+            assert self._stac_io is not None
+
+            url = self._collections_href()
+            url = f"{url.rstrip('/')}/{collection_id}"
             collection = CollectionClient.from_dict(
                 self._stac_io.read_json(url),
                 root=self,
                 modifier=self.modifier,
             )
             call_modifier(self.modifier, collection)
-            return collection
         else:
+            if self.has_conforms_to():
+                warnings.warn(
+                    DOES_NOT_CONFORM_TO("COLLECTIONS or FEATURES"),
+                    category=DoesNotConformTo,
+                )
             warnings.warn(FALLBACK_MSG, category=FallbackToPystac)
             for collection in super().get_collections():
                 if collection.id == collection_id:
                     call_modifier(self.modifier, collection)
-                    return collection
-
-        return None
+        return collection
 
     def get_collections(self) -> Iterator[Union[Collection, CollectionClient]]:
         """Get Collections in this Catalog
@@ -273,8 +312,12 @@ class Client(pystac.Catalog):
         """
         collection: Union[Collection, CollectionClient]
 
-        if self._supports_collections() and self._stac_io:
-            url = self._get_collections_href()
+        if self.conforms_to(ConformanceClasses.COLLECTIONS) or self.conforms_to(
+            ConformanceClasses.FEATURES
+        ):
+            assert self._stac_io is not None
+
+            url = self._collections_href()
             for page in self._stac_io.get_pages(url):
                 if "collections" not in page:
                     raise APIError("Invalid response from /collections")
@@ -285,6 +328,11 @@ class Client(pystac.Catalog):
                     call_modifier(self.modifier, collection)
                     yield collection
         else:
+            if self.has_conforms_to():
+                warnings.warn(
+                    DOES_NOT_CONFORM_TO("COLLECTIONS or FEATURES"),
+                    category=DoesNotConformTo,
+                )
             warnings.warn(FALLBACK_MSG, category=FallbackToPystac)
             for collection in super().get_collections():
                 call_modifier(self.modifier, collection)
@@ -301,6 +349,11 @@ class Client(pystac.Catalog):
             search = self.search()
             yield from search.items()
         else:
+            if self.has_conforms_to():
+                warnings.warn(
+                    DOES_NOT_CONFORM_TO("ITEM_SEARCH"),
+                    category=DoesNotConformTo,
+                )
             warnings.warn(FALLBACK_MSG, category=FallbackToPystac)
             for item in super().get_items():
                 call_modifier(self.modifier, item)
@@ -434,11 +487,14 @@ class Client(pystac.Catalog):
                 or does not have a link with
                 a ``"rel"`` type of ``"search"``.
         """
+
+        if not self.conforms_to(ConformanceClasses.ITEM_SEARCH):
+            raise DoesNotConformTo(DOES_NOT_CONFORM_TO("ITEM_SEARCH"))
+
         return ItemSearch(
-            url=self._get_search_href(),
+            url=self._search_href(),
             method=method,
             max_items=max_items,
-            stac_io=self._stac_io,
             client=self,
             limit=limit,
             ids=ids,
@@ -475,28 +531,12 @@ class Client(pystac.Catalog):
             None,
         )
 
-    def _get_search_href(self) -> str:
+    def _search_href(self) -> str:
         search_link = self.get_search_link()
-        href = self._get_href("search", search_link, "search")
+        href = StacApiIO._get_href(self, "search", search_link, "search")
         return href
 
-    def _get_collections_href(self, collection_id: Optional[str] = None) -> str:
+    def _collections_href(self) -> str:
         data_link = self.get_single_link("data")
-        href = self._get_href("data", data_link, "collections")
-        if collection_id is None:
-            return href
-        else:
-            return f"{href.rstrip('/')}/{collection_id}"
-
-    def _get_href(self, rel: str, link: Optional[pystac.Link], endpoint: str) -> str:
-        if link and isinstance(link.href, str):
-            href = link.href
-            if not pystac.utils.is_absolute_href(href):
-                href = pystac.utils.make_absolute_href(href, self.self_href)
-        else:
-            warnings.warn(
-                f"No link with {rel=} could be found in this catalog",
-                category=MissingLink,
-            )
-            href = f"{self.self_href.rstrip('/')}/{endpoint}"
+        href = StacApiIO._get_href(self, "data", data_link, "collections")
         return href

@@ -1,8 +1,7 @@
 import json
 import logging
-import re
 from copy import deepcopy
-from typing import TYPE_CHECKING, Any, Callable, Dict, Iterator, List, Optional, Union
+from typing import TYPE_CHECKING, Any, Callable, Dict, Iterator, Optional, Union
 from urllib.parse import urlparse
 import warnings
 
@@ -19,9 +18,7 @@ from requests import Request, Session
 
 import pystac_client
 
-from .conformance import CONFORMANCE_URIS, ConformanceClasses
 from .exceptions import APIError
-from .warnings import DoesNotConformTo
 
 if TYPE_CHECKING:
     from pystac.catalog import Catalog as Catalog_Type
@@ -34,7 +31,6 @@ class StacApiIO(DefaultStacIO):
     def __init__(
         self,
         headers: Optional[Dict[str, str]] = None,
-        conformance: Optional[List[str]] = None,
         parameters: Optional[Dict[str, Any]] = None,
         request_modifier: Optional[Callable[[Request], Union[Request, None]]] = None,
     ):
@@ -42,8 +38,6 @@ class StacApiIO(DefaultStacIO):
 
         Args:
             headers : Optional dictionary of headers to include in all requests
-            conformance : Optional list of `Conformance Classes
-                <https://github.com/radiantearth/stac-api-spec/blob/master/overview.md#conformance-classes>`__.
             parameters: Optional dictionary of query string parameters to
               include in all requests.
             request_modifier: Optional callable that can be used to modify Request
@@ -56,7 +50,6 @@ class StacApiIO(DefaultStacIO):
         """
         # TODO - this should super() to parent class
         self.session = Session()
-        self._conformance = conformance
         self.update(
             headers=headers, parameters=parameters, request_modifier=request_modifier
         )
@@ -222,6 +215,7 @@ class StacApiIO(DefaultStacIO):
             return result
 
         if info.object_type == pystac.STACObjectType.COLLECTION:
+            assert isinstance(root, pystac_client.client.Client)
             return pystac_client.collection_client.CollectionClient.from_dict(
                 d, href=str(href), root=root, migrate=False, preserve_dict=preserve_dict
             )
@@ -265,80 +259,19 @@ class StacApiIO(DefaultStacIO):
                 (link for link in page.get("links", []) if link["rel"] == "next"), None
             )
 
-    def assert_conforms_to(self, *conformance_classes: ConformanceClasses) -> None:
-        """Raises a :exc:`DoesNotConformTo` if the API does not publish the given
-        conformance class. This method only checks against the ``"conformsTo"``
-        property from the API landing page and does not make any additional
-        calls to a ``/conformance`` endpoint even if the API provides such an endpoint.
-
-        Args:
-            conformance_classes: The ``ConformanceClasses`` key to check conformance
-            against. If any match, this passes.
-        """
-        with warnings.catch_warnings(action="error", category=DoesNotConformTo):
-            self.conforms_to(*conformance_classes)
-
-    def conforms_to(self, *conformance_classes: ConformanceClasses) -> bool:
-        """Whether the API conforms to the given standards.
-
-        If False this method raises a ``DoesNotConformTo`` warning.
-        This method only checks against the ``"conformsTo"``
-        property from the API landing page and does not make any additional
-        calls to a ``/conformance`` endpoint even if the API provides such an endpoint.
-
-        Args:
-            conformance_classes: The ``ConformanceClasses`` key to check conformance
-            against. If any match, this returns True and does not warn.
-        Return:
-            bool: Indicates if the API conforms to the given spec or URI.
-
-        """
-        if any(map(self._conforms_to, conformance_classes)):
-            return True
+    @staticmethod
+    def _get_href(
+        obj: "STACObject_Type", rel: str, link: Optional[pystac.Link], endpoint: str
+    ) -> str:
+        if link and isinstance(link.href, str):
+            href = link.absolute_href
         else:
             warnings.warn(
-                (
-                    "Catalog does not conform to "
-                    f"{', '.join(c.name for c in conformance_classes)}"
-                ),
-                category=DoesNotConformTo,
+                f"No link with {rel=} could be found on this {obj.__class__.__name__}.",
+                category=pystac_client.warnings.MissingLink,
             )
-            return False
-
-    def _conforms_to(self, conformance_class: ConformanceClasses) -> bool:
-        """Whether the API conforms to the given standard. This method only checks
-        against the ``"conformsTo"`` property from the API landing page and does not
-        make any additional calls to a ``/conformance`` endpoint even if the API
-        provides such an endpoint.
-
-        Args:
-            conformance_class : The ``ConformanceClasses`` key to check conformance
-                against.
-
-        Return:
-            bool: Indicates if the API conforms to the given spec or URI.
-        """
-
-        # Conformance of None means ignore all conformance as opposed to an
-        #  empty array which would indicate the API conforms to nothing
-        if self._conformance is None:
-            return True
-
-        class_regex = CONFORMANCE_URIS.get(conformance_class.name, None)
-
-        if class_regex is None:
-            raise Exception(f"Invalid conformance class {conformance_class}")
-
-        pattern = re.compile(class_regex)
-
-        if not any(re.match(pattern, uri) for uri in self._conformance):
-            return False
-
-        return True
-
-    def set_conformance(self, conformance: Optional[List[str]]) -> None:
-        """Sets (or clears) the conformance classes for this StacIO."""
-        self._conformance = conformance
+            href = f"{obj.self_href.rstrip('/')}/{endpoint}"
+        return href
 
 
 def _is_url(href: str) -> bool:

@@ -1,9 +1,15 @@
 from contextlib import contextmanager
-from typing import Iterator
+from typing import Iterator, Union
 import warnings
+
+from pystac_client.conformance import ConformanceClasses
 
 
 FALLBACK_MSG = "Falling back to pystac. This might be slow."
+
+
+def DOES_NOT_CONFORM_TO(conformance_class: Union[str, ConformanceClasses]) -> str:
+    return f"Server does not conform to {conformance_class}"
 
 
 class PystacClientWarning(UserWarning):
@@ -25,7 +31,7 @@ class DoesNotConformTo(PystacClientWarning):
 
 
 class MissingLink(PystacClientWarning):
-    """Inform user when link is properly implemented"""
+    """Inform user when link is not found"""
 
     ...
 
@@ -57,7 +63,7 @@ def strict() -> Iterator[None]:
 
 
 @contextmanager
-def ignore():  # type: ignore
+def ignore() -> Iterator[None]:
     """Context manager for ignoring all pystac-client warnings
 
     For more fine-grained control or to set filter warnings in the whole
