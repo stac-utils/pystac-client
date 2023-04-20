@@ -11,11 +11,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Switched to Ruff from isort/flake8 [#457](https://github.com/stac-utils/pystac-client/pull/457)
 - Move to `FutureWarning` from `DeprecationWarning` for item search interface functions that are to be removed [#464](https://github.com/stac-utils/pystac-client/pull/464)
+- Consolidate contributing docs into one place [#478](https://github.com/stac-utils/pystac-client/issues/478)
 
 ### Fixed
 
 - `query` parameter in GET requests [#362](https://github.com/stac-utils/pystac-client/pull/362)
 - Double encoding of `intersects` parameter in GET requests [#362](https://github.com/stac-utils/pystac-client/pull/362)
+- Fix geometry instantiation in item-search-intersects.ipynb [#484](https://github.com/stac-utils/pystac-client/pull/484)
+- Three tests that were false positives due to out-of-date cassettes [#491](https://github.com/stac-utils/pystac-client/pull/491)
 
 ## [v0.6.1] - 2023-03-14
 
