@@ -653,8 +653,24 @@ class TestItemSearch:
         # is requested
         pages = list(search.pages())
 
-        assert pages[1] != pages[2]
-        assert pages[1].items != pages[2].items
+        assert pages[0] != pages[1]
+        assert pages[0].items != pages[1].items
+
+    @pytest.mark.vcr
+    def test_result_paging_max_items(self) -> None:
+        search = ItemSearch(
+            url=SEARCH_URL,
+            collections="naip",
+            limit=10,
+            max_items=25,
+        )
+        num_pages = 0
+        items = list()
+        for page in search.pages_as_dicts():
+            num_pages += 1
+            items.extend(page["features"])
+        assert num_pages == 3
+        assert len(items) == 25
 
     @pytest.mark.vcr
     def test_item_collection(self) -> None:

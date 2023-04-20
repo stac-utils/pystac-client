@@ -19,7 +19,7 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIACZsQWQC/+2cW4/iNhSA/wpC6r6USXxJHIdqVGmn6qqV2q22+9QRQgEMZDckUZK5tdr/3mMn
+        H4sIAN9tQWQC/+2cW4/iNhSA/wpC6r6USXxJHIdqVGmn6qqV2q22+9QRQgEMZDckUZK5tdr/3mMn
         AQcyMCzDcAsaRuA49rnl8MWx/V87e4pFu9v+VXjZXSJuoiAQw8yPwnanPc7L0nb39r+2P4Ja91l/
         1rcs5FBm9dOHPuZ9xFCfIMwxwq784CJCbDh5MIge4cQrhxqYIt6xqOG6DLukI4uQzRhxO5ZlIMYo
         cnqdJUGghcAPv+Z9JyKAI0NdtqK2F8eBP/RkofklVUemiRjDkWmWxWnXNOPAC0XmJU/DaBbfZSIx
@@ -58,26 +58,30 @@ interactions:
         0w7ip749Rm+VYEPxmG2ELIjgaSQZ+6+Pf3/eDbpSCIXhVOJ4NFIXRQA/61m7i1GV0POHIW5O5vmN
         INwbarGqbKyiVV560VcRFtp0NwDcEXHs7t0U5gRc+B8mSv9AInIAAA==
     headers:
+      Accept-Ranges:
+      - bytes
       Access-Control-Allow-Credentials:
       - 'true'
       Access-Control-Allow-Origin:
       - '*'
-      Content-Encoding:
-      - gzip
+      Connection:
+      - keep-alive
       Content-Length:
       - '2149'
       Content-Type:
       - application/geo+json
       Date:
-      - Thu, 20 Apr 2023 16:45:25 GMT
+      - Thu, 20 Apr 2023 16:52:47 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
-      Vary:
-      - Accept-Encoding
-      X-Azure-Ref:
-      - 0JWxBZAAAAADY4JLgin9pTLLdcMIHuK14REVOMzAxMDAwMTA5MDMzADkyN2FiZmE2LTE5ZjYtNGFmMS1hMDlkLWM5NTlkOWExZTY0NA==
       X-Cache:
       - CONFIG_NOCACHE
+      content-encoding:
+      - gzip
+      vary:
+      - Accept-Encoding
+      x-azure-ref:
+      - 20230420T165247Z-tftb77d56d3778hnqxff1fw2ag00000001bg00000000g4xa
     status:
       code: 200
       message: OK
@@ -102,7 +106,7 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIACZsQWQC/+2d62/iuBbA/xWEtPNlafAjcRyuqpW2VzvaK+3OanY+3VGFAhjILCRRkr7uav73
+        H4sIAN9tQWQC/+2d62/iuBbA/xWEtPNlafAjcRyuqpW2VzvaK+3OanY+3VGFAhjILCRRkr7uav73
         e+wkxASaQls2PFy1FTiOz8Mn5pdTn/TvbvYUi+6g+4vws7tE3ESLhRhnQRR2e91p3pZ2B1//7gYT
         6HWfDZdD20YuZXSYiiHmw/mQIMwQRzacMRpFj9D7yqUW9iihtGdTy/MYIW5PNWIPe6Rn2xZijLjk
         tleTD2MsgvCvXGQiFnBkrKtU9PbjeBGMfdnY/5aqI/NETOHIPMvidNDvxws/FJmfPI2jZXyXicRa
@@ -143,26 +147,30 @@ interactions:
         9d3Q+d8wvJzF8ziWc6VhmvSxij95JUV/ibCwZrArs9WgLbpLz8cR0qLBC/8v74gY/u1iCncCGP0f
         XydYnp1yAAA=
     headers:
+      Accept-Ranges:
+      - bytes
       Access-Control-Allow-Credentials:
       - 'true'
       Access-Control-Allow-Origin:
       - '*'
-      Content-Encoding:
-      - gzip
+      Connection:
+      - keep-alive
       Content-Length:
       - '2231'
       Content-Type:
       - application/geo+json
       Date:
-      - Thu, 20 Apr 2023 16:45:25 GMT
+      - Thu, 20 Apr 2023 16:52:47 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
-      Vary:
-      - Accept-Encoding
-      X-Azure-Ref:
-      - 0JmxBZAAAAADgDbukw/n2SpkTgoEMHMLcREVOMzAxMDAwMTA5MDMzADkyN2FiZmE2LTE5ZjYtNGFmMS1hMDlkLWM5NTlkOWExZTY0NA==
       X-Cache:
       - CONFIG_NOCACHE
+      content-encoding:
+      - gzip
+      vary:
+      - Accept-Encoding
+      x-azure-ref:
+      - 20230420T165247Z-tftb77d56d3778hnqxff1fw2ag00000001bg00000000g4yk
     status:
       code: 200
       message: OK
