@@ -102,13 +102,14 @@ class CollectionClient(pystac.Collection):
             raise ValueError("`CollectionClient.root` must be a valid `Client` object")
 
     def get_root(self) -> "Client":
+        from pystac_client.client import Client
+
         root = super().get_root()
-        # duck type for pystac_client.Client to avoid circular dependency
-        if root is None or not hasattr(root, "conforms_to"):
+        if root is None or not isinstance(root, Client):
             raise ValueError(
                 "`CollectionClient.root` is not have a valid `Client` object."
             )
-        return cast(Client, root)
+        return root
 
     def get_items(self) -> Iterator["Item_Type"]:
         """Return all items in this Collection.
@@ -202,4 +203,4 @@ class CollectionClient(pystac.Collection):
 
     def _items_href(self) -> str:
         link = self.get_single_link("items")
-        return self._stac_io._get_href(self, "items", link, "items")
+        return StacApiIO._get_href(self, "items", link, "items")
