@@ -14,45 +14,49 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - python-requests/2.25.1
+      - python-requests/2.28.2
     method: POST
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/search
   response:
     body:
       string: !!binary |
-        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
+        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
+        N/9yh33xbe7Hw2gcoGxrv45/A+lel4M+DAAA
     headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Origin:
+      - '*'
       Content-Encoding:
       - gzip
       Content-Length:
-      - '1008'
+      - '996'
       Content-Type:
-      - application/json
+      - application/geo+json
       Date:
-      - Thu, 18 Nov 2021 21:49:20 GMT
+      - Thu, 20 Apr 2023 16:44:45 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       Vary:
       - Accept-Encoding
       X-Azure-Ref:
-      - 0YMqWYQAAAADmiI7ZEZzmTb5j7ZjUOtAKQk9TMzIxMDAwMTEwMDE5ADkyN2FiZmE2LTE5ZjYtNGFmMS1hMDlkLWM5NTlkOWExZTY0NA==
+      - 0/WtBZAAAAADtrYrzeaB0TqOcf4GhIzYeREVOMzAxMDAwMTA5MDUzADkyN2FiZmE2LTE5ZjYtNGFmMS1hMDlkLWM5NTlkOWExZTY0NA==
       X-Cache:
       - CONFIG_NOCACHE
     status:
