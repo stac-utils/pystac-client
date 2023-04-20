@@ -213,6 +213,43 @@ class Client(pystac.Catalog):
     def set_conforms_to(self, conformance_classes: List[str]) -> None:
         self.extra_fields["conformsTo"] = conformance_classes
 
+    def add_conforms_to(
+        self, conformance_class: Union[ConformanceClasses, str]
+    ) -> None:
+        conforms_to = self.get_conforms_to()
+
+        if isinstance(conformance_class, str):
+            conformance_class = getattr(
+                ConformanceClasses, conformance_class.upper(), conformance_class
+            )
+
+        if isinstance(conformance_class, ConformanceClasses):
+            conforms_to.append(ConformanceClasses.valid_uri(conformance_class.value))
+        else:
+            raise Exception(f"Invalid conformance class {conformance_class}")
+
+        self.set_conforms_to(conforms_to)
+
+    def remove_conforms_to(
+        self, conformance_class: Union[ConformanceClasses, str]
+    ) -> None:
+        if isinstance(conformance_class, str):
+            name = conformance_class.upper()
+        else:
+            name = conformance_class.name
+
+        pattern = CONFORMANCE_URIS.get(name, None)
+
+        if pattern is None:
+            raise Exception(f"Invalid conformance class {conformance_class}")
+
+        self.set_conforms_to(
+            [uri for uri in self.get_conforms_to() if not re.match(pattern, uri)]
+        )
+
+    def clear_conforms_to(self) -> None:
+        self.extra_fields.pop("conformsTo", None)
+
     def conforms_to(self, conformance_class: ConformanceClasses) -> bool:
         """Whether the API conforms to the given standard. This method only checks
         against the ``"conformsTo"`` property from the API landing page and does not
@@ -226,12 +263,10 @@ class Client(pystac.Catalog):
         Return:
             bool: Indicates if the API conforms to the given spec or URI.
         """
-        class_regex = CONFORMANCE_URIS.get(conformance_class.name, None)
+        pattern = CONFORMANCE_URIS.get(conformance_class.name, None)
 
-        if class_regex is None:
+        if pattern is None:
             raise Exception(f"Invalid conformance class {conformance_class}")
-
-        pattern = re.compile(class_regex)
 
         if not any(re.match(pattern, uri) for uri in self.get_conforms_to()):
             return False

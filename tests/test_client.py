@@ -19,7 +19,9 @@ from pystac_client.errors import ClientTypeError, IgnoredResultWarning
 from pystac_client.stac_api_io import StacApiIO
 from pystac_client.warnings import (
     DoesNotConformTo,
+    FallbackToPystac,
     MissingLink,
+    NoConformsTo,
     strict,
 )
 
@@ -51,38 +53,6 @@ class TestAPI:
         assert first_child_link is not None
         first_collection = first_child_link.resolve_stac_object(root=api).target
         assert isinstance(first_collection, pystac.Collection)
-
-    def test_spec_conformance(self) -> None:
-        """Testing conformance against a ConformanceClass should allow APIs using legacy
-        URIs to pass."""
-        client = Client.from_file(str(TEST_DATA / "planetary-computer-root.json"))
-
-        # Set conformsTo URIs to conform with STAC API - Core using official URI
-        client.set_conforms_to(["https://api.stacspec.org/v1.0.0-beta.1/core"])
-
-        assert client.conforms_to(ConformanceClasses.CORE)
-
-    @pytest.mark.vcr
-    def test_no_conformance(self) -> None:
-        """Should raise a NotImplementedError if no conformance info can be found.
-        Luckily, the test API doesn't publish a "conformance" link so we can just
-        remove the "conformsTo" attribute to test this."""
-        client = Client.from_file(str(TEST_DATA / "planetary-computer-root.json"))
-        client.set_conforms_to([])
-
-        assert not client.conforms_to(ConformanceClasses.CORE)
-        assert not client.conforms_to(ConformanceClasses.ITEM_SEARCH)
-
-    @pytest.mark.vcr
-    def test_no_stac_core_conformance(self) -> None:
-        """Should raise a DoesNotConformTo if the API does not conform to the
-        STAC API - Core spec."""
-        client = Client.from_file(str(TEST_DATA / "planetary-computer-root.json"))
-        assert client.has_conforms_to()
-
-        client.set_conforms_to(client.get_conforms_to()[1:])
-        assert not client.conforms_to(ConformanceClasses.CORE)
-        assert client.conforms_to(ConformanceClasses.ITEM_SEARCH)
 
     @pytest.mark.vcr
     def test_from_file(self) -> None:
@@ -465,9 +435,8 @@ class TestAPISearch:
         return Client.from_file(str(TEST_DATA / "planetary-computer-root.json"))
 
     def test_search_conformance_error(self, api: Client) -> None:
-        # Set the conformance to only STAC API - Core
-        assert api.has_conforms_to()
-        api.set_conforms_to([api.get_conforms_to()[0]])
+        # Remove item search conformance
+        api.remove_conforms_to("ITEM_SEARCH")
 
         with strict():
             with pytest.raises(DoesNotConformTo, match="ITEM_SEARCH"):
@@ -602,3 +571,62 @@ class TestSigning:
         client = Client.open(STAC_URLS["PLANETARY-COMPUTER"], modifier=modifier_bad)
         with pytest.warns(IgnoredResultWarning):
             client.get_collection("sentinel-2-l2a")
+
+
+class TestConformsTo:
+    def test_set_conforms_to_using_list_of_uris(self) -> None:
+        client = Client.from_file(str(TEST_DATA / "planetary-computer-root.json"))
+        client.set_conforms_to(["https://api.stacspec.org/v1.0.0-rc.2/core"])
+
+        assert client.conforms_to(ConformanceClasses.CORE)
+
+    def test_add_and_remove_conforms_to_by_string(self) -> None:
+        client = Client.from_file(str(TEST_DATA / "planetary-computer-root.json"))
+
+        client.remove_conforms_to("core")
+        assert not client.conforms_to(ConformanceClasses.CORE)
+
+        client.add_conforms_to("core")
+        assert client.conforms_to(ConformanceClasses.CORE)
+
+    def test_add_and_remove_conforms_to_by_class(self) -> None:
+        client = Client.from_file(str(TEST_DATA / "planetary-computer-root.json"))
+        client.remove_conforms_to("core")
+        assert not client.conforms_to(ConformanceClasses.CORE)
+
+        client.add_conforms_to(ConformanceClasses.CORE)
+        assert client.conforms_to(ConformanceClasses.CORE)
+
+    def test_clear_all_conforms_to(self) -> None:
+        client = Client.from_file(str(TEST_DATA / "planetary-computer-root.json"))
+        client.clear_conforms_to()
+        assert not client.has_conforms_to()
+
+    def test_empty_conforms_to(self) -> None:
+        client = Client.from_file(str(TEST_DATA / "planetary-computer-root.json"))
+        client.set_conforms_to([])
+        assert client.has_conforms_to(), "The conformsTo field should still exist"
+
+        assert not client.conforms_to(ConformanceClasses.CORE)
+        assert not client.conforms_to(ConformanceClasses.ITEM_SEARCH)
+
+    def test_no_conforms_to_falls_back_to_pystac(self) -> None:
+        client = Client.from_file(str(TEST_DATA / "planetary-computer-root.json"))
+        client.clear_conforms_to()
+
+        with strict():
+            with pytest.raises(FallbackToPystac):
+                next(client.get_collections())
+
+    @pytest.mark.vcr
+    def test_changing_conforms_to_changes_behavior(self) -> None:
+        with pytest.warns(NoConformsTo):
+            client = Client.open("https://earth-search.aws.element84.com/v0")
+
+        with pytest.warns(FallbackToPystac):
+            next(client.get_collections())
+
+        client.add_conforms_to(ConformanceClasses.COLLECTIONS)
+
+        with pytest.warns(MissingLink, match="rel='data'"):
+            next(client.get_collections())
