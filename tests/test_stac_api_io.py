@@ -279,3 +279,11 @@ class TestSTAC_IOOverride:
         stac_api_io = StacApiIO()
         pages = list(stac_api_io.get_pages(url))
         assert len(pages) == 0
+
+    @pytest.mark.vcr
+    def test_timeout_smoke_test(self) -> None:
+        # Testing timeout behavior is hard, so we just have a simple smoke test to make
+        # sure that providing a timeout doesn't break anything.
+        stac_api_io = StacApiIO(timeout=42)
+        response = stac_api_io.read_text(STAC_URLS["PLANETARY-COMPUTER"])
+        assert isinstance(response, str)
