@@ -53,6 +53,7 @@ class TestCLI:
         assert result.returncode == 1
 
     @pytest.mark.vcr
+    @pytest.mark.script_launch_mode("subprocess")
     def test_non_conformant_raises_by_default(
         self, script_runner: ScriptRunner
     ) -> None:
@@ -70,6 +71,7 @@ class TestCLI:
         assert result.returncode == 1
 
     @pytest.mark.vcr
+    @pytest.mark.filterwarnings("ignore::pystac_client.warnings.NoConformsTo")
     def test_non_conformant_can_be_fixed(self, script_runner: ScriptRunner) -> None:
         args = [
             "stac-client",

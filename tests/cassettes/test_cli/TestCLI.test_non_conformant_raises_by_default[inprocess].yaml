@@ -5,7 +5,7 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate, br
+      - gzip, deflate
       Connection:
       - keep-alive
       User-Agent:
@@ -28,21 +28,21 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 21 Apr 2023 15:12:44 GMT
+      - Fri, 21 Apr 2023 16:45:39 GMT
       Via:
-      - 1.1 f452d023faa737bf8fd4899df4e76a44.cloudfront.net (CloudFront)
+      - 1.1 ea02982ea8ec84214c2e0d4d803fb0f4.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - xYgYjwa5ljL6ShzxS3277qlHqRB5rv8uaVS5NDNWwwX_mLgKpmZChQ==
+      - nYJFM761m43xPLclKXtpSlhmqziOYCIeA3lIURnJxPtzkvCcfEy12w==
       X-Amz-Cf-Pop:
-      - EWR52-C2
+      - DEN52-C1
       X-Amzn-Trace-Id:
-      - Root=1-6442a7ec-3d60721257f0a51944da072a;Sampled=0;lineage=308471e4:0
+      - Root=1-6442bdb3-1b28020a32dbc1207918311d;Sampled=0;lineage=308471e4:0
       X-Cache:
       - Miss from cloudfront
       x-amz-apigw-id:
-      - Du8tBHDavHcFsaw=
+      - DvKUGG4IPHcFi8g=
       x-amzn-RequestId:
-      - 5d4d68ec-03bb-4fec-9c6d-48575e430d49
+      - 4734321e-3e05-4aac-a1ab-7ab601849198
     status:
       code: 200
       message: OK
