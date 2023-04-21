@@ -26,13 +26,14 @@ from pystac_client.item_search import (
     QueryLike,
     SortbyLike,
 )
+from pystac_client.mixins import QueryablesMixin
 from pystac_client.stac_api_io import StacApiIO
 
 if TYPE_CHECKING:
     from pystac.item import Item as Item_Type
 
 
-class Client(pystac.Catalog):
+class Client(pystac.Catalog, QueryablesMixin):
     """A Client for interacting with the root of a STAC Catalog or API
 
     Instances of the ``Client`` class inherit from :class:`pystac.Catalog`
@@ -236,7 +237,9 @@ class Client(pystac.Catalog):
         return result
 
     @lru_cache()
-    def get_collection(self, collection_id: str) -> Optional[Collection]:
+    def get_collection(
+        self, collection_id: str
+    ) -> Optional[Union[Collection, CollectionClient]]:
         """Get a single collection from this Catalog/API
 
         Args:
@@ -262,7 +265,7 @@ class Client(pystac.Catalog):
 
         return None
 
-    def get_collections(self) -> Iterator[Collection]:
+    def get_collections(self) -> Iterator[Union[Collection, CollectionClient]]:
         """Get Collections in this Catalog
 
             Gets the collections from the /collections endpoint if supported,

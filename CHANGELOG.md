@@ -21,6 +21,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Three tests that were false positives due to out-of-date cassettes [#491](https://github.com/stac-utils/pystac-client/pull/491)
 - Max items checks when paging [#492](https://github.com/stac-utils/pystac-client/pull/492)
 
+### Added
+
+- Support for fetching catalog queryables [#477](https://github.com/stac-utils/pystac-client/pull/477)
+
 ## [v0.6.1] - 2023-03-14
 
 ### Changed

@@ -60,3 +60,13 @@ class TestCollectionClient:
         )
         assert item
         assert item.id == "AST_L1T_00312272006020322_20150518201805"
+
+    @pytest.mark.vcr
+    def test_get_queryables(self) -> None:
+        api = Client.open(STAC_URLS["PLANETARY-COMPUTER"])
+        collection_client = api.get_collection("landsat-c2-l2")
+        assert collection_client is not None
+        assert isinstance(collection_client, CollectionClient)
+        result = collection_client.get_queryables()
+        assert "instrument" in result["properties"]
+        assert "landsat:scene_id" in result["properties"]

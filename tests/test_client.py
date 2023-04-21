@@ -16,6 +16,7 @@ from pystac_client import Client, CollectionClient
 from pystac_client._utils import Modifiable
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.errors import ClientTypeError, IgnoredResultWarning
+from pystac_client.exceptions import APIError
 from pystac_client.stac_api_io import StacApiIO
 
 from .helpers import STAC_URLS, TEST_DATA, read_data_file
@@ -607,3 +608,30 @@ class TestSigning:
         client = Client.open(STAC_URLS["PLANETARY-COMPUTER"], modifier=modifier_bad)
         with pytest.warns(IgnoredResultWarning):
             client.get_collection("sentinel-2-l2a")
+
+
+class TestQueryables:
+    @pytest.mark.vcr
+    def test_get_queryables(self) -> None:
+        api = Client.open(STAC_URLS["PLANETARY-COMPUTER"])
+        result = api.get_queryables()
+        assert "properties" in result
+        assert "id" in result["properties"]
+
+    def test_get_queryables_errors(self, requests_mock: Mocker) -> None:
+        pc_root_text = read_data_file("planetary-computer-root.json")
+        root_url = "http://pystac-client.test/"
+        requests_mock.get(root_url, status_code=200, text=pc_root_text)
+        api = Client.open(root_url)
+        with pytest.raises(NotImplementedError, match="FILTER not supported"):
+            api.get_queryables()
+
+        assert api._stac_io is not None
+        api._stac_io._conformance = None
+        api.set_self_href(None)
+        with pytest.raises(ValueError, match="does not have a self_href set"):
+            api.get_queryables()
+
+        api._stac_io = None
+        with pytest.raises(APIError, match="API access is not properly configured"):
+            api.get_queryables()
