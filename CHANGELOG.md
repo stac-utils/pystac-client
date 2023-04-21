@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Double encoding of `intersects` parameter in GET requests [#362](https://github.com/stac-utils/pystac-client/pull/362)
 - Fix geometry instantiation in item-search-intersects.ipynb [#484](https://github.com/stac-utils/pystac-client/pull/484)
 - Three tests that were false positives due to out-of-date cassettes [#491](https://github.com/stac-utils/pystac-client/pull/491)
+- Max items checks when paging [#492](https://github.com/stac-utils/pystac-client/pull/492)
 
 ## [v0.6.1] - 2023-03-14
 
