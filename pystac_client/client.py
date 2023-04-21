@@ -167,6 +167,7 @@ class Client(pystac.Catalog):
             warnings.warn(
                 "Server does not advertise any conformance classes.",
                 NoConformsTo,
+                stacklevel=2,
             )
 
         return client
@@ -329,8 +330,9 @@ class Client(pystac.Catalog):
                 warnings.warn(
                     DOES_NOT_CONFORM_TO("COLLECTIONS or FEATURES"),
                     category=DoesNotConformTo,
+                    stacklevel=2,
                 )
-            warnings.warn(FALLBACK_MSG, category=FallbackToPystac)
+            warnings.warn(FALLBACK_MSG, category=FallbackToPystac, stacklevel=2)
             for collection in super().get_collections():
                 if collection.id == collection_id:
                     call_modifier(self.modifier, collection)
@@ -367,8 +369,9 @@ class Client(pystac.Catalog):
                 warnings.warn(
                     DOES_NOT_CONFORM_TO("COLLECTIONS or FEATURES"),
                     category=DoesNotConformTo,
+                    stacklevel=2,
                 )
-            warnings.warn(FALLBACK_MSG, category=FallbackToPystac)
+            warnings.warn(FALLBACK_MSG, category=FallbackToPystac, stacklevel=2)
             for collection in super().get_collections():
                 call_modifier(self.modifier, collection)
                 yield collection
@@ -388,8 +391,9 @@ class Client(pystac.Catalog):
                 warnings.warn(
                     DOES_NOT_CONFORM_TO("ITEM_SEARCH"),
                     category=DoesNotConformTo,
+                    stacklevel=2,
                 )
-            warnings.warn(FALLBACK_MSG, category=FallbackToPystac)
+            warnings.warn(FALLBACK_MSG, category=FallbackToPystac, stacklevel=2)
             for item in super().get_items():
                 call_modifier(self.modifier, item)
                 yield item
@@ -524,7 +528,10 @@ class Client(pystac.Catalog):
         """
 
         if not self.conforms_to(ConformanceClasses.ITEM_SEARCH):
-            raise DoesNotConformTo(DOES_NOT_CONFORM_TO("ITEM_SEARCH"))
+            raise DoesNotConformTo(
+                f"{DOES_NOT_CONFORM_TO('ITEM_SEARCH')}. "
+                "There is not fallback option available for search."
+            )
 
         return ItemSearch(
             url=self._search_href(),

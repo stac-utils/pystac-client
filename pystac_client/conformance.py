@@ -7,7 +7,7 @@ from enum import Enum
 class ConformanceClasses(Enum):
     """Enumeration class for Conformance Classes"""
 
-    stac_prefix = "https://api.stacspec.org/v1.0."
+    _stac_prefix = "https://api.stacspec.org/v1.0."
 
     # defined conformance classes regexes
     CORE = "/core"
@@ -26,15 +26,17 @@ class ConformanceClasses(Enum):
 
     @classmethod
     def valid_uri(cls, endpoint: str) -> str:
-        return f"{cls.stac_prefix.value}*{endpoint}"
+        return f"{cls._stac_prefix.value}*{endpoint}"
 
     @classmethod
     def pattern(cls, endpoint: str) -> re.Pattern[str]:
         return re.compile(
-            rf"{re.escape(cls.stac_prefix.value)}(.*){re.escape(endpoint)}"
+            rf"{re.escape(cls._stac_prefix.value)}(.*){re.escape(endpoint)}"
         )
 
 
 CONFORMANCE_URIS = {
-    c.name: ConformanceClasses.pattern(c.value) for c in ConformanceClasses
+    c.name: ConformanceClasses.pattern(c.value)
+    for c in ConformanceClasses
+    if not c.name.startswith("_")
 }

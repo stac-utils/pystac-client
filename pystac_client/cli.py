@@ -5,10 +5,19 @@ import os
 import re
 import sys
 from typing import Any, Dict, List, Optional
+import warnings
 
 from .client import Client
+from .conformance import CONFORMANCE_URIS
 from .item_search import OPS
 from .version import __version__
+from .warnings import (
+    PystacClientWarning,
+    NoConformsTo,
+    DoesNotConformTo,
+    MissingLink,
+    FallbackToPystac,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -60,6 +69,68 @@ def collections(client: Client, save: Optional[str] = None) -> int:
         return 1
 
 
+def add_warnings_behavior(parser: argparse.ArgumentParser) -> None:
+    warnings_group = parser.add_argument_group("warnings behavior")
+    warnings_group.add_argument(
+        "--error",
+        nargs="*",
+        choices=[
+            "no-conforms-to",
+            "does-not-conform-to",
+            "missing-link",
+            "fallback-to-pystac",
+        ],
+        help="Error on all stac-client warnings or specific warnings.",
+    )
+    warnings_group.add_argument(
+        "--ignore",
+        nargs="*",
+        choices=[
+            "no-conforms-to",
+            "does-not-conform-to",
+            "missing-link",
+            "fallback-to-pystac",
+        ],
+        help="Ignore all stac-client warnings or specific warnings.",
+    )
+
+
+def set_warnings(error: Optional[List[str]], ignore: Optional[List[str]]) -> None:
+    # First set filters on the base class
+    if ignore is not None and len(ignore) == 0:
+        warnings.filterwarnings("ignore", category=PystacClientWarning)
+    if error is not None and len(error) == 0:
+        warnings.filterwarnings("ignore", category=PystacClientWarning)
+
+    # Then set filters on any specific classes
+    category_options = {
+        "no-conforms-to": NoConformsTo,
+        "does-not-conform-to": DoesNotConformTo,
+        "missing-link": MissingLink,
+        "fallback-to-pystac": FallbackToPystac,
+    }
+    if ignore is not None:
+        for w in ignore:
+            warnings.filterwarnings("ignore", category=category_options[w])
+    if error is not None:
+        for w in error:
+            warnings.filterwarnings("error", category=category_options[w])
+
+
+def set_conforms_to(
+    client: Client, clear: bool, remove: Optional[List[str]], add: Optional[List[str]]
+) -> None:
+    """Alters conforms_to settings on client in-place"""
+    if clear:
+        client.clear_conforms_to()
+    if remove is not None:
+        for conformance_class in remove:
+            client.remove_conforms_to(conformance_class)
+    if add is not None:
+        for conformance_class in add:
+            client.add_conforms_to(conformance_class)
+
+
 def parse_args(args: List[str]) -> Dict[str, Any]:
     desc = "STAC Client"
     dhf = argparse.ArgumentDefaultsHelpFormatter
@@ -82,6 +153,23 @@ def parse_args(args: List[str]) -> Dict[str, Any]:
         help="Additional request headers (KEY=VALUE pairs)",
         default=None,
     )
+    parent.add_argument(
+        "--add-conforms-to",
+        choices=list(CONFORMANCE_URIS.keys()),
+        nargs="*",
+        help="Specify conformance classes to add to client",
+    )
+    parent.add_argument(
+        "--remove-conforms-to",
+        choices=list(CONFORMANCE_URIS.keys()),
+        nargs="*",
+        help="Specify conformance classes to remove from client",
+    )
+    parent.add_argument(
+        "--clear-conforms-to",
+        default=False,
+        action="store_true",
+    )
 
     subparsers = parser0.add_subparsers(dest="command")
 
@@ -92,6 +180,8 @@ def parse_args(args: List[str]) -> Dict[str, Any]:
         parents=[parent],
         formatter_class=dhf,
     )
+    add_warnings_behavior(parser)
+
     output_group = parser.add_argument_group("output options")
     output_group.add_argument(
         "--save", help="Filename to save collections to", default=None
@@ -155,6 +245,7 @@ def parse_args(args: List[str]) -> Dict[str, Any]:
         type=int,
     )
     search_group.add_argument("--method", help="GET or POST", default="POST")
+    add_warnings_behavior(parser)
 
     output_group = parser.add_argument_group("output options")
     output_group.add_argument(
@@ -226,9 +317,20 @@ def cli() -> int:
     try:
         url = args.pop("url")
         headers = args.pop("headers", {})
+
+        logging.captureWarnings(True)
+        set_warnings(args.pop("error", None), args.pop("ignore", None))
+
         client = Client.open(url, headers=headers)
+        set_conforms_to(
+            client,
+            args.pop("clear_conforms_to"),
+            args.pop("remove_conforms_to", None),
+            args.pop("add_conforms_to", None),
+        )
+
     except Exception as e:
-        print(e)
+        print(e, file=sys.stderr)
         return 1
 
     if cmd == "search":
@@ -237,7 +339,9 @@ def cli() -> int:
         return collections(client, **args)
     else:
         print(
-            f"Command '{cmd}' is not a valid command, must be 'search' or 'collections'"
+            f"Command '{cmd}' is not a valid command. "
+            "must be 'search' or 'collections'",
+            file=sys.stderr,
         )
         return 1
 
