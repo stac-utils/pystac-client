@@ -52,6 +52,7 @@ class TestCLI:
         assert not result.success
         assert result.returncode == 1
 
+    @pytest.mark.vcr
     def test_non_conformant_raises_by_default(
         self, script_runner: ScriptRunner
     ) -> None:
@@ -68,6 +69,7 @@ class TestCLI:
         assert "Server does not advertise any conformance classes" in result.stderr
         assert result.returncode == 1
 
+    @pytest.mark.vcr
     def test_non_conformant_can_be_fixed(self, script_runner: ScriptRunner) -> None:
         args = [
             "stac-client",
