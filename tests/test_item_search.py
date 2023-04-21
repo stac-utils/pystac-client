@@ -569,17 +569,19 @@ class TestItemSearch:
 
     @pytest.mark.vcr
     def test_datetime_results(self) -> None:
-        # Datetime range string
-        datetime_ = "2019-01-01T00:00:01Z/2019-01-01T00:00:10Z"
-        search = ItemSearch(url=SEARCH_URL, datetime=datetime_)
-        results = list(search.items())
-        assert len(results) == 33
-
         min_datetime = datetime(2019, 1, 1, 0, 0, 1, tzinfo=tzutc())
         max_datetime = datetime(2019, 1, 1, 0, 0, 10, tzinfo=tzutc())
-        search = ItemSearch(url=SEARCH_URL, datetime=(min_datetime, max_datetime))
+        datetime_ = "2019-01-01T00:00:01Z/2019-01-01T00:00:10Z"
+        search = ItemSearch(url=SEARCH_URL, datetime=datetime_, max_items=20)
+        for item in search.items():
+            assert item.datetime is not None
+            assert (
+                min_datetime <= item.datetime <= (max_datetime + timedelta(seconds=1))
+            )
+        search = ItemSearch(
+            url=SEARCH_URL, datetime=(min_datetime, max_datetime), max_items=20
+        )
         new_results = search.items()
-
         for item in new_results:
             assert item.datetime is not None
             assert (
@@ -651,8 +653,24 @@ class TestItemSearch:
         # is requested
         pages = list(search.pages())
 
-        assert pages[1] != pages[2]
-        assert pages[1].items != pages[2].items
+        assert pages[0] != pages[1]
+        assert pages[0].items != pages[1].items
+
+    @pytest.mark.vcr
+    def test_result_paging_max_items(self) -> None:
+        search = ItemSearch(
+            url=SEARCH_URL,
+            collections="naip",
+            limit=10,
+            max_items=25,
+        )
+        num_pages = 0
+        items = list()
+        for page in search.pages_as_dicts():
+            num_pages += 1
+            items.extend(page["features"])
+        assert num_pages == 3
+        assert len(items) == 25
 
     @pytest.mark.vcr
     def test_item_collection(self) -> None:
@@ -724,16 +742,18 @@ class TestItemSearchQuery:
     def test_query_shortcut_syntax(self) -> None:
         search = ItemSearch(
             url=SEARCH_URL,
+            collections="naip",
             bbox=(-73.21, 43.99, -73.12, 44.05),
-            query=["gsd=10"],
+            query=["gsd=0.6"],
             max_items=1,
         )
         items1 = list(search.items())
 
         search = ItemSearch(
             url=SEARCH_URL,
+            collections="naip",
             bbox=(-73.21, 43.99, -73.12, 44.05),
-            query={"gsd": {"eq": 10}},
+            query={"gsd": {"eq": 0.6}},
             max_items=1,
         )
         items2 = list(search.items())
@@ -747,22 +767,24 @@ class TestItemSearchQuery:
         # with a list of json strs (format of CLI argument to ItemSearch)
         search = ItemSearch(
             url=SEARCH_URL,
+            collections="naip",
             bbox=(-73.21, 43.99, -73.12, 44.05),
-            query=['{"eo:cloud_cover": { "gte": 0, "lte": 1 }}'],
+            query=['{"gsd": { "gte": 0, "lte": 1 }}'],
             max_items=1,
         )
         item1 = list(search.items())[0]
-        assert item1.properties["eo:cloud_cover"] <= 1
+        assert item1.properties["gsd"] <= 1
 
         # with a single dict
         search = ItemSearch(
             url=SEARCH_URL,
+            collections="naip",
             bbox=(-73.21, 43.99, -73.12, 44.05),
-            query={"eo:cloud_cover": {"gte": 0, "lte": 1}},
+            query={"gsd": {"gte": 0, "lte": 1}},
             max_items=1,
         )
         item2 = list(search.items())[0]
-        assert item2.properties["eo:cloud_cover"] <= 1
+        assert item2.properties["gsd"] <= 1
 
         assert item1.id == item2.id
 

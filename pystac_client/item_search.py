@@ -690,16 +690,10 @@ class ItemSearch:
         Yields:
             Item : each Item matching the search criteria
         """
-        nitems = 0
-        for page in self._stac_io.get_pages(
-            self.url, self.method, self.get_parameters()
-        ):
+        for page in self.pages_as_dicts():
             for item in page.get("features", []):
-                call_modifier(self.modifier, item)
+                # already signed in pages_as_dicts
                 yield item
-                nitems += 1
-                if self._max_items and nitems >= self._max_items:
-                    return
 
     # ------------------------------------------------------------------------
     # By Page
@@ -727,11 +721,22 @@ class ItemSearch:
             criteria as a feature-collection-like dictionary.
         """
         if isinstance(self._stac_io, StacApiIO):
+            num_items = 0
             for page in self._stac_io.get_pages(
                 self.url, self.method, self.get_parameters()
             ):
                 call_modifier(self.modifier, page)
-                yield page
+                features = page.get("features", [])
+                if features:
+                    num_items += len(features)
+                    if self._max_items and num_items > self._max_items:
+                        # Slice the features down to make sure we hit max_items
+                        page["features"] = features[0 : -(num_items - self._max_items)]
+                    yield page
+                    if self._max_items and num_items >= self._max_items:
+                        return
+                else:
+                    return
 
     # ------------------------------------------------------------------------
     # Everything
@@ -767,20 +772,10 @@ class ItemSearch:
             Dict : A GeoJSON FeatureCollection
         """
         features = []
-        for page in self._stac_io.get_pages(
-            self.url, self.method, self.get_parameters()
-        ):
+        for page in self.pages_as_dicts():
             for feature in page["features"]:
                 features.append(feature)
-                if self._max_items and len(features) >= self._max_items:
-                    feature_collection = {
-                        "type": "FeatureCollection",
-                        "features": features,
-                    }
-                    call_modifier(self.modifier, feature_collection)
-                    return feature_collection
         feature_collection = {"type": "FeatureCollection", "features": features}
-        call_modifier(self.modifier, feature_collection)
         return feature_collection
 
     # Deprecated methods

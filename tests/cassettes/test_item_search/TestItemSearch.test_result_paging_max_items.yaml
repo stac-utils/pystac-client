@@ -19,7 +19,7 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIAPxrQWQC/+2c62/bNhDA/xXDwPpljkRSEh8eggEtsGIDtg5dP60wDNmmbXWyJEhKk6zo/74j
+        H4sIAK5tQWQC/+2c62/bNhDA/xXDwPpljkRSEh8eggEtsGIDtg5dP60wDNmmbXWyJEhKk6zo/74j
         qQdju3XW1K9YQNM4J+rudDzxfj49PvXL+0z2h/1fZFje5PJVGsdyWkZp0h/050ZW9IfvP/WjGYwq
         78arMaFIMCzGhRxjf4woGhNEECaYwT6TSXoH468Ec6hAJCADQh1KSEC9gRYSQpCnhVwI4o0Gax6A
         jjhK/jFGcxnDlqntVDU6zLI4moZK6H4o9JZlLuewZVmWWTF03SwOE1mG+f00XWU3pcydVTTN0yKd
@@ -68,13 +68,13 @@ interactions:
       Content-Type:
       - application/geo+json
       Date:
-      - Thu, 20 Apr 2023 16:44:44 GMT
+      - Thu, 20 Apr 2023 16:51:58 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       Vary:
       - Accept-Encoding
       X-Azure-Ref:
-      - 0/GtBZAAAAADVpH586mcYR7Hq4gBu2QfTREVOMzAxMDAwMTA5MDM3ADkyN2FiZmE2LTE5ZjYtNGFmMS1hMDlkLWM5NTlkOWExZTY0NA==
+      - 0rm1BZAAAAAC0ZeGwFabuRLsQr8xBBX/KREVOMzAxMDAwMTA5MDM3ADkyN2FiZmE2LTE5ZjYtNGFmMS1hMDlkLWM5NTlkOWExZTY0NA==
       X-Cache:
       - CONFIG_NOCACHE
     status:
@@ -100,7 +100,7 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIAPxrQWQC/+2dbW/bthbHv4phYH1zHYlPIkVfBBdYgVtswNah66sFhiHbtK1OlgRJbpIV/e4j
+        H4sIAK5tQWQC/+2dbW/bthbHv4phYH1zHYlPIkVfBBdYgVtswNah66sFhiHbtK1OlgRJbpIV/e4j
         RcqiH1IHTf0UE2gLh6LOoQ6PeH7+h1K/dKvHXHT73f+LqFoW4m2WJGJcxVna7XWnuq3s9u++dOOJ
         7FU9DBdDRAFnBA/T+yEkQ0DBEAEEIIJUnjMaZQ+y/w1nHgsQDVkPUQ9DeRj3VCMNCSOkbmQMcz7o
         bYxA2kji9G/ttBCJPDK2B2V6R3mexONINfqfyvrIvBBTeWReVXnZ9/08iVJRRcXjOFvky0oU3iIe
@@ -149,13 +149,94 @@ interactions:
       Content-Type:
       - application/geo+json
       Date:
-      - Thu, 20 Apr 2023 16:44:45 GMT
+      - Thu, 20 Apr 2023 16:51:59 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       Vary:
       - Accept-Encoding
       X-Azure-Ref:
-      - 0/GtBZAAAAABOKfdi2EAATJy/UjFauFbsREVOMzAxMDAwMTA5MDM3ADkyN2FiZmE2LTE5ZjYtNGFmMS1hMDlkLWM5NTlkOWExZTY0NA==
+      - 0rm1BZAAAAABR3qBT5ZNRQKqpP7ivQyreREVOMzAxMDAwMTA5MDM3ADkyN2FiZmE2LTE5ZjYtNGFmMS1hMDlkLWM5NTlkOWExZTY0NA==
+      X-Cache:
+      - CONFIG_NOCACHE
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"limit": 10, "collections": ["naip"], "token": "next:tx_m_2609727_ne_14_060_20201216"}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '87'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.28.2
+    method: POST
+    uri: https://planetarycomputer.microsoft.com/api/stac/v1/search
+  response:
+    body:
+      string: !!binary |
+        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
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Origin:
+      - '*'
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '2104'
+      Content-Type:
+      - application/geo+json
+      Date:
+      - Thu, 20 Apr 2023 16:51:59 GMT
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Vary:
+      - Accept-Encoding
+      X-Azure-Ref:
+      - 0r21BZAAAAADxGewBbHs/RJ8/n8Zw8GHkREVOMzAxMDAwMTA5MDM3ADkyN2FiZmE2LTE5ZjYtNGFmMS1hMDlkLWM5NTlkOWExZTY0NA==
       X-Cache:
       - CONFIG_NOCACHE
     status:

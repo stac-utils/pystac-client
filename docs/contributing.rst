@@ -7,88 +7,160 @@ way is to coordinate with the core developers via an issue or pull request conve
 
 Development installation
 ^^^^^^^^^^^^^^^^^^^^^^^^
-Fork PySTAC-Client into your GitHub account. Then, clone the repo and install
-it locally with pip as follows:
+Fork PySTAC Client into your GitHub account. Clone the repo, install
+the library as an "editable link", then install the development dependencies:
 
 .. code-block:: bash
 
     $ git clone git@github.com:your_user_name/pystac-client.git
     $ cd  pystac
     $ pip install -e .
+    $ pip install -r requirements-dev.txt
 
 Testing
 ^^^^^^^
-PySTAC-Client runs tests using ``unittest``. You can find unit tests in the ``tests/``
+tl;dr: Run ``./scripts/test`` to run all tests and linters.
+
+PySTAC Client runs tests using `pytest <https://docs.pytest.org/en/latest/>`_. You can find unit tests in the ``tests/``
 directory.
 
-Run a single test with:
+To run the tests and generate the coverage report:
 
 .. code-block:: bash
 
-    python -m unittest tests/test_catalog.py
+    $ pytest -v -s --block-network --cov pystac_client --cov-report term-missing
 
-or an entire folder using:
-
-.. code-block:: bash
-
-    python -m unittest discover -v -s tests/
-
-or the entire project using:
+The PySTAC Client tests use `vcrpy <https://vcrpy.readthedocs.io/en/latest/>`_ to mock API calls
+with "pre-recorded" API responses. When adding new tests use the ``@pytest.mark.vcr`` decorator
+function to indicate ``vcrpy`` should be used. Record the new responses and commit them to the
+repository.
 
 .. code-block:: bash
 
-    ./scripts/test
+    $ pytest -v -s --record-mode new_episodes
+    $ git add <new files here>
+    $ git commit -a -m 'new test episodes'
 
-The last command will also check test coverage. To view the coverage report, you can run
-`coverage report` (to view the report in the terminal) or `coverage html` (to generate
-an HTML report that can be opened in a browser).
 
-More details on using ``unittest`` are `here
-<https://docs.python.org/3/library/unittest.html>`_.
+To update PySTAC Client to use future versions of STAC API, the existing recorded API responses
+should be "re-recorded":
+
+.. code-block:: bash
+
+    $ pytest -v -s --record-mode rewrite --block-network
+    $ git commit -a -m 'updated test episodes'
+
 
 Code quality checks
 ^^^^^^^^^^^^^^^^^^^
 
-tl;dr: Run ``pre-commit install --overwrite`` to perform checks when committing, and
-``./scripts/test`` to run the tests.
+`pre-commit <https://pre-commit.com/>`_ is used to ensure a standard set of formatting and
+linting is run before every commit. These hooks should be installed with:
 
-PySTAC-Client uses
+.. code-block:: bash
+
+    $ pre-commit install
+
+These can then be run independent of a commit with:
+
+.. code-block:: bash
+
+    $ pre-commit run --all-files
+
+PySTAC Client uses
 
 - `black <https://github.com/psf/black>`_ for Python code formatting
 - `codespell <https://github.com/codespell-project/codespell/>`_ to check code for common misspellings
-- `doc8 <https://github.com/pycqa/doc8>`__ for style checking on RST files in the docs
+- `doc8 <https://github.com/pycqa/doc8>`_ for style checking on RST files in the docs
 - `ruff <https://beta.ruff.rs/docs/>`_ for Python style checks
 - `mypy <http://www.mypy-lang.org/>`_ for Python type annotation checks
 
-Run all of these with ``pre-commit run --all-files`` or a single one using
-``pre-commit run --all-files ID``, where ``ID`` is one of the command names above. For
-example, to format all the Python code, run ``pre-commit run --all-files black``.
-
-You can also install a Git pre-commit hook which will run the relevant linters and
-formatters on any staged code when committing. This will be much faster than running on
-all files, which is usually [#]_ only required when changing the pre-commit version or
-configuration. Once installed you can bypass this check by adding the ``--no-verify``
+Once installed you can bypass pre-commit by adding the ``--no-verify`` (or ``-n``)
 flag to Git commit commands, as in ``git commit --no-verify``.
 
-.. [#] In rare cases changes to one file might invalidate an unchanged file, such as
-   when modifying the return type of a function used in another file.
+Pull Requests
+^^^^^^^^^^^^^
+
+To make Pull Requests to PySTAC Client, the code must pass linting, formatting, and code tests. To run
+the entire suit of checks and tests that will be run the GitHub Action Pipeline, use the ``test`` script.
+
+.. code-block:: bash
+
+    $ scripts/test
+
+If automatic formatting is desired (incorrect formatting will cause the GitHub Action to fail),
+use the format script and commit the resulting files:
+
+.. code-block:: bash
+
+    $ scripts/format
+    $ git commit -a -m 'formatting updates'
+
+
+To build the documentation, `install Pandoc <https://pandoc.org/installing.html>`_, install the
+Python documentation requirements via pip, then use the ``build-docs`` script:
+
+.. code-block:: bash
+
+    $ pip install -r requirements-docs.txt
+    $ scripts/build-docs
 
 CHANGELOG
 ^^^^^^^^^
 
-PySTAC-Client maintains a
-`changelog  <https://github.com/stac-utils/pystac-client/blob/main/CHANGELOG.md>`__
-to track changes between releases. All PRs should make a changelog entry unless
+PySTAC Client maintains a
+`changelog  <https://github.com/stac-utils/pystac-client/blob/main/CHANGELOG.md>`_
+to track changes between releases. All Pull Requests should make a changelog entry unless
 the change is trivial (e.g. fixing typos) or is entirely invisible to users who may
 be upgrading versions (e.g. an improvement to the CI system).
 
 For changelog entries, please link to the PR of that change. This needs to happen in a
 few steps:
 
-- Make a PR to PySTAC-Client with your changes
-- Record the link to the PR
+- Make a Pull Request (see above) to PySTAC Client with your changes
+- Record the link to the Pull Request
 - Push an additional commit to your branch with the changelog entry with the link to the
-  PR.
+  Pull Request.
 
 For more information on changelogs and how to write a good entry, see `keep a changelog
 <https://keepachangelog.com/en/1.0.0/>`_.
+
+Benchmark
+^^^^^^^^^
+
+By default, PySTAC Client benchmarks are skipped during test runs.
+To run the benchmarks, use the ``--benchmark-only`` flag:
+
+.. code-block:: bash
+
+    $ pytest --benchmark-only
+    ============================= test session starts ==============================
+    platform darwin -- Python 3.9.13, pytest-6.2.4, py-1.10.0, pluggy-0.13.1
+    benchmark: 3.4.1 (defaults: timer=time.perf_counter disable_gc=False min_rounds=5 min_time=0.000005 max_time=1.0 calibration_precision=10 warmup=False warmup_iterations=100000)
+    rootdir: /Users/gadomski/Code/pystac-client, configfile: pytest.ini
+    plugins: benchmark-3.4.1, recording-0.11.0, console-scripts-1.1.0, requests-mock-1.9.3, cov-2.11.1, typeguard-2.13.3
+    collected 75 items
+
+    tests/test_cli.py ss                                                     [  2%]
+    tests/test_client.py ssssssssssssssss                                    [ 24%]
+    tests/test_collection_client.py ss                                       [ 26%]
+    tests/test_item_search.py ...sssssssssssssssssssssssssssssssssssssssssss [ 88%]
+    s                                                                        [ 89%]
+    tests/test_stac_api_io.py ssssssss                                       [100%]
+
+
+    --------------------------------------------------------------------------------------- benchmark: 3 tests --------------------------------------------------------------------------------------
+    Name (time in ms)                Min                 Max                Mean              StdDev              Median                IQR            Outliers     OPS            Rounds  Iterations
+    -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    test_single_item_search     213.4729 (1.0)      284.8732 (1.0)      254.9405 (1.0)       32.9424 (3.27)     271.0926 (1.0)      58.2907 (4.95)          1;0  3.9225 (1.0)           5           1
+    test_single_item            314.6746 (1.47)     679.7592 (2.39)     563.9692 (2.21)     142.7451 (14.18)    609.5605 (2.25)     93.9942 (7.98)          1;1  1.7731 (0.45)          5           1
+    test_requests               612.9212 (2.87)     640.5024 (2.25)     625.6871 (2.45)      10.0637 (1.0)      625.1143 (2.31)     11.7822 (1.0)           2;0  1.5982 (0.41)          5           1
+    -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    Legend:
+    Outliers: 1 Standard Deviation from Mean; 1.5 IQR (InterQuartile Range) from 1st Quartile and 3rd Quartile.
+    OPS: Operations Per Second, computed as 1 / Mean
+    ======================== 3 passed, 72 skipped in 11.86s ========================
+
+
+For more information on running and comparing benchmarks, see the `pytest-benchmark documentation <https://pytest-benchmark.readthedocs.io/en/latest/>`_.
