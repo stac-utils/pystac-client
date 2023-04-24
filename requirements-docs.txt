@@ -1,6 +1,6 @@
 ipykernel~=6.22
 ipython~=8.12
-Sphinx~=5.3
+Sphinx~=6.2
 sphinxcontrib-fulltoc~=1.2
 myst-parser~=1.0.0
 nbsphinx~=0.9

@@ -17,6 +17,7 @@ from pystac_client._utils import Modifiable, call_modifier
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.exceptions import APIError
 from pystac_client.item_search import ItemSearch
+from pystac_client.mixins import QueryablesMixin
 from pystac_client.stac_api_io import StacApiIO
 from pystac_client.warnings import (
     FALLBACK_MSG,
@@ -30,7 +31,7 @@ if TYPE_CHECKING:
     from pystac_client import Client
 
 
-class CollectionClient(pystac.Collection):
+class CollectionClient(pystac.Collection, QueryablesMixin):
     modifier: Callable[[Modifiable], None]
     _stac_io: StacApiIO
 
@@ -110,6 +111,10 @@ class CollectionClient(pystac.Collection):
                 "`CollectionClient.root` is not have a valid `Client` object."
             )
         return root
+
+    def conforms_to(self, conformance_class: ConformanceClasses) -> bool:
+        root = self.get_root()
+        return root.conforms_to(conformance_class)
 
     def get_items(self) -> Iterator["Item_Type"]:
         """Return all items in this Collection.

@@ -39,6 +39,7 @@ from pystac_client.item_search import (
     QueryLike,
     SortbyLike,
 )
+from pystac_client.mixins import QueryablesMixin
 from pystac_client.stac_api_io import StacApiIO
 from pystac_client.warnings import (
     DOES_NOT_CONFORM_TO,
@@ -52,7 +53,7 @@ if TYPE_CHECKING:
     from pystac.item import Item as Item_Type
 
 
-class Client(pystac.Catalog):
+class Client(pystac.Catalog, QueryablesMixin):
     """A Client for interacting with the root of a STAC Catalog or API
 
     Instances of the ``Client`` class inherit from :class:`pystac.Catalog`
@@ -338,7 +339,7 @@ class Client(pystac.Catalog):
                     call_modifier(self.modifier, collection)
         return collection
 
-    def get_collections(self) -> Iterator[Union[Collection, CollectionClient]]:
+    def get_collections(self) -> Iterator[Collection]:
         """Get Collections in this Catalog
 
             Gets the collections from the /collections endpoint if supported,
