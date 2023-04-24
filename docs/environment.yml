@@ -3,7 +3,11 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - python=3.8
+  - cartopy
+  - geoviews
+  - pandoc
+  - python=3.9
+  - pip
   - pip:
     - -r ../requirements-docs.txt
     - -e ../
