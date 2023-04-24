@@ -164,6 +164,9 @@ class ItemSearch:
             will continue to request pages of items until the number of max items is
             reached. By default (``max_items=None``) all items matching the query
             will be returned.
+        stac_io: An instance of StacIO for retrieving results. Normally comes
+            from the Client that returns this ItemSearch client: An instance of a
+            root Client used to set the root on resulting Items.
         client: An instance of Client for retrieving results. This is normally populated
             by the client that returns this ItemSearch instance.
         limit: A recommendation to the service as to the number of items to return
@@ -254,6 +257,7 @@ class ItemSearch:
         *,
         method: Optional[str] = "POST",
         max_items: Optional[int] = None,
+        stac_io: Optional[StacApiIO] = None,
         client: Optional["_client.Client"] = None,
         limit: Optional[int] = DEFAULT_LIMIT_AND_MAX_ITEMS,
         ids: Optional[IDsLike] = None,
@@ -271,12 +275,12 @@ class ItemSearch:
         self.url = url
         self.client = client
 
-        if client and client._stac_io is not None:
+        if client and client._stac_io is not None and stac_io is None:
             self._stac_io = client._stac_io
             if not client.conforms_to(ConformanceClasses.ITEM_SEARCH):
                 warnings.warn(DoesNotConformTo("ITEM_SEARCH"))
         else:
-            self._stac_io = StacApiIO()
+            self._stac_io = stac_io or StacApiIO()
 
         self._max_items = max_items
         if self._max_items is not None and limit is not None:

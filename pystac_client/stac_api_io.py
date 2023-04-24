@@ -1,7 +1,7 @@
 import json
 import logging
 from copy import deepcopy
-from typing import TYPE_CHECKING, Any, Callable, Dict, Iterator, Optional, Union
+from typing import TYPE_CHECKING, Any, Callable, Dict, Iterator, List, Optional, Union
 from urllib.parse import urlparse
 import warnings
 
@@ -31,6 +31,7 @@ class StacApiIO(DefaultStacIO):
     def __init__(
         self,
         headers: Optional[Dict[str, str]] = None,
+        conformance: Optional[List[str]] = None,
         parameters: Optional[Dict[str, Any]] = None,
         request_modifier: Optional[Callable[[Request], Union[Request, None]]] = None,
     ):
@@ -38,6 +39,12 @@ class StacApiIO(DefaultStacIO):
 
         Args:
             headers : Optional dictionary of headers to include in all requests
+            conformance (DEPRECATED) : Optional list of `Conformance Classes
+                <https://github.com/radiantearth/stac-api-spec/blob/master/overview.md#conformance-classes>`__.
+
+                .. deprecated:: 0.7.0
+                    Conformance can be altered on the client class directly
+
             parameters: Optional dictionary of query string parameters to
               include in all requests.
             request_modifier: Optional callable that can be used to modify Request
@@ -49,6 +56,18 @@ class StacApiIO(DefaultStacIO):
             StacApiIO : StacApiIO instance
         """
         # TODO - this should super() to parent class
+
+        if conformance is not None:
+            warnings.warn(
+                (
+                    "The `ignore_conformance` option is deprecated and will be "
+                    "removed in the next major release. Instead use "
+                    "`Client.set_conforms_to` or `Client.add_conforms_to` to control "
+                    "behavior."
+                ),
+                category=FutureWarning,
+            )
+
         self.session = Session()
         self.update(
             headers=headers, parameters=parameters, request_modifier=request_modifier

@@ -116,8 +116,8 @@ class Client(pystac.Catalog, QueryablesMixin):
                 made to any part of this Catalog/API.
             parameters: Optional dictionary of query string parameters to
                 include in all requests.
-            ignore_conformance : Ignore any advertised Conformance Classes in this
-                Catalog/API. This means that
+            ignore_conformance (DEPRECATED) : Ignore any advertised Conformance Classes
+                in this Catalog/API. This means that
                 functions will skip checking conformance, and may throw an unknown
                 error if that feature is
                 not supported, rather than a :class:`NotImplementedError`.
