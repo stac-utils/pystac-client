@@ -52,9 +52,12 @@ def strict() -> Iterator[None]:
     >>> from pystac_client.warnings import strict
     >>> with strict():
     ...     Client.open("https://perfect-api.test")
-    ...
-    >>> # For finer-grained control:
+
+    For finer-grained control:
+
     >>> import warnings
+    >>> from pystac_client import Client
+    >>> from pystac_client.warnings import MissingLink
     >>> warnings.filterwarnings("error", category=FallbackToPystac)
     >>> Client.open("https://imperfect-api.test")
     """
@@ -75,8 +78,18 @@ def ignore() -> Iterator[None]:
 
     Examples:
 
+    >>> from pystac_client import Client
+    >>> from pystac_client.warnings import ignore
+    >>> with ignore():
+    ...     Client.open("https://perfect-api.test")
+
+    For finer-grained control:
+
     >>> import warnings
-    >>> warnings.filterwarnings("ignore", category=FallbackToPystac)
+    >>> from pystac_client import Client
+    >>> from pystac_client.warnings import MissingLink
+    >>> warnings.filterwarnings("ignore", category=MissingLink)
+    >>> Client.open("https://imperfect-api.test")
     """
     warnings.filterwarnings("ignore", category=PystacClientWarning)
     try:
