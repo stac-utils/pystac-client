@@ -227,8 +227,11 @@ class Client(pystac.Catalog, QueryablesMixin):
     def get_conforms_to(self) -> List[str]:
         return cast(List[str], self.extra_fields.get("conformsTo", []).copy())
 
-    def set_conforms_to(self, conformance_classes: List[str]) -> None:
-        self.extra_fields["conformsTo"] = conformance_classes
+    def set_conforms_to(self, conformance_uris: List[str]) -> None:
+        self.extra_fields["conformsTo"] = conformance_uris
+
+    def clear_conforms_to(self) -> None:
+        self.extra_fields.pop("conformsTo", None)
 
     def add_conforms_to(
         self, conformance_class: Union[ConformanceClasses, str]
@@ -264,9 +267,6 @@ class Client(pystac.Catalog, QueryablesMixin):
             [uri for uri in self.get_conforms_to() if not re.match(pattern, uri)]
         )
 
-    def clear_conforms_to(self) -> None:
-        self.extra_fields.pop("conformsTo", None)
-
     def conforms_to(self, conformance_class: ConformanceClasses) -> bool:
         """Checks whether the API conforms to the given standard.
 
@@ -276,7 +276,7 @@ class Client(pystac.Catalog, QueryablesMixin):
         provides such an endpoint.
 
         Args:
-            conformance_class : The :py:class:`ConformanceClasses` key to check
+            conformance_class : :py:class:`ConformanceClasses` keys to check
                 conformance against.
 
         Return:
@@ -313,6 +313,11 @@ class Client(pystac.Catalog, QueryablesMixin):
         result.modifier = modifier
         return result
 
+    def _supports_collections(self) -> bool:
+        return self.conforms_to(ConformanceClasses.COLLECTIONS) or self.conforms_to(
+            ConformanceClasses.FEATURES
+        )
+
     @lru_cache()
     def get_collection(
         self, collection_id: str
@@ -327,13 +332,10 @@ class Client(pystac.Catalog, QueryablesMixin):
         """
         collection: Union[Collection, CollectionClient]
 
-        if self.conforms_to(ConformanceClasses.COLLECTIONS) or self.conforms_to(
-            ConformanceClasses.FEATURES
-        ):
+        if self._supports_collections():
             assert self._stac_io is not None
 
-            url = self._collections_href()
-            url = f"{url.rstrip('/')}/{collection_id}"
+            url = self._collections_href(collection_id)
             collection = CollectionClient.from_dict(
                 self._stac_io.read_json(url),
                 root=self,
@@ -360,9 +362,7 @@ class Client(pystac.Catalog, QueryablesMixin):
         """
         collection: Union[Collection, CollectionClient]
 
-        if self.conforms_to(ConformanceClasses.COLLECTIONS) or self.conforms_to(
-            ConformanceClasses.FEATURES
-        ):
+        if self._supports_collections():
             assert self._stac_io is not None
 
             url = self._collections_href()
@@ -580,7 +580,9 @@ class Client(pystac.Catalog, QueryablesMixin):
         href = StacApiIO._get_href(self, "search", search_link, "search")
         return href
 
-    def _collections_href(self) -> str:
+    def _collections_href(self, collection_id: Optional[str] = None) -> str:
         data_link = self.get_single_link("data")
         href = StacApiIO._get_href(self, "data", data_link, "collections")
+        if collection_id is not None:
+            return f"{href.rstrip('/')}/{collection_id}"
         return href
