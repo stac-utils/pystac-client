@@ -29,8 +29,6 @@ class MissingLink(PystacClientWarning):
     def __str__(self) -> str:
         return "No link with rel='{}' could be found on this {}.".format(*self.args)
 
-    ...
-
 
 class FallbackToPystac(PystacClientWarning):
     """Inform user when falling back to pystac implementation"""

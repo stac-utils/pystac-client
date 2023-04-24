@@ -278,7 +278,7 @@ class ItemSearch:
         if client and client._stac_io is not None and stac_io is None:
             self._stac_io = client._stac_io
             if not client.conforms_to(ConformanceClasses.ITEM_SEARCH):
-                warnings.warn(DoesNotConformTo("ITEM_SEARCH"))
+                warnings.warn(DoesNotConformTo("ITEM_SEARCH"), stacklevel=2)
         else:
             self._stac_io = stac_io or StacApiIO()
 
@@ -369,7 +369,7 @@ class ItemSearch:
             return None
 
         if self.client and not self.client.conforms_to(ConformanceClasses.QUERY):
-            warnings.warn(DoesNotConformTo("QUERY"))
+            warnings.warn(DoesNotConformTo("QUERY"), stacklevel=2)
 
         if isinstance(value, dict):
             return value
@@ -419,7 +419,7 @@ class ItemSearch:
             return None
 
         if self.client and not self.client.conforms_to(ConformanceClasses.FILTER):
-            warnings.warn(DoesNotConformTo("FILTER"))
+            warnings.warn(DoesNotConformTo("FILTER"), stacklevel=2)
 
         return value
 
@@ -564,7 +564,7 @@ class ItemSearch:
             return None
 
         if self.client and not self.client.conforms_to(ConformanceClasses.SORT):
-            warnings.warn(DoesNotConformTo("SORT"))
+            warnings.warn(DoesNotConformTo("SORT"), stacklevel=2)
 
         if isinstance(value, str):
             return [self._sortby_part_to_dict(part) for part in value.split(",")]
@@ -602,7 +602,7 @@ class ItemSearch:
             return None
 
         if self.client and not self.client.conforms_to(ConformanceClasses.FIELDS):
-            warnings.warn(DoesNotConformTo("FIELDS"))
+            warnings.warn(DoesNotConformTo("FIELDS"), stacklevel=2)
 
         if isinstance(value, str):
             return self._fields_to_dict(value.split(","))

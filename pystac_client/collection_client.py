@@ -135,8 +135,8 @@ class CollectionClient(pystac.Collection, QueryablesMixin):
             yield from search.items()
         else:
             if root.has_conforms_to():
-                warnings.warn(DoesNotConformTo("ITEM_SEARCH"))
-            warnings.warn(FallbackToPystac())
+                warnings.warn(DoesNotConformTo("ITEM_SEARCH"), stacklevel=2)
+            warnings.warn(FallbackToPystac(), stacklevel=2)
             for item in super().get_items():
                 call_modifier(self.modifier, item)
                 yield item
@@ -169,7 +169,7 @@ class CollectionClient(pystac.Collection, QueryablesMixin):
                     obj = self._stac_io.read_stac_object(url, root=self)
                     item = cast(Optional[pystac.Item], obj)
                 except APIError as err:
-                    if err.status_code and err.status_code == 404:
+                    if getattr(err, "status_code", None) and err.status_code == 404:
                         return None
                     else:
                         raise err
@@ -185,11 +185,13 @@ class CollectionClient(pystac.Collection, QueryablesMixin):
                 item = next(item_search.items(), None)
             else:
                 if root.has_conforms_to():
-                    warnings.warn(DoesNotConformTo("FEATURES", "ITEM_SEARCH"))
-                warnings.warn(FallbackToPystac())
+                    warnings.warn(
+                        DoesNotConformTo("FEATURES", "ITEM_SEARCH"), stacklevel=2
+                    )
+                warnings.warn(FallbackToPystac(), stacklevel=2)
                 item = super().get_item(id, recursive=False)
         else:
-            warnings.warn(FallbackToPystac())
+            warnings.warn(FallbackToPystac(), stacklevel=2)
             item = super().get_item(id, recursive=True)
 
         if item:

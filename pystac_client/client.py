@@ -344,8 +344,8 @@ class Client(pystac.Catalog, QueryablesMixin):
             call_modifier(self.modifier, collection)
         else:
             if self.has_conforms_to():
-                warnings.warn(DoesNotConformTo("COLLECTIONS", "FEATURES"))
-            warnings.warn(FallbackToPystac())
+                warnings.warn(DoesNotConformTo("COLLECTIONS", "FEATURES"), stacklevel=2)
+            warnings.warn(FallbackToPystac(), stacklevel=2)
             for collection in super().get_collections():
                 if collection.id == collection_id:
                     call_modifier(self.modifier, collection)
@@ -377,8 +377,8 @@ class Client(pystac.Catalog, QueryablesMixin):
                     yield collection
         else:
             if self.has_conforms_to():
-                warnings.warn(DoesNotConformTo("COLLECTIONS", "FEATURES"))
-            warnings.warn(FallbackToPystac())
+                warnings.warn(DoesNotConformTo("COLLECTIONS", "FEATURES"), stacklevel=2)
+            warnings.warn(FallbackToPystac(), stacklevel=2)
             for collection in super().get_collections():
                 call_modifier(self.modifier, collection)
                 yield collection
@@ -395,8 +395,8 @@ class Client(pystac.Catalog, QueryablesMixin):
             yield from search.items()
         else:
             if self.has_conforms_to():
-                warnings.warn(DoesNotConformTo("ITEM_SEARCH"))
-            warnings.warn(FallbackToPystac())
+                warnings.warn(DoesNotConformTo("ITEM_SEARCH"), stacklevel=2)
+            warnings.warn(FallbackToPystac(), stacklevel=2)
             for item in super().get_items():
                 call_modifier(self.modifier, item)
                 yield item
