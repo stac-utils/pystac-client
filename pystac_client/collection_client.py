@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from typing import (
     TYPE_CHECKING,
     Any,
@@ -78,7 +80,7 @@ class CollectionClient(pystac.Collection, QueryablesMixin):
         cls,
         d: Dict[str, Any],
         href: Optional[str] = None,
-        root: Optional[Union[pystac.Catalog, "Client"]] = None,
+        root: Optional[Union[pystac.Catalog, Client]] = None,
         migrate: bool = False,
         preserve_dict: bool = True,
         modifier: Optional[Callable[[Modifiable], None]] = None,
@@ -92,7 +94,7 @@ class CollectionClient(pystac.Collection, QueryablesMixin):
     def __repr__(self) -> str:
         return "<CollectionClient id={}>".format(self.id)
 
-    def set_root(self, root: Optional[Union[pystac.Catalog, "Client"]]) -> None:
+    def set_root(self, root: Optional[Union[pystac.Catalog, Client]]) -> None:
         # hook in to set_root and use it for setting _stac_io
         super().set_root(root=root)
         if root is None:
@@ -102,7 +104,7 @@ class CollectionClient(pystac.Collection, QueryablesMixin):
         else:
             raise ValueError("`CollectionClient.root` must be a valid `Client` object")
 
-    def get_root(self) -> "Client":
+    def get_root(self) -> Client:
         from pystac_client.client import Client
 
         root = super().get_root()

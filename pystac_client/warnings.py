@@ -46,13 +46,20 @@ class FallbackToPystac(PystacClientWarning):
 def strict() -> Iterator[None]:
     """Context manager for raising all pystac-client warnings as errors
 
-    For more fine-grained control or to set filter warnings in the whole
-    python session, use the ``warnings`` module directly.
+    For more fine-grained control or to filter warnings in the whole
+    python session, use the :py:mod:`warnings` module directly.
 
     Examples:
 
+    >>> from pystac_client import Client
+    >>> from pystac_client.warnings import strict
+    >>> with strict():
+    ...     Client.open("https://perfect-api.test")
+    ...
+    >>> # For finer-grained control:
     >>> import warnings
     >>> warnings.filterwarnings("error", category=FallbackToPystac)
+    >>> Client.open("https://imperfect-api.test")
     """
 
     warnings.filterwarnings("error", category=PystacClientWarning)

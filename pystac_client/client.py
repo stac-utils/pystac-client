@@ -249,7 +249,7 @@ class Client(pystac.Catalog, QueryablesMixin):
         if isinstance(conformance_class, ConformanceClasses):
             conforms_to.append(ConformanceClasses.valid_uri(conformance_class.value))
         else:
-            raise Exception(f"Invalid conformance class {conformance_class}")
+            raise ValueError(f"Invalid conformance class {conformance_class}")
 
         self.set_conforms_to(conforms_to)
 
@@ -274,13 +274,15 @@ class Client(pystac.Catalog, QueryablesMixin):
         self.extra_fields.pop("conformsTo", None)
 
     def conforms_to(self, conformance_class: ConformanceClasses) -> bool:
-        """Whether the API conforms to the given standard. This method only checks
+        """Checks whether the API conforms to the given standard.
+        
+        This method only checks
         against the ``"conformsTo"`` property from the API landing page and does not
         make any additional calls to a ``/conformance`` endpoint even if the API
         provides such an endpoint.
 
         Args:
-            conformance_class : The ``ConformanceClasses`` key to check conformance
+            conformance_class : The :py:class:`ConformanceClasses` key to check conformance
                 against.
 
         Return:
@@ -291,10 +293,7 @@ class Client(pystac.Catalog, QueryablesMixin):
         if pattern is None:
             raise Exception(f"Invalid conformance class {conformance_class}")
 
-        if not any(re.match(pattern, uri) for uri in self.get_conforms_to()):
-            return False
-
-        return True
+        return any(re.match(pattern, uri) for uri in self.get_conforms_to())
 
     @classmethod
     def from_dict(

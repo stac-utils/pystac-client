@@ -261,7 +261,7 @@ class StacApiIO(DefaultStacIO):
 
     @staticmethod
     def _get_href(
-        obj: "STACObject_Type", rel: str, link: Optional[pystac.Link], endpoint: str
+        obj: STACObject, rel: str, link: Optional[pystac.Link], endpoint: str
     ) -> str:
         if link and isinstance(link.href, str):
             href = link.absolute_href
