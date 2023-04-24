@@ -29,7 +29,7 @@ from requests import Request
 from pystac_client._utils import Modifiable, call_modifier
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.stac_api_io import StacApiIO
-from pystac_client.warnings import DoesNotConformTo, DOES_NOT_CONFORM_TO
+from pystac_client.warnings import DoesNotConformTo
 
 if TYPE_CHECKING:
     from pystac_client import client as _client
@@ -274,10 +274,7 @@ class ItemSearch:
         if client and client._stac_io is not None:
             self._stac_io = client._stac_io
             if not client.conforms_to(ConformanceClasses.ITEM_SEARCH):
-                warnings.warn(
-                    DOES_NOT_CONFORM_TO(ConformanceClasses.ITEM_SEARCH),
-                    category=DoesNotConformTo,
-                )
+                warnings.warn(DoesNotConformTo("ITEM_SEARCH"))
         else:
             self._stac_io = StacApiIO()
 
@@ -368,9 +365,7 @@ class ItemSearch:
             return None
 
         if self.client and not self.client.conforms_to(ConformanceClasses.QUERY):
-            warnings.warn(
-                DOES_NOT_CONFORM_TO(ConformanceClasses.QUERY), category=DoesNotConformTo
-            )
+            warnings.warn(DoesNotConformTo("QUERY"))
 
         if isinstance(value, dict):
             return value
@@ -420,10 +415,7 @@ class ItemSearch:
             return None
 
         if self.client and not self.client.conforms_to(ConformanceClasses.FILTER):
-            warnings.warn(
-                DOES_NOT_CONFORM_TO(ConformanceClasses.FILTER),
-                category=DoesNotConformTo,
-            )
+            warnings.warn(DoesNotConformTo("FILTER"))
 
         return value
 
@@ -568,9 +560,7 @@ class ItemSearch:
             return None
 
         if self.client and not self.client.conforms_to(ConformanceClasses.SORT):
-            warnings.warn(
-                DOES_NOT_CONFORM_TO(ConformanceClasses.SORT), category=DoesNotConformTo
-            )
+            warnings.warn(DoesNotConformTo("SORT"))
 
         if isinstance(value, str):
             return [self._sortby_part_to_dict(part) for part in value.split(",")]
@@ -608,10 +598,7 @@ class ItemSearch:
             return None
 
         if self.client and not self.client.conforms_to(ConformanceClasses.FIELDS):
-            warnings.warn(
-                DOES_NOT_CONFORM_TO(ConformanceClasses.FIELDS),
-                category=DoesNotConformTo,
-            )
+            warnings.warn(DoesNotConformTo("FIELDS"))
 
         if isinstance(value, str):
             return self._fields_to_dict(value.split(","))

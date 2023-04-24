@@ -405,7 +405,7 @@ class TestAPI:
         # Mock the collection
         requests_mock.get(pc_collection_href, status_code=200, json=pc_collection_dict)
 
-        with pytest.warns(DoesNotConformTo, match="COLLECTIONS or FEATURES"):
+        with pytest.warns(DoesNotConformTo, match="COLLECTIONS, FEATURES"):
             _ = next(api.get_collections())
 
         history = requests_mock.request_history
@@ -578,7 +578,8 @@ class TestQueryables:
     @pytest.mark.vcr
     def test_get_queryables(self) -> None:
         api = Client.open(STAC_URLS["PLANETARY-COMPUTER"])
-        result = api.get_queryables()
+        with pytest.warns(MissingLink, match="queryables"):
+            result = api.get_queryables()
         assert "properties" in result
         assert "id" in result["properties"]
 
@@ -593,8 +594,9 @@ class TestQueryables:
         assert api._stac_io is not None
         api.add_conforms_to("FILTER")
         api.set_self_href(None)
-        with pytest.raises(ValueError, match="does not have a self_href set"):
-            api.get_queryables()
+        with pytest.warns(MissingLink, match="queryables"):
+            with pytest.raises(ValueError, match="does not have a self_href set"):
+                api.get_queryables()
 
         api._stac_io = None
         with pytest.raises(APIError, match="API access is not properly configured"):

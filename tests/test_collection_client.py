@@ -2,7 +2,7 @@ import pytest
 
 from pystac_client import CollectionClient
 from pystac_client.client import Client
-from pystac_client.warnings import FallbackToPystac
+from pystac_client.warnings import FallbackToPystac, MissingLink
 
 from .helpers import STAC_URLS
 
@@ -69,6 +69,7 @@ class TestCollectionClient:
         collection_client = api.get_collection("landsat-c2-l2")
         assert collection_client is not None
         assert isinstance(collection_client, CollectionClient)
-        result = collection_client.get_queryables()
+        with pytest.warns(MissingLink, match="/queryables"):
+            result = collection_client.get_queryables()
         assert "instrument" in result["properties"]
         assert "landsat:scene_id" in result["properties"]

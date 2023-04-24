@@ -1,15 +1,6 @@
 from contextlib import contextmanager
-from typing import Iterator, Union
+from typing import Iterator
 import warnings
-
-from pystac_client.conformance import ConformanceClasses
-
-
-FALLBACK_MSG = "Falling back to pystac. This might be slow."
-
-
-def DOES_NOT_CONFORM_TO(conformance_class: Union[str, ConformanceClasses]) -> str:
-    return f"Server does not conform to {conformance_class}"
 
 
 class PystacClientWarning(UserWarning):
@@ -21,17 +12,22 @@ class PystacClientWarning(UserWarning):
 class NoConformsTo(PystacClientWarning):
     """Inform user when client does not have "conformsTo" set"""
 
-    ...
+    def __str__(self) -> str:
+        return "Server does not advertise any conformance classes."
 
 
 class DoesNotConformTo(PystacClientWarning):
     """Inform user when client does not conform to extension"""
 
-    ...
+    def __str__(self) -> str:
+        return "Server does not conform to {}".format(", ".join(self.args))
 
 
 class MissingLink(PystacClientWarning):
     """Inform user when link is not found"""
+
+    def __str__(self) -> str:
+        return "No link with rel='{}' could be found on this {}.".format(*self.args)
 
     ...
 
@@ -39,7 +35,8 @@ class MissingLink(PystacClientWarning):
 class FallbackToPystac(PystacClientWarning):
     """Inform user when falling back to pystac implementation"""
 
-    ...
+    def __str__(self) -> str:
+        return "Falling back to pystac. This might be slow."
 
 
 @contextmanager

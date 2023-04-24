@@ -261,14 +261,14 @@ class StacApiIO(DefaultStacIO):
 
     @staticmethod
     def _get_href(
-        obj: STACObject, rel: str, link: Optional[pystac.Link], endpoint: str
+        obj: pystac.STACObject, rel: str, link: Optional[pystac.Link], endpoint: str
     ) -> str:
         if link and isinstance(link.href, str):
             href = link.absolute_href
         else:
             warnings.warn(
-                f"No link with {rel=} could be found on this {obj.__class__.__name__}.",
-                category=pystac_client.warnings.MissingLink,
+                pystac_client.warnings.MissingLink(rel, obj.__class__.__name__),
+                stacklevel=2,
             )
             href = f"{obj.self_href.rstrip('/')}/{endpoint}"
         return href

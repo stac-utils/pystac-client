@@ -42,9 +42,7 @@ from pystac_client.item_search import (
 from pystac_client.mixins import QueryablesMixin
 from pystac_client.stac_api_io import StacApiIO
 from pystac_client.warnings import (
-    DOES_NOT_CONFORM_TO,
     DoesNotConformTo,
-    FALLBACK_MSG,
     FallbackToPystac,
     NoConformsTo,
 )
@@ -186,11 +184,7 @@ class Client(pystac.Catalog, QueryablesMixin):
             )
 
         if not client.has_conforms_to():
-            warnings.warn(
-                "Server does not advertise any conformance classes.",
-                NoConformsTo,
-                stacklevel=2,
-            )
+            warnings.warn(NoConformsTo(), stacklevel=2)
 
         return client
 
@@ -275,15 +269,15 @@ class Client(pystac.Catalog, QueryablesMixin):
 
     def conforms_to(self, conformance_class: ConformanceClasses) -> bool:
         """Checks whether the API conforms to the given standard.
-        
+
         This method only checks
         against the ``"conformsTo"`` property from the API landing page and does not
         make any additional calls to a ``/conformance`` endpoint even if the API
         provides such an endpoint.
 
         Args:
-            conformance_class : The :py:class:`ConformanceClasses` key to check conformance
-                against.
+            conformance_class : The :py:class:`ConformanceClasses` key to check
+                conformance against.
 
         Return:
             bool: Indicates if the API conforms to the given spec or URI.
@@ -348,12 +342,8 @@ class Client(pystac.Catalog, QueryablesMixin):
             call_modifier(self.modifier, collection)
         else:
             if self.has_conforms_to():
-                warnings.warn(
-                    DOES_NOT_CONFORM_TO("COLLECTIONS or FEATURES"),
-                    category=DoesNotConformTo,
-                    stacklevel=2,
-                )
-            warnings.warn(FALLBACK_MSG, category=FallbackToPystac, stacklevel=2)
+                warnings.warn(DoesNotConformTo("COLLECTIONS", "FEATURES"))
+            warnings.warn(FallbackToPystac())
             for collection in super().get_collections():
                 if collection.id == collection_id:
                     call_modifier(self.modifier, collection)
@@ -387,12 +377,8 @@ class Client(pystac.Catalog, QueryablesMixin):
                     yield collection
         else:
             if self.has_conforms_to():
-                warnings.warn(
-                    DOES_NOT_CONFORM_TO("COLLECTIONS or FEATURES"),
-                    category=DoesNotConformTo,
-                    stacklevel=2,
-                )
-            warnings.warn(FALLBACK_MSG, category=FallbackToPystac, stacklevel=2)
+                warnings.warn(DoesNotConformTo("COLLECTIONS", "FEATURES"))
+            warnings.warn(FallbackToPystac())
             for collection in super().get_collections():
                 call_modifier(self.modifier, collection)
                 yield collection
@@ -409,12 +395,8 @@ class Client(pystac.Catalog, QueryablesMixin):
             yield from search.items()
         else:
             if self.has_conforms_to():
-                warnings.warn(
-                    DOES_NOT_CONFORM_TO("ITEM_SEARCH"),
-                    category=DoesNotConformTo,
-                    stacklevel=2,
-                )
-            warnings.warn(FALLBACK_MSG, category=FallbackToPystac, stacklevel=2)
+                warnings.warn(DoesNotConformTo("ITEM_SEARCH"))
+            warnings.warn(FallbackToPystac())
             for item in super().get_items():
                 call_modifier(self.modifier, item)
                 yield item
@@ -550,8 +532,7 @@ class Client(pystac.Catalog, QueryablesMixin):
 
         if not self.conforms_to(ConformanceClasses.ITEM_SEARCH):
             raise DoesNotConformTo(
-                f"{DOES_NOT_CONFORM_TO('ITEM_SEARCH')}. "
-                "There is not fallback option available for search."
+                "ITEM_SEARCH", "There is not fallback option available for search."
             )
 
         return ItemSearch(
