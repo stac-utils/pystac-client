@@ -617,15 +617,7 @@ class TestConformsTo:
         assert not client.conforms_to(ConformanceClasses.CORE)
 
         client.add_conforms_to("core")
-        assert client.conforms_to(ConformanceClasses.CORE)
-
-    def test_add_and_remove_conforms_to_by_class(self) -> None:
-        client = Client.from_file(str(TEST_DATA / "planetary-computer-root.json"))
-        client.remove_conforms_to("core")
-        assert not client.conforms_to(ConformanceClasses.CORE)
-
-        client.add_conforms_to(ConformanceClasses.CORE)
-        assert client.conforms_to(ConformanceClasses.CORE)
+        assert client.conforms_to("CORE")
 
     def test_clear_all_conforms_to(self) -> None:
         client = Client.from_file(str(TEST_DATA / "planetary-computer-root.json"))
@@ -656,7 +648,7 @@ class TestConformsTo:
         with pytest.warns(FallbackToPystac):
             next(client.get_collections())
 
-        client.add_conforms_to(ConformanceClasses.COLLECTIONS)
+        client.add_conforms_to("COLLECTIONS")
 
         with pytest.warns(MissingLink, match="rel='data'"):
             next(client.get_collections())

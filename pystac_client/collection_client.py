@@ -21,7 +21,7 @@ from pystac_client.exceptions import APIError
 from pystac_client.item_search import ItemSearch
 from pystac_client.mixins import QueryablesMixin
 from pystac_client.stac_api_io import StacApiIO
-from pystac_client.warnings import FallbackToPystac, DoesNotConformTo
+from pystac_client.warnings import FallbackToPystac
 
 if TYPE_CHECKING:
     from pystac.item import Item as Item_Type
@@ -134,9 +134,7 @@ class CollectionClient(pystac.Collection, QueryablesMixin):
             )
             yield from search.items()
         else:
-            if root.has_conforms_to():
-                warnings.warn(DoesNotConformTo("ITEM_SEARCH"), stacklevel=2)
-            warnings.warn(FallbackToPystac(), stacklevel=2)
+            root._warn_on_fallback("ITEM_SEARCH")
             for item in super().get_items():
                 call_modifier(self.modifier, item)
                 yield item
@@ -184,11 +182,7 @@ class CollectionClient(pystac.Collection, QueryablesMixin):
                 )
                 item = next(item_search.items(), None)
             else:
-                if root.has_conforms_to():
-                    warnings.warn(
-                        DoesNotConformTo("FEATURES", "ITEM_SEARCH"), stacklevel=2
-                    )
-                warnings.warn(FallbackToPystac(), stacklevel=2)
+                root._warn_on_fallback("FEATURES", "ITEM_SEARCH")
                 item = super().get_item(id, recursive=False)
         else:
             warnings.warn(FallbackToPystac(), stacklevel=2)

@@ -222,52 +222,60 @@ class Client(pystac.Catalog, QueryablesMixin):
         return client
 
     def has_conforms_to(self) -> bool:
+        """Whether server contains list of ``"conformsTo"`` URIs"""
         return "conformsTo" in self.extra_fields
 
     def get_conforms_to(self) -> List[str]:
+        """List of ``"conformsTo"`` URIs
+
+        Return:
+            List[str]: List of  URIs that the server conforms to
+        """
         return cast(List[str], self.extra_fields.get("conformsTo", []).copy())
 
     def set_conforms_to(self, conformance_uris: List[str]) -> None:
+        """Set list of ``"conformsTo"`` URIs
+
+        Args:
+            conformance_uris : URIs indicating what the server conforms to
+        """
         self.extra_fields["conformsTo"] = conformance_uris
 
     def clear_conforms_to(self) -> None:
+        """Clear list of ``"conformsTo"`` urls"""
         self.extra_fields.pop("conformsTo", None)
 
-    def add_conforms_to(
-        self, conformance_class: Union[ConformanceClasses, str]
-    ) -> None:
+    def add_conforms_to(self, name: str) -> None:
+        """Add ``"conformsTo"`` by name.
+
+        Args:
+            name : name of :py:class:`ConformanceClasses` keys to add.
+        """
         conforms_to = self.get_conforms_to()
 
-        if isinstance(conformance_class, str):
-            conformance_class = getattr(
-                ConformanceClasses, conformance_class.upper(), conformance_class
-            )
-
-        if isinstance(conformance_class, ConformanceClasses):
-            conforms_to.append(ConformanceClasses.valid_uri(conformance_class.value))
-        else:
+        conformance_class = getattr(ConformanceClasses, name.upper(), None)
+        if conformance_class is None:
             raise ValueError(f"Invalid conformance class {conformance_class}")
 
+        conforms_to.append(ConformanceClasses.valid_uri(conformance_class.value))
         self.set_conforms_to(conforms_to)
 
-    def remove_conforms_to(
-        self, conformance_class: Union[ConformanceClasses, str]
-    ) -> None:
-        if isinstance(conformance_class, str):
-            name = conformance_class.upper()
-        else:
-            name = conformance_class.name
+    def remove_conforms_to(self, name: str) -> None:
+        """Remove ``"conformsTo"`` by name.
 
-        pattern = CONFORMANCE_URIS.get(name, None)
+        Args:
+            name : name of :py:class:`ConformanceClasses` keys to remove.
+        """
+        pattern = CONFORMANCE_URIS.get(name.upper(), None)
 
         if pattern is None:
-            raise Exception(f"Invalid conformance class {conformance_class}")
+            raise Exception(f"Invalid conformance class {name}")
 
         self.set_conforms_to(
             [uri for uri in self.get_conforms_to() if not re.match(pattern, uri)]
         )
 
-    def conforms_to(self, conformance_class: ConformanceClasses) -> bool:
+    def conforms_to(self, name: Union[ConformanceClasses, str]) -> bool:
         """Checks whether the API conforms to the given standard.
 
         This method only checks
@@ -276,16 +284,17 @@ class Client(pystac.Catalog, QueryablesMixin):
         provides such an endpoint.
 
         Args:
-            conformance_class : :py:class:`ConformanceClasses` keys to check
+            name : name of :py:class:`ConformanceClasses` keys to check
                 conformance against.
 
         Return:
             bool: Indicates if the API conforms to the given spec or URI.
         """
-        pattern = CONFORMANCE_URIS.get(conformance_class.name, None)
+        name = name.upper() if isinstance(name, str) else name.name
+        pattern = CONFORMANCE_URIS.get(name, None)
 
         if pattern is None:
-            raise Exception(f"Invalid conformance class {conformance_class}")
+            raise Exception(f"Invalid conformance class {name}")
 
         return any(re.match(pattern, uri) for uri in self.get_conforms_to())
 
@@ -318,6 +327,11 @@ class Client(pystac.Catalog, QueryablesMixin):
             ConformanceClasses.FEATURES
         )
 
+    def _warn_on_fallback(self, *args: str) -> None:
+        if self.has_conforms_to():
+            warnings.warn(DoesNotConformTo(*args), stacklevel=2)
+        warnings.warn(FallbackToPystac(), stacklevel=2)
+
     @lru_cache()
     def get_collection(
         self, collection_id: str
@@ -343,9 +357,7 @@ class Client(pystac.Catalog, QueryablesMixin):
             )
             call_modifier(self.modifier, collection)
         else:
-            if self.has_conforms_to():
-                warnings.warn(DoesNotConformTo("COLLECTIONS", "FEATURES"), stacklevel=2)
-            warnings.warn(FallbackToPystac(), stacklevel=2)
+            self._warn_on_fallback("COLLECTIONS", "FEATURES")
             for collection in super().get_collections():
                 if collection.id == collection_id:
                     call_modifier(self.modifier, collection)
@@ -376,9 +388,7 @@ class Client(pystac.Catalog, QueryablesMixin):
                     call_modifier(self.modifier, collection)
                     yield collection
         else:
-            if self.has_conforms_to():
-                warnings.warn(DoesNotConformTo("COLLECTIONS", "FEATURES"), stacklevel=2)
-            warnings.warn(FallbackToPystac(), stacklevel=2)
+            self._warn_on_fallback("COLLECTIONS", "FEATURES")
             for collection in super().get_collections():
                 call_modifier(self.modifier, collection)
                 yield collection
@@ -394,9 +404,7 @@ class Client(pystac.Catalog, QueryablesMixin):
             search = self.search()
             yield from search.items()
         else:
-            if self.has_conforms_to():
-                warnings.warn(DoesNotConformTo("ITEM_SEARCH"), stacklevel=2)
-            warnings.warn(FallbackToPystac(), stacklevel=2)
+            self._warn_on_fallback("ITEM_SEARCH")
             for item in super().get_items():
                 call_modifier(self.modifier, item)
                 yield item
