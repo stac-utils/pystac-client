@@ -104,6 +104,7 @@ class Client(pystac.Catalog, QueryablesMixin):
         url: str,
         headers: Optional[Dict[str, str]] = None,
         parameters: Optional[Dict[str, Any]] = None,
+        ignore_conformance: Optional[bool] = None,
         modifier: Optional[Callable[[Modifiable], None]] = None,
         request_modifier: Optional[Callable[[Request], Union[Request, None]]] = None,
         stac_io: Optional[StacApiIO] = None,
@@ -117,6 +118,16 @@ class Client(pystac.Catalog, QueryablesMixin):
                 made to any part of this Catalog/API.
             parameters: Optional dictionary of query string parameters to
                 include in all requests.
+            ignore_conformance : Ignore any advertised Conformance Classes in this
+                Catalog/API. This means that
+                functions will skip checking conformance, and may throw an unknown
+                error if that feature is
+                not supported, rather than a :class:`NotImplementedError`.
+
+                .. deprecated:: 0.7.0
+                    Conformance can be altered rather than ignored using methods like
+                    :meth:`clear_conforms_to` and :meth:`add_conforms_to`
+
             modifier : A callable that modifies the children collection and items
                 returned by this Client. This can be useful for injecting
                 authentication parameters into child assets to access data
@@ -164,6 +175,16 @@ class Client(pystac.Catalog, QueryablesMixin):
             stac_io=stac_io,
         )
 
+        if ignore_conformance is not None:
+            warnings.warn(
+                (
+                    "The `ignore_conformance` option is deprecated and will be "
+                    "removed in the next major release. Instead use `set_conforms_to` "
+                    "or `add_conforms_to` to control behavior."
+                ),
+                FutureWarning,
+            )
+
         if not client.has_conforms_to():
             warnings.warn(
                 "Server does not advertise any conformance classes.",
@@ -207,7 +228,7 @@ class Client(pystac.Catalog, QueryablesMixin):
         return client
 
     def has_conforms_to(self) -> bool:
-        return bool(self._stac_io and "conformsTo" in self.extra_fields)
+        return "conformsTo" in self.extra_fields
 
     def get_conforms_to(self) -> List[str]:
         return cast(List[str], self.extra_fields.get("conformsTo", []).copy())
