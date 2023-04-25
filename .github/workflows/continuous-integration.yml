@@ -80,6 +80,10 @@ jobs:
   docs:
     name: docs
     runs-on: ubuntu-latest
+    # Required shell entrypoint to have properly activated conda environment
+    defaults:
+      run:
+        shell: bash -l {0}
     steps:
       - uses: actions/checkout@v3
       - name: Setup Conda Environment
@@ -94,9 +98,9 @@ jobs:
           activate-environment: pystac-client-docs
           auto-activate-base: false
       - name: List environment
-        run: source mamba list
+        run: mamba list
       - name: Build docs
-        run: source ./scripts/docs
+        run: ./scripts/docs
 
   pre-release:
     name: pre-release
