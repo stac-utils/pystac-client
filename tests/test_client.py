@@ -16,6 +16,7 @@ from pystac_client import Client, CollectionClient
 from pystac_client._utils import Modifiable
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.errors import ClientTypeError, IgnoredResultWarning
+from pystac_client.exceptions import APIError
 from pystac_client.stac_api_io import StacApiIO
 
 from .helpers import STAC_URLS, TEST_DATA, read_data_file
