@@ -97,10 +97,8 @@ jobs:
           environment-file: ./docs/environment.yml
           activate-environment: pystac-client-docs
           auto-activate-base: false
-      - name: List environment
-        run: mamba list
       - name: Build docs
-        run: ./scripts/docs
+        run: ./scripts/build-docs
 
   pre-release:
     name: pre-release
