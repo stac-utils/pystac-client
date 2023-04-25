@@ -80,19 +80,23 @@ jobs:
   docs:
     name: docs
     runs-on: ubuntu-latest
+    # Required shell entrypoint to have properly activated conda environment
+    defaults:
+      run:
+        shell: bash -l {0}
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
+      - name: Setup Conda Environment
+        uses: conda-incubator/setup-miniconda@v2.2.0
         with:
+          miniforge-variant: Mambaforge
+          miniforge-version: latest
           python-version: 3.9
-          cache: "pip"
-          cache-dependency-path: "requirements-docs.txt"
-      - name: Install pandoc
-        run: sudo apt-get update && sudo apt-get -y install pandoc
-      - name: Install docs requirements
-        run: pip install -r requirements-docs.txt
-      - name: Install pystac_client
-        run: pip install .
+          use-mamba: true
+          channel-priority: strict
+          environment-file: ./docs/environment.yml
+          activate-environment: pystac-client-docs
+          auto-activate-base: false
       - name: Build docs
         run: ./scripts/build-docs
 
