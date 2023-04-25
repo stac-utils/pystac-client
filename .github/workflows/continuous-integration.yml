@@ -87,6 +87,7 @@ jobs:
         with:
           miniforge-variant: Mambaforge
           miniforge-version: latest
+          python-version: 3.9
           use-mamba: true
           channel-priority: strict
           environment-file: ./docs/environment.yml
