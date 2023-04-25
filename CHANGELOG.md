@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Timeout option added to `Client.open` [#463](https://github.com/stac-utils/pystac-client/pull/463)
+
 ### Changed
 
 - Switched to Ruff from isort/flake8 [#457](https://github.com/stac-utils/pystac-client/pull/457)
