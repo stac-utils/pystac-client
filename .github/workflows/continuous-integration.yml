@@ -94,7 +94,7 @@ jobs:
           activate-environment: pystac-client-docs
           auto-activate-base: false
       - name: Build docs
-        run: ./scripts/build-docs
+        run: sphinx-build -M html docs docs/build
 
   pre-release:
     name: pre-release
