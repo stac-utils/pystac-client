@@ -83,6 +83,7 @@ class StacApiIO(DefaultStacIO):
         headers: Optional[Dict[str, str]] = None,
         parameters: Optional[Dict[str, Any]] = None,
         request_modifier: Optional[Callable[[Request], Union[Request, None]]] = None,
+        timeout: Timeout = None,
     ) -> None:
         """Updates this StacApi's headers, parameters, and/or request_modifer.
 
@@ -94,10 +95,14 @@ class StacApiIO(DefaultStacIO):
               objects before they are sent. If provided, the callable receives a
               `request.Request` and must either modify the object directly or return
               a new / modified request instance.
+            timeout: Optional float or (float, float) tuple following the semantics
+              defined by `Requests
+              <https://requests.readthedocs.io/en/latest/api/#main-interface>`__.
         """
         self.session.headers.update(headers or {})
         self.session.params.update(parameters or {})  # type: ignore
         self._req_modifier = request_modifier
+        self.timeout = timeout
 
     def read_text(self, source: pystac.link.HREF, *args: Any, **kwargs: Any) -> str:
         """Read text from the given URI.

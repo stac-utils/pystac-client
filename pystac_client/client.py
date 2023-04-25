@@ -147,6 +147,9 @@ class Client(pystac.Catalog, QueryablesMixin):
             stac_io: A `StacApiIO` object to use for I/O requests. Generally, leave
                 this to the default. However in cases where customized I/O processing
                 is required, a custom instance can be provided here.
+            timeout: Optional float or (float, float) tuple following the semantics
+              defined by `Requests
+              <https://requests.readthedocs.io/en/latest/api/#main-interface>`__.
 
         Return:
             catalog : A :class:`Client` instance for this Catalog/API
@@ -206,6 +209,7 @@ class Client(pystac.Catalog, QueryablesMixin):
                 headers=headers,
                 parameters=parameters,
                 request_modifier=request_modifier,
+                timeout=timeout,
             )
 
         client: Client = super().from_file(href, stac_io)
