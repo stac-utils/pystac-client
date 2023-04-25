@@ -1,7 +1,18 @@
 import json
 import logging
 from copy import deepcopy
-from typing import TYPE_CHECKING, Any, Callable, Dict, Iterator, List, Optional, Union
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Callable,
+    Dict,
+    Iterator,
+    List,
+    Optional,
+    Tuple,
+    Union,
+)
+from typing_extensions import TypeAlias
 from urllib.parse import urlparse
 import warnings
 
@@ -27,6 +38,9 @@ if TYPE_CHECKING:
 logger = logging.getLogger(__name__)
 
 
+Timeout: TypeAlias = Optional[Union[float, Tuple[float, float], Tuple[float, None]]]
+
+
 class StacApiIO(DefaultStacIO):
     def __init__(
         self,
@@ -34,6 +48,7 @@ class StacApiIO(DefaultStacIO):
         conformance: Optional[List[str]] = None,
         parameters: Optional[Dict[str, Any]] = None,
         request_modifier: Optional[Callable[[Request], Union[Request, None]]] = None,
+        timeout: Timeout = None,
     ):
         """Initialize class for API IO
 
@@ -51,6 +66,9 @@ class StacApiIO(DefaultStacIO):
               objects before they are sent. If provided, the callable receives a
               `request.Request` and must either modify the object directly or return
               a new / modified request instance.
+            timeout: Optional float or (float, float) tuple following the semantics
+              defined by `Requests
+              <https://requests.readthedocs.io/en/latest/api/#main-interface>`__.
 
         Return:
             StacApiIO : StacApiIO instance
@@ -69,6 +87,7 @@ class StacApiIO(DefaultStacIO):
             )
 
         self.session = Session()
+        self.timeout = timeout
         self.update(
             headers=headers, parameters=parameters, request_modifier=request_modifier
         )
@@ -78,6 +97,7 @@ class StacApiIO(DefaultStacIO):
         headers: Optional[Dict[str, str]] = None,
         parameters: Optional[Dict[str, Any]] = None,
         request_modifier: Optional[Callable[[Request], Union[Request, None]]] = None,
+        timeout: Timeout = None,
     ) -> None:
         """Updates this StacApi's headers, parameters, and/or request_modifer.
 
@@ -89,10 +109,14 @@ class StacApiIO(DefaultStacIO):
               objects before they are sent. If provided, the callable receives a
               `request.Request` and must either modify the object directly or return
               a new / modified request instance.
+            timeout: Optional float or (float, float) tuple following the semantics
+              defined by `Requests
+              <https://requests.readthedocs.io/en/latest/api/#main-interface>`__.
         """
         self.session.headers.update(headers or {})
         self.session.params.update(parameters or {})  # type: ignore
         self._req_modifier = request_modifier
+        self.timeout = timeout
 
     def read_text(self, source: pystac.link.HREF, *args: Any, **kwargs: Any) -> str:
         """Read text from the given URI.
@@ -175,9 +199,12 @@ class StacApiIO(DefaultStacIO):
             msg = f"{prepped.method} {prepped.url} Headers: {prepped.headers}"
             if method == "POST":
                 msg += f" Payload: {json.dumps(request.json)}"
+            if self.timeout is not None:
+                msg += f" Timeout: {self.timeout}"
             logger.debug(msg)
-            resp = self.session.send(prepped)
+            resp = self.session.send(prepped, timeout=self.timeout)
         except Exception as err:
+            logger.debug(err)
             raise APIError(str(err))
         if resp.status_code != 200:
             raise APIError.from_response(resp)
