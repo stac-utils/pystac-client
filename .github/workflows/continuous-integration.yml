@@ -78,7 +78,6 @@ jobs:
         run: ./scripts/test
 
   docs:
-    if: matrix.python-version != "3.11"
     name: docs
     runs-on: ubuntu-latest
     steps:
@@ -89,7 +88,6 @@ jobs:
           miniforge-variant: Mambaforge
           miniforge-version: latest
           use-mamba: true
-          python-version: ${{ matrix.python-version }}
           channel-priority: strict
           environment-file: ./docs/environment.yml
           activate-environment: pystac-client-docs
