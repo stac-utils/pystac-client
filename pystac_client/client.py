@@ -1,5 +1,14 @@
 from functools import lru_cache
-from typing import TYPE_CHECKING, Any, Callable, Dict, Iterator, List, Optional, Union
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Callable,
+    Dict,
+    Iterator,
+    List,
+    Optional,
+    Union,
+)
 
 import pystac
 import pystac.utils
@@ -27,7 +36,7 @@ from pystac_client.item_search import (
     SortbyLike,
 )
 from pystac_client.mixins import QueryablesMixin
-from pystac_client.stac_api_io import StacApiIO
+from pystac_client.stac_api_io import StacApiIO, Timeout
 
 if TYPE_CHECKING:
     from pystac.item import Item as Item_Type
@@ -88,6 +97,7 @@ class Client(pystac.Catalog, QueryablesMixin):
         modifier: Optional[Callable[[Modifiable], None]] = None,
         request_modifier: Optional[Callable[[Request], Union[Request, None]]] = None,
         stac_io: Optional[StacApiIO] = None,
+        timeout: Timeout = None,
     ) -> "Client":
         """Opens a STAC Catalog or API
         This function will read the root catalog of a STAC Catalog or API
@@ -137,6 +147,9 @@ class Client(pystac.Catalog, QueryablesMixin):
             stac_io: A `StacApiIO` object to use for I/O requests. Generally, leave
                 this to the default. However in cases where customized I/O processing
                 is required, a custom instance can be provided here.
+            timeout: Optional float or (float, float) tuple following the semantics
+              defined by `Requests
+              <https://requests.readthedocs.io/en/latest/api/#main-interface>`__.
 
         Return:
             catalog : A :class:`Client` instance for this Catalog/API
@@ -148,6 +161,7 @@ class Client(pystac.Catalog, QueryablesMixin):
             modifier=modifier,
             request_modifier=request_modifier,
             stac_io=stac_io,
+            timeout=timeout,
         )
         search_link = client.get_search_link()
         # if there is a search link, but no conformsTo advertised, ignore
@@ -176,6 +190,7 @@ class Client(pystac.Catalog, QueryablesMixin):
         parameters: Optional[Dict[str, Any]] = None,
         modifier: Optional[Callable[[Modifiable], None]] = None,
         request_modifier: Optional[Callable[[Request], Union[Request, None]]] = None,
+        timeout: Timeout = None,
     ) -> "Client":
         """Open a STAC Catalog/API
 
@@ -187,12 +202,14 @@ class Client(pystac.Catalog, QueryablesMixin):
                 headers=headers,
                 parameters=parameters,
                 request_modifier=request_modifier,
+                timeout=timeout,
             )
         else:
             stac_io.update(
                 headers=headers,
                 parameters=parameters,
                 request_modifier=request_modifier,
+                timeout=timeout,
             )
 
         client: Client = super().from_file(href, stac_io)
