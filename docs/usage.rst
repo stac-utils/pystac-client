@@ -53,8 +53,8 @@ Computer root catalog.
 .. code-block:: python
 
     >>> from pystac_client import Client
-    >>> api = Client.open('https://planetarycomputer.microsoft.com/api/stac/v1')
-    >>> api.title
+    >>> catalog = Client.open('https://planetarycomputer.microsoft.com/api/stac/v1')
+    >>> catalog.title
     'Microsoft Planetary Computer STAC API'
 
 Some functions, such as ``Client.search`` will throw an error if the provided
@@ -99,7 +99,7 @@ pass the `conforms_to` function the name of a :class:`ConformanceClasses`.
 
 .. code-block:: python
 
-    >>> api.conforms_to("ITEM_SEARCH")
+    >>> catalog.conforms_to("ITEM_SEARCH")
     True
 
 If the API does not advertise conformance with a particular spec, but it does support
@@ -108,11 +108,14 @@ there are no ``"conformsTo"`` uris set at all. But they can be explicitly set:
 
 .. code-block:: python
 
-    >>> client = Client.open("https://earth-search.aws.element84.com/v0")
+    >>> catalog = Client.open("https://earth-search.aws.element84.com/v0")
     <stdin>:1: NoConformsTo: Server does not advertise any conformance classes.
-    >>> client.conforms_to("ITEM_SEARCH")
+    >>> catalog.conforms_to("ITEM_SEARCH")
     False
-    >>> client.add_conforms_to("ITEM_SEARCH")
+    >>> catalog.add_conforms_to("ITEM_SEARCH")
+
+Note, updating ``"conformsTo"`` does not change what the server supports, it just
+changes PySTAC client's understanding of what the server supports.
 
 CollectionClient
 ++++++++++++++++
@@ -124,7 +127,8 @@ allows clients to search or inspect items within a particular collection.
 
 .. code-block:: python
 
-    >>> collection = api.get_collection("sentinel-2-l2a")
+    >>> catalog = Client.open('https://planetarycomputer.microsoft.com/api/stac/v1')
+    >>> collection = catalog.get_collection("sentinel-2-l2a")
     >>> collection.title
     'Sentinel-2 Level-2A'
 
@@ -136,8 +140,10 @@ PySTAC client will use the API endpoint instead: `/collections/<collection_id>/i
 
 .. code-block:: python
 
-    >>> item = next(collections.items(), None)
+    >>> item = next(collection.get_items(), None)
 
+Note that calling list on this iterator will take a really long time since it will be retrieving
+every itme for the whole ``"sentinel-2-l2a"`` collection.
 
 ItemSearch
 ++++++++++
@@ -157,8 +163,8 @@ requests to a service's "search" endpoint. This method returns a
 .. code-block:: python
 
     >>> from pystac_client import Client
-    >>> api = Client.open('https://planetarycomputer.microsoft.com/api/stac/v1')
-    >>> results = api.search(
+    >>> catalog = Client.open('https://planetarycomputer.microsoft.com/api/stac/v1')
+    >>> results = catalog.search(
     ...     max_items=5
     ...     bbox=[-73.21, 43.99, -73.12, 44.05],
     ...     datetime=['2019-01-01T00:00:00Z', '2019-01-02T00:00:00Z'],
@@ -315,7 +321,7 @@ modify the STAC objects returned by the STAC API.
 
    >>> from pystac_client import Client
    >>> import planetary_computer, requests
-   >>> api = Client.open(
+   >>> catalog = Client.open(
    ...    'https://planetarycomputer.microsoft.com/api/stac/v1',
    ...    modifier=planetary_computer.sign_inplace,
    ... )
