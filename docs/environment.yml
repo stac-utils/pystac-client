@@ -9,5 +9,4 @@ dependencies:
   - python=3.9
   - pip
   - pip:
-    - -r ../requirements-docs.txt
-    - -e ../
+      - -e ../[docs]

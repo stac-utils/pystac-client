@@ -14,8 +14,7 @@ the library as an "editable link", then install the development dependencies:
 
     $ git clone git@github.com:your_user_name/pystac-client.git
     $ cd  pystac
-    $ pip install -e .
-    $ pip install -r requirements-dev.txt
+    $ pip install -e '.[dev]'
 
 Testing
 ^^^^^^^
@@ -102,7 +101,7 @@ Python documentation requirements via pip, then use the ``build-docs`` script:
 
 .. code-block:: bash
 
-    $ pip install -r requirements-docs.txt
+    $ pip install -e '.[docs]'
     $ scripts/build-docs
 
 CHANGELOG
