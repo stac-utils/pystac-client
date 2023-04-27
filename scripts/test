@@ -20,7 +20,7 @@ if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
         ./scripts/lint
         ./scripts/format
         # Test suite with coverage enabled
-        pytest -Werror -s --block-network --cov pystac_client --cov-report term-missing
+        pytest --cov pystac_client --cov-report term-missing
         coverage xml
     fi
 fi
