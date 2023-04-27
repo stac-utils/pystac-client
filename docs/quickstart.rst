@@ -15,16 +15,16 @@ the screen (if supported by the STAC API).
 
 .. code-block:: console
 
-    $ stac-client search https://earth-search.aws.element84.com/v0 -c sentinel-s2-l2a-cogs --bbox -72.5 40.5 -72 41 --matched
-    2179 items matched
+    $ stac-client search https://earth-search.aws.element84.com/v1 -c sentinel-2-l2a --bbox -72.5 40.5 -72 41 --matched
+    3141 items matched
 
 If the same URL is to be used over and over, define an environment
 variable to be used in the CLI call:
 
 .. code-block:: console
 
-    $ export STAC_API_URL=https://earth-search.aws.element84.com/v0
-    $ stac-client search ${STAC_API_URL} -c sentinel-s2-l2a-cogs --bbox -72.5 40.5 -72 41 --datetime 2020-01-01/2020-01-31 --matched
+    $ export STAC_API_URL=https://earth-search.aws.element84.com/v1
+    $ stac-client search ${STAC_API_URL} -c sentinel-2-l2a --bbox -72.5 40.5 -72 41 --datetime 2020-01-01/2020-01-31 --matched
     48 items matched
 
 Without the ``--matched`` switch, all items will be fetched, paginating
@@ -38,7 +38,7 @@ another process such as
 
 .. code-block:: console
 
-    $ stac-client search ${STAC_API_URL} -c sentinel-s2-l2a-cogs --bbox -72.5 40.5 -72 41 --datetime 2020-01-01/2020-01-31 | stacterm cal --label platform
+    $ stac-client search ${STAC_API_URL} -c sentinel-2-l2a --bbox -72.5 40.5 -72 41 --datetime 2020-01-01/2020-01-31 | stacterm cal --label platform
 
 .. figure:: images/stacterm-cal.png
    :alt:
@@ -48,7 +48,7 @@ output to stdout, but instead will be saved to the specified file.
 
 .. code-block:: console
 
-    $ stac-client search ${STAC_API_URL} -c sentinel-s2-l2a-cogs --bbox -72.5 40.5 -72 41 --datetime 2020-01-01/2020-01-31 --save items.json
+    $ stac-client search ${STAC_API_URL} -c sentinel-2-l2a --bbox -72.5 40.5 -72 41 --datetime 2020-01-01/2020-01-31 --save items.json
 
 If the Catalog supports the `Query
 extension <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/query>`__,
@@ -79,12 +79,12 @@ than once to use additional operators.
 
 .. code-block:: console
 
-    $ stac-client search ${STAC_API_URL} -c sentinel-s2-l2a-cogs --bbox -72.5 40.5 -72 41 --datetime 2020-01-01/2020-01-31 -q "eo:cloud_cover<10" --matched
+    $ stac-client search ${STAC_API_URL} -c sentinel-2-l2a --bbox -72.5 40.5 -72 41 --datetime 2020-01-01/2020-01-31 -q "eo:cloud_cover<10" --matched
     10 items matched
 
 .. code-block:: console
 
-    $ stac-client search ${STAC_API_URL} -c sentinel-s2-l2a-cogs --bbox -72.5 40.5 -72 41 --datetime 2020-01-01/2020-01-31 -q "eo:cloud_cover<10" "eo:cloud_cover>5" --matched
+    $ stac-client search ${STAC_API_URL} -c sentinel-2-l2a --bbox -72.5 40.5 -72 41 --datetime 2020-01-01/2020-01-31 -q "eo:cloud_cover<10" "eo:cloud_cover>5" --matched
     4 items matched
 
 Python
@@ -97,36 +97,31 @@ specific STAC API (use the root URL):
 
     from pystac_client import Client
 
-    client = Client.open("https://earth-search.aws.element84.com/v0")
+    client = Client.open("https://earth-search.aws.element84.com/v1")
 
 Create a search:
 
 .. code-block:: python
 
-    my_search = client.search(
+    search = client.search(
         max_items=10,
-        collections=['sentinel-s2-l2a-cogs'],
-        bbox=[-72.5,40.5,-72,41])
-    print(f"{my_search.matched()} items found")
+        collections=['sentinel-2-l2a'],
+        bbox=[-72.5,40.5,-72,41]
+    )
+    print(f"{search.matched()} items found")
 
 The ``items()`` iterator method can be used to iterate through all resulting items.
 
 .. code-block:: python
 
-    for item in my_search.items():
+    for item in search.items():
         print(item.id)
 
-To convert all of Items from a search as a single `PySTAC
-ItemCollection <https://pystac.readthedocs.io/en/latest/api/pystac.html#pystac.ItemCollection>`__,
-you must first do a limited iteration on the iterator to get a list of Items, and then
-create an ItemCollection with that. The ``ItemCollection`` can then be saved as a
-GeoJSON FeatureCollection.
-
-Save all found items as a single FeatureCollection:
+Use `item_collection()` to convert all Items from a search into a single `PySTAC
+ItemCollection <https://pystac.readthedocs.io/en/latest/api/pystac.html#pystac.ItemCollection>`__.
+The ``ItemCollection`` can then be saved as a GeoJSON FeatureCollection.
 
 .. code-block:: python
 
-    from pystac import ItemCollection
-
-    my_itemcollection = ItemCollection(items = list(my_search.items()))
-    my_itemcollection.save_object('my_itemcollection.json')
+    item_collection = search.item_collection()
+    item_collection.save_object('my_itemcollection.json')

@@ -39,10 +39,12 @@ includes convenience methods and attributes for:
 
 * Checking conformance to various specs
 * Querying a search endpoint (if the API conforms to the STAC API - Item Search spec)
+* Getting jsonschema of queryables from `/queryables` endpoint (if the API conforms
+  to the STAC API - Filter spec)
 
 The preferred way to interact with any STAC Catalog or API is to create an
 :class:`pystac_client.Client` instance with the ``pystac_client.Client.open`` method
-on a root Catalog. This calls the :meth:`pystac.STACObject.from_file` except
+on a root Catalog. This calls the :meth:`pystac.STACObject.from_file` except it
 properly configures conformance and IO for reading from remote servers.
 
 The following code creates an instance by making a call to the Microsoft Planetary
@@ -50,10 +52,10 @@ Computer root catalog.
 
 .. code-block:: python
 
-    >>> from pystac_client.Client import Client
+    >>> from pystac_client import Client
     >>> api = Client.open('https://planetarycomputer.microsoft.com/api/stac/v1')
     >>> api.title
-    'microsoft-pc'
+    'Microsoft Planetary Computer STAC API'
 
 Some functions, such as ``Client.search`` will throw an error if the provided
 Catalog/API does not support the required Conformance Class. In other cases,
@@ -61,15 +63,11 @@ such as ``Client.get_collections``, API endpoints will be used if the API
 conforms, otherwise it will fall back to default behavior provided by
 :class:`pystac.Catalog`.
 
-Users may optionally provide an ``ignore_conformance`` argument when opening,
-in which case pystac-client will not check for conformance and will assume
-this is a fully featured API. This can cause unusual errors to be thrown if the API
-does not in fact conform to the expected behavior.
-
-In addition to the methods and attributes inherited from :class:`pystac.Catalog`,
-this class offers more efficient methods (if used with an API) for getting collections
-and items, as well as a search capability, utilizing the
-:class:`pystac_client.ItemSearch` class.
+When a ``Client`` does not conform to a particular Conformance Class, an informative
+warning is raised. Similarly when falling back to the :class:`pystac.Catalog`
+implementation a warning is raised. You can control the behavior of these warnings
+using the standard :py:mod:`warnings` or special context managers ``strict`` and
+``ignore`` from :mod:`pystac_client.warnings`.
 
 API Conformance
 ---------------
@@ -83,52 +81,62 @@ A STAC API is a STAC Catalog that is required to advertise its capabilities in a
 `conformsTo` field and implements the `STAC API - Core` spec along with other
 optional specifications:
 
-* `STAC API - Core <https://github.com/radiantearth/stac-api-spec/tree/master/core>`__
-* `STAC API - Item Search <https://github.com/radiantearth/stac-api-spec/tree/master/item-search>`__
-   * `Fields Extension <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/fields>`__
-   * `Query Extension <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/query>`__
-   * `Sort Extension <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/sort>`__
-   * `Context Extension <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/context>`__
-   * `Filter Extension <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/filter>`__
-* `STAC API - Features <https://github.com/radiantearth/stac-api-spec/tree/master/ogcapi-features>`__ (based on
+* `CORE <https://github.com/radiantearth/stac-api-spec/tree/master/core>`__
+* `ITEM_SEARCH <https://github.com/radiantearth/stac-api-spec/tree/master/item-search>`__
+   * `FIELDS <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/fields>`__
+   * `QUERY <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/query>`__
+   * `SORT <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/sort>`__
+   * `CONTEXT <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/context>`__
+   * `FILTER <https://github.com/radiantearth/stac-api-spec/tree/master/fragments/filter>`__
+* `COLLECTIONS <https://github.com/radiantearth/stac-api-spec/tree/master/collections>`__ (based on
+  the `Features Collection section of OGC APO -  Features <http://docs.opengeospatial.org/is/17-069r3/17-069r3.html#_collections_>__`)
+* `FEATURES <https://github.com/radiantearth/stac-api-spec/tree/master/ogcapi-features>`__ (based on
   `OGC API - Features <https://www.ogc.org/standards/ogcapi-features>`__)
 
 The :meth:`pystac_client.Client.conforms_to` method is used to check conformance
 against conformance classes (specs). To check an API for support for a given spec,
-pass the `conforms_to` function the :class:`ConformanceClasses` attribute as a
-parameter.
+pass the `conforms_to` function the name of a :class:`ConformanceClasses`.
 
 .. code-block:: python
 
-    >>> from pystac_client import ConformanceClasses
-    >>> api.conforms_to(ConformanceClasses.STAC_API_ITEM_SEARCH)
+    >>> api.conforms_to("ITEM_SEARCH")
     True
+
+If the API does not advertise conformance with a particular spec, but it does support
+it you can update `conforms_to` on the client object. For instance in `v0` of earth-search
+there are no ``"conformsTo"`` uris set at all. But they can be explicitly set:
+
+.. code-block:: python
+
+    >>> client = Client.open("https://earth-search.aws.element84.com/v0")
+    <stdin>:1: NoConformsTo: Server does not advertise any conformance classes.
+    >>> client.conforms_to("ITEM_SEARCH")
+    False
+    >>> client.add_conforms_to("ITEM_SEARCH")
 
 CollectionClient
 ++++++++++++++++
 
-STAC APIs may provide a curated list of catalogs and collections via their ``"links"``
-attribute. Links with a ``"rel"`` type of ``"child"`` represent catalogs or collections
-provided by the API. Since :class:`~pystac_client.Client` instances are also
-:class:`pystac.Catalog` instances, we can use the methods defined on that class to
-get collections:
+STAC APIs may optionally implement a ``/collections`` endpoint as describe in the
+`STAC API - Collections spec
+<https://github.com/radiantearth/stac-api-spec/tree/master/collections>`__. This endpoint
+allows clients to search or inspect items within a particular collection.
 
 .. code-block:: python
 
-    >>> child_links = api.get_links('child')
-    >>> len(child_links)
-    12
-    >>> first_child_link = api.get_single_link('child')
-    >>> first_child_link.resolve_stac_object(api)
-    >>> first_collection = first_child_link.target
-    >>> first_collection.title
-    'Landsat 8 C1 T1'
+    >>> collection = api.get_collection("sentinel-2-l2a")
+    >>> collection.title
+    'Sentinel-2 Level-2A'
 
-CollectionClient overrides the :meth:`pystac.Collection.get_items` method. PySTAC will
-get items by iterating through all children until it gets to an `item` link. If the
-`CollectionClient` instance contains an `items` link, this will instead iterate through
-items using the API endpoint instead: `/collections/<collection_id>/items`. If no such
-link is present it will fall back to the PySTAC Collection behavior.
+:class:`pystac_client.CollectionClient` overrides :meth:`pystac.Collection.get_items`.
+PySTAC will get items by iterating through all children until it gets to an ``item`` link.
+PySTAC client will use the API endpoint instead: `/collections/<collection_id>/items`
+(as long as `STAC API - Item Search spec
+<https://github.com/radiantearth/stac-api-spec/tree/master/item-search>`__ is supported).
+
+.. code-block:: python
+
+    >>> item = next(collections.items(), None)
 
 
 ItemSearch
