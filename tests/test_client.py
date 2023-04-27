@@ -604,6 +604,17 @@ class TestQueryables:
 
 
 class TestConformsTo:
+    def test_ignore_conformance_is_deprecated_and_noop(self) -> None:
+        with pytest.warns(
+            FutureWarning, match="`ignore_conformance` option is deprecated"
+        ):
+            client = Client.open(
+                str(TEST_DATA / "planetary-computer-root.json"),
+                ignore_conformance=True,
+            )
+        assert client.has_conforms_to()
+        assert client.conforms_to(ConformanceClasses.CORE)
+
     def test_set_conforms_to_using_list_of_uris(self) -> None:
         client = Client.from_file(str(TEST_DATA / "planetary-computer-root.json"))
         client.set_conforms_to(["https://api.stacspec.org/v1.0.0-rc.2/core"])

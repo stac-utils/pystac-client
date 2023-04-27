@@ -7,8 +7,6 @@ from enum import Enum
 class ConformanceClasses(Enum):
     """Enumeration class for Conformance Classes"""
 
-    _stac_prefix = "https://api.stacspec.org/v1.0."
-
     # defined conformance classes regexes
     CORE = "/core"
     COLLECTIONS = "/collections"
@@ -25,18 +23,26 @@ class ConformanceClasses(Enum):
     FILTER = "/item-search#filter"
 
     @classmethod
-    def valid_uri(cls, endpoint: str) -> str:
-        return f"{cls._stac_prefix.value}*{endpoint}"
-
-    @classmethod
-    def pattern(cls, endpoint: str) -> re.Pattern[str]:
-        return re.compile(
-            rf"{re.escape(cls._stac_prefix.value)}(.*){re.escape(endpoint)}"
+    def get_by_name(cls, name: str) -> ConformanceClasses:
+        for member in cls:
+            if member.name == name.upper():
+                return member
+        raise ValueError(
+            f"Invalid conformance class '{name}'. Options are: {list(cls)}"
         )
 
+    def __str__(self) -> str:
+        return f"{self.name}"
 
-CONFORMANCE_URIS = {
-    c.name: ConformanceClasses.pattern(c.value)
-    for c in ConformanceClasses
-    if not c.name.startswith("_")
-}
+    def __repr__(self) -> str:
+        return str(self)
+
+    @property
+    def valid_uri(self) -> str:
+        return f"https://api.stacspec.org/v1.0.*{self.value}"
+
+    @property
+    def pattern(self) -> re.Pattern[str]:
+        return re.compile(
+            rf"{re.escape('https://api.stacspec.org/v1.0.')}(.*){re.escape(self.value)}"
+        )

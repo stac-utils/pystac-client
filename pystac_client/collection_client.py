@@ -109,7 +109,7 @@ class CollectionClient(pystac.Collection, QueryablesMixin):
             )
         return root
 
-    def conforms_to(self, conformance_class: ConformanceClasses) -> bool:
+    def conforms_to(self, conformance_class: Union[ConformanceClasses, str]) -> bool:
         root = self.get_root()
         return root.conforms_to(conformance_class)
 
@@ -134,7 +134,7 @@ class CollectionClient(pystac.Collection, QueryablesMixin):
             )
             yield from search.items()
         else:
-            root._warn_on_fallback("ITEM_SEARCH")
+            root._warn_about_fallback("ITEM_SEARCH")
             for item in super().get_items():
                 call_modifier(self.modifier, item)
                 yield item
@@ -182,10 +182,10 @@ class CollectionClient(pystac.Collection, QueryablesMixin):
                 )
                 item = next(item_search.items(), None)
             else:
-                root._warn_on_fallback("FEATURES", "ITEM_SEARCH")
+                root._warn_about_fallback("FEATURES", "ITEM_SEARCH")
                 item = super().get_item(id, recursive=False)
         else:
-            warnings.warn(FallbackToPystac(), stacklevel=2)
+            warnings.warn(FallbackToPystac())
             item = super().get_item(id, recursive=True)
 
         if item:
@@ -195,4 +195,5 @@ class CollectionClient(pystac.Collection, QueryablesMixin):
 
     def _items_href(self) -> str:
         link = self.get_single_link("items")
-        return StacApiIO._get_href(self, "items", link, "items")
+        href = self._get_href("items", link, "items")
+        return href

@@ -1,11 +1,12 @@
-from typing import Optional, Dict, Any
+from typing import Optional, Dict, Any, Union
+import warnings
 
 import pystac
 
 from pystac_client.exceptions import APIError
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.stac_api_io import StacApiIO
-from pystac_client.warnings import DoesNotConformTo
+from pystac_client.warnings import DoesNotConformTo, MissingLink
 
 QUERYABLES_REL = "http://www.opengis.net/def/rel/ogc/1.0/queryables"
 QUERYABLES_ENDPOINT = "queryables"
@@ -14,11 +15,21 @@ QUERYABLES_ENDPOINT = "queryables"
 class StacAPIObject(pystac.STACObject):
     _stac_io: Optional[StacApiIO]
 
-    def conforms_to(self, conformance_class: ConformanceClasses) -> bool:
+    def conforms_to(self, conformance_class: Union[str, ConformanceClasses]) -> bool:
         raise NotImplementedError
 
 
-class QueryablesMixin(StacAPIObject):
+class BaseMixin(StacAPIObject):
+    def _get_href(self, rel: str, link: Optional[pystac.Link], endpoint: str) -> str:
+        if link and isinstance(link.href, str):
+            href = link.absolute_href
+        else:
+            warnings.warn(MissingLink(rel, self.__class__.__name__), stacklevel=2)
+            href = f"{self.self_href.rstrip('/')}/{endpoint}"
+        return href
+
+
+class QueryablesMixin(BaseMixin):
     """Mixin for adding support for /queryables endpoint"""
 
     def get_queryables(self) -> Dict[str, Any]:
@@ -48,5 +59,5 @@ class QueryablesMixin(StacAPIObject):
 
     def _get_queryables_href(self) -> str:
         link = self.get_single_link(QUERYABLES_REL)
-        href = StacApiIO._get_href(self, QUERYABLES_REL, link, QUERYABLES_ENDPOINT)
+        href = self._get_href(QUERYABLES_REL, link, QUERYABLES_ENDPOINT)
         return href

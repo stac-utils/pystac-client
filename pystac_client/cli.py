@@ -8,7 +8,7 @@ from typing import Any, Dict, List, Optional
 import warnings
 
 from .client import Client
-from .conformance import CONFORMANCE_URIS
+from .conformance import ConformanceClasses
 from .item_search import OPS
 from .version import __version__
 from .warnings import (
@@ -155,13 +155,13 @@ def parse_args(args: List[str]) -> Dict[str, Any]:
     )
     parent.add_argument(
         "--add-conforms-to",
-        choices=list(CONFORMANCE_URIS.keys()),
+        choices=[c.name for c in ConformanceClasses],
         nargs="*",
         help="Specify conformance classes to add to client",
     )
     parent.add_argument(
         "--remove-conforms-to",
-        choices=list(CONFORMANCE_URIS.keys()),
+        choices=[c.name for c in ConformanceClasses],
         nargs="*",
         help="Specify conformance classes to remove from client",
     )

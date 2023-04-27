@@ -44,6 +44,11 @@ class TestSTAC_IOOverride:
 
         assert response == "Hi there!"
 
+    def test_conformance_deprecated(self) -> None:
+        with pytest.warns(FutureWarning, match="`conformance` option is deprecated"):
+            stac_api_io = StacApiIO(conformance=[])
+        assert not hasattr(stac_api_io, "conformance")
+
     def test_custom_headers(self, requests_mock: Mocker) -> None:
         """Checks that headers passed to the init method are added to requests."""
         header_name = "x-my-header"

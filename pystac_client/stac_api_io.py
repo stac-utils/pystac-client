@@ -78,7 +78,7 @@ class StacApiIO(DefaultStacIO):
         if conformance is not None:
             warnings.warn(
                 (
-                    "The `ignore_conformance` option is deprecated and will be "
+                    "The `conformance` option is deprecated and will be "
                     "removed in the next major release. Instead use "
                     "`Client.set_conforms_to` or `Client.add_conforms_to` to control "
                     "behavior."
@@ -304,20 +304,6 @@ class StacApiIO(DefaultStacIO):
             next_link = next(
                 (link for link in page.get("links", []) if link["rel"] == "next"), None
             )
-
-    @staticmethod
-    def _get_href(
-        obj: pystac.STACObject, rel: str, link: Optional[pystac.Link], endpoint: str
-    ) -> str:
-        if link and isinstance(link.href, str):
-            href = link.absolute_href
-        else:
-            warnings.warn(
-                pystac_client.warnings.MissingLink(rel, obj.__class__.__name__),
-                stacklevel=2,
-            )
-            href = f"{obj.self_href.rstrip('/')}/{endpoint}"
-        return href
 
 
 def _is_url(href: str) -> bool:
