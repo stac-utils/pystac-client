@@ -56,7 +56,7 @@ dev = [
     "ruff==0.0.263",
     "tomli~=2.0; python_version<'3.11'",
     "types-python-dateutil~=2.8.19",
-    "types-requests~=2.28.11",
+    "types-requests~=2.29.0",
 ]
 docs = [
     "Sphinx~=6.2",
