@@ -108,5 +108,7 @@ jobs:
         with:
           python-version: 3.9
           cache: "pip"
+      - name: Install geos
+        run: sudo apt -y install libgeos-dev
       - name: Install
         run: pip install .[dev,docs]

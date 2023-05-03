@@ -61,8 +61,10 @@ dev = [
 docs = [
     "Sphinx~=6.2",
     "boto3~=1.26",
+    "cartopy~=0.21",
     "geojson~=3.0.1",
     "geopandas~=0.12.2",
+    "geoviews~=1.9",
     "hvplot~=0.8.3",
     "ipykernel~=6.22",
     "ipython~=8.12",
@@ -72,6 +74,7 @@ docs = [
     "nbsphinx~=0.9",
     "pydata-sphinx-theme~=0.13",
     "pygeoif~=1.0",
+    "scipy~=1.10",
     "sphinxcontrib-fulltoc~=1.2",
 ]
 
