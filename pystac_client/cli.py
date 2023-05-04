@@ -318,7 +318,6 @@ def cli() -> int:
         url = args.pop("url")
         headers = args.pop("headers", {})
 
-        logging.captureWarnings(True)
         set_warnings(args.pop("error", None), args.pop("ignore", None))
 
         client = Client.open(url, headers=headers)
