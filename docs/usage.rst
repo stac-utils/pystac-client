@@ -66,8 +66,8 @@ conforms, otherwise it will fall back to default behavior provided by
 When a ``Client`` does not conform to a particular Conformance Class, an informative
 warning is raised. Similarly when falling back to the :class:`pystac.Catalog`
 implementation a warning is raised. You can control the behavior of these warnings
-using the standard :py:mod:`warnings` or special context managers ``strict`` and
-``ignore`` from :mod:`pystac_client.warnings`.
+using the standard :py:mod:`warnings` or special context managers :func:`pystac_client.warnings.strict` and
+from :func:`pystac_client.warnings.ignore`.
 
 API Conformance
 ---------------
