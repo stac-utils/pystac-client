@@ -29,6 +29,7 @@ from requests import Request
 from pystac_client._utils import Modifiable, call_modifier
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.stac_api_io import StacApiIO
+from pystac_client.warnings import DoesNotConformTo
 
 if TYPE_CHECKING:
     from pystac_client import client as _client
@@ -141,7 +142,7 @@ class ItemSearch:
     through the resulting STAC Items, either :meth:`ItemSearch.item_collections`,
     :meth:`ItemSearch.items`, or :meth:`ItemSearch.items_as_dicts`.
 
-    All parameters except `url``, ``method``, ``max_items``, ``stac_io``, and ``client``
+    All parameters except `url``, ``method``, ``max_items``, and ``client``
     correspond to query parameters
     described in the `STAC API - Item Search: Query Parameters Table
     <https://github.com/radiantearth/stac-api-spec/tree/master/item-search#query-parameter-table>`__
@@ -149,8 +150,7 @@ class ItemSearch:
     to those docs for details on how these parameters filter search results.
 
     Args:
-        url: The URL to the root / landing page of the STAC API
-            implementing the Item Search endpoint.
+        url: The URL to the search page of the STAC API.
         method : The HTTP method to use when making a request to the service.
             This must be either ``"GET"``, ``"POST"``, or
             ``None``. If ``None``, this will default to ``"POST"``.
@@ -249,6 +249,8 @@ class ItemSearch:
             will still be signed with ``modifier``.
     """
 
+    _stac_io: StacApiIO
+
     def __init__(
         self,
         url: str,
@@ -273,12 +275,12 @@ class ItemSearch:
         self.url = url
         self.client = client
 
-        if stac_io:
-            self._stac_io = stac_io
+        if client and client._stac_io is not None and stac_io is None:
+            self._stac_io = client._stac_io
+            if not client.conforms_to(ConformanceClasses.ITEM_SEARCH):
+                warnings.warn(DoesNotConformTo("ITEM_SEARCH"))
         else:
-            self._stac_io = StacApiIO()
-
-        self._assert_conforms_to(ConformanceClasses.ITEM_SEARCH)
+            self._stac_io = stac_io or StacApiIO()
 
         self._max_items = max_items
         if self._max_items is not None and limit is not None:
@@ -307,9 +309,6 @@ class ItemSearch:
         self._parameters: Dict[str, Any] = {
             k: v for k, v in params.items() if v is not None
         }
-
-    def _assert_conforms_to(self, conformance_class: ConformanceClasses) -> None:
-        self._stac_io.assert_conforms_to(conformance_class)
 
     def get_parameters(self) -> Dict[str, Any]:
         if self.method == "POST":
@@ -369,7 +368,8 @@ class ItemSearch:
         if value is None:
             return None
 
-        self._assert_conforms_to(ConformanceClasses.QUERY)
+        if self.client and not self.client.conforms_to(ConformanceClasses.QUERY):
+            warnings.warn(DoesNotConformTo("QUERY"))
 
         if isinstance(value, dict):
             return value
@@ -418,7 +418,8 @@ class ItemSearch:
         if value is None:
             return None
 
-        self._assert_conforms_to(ConformanceClasses.FILTER)
+        if self.client and not self.client.conforms_to(ConformanceClasses.FILTER):
+            warnings.warn(DoesNotConformTo("FILTER"))
 
         return value
 
@@ -562,7 +563,8 @@ class ItemSearch:
         if value is None:
             return None
 
-        self._assert_conforms_to(ConformanceClasses.SORT)
+        if self.client and not self.client.conforms_to(ConformanceClasses.SORT):
+            warnings.warn(DoesNotConformTo("SORT"))
 
         if isinstance(value, str):
             return [self._sortby_part_to_dict(part) for part in value.split(",")]
@@ -599,7 +601,8 @@ class ItemSearch:
         if value is None:
             return None
 
-        self._assert_conforms_to(ConformanceClasses.FIELDS)
+        if self.client and not self.client.conforms_to(ConformanceClasses.FIELDS):
+            warnings.warn(DoesNotConformTo("FIELDS"))
 
         if isinstance(value, str):
             return self._fields_to_dict(value.split(","))

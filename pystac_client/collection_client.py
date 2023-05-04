@@ -1,4 +1,17 @@
-from typing import TYPE_CHECKING, Any, Callable, Dict, Iterator, List, Optional, cast
+from __future__ import annotations
+
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Callable,
+    Dict,
+    Iterator,
+    List,
+    Optional,
+    Union,
+    cast,
+)
+import warnings
 
 import pystac
 
@@ -8,14 +21,16 @@ from pystac_client.exceptions import APIError
 from pystac_client.item_search import ItemSearch
 from pystac_client.mixins import QueryablesMixin
 from pystac_client.stac_api_io import StacApiIO
+from pystac_client.warnings import FallbackToPystac
 
 if TYPE_CHECKING:
     from pystac.item import Item as Item_Type
+    from pystac_client import Client
 
 
 class CollectionClient(pystac.Collection, QueryablesMixin):
     modifier: Callable[[Modifiable], None]
-    _stac_io: Optional[StacApiIO]
+    _stac_io: StacApiIO
 
     def __init__(
         self,
@@ -60,7 +75,7 @@ class CollectionClient(pystac.Collection, QueryablesMixin):
         cls,
         d: Dict[str, Any],
         href: Optional[str] = None,
-        root: Optional[pystac.Catalog] = None,
+        root: Optional[Union[pystac.Catalog, Client]] = None,
         migrate: bool = False,
         preserve_dict: bool = True,
         modifier: Optional[Callable[[Modifiable], None]] = None,
@@ -71,17 +86,32 @@ class CollectionClient(pystac.Collection, QueryablesMixin):
         setattr(result, "modifier", modifier)
         return result
 
-    def set_root(self, root: Optional[pystac.Catalog]) -> None:
-        # hook in to set_root and use it for setting _stac_io
-        super().set_root(root=root)
-        if root is not None and root._stac_io is not None:
-            if not isinstance(root._stac_io, StacApiIO):
-                raise ValueError("Root should be a Client object")
-            else:
-                self._stac_io = root._stac_io
-
     def __repr__(self) -> str:
         return "<CollectionClient id={}>".format(self.id)
+
+    def set_root(self, root: Optional[Union[pystac.Catalog, Client]]) -> None:
+        # hook in to set_root and use it for setting _stac_io
+        super().set_root(root=root)
+        if root is None:
+            raise ValueError("`CollectionClient.root` must be set")
+        elif root._stac_io is not None and isinstance(root._stac_io, StacApiIO):
+            self._stac_io = root._stac_io
+        else:
+            raise ValueError("`CollectionClient.root` must be a valid `Client` object")
+
+    def get_root(self) -> Client:
+        from pystac_client.client import Client
+
+        root = super().get_root()
+        if root is None or not isinstance(root, Client):
+            raise ValueError(
+                "`CollectionClient.root` is not have a valid `Client` object."
+            )
+        return root
+
+    def conforms_to(self, conformance_class: Union[ConformanceClasses, str]) -> bool:
+        root = self.get_root()
+        return root.conforms_to(conformance_class)
 
     def get_items(self) -> Iterator["Item_Type"]:
         """Return all items in this Collection.
@@ -93,17 +123,18 @@ class CollectionClient(pystac.Collection, QueryablesMixin):
         Return:
             Iterator[Item]: Iterator of items whose parent is this catalog.
         """
-
-        link = self.get_single_link("items")
-        if link is not None and self._stac_io is not None:
+        root = self.get_root()
+        if root.conforms_to(ConformanceClasses.ITEM_SEARCH):
             search = ItemSearch(
-                url=link.href,
+                url=self._items_href(),
                 method="GET",
-                stac_io=self._stac_io,
+                client=root,
+                collections=[self.id],
                 modifier=self.modifier,
             )
             yield from search.items()
         else:
+            root._warn_about_fallback("ITEM_SEARCH")
             for item in super().get_items():
                 call_modifier(self.modifier, item)
                 yield item
@@ -130,45 +161,39 @@ class CollectionClient(pystac.Collection, QueryablesMixin):
         """
         if not recursive:
             root = self.get_root()
-            if root and self._stac_io:
-                items_link = self.get_single_link("items")
-                search_link = root.get_single_link("search")
-                if (
-                    self._stac_io.conforms_to(ConformanceClasses.FEATURES)
-                    and items_link is not None
-                ):
-                    url = f"{items_link.href}/{id}"
-                    try:
-                        obj = self._stac_io.read_stac_object(url, root=self)
-                        item = cast(Optional[pystac.Item], obj)
-                    except APIError as err:
-                        if err.status_code and err.status_code == 404:
-                            return None
-                        else:
-                            raise err
-                    assert isinstance(item, pystac.Item)
-                elif (
-                    self._stac_io.conforms_to(ConformanceClasses.ITEM_SEARCH)
-                    and search_link
-                    and search_link.href
-                ):
-                    item_search = ItemSearch(
-                        url=search_link.href,
-                        method="GET",
-                        stac_io=self._stac_io,
-                        ids=[id],
-                        collections=[self.id],
-                        modifier=self.modifier,
-                    )
-                    item = next(item_search.items(), None)
-                else:
-                    item = super().get_item(id, recursive=False)
+            if root.conforms_to(ConformanceClasses.FEATURES) and self._stac_io:
+                url = f"{self._items_href().rstrip('/')}/{id}"
+                try:
+                    obj = self._stac_io.read_stac_object(url, root=self)
+                    item = cast(Optional[pystac.Item], obj)
+                except APIError as err:
+                    if getattr(err, "status_code", None) and err.status_code == 404:
+                        return None
+                    else:
+                        raise err
+            elif root.conforms_to(ConformanceClasses.ITEM_SEARCH) and self._stac_io:
+                item_search = ItemSearch(
+                    url=root._search_href(),
+                    method="GET",
+                    client=root,
+                    ids=[id],
+                    collections=[self.id],
+                    modifier=self.modifier,
+                )
+                item = next(item_search.items(), None)
             else:
+                root._warn_about_fallback("FEATURES", "ITEM_SEARCH")
                 item = super().get_item(id, recursive=False)
         else:
+            warnings.warn(FallbackToPystac())
             item = super().get_item(id, recursive=True)
 
         if item:
             call_modifier(self.modifier, item)
 
         return item
+
+    def _items_href(self) -> str:
+        link = self.get_single_link("items")
+        href = self._get_href("items", link, "items")
+        return href

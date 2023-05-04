@@ -67,3 +67,11 @@ Exceptions
     :members:
     :undoc-members:
     :show-inheritance:
+
+Warnings
+--------
+
+.. automodule:: pystac_client.warnings
+    :members:
+    :undoc-members:
+    :show-inheritance:

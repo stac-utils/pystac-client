@@ -51,3 +51,36 @@ class TestCLI:
         result = script_runner.run(*args, print_result=False)
         assert not result.success
         assert result.returncode == 1
+
+    @pytest.mark.vcr
+    @pytest.mark.script_launch_mode("subprocess")
+    def test_non_conformant_raises_by_default(
+        self, script_runner: ScriptRunner
+    ) -> None:
+        args = [
+            "stac-client",
+            "search",
+            "https://earth-search.aws.element84.com/v0",
+            "-c",
+            "sentinel-s2-l2a-cogs",
+            "--matched",
+        ]
+        result = script_runner.run(*args, print_result=False)
+        assert result.success is False
+        assert "Server does not advertise any conformance classes" in result.stderr
+        assert result.returncode == 1
+
+    @pytest.mark.vcr
+    @pytest.mark.filterwarnings("ignore::pystac_client.warnings.NoConformsTo")
+    def test_non_conformant_can_be_fixed(self, script_runner: ScriptRunner) -> None:
+        args = [
+            "stac-client",
+            "search",
+            "https://earth-search.aws.element84.com/v0",
+            "-c",
+            "sentinel-s2-l2a-cogs",
+            "--add-conforms-to=ITEM_SEARCH",
+            "--matched",
+        ]
+        result = script_runner.run(*args, print_result=False)
+        assert result.success

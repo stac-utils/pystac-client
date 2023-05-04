@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - Timeout option added to `Client.open` [#463](https://github.com/stac-utils/pystac-client/pull/463)
+- Support for fetching catalog queryables [#477](https://github.com/stac-utils/pystac-client/pull/477)
+- PySTAC Client specific warnings [#480](https://github.com/stac-utils/pystac-client/pull/480)
 
 ### Changed
 
@@ -26,9 +28,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Three tests that were false positives due to out-of-date cassettes [#491](https://github.com/stac-utils/pystac-client/pull/491)
 - Max items checks when paging [#492](https://github.com/stac-utils/pystac-client/pull/492)
 
-### Added
+### Removed
 
-- Support for fetching catalog queryables [#477](https://github.com/stac-utils/pystac-client/pull/477)
+- ``pystac_client.conformance.CONFORMANCE_URIS`` dictionary [#480](https://github.com/stac-utils/pystac-client/pull/480)
+
 
 ## [v0.6.1] - 2023-03-14
 

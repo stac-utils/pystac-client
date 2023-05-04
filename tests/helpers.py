@@ -6,7 +6,7 @@ TEST_DATA = Path(__file__).parent / "data"
 
 STAC_URLS = {
     "PLANETARY-COMPUTER": "https://planetarycomputer.microsoft.com/api/stac/v1",
-    "EARTH-SEARCH": "https://earth-search.aws.element84.com/v0",
+    "EARTH-SEARCH": "https://earth-search.aws.element84.com/v1",
     "MLHUB": "https://api.radiant.earth/mlhub/v1",
 }
 

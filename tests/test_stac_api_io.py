@@ -5,7 +5,6 @@ from urllib.parse import parse_qs, urlsplit
 import pytest
 from requests_mock.mocker import Mocker
 
-from pystac_client.conformance import ConformanceClasses
 from pystac_client.exceptions import APIError
 from pystac_client.stac_api_io import StacApiIO
 
@@ -45,30 +44,10 @@ class TestSTAC_IOOverride:
 
         assert response == "Hi there!"
 
-    def test_assert_conforms_to(self) -> None:
-        nonconformant = StacApiIO(conformance=[])
-
-        with pytest.raises(NotImplementedError):
-            nonconformant.assert_conforms_to(ConformanceClasses.CORE)
-
-        conformant_io = StacApiIO(
-            conformance=["https://api.stacspec.org/v1.0.0-beta.1/core"]
-        )
-
-        # Check that this does not raise an exception
-        conformant_io.assert_conforms_to(ConformanceClasses.CORE)
-
-    def test_conforms_to(self) -> None:
-        nonconformant = StacApiIO(conformance=[])
-
-        assert not nonconformant.conforms_to(ConformanceClasses.CORE)
-
-        conformant_io = StacApiIO(
-            conformance=["https://api.stacspec.org/v1.0.0-beta.1/core"]
-        )
-
-        # Check that this does not raise an exception
-        assert conformant_io.conforms_to(ConformanceClasses.CORE)
+    def test_conformance_deprecated(self) -> None:
+        with pytest.warns(FutureWarning, match="`conformance` option is deprecated"):
+            stac_api_io = StacApiIO(conformance=[])
+        assert not hasattr(stac_api_io, "conformance")
 
     def test_custom_headers(self, requests_mock: Mocker) -> None:
         """Checks that headers passed to the init method are added to requests."""
