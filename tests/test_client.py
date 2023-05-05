@@ -583,6 +583,20 @@ class TestQueryables:
         assert "properties" in result
         assert "id" in result["properties"]
 
+    @pytest.mark.vcr
+    def test_get_queryables_collections(self) -> None:
+        api = Client.open(STAC_URLS["PLANETARY-COMPUTER"])
+        with pytest.warns(MissingLink, match="queryables"):
+            tdep_seamless_props = api.get_collection("3dep-seamless").get_queryables()[
+                "properties"
+            ]
+            fia_props = api.get_collection("fia").get_queryables()["properties"]
+            result = api.get_queryables("fia", "3dep-seamless")
+        assert "properties" in result
+        assert "id" in result["properties"]
+        assert set(fia_props.keys()).issubset(result["properties"])
+        assert set(tdep_seamless_props.keys()).issubset(result["properties"])
+
     def test_get_queryables_errors(self, requests_mock: Mocker) -> None:
         pc_root_text = read_data_file("planetary-computer-root.json")
         root_url = "http://pystac-client.test/"

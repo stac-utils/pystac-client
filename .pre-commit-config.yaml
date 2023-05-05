@@ -33,3 +33,4 @@ repos:
           - pytest-vcr
           - types-requests
           - types-python-dateutil
+          - orjson

@@ -32,14 +32,24 @@ class BaseMixin(StacAPIObject):
 class QueryablesMixin(BaseMixin):
     """Mixin for adding support for /queryables endpoint"""
 
-    def get_queryables(self) -> Dict[str, Any]:
-        """Return all queryables.
+    def get_queryables(self, *collections: Optional[str]) -> Dict[str, Any]:
+        """Return all queryables, or limit to those of specified collections.
 
         Output is a dictionary that can be used in ``jsonshema.validate``
+        Args:
+            *collections: The IDs of the items to include.
 
         Return:
             Dict[str, Any]: Dictionary containing queryable fields
         """
+        if collections and isinstance(self, pystac.Catalog):
+            response = self.get_collection(collections[0]).get_queryables()
+            response.pop("$id")
+            for collection in collections[1:]:
+                col_resp = self.get_collection(collection).get_queryables()
+                response["properties"].update(col_resp["properties"])
+            return response
+
         if self._stac_io is None:
             raise APIError("API access is not properly configured")
 
