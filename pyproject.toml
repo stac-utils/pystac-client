@@ -60,7 +60,7 @@ dev = [
     "urllib3<2",  # temporary pin https://github.com/stac-utils/pystac-client/issues/509
 ]
 docs = [
-    "Sphinx~=6.2",
+    "Sphinx~=7.0",
     "boto3~=1.26",
     "cartopy~=0.21",
     "geojson~=3.0.1",
