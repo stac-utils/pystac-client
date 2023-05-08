@@ -34,6 +34,8 @@ class QueryablesMixin(BaseMixin):
 
     def get_queryables(self, *collections: Optional[str]) -> Dict[str, Any]:
         """Return all queryables, or limit to those of specified collections.
+        
+        Queryables from multiple collections are unioned together, except in the case when the same queryable key has a different definition, in which case that key is dropped.
 
         Output is a dictionary that can be used in ``jsonshema.validate``
         Args:
