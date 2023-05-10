@@ -336,9 +336,7 @@ class Client(pystac.Catalog, QueryablesMixin):
         warnings.warn(FallbackToPystac(), stacklevel=2)
 
     @lru_cache()
-    def get_collection(
-        self, collection_id: str
-    ) -> Optional[Union[Collection, CollectionClient]]:
+    def get_collection(self, collection_id: str) -> Union[Collection, CollectionClient]:
         """Get a single collection from this Catalog/API
 
         Args:
@@ -346,6 +344,9 @@ class Client(pystac.Catalog, QueryablesMixin):
 
         Returns:
             Union[Collection, CollectionClient]: A STAC Collection
+
+        Raises:
+            NotFoundError if collection_id does not exist.
         """
         collection: Union[Collection, CollectionClient]
 
