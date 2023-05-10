@@ -1,17 +1,17 @@
-from functools import lru_cache
 import re
+import warnings
+from functools import lru_cache
 from typing import (
     TYPE_CHECKING,
     Any,
     Callable,
-    cast,
     Dict,
     Iterator,
     List,
     Optional,
     Union,
+    cast,
 )
-import warnings
 
 import pystac
 import pystac.utils
@@ -22,7 +22,6 @@ from requests import Request
 from pystac_client._utils import Modifiable, call_modifier
 from pystac_client.collection_client import CollectionClient
 from pystac_client.conformance import ConformanceClasses
-
 from pystac_client.errors import ClientTypeError
 from pystac_client.exceptions import APIError
 from pystac_client.item_search import (
@@ -41,11 +40,7 @@ from pystac_client.item_search import (
 )
 from pystac_client.mixins import QueryablesMixin
 from pystac_client.stac_api_io import StacApiIO, Timeout
-from pystac_client.warnings import (
-    DoesNotConformTo,
-    FallbackToPystac,
-    NoConformsTo,
-)
+from pystac_client.warnings import DoesNotConformTo, FallbackToPystac, NoConformsTo
 
 if TYPE_CHECKING:
     from pystac.item import Item as Item_Type
