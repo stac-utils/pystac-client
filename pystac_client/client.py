@@ -365,7 +365,7 @@ class Client(pystac.Catalog, QueryablesMixin):
                 self._get_collection_queryables_href(collection)
             )
 
-            # additionalProperties is false if any collection doesn't support queryables
+            # additionalProperties is false if any collection doesn't support additional properties
             addl_props &= resp.get("additionalProperties", False)
 
             # drop queryables if their keys match, but the descriptions differ
