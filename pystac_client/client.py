@@ -1,17 +1,17 @@
-from functools import lru_cache
 import re
+import warnings
+from functools import lru_cache
 from typing import (
     TYPE_CHECKING,
     Any,
     Callable,
-    cast,
     Dict,
     Iterator,
     List,
     Optional,
     Union,
+    cast,
 )
-import warnings
 
 import pystac
 import pystac.utils
@@ -22,7 +22,6 @@ from requests import Request
 from pystac_client._utils import Modifiable, call_modifier
 from pystac_client.collection_client import CollectionClient
 from pystac_client.conformance import ConformanceClasses
-
 from pystac_client.errors import ClientTypeError
 from pystac_client.exceptions import APIError
 from pystac_client.item_search import (
@@ -39,13 +38,9 @@ from pystac_client.item_search import (
     QueryLike,
     SortbyLike,
 )
-from pystac_client.mixins import QueryablesMixin
+from pystac_client.mixins import QUERYABLES_ENDPOINT, QueryablesMixin
 from pystac_client.stac_api_io import StacApiIO, Timeout
-from pystac_client.warnings import (
-    DoesNotConformTo,
-    FallbackToPystac,
-    NoConformsTo,
-)
+from pystac_client.warnings import DoesNotConformTo, FallbackToPystac, NoConformsTo
 
 if TYPE_CHECKING:
     from pystac.item import Item as Item_Type
@@ -340,10 +335,50 @@ class Client(pystac.Catalog, QueryablesMixin):
             warnings.warn(DoesNotConformTo(*args), stacklevel=2)
         warnings.warn(FallbackToPystac(), stacklevel=2)
 
+    def get_merged_queryables(self, collections: List[str]) -> Dict[str, Any]:
+        """Return the set of queryables in common to the specified collections.
+
+        Queryables from multiple collections are unioned together, except in the case
+        when the same queryable key has a different definition, in which case that key
+        is dropped.
+
+        Output is a dictionary that can be used in ``jsonshema.validate``
+
+        Args:
+            collections List[str]: The IDs of the collections to inspect.
+
+        Return:
+            Dict[str, Any]: Dictionary containing queryable fields
+        """
+        if not collections:
+            raise ValueError("cannot get_merged_queryables from empty Iterable")
+
+        if not self.conforms_to(ConformanceClasses.FILTER):
+            raise DoesNotConformTo(ConformanceClasses.FILTER.name)
+        response = self.get_queryables_from(
+            self._get_collection_queryables_href(collections[0])
+        )
+        response.pop("$id")
+        addl_props = response.get("additionalProperties", False)
+        for collection in collections[1:]:
+            resp = self.get_queryables_from(
+                self._get_collection_queryables_href(collection)
+            )
+
+            # additionalProperties is false if any collection doesn't support additional
+            # properties
+            addl_props &= resp.get("additionalProperties", False)
+
+            # drop queryables if their keys match, but the descriptions differ
+            for k in set(resp["properties"]).intersection(response["properties"]):
+                if resp["properties"][k] != response["properties"][k]:
+                    resp["properties"].pop(k)
+                    response["properties"].pop(k)
+            response["properties"].update(resp["properties"])
+        return response
+
     @lru_cache()
-    def get_collection(
-        self, collection_id: str
-    ) -> Optional[Union[Collection, CollectionClient]]:
+    def get_collection(self, collection_id: str) -> Union[Collection, CollectionClient]:
         """Get a single collection from this Catalog/API
 
         Args:
@@ -351,6 +386,9 @@ class Client(pystac.Catalog, QueryablesMixin):
 
         Returns:
             Union[Collection, CollectionClient]: A STAC Collection
+
+        Raises:
+            NotFoundError if collection_id does not exist.
         """
         collection: Union[Collection, CollectionClient]
 
@@ -602,3 +640,9 @@ class Client(pystac.Catalog, QueryablesMixin):
         if collection_id is not None:
             return f"{href.rstrip('/')}/{collection_id}"
         return href
+
+    def _get_collection_queryables_href(
+        self, collection_id: Optional[str] = None
+    ) -> str:
+        href = self._collections_href(collection_id)
+        return f"{href.rstrip('/')}/{QUERYABLES_ENDPOINT}"

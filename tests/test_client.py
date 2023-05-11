@@ -10,8 +10,6 @@ import pystac
 import pytest
 from dateutil.tz import tzutc
 from pystac import MediaType
-from requests_mock import Mocker
-
 from pystac_client import Client, CollectionClient
 from pystac_client._utils import Modifiable
 from pystac_client.conformance import ConformanceClasses
@@ -25,6 +23,7 @@ from pystac_client.warnings import (
     NoConformsTo,
     strict,
 )
+from requests_mock import Mocker
 
 from .helpers import STAC_URLS, TEST_DATA, read_data_file
 
@@ -583,6 +582,22 @@ class TestQueryables:
         assert "properties" in result
         assert "id" in result["properties"]
 
+    @pytest.mark.vcr
+    def test_get_queryables_collections(self) -> None:
+        api = Client.open(STAC_URLS["PLANETARY-COMPUTER"])
+        with pytest.warns(MissingLink, match="queryables"):
+            col = api.get_collection("3dep-seamless")
+            assert isinstance(col, CollectionClient)
+            tdep_seamless_props = col.get_queryables()["properties"]
+            col = api.get_collection("fia")
+            assert isinstance(col, CollectionClient)
+            fia_props = col.get_queryables()["properties"]
+            result = api.get_merged_queryables(["fia", "3dep-seamless"])
+        assert "properties" in result
+        assert "id" in result["properties"]
+        assert set(fia_props.keys()).issubset(result["properties"])
+        assert set(tdep_seamless_props.keys()).issubset(result["properties"])
+
     def test_get_queryables_errors(self, requests_mock: Mocker) -> None:
         pc_root_text = read_data_file("planetary-computer-root.json")
         root_url = "http://pystac-client.test/"
@@ -593,14 +608,17 @@ class TestQueryables:
 
         assert api._stac_io is not None
         api.add_conforms_to("FILTER")
+        self_href = api.get_self_href()
         api.set_self_href(None)
         with pytest.warns(MissingLink, match="queryables"):
             with pytest.raises(ValueError, match="does not have a self_href set"):
                 api.get_queryables()
 
+        api.set_self_href(self_href)
         api._stac_io = None
-        with pytest.raises(APIError, match="API access is not properly configured"):
-            api.get_queryables()
+        with pytest.warns(MissingLink, match="queryables"):
+            with pytest.raises(APIError, match="API access is not properly configured"):
+                api.get_queryables()
 
 
 class TestConformsTo:
