@@ -1,6 +1,6 @@
+import warnings
 from contextlib import contextmanager
 from typing import Iterator
-import warnings
 
 
 class PystacClientWarning(UserWarning):
