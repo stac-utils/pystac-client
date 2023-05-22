@@ -99,6 +99,23 @@ jobs:
       - name: Test
         run: ./scripts/test
 
+  upstream:
+    name: upstream
+    runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request'
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+          cache: "pip"
+      - name: Install
+        run: pip install .[dev]
+      - name: Install pystac from main
+        run: pip install --force-reinstall git+https://github.com/stac-utils/pystac.git
+      - name: Test
+        run: ./scripts/test
+
   dev-and-docs-requirements:
     name: dev and docs requirements check
     runs-on: ubuntu-latest
