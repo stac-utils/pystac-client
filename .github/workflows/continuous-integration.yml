@@ -112,7 +112,7 @@ jobs:
       - name: Install
         run: pip install .[dev]
       - name: Install pystac from main
-        run: pip install -U git+https://github.com/stac-utils/pystac.git
+        run: pip install --force-reinstall git+https://github.com/stac-utils/pystac.git
       - name: Test
         run: ./scripts/test
 
