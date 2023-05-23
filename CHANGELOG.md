@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Move to `FutureWarning` from `DeprecationWarning` for item search interface functions that are to be removed [#464](https://github.com/stac-utils/pystac-client/pull/464)
 - Consolidate contributing docs into one place [#478](https://github.com/stac-utils/pystac-client/issues/478)
 - Use `pyproject.toml` instead of `setup.py` [#501](https://github.com/stac-utils/pystac-client/pull/501)
+- Enable Ruff import sorting [#518](https://github.com/stac-utils/pystac-client/pull/518)
 
 ### Fixed
 
