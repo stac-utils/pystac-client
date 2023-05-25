@@ -1,5 +1,6 @@
 import json
 import logging
+import warnings
 from copy import deepcopy
 from typing import (
     TYPE_CHECKING,
@@ -12,9 +13,7 @@ from typing import (
     Tuple,
     Union,
 )
-from typing_extensions import TypeAlias
 from urllib.parse import urlparse
-import warnings
 
 import pystac
 from pystac.link import Link
@@ -26,6 +25,7 @@ from pystac.serialization import (
 )
 from pystac.stac_io import DefaultStacIO
 from requests import Request, Session
+from typing_extensions import TypeAlias
 
 import pystac_client
 

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import warnings
 from typing import (
     TYPE_CHECKING,
     Any,
@@ -11,7 +12,6 @@ from typing import (
     Union,
     cast,
 )
-import warnings
 
 import pystac
 
@@ -25,6 +25,7 @@ from pystac_client.warnings import FallbackToPystac
 
 if TYPE_CHECKING:
     from pystac.item import Item as Item_Type
+
     from pystac_client import Client
 
 

@@ -10,6 +10,8 @@ import pystac
 import pytest
 from dateutil.tz import tzutc
 from pystac import MediaType
+from requests_mock import Mocker
+
 from pystac_client import Client, CollectionClient
 from pystac_client._utils import Modifiable
 from pystac_client.conformance import ConformanceClasses
@@ -23,7 +25,6 @@ from pystac_client.warnings import (
     NoConformsTo,
     strict,
 )
-from requests_mock import Mocker
 
 from .helpers import STAC_URLS, TEST_DATA, read_data_file
 
