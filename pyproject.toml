@@ -47,16 +47,16 @@ dev = [
     "orjson~=3.8",
     "pre-commit~=3.2",
     "pytest-benchmark~=4.0.0",
-    "pytest-console-scripts~=1.3.1",
-    "pytest-cov~=4.0.0",
+    "pytest-console-scripts~=1.4.0",
+    "pytest-cov~=4.1.0",
     "pytest-recording~=0.12.2",
     "pytest~=7.3.1",
     "recommonmark~=0.7.1",
     "requests-mock~=1.10.0",
-    "ruff==0.0.267",
+    "ruff==0.0.270",
     "tomli~=2.0; python_version<'3.11'",
     "types-python-dateutil~=2.8.19",
-    "types-requests~=2.30.0",
+    "types-requests~=2.31.0",
 ]
 docs = [
     "Sphinx~=6.2",
@@ -99,7 +99,7 @@ max-line-length = 130
 [tool.ruff]
 ignore = ["E722", "E731"]
 line-length = 88
-select = ["E", "F", "W"]
+select = ["E", "F", "W", "I"]
 
 [tool.ruff.per-file-ignores]
 "__init__.py" = ["F401"]

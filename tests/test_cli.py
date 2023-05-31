@@ -19,7 +19,7 @@ class TestCLI:
             "--max-items",
             "20",
         ]
-        result = script_runner.run(*args, print_result=False)
+        result = script_runner.run(args, print_result=False)
         assert result.success
 
     @pytest.mark.parametrize(
@@ -65,7 +65,7 @@ class TestCLI:
             "sentinel-s2-l2a-cogs",
             "--matched",
         ]
-        result = script_runner.run(*args, print_result=False)
+        result = script_runner.run(args, print_result=False)
         assert result.success is False
         assert "Server does not advertise any conformance classes" in result.stderr
         assert result.returncode == 1
@@ -82,5 +82,5 @@ class TestCLI:
             "--add-conforms-to=ITEM_SEARCH",
             "--matched",
         ]
-        result = script_runner.run(*args, print_result=False)
+        result = script_runner.run(args, print_result=False)
         assert result.success

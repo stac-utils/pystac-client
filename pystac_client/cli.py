@@ -4,19 +4,19 @@ import logging
 import os
 import re
 import sys
-from typing import Any, Dict, List, Optional
 import warnings
+from typing import Any, Dict, List, Optional
 
 from .client import Client
 from .conformance import ConformanceClasses
 from .item_search import OPS
 from .version import __version__
 from .warnings import (
-    PystacClientWarning,
-    NoConformsTo,
     DoesNotConformTo,
-    MissingLink,
     FallbackToPystac,
+    MissingLink,
+    NoConformsTo,
+    PystacClientWarning,
 )
 
 logger = logging.getLogger(__name__)
