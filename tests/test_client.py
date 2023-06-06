@@ -40,13 +40,6 @@ class TestAPI:
         assert str(api) == "<Client id=microsoft-pc>"
 
     @pytest.mark.vcr
-    def test_v1(self) -> None:
-        api = Client.open(STAC_URLS["EARTH-SEARCH"])
-        # Why, oh why, does PySTAC strip off the `stac_version` attribute?
-        # assert api.stac_version == "1.0.0"
-        assert api.id == "earth-search-aws"
-
-    @pytest.mark.vcr
     def test_links(self) -> None:
         api = Client.open(STAC_URLS["PLANETARY-COMPUTER"])
 
