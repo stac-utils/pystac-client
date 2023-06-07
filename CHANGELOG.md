@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Support for fetching catalog queryables [#477](https://github.com/stac-utils/pystac-client/pull/477)
 - PySTAC Client specific warnings [#480](https://github.com/stac-utils/pystac-client/pull/480)
 - Support for fetching and merging a selection of queryables [#511](https://github.com/stac-utils/pystac-client/pull/511)
+- Better error messages for the CLI [#531](https://github.com/stac-utils/pystac-client/pull/531)
 
 ### Changed
 
