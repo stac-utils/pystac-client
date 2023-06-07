@@ -7,6 +7,8 @@ import sys
 import warnings
 from typing import Any, Dict, List, Optional
 
+from pystac import STACTypeError
+
 from .client import Client
 from .conformance import ConformanceClasses
 from .item_search import OPS
@@ -50,7 +52,7 @@ def search(
         return 0
 
     except Exception as e:
-        print(e)
+        print(f"ERROR: {e}")
         return 1
 
 
@@ -64,8 +66,15 @@ def collections(client: Client, save: Optional[str] = None) -> int:
         else:
             print(json.dumps(collections_dicts))
         return 0
+    except STACTypeError as e:
+        print(f"ERROR: {e}")
+        print(
+            f"The client at {client.self_href} is OK, but one or more of the "
+            "collections is invalid."
+        )
+        return 1
     except Exception as e:
-        print(e)
+        print(f"ERROR: {e}")
         return 1
 
 
@@ -329,7 +338,7 @@ def cli() -> int:
         )
 
     except Exception as e:
-        print(e, file=sys.stderr)
+        print(f"ERROR: {e}", file=sys.stderr)
         return 1
 
     if cmd == "search":
