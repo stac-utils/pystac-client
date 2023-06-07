@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Support for fetching and merging a selection of queryables [#511](https://github.com/stac-utils/pystac-client/pull/511)
 - Better error messages for the CLI [#531](https://github.com/stac-utils/pystac-client/pull/531)
 - `Modifiable` to our public API [#534](https://github.com/stac-utils/pystac-client/pull/534)
+- `max_retries` parameter to `StacApiIO` [#532](https://github.com/stac-utils/pystac-client/pull/532)
 
 ### Changed
 

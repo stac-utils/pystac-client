@@ -25,6 +25,7 @@ from pystac.serialization import (
 )
 from pystac.stac_io import DefaultStacIO
 from requests import Request, Session
+from requests.adapters import HTTPAdapter
 from typing_extensions import TypeAlias
 
 import pystac_client
@@ -49,6 +50,7 @@ class StacApiIO(DefaultStacIO):
         parameters: Optional[Dict[str, Any]] = None,
         request_modifier: Optional[Callable[[Request], Union[Request, None]]] = None,
         timeout: Timeout = None,
+        max_retries: Optional[int] = 5,
     ):
         """Initialize class for API IO
 
@@ -69,6 +71,8 @@ class StacApiIO(DefaultStacIO):
             timeout: Optional float or (float, float) tuple following the semantics
               defined by `Requests
               <https://requests.readthedocs.io/en/latest/api/#main-interface>`__.
+            max_retries: The number of times to retry requests. Set to ``None`` to
+              disable retries.
 
         Return:
             StacApiIO : StacApiIO instance
@@ -87,6 +91,9 @@ class StacApiIO(DefaultStacIO):
             )
 
         self.session = Session()
+        if max_retries:
+            self.session.mount("http://", HTTPAdapter(max_retries=max_retries))
+            self.session.mount("https://", HTTPAdapter(max_retries=max_retries))
         self.timeout = timeout
         self.update(
             headers=headers, parameters=parameters, request_modifier=request_modifier
