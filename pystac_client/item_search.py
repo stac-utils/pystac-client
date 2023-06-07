@@ -1,6 +1,5 @@
 import json
 import re
-import urllib.parse
 import warnings
 from collections.abc import Iterable, Mapping
 from copy import deepcopy
@@ -362,7 +361,7 @@ class ItemSearch:
         url = request.prepare().url
         if url is None:
             raise ValueError("Could not construct a full url")
-        return urllib.parse.unquote(url)
+        return url
 
     def _format_query(self, value: Optional[QueryLike]) -> Optional[Dict[str, Any]]:
         if value is None:

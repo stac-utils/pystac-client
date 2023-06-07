@@ -1,5 +1,6 @@
 import json
 import operator
+import urllib.parse
 from datetime import datetime, timedelta
 from typing import Any, Dict, Iterator
 
@@ -99,7 +100,7 @@ class TestItemSearchParams:
             datetime="2020-02-01T00:00:00Z",
             bbox=[-104.5, 44.0, -104.0, 45.0],
         )
-        assert "bbox=-104.5,44.0,-104.0,45.0" in search.url_with_parameters()
+        assert "bbox=-104.5%2C44.0%2C-104.0%2C45.0" in search.url_with_parameters()
 
         # Motivating example: https://github.com/stac-utils/pystac-client/issues/299
         search = ItemSearch(
@@ -110,7 +111,7 @@ class TestItemSearchParams:
         assert (
             search.url_with_parameters()
             == "https://planetarycomputer.microsoft.com/api/stac/v1/search?"
-            "limit=100&bbox=88.214,27.927,88.302,28.034&collections=cop-dem-glo-30"
+            "limit=100&bbox=88.214%2C27.927%2C88.302%2C28.034&collections=cop-dem-glo-30"
         )
 
     def test_single_string_datetime(self) -> None:
@@ -803,3 +804,13 @@ def test_query_json_syntax() -> None:
     assert item_search._format_query(["eo:cloud_cover<=1", "eo:cloud_cover>0"]) == {
         "eo:cloud_cover": {"lte": "1", "gt": "0"}
     }
+
+
+def test_url_with_query_parameter() -> None:
+    # https://github.com/stac-utils/pystac-client/issues/522
+    search = ItemSearch(
+        url="http://pystac-client.test", query={"eo:cloud_cover": {"lt": 42}}
+    )
+    url = urllib.parse.urlparse(search.url_with_parameters())
+    query = urllib.parse.parse_qs(url.query)
+    assert query["query"] == [r'{"eo:cloud_cover":{"lt":42}}']
