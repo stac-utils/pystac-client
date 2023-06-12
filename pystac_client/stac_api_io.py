@@ -39,7 +39,7 @@ if TYPE_CHECKING:
 logger = logging.getLogger(__name__)
 
 
-Timeout: TypeAlias = Optional[Union[float, Tuple[float, float], Tuple[float, None]]]
+Timeout: TypeAlias = Union[float, Tuple[float, float], Tuple[float, None]]
 
 
 class StacApiIO(DefaultStacIO):
@@ -49,7 +49,7 @@ class StacApiIO(DefaultStacIO):
         conformance: Optional[List[str]] = None,
         parameters: Optional[Dict[str, Any]] = None,
         request_modifier: Optional[Callable[[Request], Union[Request, None]]] = None,
-        timeout: Timeout = None,
+        timeout: Optional[Timeout] = None,
         max_retries: Optional[int] = 5,
     ):
         """Initialize class for API IO
@@ -104,7 +104,7 @@ class StacApiIO(DefaultStacIO):
         headers: Optional[Dict[str, str]] = None,
         parameters: Optional[Dict[str, Any]] = None,
         request_modifier: Optional[Callable[[Request], Union[Request, None]]] = None,
-        timeout: Timeout = None,
+        timeout: Optional[Timeout] = None,
     ) -> None:
         """Updates this StacApi's headers, parameters, and/or request_modifer.
 
