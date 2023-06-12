@@ -13,13 +13,13 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - python-requests/2.28.2
+      - python-requests/2.31.0
     method: POST
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/search
   response:
     body:
       string: !!binary |
-        H4sIAP5rQWQC/+2di4/ctrW4/5WFgVv04rfWkofkIemL4Adnd1PEN3FzYzcFWgSL8Xpsz+0+jN11
+        H4sIAGEjh2QC/+2di4/ctrW4/5WFgVv04rfWkofkIemL4Adnd1PEN3FzYzcFWgSL8Xpsz+0+jN11
         krbI/34P9ZidhzSr0UgzFMk2zmPOiJKOPr4kfcN/P3v45+fpsxfPvplOHr7cTU9vr66mlw+z25tn
         x88+FJ/dP3vx938/m72nb72Blxffv/n2O/oHMG4ZZ/wtc//jFz9yjhdvkf30l/+mGEUZ02+BS1RA
         Rb17d/sbFcO1yJS2KLWQUkkEcax0hlQMQ84NIG1wzLXMOEWt0MxqLRCPlckEWiOUAoECAX4+Xjlw
@@ -255,32 +255,28 @@ interactions:
         i7Y2WrOosFW5qEvTuJzslwMtkm2XneyXzU624hlXSNf3EE52fZeyyyLZ1uNFsp06bbd3sqXbDgBx
         wyLZVmpjNAepOG5WsqVl9IejYXxgJZsztVHJNpnUQqPcUcnOf5DB8FI6Hl7JBtD9KdkmozYu122G
         U7IVB24xKdmrSvbP68bzDZX/pIBLffmnW9ck/fDnN293E3Lvp5O7y0/O7r59nw8PrmbXrjEAdvxE
-        v/S3k7UPed5LPdz+Y3pTnsqLrj6vR+bz7rspk/z7z7//H1+taVnj0QQA
+        v/S3k7UPed5LPdz+Y3pTnsqL5a7vRVe91yMRevfdlDn//eff/w8ibc3a8tEEAA==
     headers:
-      Accept-Ranges:
-      - bytes
       Access-Control-Allow-Credentials:
       - 'true'
       Access-Control-Allow-Origin:
       - '*'
-      Connection:
-      - keep-alive
+      Content-Encoding:
+      - gzip
       Content-Length:
-      - '13494'
+      - '13498'
       Content-Type:
       - application/geo+json
       Date:
-      - Thu, 20 Apr 2023 16:44:46 GMT
+      - Mon, 12 Jun 2023 13:53:37 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
+      Vary:
+      - Accept-Encoding
+      X-Azure-Ref:
+      - 0YCOHZAAAAABrY7+z4XnPToq1WpioIba3REVOMzAxMDAwMTA5MDI3ADkyN2FiZmE2LTE5ZjYtNGFmMS1hMDlkLWM5NTlkOWExZTY0NA==
       X-Cache:
       - CONFIG_NOCACHE
-      content-encoding:
-      - gzip
-      vary:
-      - Accept-Encoding
-      x-azure-ref:
-      - 20230420T164445Z-grahzm6a7148r7f3snn9kyxr1800000005c0000000003s9n
     status:
       code: 200
       message: OK
@@ -298,13 +294,13 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - python-requests/2.28.2
+      - python-requests/2.31.0
     method: POST
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/search
   response:
     body:
       string: !!binary |
-        H4sIAP9rQWQC/+2di4/ctrW4/5WFgVv04rfWkofkIemL4Adnd1PEN3FzYzcFWgSL8Xpsz+0+jN11
+        H4sIAGIjh2QC/+2di4/ctrW4/5WFgVv04rfWkofkIemL4Adnd1PEN3FzYzcFWgSL8Xpsz+0+jN11
         krbI/34P9ZidhzSr0UgzFMk2zmPOiJKOPr4kfcN/P3v45+fpsxfPvplOHr7cTU9vr66mlw+z25tn
         x88+FJ/dP3vx938/m72nb72Blxffv/n2O/oHMG4ZZ/wtc//jFz9yjhdvkf30l/+mGEUZ02+BS1RA
         Rb17d/sbFcO1yJS2KLWQUkkEcax0hlQMQ84NIG1wzLXMOEWt0MxqLRCPlckEWiOUAoECAX4+Xjlw
@@ -540,7 +536,7 @@ interactions:
         i7Y2WrOosFW5qEvTuJzslwMtkm2XneyXzU624hlXSNf3EE52fZeyyyLZ1uNFsp06bbd3sqXbDgBx
         wyLZVmpjNAepOG5WsqVl9IejYXxgJZsztVHJNpnUQqPcUcnOf5DB8FI6Hl7JBtD9KdkmozYu122G
         U7IVB24xKdmrSvbP68bzDZX/pIBLffmnW9ck/fDnN293E3Lvp5O7y0/O7r59nw8PrmbXrjEAdvxE
-        v/S3k7UPed5LPdz+Y3pTnsqLrj6vR+bz7rspk/z7z7//H1+taVnj0QQA
+        v/S3k7UPed5LPdz+Y3pTnsqL5a7vRVe91yMRevfdlDn//eff/w8ibc3a8tEEAA==
     headers:
       Access-Control-Allow-Credentials:
       - 'true'
@@ -549,17 +545,17 @@ interactions:
       Content-Encoding:
       - gzip
       Content-Length:
-      - '13494'
+      - '13498'
       Content-Type:
       - application/geo+json
       Date:
-      - Thu, 20 Apr 2023 16:44:47 GMT
+      - Mon, 12 Jun 2023 13:53:38 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       Vary:
       - Accept-Encoding
       X-Azure-Ref:
-      - 0/mtBZAAAAABIjI0tQLLiQJuqKcBI5J3xREVOMzAxMDAwMTA5MDQ5ADkyN2FiZmE2LTE5ZjYtNGFmMS1hMDlkLWM5NTlkOWExZTY0NA==
+      - 0YSOHZAAAAABbkn+/JcsmSKHH8VsX6XLGREVOMzAxMDAwMTA5MDI1ADkyN2FiZmE2LTE5ZjYtNGFmMS1hMDlkLWM5NTlkOWExZTY0NA==
       X-Cache:
       - CONFIG_NOCACHE
     status:

@@ -14,13 +14,13 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - python-requests/2.28.2
+      - python-requests/2.31.0
     method: POST
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/search
   response:
     body:
       string: !!binary |
-        H4sIAO5rQWQC/+3dbY/bSHYv8K8yMJC8ue12PT/MxeAC2YsscoFkg82+ymJg9NgaT29sttHdsw8J
+        H4sIAE0jh2QC/+3dbY/bSHYv8K8yMJC8ue12PT/MxeAC2YsscoFkg82+ymJg9NgaT29sttHdsw8J
         9rvfehRPkZQoSpbIIs9mk3jkNlmkypofj/516n/evP7t6+7N92/+effw+uvz7jdPnz/vPrw+PjVv
         7t78HF97efP9H//nzeNH91N/fn3/5b0QRHMl3r/85T0174ki7xmhhhJq/S8sYUy6P/zTT09/dX/w
         reb3lBNzJ/i9tYpadudfIlIpZu+EuCdKcaJ/vOsMxB3h82PzX/Hcz7vP7nc+wLGln374+vXz44cH
@@ -250,7 +250,7 @@ interactions:
         re7QtQvDrLUJKAxnnbSv+rqwpdAsXd50Ns4rjnxJeljSb1Il1pbFKrHinNK00TONbY41sYqdnx72
         VWKjT0kPu2uJReM0msNF4zSkOp38Y9+vze6vr6PEcvP3lycP7H//3X/84TJyvbip8OEXb/Gnj+Gv
         xGf3L/XXN99TQkqfuznN720qUrvJIO/DM04548RbQt1/2xnn/iXByFvK3nL6B8a/l9b99z/fwDke
-        3pswy/1f2Kf/2jXpLnw/wr4F6ffy06S3wSHj/wPyuyyePmMEAA==
+        3pswy/1f2Kf/2jXpLnwfZtSI/RZE4MtPk94LJ43/DxijslxDYwQA
     headers:
       Accept-Ranges:
       - bytes
@@ -261,11 +261,11 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '13147'
+      - '13149'
       Content-Type:
       - application/geo+json
       Date:
-      - Thu, 20 Apr 2023 16:44:30 GMT
+      - Mon, 12 Jun 2023 13:53:18 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
@@ -275,13 +275,13 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20230420T164430Z-etrte6b79d6x39rbwaqfbyrsw800000004n0000000001pgv
+      - 20230612T135317Z-pk193educ95bfetagha8cey4r8000000074000000000mqsw
     status:
       code: 200
       message: OK
 - request:
     body: '{"limit": 100, "bbox": [-73.21, 43.99, -73.12, 45.05], "datetime": "2014-01-01T00:00:00Z/2020-12-31T23:59:59Z",
-      "collections": ["naip"], "token": "next:vt_m_4407315_nw_18_h_20160804"}'
+      "collections": ["naip"], "token": "next:naip:vt_m_4407315_nw_18_h_20160804"}'
     headers:
       Accept:
       - '*/*'
@@ -290,17 +290,17 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '183'
+      - '188'
       Content-Type:
       - application/json
       User-Agent:
-      - python-requests/2.28.2
+      - python-requests/2.31.0
     method: POST
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/search
   response:
     body:
       string: !!binary |
-        H4sIAO9rQWQC/+2da2/cRpaG/4ohYOfLyq26nyovggUmiwlmgbkgk08TGIZs0bYyEluQ2rnsIP99
+        H4sIAE4jh2QC/+2da2/cRpaG/4ohYOfLyq26nyovggUmiwlmgbkgk08TGIZs0bYyEluQ2rnsIP99
         i3Uhi812ky26TRZ5giSwqXadInlEP3z11lv/vtj99lBcvLr4U3G9+/RYfLu9uyve7W635cXlxXt/
         7Oni1Y//vri9sZ/6effm/o0QBDiVb8riDdVvPr5hhCqiibB/4u3b7a/20y+Bb6jhnJtLITaaaGD6
         0h2khmjhDoIGoK8v9+rbMe5uy3/5ko/Fnf3Ku3RK4dPXDw93t++uq4NXPz25r3x8LN7br3zc7R6e
@@ -445,8 +445,8 @@ interactions:
         a8rVQd9QwJGUkZTnF3zR0+QzJ2XUlPMh5SVoyuXKNWUMvhhOyrkFX/CGXxJNORIMUy1NudqwugGb
         DgSJZne+ztiTaMpSskDKnEivKTNBArUaRUdpyrov+MJXb5Gyq5knKb/ucqv71th+eurFK9uXH7cV
         Zv/9b//4YRxuPdn7/e5jBeLbG9fqd/av753tGULaMja9FHxjwv4mvp1th3fbitp/m7ayfx0w8pKy
-        l5z+wPgraey//7xIO9fdH9e71Tfi9l9FGa7EqwMJOB+r739FNBHVt+hsyHd8mXAbLE78Pxcv7cYG
-        tgIA
+        l5z+wPgraey//7xIO9fdH9e71Tfi9l9FGa7EK9c2B2JwPlYPAUU0EdX36Wzwd3yZcC8sU/w/60fA
+        Ogu2AgA=
     headers:
       Accept-Ranges:
       - bytes
@@ -457,11 +457,11 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '8325'
+      - '8327'
       Content-Type:
       - application/geo+json
       Date:
-      - Thu, 20 Apr 2023 16:44:31 GMT
+      - Mon, 12 Jun 2023 13:53:18 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
@@ -471,7 +471,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20230420T164431Z-etrte6b79d6x39rbwaqfbyrsw800000004n0000000001pk1
+      - 20230612T135318Z-pk193educ95bfetagha8cey4r8000000074000000000mqur
     status:
       code: 200
       message: OK

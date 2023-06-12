@@ -608,7 +608,7 @@ class TestItemSearch:
             url=SEARCH_URL, intersects=intersects_dict, collections="naip"
         )
         results = list(search.items())
-        assert len(results) == 30
+        assert len(results) == 36
 
         # Geo-interface object
         class MockGeoObject:
