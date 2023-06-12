@@ -101,7 +101,7 @@ class Client(pystac.Catalog, QueryablesMixin):
         modifier: Optional[Callable[[Modifiable], None]] = None,
         request_modifier: Optional[Callable[[Request], Union[Request, None]]] = None,
         stac_io: Optional[StacApiIO] = None,
-        timeout: Timeout = None,
+        timeout: Optional[Timeout] = None,
     ) -> "Client":
         """Opens a STAC Catalog or API
         This function will read the root catalog of a STAC Catalog or API
@@ -197,7 +197,7 @@ class Client(pystac.Catalog, QueryablesMixin):
         parameters: Optional[Dict[str, Any]] = None,
         modifier: Optional[Callable[[Modifiable], None]] = None,
         request_modifier: Optional[Callable[[Request], Union[Request, None]]] = None,
-        timeout: Timeout = None,
+        timeout: Optional[Timeout] = None,
     ) -> "Client":
         """Open a STAC Catalog/API
 

@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- Timeout option added to `Client.open` [#463](https://github.com/stac-utils/pystac-client/pull/463)
+- Timeout option added to `Client.open` [#463](https://github.com/stac-utils/pystac-client/pull/463), [#538](https://github.com/stac-utils/pystac-client/pull/538)
 - Support for fetching catalog queryables [#477](https://github.com/stac-utils/pystac-client/pull/477)
 - PySTAC Client specific warnings [#480](https://github.com/stac-utils/pystac-client/pull/480)
 - Support for fetching and merging a selection of queryables [#511](https://github.com/stac-utils/pystac-client/pull/511)
