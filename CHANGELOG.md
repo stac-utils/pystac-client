@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [v0.7.1] - 2023-06-13
+
+### Fixed
+
+- Remove unnecessary `typing_extensions` import [#541](https://github.com/stac-utils/pystac-client/pull/541)
+
 ## [v0.7.0] - 2023-06-12
 
 ### Added
@@ -299,19 +305,20 @@ are in a single HTTP session, handle pagination and respects conformance
 
 Initial release.
 
-[Unreleased]: <https://github.com/stac-utils/pystac-client/compare/v0.7.0...main>
+[Unreleased]: <https://github.com/stac-utils/pystac-client/compare/v0.7.1...main>
+[v0.7.1]: <https://github.com/stac-utils/pystac-client/compare/v0.7.0...v0.7.1>
 [v0.7.0]: <https://github.com/stac-utils/pystac-client/compare/v0.6.1...v0.7.0>
 [v0.6.1]: <https://github.com/stac-utils/pystac-client/compare/v0.6.0...v0.6.1>
 [v0.6.0]: <https://github.com/stac-utils/pystac-client/compare/v0.5.1...v0.6.0>
 [v0.5.1]: <https://github.com/stac-utils/pystac-client/compare/v0.5.0...v0.5.1>
 [v0.5.0]: <https://github.com/stac-utils/pystac-client/compare/v0.4.0...v0.5.0>
 [v0.4.0]: <https://github.com/stac-utils/pystac-client/compare/v0.3.5...v0.4.0>
-[v0.3.5]: <https://github.com/stac-utils/pystac-client/compare/v0.3.4..v0.3.5>
-[v0.3.4]: <https://github.com/stac-utils/pystac-client/compare/v0.3.3..v0.3.4>
-[v0.3.3]: <https://github.com/stac-utils/pystac-client/compare/v0.3.2..v0.3.3>
-[v0.3.2]: <https://github.com/stac-utils/pystac-client/compare/v0.3.1..v0.3.2>
-[v0.3.1]: <https://github.com/stac-utils/pystac-client/compare/v0.3.0..v0.3.1>
-[v0.3.0]: <https://github.com/stac-utils/pystac-client/compare/v0.2.0..v0.3.0>
-[v0.2.0]: <https://github.com/stac-utils/pystac-client/compare/v0.1.1..v0.2.0>
-[v0.1.1]: <https://github.com/stac-utils/pystac-client/compare/v0.1.0..v0.1.1>
+[v0.3.5]: <https://github.com/stac-utils/pystac-client/compare/v0.3.4...v0.3.5>
+[v0.3.4]: <https://github.com/stac-utils/pystac-client/compare/v0.3.3...v0.3.4>
+[v0.3.3]: <https://github.com/stac-utils/pystac-client/compare/v0.3.2...v0.3.3>
+[v0.3.2]: <https://github.com/stac-utils/pystac-client/compare/v0.3.1...v0.3.2>
+[v0.3.1]: <https://github.com/stac-utils/pystac-client/compare/v0.3.0...v0.3.1>
+[v0.3.0]: <https://github.com/stac-utils/pystac-client/compare/v0.2.0...v0.3.0>
+[v0.2.0]: <https://github.com/stac-utils/pystac-client/compare/v0.1.1...v0.2.0>
+[v0.1.1]: <https://github.com/stac-utils/pystac-client/compare/v0.1.0...v0.1.1>
 [v0.1.0]: <https://github.com/stac-utils/pystac-client/tree/v0.1.0>
