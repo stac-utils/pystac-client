@@ -26,7 +26,6 @@ from pystac.serialization import (
 from pystac.stac_io import DefaultStacIO
 from requests import Request, Session
 from requests.adapters import HTTPAdapter
-from typing_extensions import TypeAlias
 
 import pystac_client
 
@@ -39,7 +38,7 @@ if TYPE_CHECKING:
 logger = logging.getLogger(__name__)
 
 
-Timeout: TypeAlias = Union[float, Tuple[float, float], Tuple[float, None]]
+Timeout = Union[float, Tuple[float, float], Tuple[float, None]]
 
 
 class StacApiIO(DefaultStacIO):
