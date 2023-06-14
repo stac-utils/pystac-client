@@ -71,7 +71,7 @@ docs = [
     "ipython~=8.12",
     "jinja2<4.0",
     "matplotlib~=3.7.1",
-    "myst-parser~=1.0.0",
+    "myst-parser>=1.0,<2.1",
     "nbsphinx~=0.9",
     "pydata-sphinx-theme~=0.13",
     "pygeoif~=1.0",
