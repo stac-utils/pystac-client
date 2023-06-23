@@ -267,7 +267,6 @@ class StacApiIO(DefaultStacIO):
             return result
 
         if info.object_type == pystac.STACObjectType.COLLECTION:
-            assert isinstance(root, pystac_client.client.Client)
             return pystac_client.collection_client.CollectionClient.from_dict(
                 d, href=str(href), root=root, migrate=False, preserve_dict=preserve_dict
             )
