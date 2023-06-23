@@ -21,7 +21,7 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIAGMjh2QC/+2daW/jSJKG/4phYPrL2lLeRy0Ki5kadGMWmJlFd++XLRiGbKdt9eqCRJe7dtD/
+        H4sIAOLUlWQC/+2daW/jSJKG/4phYPrL2lLeRy0Ki5kadGMWmJlFd++XLRiGbKdt9eqCRJe7dtD/
         fTN5Jg+TkmyJVxhdDTlFJTMjg8lH4YiX/7oMvm/M5afLH80seNmaL+vFwtwH8/Xq8uryMWrbXX76
         +q/L+YM96ltwu7xlDEkq2O3u9RarWyTQLUEEY0S0/czd3fp3e/y1pBNMkULyitGJ1gJLfeUaERcY
         4yvGJkgIhW+uCgOwXSzmq/+Nzrk1C/vOvT+m+OjZZrOY389c4/S3XfjO89Y82neeg2Cz+zSdbhaz
@@ -121,7 +121,7 @@ interactions:
       Content-Type:
       - application/geo+json
       Date:
-      - Mon, 12 Jun 2023 13:53:39 GMT
+      - Fri, 23 Jun 2023 17:22:42 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
@@ -131,7 +131,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20230612T135338Z-hyhh2h2b014m784nyfurn9bcv80000000bfg000000005hky
+      - 20230623T172242Z-6rem02v7ht3q3fhefmxe07fp5g00000003zg00000000wsax
     status:
       code: 200
       message: OK
@@ -157,7 +157,7 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIAGMjh2QC/+2daW/jSJKG/4phYPrL2lLeRy0Ki5kadGMWmJlFd++XLRiGbKdt9eqCRJe7dtD/
+        H4sIAOLUlWQC/+2daW/jSJKG/4phYPrL2lLeRy0Ki5kadGMWmJlFd++XLRiGbKdt9eqCRJe7dtD/
         fTN5Jg+TkmyJVxhdDTlFJTMjg8lH4YiX/7oMvm/M5afLH80seNmaL+vFwtwH8/Xq8uryMWrbXX76
         +q/L+YM96ltwu7xlDEkq2O3u9RarWyTQLUEEY0S0/czd3fp3e/y1pBNMkULyitGJ1gJLfeUaERcY
         4yvGJkgIhW+uCgOwXSzmq/+Nzrk1C/vOvT+m+OjZZrOY389c4/S3XfjO89Y82neeg2Cz+zSdbhaz
@@ -244,30 +244,26 @@ interactions:
         1swHmxIEWVIWfkzZ77sNUua2MdVRprGOskapprF8X0xZN+oo47KOcm+zL27K3No6wb3/NDvrPvfP
         7rb4/4uGqkBfkgEA
     headers:
-      Accept-Ranges:
-      - bytes
       Access-Control-Allow-Credentials:
       - 'true'
       Access-Control-Allow-Origin:
       - '*'
-      Connection:
-      - keep-alive
+      Content-Encoding:
+      - gzip
       Content-Length:
       - '4857'
       Content-Type:
       - application/geo+json
       Date:
-      - Mon, 12 Jun 2023 13:53:40 GMT
+      - Fri, 23 Jun 2023 17:22:42 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
+      Vary:
+      - Accept-Encoding
+      X-Azure-Ref:
+      - 04tSVZAAAAACKoUXVOK99SZggoyEvSD5EREVOMzAxMDAwMTA5MDMxADkyN2FiZmE2LTE5ZjYtNGFmMS1hMDlkLWM5NTlkOWExZTY0NA==
       X-Cache:
       - CONFIG_NOCACHE
-      content-encoding:
-      - gzip
-      vary:
-      - Accept-Encoding
-      x-azure-ref:
-      - 20230612T135339Z-2yns77u27p7y72r56prys0ss9w000000050000000001162w
     status:
       code: 200
       message: OK

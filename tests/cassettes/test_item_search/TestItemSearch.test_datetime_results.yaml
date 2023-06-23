@@ -19,7 +19,7 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIAGEjh2QC/+2di4/ctrW4/5WFgVv04rfWkofkIemL4Adnd1PEN3FzYzcFWgSL8Xpsz+0+jN11
+        H4sIAODUlWQC/+2di4/ctrW4/5WFgVv04rfWkofkIemL4Adnd1PEN3FzYzcFWgSL8Xpsz+0+jN11
         krbI/34P9ZidhzSr0UgzFMk2zmPOiJKOPr4kfcN/P3v45+fpsxfPvplOHr7cTU9vr66mlw+z25tn
         x88+FJ/dP3vx938/m72nb72Blxffv/n2O/oHMG4ZZ/wtc//jFz9yjhdvkf30l/+mGEUZ02+BS1RA
         Rb17d/sbFcO1yJS2KLWQUkkEcax0hlQMQ84NIG1wzLXMOEWt0MxqLRCPlckEWiOUAoECAX4+Xjlw
@@ -257,26 +257,30 @@ interactions:
         U7IVB24xKdmrSvbP68bzDZX/pIBLffmnW9ck/fDnN293E3Lvp5O7y0/O7r59nw8PrmbXrjEAdvxE
         v/S3k7UPed5LPdz+Y3pTnsqL5a7vRVe91yMRevfdlDn//eff/w8ibc3a8tEEAA==
     headers:
+      Accept-Ranges:
+      - bytes
       Access-Control-Allow-Credentials:
       - 'true'
       Access-Control-Allow-Origin:
       - '*'
-      Content-Encoding:
-      - gzip
+      Connection:
+      - keep-alive
       Content-Length:
       - '13498'
       Content-Type:
       - application/geo+json
       Date:
-      - Mon, 12 Jun 2023 13:53:37 GMT
+      - Fri, 23 Jun 2023 17:22:40 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
-      Vary:
-      - Accept-Encoding
-      X-Azure-Ref:
-      - 0YCOHZAAAAABrY7+z4XnPToq1WpioIba3REVOMzAxMDAwMTA5MDI3ADkyN2FiZmE2LTE5ZjYtNGFmMS1hMDlkLWM5NTlkOWExZTY0NA==
       X-Cache:
       - CONFIG_NOCACHE
+      content-encoding:
+      - gzip
+      vary:
+      - Accept-Encoding
+      x-azure-ref:
+      - 20230623T172240Z-xh4ynes77944f9ghpq3t6s06xc00000003zg000000018e04
     status:
       code: 200
       message: OK
@@ -300,7 +304,7 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIAGIjh2QC/+2di4/ctrW4/5WFgVv04rfWkofkIemL4Adnd1PEN3FzYzcFWgSL8Xpsz+0+jN11
+        H4sIAOHUlWQC/+2di4/ctrW4/5WFgVv04rfWkofkIemL4Adnd1PEN3FzYzcFWgSL8Xpsz+0+jN11
         krbI/34P9ZidhzSr0UgzFMk2zmPOiJKOPr4kfcN/P3v45+fpsxfPvplOHr7cTU9vr66mlw+z25tn
         x88+FJ/dP3vx938/m72nb72Blxffv/n2O/oHMG4ZZ/wtc//jFz9yjhdvkf30l/+mGEUZ02+BS1RA
         Rb17d/sbFcO1yJS2KLWQUkkEcax0hlQMQ84NIG1wzLXMOEWt0MxqLRCPlckEWiOUAoECAX4+Xjlw
@@ -549,13 +553,13 @@ interactions:
       Content-Type:
       - application/geo+json
       Date:
-      - Mon, 12 Jun 2023 13:53:38 GMT
+      - Fri, 23 Jun 2023 17:22:41 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       Vary:
       - Accept-Encoding
       X-Azure-Ref:
-      - 0YSOHZAAAAABbkn+/JcsmSKHH8VsX6XLGREVOMzAxMDAwMTA5MDI1ADkyN2FiZmE2LTE5ZjYtNGFmMS1hMDlkLWM5NTlkOWExZTY0NA==
+      - 04dSVZAAAAAA7pjOtNs1xRo6d5A9dpcgQREVOMzAxMDAwMTA5MDM1ADkyN2FiZmE2LTE5ZjYtNGFmMS1hMDlkLWM5NTlkOWExZTY0NA==
       X-Cache:
       - CONFIG_NOCACHE
     status:
