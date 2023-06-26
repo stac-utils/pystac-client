@@ -50,7 +50,7 @@ dev = [
     "pytest-console-scripts~=1.4.0",
     "pytest-cov~=4.1.0",
     "pytest-recording~=0.12.2",
-    "pytest~=7.3.1",
+    "pytest~=7.4",
     "recommonmark~=0.7.1",
     "requests-mock~=1.11.0",
     "ruff==0.0.275",
