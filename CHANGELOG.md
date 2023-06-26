@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [v0.7.2] - 2023-06-23
+
 ### Fixed
 
 - Remove troublesome assertion [#549](https://github.com/stac-utils/pystac-client/pull/549)
@@ -309,7 +311,8 @@ are in a single HTTP session, handle pagination and respects conformance
 
 Initial release.
 
-[Unreleased]: <https://github.com/stac-utils/pystac-client/compare/v0.7.1...main>
+[Unreleased]: <https://github.com/stac-utils/pystac-client/compare/v0.7.2...main>
+[v0.7.2]: <https://github.com/stac-utils/pystac-client/compare/v0.7.1...v0.7.2>
 [v0.7.1]: <https://github.com/stac-utils/pystac-client/compare/v0.7.0...v0.7.1>
 [v0.7.0]: <https://github.com/stac-utils/pystac-client/compare/v0.6.1...v0.7.0>
 [v0.6.1]: <https://github.com/stac-utils/pystac-client/compare/v0.6.0...v0.6.1>
