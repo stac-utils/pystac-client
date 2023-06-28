@@ -33,27 +33,22 @@ def search(
 ) -> int:
     """Main function for performing a search"""
 
-    try:
-        # https://github.com/python/mypy/issues/4441
-        # the type: ignore is to silence the mypy error
-        # error: Argument 2 to "search" of "Client" has incompatible
-        # type "**Dict[str, Dict[str, Any]]"; expected "Optional[int]"  [arg-type]
-        result = client.search(method=method, **kwargs)  # type: ignore[arg-type]
+    # https://github.com/python/mypy/issues/4441
+    # the type: ignore is to silence the mypy error
+    # error: Argument 2 to "search" of "Client" has incompatible
+    # type "**Dict[str, Dict[str, Any]]"; expected "Optional[int]"  [arg-type]
+    result = client.search(method=method, **kwargs)  # type: ignore[arg-type]
 
-        if matched:
-            print(f"{result.matched()} items matched")
+    if matched:
+        print(f"{result.matched()} items matched")
+    else:
+        feature_collection = result.item_collection_as_dict()
+        if save:
+            with open(save, "w") as f:
+                f.write(json.dumps(feature_collection))
         else:
-            feature_collection = result.item_collection_as_dict()
-            if save:
-                with open(save, "w") as f:
-                    f.write(json.dumps(feature_collection))
-            else:
-                print(json.dumps(feature_collection))
-        return 0
-
-    except Exception as e:
-        print(f"ERROR: {e}")
-        return 1
+            print(json.dumps(feature_collection))
+    return 0
 
 
 def collections(client: Client, save: Optional[str] = None) -> int:
@@ -65,17 +60,12 @@ def collections(client: Client, save: Optional[str] = None) -> int:
                 f.write(json.dumps(collections_dicts))
         else:
             print(json.dumps(collections_dicts))
-        return 0
     except STACTypeError as e:
-        print(f"ERROR: {e}")
-        print(
+        raise STACTypeError(
             f"The client at {client.self_href} is OK, but one or more of the "
             "collections is invalid."
-        )
-        return 1
-    except Exception as e:
-        print(f"ERROR: {e}")
-        return 1
+        ) from e
+    return 0
 
 
 def add_warnings_behavior(parser: argparse.ArgumentParser) -> None:
@@ -337,20 +327,18 @@ def cli() -> int:
             args.pop("add_conforms_to", None),
         )
 
+        if cmd == "search":
+            return search(client, **args)
+        elif cmd == "collections":
+            return collections(client, **args)
+        else:
+            logger.error(
+                f"Command '{cmd}' is not a valid command. "
+                "must be 'search' or 'collections'",
+            )
+            return 1
     except Exception as e:
-        print(f"ERROR: {e}", file=sys.stderr)
-        return 1
-
-    if cmd == "search":
-        return search(client, **args)
-    elif cmd == "collections":
-        return collections(client, **args)
-    else:
-        print(
-            f"Command '{cmd}' is not a valid command. "
-            "must be 'search' or 'collections'",
-            file=sys.stderr,
-        )
+        logger.error(e, exc_info=True)
         return 1
 
 
