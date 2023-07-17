@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Updated `get_items` signatures for PySTAC v1.8 [#559](https://github.com/stac-utils/pystac-client/pull/559)
+
 ## [v0.7.2] - 2023-06-23
 
 ### Fixed
