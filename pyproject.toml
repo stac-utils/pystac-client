@@ -61,7 +61,7 @@ dev = [
     "urllib3<2",
     # pytest-recording breakage with v5.0.0, need release of
     # https://github.com/kiwicom/pytest-recording/pull/110 to remove this ceil
-    "vcrpy<5",
+    "vcrpy<6",
 ]
 docs = [
     "Sphinx~=6.2",
