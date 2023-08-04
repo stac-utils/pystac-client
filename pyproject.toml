@@ -38,7 +38,7 @@ stac-client = "pystac_client.cli:cli"
 
 [project.optional-dependencies]
 dev = [
-    "black~=23.3.0",
+    "black>=23.3,<23.8",
     "codespell~=2.2.4",
     "coverage~=7.2",
     "doc8~=1.1.1",
