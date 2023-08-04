@@ -132,7 +132,7 @@ If you'd like to configure this behavior, e.g. to retry on some ``50x`` response
     from pystac_client.stac_api_io import StacApiIO
 
     retry = Retry(
-        total=5, backoff_factor=1, status_forcelist=[502, 503, 504], allowed_methods=False
+        total=5, backoff_factor=1, status_forcelist=[502, 503, 504], allowed_methods=None
     )
     stac_api_io = StacApiIO()
     stac_api_io.session.mount("https://", HTTPAdapter(max_retries=retry))
