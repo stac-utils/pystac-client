@@ -7,7 +7,7 @@ import sys
 import warnings
 from typing import Any, Dict, List, Optional
 
-from pystac import STACTypeError
+from pystac import STACError, STACTypeError
 
 from .client import Client
 from .conformance import ConformanceClasses
@@ -40,7 +40,10 @@ def search(
     result = client.search(method=method, **kwargs)  # type: ignore[arg-type]
 
     if matched:
-        print(f"{result.matched()} items matched")
+        if nmatched := result.matched() is not None:
+            print(f"{nmatched} items matched")
+        else:
+            raise KeyError("'matched' is not supported for this catalog")
     else:
         feature_collection = result.item_collection_as_dict()
         if save:
@@ -61,7 +64,7 @@ def collections(client: Client, save: Optional[str] = None) -> int:
         else:
             print(json.dumps(collections_dicts))
     except STACTypeError as e:
-        raise STACTypeError(
+        raise STACError(
             f"The client at {client.self_href} is OK, but one or more of the "
             "collections is invalid."
         ) from e
