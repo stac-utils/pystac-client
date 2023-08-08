@@ -15,8 +15,9 @@ STAC Metadata Visualization
 ---------------------------
 
 - :tutorial:`GitHub version <stac-metadata-viz.ipynb>`
+- :ref:`Docs version </tutorials/stac-metadata-viz.ipynb>`
 
-This tutorial gives an introduction to using Holeviews and hvplot to visualize
+This tutorial gives an introduction to using hvplot to visualize
 STAC metadata and Item geometries on a map.
 
 CQL2 Filtering

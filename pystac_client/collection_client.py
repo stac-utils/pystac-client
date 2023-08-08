@@ -114,31 +114,38 @@ class CollectionClient(pystac.Collection, QueryablesMixin):
         root = self.get_root()
         return root.conforms_to(conformance_class)
 
-    def get_items(self) -> Iterator["Item_Type"]:
+    def get_items(self, *ids: str, recursive: bool = False) -> Iterator["Item_Type"]:
         """Return all items in this Collection.
 
         If the Collection contains a link of with a `rel` value of `items`,
         that link will be used to iterate through items. Otherwise, the default
         PySTAC behavior is assumed.
 
+        Args:
+            ids: Items ids to retrieve
+            recursive: If True, search every child collection as well as this one.
+
         Return:
             Iterator[Item]: Iterator of items whose parent is this catalog.
         """
-        root = self.get_root()
-        if root.conforms_to(ConformanceClasses.ITEM_SEARCH):
-            search = ItemSearch(
-                url=self._items_href(),
-                method="GET",
-                client=root,
-                collections=[self.id],
-                modifier=self.modifier,
-            )
-            yield from search.items()
+        if recursive is True:
+            yield from super().get_items(*ids, recursive=True)
         else:
-            root._warn_about_fallback("ITEM_SEARCH")
-            for item in super().get_items():
-                call_modifier(self.modifier, item)
-                yield item
+            root = self.get_root()
+            if root.conforms_to(ConformanceClasses.ITEM_SEARCH):
+                search = ItemSearch(
+                    url=self._items_href(),
+                    method="GET",
+                    client=root,
+                    collections=[self.id],
+                    modifier=self.modifier,
+                )
+                yield from search.items()
+            else:
+                root._warn_about_fallback("ITEM_SEARCH")
+                for item in super().get_items():
+                    call_modifier(self.modifier, item)
+                    yield item
 
     def get_item(self, id: str, recursive: bool = False) -> Optional["Item_Type"]:
         """Returns an item with a given ID.
