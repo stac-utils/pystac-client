@@ -134,8 +134,7 @@ If you'd like to configure this behavior, e.g. to retry on some ``50x`` response
     retry = Retry(
         total=5, backoff_factor=1, status_forcelist=[502, 503, 504], allowed_methods=None
     )
-    stac_api_io = StacApiIO()
-    stac_api_io.session.mount("https://", HTTPAdapter(max_retries=retry))
+    stac_api_io = StacApiIO(max_retries=retry)
     client = Client.open(
         "https://planetarycomputer.microsoft.com/api/stac/v1", stac_io=stac_api_io
     )

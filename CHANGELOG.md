@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - Raise more informative errors from CLI [#554](https://github.com/stac-utils/pystac-client/pull/554)
+- Add `Retry` type hint to `StacApiIO` [#577](https://github.com/stac-utils/pystac-client/pull/577)
 
 ### Fixed
 
