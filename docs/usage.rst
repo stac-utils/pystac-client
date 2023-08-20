@@ -131,9 +131,10 @@ If you'd like to configure this behavior, e.g. to retry on some ``50x`` response
     from pystac_client import Client
     from pystac_client.stac_api_io import StacApiIO
 
-    retry = Retry(total=5, backoff_factor=1, status_forcelist=[502, 503, 504])
-    stac_api_io = StacApiIO()
-    stac_api_io.session.mount("https://", HTTPAdapter(max_retries=retry))
+    retry = Retry(
+        total=5, backoff_factor=1, status_forcelist=[502, 503, 504], allowed_methods=None
+    )
+    stac_api_io = StacApiIO(max_retries=retry)
     client = Client.open(
         "https://planetarycomputer.microsoft.com/api/stac/v1", stac_io=stac_api_io
     )

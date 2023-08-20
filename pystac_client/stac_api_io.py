@@ -26,6 +26,7 @@ from pystac.serialization import (
 from pystac.stac_io import DefaultStacIO
 from requests import Request, Session
 from requests.adapters import HTTPAdapter
+from urllib3 import Retry
 
 import pystac_client
 
@@ -49,7 +50,7 @@ class StacApiIO(DefaultStacIO):
         parameters: Optional[Dict[str, Any]] = None,
         request_modifier: Optional[Callable[[Request], Union[Request, None]]] = None,
         timeout: Optional[Timeout] = None,
-        max_retries: Optional[int] = 5,
+        max_retries: Optional[Union[int, Retry]] = 5,
     ):
         """Initialize class for API IO
 
