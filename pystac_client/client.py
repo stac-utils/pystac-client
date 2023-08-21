@@ -101,7 +101,7 @@ class Client(pystac.Catalog, QueryablesMixin):
         modifier: Optional[Callable[[Modifiable], None]] = None,
         request_modifier: Optional[Callable[[Request], Union[Request, None]]] = None,
         stac_io: Optional[StacApiIO] = None,
-        timeout: Timeout = None,
+        timeout: Optional[Timeout] = None,
     ) -> "Client":
         """Opens a STAC Catalog or API
         This function will read the root catalog of a STAC Catalog or API
@@ -197,7 +197,7 @@ class Client(pystac.Catalog, QueryablesMixin):
         parameters: Optional[Dict[str, Any]] = None,
         modifier: Optional[Callable[[Modifiable], None]] = None,
         request_modifier: Optional[Callable[[Request], Union[Request, None]]] = None,
-        timeout: Timeout = None,
+        timeout: Optional[Timeout] = None,
     ) -> "Client":
         """Open a STAC Catalog/API
 
@@ -439,19 +439,23 @@ class Client(pystac.Catalog, QueryablesMixin):
                 call_modifier(self.modifier, collection)
                 yield collection
 
-    def get_items(self) -> Iterator["Item_Type"]:
+    def get_items(self, *ids: str, recursive: bool = False) -> Iterator["Item_Type"]:
         """Return all items of this catalog.
 
+        Args:
+            ids: Zero or more item ids to find.
+            recursive: unused
+
         Return:
-            Iterator[Item]:: Iterator of items whose parent is this
+            Iterator[Item]: Iterator of items whose parent is this
                 catalog.
         """
         if self.conforms_to(ConformanceClasses.ITEM_SEARCH):
-            search = self.search()
+            search = self.search(ids=ids)
             yield from search.items()
         else:
             self._warn_about_fallback("ITEM_SEARCH")
-            for item in super().get_items():
+            for item in super().get_items(*ids, recursive=True):
                 call_modifier(self.modifier, item)
                 yield item
 
@@ -460,7 +464,7 @@ class Client(pystac.Catalog, QueryablesMixin):
         any subcatalogs recursively, or use the /search endpoint if supported
 
         Returns:
-            Iterator[Item]:: All items that belong to this catalog, and all
+            Iterator[Item]: All items that belong to this catalog, and all
                 catalogs or collections connected to this catalog through
                 child links.
         """

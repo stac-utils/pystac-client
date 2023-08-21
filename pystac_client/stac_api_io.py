@@ -25,7 +25,8 @@ from pystac.serialization import (
 )
 from pystac.stac_io import DefaultStacIO
 from requests import Request, Session
-from typing_extensions import TypeAlias
+from requests.adapters import HTTPAdapter
+from urllib3 import Retry
 
 import pystac_client
 
@@ -38,7 +39,7 @@ if TYPE_CHECKING:
 logger = logging.getLogger(__name__)
 
 
-Timeout: TypeAlias = Optional[Union[float, Tuple[float, float], Tuple[float, None]]]
+Timeout = Union[float, Tuple[float, float], Tuple[float, None]]
 
 
 class StacApiIO(DefaultStacIO):
@@ -48,7 +49,8 @@ class StacApiIO(DefaultStacIO):
         conformance: Optional[List[str]] = None,
         parameters: Optional[Dict[str, Any]] = None,
         request_modifier: Optional[Callable[[Request], Union[Request, None]]] = None,
-        timeout: Timeout = None,
+        timeout: Optional[Timeout] = None,
+        max_retries: Optional[Union[int, Retry]] = 5,
     ):
         """Initialize class for API IO
 
@@ -69,6 +71,8 @@ class StacApiIO(DefaultStacIO):
             timeout: Optional float or (float, float) tuple following the semantics
               defined by `Requests
               <https://requests.readthedocs.io/en/latest/api/#main-interface>`__.
+            max_retries: The number of times to retry requests. Set to ``None`` to
+              disable retries.
 
         Return:
             StacApiIO : StacApiIO instance
@@ -87,6 +91,9 @@ class StacApiIO(DefaultStacIO):
             )
 
         self.session = Session()
+        if max_retries:
+            self.session.mount("http://", HTTPAdapter(max_retries=max_retries))
+            self.session.mount("https://", HTTPAdapter(max_retries=max_retries))
         self.timeout = timeout
         self.update(
             headers=headers, parameters=parameters, request_modifier=request_modifier
@@ -97,7 +104,7 @@ class StacApiIO(DefaultStacIO):
         headers: Optional[Dict[str, str]] = None,
         parameters: Optional[Dict[str, Any]] = None,
         request_modifier: Optional[Callable[[Request], Union[Request, None]]] = None,
-        timeout: Timeout = None,
+        timeout: Optional[Timeout] = None,
     ) -> None:
         """Updates this StacApi's headers, parameters, and/or request_modifer.
 
@@ -261,7 +268,6 @@ class StacApiIO(DefaultStacIO):
             return result
 
         if info.object_type == pystac.STACObjectType.COLLECTION:
-            assert isinstance(root, pystac_client.client.Client)
             return pystac_client.collection_client.CollectionClient.from_dict(
                 d, href=str(href), root=root, migrate=False, preserve_dict=preserve_dict
             )

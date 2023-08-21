@@ -9,23 +9,25 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.28.2
+      - python-requests/2.31.0
     method: GET
     uri: https://api.radiant.earth/mlhub/v1/search
   response:
     body:
       string: '{"detail":"Must provide API key or Bearer token to access this route."}'
     headers:
+      Connection:
+      - keep-alive
       Content-Length:
       - '71'
       Content-Type:
       - application/json
       Date:
-      - Thu, 20 Apr 2023 16:45:29 GMT
-      X-Azure-Ref:
-      - 0KmxBZAAAAAC/vs9E4bilRYFgVNwbjKpUREVOMzAxMDAwMTA5MDI1ADM4MGFiMDc0LWM0NGEtNDZhZi1iZWUyLTdkZGYxZmQ5M2NlMw==
+      - Fri, 23 Jun 2023 17:23:14 GMT
       X-Cache:
       - CONFIG_NOCACHE
+      x-azure-ref:
+      - 20230623T172313Z-n864g3btd178d59dzsgy6egmkg000000009g00000000tdtt
     status:
       code: 401
       message: Unauthorized

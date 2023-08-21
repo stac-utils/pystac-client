@@ -5,11 +5,11 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate, br
+      - gzip, deflate
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.28.2
+      - python-requests/2.31.0
     method: GET
     uri: https://earth-search.aws.element84.com/v0
   response:
@@ -28,21 +28,21 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 20 Apr 2023 20:35:01 GMT
+      - Fri, 23 Jun 2023 17:22:28 GMT
       Via:
-      - 1.1 b4fecc0ccf7e0c6aa3eab83d70c5766c.cloudfront.net (CloudFront)
+      - 1.1 be1936c1908faca6448a305dec94dc72.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - NDD3nRJwuLQzVbD5iS1iVjXb2dsFEyft4bCD1n2YFSS-3phq8tWoaA==
+      - KmD_ORdel4T65qdsdZlAM-PMACCa1oEfSLurtqhDPJ427Wy5EQ5iSg==
       X-Amz-Cf-Pop:
-      - EWR52-C2
+      - DEN52-C1
       X-Amzn-Trace-Id:
-      - Root=1-6441a1f5-532f85140ab497573335a399;Sampled=0;lineage=308471e4:0
+      - Root=1-6495d4d4-73b8dc130244257466164914;Sampled=0;lineage=308471e4:0
       X-Cache:
       - Miss from cloudfront
       x-amz-apigw-id:
-      - DsY-bF2zvHcFaWg=
+      - G-4xUG9BPHcF98g=
       x-amzn-RequestId:
-      - 41cd9f76-4313-4dee-a154-f47f16d28270
+      - 305061c8-b518-4cc8-b82f-5e31095946b0
     status:
       code: 200
       message: OK
@@ -52,11 +52,11 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate, br
+      - gzip, deflate
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.28.2
+      - python-requests/2.31.0
     method: GET
     uri: https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a
   response:
@@ -98,21 +98,21 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 20 Apr 2023 20:35:01 GMT
+      - Fri, 23 Jun 2023 17:22:29 GMT
       Via:
-      - 1.1 b4fecc0ccf7e0c6aa3eab83d70c5766c.cloudfront.net (CloudFront)
+      - 1.1 be1936c1908faca6448a305dec94dc72.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - UxwInyOPckW6AUoIciLCrUSy2BeaUW83jSjx2n7n_rskIc6Vu8agsQ==
+      - WkYTs25rDBahSq8JlwCT3Ama1JgS6AaWdc8_bbQDW4Y76qALP9NzZQ==
       X-Amz-Cf-Pop:
-      - EWR52-C2
+      - DEN52-C1
       X-Amzn-Trace-Id:
-      - Root=1-6441a1f5-79d222975875d9f05aa4f807;Sampled=0;lineage=308471e4:0
+      - Root=1-6495d4d5-7dc599e200149f8c30239d24;Sampled=0;lineage=308471e4:0
       X-Cache:
       - Miss from cloudfront
       x-amz-apigw-id:
-      - DsY-eEtovHcFcMw=
+      - G-4xVFx_vHcFoRw=
       x-amzn-RequestId:
-      - 7de2905b-606b-41f7-b837-0e358053d521
+      - 624d3ece-8973-4af8-b3a1-0a717081508c
     status:
       code: 200
       message: OK
@@ -122,11 +122,11 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate, br
+      - gzip, deflate
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.28.2
+      - python-requests/2.31.0
     method: GET
     uri: https://earth-search.aws.element84.com/v0/collections
   response:
@@ -232,21 +232,21 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 20 Apr 2023 20:35:02 GMT
+      - Fri, 23 Jun 2023 17:22:29 GMT
       Via:
-      - 1.1 b4fecc0ccf7e0c6aa3eab83d70c5766c.cloudfront.net (CloudFront)
+      - 1.1 be1936c1908faca6448a305dec94dc72.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - jBnHkzi_96W2K9QP31n-HVvYRCg-TL-50AgwnxYwK20zT7DWzaT8zQ==
+      - unmI3YrzKhuJ7WaHIOmnzLOaRclvX2YrPWBgYi50djfzrZUxBAPtIg==
       X-Amz-Cf-Pop:
-      - EWR52-C2
+      - DEN52-C1
       X-Amzn-Trace-Id:
-      - Root=1-6441a1f6-1eb907ac535b1f960a516b32;Sampled=0;lineage=308471e4:0
+      - Root=1-6495d4d5-14de0fb0291668c8634c089f;Sampled=0;lineage=308471e4:0
       X-Cache:
       - Miss from cloudfront
       x-amz-apigw-id:
-      - DsY-hFzAvHcFjmg=
+      - G-4xVFrrvHcFZiQ=
       x-amzn-RequestId:
-      - d821a83f-1e2f-48d3-99d7-52b6135935cc
+      - 953fe908-2110-468d-9207-d965bbbee695
     status:
       code: 200
       message: OK

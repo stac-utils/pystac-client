@@ -117,6 +117,115 @@ there are no ``"conformsTo"`` uris set at all. But they can be explicitly set:
 Note, updating ``"conformsTo"`` does not change what the server supports, it just
 changes PySTAC client's understanding of what the server supports.
 
+Configuring retry behavior
+--------------------------
+
+By default, **pystac-client** will retry requests that fail DNS lookup or have timeouts.
+If you'd like to configure this behavior, e.g. to retry on some ``50x`` responses, you can configure the StacApiIO's session:
+
+.. code-block:: python
+
+    from requests.adapters import HTTPAdapter
+    from urllib3 import Retry
+
+    from pystac_client import Client
+    from pystac_client.stac_api_io import StacApiIO
+
+    retry = Retry(
+        total=5, backoff_factor=1, status_forcelist=[502, 503, 504], allowed_methods=None
+    )
+    stac_api_io = StacApiIO(max_retries=retry)
+    client = Client.open(
+        "https://planetarycomputer.microsoft.com/api/stac/v1", stac_io=stac_api_io
+    )
+
+Automatically modifying results
+-------------------------------
+
+Some systems, like the `Microsoft Planetary Computer <http://planetarycomputer.microsoft.com/>`__,
+have public STAC metadata but require some `authentication <https://planetarycomputer.microsoft.com/docs/concepts/sas/>`__
+to access the actual assets.
+
+``pystac-client`` provides a ``modifier`` keyword that can automatically
+modify the STAC objects returned by the STAC API.
+
+.. code-block:: python
+
+   >>> from pystac_client import Client
+   >>> import planetary_computer, requests
+   >>> catalog = Client.open(
+   ...    'https://planetarycomputer.microsoft.com/api/stac/v1',
+   ...    modifier=planetary_computer.sign_inplace,
+   ... )
+   >>> item = next(catalog.get_collection("sentinel-2-l2a").get_all_items())
+   >>> requests.head(item.assets["B02"].href).status_code
+   200
+
+Without the modifier, we would have received a 404 error because the asset
+is in a private storage container.
+
+``pystac-client`` expects that the ``modifier`` callable modifies the result
+object in-place and returns no result. A warning is emitted if your
+``modifier`` returns a non-None result that is not the same object as the
+input.
+
+Here's an example of creating your own modifier.
+Because :py:class:`~pystac_client.Modifiable` is a union, the modifier function must handle a few different types of input objects, and care must be taken to ensure that you are modifying the input object (rather than a copy).
+Simplifying this interface is a space for future improvement.
+
+.. code-block:: python
+
+    import urllib.parse
+
+    import pystac
+
+    from pystac_client import Client, Modifiable
+
+
+    def modifier(modifiable: Modifiable) -> None:
+        if isinstance(modifiable, dict):
+            if modifiable["type"] == "FeatureCollection":
+                new_features = list()
+                for item_dict in modifiable["features"]:
+                    modifier(item_dict)
+                    new_features.append(item_dict)
+                modifiable["features"] = new_features
+            else:
+                stac_object = pystac.read_dict(modifiable)
+                modifier(stac_object)
+                modifiable.update(stac_object.to_dict())
+        else:
+            for key, asset in modifiable.assets.items():
+                url = urllib.parse.urlparse(asset.href)
+                if not url.query:
+                    asset.href = urllib.parse.urlunparse(url._replace(query="foo=bar"))
+                    modifiable.assets[key] = asset
+
+
+    client = Client.open(
+        "https://planetarycomputer.microsoft.com/api/stac/v1", modifier=modifier
+    )
+    item_search = client.search(collections=["landsat-c2-l2"], max_items=1)
+    item = next(item_search.items())
+    asset = item.assets["red"]
+    assert urllib.parse.urlparse(asset.href).query == "foo=bar"
+
+
+Using custom certificates
+-------------------------
+
+If you need to use custom certificates in your ``pystac-client`` requests, you can
+customize the :class:`StacApiIO<pystac_client.stac_api_io.StacApiIO>` instance before
+creating your :class:`Client<pystac_client.Client>`.
+
+.. code-block:: python
+
+    >>> from pystac_client.stac_api_io import StacApiIO
+    >>> from pystac_client.client import Client
+    >>> stac_api_io = StacApiIO()
+    >>> stac_api_io.session.verify = "/path/to/certfile"
+    >>> client = Client.open("https://planetarycomputer.microsoft.com/api/stac/v1", stac_io=stac_api_io)
+
 CollectionClient
 ++++++++++++++++
 
@@ -306,51 +415,6 @@ descending sort and a ``+`` prefix or no prefix means an ascending sort.
                 {"direction": "asc", "field": "collection"},
             ]
     ... )
-
-Automatically modifying results
--------------------------------
-
-Some systems, like the `Microsoft Planetary Computer <http://planetarycomputer.microsoft.com/>`__,
-have public STAC metadata but require some `authentication <https://planetarycomputer.microsoft.com/docs/concepts/sas/>`__
-to access the actual assets.
-
-``pystac-client`` provides a ``modifier`` keyword that can automatically
-modify the STAC objects returned by the STAC API.
-
-.. code-block:: python
-
-   >>> from pystac_client import Client
-   >>> import planetary_computer, requests
-   >>> catalog = Client.open(
-   ...    'https://planetarycomputer.microsoft.com/api/stac/v1',
-   ...    modifier=planetary_computer.sign_inplace,
-   ... )
-   >>> item = next(catalog.get_collection("sentinel-2-l2a").get_all_items())
-   >>> requests.head(item.assets["B02"].href).status_code
-   200
-
-Without the modifier, we would have received a 404 error because the asset
-is in a private storage container.
-
-``pystac-client`` expects that the ``modifier`` callable modifies the result
-object in-place and returns no result. A warning is emitted if your
-``modifier`` returns a non-None result that is not the same object as the
-input.
-
-Using custom certificates
--------------------------
-
-If you need to use custom certificates in your ``pystac-client`` requests, you can
-customize the :class:`StacApiIO<pystac_client.stac_api_io.StacApiIO>` instance before
-creating your :class:`Client<pystac_client.Client>`.
-
-.. code-block:: python
-
-    >>> from pystac_client.stac_api_io import StacApiIO
-    >>> from pystac_client.client import Client
-    >>> stac_api_io = StacApiIO()
-    >>> stac_api_io.session.verify = "/path/to/certfile"
-    >>> client = Client.open("https://planetarycomputer.microsoft.com/api/stac/v1", stac_io=stac_api_io)
 
 Loading data
 ++++++++++++

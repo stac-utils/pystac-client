@@ -20,7 +20,7 @@ classifiers = [
     "Natural Language :: English",
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
+    "License :: OSI Approved :: Apache Software License",
     "Topic :: Scientific/Engineering :: GIS",
     "Topic :: Software Development :: Libraries",
     "Topic :: Software Development :: Libraries :: Python Modules",
@@ -28,7 +28,7 @@ classifiers = [
 requires-python = ">=3.8"
 dependencies = [
     "requests>=2.28.2",
-    "pystac[validation]>=1.7.2",
+    "pystac[validation]>=1.8.2",
     "python-dateutil>=2.8.2",
 ]
 dynamic = ["version"]
@@ -38,22 +38,22 @@ stac-client = "pystac_client.cli:cli"
 
 [project.optional-dependencies]
 dev = [
-    "black~=23.3.0",
+    "black~=23.3",
     "codespell~=2.2.4",
     "coverage~=7.2",
     "doc8~=1.1.1",
-    "importlib-metadata~=6.6.0",
+    "importlib-metadata~=6.7",
     "mypy~=1.2",
     "orjson~=3.8",
     "pre-commit~=3.2",
     "pytest-benchmark~=4.0.0",
     "pytest-console-scripts~=1.4.0",
     "pytest-cov~=4.1.0",
-    "pytest-recording~=0.12.2",
-    "pytest~=7.3.1",
+    "pytest-recording~=0.13",
+    "pytest~=7.4",
     "recommonmark~=0.7.1",
-    "requests-mock~=1.10.0",
-    "ruff==0.0.270",
+    "requests-mock~=1.11.0",
+    "ruff==0.0.285",
     "tomli~=2.0; python_version<'3.11'",
     "types-python-dateutil~=2.8.19",
     "types-requests~=2.31.0",
@@ -70,7 +70,7 @@ docs = [
     "ipython~=8.12",
     "jinja2<4.0",
     "matplotlib~=3.7.1",
-    "myst-parser~=1.0.0",
+    "myst-parser~=2.0",
     "nbsphinx~=0.9",
     "pydata-sphinx-theme~=0.13",
     "pygeoif~=1.0",

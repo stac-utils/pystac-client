@@ -682,3 +682,24 @@ class TestConformsTo:
 
         with pytest.warns(MissingLink, match="rel='data'"):
             next(client.get_collections())
+
+
+@pytest.mark.vcr
+def test_collections_are_clients() -> None:
+    # https://github.com/stac-utils/pystac-client/issues/548
+    catalog = Client.open(
+        "https://planetarycomputer.microsoft.com/api/stac/v1/",
+    )
+    item = catalog.get_collection("cil-gdpcir-cc-by").get_item(
+        "cil-gdpcir-NUIST-NESM3-ssp585-r1i1p1f1-day"
+    )
+    assert item
+    item.get_collection()
+
+
+@pytest.mark.vcr
+def test_get_items_without_ids() -> None:
+    client = Client.open(
+        "https://planetarycomputer.microsoft.com/api/stac/v1/",
+    )
+    next(client.get_items())
