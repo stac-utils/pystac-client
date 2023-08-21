@@ -20,7 +20,7 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIAP/UlWQC/81WbW/bNhD+K4KA5ssk6sW2LHkwhjZDgw5YUyTZlwaGQUsnmakkqiRlxwvy33ek
+        H4sIAIKU42QC/81WbW/bNhD+K4KA5ssk6sW2LHkwhjZDgw5YUyTZlwaGQUsnmakkqiRlxwvy33ek
         ZFt1igZos3VAHNjH4708d8/xHmy1a8Ce2W+BqlbAOS9LSBXjte3YeSeT9uz2wWYZam3UslqOx/50
         FI2XcrsM4qUf+cvQD4PADxO8s1rxe9R3pyMSjPzYnzrjEUmSKJgmjhb6kygIAmc8Jn4UxcHCOQkA
         TZSs/tT5FFDiSTqMqdemTVOylGqhdyfNyVpAjidrpRo587ympDUoKnYpr5pWgSAVSwWXPFcERR5t
@@ -55,7 +55,7 @@ interactions:
       Content-Type:
       - application/geo+json
       Date:
-      - Fri, 23 Jun 2023 17:23:11 GMT
+      - Mon, 21 Aug 2023 16:44:50 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
@@ -65,7 +65,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20230623T172311Z-42f8672dg91b9e4gy8a31qhb7n00000003z000000001na13
+      - 20230821T164450Z-f6mge3d2rx0r33vaptauthx83n00000007tg000000002p82
     status:
       code: 200
       message: OK
@@ -90,7 +90,7 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIAP/UlWQC/81WbW/bNhD+K4KA5ssk6sW2LHkwhjZDgw5YUyTZlwaGQUsnmakkqiRlxwvy33ek
+        H4sIAIOU42QC/81WbW/bNhD+K4KA5ssk6sW2LHkwhjZDgw5YUyTZlwaGQUsnmakkqiRlxwvy33ek
         ZFt1igZos3VAHNjH4708d8/xHmy1a8Ce2W+BqlbAOS9LSBXjte3YeSeT9uz2wWYZam3UslqOx/50
         FI2XcrsM4qUf+cvQD4PADxO8s1rxe9R3pyMSjPzYnzrjEUmSKJgmjhb6kygIAmc8Jn4UxcHCOQkA
         TZSs/tT5FFDiSTqMqdemTVOylGqhdyfNyVpAjidrpRo587ympDUoKnYpr5pWgSAVSwWXPFcERR5t
@@ -112,26 +112,30 @@ interactions:
         0FHG6QhnyDZZDIljIDbUQfHnFjq6G9o82PDZkEcPA8U/Qd3nOTNd8ezW9j9aX3/cTY837gf/AGiX
         eREmDQAA
     headers:
+      Accept-Ranges:
+      - bytes
       Access-Control-Allow-Credentials:
       - 'true'
       Access-Control-Allow-Origin:
       - '*'
-      Content-Encoding:
-      - gzip
+      Connection:
+      - keep-alive
       Content-Length:
       - '1146'
       Content-Type:
       - application/geo+json
       Date:
-      - Fri, 23 Jun 2023 17:23:11 GMT
+      - Mon, 21 Aug 2023 16:44:51 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
-      Vary:
-      - Accept-Encoding
-      X-Azure-Ref:
-      - 0/9SVZAAAAADpiZTf/UqoQp43ncy+SgJdREVOMzAxMDAwMTA5MDMxADkyN2FiZmE2LTE5ZjYtNGFmMS1hMDlkLWM5NTlkOWExZTY0NA==
       X-Cache:
       - CONFIG_NOCACHE
+      content-encoding:
+      - gzip
+      vary:
+      - Accept-Encoding
+      x-azure-ref:
+      - 20230821T164450Z-1hs4xnqvwt7qv52cu0xznrz45g000000072g000000007zgt
     status:
       code: 200
       message: OK
