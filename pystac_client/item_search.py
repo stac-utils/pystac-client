@@ -550,13 +550,18 @@ class ItemSearch:
 
     @staticmethod
     def _format_ids(value: Optional[IDsLike]) -> Optional[IDs]:
-        if value is None:
+        if value is None or isinstance(value, (tuple, list)) and not value:
+            # We can't just check for truthiness here because of the Iterator[str] case
             return None
-
-        if isinstance(value, str):
-            return tuple(value.split(","))
-
-        return tuple(value)
+        elif isinstance(value, str):
+            # We could check for str in the first branch, but then we'd be checking
+            # for str twice #microoptimizations
+            if value:
+                return tuple(value.split(","))
+            else:
+                return None
+        else:
+            return tuple(value)
 
     def _format_sortby(self, value: Optional[SortbyLike]) -> Optional[Sortby]:
         if value is None:

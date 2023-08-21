@@ -695,3 +695,11 @@ def test_collections_are_clients() -> None:
     )
     assert item
     item.get_collection()
+
+
+@pytest.mark.vcr
+def test_get_items_without_ids() -> None:
+    client = Client.open(
+        "https://planetarycomputer.microsoft.com/api/stac/v1/",
+    )
+    next(client.get_items())
