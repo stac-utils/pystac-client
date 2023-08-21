@@ -550,7 +550,7 @@ class ItemSearch:
 
     @staticmethod
     def _format_ids(value: Optional[IDsLike]) -> Optional[IDs]:
-        if value is None:
+        if not value:
             return None
 
         if isinstance(value, str):

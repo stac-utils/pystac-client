@@ -451,7 +451,7 @@ class Client(pystac.Catalog, QueryablesMixin):
                 catalog.
         """
         if self.conforms_to(ConformanceClasses.ITEM_SEARCH):
-            search = self.search(ids=ids or None)
+            search = self.search(ids=ids)
             yield from search.items()
         else:
             self._warn_about_fallback("ITEM_SEARCH")
