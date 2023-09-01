@@ -1,8 +1,8 @@
 interactions:
 - request:
-    body: '{"limit": 100, "collections": ["naip"], "intersects": {"type": "Polygon",
-      "coordinates": [[[-73.21, 43.99], [-73.21, 44.05], [-73.12, 44.05], [-73.12,
-      43.99], [-73.21, 43.99]]]}}'
+    body: '{"collections": ["naip"], "intersects": {"type": "Polygon", "coordinates":
+      [[[-73.21, 43.99], [-73.21, 44.05], [-73.12, 44.05], [-73.12, 43.99], [-73.21,
+      43.99]]]}}'
     headers:
       Accept:
       - '*/*'
@@ -11,7 +11,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '178'
+      - '164'
       Content-Type:
       - application/json
       User-Agent:
@@ -21,7 +21,7 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIAGKU42QC/+2daW/jSJKG/4phYPrL2lLeRy0Ki5kadGMWmJlFd++XLRiGbKdt9eqCRJe7dtD/
+        H4sIAF0/8mQC/+2daW/jSJKG/4phYPrL2lLeRy0Ki5kadGMWmJlFd++XLRiGbKdt9eqCRJe7dtD/
         fTN5Jg+TkmyJVxhdDTlFJTMjg8lH4YiX/7oMvm/M5afLH80seNmaL+vFwtwH8/Xq8uryMWrbXX76
         +q/L+YM96ltwu7xlDEkq2O3u9RarWyTQLUEEY0S0/czd3fp3e/y1pBNMkULyitGJ1gJLfeUaERcY
         4yvGJkgIhW+uCgOwXSzmq/+Nzrk1C/vOvT+m+OjZZrOY389c4/S3XfjO89Y82neeg2Cz+zSdbhaz
@@ -108,37 +108,33 @@ interactions:
         1swHmxIEWVIWfkzZ77sNUua2MdVRprGOskapprF8X0xZN+oo47KOcm+zL27K3No6wb3/NDvrPvfP
         7rb4/4uGqkBfkgEA
     headers:
-      Accept-Ranges:
-      - bytes
       Access-Control-Allow-Credentials:
       - 'true'
       Access-Control-Allow-Origin:
       - '*'
-      Connection:
-      - keep-alive
+      Content-Encoding:
+      - gzip
       Content-Length:
       - '4857'
       Content-Type:
       - application/geo+json
       Date:
-      - Mon, 21 Aug 2023 16:44:18 GMT
+      - Fri, 01 Sep 2023 19:45:32 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
+      Vary:
+      - Accept-Encoding
+      X-Azure-Ref:
+      - 0XT/yZAAAAAD0b57VEqOpT7ciy1YjX6tXREVOMzAxMDAwMTA5MDQ1ADkyN2FiZmE2LTE5ZjYtNGFmMS1hMDlkLWM5NTlkOWExZTY0NA==
       X-Cache:
       - CONFIG_NOCACHE
-      content-encoding:
-      - gzip
-      vary:
-      - Accept-Encoding
-      x-azure-ref:
-      - 20230821T164418Z-kq3y844dfx0rb4633vbu7h8p9s0000000du0000000000e25
     status:
       code: 200
       message: OK
 - request:
-    body: '{"limit": 100, "collections": ["naip"], "intersects": {"type": "Polygon",
-      "coordinates": [[[-73.21, 43.99], [-73.21, 44.05], [-73.12, 44.05], [-73.12,
-      43.99], [-73.21, 43.99]]]}}'
+    body: '{"collections": ["naip"], "intersects": {"type": "Polygon", "coordinates":
+      [[[-73.21, 43.99], [-73.21, 44.05], [-73.12, 44.05], [-73.12, 43.99], [-73.21,
+      43.99]]]}}'
     headers:
       Accept:
       - '*/*'
@@ -147,7 +143,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '178'
+      - '164'
       Content-Type:
       - application/json
       User-Agent:
@@ -157,7 +153,7 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIAGOU42QC/+2daW/jSJKG/4phYPrL2lLeRy0Ki5kadGMWmJlFd++XLRiGbKdt9eqCRJe7dtD/
+        H4sIAF0/8mQC/+2daW/jSJKG/4phYPrL2lLeRy0Ki5kadGMWmJlFd++XLRiGbKdt9eqCRJe7dtD/
         fTN5Jg+TkmyJVxhdDTlFJTMjg8lH4YiX/7oMvm/M5afLH80seNmaL+vFwtwH8/Xq8uryMWrbXX76
         +q/L+YM96ltwu7xlDEkq2O3u9RarWyTQLUEEY0S0/czd3fp3e/y1pBNMkULyitGJ1gJLfeUaERcY
         4yvGJkgIhW+uCgOwXSzmq/+Nzrk1C/vOvT+m+OjZZrOY389c4/S3XfjO89Y82neeg2Cz+zSdbhaz
@@ -257,7 +253,7 @@ interactions:
       Content-Type:
       - application/geo+json
       Date:
-      - Mon, 21 Aug 2023 16:44:19 GMT
+      - Fri, 01 Sep 2023 19:45:33 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
@@ -267,7 +263,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20230821T164418Z-f6mge3d2rx0r33vaptauthx83n00000007tg000000002gz9
+      - 20230901T194533Z-4xdu346ve150m28g3rdp1pze8s000000039g000000008x9c
     status:
       code: 200
       message: OK

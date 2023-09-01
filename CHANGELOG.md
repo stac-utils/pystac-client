@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Don't provide a `limit` by default, trust the server to know its limits [#584](https://github.com/stac-utils/pystac-client/pull/584)
+
 ## [v0.7.3] - 2023-08-21
 
 ### Changed

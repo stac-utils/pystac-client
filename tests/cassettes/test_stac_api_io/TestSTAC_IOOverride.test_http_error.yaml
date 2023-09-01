@@ -16,16 +16,18 @@ interactions:
     body:
       string: '{"detail":"Must provide API key or Bearer token to access this route."}'
     headers:
+      Connection:
+      - keep-alive
       Content-Length:
       - '71'
       Content-Type:
       - application/json
       Date:
-      - Mon, 21 Aug 2023 16:44:53 GMT
-      X-Azure-Ref:
-      - 0hZTjZAAAAAAS9NAeGZpsRKxaJUUsmvcYREVOMzAxMDAwMTA5MDA5ADM4MGFiMDc0LWM0NGEtNDZhZi1iZWUyLTdkZGYxZmQ5M2NlMw==
+      - Fri, 01 Sep 2023 19:46:01 GMT
       X-Cache:
       - CONFIG_NOCACHE
+      x-azure-ref:
+      - 20230901T194601Z-3ecgewpw551yx30cw2zu9z4sts00000000hg0000000139nb
     status:
       code: 401
       message: Unauthorized
