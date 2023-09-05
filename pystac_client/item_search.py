@@ -91,10 +91,14 @@ OP_MAP = {
 
 OPS = list(OP_MAP.keys())
 
-# Previously named DEFAULT_LIMIT_AND_MAX_ITEMS
-# aliased for backwards compat
-# https://github.com/stac-utils/pystac-client/pull/273
-DEFAUL_LIMIT = DEFAULT_LIMIT_AND_MAX_ITEMS = 100
+
+def __getattr__(name: str) -> Any:
+    if name in ("DEFAUL_LIMIT", "DEFAULT_LIMIT_AND_MAX_ITEMS"):
+        warnings.warn(
+            f"{name} is deprecated and will be removed in v0.8", DeprecationWarning
+        )
+        return 100
+    raise AttributeError(f"module {__name__} has no attribute {name}")
 
 
 # from https://gist.github.com/angstwad/bf22d1822c38a92ec0a9#gistcomment-2622319
@@ -258,7 +262,7 @@ class ItemSearch:
         max_items: Optional[int] = None,
         stac_io: Optional[StacApiIO] = None,
         client: Optional["_client.Client"] = None,
-        limit: Optional[int] = DEFAULT_LIMIT_AND_MAX_ITEMS,
+        limit: Optional[int] = None,
         ids: Optional[IDsLike] = None,
         collections: Optional[CollectionsLike] = None,
         bbox: Optional[BBoxLike] = None,

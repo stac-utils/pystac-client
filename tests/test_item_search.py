@@ -111,7 +111,7 @@ class TestItemSearchParams:
         assert (
             search.url_with_parameters()
             == "https://planetarycomputer.microsoft.com/api/stac/v1/search?"
-            "limit=100&bbox=88.214%2C27.927%2C88.302%2C28.034&collections=cop-dem-glo-30"
+            "bbox=88.214%2C27.927%2C88.302%2C28.034&collections=cop-dem-glo-30"
         )
 
     def test_single_string_datetime(self) -> None:
