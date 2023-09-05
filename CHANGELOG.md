@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [v0.7.5] - 2023-09-05
+
+### Fixed
+
+- `--matched` flag in CLI [#588](https://github.com/stac-utils/pystac-client/pull/588)
+
 ## [v0.7.4] - 2023-09-05
 
 ### Changed
@@ -328,7 +334,8 @@ are in a single HTTP session, handle pagination and respects conformance
 
 Initial release.
 
-[Unreleased]: <https://github.com/stac-utils/pystac-client/compare/v0.7.4...main>
+[Unreleased]: <https://github.com/stac-utils/pystac-client/compare/v0.7.5...main>
+[v0.7.5]: <https://github.com/stac-utils/pystac-client/compare/v0.7.4...v0.7.5>
 [v0.7.4]: <https://github.com/stac-utils/pystac-client/compare/v0.7.3...v0.7.4>
 [v0.7.3]: <https://github.com/stac-utils/pystac-client/compare/v0.7.2...v0.7.3>
 [v0.7.2]: <https://github.com/stac-utils/pystac-client/compare/v0.7.1...v0.7.2>
