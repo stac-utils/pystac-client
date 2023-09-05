@@ -84,3 +84,34 @@ class TestCLI:
         ]
         result = script_runner.run(args, print_result=False)
         assert result.success
+
+    @pytest.mark.vcr
+    def test_matched_not_available(self, script_runner: ScriptRunner) -> None:
+        args = [
+            "stac-client",
+            "search",
+            STAC_URLS["PLANETARY-COMPUTER"],
+            "-c",
+            "naip",
+            "--matched",
+        ]
+        result = script_runner.run(args, print_result=False)
+        assert result.success is False
+        assert "matched not in response" in result.stderr
+        assert result.returncode == 1
+
+    @pytest.mark.vcr
+    def test_matched(self, script_runner: ScriptRunner) -> None:
+        args = [
+            "stac-client",
+            "search",
+            STAC_URLS["EARTH-SEARCH"],
+            "-c",
+            "cop-dem-glo-30",
+            "--max-items",
+            "1",
+            "--matched",
+        ]
+        result = script_runner.run(args, print_result=False)
+        assert result.success
+        assert result.stdout[0].isdigit(), "Output does not start with a number"

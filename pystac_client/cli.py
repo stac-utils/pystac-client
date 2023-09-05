@@ -40,7 +40,7 @@ def search(
     result = client.search(method=method, **kwargs)  # type: ignore[arg-type]
 
     if matched:
-        if nmatched := result.matched() is not None:
+        if (nmatched := result.matched()) is not None:
             print(f"{nmatched} items matched")
         else:
             raise KeyError("'matched' is not supported for this catalog")
