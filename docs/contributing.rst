@@ -13,7 +13,7 @@ the library as an "editable link", then install the development dependencies:
 .. code-block:: bash
 
     $ git clone git@github.com:your_user_name/pystac-client.git
-    $ cd  pystac
+    $ cd pystac-client
     $ pip install -e '.[dev]'
 
 Testing
