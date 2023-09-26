@@ -11,7 +11,19 @@ from pystac import STACError, STACTypeError
 
 from .client import Client
 from .conformance import ConformanceClasses
-from .item_search import OPS
+from .item_search import (
+    OPS,
+    BBoxLike,
+    CollectionsLike,
+    DatetimeLike,
+    FieldsLike,
+    FilterLangLike,
+    FilterLike,
+    IDsLike,
+    IntersectsLike,
+    QueryLike,
+    SortbyLike,
+)
 from .version import __version__
 from .warnings import (
     DoesNotConformTo,
@@ -26,18 +38,40 @@ logger = logging.getLogger(__name__)
 
 def search(
     client: Client,
-    method: str = "GET",
     matched: bool = False,
     save: Optional[str] = None,
-    **kwargs: Dict[str, Any],
+    *,
+    method: str = "GET",
+    max_items: Optional[int] = None,
+    limit: Optional[int] = None,
+    ids: Optional[IDsLike] = None,
+    collections: Optional[CollectionsLike] = None,
+    bbox: Optional[BBoxLike] = None,
+    intersects: Optional[IntersectsLike] = None,
+    datetime: Optional[DatetimeLike] = None,
+    query: Optional[QueryLike] = None,
+    filter: Optional[FilterLike] = None,
+    filter_lang: Optional[FilterLangLike] = None,
+    sortby: Optional[SortbyLike] = None,
+    fields: Optional[FieldsLike] = None,
 ) -> int:
     """Main function for performing a search"""
 
-    # https://github.com/python/mypy/issues/4441
-    # the type: ignore is to silence the mypy error
-    # error: Argument 2 to "search" of "Client" has incompatible
-    # type "**Dict[str, Dict[str, Any]]"; expected "Optional[int]"  [arg-type]
-    result = client.search(method=method, **kwargs)  # type: ignore[arg-type]
+    result = client.search(
+        method=method,
+        max_items=max_items,
+        limit=limit,
+        ids=ids,
+        collections=collections,
+        bbox=bbox,
+        intersects=intersects,
+        datetime=datetime,
+        query=query,
+        filter=filter,
+        filter_lang=filter_lang,
+        sortby=sortby,
+        fields=fields,
+    )
 
     if matched:
         if (nmatched := result.matched()) is not None:
