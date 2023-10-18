@@ -176,8 +176,7 @@ class ItemSearch:
             *per page* of results. Defaults to 100.
         ids: List of one or more Item ids to filter on.
         collections: List of one or more Collection IDs or :class:`pystac.Collection`
-            instances. Only Items in one
-            of the provided Collections will be searched
+            instances.
         bbox: A list, tuple, or iterator representing a bounding box of 2D
             or 3D coordinates. Results will be filtered
             to only those intersecting the bounding box.
