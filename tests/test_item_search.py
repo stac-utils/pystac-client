@@ -814,3 +814,15 @@ def test_url_with_query_parameter() -> None:
     url = urllib.parse.urlparse(search.url_with_parameters())
     query = urllib.parse.parse_qs(url.query)
     assert query["query"] == [r'{"eo:cloud_cover":{"lt":42}}']
+
+
+@pytest.mark.vcr
+def test_multiple_collections() -> None:
+    search = ItemSearch(
+        url="https://earth-search.aws.element84.com/v1/search",
+        collections=["sentinel-2-l2a", "landsat-c2-l2"],
+        intersects={"type": "Point", "coordinates": [-105.1019, 40.1672]},
+        datetime="2023-10-08",
+    )
+    collections = set(item.collection_id for item in search.items())
+    assert collections == {"sentinel-2-l2a", "landsat-c2-l2"}
