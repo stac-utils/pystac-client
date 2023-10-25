@@ -25,7 +25,6 @@ from pystac_client.conformance import ConformanceClasses
 from pystac_client.errors import ClientTypeError
 from pystac_client.exceptions import APIError
 from pystac_client.item_search import (
-    DEFAULT_LIMIT_AND_MAX_ITEMS,
     BBoxLike,
     CollectionsLike,
     DatetimeLike,
@@ -475,7 +474,7 @@ class Client(pystac.Catalog, QueryablesMixin):
         *,
         method: Optional[str] = "POST",
         max_items: Optional[int] = None,
-        limit: Optional[int] = DEFAULT_LIMIT_AND_MAX_ITEMS,
+        limit: Optional[int] = None,
         ids: Optional[IDsLike] = None,
         collections: Optional[CollectionsLike] = None,
         bbox: Optional[BBoxLike] = None,
@@ -590,7 +589,7 @@ class Client(pystac.Catalog, QueryablesMixin):
 
         if not self.conforms_to(ConformanceClasses.ITEM_SEARCH):
             raise DoesNotConformTo(
-                "ITEM_SEARCH", "There is not fallback option available for search."
+                "ITEM_SEARCH", "There is no fallback option available for search."
             )
 
         return ItemSearch(

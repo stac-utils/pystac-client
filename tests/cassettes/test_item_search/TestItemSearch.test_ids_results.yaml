@@ -1,6 +1,6 @@
 interactions:
 - request:
-    body: '{"limit": 100, "ids": ["S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE",
+    body: '{"ids": ["S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE",
       "fl_m_2608004_nw_17_060_20191215_20200113"]}'
     headers:
       Accept:
@@ -10,7 +10,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '136'
+      - '122'
       Content-Type:
       - application/json
       User-Agent:
@@ -20,7 +20,7 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIAN7UlWQC/8VWbW/bNhD+K4KA5stkiaJt+WUwBtRDgw5oO2T9VMMQaOkkM5NIgaTjeEX++46U
+        H4sIADw/8mQC/8VWbW/bNhD+K4KA5stkiaJt+WUwBtRDgw5oO2T9VMMQaOkkM5NIgaTjeEX++46U
         bKt20XVrhgBxQB3v5bkXPbrPvjk04M/9N8DMTsFSVhVkhkvhB37RyrQ/X332eY5aRZXWKU3IlJBR
         KvZpPElJQlJK4llM4zEeKCFxPETjzUY+ouFgSsKETihNApqEs+F4NAusbJwQOhoFdBKiwWw6WQcX
         SNBFxcWfbXAFFd5kfXCdNmuaimfMCqN77W62Cgq82RrT6HkUNRUTYJg6ZLJudgZUWPNMSS0LE6Io
@@ -52,7 +52,7 @@ interactions:
       Content-Type:
       - application/geo+json
       Date:
-      - Fri, 23 Jun 2023 17:22:39 GMT
+      - Fri, 01 Sep 2023 19:45:02 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
@@ -62,7 +62,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20230623T172237Z-umqgtygx5d4hr7ursqdzmtckfn00000003z0000000015dg0
+      - 20230901T194500Z-3ecgewpw551yx30cw2zu9z4sts00000000hg0000000130m4
     status:
       code: 200
       message: OK
