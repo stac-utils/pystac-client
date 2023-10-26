@@ -438,12 +438,14 @@ class Client(pystac.Catalog, QueryablesMixin):
                 call_modifier(self.modifier, collection)
                 yield collection
 
-    def get_items(self, *ids: str, recursive: bool = False) -> Iterator["Item_Type"]:
+    def get_items(
+        self, *ids: str, recursive: bool | None = None
+    ) -> Iterator["Item_Type"]:
         """Return all items of this catalog.
 
         Args:
             ids: Zero or more item ids to find.
-            recursive: unused
+            recursive: unused in pystac-client, but needed for falling back to pystac
 
         Return:
             Iterator[Item]: Iterator of items whose parent is this
@@ -454,7 +456,9 @@ class Client(pystac.Catalog, QueryablesMixin):
             yield from search.items()
         else:
             self._warn_about_fallback("ITEM_SEARCH")
-            for item in super().get_items(*ids, recursive=True):
+            for item in super().get_items(
+                *ids, recursive=recursive is None or recursive
+            ):
                 call_modifier(self.modifier, item)
                 yield item
 

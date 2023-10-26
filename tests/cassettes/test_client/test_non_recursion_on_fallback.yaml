@@ -1,0 +1,543 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: https://raw.githubusercontent.com/stac-utils/pystac/v1.9.0/docs/example-catalog/catalog.json
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA52QMQvCMBCFd39FyNzUdhM3cXXTTYqE5KrRIynJIUrxv5vEFjuIgsvBve/du+P6
+        GWOc7h3wJeNrSRLdkRdJDCTV4Qo+GGcTrMuqrCYIbgQ2wRDpvsnA6OREaXWQJJJNKIcIiqJPqGk8
+        GcK8dLtbrVnrPNu8xpiOtpdHQ1DedDRc8MWJxl7yHbFhrM81yicPbZos58Pu8hxiVjFyD5hwAGx5
+        1h7FXwHeOfoVMH5lIbCev7/yOVCdDOohMdZm9ngCaHKhLKkBAAA=
+    headers:
+      Accept-Ranges:
+      - bytes
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - max-age=300
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '209'
+      Content-Security-Policy:
+      - default-src 'none'; style-src 'unsafe-inline'; sandbox
+      Content-Type:
+      - text/plain; charset=utf-8
+      Cross-Origin-Resource-Policy:
+      - cross-origin
+      Date:
+      - Thu, 26 Oct 2023 16:02:45 GMT
+      ETag:
+      - W/"4f517310845b65ca442e14b6613d76cdc06523f64710d84a6d49b93c49d0dca9"
+      Expires:
+      - Thu, 26 Oct 2023 16:07:45 GMT
+      Source-Age:
+      - '160'
+      Strict-Transport-Security:
+      - max-age=31536000
+      Vary:
+      - Authorization,Accept-Encoding,Origin
+      Via:
+      - 1.1 varnish
+      X-Cache:
+      - HIT
+      X-Cache-Hits:
+      - '1'
+      X-Content-Type-Options:
+      - nosniff
+      X-Fastly-Request-ID:
+      - ce8fb12ade66846f275360de1601c9b8144ed210
+      X-Frame-Options:
+      - deny
+      X-GitHub-Request-Id:
+      - 64A8:1094:3C6D0E:4B2723:653A7C28
+      X-Served-By:
+      - cache-lga21923-LGA
+      X-Timer:
+      - S1698336165.158574,VS0,VE1
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: https://raw.githubusercontent.com/stac-utils/pystac/v1.9.0/docs/example-catalog/landsat-8-l1/collection.json
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA62WUY+bOBCA3/MrLJ7upA3BBAjJ43WrU6X0Trr2qadV5MAk8dVgZJtkc6v899o4
+        BHbbBbfal0BmhpnPM2N7niYIeepcgbdC3jvOGGSK8tK7M3KpSLY5gpBGgrQB9gM/6OngUUFptNKo
+        /9VyrQHeWOi3I4VT+35QqpKr2QweSVEx8DNezIyPGSNlLoma3nzNdJSZzA5QEP8/qSNrBw9NTJo3
+        FO0X6ZRhC6OoYtDo1laHUrS+6nKQmaCVatfQWdCC7EGckSA55QUoQTPC2BnpX7oVREGOtC3iQh24
+        MHnZUS2qJS33aC94rXUVp6WSjdk93VNFGHrP4EhMNPSR58DQb/fvP/6OcqIIUhxlXBhXSACjsEM5
+        lRUjGRRQKt/yfoXziYu8n9HrgttUAtFEiG8lCBupVdRyL7tsMZrphNq0VIJXgoIi4myjaMGR5rq0
+        XZin5lfrSlLYr+7hCIxXBg59AsivcbSJ4Ax6nzYy7TIDKbnwrrKHm3ktWOOwbQKdqUO9tT2gC1kr
+        ymTzRipqv77cltH0hTKfW0BPVnrRhHUSLdtu+eNznO4NoSlOdd/e9SXLF4LvLIzB7e/DpP+8XNOt
+        oKi4eEGi+8GUhb1O44UBTqdBPA3xZxyvomgVL794d99bLKZB2ljEq3n0xXuNZnIl8mRdFERXWeq9
+        /HRpy1yBUNQW65rArNvmP9xOzSqkErUpvK2y9/f6w+bzh38+eQ+9vb2Sdbkh/9OiVgdjhqOlH+Ak
+        WOA4anuVr7bGfz8dT13P3FrtD9zLgLerGducaK4OmwNhu01BmurqkoQ9K93eOtebE9FdCuXeMgR+
+        FPVteFHwcnOLk3GiTx3WJvNyN8QUujElDkzpANOW1eAGNH8zoDgZANoLgNKNKHIjisaJkniASOjD
+        x4knduOZj/OkQxkqqXDjSdx40jEe7A/hyBMVOHEjWjgRhaMbLfTDEaIwdCNKnYjwaI50Vy8HkCri
+        2NPLNzqKsD9fDB1FVIhauiHhwIlpvI0CfyhFzPQRdkRyObHxKNBQExmcroea57Prh+922jjXe9Gs
+        vq/pXUqtXM9ZasdF8fzOay+8vWxmSxy/vN6gHeeMOl76IY7CaHG7cxktv/5ohjoI2DWRfH+W6dmP
+        8b0dZrsRCuxMJDhXXn+u+AUfFRFmRhrxMusu/lf8SGC7US92OElm63dpgKNgPjcCnCTrP/8Kglcc
+        Uz0rOTqOreM4mIeN4wi/kePFzbElTpdv5NimYh78dComZoa7TL4B6HBASoQNAAA=
+    headers:
+      Accept-Ranges:
+      - bytes
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - max-age=300
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '959'
+      Content-Security-Policy:
+      - default-src 'none'; style-src 'unsafe-inline'; sandbox
+      Content-Type:
+      - text/plain; charset=utf-8
+      Cross-Origin-Resource-Policy:
+      - cross-origin
+      Date:
+      - Thu, 26 Oct 2023 16:02:45 GMT
+      ETag:
+      - W/"d7e83b66298977e660cd41eced9df63c47c5075485bc81bbb67f17a4df051e24"
+      Expires:
+      - Thu, 26 Oct 2023 16:07:45 GMT
+      Source-Age:
+      - '160'
+      Strict-Transport-Security:
+      - max-age=31536000
+      Vary:
+      - Authorization,Accept-Encoding,Origin
+      Via:
+      - 1.1 varnish
+      X-Cache:
+      - HIT
+      X-Cache-Hits:
+      - '1'
+      X-Content-Type-Options:
+      - nosniff
+      X-Fastly-Request-ID:
+      - e2ab76c2387ceb18ea9fef4c9ec154b42abd21c8
+      X-Frame-Options:
+      - deny
+      X-GitHub-Request-Id:
+      - EF5A:09B8:E9C1C:1132F6:653A8D05
+      X-Served-By:
+      - cache-lga21923-LGA
+      X-Timer:
+      - S1698336165.185206,VS0,VE1
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: https://raw.githubusercontent.com/stac-utils/pystac/v1.9.0/docs/example-catalog/landsat-8-l1/2018-06/LC80140332018166LGN00.json
+  response:
+    body:
+      string: !!binary |
+        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
+        s+q83vwDIQ4VojMgAAA=
+    headers:
+      Accept-Ranges:
+      - bytes
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - max-age=300
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '1382'
+      Content-Security-Policy:
+      - default-src 'none'; style-src 'unsafe-inline'; sandbox
+      Content-Type:
+      - text/plain; charset=utf-8
+      Cross-Origin-Resource-Policy:
+      - cross-origin
+      Date:
+      - Thu, 26 Oct 2023 16:02:45 GMT
+      ETag:
+      - W/"4aeda1cb7469bd902a948455e21ccb8b8cec0e530c5f287fa31532aeba8a4b4c"
+      Expires:
+      - Thu, 26 Oct 2023 16:07:45 GMT
+      Source-Age:
+      - '160'
+      Strict-Transport-Security:
+      - max-age=31536000
+      Vary:
+      - Authorization,Accept-Encoding,Origin
+      Via:
+      - 1.1 varnish
+      X-Cache:
+      - HIT
+      X-Cache-Hits:
+      - '1'
+      X-Content-Type-Options:
+      - nosniff
+      X-Fastly-Request-ID:
+      - d1db05b24f72bf1f5534f52407cb4569280ba2d7
+      X-Frame-Options:
+      - deny
+      X-GitHub-Request-Id:
+      - 23B0:694B:A6D57:C5ED0:653A8D04
+      X-Served-By:
+      - cache-lga21923-LGA
+      X-Timer:
+      - S1698336165.213681,VS0,VE1
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: https://raw.githubusercontent.com/stac-utils/pystac/v1.9.0/docs/example-catalog/landsat-8-l1/2018-05/LC80150322018141LGN00.json
+  response:
+    body:
+      string: !!binary |
+        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
+        L1f/APHhN9EvIAAA
+    headers:
+      Accept-Ranges:
+      - bytes
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - max-age=300
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '1380'
+      Content-Security-Policy:
+      - default-src 'none'; style-src 'unsafe-inline'; sandbox
+      Content-Type:
+      - text/plain; charset=utf-8
+      Cross-Origin-Resource-Policy:
+      - cross-origin
+      Date:
+      - Thu, 26 Oct 2023 16:02:45 GMT
+      ETag:
+      - W/"cd518c56745214a4d20ae145f9fb6edf689b57fc9ac77e1d3592c1476949550f"
+      Expires:
+      - Thu, 26 Oct 2023 16:07:45 GMT
+      Source-Age:
+      - '160'
+      Strict-Transport-Security:
+      - max-age=31536000
+      Vary:
+      - Authorization,Accept-Encoding,Origin
+      Via:
+      - 1.1 varnish
+      X-Cache:
+      - HIT
+      X-Cache-Hits:
+      - '1'
+      X-Content-Type-Options:
+      - nosniff
+      X-Fastly-Request-ID:
+      - d3ef3f1bd728171e81f4bf11096eb9d348038c66
+      X-Frame-Options:
+      - deny
+      X-GitHub-Request-Id:
+      - 28BE:911F:2EB4CC:376B99:653A8D04
+      X-Served-By:
+      - cache-lga21923-LGA
+      X-Timer:
+      - S1698336165.240597,VS0,VE1
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: https://raw.githubusercontent.com/stac-utils/pystac/v1.9.0/docs/example-catalog/landsat-8-l1/2018-07/LC80150332018189LGN00.json
+  response:
+    body:
+      string: !!binary |
+        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
+        1zB+KCAAAA==
+    headers:
+      Accept-Ranges:
+      - bytes
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - max-age=300
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '1375'
+      Content-Security-Policy:
+      - default-src 'none'; style-src 'unsafe-inline'; sandbox
+      Content-Type:
+      - text/plain; charset=utf-8
+      Cross-Origin-Resource-Policy:
+      - cross-origin
+      Date:
+      - Thu, 26 Oct 2023 16:02:45 GMT
+      ETag:
+      - W/"f1956bfe0994b5049095141c760f2d24f565019a6e81e1aec1816740157df998"
+      Expires:
+      - Thu, 26 Oct 2023 16:07:45 GMT
+      Source-Age:
+      - '160'
+      Strict-Transport-Security:
+      - max-age=31536000
+      Vary:
+      - Authorization,Accept-Encoding,Origin
+      Via:
+      - 1.1 varnish
+      X-Cache:
+      - HIT
+      X-Cache-Hits:
+      - '1'
+      X-Content-Type-Options:
+      - nosniff
+      X-Fastly-Request-ID:
+      - 65f1fd239f34ccc6c8466fb55a74977e459cc224
+      X-Frame-Options:
+      - deny
+      X-GitHub-Request-Id:
+      - B012:41DA:BB439:DA8AA:653A8D05
+      X-Served-By:
+      - cache-lga21923-LGA
+      X-Timer:
+      - S1698336165.270042,VS0,VE1
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: https://raw.githubusercontent.com/stac-utils/pystac/v1.9.0/docs/example-catalog/landsat-8-l1/2018-06/LC80300332018166LGN00.json
+  response:
+    body:
+      string: !!binary |
+        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
+        yZVZdV6u/gFi6/MwMSAAAA==
+    headers:
+      Accept-Ranges:
+      - bytes
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - max-age=300
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '1384'
+      Content-Security-Policy:
+      - default-src 'none'; style-src 'unsafe-inline'; sandbox
+      Content-Type:
+      - text/plain; charset=utf-8
+      Cross-Origin-Resource-Policy:
+      - cross-origin
+      Date:
+      - Thu, 26 Oct 2023 16:02:45 GMT
+      ETag:
+      - W/"6da3b66dc885889ceff60c1a0618fcc959b22734a7a4d9646fe0f55f0869ca5f"
+      Expires:
+      - Thu, 26 Oct 2023 16:07:45 GMT
+      Source-Age:
+      - '160'
+      Strict-Transport-Security:
+      - max-age=31536000
+      Vary:
+      - Authorization,Accept-Encoding,Origin
+      Via:
+      - 1.1 varnish
+      X-Cache:
+      - HIT
+      X-Cache-Hits:
+      - '1'
+      X-Content-Type-Options:
+      - nosniff
+      X-Fastly-Request-ID:
+      - 5859b8ab7d05ab9b05e76220ac540ca9d9fa009e
+      X-Frame-Options:
+      - deny
+      X-GitHub-Request-Id:
+      - 428E:420E:AEC53:CE3F9:653A8D05
+      X-Served-By:
+      - cache-lga21923-LGA
+      X-Timer:
+      - S1698336165.295836,VS0,VE1
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1
