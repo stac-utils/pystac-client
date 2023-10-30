@@ -439,7 +439,7 @@ class Client(pystac.Catalog, QueryablesMixin):
                 yield collection
 
     def get_items(
-        self, *ids: str, recursive: bool | None = None
+        self, *ids: str, recursive: Optional[bool] = None
     ) -> Iterator["Item_Type"]:
         """Return all items of this catalog.
 
