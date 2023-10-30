@@ -703,3 +703,11 @@ def test_get_items_without_ids() -> None:
         "https://planetarycomputer.microsoft.com/api/stac/v1/",
     )
     next(client.get_items())
+
+
+@pytest.mark.vcr
+def test_non_recursion_on_fallback() -> None:
+    path = "https://raw.githubusercontent.com/stac-utils/pystac/v1.9.0/docs/example-catalog/catalog.json"
+    catalog = Client.from_file(path)
+    with pytest.warns(FallbackToPystac):
+        [i for i in catalog.get_items()]
