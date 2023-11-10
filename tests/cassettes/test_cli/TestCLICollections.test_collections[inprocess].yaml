@@ -1,0 +1,413 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: https://earth-search.aws.element84.com/v1
+  response:
+    body:
+      string: '{"stac_version":"1.0.0","type":"Catalog","id":"earth-search-aws","title":"Earth
+        Search by Element 84","description":"A STAC API of public datasets on AWS","links":[{"rel":"self","type":"application/json","href":"https://earth-search.aws.element84.com/v1"},{"rel":"root","type":"application/json","href":"https://earth-search.aws.element84.com/v1"},{"rel":"conformance","type":"application/json","href":"https://earth-search.aws.element84.com/v1/conformance"},{"rel":"data","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections"},{"rel":"search","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/search","method":"GET"},{"rel":"search","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/search","method":"POST"},{"rel":"aggregate","type":"application/json","href":"https://earth-search.aws.element84.com/v1/aggregate","method":"GET"},{"rel":"aggregations","type":"application/json","href":"https://earth-search.aws.element84.com/v1/aggregations"},{"rel":"service-desc","type":"application/vnd.oai.openapi","href":"https://earth-search.aws.element84.com/v1/api"},{"rel":"service-doc","type":"text/html","href":"https://earth-search.aws.element84.com/v1/api.html"},{"rel":"http://www.opengis.net/def/rel/ogc/1.0/queryables","type":"application/schema+json","href":"https://earth-search.aws.element84.com/v1/queryables"},{"rel":"server","type":"text/html","href":"https://stac-utils.github.io/stac-server/"},{"rel":"child","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30"},{"rel":"child","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/naip"},{"rel":"child","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a"},{"rel":"child","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/sentinel-2-l1c"},{"rel":"child","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/landsat-c2-l2"},{"rel":"child","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-90"},{"rel":"child","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/sentinel-1-grd"}],"conformsTo":["https://api.stacspec.org/v1.0.0/core","https://api.stacspec.org/v1.0.0/collections","https://api.stacspec.org/v1.0.0/ogcapi-features","https://api.stacspec.org/v1.0.0/item-search","https://api.stacspec.org/v1.0.0-rc.3/ogcapi-features#fields","https://api.stacspec.org/v1.0.0-rc.2/ogcapi-features#sort","https://api.stacspec.org/v1.0.0-rc.2/ogcapi-features#query","https://api.stacspec.org/v1.0.0-rc.3/item-search#fields","https://api.stacspec.org/v1.0.0-rc.2/item-search#sort","https://api.stacspec.org/v1.0.0-rc.2/item-search#query","https://api.stacspec.org/v0.3.0/aggregation","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"]}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '3141'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Fri, 10 Nov 2023 17:28:19 GMT
+      Via:
+      - 1.1 9ef00004ef0e93efae76c75d3a2df1b4.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - 1kQwEPI3wBQPdQyRR36uiDcaAXPXBCKvv2cbpzrESLeoWuZnbWsJdg==
+      X-Amz-Cf-Pop:
+      - EWR53-C3
+      X-Amzn-Trace-Id:
+      - Root=1-654e6833-640141760bad398e333a4f2c;Sampled=0;lineage=9e2884e9:0
+      X-Cache:
+      - Miss from cloudfront
+      access-control-allow-origin:
+      - '*'
+      etag:
+      - W/"c45-vX16rVW/Oi5D8pNBcBaw295oyu0"
+      x-amz-apigw-id:
+      - OMU4BFHDPHcEHqw=
+      x-amzn-Remapped-content-length:
+      - '3141'
+      x-amzn-RequestId:
+      - c17de27e-3bab-4bb5-9a0e-b245ad000465
+      x-powered-by:
+      - Express
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: https://earth-search.aws.element84.com/v1/collections
+  response:
+    body:
+      string: '{"collections":[{"id":"cop-dem-glo-30","type":"Collection","links":[{"rel":"self","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30"},{"rel":"license","href":"https://spacedata.copernicus.eu/documents/20126/0/CSCDA_ESA_Mission-specific+Annex.pdf","title":"Copernicus
+        DEM License"},{"rel":"parent","type":"application/json","href":"https://earth-search.aws.element84.com/v1"},{"rel":"root","type":"application/json","href":"https://earth-search.aws.element84.com/v1"},{"rel":"items","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30/items"},{"rel":"http://www.opengis.net/def/rel/ogc/1.0/queryables","type":"application/schema+json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30/queryables"},{"rel":"aggregate","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30/aggregate","method":"GET"},{"rel":"aggregations","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30/aggregations"}],"title":"Copernicus
+        DEM GLO-30","extent":{"spatial":{"bbox":[[-180,-90,180,90]]},"temporal":{"interval":[["2021-04-22T00:00:00Z","2021-04-22T00:00:00Z"]]}},"license":"proprietary","keywords":["Copernicus","DEM","DSM","Elevation"],"providers":[{"url":"https://spacedata.copernicus.eu/documents/20123/121286/CSCDA_ESA_Mission-specific+Annex_31_Oct_22.pdf","name":"European
+        Space Agency","roles":["licensor"]},{"url":"https://registry.opendata.aws/copernicus-dem/","name":"Sinergise","roles":["producer","processor"]},{"url":"https://doi.org/10.5069/G9028PQB","name":"OpenTopography","roles":["host"]},{"name":"AWS","roles":["host"],"url":"https://registry.opendata.aws/sentinel-1"},{"name":"Element
+        84","roles":["processor"],"url":"https://element84.com"}],"summaries":{"gsd":[30],"platform":["tandem-x"],"proj:epsg":[4326],"storage:platform":["AWS"],"storage:region":["eu-central-1"],"storage:requester_pays":[false]},"description":"The
+        Copernicus DEM is a Digital Surface Model (DSM) which represents the surface
+        of the Earth including buildings, infrastructure and vegetation. GLO-30 Public
+        provides limited worldwide coverage at 30 meters because a small subset of
+        tiles covering specific countries are not yet released to the public by the
+        Copernicus Programme.","item_assets":{"data":{"type":"image/tiff; application=geotiff;
+        profile=cloud-optimized","roles":["data"],"title":"Data","raster:bands":[{"sampling":"point","data_type":"float32","spatial_resolution":30,"unit":"meter"}]}},"stac_version":"1.0.0","stac_extensions":["https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"]},{"id":"naip","type":"Collection","description":"The
+        [National Agriculture Imagery Program](https://www.fsa.usda.gov/programs-and-services/aerial-photography/imagery-programs/naip-imagery/)
+        (NAIP) provides U.S.-wide, high-resolution aerial imagery, with four spectral
+        bands (R, G, B, IR).  NAIP is administered by the [Aerial Field Photography
+        Office](https://www.fsa.usda.gov/programs-and-services/aerial-photography/)
+        (AFPO) within the [US Department of Agriculture](https://www.usda.gov/) (USDA).  Data
+        are captured at least once every three years for each state.  This dataset
+        represents NAIP data from 2010-present, in [cloud-optimized GeoTIFF](https://www.cogeo.org/)
+        format.\n","links":[{"rel":"self","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections/naip"},{"rel":"license","href":"https://www.fsa.usda.gov/help/policies-and-links/","title":"Public
+        Domain","type":"text/html"},{"rel":"cite-as","href":"https://doi.org/10.5066/F7QN651G","title":"NAIP
+        Overview","type":"text/html"},{"rel":"cite-as","href":"https://doi.org/10.14358/PERS.83.10.737","title":"Publication","type":"text/html"},{"rel":"parent","type":"application/json","href":"https://earth-search.aws.element84.com/v1"},{"rel":"root","type":"application/json","href":"https://earth-search.aws.element84.com/v1"},{"rel":"items","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/naip/items"},{"rel":"http://www.opengis.net/def/rel/ogc/1.0/queryables","type":"application/schema+json","href":"https://earth-search.aws.element84.com/v1/collections/naip/queryables"},{"rel":"aggregate","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections/naip/aggregate","method":"GET"},{"rel":"aggregations","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections/naip/aggregations"}],"title":"NAIP:
+        National Agriculture Imagery Program","extent":{"spatial":{"bbox":[[-160,17,-67,50]]},"temporal":{"interval":[["2010-01-01T00:00:00Z","2022-12-31T00:00:00Z"]]}},"license":"proprietary","keywords":["NAIP","Aerial","Imagery","USDA","AFPO","Agriculture","United
+        States"],"providers":[{"name":"USDA Farm Service Agency","url":"https://www.fsa.usda.gov/programs-and-services/aerial-photography/imagery-programs/naip-imagery/","roles":["producer","licensor"]},{"name":"Esri","url":"https://www.esri.com","roles":["processor"]},{"name":"AWS","roles":["host"],"url":"https://registry.opendata.aws/naip"},{"name":"Element
+        84","roles":["processor"],"url":"https://element84.com"}],"summaries":{"gsd":[0.6,1],"eo:bands":[{"name":"Red","common_name":"red","description":"visible
+        red"},{"name":"Green","common_name":"green","description":"visible green"},{"name":"Blue","common_name":"blue","description":"visible
+        blue"},{"name":"NIR","common_name":"nir","description":"near-infrared"}]},"item_assets":{"image":{"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"RGBIR
+        COG tile","eo:bands":[{"name":"Red","common_name":"red"},{"name":"Green","common_name":"green"},{"name":"Blue","common_name":"blue"},{"name":"NIR","common_name":"nir","description":"near-infrared"}]},"metadata":{"type":"text/plain","roles":["metadata"],"title":"FGDC
+        Metdata"}},"sci:doi":"10.5066/F7QN651G","sci:publications":[{"doi":"10.14358/PERS.83.10.737","citation":"Maxwell,
+        A. E., Warner, T. A., Vanderbilt, B. C., &amp; Ramezan, C. A. (2017). Land
+        cover classification and feature extraction from National Agriculture Imagery
+        Program (NAIP) orthoimagery: A Review. Photogrammetric Engineering &amp; Remote
+        Sensing, 83(11), 737-747. https://doi.org/10.14358/pers.83.10.737"}],"stac_version":"1.0.0","stac_extensions":["https://stac-extensions.github.io/item-assets/v1.0.0/schema.json","https://stac-extensions.github.io/scientific/v1.0.0/schema.json"]},{"type":"Collection","id":"sentinel-2-l2a","stac_version":"1.0.0","description":"Global
+        Sentinel-2 data from the Multispectral Instrument (MSI) onboard Sentinel-2","links":[{"rel":"self","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a"},{"rel":"cite-as","href":"https://doi.org/10.5270/S2_-742ikth","title":"Copernicus
+        Sentinel-2 MSI Level-2A (L2A) Bottom-of-Atmosphere Radiance"},{"rel":"license","href":"https://sentinel.esa.int/documents/247904/690755/Sentinel_Data_Legal_Notice","title":"proprietary"},{"rel":"parent","type":"application/json","href":"https://earth-search.aws.element84.com/v1"},{"rel":"root","type":"application/json","href":"https://earth-search.aws.element84.com/v1"},{"rel":"items","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items"},{"rel":"http://www.opengis.net/def/rel/ogc/1.0/queryables","type":"application/schema+json","href":"https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/queryables"},{"rel":"aggregate","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/aggregate","method":"GET"},{"rel":"aggregations","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/aggregations"}],"stac_extensions":["https://stac-extensions.github.io/item-assets/v1.0.0/schema.json","https://stac-extensions.github.io/view/v1.0.0/schema.json","https://stac-extensions.github.io/scientific/v1.0.0/schema.json","https://stac-extensions.github.io/raster/v1.1.0/schema.json","https://stac-extensions.github.io/eo/v1.0.0/schema.json"],"item_assets":{"aot":{"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Aerosol optical thickness
+        (AOT)","proj:shape":[5490,5490],"proj:transform":[20,0,399960,0,-20,4900020],"raster:bands":[{"nodata":0,"data_type":"uint16","bits_per_sample":15,"spatial_resolution":20,"scale":0.001,"offset":0}],"roles":["data","reflectance"]},"blue":{"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Blue (band 2) - 10m","eo:bands":[{"name":"blue","common_name":"blue","description":"Blue
+        (band 2)","center_wavelength":0.49,"full_width_half_max":0.098}],"gsd":10,"proj:shape":[10980,10980],"proj:transform":[10,0,399960,0,-10,4900020],"raster:bands":[{"nodata":0,"data_type":"uint16","bits_per_sample":15,"spatial_resolution":10,"scale":0.0001,"offset":0}],"roles":["data","reflectance"]},"coastal":{"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Coastal aerosol (band
+        1) - 60m","eo:bands":[{"name":"coastal","common_name":"coastal","description":"Coastal
+        aerosol (band 1)","center_wavelength":0.443,"full_width_half_max":0.027}],"gsd":60,"proj:shape":[1830,1830],"proj:transform":[60,0,399960,0,-60,4900020],"raster:bands":[{"nodata":0,"data_type":"uint16","bits_per_sample":15,"spatial_resolution":60,"scale":0.0001,"offset":0}],"roles":["data","reflectance"]},"granule_metadata":{"type":"application/xml","roles":["metadata"]},"green":{"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Green (band 3) - 10m","eo:bands":[{"name":"green","common_name":"green","description":"Green
+        (band 3)","center_wavelength":0.56,"full_width_half_max":0.045}],"gsd":10,"proj:shape":[10980,10980],"proj:transform":[10,0,399960,0,-10,4900020],"raster:bands":[{"nodata":0,"data_type":"uint16","bits_per_sample":15,"spatial_resolution":10,"scale":0.0001,"offset":0}],"roles":["data","reflectance"]},"nir":{"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"NIR 1 (band 8) - 10m","eo:bands":[{"name":"nir","common_name":"nir","description":"NIR
+        1 (band 8)","center_wavelength":0.842,"full_width_half_max":0.145}],"gsd":10,"proj:shape":[10980,10980],"proj:transform":[10,0,399960,0,-10,4900020],"raster:bands":[{"nodata":0,"data_type":"uint16","bits_per_sample":15,"spatial_resolution":10,"scale":0.0001,"offset":0}],"roles":["data","reflectance"]},"nir08":{"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"NIR 2 (band 8A) - 20m","eo:bands":[{"name":"nir08","common_name":"nir08","description":"NIR
+        2 (band 8A)","center_wavelength":0.865,"full_width_half_max":0.033}],"gsd":20,"proj:shape":[5490,5490],"proj:transform":[20,0,399960,0,-20,4900020],"raster:bands":[{"nodata":0,"data_type":"uint16","bits_per_sample":15,"spatial_resolution":20,"scale":0.0001,"offset":0}],"roles":["data","reflectance"]},"nir09":{"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"NIR 3 (band 9) - 60m","eo:bands":[{"name":"nir09","common_name":"nir09","description":"NIR
+        3 (band 9)","center_wavelength":0.945,"full_width_half_max":0.026}],"gsd":60,"proj:shape":[1830,1830],"proj:transform":[60,0,399960,0,-60,4900020],"raster:bands":[{"nodata":0,"data_type":"uint16","bits_per_sample":15,"spatial_resolution":60,"scale":0.0001,"offset":0}],"roles":["data","reflectance"]},"red":{"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Red (band 4) - 10m","eo:bands":[{"name":"red","common_name":"red","description":"Red
+        (band 4)","center_wavelength":0.665,"full_width_half_max":0.038}],"gsd":10,"proj:shape":[10980,10980],"proj:transform":[10,0,399960,0,-10,4900020],"raster:bands":[{"nodata":0,"data_type":"uint16","bits_per_sample":15,"spatial_resolution":10,"scale":0.0001,"offset":0}],"roles":["data","reflectance"]},"rededge1":{"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Red edge 1 (band 5)
+        - 20m","eo:bands":[{"name":"rededge1","common_name":"rededge","description":"Red
+        edge 1 (band 5)","center_wavelength":0.704,"full_width_half_max":0.019}],"gsd":20,"proj:shape":[5490,5490],"proj:transform":[20,0,399960,0,-20,4900020],"raster:bands":[{"nodata":0,"data_type":"uint16","bits_per_sample":15,"spatial_resolution":20,"scale":0.0001,"offset":0}],"roles":["data","reflectance"]},"rededge2":{"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Red edge 2 (band 6)
+        - 20m","eo:bands":[{"name":"rededge2","common_name":"rededge","description":"Red
+        edge 2 (band 6)","center_wavelength":0.74,"full_width_half_max":0.018}],"gsd":20,"proj:shape":[5490,5490],"proj:transform":[20,0,399960,0,-20,4900020],"raster:bands":[{"nodata":0,"data_type":"uint16","bits_per_sample":15,"spatial_resolution":20,"scale":0.0001,"offset":0}],"roles":["data","reflectance"]},"rededge3":{"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Red edge 3 (band 7)
+        - 20m","eo:bands":[{"name":"rededge3","common_name":"rededge","description":"Red
+        edge 3 (band 7)","center_wavelength":0.783,"full_width_half_max":0.028}],"gsd":20,"proj:shape":[5490,5490],"proj:transform":[20,0,399960,0,-20,4900020],"raster:bands":[{"nodata":0,"data_type":"uint16","bits_per_sample":15,"spatial_resolution":20,"scale":0.0001,"offset":0}],"roles":["data","reflectance"]},"scl":{"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Scene classification
+        map (SCL)","proj:shape":[5490,5490],"proj:transform":[20,0,399960,0,-20,4900020],"raster:bands":[{"nodata":0,"data_type":"uint8","spatial_resolution":20}],"roles":["data","reflectance"]},"swir16":{"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"SWIR 1 (band 11) -
+        20m","eo:bands":[{"name":"swir16","common_name":"swir16","description":"SWIR
+        1 (band 11)","center_wavelength":1.61,"full_width_half_max":0.143}],"gsd":20,"proj:shape":[5490,5490],"proj:transform":[20,0,399960,0,-20,4900020],"raster:bands":[{"nodata":0,"data_type":"uint16","bits_per_sample":15,"spatial_resolution":20,"scale":0.0001,"offset":0}],"roles":["data","reflectance"]},"swir22":{"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"SWIR 2 (band 12) -
+        20m","eo:bands":[{"name":"swir22","common_name":"swir22","description":"SWIR
+        2 (band 12)","center_wavelength":2.19,"full_width_half_max":0.242}],"gsd":20,"proj:shape":[5490,5490],"proj:transform":[20,0,399960,0,-20,4900020],"raster:bands":[{"nodata":0,"data_type":"uint16","bits_per_sample":15,"spatial_resolution":20,"scale":0.0001,"offset":0}],"roles":["data","reflectance"]},"thumbnail":{"type":"image/jpeg","title":"Thumbnail
+        image","roles":["thumbnail"]},"tileinfo_metadata":{"type":"application/json","roles":["metadata"]},"visual":{"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"True color image","eo:bands":[{"name":"red","common_name":"red","description":"Red
+        (band 4)","center_wavelength":0.665,"full_width_half_max":0.038},{"name":"green","common_name":"green","description":"Green
+        (band 3)","center_wavelength":0.56,"full_width_half_max":0.045},{"name":"blue","common_name":"blue","description":"Blue
+        (band 2)","center_wavelength":0.49,"full_width_half_max":0.098}],"proj:shape":[10980,10980],"proj:transform":[10,0,399960,0,-10,4900020],"roles":["visual"]},"wvp":{"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Water vapour (WVP)","proj:shape":[5490,5490],"proj:transform":[20,0,399960,0,-20,4900020],"raster:bands":[{"nodata":0,"data_type":"uint16","bits_per_sample":15,"spatial_resolution":20,"unit":"cm","scale":0.001,"offset":0}],"roles":["data","reflectance"]},"aot-jp2":{"type":"image/jp2","title":"Aerosol
+        optical thickness (AOT)","proj:shape":[5490,5490],"proj:transform":[20,0,399960,0,-20,4900020],"raster:bands":[{"nodata":0,"data_type":"uint16","bits_per_sample":15,"spatial_resolution":20,"scale":0.001,"offset":0}],"roles":["data","reflectance"]},"blue-jp2":{"type":"image/jp2","title":"Blue
+        (band 2) - 10m","eo:bands":[{"name":"blue","common_name":"blue","description":"Blue
+        (band 2)","center_wavelength":0.49,"full_width_half_max":0.098}],"gsd":10,"proj:shape":[10980,10980],"proj:transform":[10,0,399960,0,-10,4900020],"raster:bands":[{"nodata":0,"data_type":"uint16","bits_per_sample":15,"spatial_resolution":10,"scale":0.0001,"offset":0}],"roles":["data","reflectance"]},"coastal-jp2":{"type":"image/jp2","title":"Coastal
+        aerosol (band 1) - 60m","eo:bands":[{"name":"coastal","common_name":"coastal","description":"Coastal
+        aerosol (band 1)","center_wavelength":0.443,"full_width_half_max":0.027}],"gsd":60,"proj:shape":[1830,1830],"proj:transform":[60,0,399960,0,-60,4900020],"raster:bands":[{"nodata":0,"data_type":"uint16","bits_per_sample":15,"spatial_resolution":60,"scale":0.0001,"offset":0}],"roles":["data","reflectance"]},"green-jp2":{"type":"image/jp2","title":"Green
+        (band 3) - 10m","eo:bands":[{"name":"green","common_name":"green","description":"Green
+        (band 3)","center_wavelength":0.56,"full_width_half_max":0.045}],"gsd":10,"proj:shape":[10980,10980],"proj:transform":[10,0,399960,0,-10,4900020],"raster:bands":[{"nodata":0,"data_type":"uint16","bits_per_sample":15,"spatial_resolution":10,"scale":0.0001,"offset":0}],"roles":["data","reflectance"]},"nir-jp2":{"type":"image/jp2","title":"NIR
+        1 (band 8) - 10m","eo:bands":[{"name":"nir","common_name":"nir","description":"NIR
+        1 (band 8)","center_wavelength":0.842,"full_width_half_max":0.145}],"gsd":10,"proj:shape":[10980,10980],"proj:transform":[10,0,399960,0,-10,4900020],"raster:bands":[{"nodata":0,"data_type":"uint16","bits_per_sample":15,"spatial_resolution":10,"scale":0.0001,"offset":0}],"roles":["data","reflectance"]},"nir08-jp2":{"type":"image/jp2","title":"NIR
+        2 (band 8A) - 20m","eo:bands":[{"name":"nir08","common_name":"nir08","description":"NIR
+        2 (band 8A)","center_wavelength":0.865,"full_width_half_max":0.033}],"gsd":20,"proj:shape":[5490,5490],"proj:transform":[20,0,399960,0,-20,4900020],"raster:bands":[{"nodata":0,"data_type":"uint16","bits_per_sample":15,"spatial_resolution":20,"scale":0.0001,"offset":0}],"roles":["data","reflectance"]},"nir09-jp2":{"type":"image/jp2","title":"NIR
+        3 (band 9) - 60m","eo:bands":[{"name":"nir09","common_name":"nir09","description":"NIR
+        3 (band 9)","center_wavelength":0.945,"full_width_half_max":0.026}],"gsd":60,"proj:shape":[1830,1830],"proj:transform":[60,0,399960,0,-60,4900020],"raster:bands":[{"nodata":0,"data_type":"uint16","bits_per_sample":15,"spatial_resolution":60,"scale":0.0001,"offset":0}],"roles":["data","reflectance"]},"red-jp2":{"type":"image/jp2","title":"Red
+        (band 4) - 10m","eo:bands":[{"name":"red","common_name":"red","description":"Red
+        (band 4)","center_wavelength":0.665,"full_width_half_max":0.038}],"gsd":10,"proj:shape":[10980,10980],"proj:transform":[10,0,399960,0,-10,4900020],"raster:bands":[{"nodata":0,"data_type":"uint16","bits_per_sample":15,"spatial_resolution":10,"scale":0.0001,"offset":0}],"roles":["data","reflectance"]},"rededge1-jp2":{"type":"image/jp2","title":"Red
+        edge 1 (band 5) - 20m","eo:bands":[{"name":"rededge1","common_name":"rededge","description":"Red
+        edge 1 (band 5)","center_wavelength":0.704,"full_width_half_max":0.019}],"gsd":20,"proj:shape":[5490,5490],"proj:transform":[20,0,399960,0,-20,4900020],"raster:bands":[{"nodata":0,"data_type":"uint16","bits_per_sample":15,"spatial_resolution":20,"scale":0.0001,"offset":0}],"roles":["data","reflectance"]},"rededge2-jp2":{"type":"image/jp2","title":"Red
+        edge 2 (band 6) - 20m","eo:bands":[{"name":"rededge2","common_name":"rededge","description":"Red
+        edge 2 (band 6)","center_wavelength":0.74,"full_width_half_max":0.018}],"gsd":20,"proj:shape":[5490,5490],"proj:transform":[20,0,399960,0,-20,4900020],"raster:bands":[{"nodata":0,"data_type":"uint16","bits_per_sample":15,"spatial_resolution":20,"scale":0.0001,"offset":0}],"roles":["data","reflectance"]},"rededge3-jp2":{"type":"image/jp2","title":"Red
+        edge 3 (band 7) - 20m","eo:bands":[{"name":"rededge3","common_name":"rededge","description":"Red
+        edge 3 (band 7)","center_wavelength":0.783,"full_width_half_max":0.028}],"gsd":20,"proj:shape":[5490,5490],"proj:transform":[20,0,399960,0,-20,4900020],"raster:bands":[{"nodata":0,"data_type":"uint16","bits_per_sample":15,"spatial_resolution":20,"scale":0.0001,"offset":0}],"roles":["data","reflectance"]},"scl-jp2":{"type":"image/jp2","title":"Scene
+        classification map (SCL)","proj:shape":[5490,5490],"proj:transform":[20,0,399960,0,-20,4900020],"raster:bands":[{"nodata":0,"data_type":"uint8","spatial_resolution":20}],"roles":["data","reflectance"]},"swir16-jp2":{"type":"image/jp2","title":"SWIR
+        1 (band 11) - 20m","eo:bands":[{"name":"swir16","common_name":"swir16","description":"SWIR
+        1 (band 11)","center_wavelength":1.61,"full_width_half_max":0.143}],"gsd":20,"proj:shape":[5490,5490],"proj:transform":[20,0,399960,0,-20,4900020],"raster:bands":[{"nodata":0,"data_type":"uint16","bits_per_sample":15,"spatial_resolution":20,"scale":0.0001,"offset":0}],"roles":["data","reflectance"]},"swir22-jp2":{"type":"image/jp2","title":"SWIR
+        2 (band 12) - 20m","eo:bands":[{"name":"swir22","common_name":"swir22","description":"SWIR
+        2 (band 12)","center_wavelength":2.19,"full_width_half_max":0.242}],"gsd":20,"proj:shape":[5490,5490],"proj:transform":[20,0,399960,0,-20,4900020],"raster:bands":[{"nodata":0,"data_type":"uint16","bits_per_sample":15,"spatial_resolution":20,"scale":0.0001,"offset":0}],"roles":["data","reflectance"]},"visual-jp2":{"type":"image/jp2","title":"True
+        color image","eo:bands":[{"name":"red","common_name":"red","description":"Red
+        (band 4)","center_wavelength":0.665,"full_width_half_max":0.038},{"name":"green","common_name":"green","description":"Green
+        (band 3)","center_wavelength":0.56,"full_width_half_max":0.045},{"name":"blue","common_name":"blue","description":"Blue
+        (band 2)","center_wavelength":0.49,"full_width_half_max":0.098}],"proj:shape":[10980,10980],"proj:transform":[10,0,399960,0,-10,4900020],"roles":["visual"]},"wvp-jp2":{"type":"image/jp2","title":"Water
+        vapour (WVP)","proj:shape":[5490,5490],"proj:transform":[20,0,399960,0,-20,4900020],"raster:bands":[{"nodata":0,"data_type":"uint16","bits_per_sample":15,"spatial_resolution":20,"unit":"cm","scale":0.001,"offset":0}],"roles":["data","reflectance"]}},"title":"Sentinel-2
+        Level 2A","extent":{"spatial":{"bbox":[[-180,-90,180,90]]},"temporal":{"interval":[["2015-06-27T10:25:31.456000Z",null]]}},"license":"proprietary","keywords":["sentinel","earth
+        observation","esa"],"providers":[{"name":"ESA","roles":["producer"],"url":"https://earth.esa.int/web/guest/home"},{"name":"Sinergise","roles":["processor"],"url":"https://registry.opendata.aws/sentinel-2/"},{"name":"AWS","roles":["host"],"url":"http://sentinel-pds.s3-website.eu-central-1.amazonaws.com/"},{"name":"Element
+        84","roles":["processor"],"url":"https://element84.com"}],"summaries":{"platform":["sentinel-2a","sentinel-2b"],"constellation":["sentinel-2"],"instruments":["msi"],"gsd":[10,20,60],"view:off_nadir":[0],"sci:doi":["10.5270/s2_-znk9xsj"],"eo:bands":[{"name":"coastal","common_name":"coastal","description":"Coastal
+        aerosol (band 1)","center_wavelength":0.443,"full_width_half_max":0.027},{"name":"blue","common_name":"blue","description":"Blue
+        (band 2)","center_wavelength":0.49,"full_width_half_max":0.098},{"name":"green","common_name":"green","description":"Green
+        (band 3)","center_wavelength":0.56,"full_width_half_max":0.045},{"name":"red","common_name":"red","description":"Red
+        (band 4)","center_wavelength":0.665,"full_width_half_max":0.038},{"name":"rededge1","common_name":"rededge","description":"Red
+        edge 1 (band 5)","center_wavelength":0.704,"full_width_half_max":0.019},{"name":"rededge2","common_name":"rededge","description":"Red
+        edge 2 (band 6)","center_wavelength":0.74,"full_width_half_max":0.018},{"name":"rededge3","common_name":"rededge","description":"Red
+        edge 3 (band 7)","center_wavelength":0.783,"full_width_half_max":0.028},{"name":"nir","common_name":"nir","description":"NIR
+        1 (band 8)","center_wavelength":0.842,"full_width_half_max":0.145},{"name":"nir08","common_name":"nir08","description":"NIR
+        2 (band 8A)","center_wavelength":0.865,"full_width_half_max":0.033},{"name":"nir09","common_name":"nir09","description":"NIR
+        3 (band 9)","center_wavelength":0.945,"full_width_half_max":0.026},{"name":"cirrus","common_name":"cirrus","description":"Cirrus
+        (band 10)","center_wavelength":1.3735,"full_width_half_max":0.075},{"name":"swir16","common_name":"swir16","description":"SWIR
+        1 (band 11)","center_wavelength":1.61,"full_width_half_max":0.143},{"name":"swir22","common_name":"swir22","description":"SWIR
+        2 (band 12)","center_wavelength":2.19,"full_width_half_max":0.242}]}},{"type":"Collection","id":"sentinel-2-l1c","stac_version":"1.0.0","description":"Global
+        Sentinel-2 data from the Multispectral Instrument (MSI) onboard Sentinel-2","links":[{"rel":"self","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections/sentinel-2-l1c"},{"rel":"cite-as","href":"https://doi.org/10.5270/S2_-742ikth","title":"Copernicus
+        Sentinel-2 MSI Level-1C (L1C) Top-of-Atmosphere Reflectance"},{"rel":"license","href":"https://sentinel.esa.int/documents/247904/690755/Sentinel_Data_Legal_Notice","title":"proprietary"},{"rel":"parent","type":"application/json","href":"https://earth-search.aws.element84.com/v1"},{"rel":"root","type":"application/json","href":"https://earth-search.aws.element84.com/v1"},{"rel":"items","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/sentinel-2-l1c/items"},{"rel":"http://www.opengis.net/def/rel/ogc/1.0/queryables","type":"application/schema+json","href":"https://earth-search.aws.element84.com/v1/collections/sentinel-2-l1c/queryables"},{"rel":"aggregate","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections/sentinel-2-l1c/aggregate","method":"GET"},{"rel":"aggregations","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections/sentinel-2-l1c/aggregations"}],"stac_extensions":["https://stac-extensions.github.io/item-assets/v1.0.0/schema.json","https://stac-extensions.github.io/view/v1.0.0/schema.json","https://stac-extensions.github.io/scientific/v1.0.0/schema.json","https://stac-extensions.github.io/raster/v1.1.0/schema.json","https://stac-extensions.github.io/eo/v1.0.0/schema.json"],"item_assets":{"blue":{"type":"image/jp2","title":"Blue
+        (band 2) - 10m","eo:bands":[{"name":"blue","common_name":"blue","description":"Blue
+        (band 2)","center_wavelength":0.49,"full_width_half_max":0.098}],"gsd":10,"proj:shape":[10980,10980],"proj:transform":[10,0,399960,0,-10,4900020],"raster:bands":[{"nodata":0,"data_type":"uint16","bits_per_sample":15,"spatial_resolution":10,"scale":0.0001,"offset":0}],"roles":["data","reflectance"]},"cirrus":{"type":"image/jp2","title":"Cirrus
+        (band 10) - 60m","eo:bands":[{"name":"cirrus","common_name":"cirrus","description":"Cirrus
+        (band 10)","center_wavelength":1.3735,"full_width_half_max":0.075}],"gsd":60,"proj:shape":[1830,1830],"proj:transform":[60,0,399960,0,-60,4900020],"raster:bands":[{"nodata":0,"data_type":"uint16","bits_per_sample":15,"spatial_resolution":60,"scale":0.0001,"offset":0}],"roles":["data","reflectance"]},"coastal":{"type":"image/jp2","title":"Coastal
+        aerosol (band 1) - 60m","eo:bands":[{"name":"coastal","common_name":"coastal","description":"Coastal
+        aerosol (band 1)","center_wavelength":0.443,"full_width_half_max":0.027}],"gsd":60,"proj:shape":[1830,1830],"proj:transform":[60,0,399960,0,-60,4900020],"raster:bands":[{"nodata":0,"data_type":"uint16","bits_per_sample":15,"spatial_resolution":60,"scale":0.0001,"offset":0}],"roles":["data","reflectance"]},"granule_metadata":{"type":"application/xml","roles":["metadata"]},"green":{"type":"image/jp2","title":"Green
+        (band 3) - 10m","eo:bands":[{"name":"green","common_name":"green","description":"Green
+        (band 3)","center_wavelength":0.56,"full_width_half_max":0.045}],"gsd":10,"proj:shape":[10980,10980],"proj:transform":[10,0,399960,0,-10,4900020],"raster:bands":[{"nodata":0,"data_type":"uint16","bits_per_sample":15,"spatial_resolution":10,"scale":0.0001,"offset":0}],"roles":["data","reflectance"]},"nir":{"type":"image/jp2","title":"NIR
+        1 (band 8) - 10m","eo:bands":[{"name":"nir","common_name":"nir","description":"NIR
+        1 (band 8)","center_wavelength":0.842,"full_width_half_max":0.145}],"gsd":10,"proj:shape":[10980,10980],"proj:transform":[10,0,399960,0,-10,4900020],"raster:bands":[{"nodata":0,"data_type":"uint16","bits_per_sample":15,"spatial_resolution":10,"scale":0.0001,"offset":0}],"roles":["data","reflectance"]},"nir08":{"type":"image/jp2","title":"NIR
+        2 (band 8A) - 20m","eo:bands":[{"name":"nir08","common_name":"nir08","description":"NIR
+        2 (band 8A)","center_wavelength":0.865,"full_width_half_max":0.033}],"gsd":20,"proj:shape":[5490,5490],"proj:transform":[20,0,399960,0,-20,4900020],"raster:bands":[{"nodata":0,"data_type":"uint16","bits_per_sample":15,"spatial_resolution":20,"scale":0.0001,"offset":0}],"roles":["data","reflectance"]},"nir09":{"type":"image/jp2","title":"NIR
+        3 (band 9) - 60m","eo:bands":[{"name":"nir09","common_name":"nir09","description":"NIR
+        3 (band 9)","center_wavelength":0.945,"full_width_half_max":0.026}],"gsd":60,"proj:shape":[1830,1830],"proj:transform":[60,0,399960,0,-60,4900020],"raster:bands":[{"nodata":0,"data_type":"uint16","bits_per_sample":15,"spatial_resolution":60,"scale":0.0001,"offset":0}],"roles":["data","reflectance"]},"red":{"type":"image/jp2","title":"Red
+        (band 4) - 10m","eo:bands":[{"name":"red","common_name":"red","description":"Red
+        (band 4)","center_wavelength":0.665,"full_width_half_max":0.038}],"gsd":10,"proj:shape":[10980,10980],"proj:transform":[10,0,399960,0,-10,4900020],"raster:bands":[{"nodata":0,"data_type":"uint16","bits_per_sample":15,"spatial_resolution":10,"scale":0.0001,"offset":0}],"roles":["data","reflectance"]},"rededge1":{"type":"image/jp2","title":"Red
+        edge 1 (band 5) - 20m","eo:bands":[{"name":"rededge1","common_name":"rededge","description":"Red
+        edge 1 (band 5)","center_wavelength":0.704,"full_width_half_max":0.019}],"gsd":20,"proj:shape":[5490,5490],"proj:transform":[20,0,399960,0,-20,4900020],"raster:bands":[{"nodata":0,"data_type":"uint16","bits_per_sample":15,"spatial_resolution":20,"scale":0.0001,"offset":0}],"roles":["data","reflectance"]},"rededge2":{"type":"image/jp2","title":"Red
+        edge 2 (band 6) - 20m","eo:bands":[{"name":"rededge2","common_name":"rededge","description":"Red
+        edge 2 (band 6)","center_wavelength":0.74,"full_width_half_max":0.018}],"gsd":20,"proj:shape":[5490,5490],"proj:transform":[20,0,399960,0,-20,4900020],"raster:bands":[{"nodata":0,"data_type":"uint16","bits_per_sample":15,"spatial_resolution":20,"scale":0.0001,"offset":0}],"roles":["data","reflectance"]},"rededge3":{"type":"image/jp2","title":"Red
+        edge 3 (band 7) - 20m","eo:bands":[{"name":"rededge3","common_name":"rededge","description":"Red
+        edge 3 (band 7)","center_wavelength":0.783,"full_width_half_max":0.028}],"gsd":20,"proj:shape":[5490,5490],"proj:transform":[20,0,399960,0,-20,4900020],"raster:bands":[{"nodata":0,"data_type":"uint16","bits_per_sample":15,"spatial_resolution":20,"scale":0.0001,"offset":0}],"roles":["data","reflectance"]},"swir16":{"type":"image/jp2","title":"SWIR
+        1 (band 11) - 20m","eo:bands":[{"name":"swir16","common_name":"swir16","description":"SWIR
+        1 (band 11)","center_wavelength":1.61,"full_width_half_max":0.143}],"gsd":20,"proj:shape":[5490,5490],"proj:transform":[20,0,399960,0,-20,4900020],"raster:bands":[{"nodata":0,"data_type":"uint16","bits_per_sample":15,"spatial_resolution":20,"scale":0.0001,"offset":0}],"roles":["data","reflectance"]},"swir22":{"type":"image/jp2","title":"SWIR
+        2 (band 12) - 20m","eo:bands":[{"name":"swir22","common_name":"swir22","description":"SWIR
+        2 (band 12)","center_wavelength":2.19,"full_width_half_max":0.242}],"gsd":20,"proj:shape":[5490,5490],"proj:transform":[20,0,399960,0,-20,4900020],"raster:bands":[{"nodata":0,"data_type":"uint16","bits_per_sample":15,"spatial_resolution":20,"scale":0.0001,"offset":0}],"roles":["data","reflectance"]},"thumbnail":{"type":"image/jpeg","title":"Thumbnail
+        image","roles":["thumbnail"]},"tileinfo_metadata":{"type":"application/json","roles":["metadata"]},"visual":{"type":"image/jp2","title":"True
+        color image","eo:bands":[{"name":"red","common_name":"red","description":"Red
+        (band 4)","center_wavelength":0.665,"full_width_half_max":0.038},{"name":"green","common_name":"green","description":"Green
+        (band 3)","center_wavelength":0.56,"full_width_half_max":0.045},{"name":"blue","common_name":"blue","description":"Blue
+        (band 2)","center_wavelength":0.49,"full_width_half_max":0.098}],"proj:shape":[10980,10980],"proj:transform":[10,0,399960,0,-10,4900020],"roles":["visual"]}},"title":"Sentinel-2
+        Level 1C","extent":{"spatial":{"bbox":[[-180,-90,180,90]]},"temporal":{"interval":[["2015-06-27T10:25:31.456000Z",null]]}},"license":"proprietary","keywords":["sentinel","earth
+        observation","esa"],"providers":[{"name":"ESA","roles":["producer"],"url":"https://earth.esa.int/web/guest/home"},{"name":"Sinergise","roles":["processor"],"url":"https://registry.opendata.aws/sentinel-2/"},{"name":"AWS","roles":["host"],"url":"http://sentinel-pds.s3-website.eu-central-1.amazonaws.com/"},{"name":"Element
+        84","roles":["processor"],"url":"https://element84.com"}],"summaries":{"platform":["sentinel-2a","sentinel-2b"],"constellation":["sentinel-2"],"instruments":["msi"],"gsd":[10,20,60],"view:off_nadir":[0],"sci:doi":["10.5270/s2_-znk9xsj"],"eo:bands":[{"name":"coastal","common_name":"coastal","description":"Coastal
+        aerosol (band 1)","center_wavelength":0.443,"full_width_half_max":0.027},{"name":"blue","common_name":"blue","description":"Blue
+        (band 2)","center_wavelength":0.49,"full_width_half_max":0.098},{"name":"green","common_name":"green","description":"Green
+        (band 3)","center_wavelength":0.56,"full_width_half_max":0.045},{"name":"red","common_name":"red","description":"Red
+        (band 4)","center_wavelength":0.665,"full_width_half_max":0.038},{"name":"rededge1","common_name":"rededge","description":"Red
+        edge 1 (band 5)","center_wavelength":0.704,"full_width_half_max":0.019},{"name":"rededge2","common_name":"rededge","description":"Red
+        edge 2 (band 6)","center_wavelength":0.74,"full_width_half_max":0.018},{"name":"rededge3","common_name":"rededge","description":"Red
+        edge 3 (band 7)","center_wavelength":0.783,"full_width_half_max":0.028},{"name":"nir","common_name":"nir","description":"NIR
+        1 (band 8)","center_wavelength":0.842,"full_width_half_max":0.145},{"name":"nir08","common_name":"nir08","description":"NIR
+        2 (band 8A)","center_wavelength":0.865,"full_width_half_max":0.033},{"name":"nir09","common_name":"nir09","description":"NIR
+        3 (band 9)","center_wavelength":0.945,"full_width_half_max":0.026},{"name":"cirrus","common_name":"cirrus","description":"Cirrus
+        (band 10)","center_wavelength":1.3735,"full_width_half_max":0.075},{"name":"swir16","common_name":"swir16","description":"SWIR
+        1 (band 11)","center_wavelength":1.61,"full_width_half_max":0.143},{"name":"swir22","common_name":"swir22","description":"SWIR
+        2 (band 12)","center_wavelength":2.19,"full_width_half_max":0.242}]}},{"type":"Collection","id":"landsat-c2-l2","stac_version":"1.0.0","description":"Atmospherically
+        corrected global Landsat Collection 2 Level-2 data from the Thematic Mapper
+        (TM) onboard Landsat 4 and 5, the Enhanced Thematic Mapper Plus (ETM+) onboard
+        Landsat 7, and the Operational Land Imager (OLI) and Thermal Infrared Sensor
+        (TIRS) onboard Landsat 8 and 9.","links":[{"rel":"self","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections/landsat-c2-l2"},{"rel":"cite-as","href":"https://doi.org/10.5066/P9IAXOVV","title":"Landsat
+        4-5 TM Collection 2 Level-2"},{"rel":"cite-as","href":"https://doi.org/10.5066/P9C7I13B","title":"Landsat
+        7 ETM+ Collection 2 Level-2"},{"rel":"cite-as","href":"https://doi.org/10.5066/P9OGBGM6","title":"Landsat
+        8-9 OLI/TIRS Collection 2 Level-2"},{"rel":"license","href":"https://www.usgs.gov/core-science-systems/hdds/data-policy","title":"Public
+        Domain"},{"rel":"parent","type":"application/json","href":"https://earth-search.aws.element84.com/v1"},{"rel":"root","type":"application/json","href":"https://earth-search.aws.element84.com/v1"},{"rel":"items","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/landsat-c2-l2/items"},{"rel":"http://www.opengis.net/def/rel/ogc/1.0/queryables","type":"application/schema+json","href":"https://earth-search.aws.element84.com/v1/collections/landsat-c2-l2/queryables"},{"rel":"aggregate","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections/landsat-c2-l2/aggregate","method":"GET"},{"rel":"aggregations","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections/landsat-c2-l2/aggregations"}],"stac_extensions":["https://stac-extensions.github.io/item-assets/v1.0.0/schema.json","https://stac-extensions.github.io/view/v1.0.0/schema.json","https://stac-extensions.github.io/scientific/v1.0.0/schema.json","https://stac-extensions.github.io/raster/v1.1.0/schema.json","https://stac-extensions.github.io/eo/v1.0.0/schema.json"],"item_assets":{"thumbnail":{"type":"image/jpeg","title":"Thumbnail
+        image","roles":["thumbnail"]},"reduced_resolution_browse":{"type":"image/jpeg","title":"Reduced
+        resolution browse image","roles":["overview"]},"mtl.json":{"type":"application/json","title":"Product
+        Metadata File (json)","description":"Collection 2 Level-2 Product Metadata
+        File (json)","roles":["metadata"]},"mtl.txt":{"type":"text/plain","title":"Product
+        Metadata File (txt)","description":"Collection 2 Level-2 Product Metadata
+        File (txt)","roles":["metadata"]},"mtl.xml":{"type":"application/xml","title":"Product
+        Metadata File (xml)","description":"Collection 2 Level-2 Product Metadata
+        File (xml)","roles":["metadata"]},"ang":{"type":"text/plain","title":"Angle
+        Coefficients File","description":"Collection 2 Level-1 Angle Coefficients
+        File","roles":["metadata"]},"qa_pixel":{"type":"image/tiff; application=geotiff;
+        profile=cloud-optimized","title":"Pixel Quality Assessment Band","description":"Collection
+        2 Level-1 Pixel Quality Assessment Band","raster:bands":[{"nodata":1,"data_type":"uint16","spatial_resolution":30,"unit":"bit
+        index"}],"roles":["cloud","cloud-shadow","snow-ice","water-mask"]},"qa_radsat":{"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Radiometric Saturation
+        Quality Assessment Band","description":"Collection 2 Level-1 Radiometric Saturation
+        Quality Assessment Band","raster:bands":[{"data_type":"uint16","spatial_resolution":30,"unit":"bit
+        index"}],"roles":["saturation"]},"coastal":{"type":"image/tiff; application=geotiff;
+        profile=cloud-optimized","title":"Coastal/Aerosol Band","description":"Collection
+        2 Level-2 Coastal/Aerosol Band Surface Reflectance","raster:bands":[{"nodata":0,"data_type":"uint16","spatial_resolution":30,"scale":0.0000275,"offset":-0.2}],"roles":["reflectance"]},"blue":{"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Blue Band","description":"Collection
+        2 Level-2 Blue Band Surface Reflectance","raster:bands":[{"nodata":0,"data_type":"uint16","spatial_resolution":30,"scale":0.0000275,"offset":-0.2}],"roles":["reflectance"]},"green":{"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Green Band","description":"Collection
+        2 Level-2 Green Band Surface Reflectance","raster:bands":[{"nodata":0,"data_type":"uint16","spatial_resolution":30,"scale":0.0000275,"offset":-0.2}],"roles":["reflectance"]},"red":{"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Red Band","description":"Collection
+        2 Level-2 Red Band Surface Reflectance","raster:bands":[{"nodata":0,"data_type":"uint16","spatial_resolution":30,"scale":0.0000275,"offset":-0.2}],"roles":["reflectance"]},"nir08":{"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Near Infrared Band
+        0.8","description":"Collection 2 Level-2 Near Infrared Band 0.8 Surface Reflectance","raster:bands":[{"nodata":0,"data_type":"uint16","spatial_resolution":30,"scale":0.0000275,"offset":-0.2}],"roles":["reflectance"]},"swir16":{"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Short-wave Infrared
+        Band 1.6","description":"Collection 2 Level-2 Short-wave Infrared Band 1.6
+        Surface Reflectance","raster:bands":[{"nodata":0,"data_type":"uint16","spatial_resolution":30,"scale":0.0000275,"offset":-0.2}],"roles":["reflectance"]},"swir22":{"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Short-wave Infrared
+        Band 2.2","description":"Collection 2 Level-2 Short-wave Infrared Band 2.2
+        Surface Reflectance","raster:bands":[{"nodata":0,"data_type":"uint16","spatial_resolution":30,"scale":0.0000275,"offset":-0.2}],"roles":["reflectance"]},"atmos_opacity":{"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Atmospheric Opacity
+        Band","description":"Collection 2 Level-2 Atmospheric Opacity Band Surface
+        Reflectance Product","raster:bands":[{"nodata":-9999,"data_type":"int16","spatial_resolution":30,"scale":0.001}],"roles":["data"]},"cloud_qa":{"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Cloud Quality Assessment
+        Band","description":"Collection 2 Level-2 Cloud Quality Assessment Band Surface
+        Reflectance Product","raster:bands":[{"data_type":"uint8","spatial_resolution":30,"unit":"bit
+        index"}],"roles":["cloud","cloud-shadow","snow-ice","water-mask"]},"qa_aerosol":{"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Aerosol Quality Assessment
+        Band","description":"Collection 2 Level-2 Aerosol Quality Assessment Band
+        Surface Reflectance Product","raster:bands":[{"nodata":1,"data_type":"uint8","spatial_resolution":30,"unit":"bit
+        index"}],"roles":["data-mask","water-mask"]},"lwir11":{"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Surface Temperature
+        Band","description":"Collection 2 Level-2 Thermal Infrared Band Surface Temperature","raster:bands":[{"nodata":0,"data_type":"uint16","spatial_resolution":30,"unit":"kelvin","scale":0.00341802,"offset":149}],"roles":["temperature"]},"lwir":{"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Surface Temperature
+        Band","description":"Collection 2 Level-2 Thermal Infrared Band Surface Temperature","raster:bands":[{"nodata":0,"data_type":"uint16","spatial_resolution":30,"unit":"kelvin","scale":0.00341802,"offset":149}],"roles":["temperature"]},"atran":{"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Atmospheric Transmittance
+        Band","description":"Collection 2 Level-2 Atmospheric Transmittance Band Surface
+        Temperature Product","raster:bands":[{"nodata":-9999,"data_type":"int16","spatial_resolution":30,"scale":0.0001}],"roles":["data"]},"cdist":{"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Cloud Distance Band","description":"Collection
+        2 Level-2 Cloud Distance Band Surface Temperature Product","raster:bands":[{"nodata":-9999,"data_type":"int16","spatial_resolution":30,"unit":"kilometer","scale":0.01}],"roles":["data"]},"drad":{"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Downwelled Radiance
+        Band","description":"Collection 2 Level-2 Downwelled Radiance Band Surface
+        Temperature Product","raster:bands":[{"nodata":-9999,"data_type":"int16","spatial_resolution":30,"unit":"watt/steradian/square_meter/micrometer","scale":0.001}],"roles":["data"]},"urad":{"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Upwelled Radiance Band","description":"Collection
+        2 Level-2 Upwelled Radiance Band Surface Temperature Product","raster:bands":[{"nodata":-9999,"data_type":"int16","spatial_resolution":30,"unit":"watt/steradian/square_meter/micrometer","scale":0.001}],"roles":["data"]},"trad":{"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Thermal Radiance Band","description":"Collection
+        2 Level-2 Thermal Radiance Band Surface Temperature Product","raster:bands":[{"nodata":-9999,"data_type":"int16","spatial_resolution":30,"unit":"watt/steradian/square_meter/micrometer","scale":0.001}],"roles":["data"]},"emis":{"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Emissivity Band","description":"Collection
+        2 Level-2 Emissivity Band Surface Temperature Product","raster:bands":[{"nodata":-9999,"data_type":"int16","spatial_resolution":30,"scale":0.0001}],"roles":["data","emissivity"]},"emsd":{"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Emissivity Standard
+        Deviation Band","description":"Collection 2 Level-2 Emissivity Standard Deviation
+        Band Surface Temperature Product","raster:bands":[{"nodata":-9999,"data_type":"int16","spatial_resolution":30,"scale":0.0001}],"roles":["data","emissivity"]},"qa":{"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","title":"Surface Temperature
+        Quality Assessment Band","description":"Collection 2 Level-2 Quality Assessment
+        Band Surface Temperature Product","raster:bands":[{"nodata":-9999,"data_type":"int16","spatial_resolution":30,"unit":"kelvin","scale":0.01}],"roles":["data"]}},"title":"Landsat
+        Collection 2 Level-2","extent":{"spatial":{"bbox":[[-180,-90,180,90]]},"temporal":{"interval":[["1982-08-22T00:00:00Z",null]]}},"license":"proprietary","keywords":["Landsat","USGS","NASA","Satellite","Global","Imagery","Reflectance","Temperature"],"providers":[{"name":"NASA","roles":["producer","licensor"],"url":"https://landsat.gsfc.nasa.gov/"},{"name":"USGS","roles":["producer","processor","licensor"],"url":"https://www.usgs.gov/landsat-missions/landsat-collection-2-level-2-science-products"},{"name":"AWS","roles":["host"],"url":"http://sentinel-pds.s3-website.eu-central-1.amazonaws.com/"},{"name":"Element
+        84","roles":["processor"],"url":"https://element84.com"}],"summaries":{"platform":["landsat-4","landsat-5","landsat-7","landsat-8","landsat-9"],"instruments":["tm","etm+","oli","tirs"],"gsd":[30,60,100,120],"sci:doi":["10.5066/P9IAXOVV","10.5066/P9C7I13B","10.5066/P9OGBGM6"],"eo:bands":[{"name":"TM_B1","common_name":"blue","description":"Visible
+        blue (Thematic Mapper)","center_wavelength":0.49,"full_width_half_max":0.07},{"name":"TM_B2","common_name":"green","description":"Visible
+        green (Thematic Mapper)","center_wavelength":0.56,"full_width_half_max":0.08},{"name":"TM_B3","common_name":"red","description":"Visible
+        red (Thematic Mapper)","center_wavelength":0.66,"full_width_half_max":0.06},{"name":"TM_B4","common_name":"nir08","description":"Near
+        infrared (Thematic Mapper)","center_wavelength":0.83,"full_width_half_max":0.14},{"name":"TM_B5","common_name":"swir16","description":"Short-wave
+        infrared (Thematic Mapper)","center_wavelength":1.65,"full_width_half_max":0.2},{"name":"TM_B6","common_name":"lwir","description":"Long-wave
+        infrared (Thematic Mapper)","center_wavelength":11.45,"full_width_half_max":2.1},{"name":"TM_B7","common_name":"swir22","description":"Short-wave
+        infrared (Thematic Mapper)","center_wavelength":2.22,"full_width_half_max":0.27},{"name":"ETM_B1","common_name":"blue","description":"Visible
+        blue (Enhanced Thematic Mapper Plus)","center_wavelength":0.48,"full_width_half_max":0.07},{"name":"ETM_B2","common_name":"green","description":"Visible
+        green (Enhanced Thematic Mapper Plus)","center_wavelength":0.56,"full_width_half_max":0.08},{"name":"ETM_B3","common_name":"red","description":"Visible
+        red (Enhanced Thematic Mapper Plus)","center_wavelength":0.66,"full_width_half_max":0.06},{"name":"ETM_B4","common_name":"nir08","description":"Near
+        infrared (Enhanced Thematic Mapper Plus)","center_wavelength":0.84,"full_width_half_max":0.13},{"name":"ETM_B5","common_name":"swir16","description":"Short-wave
+        infrared (Enhanced Thematic Mapper Plus)","center_wavelength":1.65,"full_width_half_max":0.2},{"name":"ETM_B6","common_name":"lwir","description":"Long-wave
+        infrared (Enhanced Thematic Mapper Plus)","center_wavelength":11.34,"full_width_half_max":2.05},{"name":"ETM_B7","common_name":"swir22","description":"Short-wave
+        infrared (Enhanced Thematic Mapper Plus)","center_wavelength":2.2,"full_width_half_max":0.28},{"name":"OLI_B1","common_name":"coastal","description":"Coastal/Aerosol
+        (Operational Land Imager)","center_wavelength":0.44,"full_width_half_max":0.02},{"name":"OLI_B2","common_name":"blue","description":"Visible
+        blue (Operational Land Imager)","center_wavelength":0.48,"full_width_half_max":0.06},{"name":"OLI_B3","common_name":"green","description":"Visible
+        green (Operational Land Imager)","center_wavelength":0.56,"full_width_half_max":0.06},{"name":"OLI_B4","common_name":"red","description":"Visible
+        red (Operational Land Imager)","center_wavelength":0.65,"full_width_half_max":0.04},{"name":"OLI_B5","common_name":"nir08","description":"Near
+        infrared (Operational Land Imager)","center_wavelength":0.87,"full_width_half_max":0.03},{"name":"OLI_B6","common_name":"swir16","description":"Short-wave
+        infrared (Operational Land Imager)","center_wavelength":1.61,"full_width_half_max":0.09},{"name":"OLI_B7","common_name":"swir22","description":"Short-wave
+        infrared (Operational Land Imager)","center_wavelength":2.2,"full_width_half_max":0.19},{"name":"TIRS_B10","common_name":"lwir11","description":"Long-wave
+        infrared (Thermal Infrared Sensor)","center_wavelength":10.9,"full_width_half_max":0.59}]}},{"id":"cop-dem-glo-90","type":"Collection","links":[{"rel":"self","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-90"},{"rel":"license","href":"https://spacedata.copernicus.eu/documents/20123/121286/CSCDA_ESA_Mission-specific+Annex_31_Oct_22.pdf","title":"Copernicus
+        DEM License"},{"rel":"parent","type":"application/json","href":"https://earth-search.aws.element84.com/v1"},{"rel":"root","type":"application/json","href":"https://earth-search.aws.element84.com/v1"},{"rel":"items","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-90/items"},{"rel":"http://www.opengis.net/def/rel/ogc/1.0/queryables","type":"application/schema+json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-90/queryables"},{"rel":"aggregate","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-90/aggregate","method":"GET"},{"rel":"aggregations","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-90/aggregations"}],"title":"Copernicus
+        DEM GLO-90","extent":{"spatial":{"bbox":[[-180,-90,180,90]]},"temporal":{"interval":[["2021-04-22T00:00:00Z","2021-04-22T00:00:00Z"]]}},"license":"proprietary","keywords":["Copernicus","DEM","Elevation"],"providers":[{"url":"https://spacedata.copernicus.eu/documents/20126/0/CSCDA_ESA_Mission-specific+Annex.pdf","name":"European
+        Space Agency","roles":["licensor"]},{"url":"https://registry.opendata.aws/copernicus-dem/","name":"Sinergise","roles":["producer","processor"]},{"url":"https://doi.org/10.5069/G9028PQB","name":"OpenTopography","roles":["host"]},{"name":"AWS","roles":["host"],"url":"https://registry.opendata.aws/sentinel-1"},{"name":"Element
+        84","roles":["processor"],"url":"https://element84.com"}],"summaries":{"gsd":[90],"platform":["tandem-x"],"proj:epsg":[4326],"storage:platform":["AWS"],"storage:region":["eu-central-1"],"storage:requester_pays":[false]},"description":"The
+        Copernicus DEM is a Digital Surface Model (DSM) which represents the surface
+        of the Earth including buildings, infrastructure and vegetation. GLO-90 provides
+        worldwide coverage at 90 meters.","item_assets":{"data":{"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"Data","raster:bands":[{"sampling":"point","data_type":"float32","spatial_resolution":30,"unit":"meter"}]}},"stac_version":"1.0.0","stac_extensions":["https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"]},{"id":"sentinel-1-grd","type":"Collection","links":[{"rel":"self","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections/sentinel-1-grd"},{"rel":"about","href":"https://sentinels.copernicus.eu/web/sentinel/technical-guides/sentinel-1-sar/products-algorithms/level-1-algorithms/ground-range-detected","title":"Sentinel-1
+        Ground Range Detected (GRD) Technical Guide"},{"rel":"license","href":"https://sentinel.esa.int/documents/247904/690755/Sentinel_Data_Legal_Notice","title":"Copernicus
+        Sentinel data terms"},{"rel":"parent","type":"application/json","href":"https://earth-search.aws.element84.com/v1"},{"rel":"root","type":"application/json","href":"https://earth-search.aws.element84.com/v1"},{"rel":"items","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/sentinel-1-grd/items"},{"rel":"http://www.opengis.net/def/rel/ogc/1.0/queryables","type":"application/schema+json","href":"https://earth-search.aws.element84.com/v1/collections/sentinel-1-grd/queryables"},{"rel":"aggregate","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections/sentinel-1-grd/aggregate","method":"GET"},{"rel":"aggregations","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections/sentinel-1-grd/aggregations"}],"title":"Sentinel-1
+        Level 1C Ground Range Detected (GRD)","extent":{"spatial":{"bbox":[[-180,-90,180,90]]},"temporal":{"interval":[["2014-10-10T00:28:21Z",null]]}},"license":"proprietary","keywords":["ESA","Copernicus","Sentinel","C-Band","SAR","GRD"],"providers":[{"url":"https://earth.esa.int/web/guest/home","name":"ESA","roles":["producer","processor","licensor"]},{"name":"AWS","roles":["host"],"url":"https://registry.opendata.aws/sentinel-1"},{"name":"Element
+        84","roles":["processor"],"url":"https://element84.com"}],"summaries":{"platform":["sentinel-1a","sentinel-1b"],"constellation":["sentinel-1"],"s1:resolution":["full","high","medium"],"s1:orbit_source":["DOWNLINK","POEORB","PREORB","RESORB"],"sar:looks_range":[5,6,3,2],"sat:orbit_state":["ascending","descending"],"sar:product_type":["GRD"],"sar:looks_azimuth":[1,6,2],"sar:polarizations":[["VV","VH"],["HH","HV"],["VV"],["VH"],["HH"],["HV"]],"sar:frequency_band":["C"],"s1:processing_level":["1"],"sar:instrument_mode":["IW","EW","SM"],"sar:center_frequency":[5.405],"sar:resolution_range":[20,23,50,93,9],"s1:product_timeliness":["NRT-10m","NRT-1h","NRT-3h","Fast-24h","Off-line","Reprocessing"],"sar:resolution_azimuth":[22,23,50,87,9],"sar:pixel_spacing_range":[10,25,40,3.5],"sar:observation_direction":["right"],"sar:pixel_spacing_azimuth":[10,25,40,3.5],"sar:looks_equivalent_number":[4.4,29.7,2.7,10.7,3.7],"sat:platform_international_designator":["2014-016A","2016-025A","0000-000A"],"storage:platform":["AWS"],"storage:region":["eu-central-1"],"storage:requester_pays":[true]},"description":"Sentinel-1
+        is a pair of Synthetic Aperture Radar (SAR) imaging satellites launched in
+        2014 and 2016 by the European Space Agency (ESA). Their 6 day revisit cycle
+        and ability to observe through clouds makes this dataset perfect for sea and
+        land monitoring, emergency response due to environmental disasters, and economic
+        applications. This dataset represents the global Sentinel-1 GRD archive, from
+        beginning to the present, converted to cloud-optimized GeoTIFF format.","item_assets":{"hh":{"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"HH
+        Data","raster:bands":[{"nodata":0,"data_type":"uint16"}]},"hv":{"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"HV
+        Data","raster:bands":[{"nodata":0,"data_type":"uint16"}]},"vh":{"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"VH
+        Data","raster:bands":[{"nodata":0,"data_type":"uint16"}]},"vv":{"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"VV
+        Data","raster:bands":[{"nodata":0,"data_type":"uint16"}]},"thumbnail":{"type":"image/png","roles":["thumbnail"],"title":"Thumbnail
+        Image"},"safe-manifest":{"type":"application/xml","roles":["metadata"],"title":"SAFE
+        Manifest File"},"schema-noise-hh":{"type":"application/xml","roles":["metadata"],"title":"HH
+        Noise Schema"},"schema-noise-hv":{"type":"application/xml","roles":["metadata"],"title":"HV
+        Noise Schema"},"schema-noise-vh":{"type":"application/xml","roles":["metadata"],"title":"VH
+        Noise Schema"},"schema-noise-vv":{"type":"application/xml","roles":["metadata"],"title":"VV
+        Noise Schema"},"schema-product-hh":{"type":"application/xml","roles":["metadata"],"title":"HH
+        Product Schema"},"schema-product-hv":{"type":"application/xml","roles":["metadata"],"title":"HV
+        Product Schema"},"schema-product-vh":{"type":"application/xml","roles":["metadata"],"title":"VH
+        Product Schema"},"schema-product-vv":{"type":"application/xml","roles":["metadata"],"title":"VV
+        Product Schema"},"schema-calibration-hh":{"type":"application/xml","roles":["metadata"],"title":"HH
+        Calibration Schema"},"schema-calibration-hv":{"type":"application/xml","roles":["metadata"],"title":"HV
+        Calibration Schema"},"schema-calibration-vh":{"type":"application/xml","roles":["metadata"],"title":"VH
+        Calibration Schema"},"schema-calibration-vv":{"type":"application/xml","roles":["metadata"],"title":"VV
+        Calibration Schema"}},"stac_version":"1.0.0","stac_extensions":["https://stac-extensions.github.io/storage/v1.0.0/schema.json","https://stac-extensions.github.io/sar/v1.0.0/schema.json","https://stac-extensions.github.io/sat/v1.0.0/schema.json","https://stac-extensions.github.io/item-assets/v1.0.0/schema.json","https://stac-extensions.github.io/raster/v1.1.0/schema.json"]}],"links":[{"rel":"self","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections"},{"rel":"root","type":"application/json","href":"https://earth-search.aws.element84.com/v1"}],"context":{"page":1,"limit":100,"matched":7,"returned":7}}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '58250'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Fri, 10 Nov 2023 17:28:19 GMT
+      Via:
+      - 1.1 9ef00004ef0e93efae76c75d3a2df1b4.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - 9FK2zzft0Fb7fx28FNayDoS6GhXfCCrnwkO8TAm6R5P7Vwh5rUslew==
+      X-Amz-Cf-Pop:
+      - EWR53-C3
+      X-Amzn-Trace-Id:
+      - Root=1-654e6833-37e801360d7e7ba00ef4cc5f;Sampled=0;lineage=9e2884e9:0
+      X-Cache:
+      - Miss from cloudfront
+      access-control-allow-origin:
+      - '*'
+      etag:
+      - W/"e38a-BKG/VdxeOur7671U8ma5V+zCSw8"
+      x-amz-apigw-id:
+      - OMU4FG1KvHcEtYA=
+      x-amzn-Remapped-content-length:
+      - '58250'
+      x-amzn-RequestId:
+      - 77209a18-8d44-4b4f-ba82-22ab2bacce3d
+      x-powered-by:
+      - Express
+    status:
+      code: 200
+      message: OK
+version: 1
