@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Recursion error in `get_items` [#608](https://github.com/stac-utils/pystac-client/pull/608)
 
+### Removed
+
+- Passing ``-q`` to the CLI rather than ``--query`` [#614](https://github.com/stac-utils/pystac-client/pull/614)
+
 ## [v0.7.5] - 2023-09-05
 
 ### Fixed
