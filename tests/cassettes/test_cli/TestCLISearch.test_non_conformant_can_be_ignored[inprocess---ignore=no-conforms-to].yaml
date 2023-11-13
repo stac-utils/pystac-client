@@ -28,26 +28,26 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 01 Sep 2023 19:44:38 GMT
+      - Fri, 10 Nov 2023 17:28:15 GMT
       Via:
-      - 1.1 f9a3ca802cab4ac43bafc4dd8667ef98.cloudfront.net (CloudFront)
+      - 1.1 b35f01abdb74e50c7c770d66cb11b73a.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - s0bors_7PQuckmf2Kxmn-sbmR9SuHVPJjOxE2cKR_mAuep6ClvLfuA==
+      - xMN6LS3rxAC_qLHFPaA9DTt29nTpd8ngFzhFl-jclMzF-bu7BV4ZRg==
       X-Amz-Cf-Pop:
-      - DEN52-C1
+      - EWR53-C3
       X-Amzn-Trace-Id:
-      - Root=1-64f23f26-4d81223c1cef028c375fc2ab;Sampled=0;lineage=308471e4:0
+      - Root=1-654e682f-5a1cda642537e3965eb40dab;Sampled=0;lineage=308471e4:0
       X-Cache:
       - Miss from cloudfront
       x-amz-apigw-id:
-      - Kl7OFEbZPHcFewQ=
+      - OMU3hEnuvHcEFgQ=
       x-amzn-RequestId:
-      - 14555b8c-2d58-40a7-9558-a2a816c74fbc
+      - 558de6b4-c853-408b-924d-e9e6006f87c4
     status:
       code: 200
       message: OK
 - request:
-    body: '{"limit": 1, "collections": ["sentinel-s2-l2a-cogs"]}'
+    body: '{"collections": ["sentinel-s2-l2a-cogs"], "limit": 1}'
     headers:
       Accept:
       - '*/*'
@@ -99,21 +99,21 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 01 Sep 2023 19:44:39 GMT
+      - Fri, 10 Nov 2023 17:28:16 GMT
       Via:
-      - 1.1 f9a3ca802cab4ac43bafc4dd8667ef98.cloudfront.net (CloudFront)
+      - 1.1 b35f01abdb74e50c7c770d66cb11b73a.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - vhjX4YmtLbkqeQ-Oha3WGWrVdcDreYX0HOc05LObLMTVF1cHN-uV2A==
+      - kZ8g30yRlAbHeNIkB6m0ZApqdNwb2GDwy6dedCAim2igYgLNZCD02Q==
       X-Amz-Cf-Pop:
-      - DEN52-C1
+      - EWR53-C3
       X-Amzn-Trace-Id:
-      - Root=1-64f23f26-14922751020f5f7b4857fb9b;Sampled=0;lineage=308471e4:0
+      - Root=1-654e682f-1f4b0cbc50d564383060630f;Sampled=0;lineage=308471e4:0
       X-Cache:
       - Miss from cloudfront
       x-amz-apigw-id:
-      - Kl7OGGivvHcFZZA=
+      - OMU3iFNavHcET3Q=
       x-amzn-RequestId:
-      - b5f2df4d-661f-4d5d-8b75-9b32c363484c
+      - 0f7857a8-cdb7-4862-b7d3-a9a949cfc354
     status:
       code: 200
       message: OK

@@ -136,7 +136,7 @@ def set_warnings(error: Optional[List[str]], ignore: Optional[List[str]]) -> Non
     if ignore is not None and len(ignore) == 0:
         warnings.filterwarnings("ignore", category=PystacClientWarning)
     if error is not None and len(error) == 0:
-        warnings.filterwarnings("ignore", category=PystacClientWarning)
+        warnings.filterwarnings("error", category=PystacClientWarning)
 
     # Then set filters on any specific classes
     category_options = {
@@ -255,12 +255,6 @@ def parse_args(args: List[str]) -> Dict[str, Any]:
         help=f"Query properties of form KEY=VALUE ({','.join(OPS)} supported)",
     )
     search_group.add_argument(
-        "-q",
-        nargs="*",
-        help="DEPRECATED. Use --query instead. Query properties of form "
-        "KEY=VALUE (<, >, <=, >=, = supported)",
-    )
-    search_group.add_argument(
         "--filter",
         help="Filter on queryables using language specified in filter-lang parameter",
     )
@@ -306,6 +300,10 @@ def parse_args(args: List[str]) -> Dict[str, Any]:
                 if data["type"] == "Feature":
                     parsed_args["intersects"] = data["geometry"]
                 elif data["type"] == "FeatureCollection":
+                    logger.warning(
+                        "When the input to intersects is a FeatureCollection, "
+                        "only the first feature geometry is used."
+                    )
                     parsed_args["intersects"] = data["features"][0]["geometry"]
                 else:
                     parsed_args["intersects"] = data
@@ -325,14 +323,6 @@ def parse_args(args: List[str]) -> Dict[str, Any]:
     if "filter" in parsed_args:
         if "json" in parsed_args["filter_lang"]:
             parsed_args["filter"] = json.loads(parsed_args["filter"])
-
-    if "q" in parsed_args:
-        logger.warning("Argument -q is deprecated, use --query instead")
-        if "query" not in parsed_args:
-            parsed_args["query"] = parsed_args["q"]
-        else:
-            logger.error("Both -q and --query arguments specified, ignoring -q")
-        del parsed_args["q"]
 
     return parsed_args
 

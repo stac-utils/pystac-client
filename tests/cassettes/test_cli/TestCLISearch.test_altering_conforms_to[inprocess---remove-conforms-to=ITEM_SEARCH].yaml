@@ -1,0 +1,53 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: https://earth-search.aws.element84.com/v1
+  response:
+    body:
+      string: '{"stac_version":"1.0.0","type":"Catalog","id":"earth-search-aws","title":"Earth
+        Search by Element 84","description":"A STAC API of public datasets on AWS","links":[{"rel":"self","type":"application/json","href":"https://earth-search.aws.element84.com/v1"},{"rel":"root","type":"application/json","href":"https://earth-search.aws.element84.com/v1"},{"rel":"conformance","type":"application/json","href":"https://earth-search.aws.element84.com/v1/conformance"},{"rel":"data","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections"},{"rel":"search","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/search","method":"GET"},{"rel":"search","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/search","method":"POST"},{"rel":"aggregate","type":"application/json","href":"https://earth-search.aws.element84.com/v1/aggregate","method":"GET"},{"rel":"aggregations","type":"application/json","href":"https://earth-search.aws.element84.com/v1/aggregations"},{"rel":"service-desc","type":"application/vnd.oai.openapi","href":"https://earth-search.aws.element84.com/v1/api"},{"rel":"service-doc","type":"text/html","href":"https://earth-search.aws.element84.com/v1/api.html"},{"rel":"http://www.opengis.net/def/rel/ogc/1.0/queryables","type":"application/schema+json","href":"https://earth-search.aws.element84.com/v1/queryables"},{"rel":"server","type":"text/html","href":"https://stac-utils.github.io/stac-server/"},{"rel":"child","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30"},{"rel":"child","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/naip"},{"rel":"child","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a"},{"rel":"child","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/sentinel-2-l1c"},{"rel":"child","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/landsat-c2-l2"},{"rel":"child","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-90"},{"rel":"child","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/sentinel-1-grd"}],"conformsTo":["https://api.stacspec.org/v1.0.0/core","https://api.stacspec.org/v1.0.0/collections","https://api.stacspec.org/v1.0.0/ogcapi-features","https://api.stacspec.org/v1.0.0/item-search","https://api.stacspec.org/v1.0.0-rc.3/ogcapi-features#fields","https://api.stacspec.org/v1.0.0-rc.2/ogcapi-features#sort","https://api.stacspec.org/v1.0.0-rc.2/ogcapi-features#query","https://api.stacspec.org/v1.0.0-rc.3/item-search#fields","https://api.stacspec.org/v1.0.0-rc.2/item-search#sort","https://api.stacspec.org/v1.0.0-rc.2/item-search#query","https://api.stacspec.org/v0.3.0/aggregation","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"]}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '3141'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Fri, 10 Nov 2023 17:28:16 GMT
+      Via:
+      - 1.1 3d82e0cf3bc07e417aa87107adc81ac8.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - izHqp5nBQNmXQTwYm1VT0qxMK5XjHRH_0cV5xGT3OO93ZJTH8zeiPQ==
+      X-Amz-Cf-Pop:
+      - EWR53-C3
+      X-Amzn-Trace-Id:
+      - Root=1-654e6830-7d708686291dd1db1424f048;Sampled=0;lineage=9e2884e9:0
+      X-Cache:
+      - Miss from cloudfront
+      access-control-allow-origin:
+      - '*'
+      etag:
+      - W/"c45-vX16rVW/Oi5D8pNBcBaw295oyu0"
+      x-amz-apigw-id:
+      - OMU3rGB4PHcESAQ=
+      x-amzn-Remapped-content-length:
+      - '3141'
+      x-amzn-RequestId:
+      - cf0f2958-9f43-42dd-b557-886f17d0edbe
+      x-powered-by:
+      - Express
+    status:
+      code: 200
+      message: OK
+version: 1

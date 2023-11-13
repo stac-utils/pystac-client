@@ -79,12 +79,12 @@ than once to use additional operators.
 
 .. code-block:: console
 
-    $ stac-client search ${STAC_API_URL} -c sentinel-2-l2a --bbox -72.5 40.5 -72 41 --datetime 2020-01-01/2020-01-31 -q "eo:cloud_cover<10" --matched
+    $ stac-client search ${STAC_API_URL} -c sentinel-2-l2a --bbox -72.5 40.5 -72 41 --datetime 2020-01-01/2020-01-31 ---query "eo:cloud_cover<10" --matched
     10 items matched
 
 .. code-block:: console
 
-    $ stac-client search ${STAC_API_URL} -c sentinel-2-l2a --bbox -72.5 40.5 -72 41 --datetime 2020-01-01/2020-01-31 -q "eo:cloud_cover<10" "eo:cloud_cover>5" --matched
+    $ stac-client search ${STAC_API_URL} -c sentinel-2-l2a --bbox -72.5 40.5 -72 41 --datetime 2020-01-01/2020-01-31 --query "eo:cloud_cover<10" "eo:cloud_cover>5" --matched
     4 items matched
 
 Python
