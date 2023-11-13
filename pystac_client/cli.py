@@ -358,7 +358,12 @@ def cli() -> int:
             return search(client, **args)
         elif cmd == "collections":
             return collections(client, **args)
-        return 1
+        else:
+            logger.error(
+                f"Command '{cmd}' is not a valid command. "
+                "must be 'search' or 'collections'",
+            )
+            return 1
     except Exception as e:
         logger.error(e, exc_info=True)
         return 1
