@@ -405,8 +405,9 @@ class TestAPI:
         # Mock the collection
         requests_mock.get(pc_collection_href, status_code=200, json=pc_collection_dict)
 
-        with pytest.warns(DoesNotConformTo, match="COLLECTIONS, FEATURES"):
-            _ = next(api.get_collections())
+        with pytest.warns(FallbackToPystac):
+            with pytest.warns(DoesNotConformTo, match="COLLECTIONS, FEATURES"):
+                _ = next(api.get_collections())
 
         history = requests_mock.request_history
         assert len(history) == 2
