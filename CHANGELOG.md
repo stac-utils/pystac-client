@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - Recursion error in `get_items` [#608](https://github.com/stac-utils/pystac-client/pull/608)
+- Fixes inconsistent behavior in `CollectionClient.get_items` when Item IDs are supplied [#639](https://github.com/stac-utils/pystac-client/pull/639)
 
 ### Removed
 
