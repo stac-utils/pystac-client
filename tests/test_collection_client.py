@@ -26,6 +26,20 @@ class TestCollectionClient:
             return
 
     @pytest.mark.vcr
+    def test_get_items_with_ids(self) -> None:
+        client = Client.open(STAC_URLS["PLANETARY-COMPUTER"])
+        collection = client.get_collection("aster-l1t")
+        ids = [
+            "AST_L1T_00312272006020322_20150518201805",
+            "AST_L1T_00312272006020313_20150518201753",
+            "AST_L1T_00312272006020304_20150518201753",
+        ]
+        assert collection is not None
+        for item in collection.get_items(*ids):
+            assert item.collection_id == collection.id
+            assert item.id in ids
+
+    @pytest.mark.vcr
     def test_get_item(self) -> None:
         client = Client.open(STAC_URLS["PLANETARY-COMPUTER"])
         collection = client.get_collection("aster-l1t")

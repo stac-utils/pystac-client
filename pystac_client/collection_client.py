@@ -115,7 +115,7 @@ class CollectionClient(pystac.Collection, QueryablesMixin):
         return root.conforms_to(conformance_class)
 
     def get_items(self, *ids: str, recursive: bool = False) -> Iterator["Item_Type"]:
-        """Return all items in this Collection.
+        """Return all items in this Collection or specific items.
 
         If the Collection contains a link of with a `rel` value of `items`,
         that link will be used to iterate through items. Otherwise, the default
@@ -133,17 +133,20 @@ class CollectionClient(pystac.Collection, QueryablesMixin):
         else:
             root = self.get_root()
             if root.conforms_to(ConformanceClasses.ITEM_SEARCH):
+                url = root._search_href() if ids else self._items_href()
+
                 search = ItemSearch(
-                    url=self._items_href(),
+                    url=url,
                     method="GET",
                     client=root,
+                    ids=ids,
                     collections=[self.id],
                     modifier=self.modifier,
                 )
                 yield from search.items()
             else:
                 root._warn_about_fallback("ITEM_SEARCH")
-                for item in super().get_items():
+                for item in super().get_items(*ids):
                     call_modifier(self.modifier, item)
                     yield item
 
