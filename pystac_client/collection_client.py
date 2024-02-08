@@ -133,23 +133,16 @@ class CollectionClient(pystac.Collection, QueryablesMixin):
         else:
             root = self.get_root()
             if root.conforms_to(ConformanceClasses.ITEM_SEARCH):
-                if ids:
-                    search = ItemSearch(
-                        url=root._search_href(),
-                        method="GET",
-                        client=root,
-                        ids=ids,
-                        collections=[self.id],
-                        modifier=self.modifier,
-                    )
-                else:
-                    search = ItemSearch(
-                        url=self._items_href(),
-                        method="GET",
-                        client=root,
-                        collections=[self.id],
-                        modifier=self.modifier,
-                    )
+                url = root._search_href() if ids else self._items_href()
+
+                search = ItemSearch(
+                    url=url,
+                    method="GET",
+                    client=root,
+                    ids=ids,
+                    collections=[self.id],
+                    modifier=self.modifier,
+                )
                 yield from search.items()
             else:
                 root._warn_about_fallback("ITEM_SEARCH")
