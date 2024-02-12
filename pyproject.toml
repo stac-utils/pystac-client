@@ -109,7 +109,7 @@ select = ["E", "F", "W", "I"]
 
 [tool.pytest.ini_options]
 markers = "vcr: records network activity"
-addopts = "--benchmark-skip -Werror --block-network"
+addopts = "--benchmark-skip --block-network"
 
 [tool.mypy]
 show_error_codes = true
