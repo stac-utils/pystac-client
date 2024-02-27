@@ -94,17 +94,13 @@ OPS = list(OP_MAP.keys())
 
 def __getattr__(name: str) -> Any:
     if name in ("DEFAUL_LIMIT", "DEFAULT_LIMIT_AND_MAX_ITEMS"):
-        warnings.warn(
-            f"{name} is deprecated and will be removed in v0.8", DeprecationWarning
-        )
+        warnings.warn(f"{name} is deprecated and will be removed in v0.8", DeprecationWarning)
         return 100
     raise AttributeError(f"module {__name__} has no attribute {name}")
 
 
 # from https://gist.github.com/angstwad/bf22d1822c38a92ec0a9#gistcomment-2622319
-def dict_merge(
-    dct: Dict[Any, Any], merge_dct: Dict[Any, Any], add_keys: bool = True
-) -> Dict[Any, Any]:
+def dict_merge(dct: Dict[Any, Any], merge_dct: Dict[Any, Any], add_keys: bool = True) -> Dict[Any, Any]:
     """Recursive dict merge.
 
     Inspired by :meth:``dict.update()``, instead of
@@ -308,9 +304,7 @@ class ItemSearch:
             "fields": self._format_fields(fields),
         }
 
-        self._parameters: Dict[str, Any] = {
-            k: v for k, v in params.items() if v is not None
-        }
+        self._parameters: Dict[str, Any] = {k: v for k, v in params.items() if v is not None}
 
     def get_parameters(self) -> Dict[str, Any]:
         if self.method == "POST":
@@ -329,9 +323,7 @@ class ItemSearch:
         if "collections" in params:
             params["collections"] = ",".join(params["collections"])
         if "intersects" in params:
-            params["intersects"] = json.dumps(
-                params["intersects"], separators=(",", ":")
-            )
+            params["intersects"] = json.dumps(params["intersects"], separators=(",", ":"))
         if "query" in params:
             params["query"] = json.dumps(params["query"], separators=(",", ":"))
         if "sortby" in params:
@@ -399,9 +391,7 @@ class ItemSearch:
         return query
 
     @staticmethod
-    def _format_filter_lang(
-        _filter: Optional[FilterLike], value: Optional[FilterLangLike]
-    ) -> Optional[str]:
+    def _format_filter_lang(_filter: Optional[FilterLike], value: Optional[FilterLangLike]) -> Optional[str]:
         if _filter is None:
             return None
 
@@ -527,10 +517,7 @@ class ItemSearch:
             backup_end, end = self._to_isoformat_range(components[1])
             return f"{start}/{end or backup_end}"
         else:
-            raise Exception(
-                "too many datetime components "
-                f"(max=2, actual={len(components)}): {value}"
-            )
+            raise Exception("too many datetime components " f"(max=2, actual={len(components)}): {value}")
 
     @staticmethod
     def _format_collections(value: Optional[CollectionsLike]) -> Optional[Collections]:
@@ -582,9 +569,7 @@ class ItemSearch:
             elif value and isinstance(value[0], dict):
                 return value  # type: ignore
 
-        raise Exception(
-            "sortby must be of type None, str, List[str], or List[Dict[str, str]"
-        )
+        raise Exception("sortby must be of type None, str, List[str], or List[Dict[str, str]")
 
     @staticmethod
     def _sortby_part_to_dict(part: str) -> Dict[str, str]:
@@ -597,12 +582,7 @@ class ItemSearch:
 
     @staticmethod
     def _sortby_dict_to_str(sortby: Sortby) -> str:
-        return ",".join(
-            [
-                f"{'+' if sort['direction'] == 'asc' else '-'}{sort['field']}"
-                for sort in sortby
-            ]
-        )
+        return ",".join([f"{'+' if sort['direction'] == 'asc' else '-'}{sort['field']}" for sort in sortby])
 
     def _format_fields(self, value: Optional[FieldsLike]) -> Optional[Fields]:
         if value is None:
@@ -618,9 +598,7 @@ class ItemSearch:
         if isinstance(value, dict):
             return value
 
-        raise Exception(
-            "sortby must be of type None, str, List[str], or List[Dict[str, str]"
-        )
+        raise Exception("sortby must be of type None, str, List[str], or List[Dict[str, str]")
 
     @staticmethod
     def _fields_to_dict(fields: List[str]) -> Fields:
@@ -651,10 +629,7 @@ class ItemSearch:
             return dict(json.loads(value))
         if hasattr(value, "__geo_interface__"):
             return dict(deepcopy(getattr(value, "__geo_interface__")))
-        raise Exception(
-            "intersects must be of type None, str, dict, or an object that "
-            "implements __geo_interface__"
-        )
+        raise Exception("intersects must be of type None, str, dict, or an object that " "implements __geo_interface__")
 
     @lru_cache(1)
     def matched(self) -> Optional[int]:
@@ -671,7 +646,7 @@ class ItemSearch:
         resp = self._stac_io.read_json(self.url, method=self.method, parameters=params)
         found = None
         if "context" in resp:
-            found = resp["context"]["matched"]
+            found = resp["context"].get("matched", None)
         elif "numberMatched" in resp:
             found = resp["numberMatched"]
         if found is None:
@@ -718,9 +693,7 @@ class ItemSearch:
         if isinstance(self._stac_io, StacApiIO):
             for page in self.pages_as_dicts():
                 # already signed in pages_as_dicts
-                yield ItemCollection.from_dict(
-                    page, preserve_dict=False, root=self.client
-                )
+                yield ItemCollection.from_dict(page, preserve_dict=False, root=self.client)
 
     def pages_as_dicts(self) -> Iterator[Dict[str, Any]]:
         """Iterator that yields :class:`dict` instances for each page
@@ -732,9 +705,7 @@ class ItemSearch:
         """
         if isinstance(self._stac_io, StacApiIO):
             num_items = 0
-            for page in self._stac_io.get_pages(
-                self.url, self.method, self.get_parameters()
-            ):
+            for page in self._stac_io.get_pages(self.url, self.method, self.get_parameters()):
                 call_modifier(self.modifier, page)
                 features = page.get("features", [])
                 if features:
@@ -763,9 +734,7 @@ class ItemSearch:
         # without mutating what's in the cache.
         feature_collection = self.item_collection_as_dict.__wrapped__(self)
         # already signed in item_collection_as_dict
-        return ItemCollection.from_dict(
-            feature_collection, preserve_dict=False, root=self.client
-        )
+        return ItemCollection.from_dict(feature_collection, preserve_dict=False, root=self.client)
 
     @lru_cache(1)
     def item_collection_as_dict(self) -> Dict[str, Any]:
@@ -862,8 +831,7 @@ class ItemSearch:
             Dict : A GeoJSON FeatureCollection
         """
         warnings.warn(
-            "get_all_items_as_dict() is deprecated, use item_collection_as_dict() "
-            "instead.",
+            "get_all_items_as_dict() is deprecated, use item_collection_as_dict() " "instead.",
             FutureWarning,
         )
         return self.item_collection_as_dict()
