@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+- Fix to logic determining if `context.matched` in `ItemSearch.matched` response
+
 ### Fixed
 
 - Recursion error in `get_items` [#608](https://github.com/stac-utils/pystac-client/pull/608)
