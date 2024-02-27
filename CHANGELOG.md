@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-- Fix to logic determining if `context.matched` in `ItemSearch.matched` response
+- Fix to logic determining if `context.matched` in `ItemSearch.matched` response [#646](https://github.com/stac-utils/pystac-client/pull/646)
 
 ### Fixed
 
