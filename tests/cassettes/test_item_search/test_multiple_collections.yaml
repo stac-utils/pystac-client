@@ -92,7 +92,7 @@ interactions:
         (band 3)","center_wavelength":0.56,"full_width_half_max":0.045},{"name":"blue","common_name":"blue","description":"Blue
         (band 2)","center_wavelength":0.49,"full_width_half_max":0.098}],"proj:shape":[10980,10980],"proj:transform":[10,0,399960,0,-10,4500000],"roles":["visual"]},"wvp-jp2":{"href":"s3://sentinel-s2-l2a/tiles/13/T/DE/2023/10/8/0/WVP.jp2","type":"image/jp2","title":"Water
         vapour (WVP)","proj:shape":[5490,5490],"proj:transform":[20,0,399960,0,-20,4500000],"raster:bands":[{"nodata":0,"data_type":"uint16","bits_per_sample":15,"spatial_resolution":20,"unit":"cm","scale":0.001,"offset":0}],"roles":["data","reflectance"]}},"bbox":[-106.18316062292897,39.65576169772817,-104.88456877606482,40.650789813976196],"stac_extensions":["https://stac-extensions.github.io/processing/v1.1.0/schema.json","https://stac-extensions.github.io/grid/v1.0.0/schema.json","https://stac-extensions.github.io/raster/v1.1.0/schema.json","https://stac-extensions.github.io/view/v1.0.0/schema.json","https://stac-extensions.github.io/projection/v1.1.0/schema.json","https://stac-extensions.github.io/mgrs/v1.0.0/schema.json","https://stac-extensions.github.io/eo/v1.1.0/schema.json"],"collection":"sentinel-2-l2a"},{"type":"Feature","stac_version":"1.0.0","id":"LC08_L2SP_033032_20231008_02_T1","properties":{"platform":"landsat-8","instruments":["oli","tirs"],"created":"2023-10-18T07:31:29.878Z","gsd":30,"description":"Landsat
-        Collection 2 Level-2","eo:cloud_cover":0.06,"view:off_nadir":0,"view:sun_elevation":41.18722795,"view:sun_azimuth":157.5994568,"proj:epsg":32613,"proj:shape":[7831,7711],"proj:transform":[30,0,449085,0,-30,4581915],"landsat:cloud_cover_land":0.06,"landsat:wrs_type":"2","landsat:wrs_path":"033","landsat:wrs_row":"032","landsat:collection_category":"T1","landsat:collection_number":"02","landsat:correction":"L2SP","landsat:scene_id":"LC80330322023281LGN00","sci:doi":"10.5066/P9OGBGM6","datetime":"2023-10-08T17:37:26.656958Z","earthsearch:payload_id":"usgs-landsat-c2l2/workflow-landsat-to-stac/LC08_L2SP_033032_20231008_20231017_02_T1_SR","processing:software":{"landsat-to-stac":"0.1.0"},"updated":"2023-10-18T07:31:29.878Z"},"geometry":{"type":"Polygon","coordinates":[[[-105.04670323039021,41.382809350013794],[-105.5642109040829,39.66577784361798],[-103.46604305388287,39.26994744234798],[-102.89210096366858,40.984398669248556],[-105.04670323039021,41.382809350013794]]]},"links":[{"rel":"self","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/landsat-c2-l2/items/LC08_L2SP_033032_20231008_02_T1"},{"rel":"canonical","href":"s3://earthsearch-data/landsat-c2-l2/033/032/2023/10/LC08_L2SP_033032_20231008_02_T1/LC08_L2SP_033032_20231008_02_T1.json","type":"application/json"},{"rel":"cite-as","href":"https://doi.org/10.5066/P9OGBGM6","title":"Landsat
+        Collection 2 Level-2","eo:cloud_cover":0.06,"view:off_nadir":0,"view:sun_elevation":41.18722795,"view:sun_azimuth":157.5994568,"proj:epsg":32613,"proj:shape":[7831,7711],"proj:transform":[30,0,449085,0,-30,4581915],"proj:centroid":{"lat":40.3225,"lon":-104.22602},"landsat:cloud_cover_land":0.06,"landsat:wrs_type":"2","landsat:wrs_path":"033","landsat:wrs_row":"032","landsat:collection_category":"T1","landsat:collection_number":"02","landsat:correction":"L2SP","landsat:scene_id":"LC80330322023281LGN00","landsat:product_generated":"2023-10-17T16:22:27Z","grid:code":"WRS2-033032","sci:doi":"10.5066/P9OGBGM6","datetime":"2023-10-08T17:37:26.656958Z","earthsearch:payload_id":"usgs-landsat-c2l2/workflow-landsat-to-stac/LC08_L2SP_033032_20231008_20231017_02_T1_SR","processing:software":{"landsat-to-stac":"v2023.11.16"},"updated":"2023-11-30T14:47:41.847Z"},"geometry":{"type":"Polygon","coordinates":[[[-105.04670323039021,41.382809350013794],[-105.5642109040829,39.66577784361798],[-103.46604305388287,39.26994744234798],[-102.89210096366858,40.984398669248556],[-105.04670323039021,41.382809350013794]]]},"links":[{"rel":"self","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/landsat-c2-l2/items/LC08_L2SP_033032_20231008_02_T1"},{"rel":"canonical","href":"s3://earthsearch-data/landsat-c2-l2/033/032/2023/10/LC08_L2SP_033032_20231008_02_T1/LC08_L2SP_033032_20231008_02_T1.json","type":"application/json"},{"rel":"cite-as","href":"https://doi.org/10.5066/P9OGBGM6","title":"Landsat
         8-9 OLI/TIRS Collection 2 Level-2"},{"rel":"via","href":"https://landsatlook.usgs.gov/stac-server/collections/landsat-c2l2-sr/items/LC08_L2SP_033032_20231008_20231017_02_T1_SR","type":"application/json","title":"USGS
         STAC Item"},{"rel":"via","href":"https://landsatlook.usgs.gov/stac-server/collections/landsat-c2l2-st/items/LC08_L2SP_033032_20231008_20231017_02_T1_ST","type":"application/json","title":"USGS
         STAC Item"},{"rel":"parent","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections/landsat-c2-l2"},{"rel":"collection","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections/landsat-c2-l2"},{"rel":"root","type":"application/json","href":"https://earth-search.aws.element84.com/v1"},{"rel":"thumbnail","href":"https://earth-search.aws.element84.com/v1/collections/landsat-c2-l2/items/LC08_L2SP_033032_20231008_02_T1/thumbnail"}],"assets":{"thumbnail":{"href":"s3://usgs-landsat/collection02/level-2/standard/oli-tirs/2023/033/032/LC08_L2SP_033032_20231008_20231017_02_T1/LC08_L2SP_033032_20231008_20231017_02_T1_thumb_small.jpeg","type":"image/jpeg","title":"Thumbnail
@@ -227,37 +227,37 @@ interactions:
         Band (ST_EMSD) Surface Temperature Product","raster:bands":[{"nodata":-9999,"data_type":"int16","spatial_resolution":30,"scale":0.0001}],"roles":["data","emissivity"],"storage:platform":"AWS","storage:region":"us-west-2","storage:requester_pays":true},"qa":{"href":"s3://usgs-landsat/collection02/level-2/standard/oli-tirs/2023/033/032/LC08_L2SP_033032_20231008_20231017_02_T1/LC08_L2SP_033032_20231008_20231017_02_T1_ST_QA.TIF","type":"image/tiff;
         application=geotiff; profile=cloud-optimized","title":"Surface Temperature
         Quality Assessment Band","description":"Collection 2 Level-2 Quality Assessment
-        Band (ST_QA) Surface Temperature Product","raster:bands":[{"nodata":-9999,"data_type":"int16","spatial_resolution":30,"unit":"kelvin","scale":0.01}],"roles":["data"],"storage:platform":"AWS","storage:region":"us-west-2","storage:requester_pays":true}},"bbox":[-105.608964,39.253445,-102.842801,41.387155],"stac_extensions":["https://stac-extensions.github.io/scientific/v1.0.0/schema.json","https://stac-extensions.github.io/classification/v1.0.0/schema.json","https://stac-extensions.github.io/raster/v1.1.0/schema.json","https://stac-extensions.github.io/projection/v1.0.0/schema.json","https://landsat.usgs.gov/stac/landsat-extension/v1.1.1/schema.json","https://stac-extensions.github.io/processing/v1.1.0/schema.json","https://stac-extensions.github.io/view/v1.0.0/schema.json","https://stac-extensions.github.io/eo/v1.0.0/schema.json","https://stac-extensions.github.io/storage/v1.0.0/schema.json"],"collection":"landsat-c2-l2"}],"links":[{"rel":"next","title":"Next
+        Band (ST_QA) Surface Temperature Product","raster:bands":[{"nodata":-9999,"data_type":"int16","spatial_resolution":30,"unit":"kelvin","scale":0.01}],"roles":["data"],"storage:platform":"AWS","storage:region":"us-west-2","storage:requester_pays":true}},"bbox":[-105.606232,39.255216,-102.84603,41.385732],"stac_extensions":["https://stac-extensions.github.io/projection/v1.1.0/schema.json","https://stac-extensions.github.io/classification/v1.0.0/schema.json","https://stac-extensions.github.io/storage/v1.0.0/schema.json","https://stac-extensions.github.io/raster/v1.1.0/schema.json","https://stac-extensions.github.io/processing/v1.1.0/schema.json","https://stac-extensions.github.io/scientific/v1.0.0/schema.json","https://stac-extensions.github.io/grid/v1.1.0/schema.json","https://stac-extensions.github.io/view/v1.0.0/schema.json","https://stac-extensions.github.io/eo/v1.1.0/schema.json","https://stac-extensions.github.io/landsat/v2.0.0/schema.json"],"collection":"landsat-c2-l2"}],"links":[{"rel":"next","title":"Next
         page of Items","method":"POST","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/search","merge":false,"body":{"datetime":"2023-10-08T00:00:00Z/2023-10-08T23:59:59Z","intersects":{"type":"Point","coordinates":[-105.1019,40.1672]},"collections":["sentinel-2-l2a","landsat-c2-l2"],"next":"2023-10-08T17:37:26.656958Z,LC08_L2SP_033032_20231008_02_T1,landsat-c2-l2"}},{"rel":"root","type":"application/json","href":"https://earth-search.aws.element84.com/v1"}]}'
     headers:
       Connection:
       - keep-alive
       Content-Length:
-      - '46964'
+      - '47149'
       Content-Type:
       - application/geo+json; charset=utf-8
       Date:
-      - Wed, 18 Oct 2023 13:36:20 GMT
+      - Wed, 28 Feb 2024 13:35:28 GMT
       Via:
-      - 1.1 e466a87164c3f9591e3c8ac45a4b2074.cloudfront.net (CloudFront)
+      - 1.1 bcab77f1ffe9d73bbe5ff7a973cd0160.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - ANdShHtZ4vA2pYAqPDzjtnDWdizPCLNTeqHEzZQsKXYGjjcaBwIWBw==
+      - OdIvAPbodTelsdBeiSH8PnDkg8dQ7-0DWpdNM5l_NtfKXg-5j2MSmA==
       X-Amz-Cf-Pop:
       - DEN52-C1
       X-Amzn-Trace-Id:
-      - Root=1-652fdf54-651527d56e4fdf04038e24ea;Sampled=0;lineage=9e2884e9:0
+      - Root=1-65df36a0-6f976976636750fd03be0926;Parent=3f3c4fdbba0377a6;Sampled=0;lineage=9e2884e9:0
       X-Cache:
       - Miss from cloudfront
       access-control-allow-origin:
       - '*'
       etag:
-      - W/"b774-U2GHGx0t3F9SWlS/bx2Sr6NeEfQ"
+      - W/"b82d-fQljHyIcdE8f10m87XM4/q0BOmw"
       x-amz-apigw-id:
-      - M__VOHKcvHcFpEA=
+      - T2V5HEObvHcEIMA=
       x-amzn-Remapped-content-length:
-      - '46964'
+      - '47149'
       x-amzn-RequestId:
-      - 9b06fa1e-53a7-43e0-b069-761447678f3e
+      - 22c1a138-541d-45f4-8c81-7f82cd411650
       x-powered-by:
       - Express
     status:
@@ -293,15 +293,15 @@ interactions:
       Content-Type:
       - application/geo+json; charset=utf-8
       Date:
-      - Wed, 18 Oct 2023 13:36:20 GMT
+      - Wed, 28 Feb 2024 13:35:28 GMT
       Via:
-      - 1.1 e466a87164c3f9591e3c8ac45a4b2074.cloudfront.net (CloudFront)
+      - 1.1 bcab77f1ffe9d73bbe5ff7a973cd0160.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - iHgfHlRdzEb8nTDjBjKPFMqccgn7ZRGMD9rojqdRksG-FAXYnlRT5w==
+      - wu6x5H3DJYBHcRj1S8CPnjrK6N6k981UtzyAxkgtASx1BUp9-4rAZg==
       X-Amz-Cf-Pop:
       - DEN52-C1
       X-Amzn-Trace-Id:
-      - Root=1-652fdf54-1b2e3364134962315b11b5c1;Sampled=0;lineage=9e2884e9:0
+      - Root=1-65df36a0-69adcbb74a927bfb5f73c274;Parent=4c87798062834fa8;Sampled=0;lineage=9e2884e9:0
       X-Cache:
       - Miss from cloudfront
       access-control-allow-origin:
@@ -309,11 +309,11 @@ interactions:
       etag:
       - W/"111-7vxaAljwSdJNfA0V9FinjXcubNg"
       x-amz-apigw-id:
-      - M__VPHg8vHcF4ug=
+      - T2V5IGrWvHcEJmA=
       x-amzn-Remapped-content-length:
       - '273'
       x-amzn-RequestId:
-      - b7a413a9-fd7e-4250-a1af-3f02057309a4
+      - 4c29383e-4b54-4c60-b940-6c7f7311b3d0
       x-powered-by:
       - Express
     status:

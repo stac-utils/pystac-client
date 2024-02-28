@@ -28,21 +28,21 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 10 Nov 2023 17:28:13 GMT
+      - Wed, 28 Feb 2024 13:33:47 GMT
       Via:
-      - 1.1 48242c037992a87d34be1f3c114efc0a.cloudfront.net (CloudFront)
+      - 1.1 d50ea39d66fbd0459a5507b1cf70c2dc.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - htoRiz2L4L6NZtx9mk0A38EBVnN5oGWR8yQoyE7CApZ3gVCgyPNhPQ==
+      - rI5tQokP83UK55gZ4d2I8VYxcNkXdRj0s_LOydWNscuXV1JQyCCnWg==
       X-Amz-Cf-Pop:
-      - EWR53-C3
+      - DEN52-C1
       X-Amzn-Trace-Id:
-      - Root=1-654e682d-3ae488f65d92236a467862b2;Sampled=0;lineage=308471e4:0
+      - Root=1-65df363b-4d83a9de21a70dcc691bb037;Parent=5b8cf844f644ee43;Sampled=0;lineage=308471e4:0
       X-Cache:
       - Miss from cloudfront
       x-amz-apigw-id:
-      - OMU3ME1GPHcEFeQ=
+      - T2VpRH7vvHcEJmg=
       x-amzn-RequestId:
-      - b45f4c16-ba28-49a9-8d1e-bd6b5db10174
+      - 3779c276-0f30-430a-a6fa-56cd4111e53b
     status:
       code: 200
       message: OK
