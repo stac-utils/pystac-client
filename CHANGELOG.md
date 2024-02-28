@@ -7,12 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-- Fix to logic determining if `context.matched` in `ItemSearch.matched` response [#646](https://github.com/stac-utils/pystac-client/pull/646)
+## [v0.7.6]
 
 ### Fixed
 
 - Recursion error in `get_items` [#608](https://github.com/stac-utils/pystac-client/pull/608)
 - Fixes inconsistent behavior in `CollectionClient.get_items` when Item IDs are supplied [#639](https://github.com/stac-utils/pystac-client/pull/639)
+- Logic determining if `context.matched` in `ItemSearch.matched` response [#646](https://github.com/stac-utils/pystac-client/pull/646)
 
 ### Removed
 
@@ -345,7 +346,8 @@ are in a single HTTP session, handle pagination and respects conformance
 
 Initial release.
 
-[Unreleased]: <https://github.com/stac-utils/pystac-client/compare/v0.7.5...main>
+[Unreleased]: <https://github.com/stac-utils/pystac-client/compare/v0.7.6...main>
+[v0.7.6]: <https://github.com/stac-utils/pystac-client/compare/v0.7.5...v0.7.6>
 [v0.7.5]: <https://github.com/stac-utils/pystac-client/compare/v0.7.4...v0.7.5>
 [v0.7.4]: <https://github.com/stac-utils/pystac-client/compare/v0.7.3...v0.7.4>
 [v0.7.3]: <https://github.com/stac-utils/pystac-client/compare/v0.7.2...v0.7.3>

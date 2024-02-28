@@ -283,5 +283,5 @@ class TestCLICollections:
             output = json.loads(f.read())
 
         assert isinstance(output, list)
-        assert len(output) == 7, "earth-search has more than 7 collections"
+        assert len(output) == 8, "earth-search does not have 8 collections"
         assert all(c["type"] == "Collection" for c in output)
