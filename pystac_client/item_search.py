@@ -671,7 +671,7 @@ class ItemSearch:
         resp = self._stac_io.read_json(self.url, method=self.method, parameters=params)
         found = None
         if "context" in resp:
-            found = resp["context"]["matched"]
+            found = resp["context"].get("matched", None)
         elif "numberMatched" in resp:
             found = resp["numberMatched"]
         if found is None:
