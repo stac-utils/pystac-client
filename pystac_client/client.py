@@ -518,8 +518,8 @@ class Client(pystac.Catalog, QueryablesMixin):
                 total number of Items returned from the :meth:`items`,
                 :meth:`item_collections`, and :meth:`items_as_dicts methods`. The client
                 will continue to request pages of items until the number of max items is
-                reached. This parameter defaults to 100. Setting this to ``None`` will
-                allow iteration over a possibly very large number of results.
+                reached. Setting this to ``None`` will allow iteration over a possibly 
+                very large number of results.
             limit: A recommendation to the service as to the number of items to return
                 *per page* of results. Defaults to 100.
             ids: List of one or more Item ids to filter on.
