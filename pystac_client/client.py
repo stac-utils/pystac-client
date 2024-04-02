@@ -17,6 +17,7 @@ import pystac
 import pystac.utils
 import pystac.validation
 from pystac import CatalogType, Collection
+from pystac.layout import HrefLayoutStrategy
 from requests import Request
 
 from pystac_client._utils import Modifiable, call_modifier
@@ -71,6 +72,7 @@ class Client(pystac.Catalog, QueryablesMixin):
         extra_fields: Optional[Dict[str, Any]] = None,
         href: Optional[str] = None,
         catalog_type: CatalogType = CatalogType.ABSOLUTE_PUBLISHED,
+        strategy: Optional[HrefLayoutStrategy] = None,
         *,
         modifier: Optional[Callable[[Modifiable], None]] = None,
         **kwargs: Dict[str, Any],
@@ -83,6 +85,7 @@ class Client(pystac.Catalog, QueryablesMixin):
             extra_fields=extra_fields,
             href=href,
             catalog_type=catalog_type,
+            strategy=strategy,
             **kwargs,
         )
         self.modifier = modifier

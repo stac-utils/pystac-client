@@ -14,6 +14,7 @@ from typing import (
 )
 
 import pystac
+import pystac.layout
 
 from pystac_client._utils import Modifiable, call_modifier
 from pystac_client.conformance import ConformanceClasses
@@ -47,11 +48,12 @@ class CollectionClient(pystac.Collection, QueryablesMixin):
         keywords: Optional[List[str]] = None,
         providers: Optional[List[pystac.Provider]] = None,
         summaries: Optional[pystac.Summaries] = None,
+        assets: Optional[Dict[str, pystac.Asset]] = None,
+        strategy: Optional[pystac.layout.HrefLayoutStrategy] = None,
         *,
         modifier: Optional[Callable[[Modifiable], None]] = None,
         **kwargs: Dict[str, Any],
     ):
-        # TODO(pystac==1.6.0): Add `assets` as a regular keyword
         super().__init__(
             id,
             description,
@@ -65,6 +67,8 @@ class CollectionClient(pystac.Collection, QueryablesMixin):
             keywords,
             providers,
             summaries,
+            assets,
+            strategy,
             **kwargs,
         )
         # error: Cannot assign to a method  [assignment]
