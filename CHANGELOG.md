@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Updated to **pystac** v1.10.0 [#661](https://github.com/stac-utils/pystac-client/pull/661)
+
 ## [v0.7.6]
 
 ### Fixed
