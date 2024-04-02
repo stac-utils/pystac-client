@@ -33,9 +33,14 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-          cache: "pip"
+      - name: Download uv (non-Windows)
+        if: ${{ runner.os != 'Windows' }}
+        run: curl -LsSf https://astral.sh/uv/install.sh | sh
+      - name: Download uv (Windows)
+        if: ${{ runner.os == 'Windows' }}
+        run: irm https://astral.sh/uv/install.ps1 | iex
       - name: Install package with dev requirements
-        run: pip install .[dev]
+        run: uv pip install --system .[dev]
       - name: Run pre-commit
         run: pre-commit run --all-files
       - name: Run pytest
@@ -57,13 +62,14 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: 3.9
-          cache: "pip"
-      - name: Install with dev requirements
-        run: pip install .[dev]
-      - name: Install minimum requirements
-        run: ./scripts/install-min-requirements
-      - name: Test
-        run: ./scripts/test
+      - name: Download uv
+        run: curl -LsSf https://astral.sh/uv/install.sh | sh
+      - name: Install dev requirements
+        run: uv pip install --system .[dev]
+      - name: Install with min requirements
+        run: uv pip install --system --resolution=lowest-direct --reinstall .
+      - name: Run pytest
+        run: pytest -Werror -s --block-network
 
   docs:
     name: docs
@@ -96,13 +102,14 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: 3.9
-          cache: "pip"
-      - name: Install
-        run: pip install .[dev]
+      - name: Download uv
+        run: curl -LsSf https://astral.sh/uv/install.sh | sh
+      - name: Install with dev requirements
+        run: uv pip install --system --pre .[dev]
       - name: Install any pre-releases of pystac
-        run: pip install -U --pre pystac
-      - name: Test
-        run: ./scripts/test
+        run: uv pip install --system -U --pre pystac
+      - name: Run pytest
+        run: pytest -Werror -s --block-network
 
   upstream:
     name: upstream
@@ -113,13 +120,14 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: 3.9
-          cache: "pip"
+      - name: Download uv
+        run: curl -LsSf https://astral.sh/uv/install.sh | sh
       - name: Install
-        run: pip install .[dev]
+        run: uv pip install .[dev]
       - name: Install pystac from main
-        run: pip install --force-reinstall git+https://github.com/stac-utils/pystac.git
-      - name: Test
-        run: ./scripts/test
+        run: uv pip install --system --force-reinstall git+https://github.com/stac-utils/pystac.git
+      - name: Run pytest
+        run: pytest -Werror -s --block-network
 
   dev-and-docs-requirements:
     name: dev and docs requirements check
@@ -129,8 +137,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: 3.9
-          cache: "pip"
+      - name: Download uv
+        run: curl -LsSf https://astral.sh/uv/install.sh | sh
       - name: Install geos
         run: sudo apt -y install libgeos-dev
       - name: Install
-        run: pip install .[dev,docs]
+        run: uv pip install --system .[dev,docs]
