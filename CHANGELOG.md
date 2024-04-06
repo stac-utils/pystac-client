@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - Updated to **pystac** v1.10.0 [#661](https://github.com/stac-utils/pystac-client/pull/661)
+- Use [uv](https://github.com/astral-sh/uv) for CI [#663](https://github.com/stac-utils/pystac-client/pull/663)
 
 ## [v0.7.6]
 
