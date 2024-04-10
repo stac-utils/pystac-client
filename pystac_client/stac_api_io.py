@@ -1,5 +1,6 @@
 import json
 import logging
+import os
 import warnings
 from copy import deepcopy
 from typing import (
@@ -40,6 +41,8 @@ logger = logging.getLogger(__name__)
 
 
 Timeout = Union[float, Tuple[float, float], Tuple[float, None]]
+
+REQUESTS_CA_BUNDLE = os.environ.get("REQUESTS_CA_BUNDLE")
 
 
 class StacApiIO(DefaultStacIO):
@@ -209,7 +212,12 @@ class StacApiIO(DefaultStacIO):
             if self.timeout is not None:
                 msg += f" Timeout: {self.timeout}"
             logger.debug(msg)
-            resp = self.session.send(prepped, timeout=self.timeout)
+            if REQUESTS_CA_BUNDLE:
+                resp = self.session.send(
+                    prepped, timeout=self.timeout, verify=REQUESTS_CA_BUNDLE
+                )
+            else:
+                resp = self.session.send(prepped, timeout=self.timeout)
         except Exception as err:
             logger.debug(err)
             raise APIError(str(err))
