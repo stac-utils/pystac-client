@@ -42,7 +42,7 @@ logger = logging.getLogger(__name__)
 
 Timeout = Union[float, Tuple[float, float], Tuple[float, None]]
 
-REQUESTS_CA_BUNDLE = os.environ.get("REQUESTS_CA_BUNDLE")
+CA_BUNDLE = os.environ.get("REQUESTS_CA_BUNDLE") or os.environ.get("CURL_CA_BUNDLE")
 
 
 class StacApiIO(DefaultStacIO):
@@ -97,6 +97,8 @@ class StacApiIO(DefaultStacIO):
         if max_retries:
             self.session.mount("http://", HTTPAdapter(max_retries=max_retries))
             self.session.mount("https://", HTTPAdapter(max_retries=max_retries))
+        if CA_BUNDLE:
+            self.session.verify = CA_BUNDLE
         self.timeout = timeout
         self.update(
             headers=headers, parameters=parameters, request_modifier=request_modifier
@@ -212,12 +214,7 @@ class StacApiIO(DefaultStacIO):
             if self.timeout is not None:
                 msg += f" Timeout: {self.timeout}"
             logger.debug(msg)
-            if REQUESTS_CA_BUNDLE:
-                resp = self.session.send(
-                    prepped, timeout=self.timeout, verify=REQUESTS_CA_BUNDLE
-                )
-            else:
-                resp = self.session.send(prepped, timeout=self.timeout)
+            resp = self.session.send(prepped, timeout=self.timeout)
         except Exception as err:
             logger.debug(err)
             raise APIError(str(err))
