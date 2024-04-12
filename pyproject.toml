@@ -53,7 +53,7 @@ dev = [
     "pytest~=8.0",
     "recommonmark~=0.7.1",
     "requests-mock~=1.12",
-    "ruff==0.3.5",
+    "ruff==0.3.6",
     "tomli~=2.0; python_version<'3.11'",
     "types-python-dateutil>=2.8.19,<2.10.0",
     "types-requests~=2.31.0",
