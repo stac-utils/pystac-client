@@ -17,7 +17,7 @@ import pystac
 import pystac.utils
 import pystac.validation
 from pystac import CatalogType, Collection
-from pystac.layout import HrefLayoutStrategy
+from pystac.layout import APILayoutStrategy, HrefLayoutStrategy
 from requests import Request
 
 from pystac_client._utils import Modifiable, call_modifier
@@ -62,6 +62,7 @@ class Client(pystac.Catalog, QueryablesMixin):
     """
 
     _stac_io: Optional[StacApiIO]
+    _fallback_strategy: HrefLayoutStrategy = APILayoutStrategy()
 
     def __init__(
         self,

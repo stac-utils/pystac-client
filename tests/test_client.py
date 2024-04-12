@@ -712,3 +712,43 @@ def test_non_recursion_on_fallback() -> None:
     catalog = Client.from_file(path)
     with pytest.warns(FallbackToPystac):
         [i for i in catalog.get_items()]
+
+
+@pytest.mark.vcr
+def test_fallback_strategy() -> None:
+    """Make sure links get recreated correctly using APILayoutStrategy."""
+
+    client = Client.open(
+        "https://planetarycomputer.microsoft.com/api/stac/v1/",
+    )
+    col = client.get_collection("landsat-c2-l2")
+    item = next(col.get_items())
+
+    item_href = item.self_href
+    col_href = col.self_href
+    root_href = client.self_href
+
+    col.links = []
+    item.links = []
+
+    client.add_child(col)
+    col.add_item(item)
+
+    assert col.self_href == col_href
+
+    assert (col_parent := col.get_single_link("parent"))
+    assert col_parent.href == root_href
+
+    assert (col_root := col.get_single_link("root"))
+    assert col_root.href == root_href
+
+    assert item.self_href == item_href
+
+    assert (item_col := item.get_single_link("collection"))
+    assert item_col.href == col_href
+
+    assert (item_parent := item.get_single_link("parent"))
+    assert item_parent.href == col_href
+
+    assert (item_root := item.get_single_link("root"))
+    assert item_root.href == root_href

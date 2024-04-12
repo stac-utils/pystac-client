@@ -14,7 +14,7 @@ from typing import (
 )
 
 import pystac
-import pystac.layout
+from pystac.layout import APILayoutStrategy, HrefLayoutStrategy
 
 from pystac_client._utils import Modifiable, call_modifier
 from pystac_client.conformance import ConformanceClasses
@@ -33,6 +33,7 @@ if TYPE_CHECKING:
 class CollectionClient(pystac.Collection, QueryablesMixin):
     modifier: Callable[[Modifiable], None]
     _stac_io: StacApiIO
+    _fallback_strategy: HrefLayoutStrategy = APILayoutStrategy()
 
     def __init__(
         self,
@@ -49,7 +50,7 @@ class CollectionClient(pystac.Collection, QueryablesMixin):
         providers: Optional[List[pystac.Provider]] = None,
         summaries: Optional[pystac.Summaries] = None,
         assets: Optional[Dict[str, pystac.Asset]] = None,
-        strategy: Optional[pystac.layout.HrefLayoutStrategy] = None,
+        strategy: Optional[HrefLayoutStrategy] = None,
         *,
         modifier: Optional[Callable[[Modifiable], None]] = None,
         **kwargs: Dict[str, Any],
