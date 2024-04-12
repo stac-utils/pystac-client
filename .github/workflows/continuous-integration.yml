@@ -123,7 +123,7 @@ jobs:
       - name: Download uv
         run: curl -LsSf https://astral.sh/uv/install.sh | sh
       - name: Install
-        run: uv pip install .[dev]
+        run: uv pip install --system .[dev]
       - name: Install pystac from main
         run: uv pip install --system --force-reinstall git+https://github.com/stac-utils/pystac.git
       - name: Run pytest
