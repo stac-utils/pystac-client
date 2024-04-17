@@ -209,7 +209,10 @@ class StacApiIO(DefaultStacIO):
             if self.timeout is not None:
                 msg += f" Timeout: {self.timeout}"
             logger.debug(msg)
-            resp = self.session.send(prepped, timeout=self.timeout)
+            send_kwargs = self.session.merge_environment_settings(
+                prepped.url, proxies={}, stream=None, verify=True, cert=None
+            )
+            resp = self.session.send(prepped, timeout=self.timeout, **send_kwargs)
         except Exception as err:
             logger.debug(err)
             raise APIError(str(err))

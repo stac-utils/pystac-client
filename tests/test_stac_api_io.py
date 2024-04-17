@@ -3,6 +3,7 @@ from pathlib import Path
 from urllib.parse import parse_qs, urlsplit
 
 import pytest
+from pytest import MonkeyPatch
 from requests_mock.mocker import Mocker
 
 from pystac_client.exceptions import APIError
@@ -266,3 +267,10 @@ class TestSTAC_IOOverride:
         stac_api_io = StacApiIO(timeout=42)
         response = stac_api_io.read_text(STAC_URLS["PLANETARY-COMPUTER"])
         assert isinstance(response, str)
+
+    @pytest.mark.parametrize("name", ("REQUESTS_CA_BUNDLE", "CURL_CA_BUNDLE"))
+    def test_respect_env_for_certs(self, monkeypatch: MonkeyPatch, name: str) -> None:
+        monkeypatch.setenv(name, "/not/a/real/file")
+        stac_api_io = StacApiIO()
+        with pytest.raises(APIError):
+            stac_api_io.request("https://earth-search.aws.element84.com/v1/")
