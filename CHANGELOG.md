@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Updated to **pystac** v1.10.0 [#661](https://github.com/stac-utils/pystac-client/pull/661)
 - Use [uv](https://github.com/astral-sh/uv) for CI [#663](https://github.com/stac-utils/pystac-client/pull/663)
+- use `APILayoutStrategy` as fallback strategy [#666](https://github.com/stac-utils/pystac-client/pull/666)
 
 ## [v0.7.6]
 
