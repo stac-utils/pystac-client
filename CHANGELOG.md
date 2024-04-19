@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Use [uv](https://github.com/astral-sh/uv) for CI [#663](https://github.com/stac-utils/pystac-client/pull/663)
 - use `APILayoutStrategy` as fallback strategy [#666](https://github.com/stac-utils/pystac-client/pull/666)
 
+### Fixed
+
+- Respect the `REQUESTS_CA_BUNDLE` and `CURL_CA_BUNDLE` environment variables when sending requests [#669](https://github.com/stac-utils/pystac-client/pull/669)
+
 ## [v0.7.6]
 
 ### Fixed
