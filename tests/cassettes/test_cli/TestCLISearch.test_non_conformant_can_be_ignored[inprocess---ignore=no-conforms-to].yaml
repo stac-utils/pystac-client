@@ -9,7 +9,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.31.0
+      - python-requests/2.28.2
     method: GET
     uri: https://earth-search.aws.element84.com/v0
   response:
@@ -28,21 +28,21 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 28 Feb 2024 13:33:48 GMT
+      - Fri, 19 Apr 2024 12:16:15 GMT
       Via:
-      - 1.1 30ea845097208edbc19305c535a5be98.cloudfront.net (CloudFront)
+      - 1.1 5539e869b7b6ea60eddee5f69c9a0d9c.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - 6HaTtCTPvlAlmNLJ4IuaPjAyCqi59UbkOtMVuhI8jv3hSUXBKNYFog==
+      - evTiGrEN17oqwM72illKx9CzIslXP-Ox0LtD6o8Ipu07Yr_CyrWTXg==
       X-Amz-Cf-Pop:
       - DEN52-C1
       X-Amzn-Trace-Id:
-      - Root=1-65df363c-19e198b97b08f0885b513e15;Parent=6f321ca4de289cf3;Sampled=0;lineage=308471e4:0
+      - Root=1-6622608f-4c446c832323f381196baadf;Parent=7d6d58af5243c81d;Sampled=0;lineage=308471e4:0
       X-Cache:
       - Miss from cloudfront
       x-amz-apigw-id:
-      - T2VpeHwUvHcEkZw=
+      - WeQGgHbuPHcEhAA=
       x-amzn-RequestId:
-      - e249799a-ab2e-4c8b-b69b-28eb11fccf59
+      - a82fc2f7-0588-4d7e-a648-a6178765560f
     status:
       code: 200
       message: OK
@@ -60,7 +60,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - python-requests/2.31.0
+      - python-requests/2.28.2
     method: POST
     uri: https://earth-search.aws.element84.com/v0/search
   response:
@@ -99,21 +99,21 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 28 Feb 2024 13:33:48 GMT
+      - Fri, 19 Apr 2024 12:16:16 GMT
       Via:
-      - 1.1 30ea845097208edbc19305c535a5be98.cloudfront.net (CloudFront)
+      - 1.1 5539e869b7b6ea60eddee5f69c9a0d9c.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - huDDtHRqZj2DAfwj31JdoQ2MYhlVukpAatEHD06vK3-T2jjNd8sJBg==
+      - 2yFdkxCly9ph7rGJMpkjkXnC7oM03RI_xwOAPqiKmEK_d7cgFCq5Fg==
       X-Amz-Cf-Pop:
       - DEN52-C1
       X-Amzn-Trace-Id:
-      - Root=1-65df363c-79bfc247160a6d3d70a37f63;Parent=22a0d38b2e51fa83;Sampled=0;lineage=308471e4:0
+      - Root=1-6622608f-5f9b98cd632e5de8090ea535;Parent=575aa78022ed3a3d;Sampled=0;lineage=308471e4:0
       X-Cache:
       - Miss from cloudfront
       x-amz-apigw-id:
-      - T2VpfHODPHcEgBA=
+      - WeQGhHC1vHcEaDw=
       x-amzn-RequestId:
-      - 594bad43-ee8f-43c9-82f8-8b8f2c0a7b59
+      - f7cef2cc-2483-49de-8cc9-909f74e51412
     status:
       code: 200
       message: OK
