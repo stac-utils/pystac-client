@@ -9,7 +9,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.31.0
+      - python-requests/2.28.2
     method: GET
     uri: https://earth-search.aws.element84.com/v1
   response:
@@ -24,15 +24,15 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Wed, 28 Feb 2024 13:33:50 GMT
+      - Fri, 19 Apr 2024 12:16:18 GMT
       Via:
-      - 1.1 e466a87164c3f9591e3c8ac45a4b2074.cloudfront.net (CloudFront)
+      - 1.1 bcab77f1ffe9d73bbe5ff7a973cd0160.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - XaGuZYwmpFgbTM6LOFMEwjrlhDuKSZmYxYp0NFzagUl3Sdc_u_q9Eg==
+      - 2uez1qoUZ4bz8xOxmFXnqigHg8kNffk4qHG4LuR1btG4Snldsp1czw==
       X-Amz-Cf-Pop:
       - DEN52-C1
       X-Amzn-Trace-Id:
-      - Root=1-65df363e-1865cc4c4419620a54171f6f;Parent=42f506e9706eabdf;Sampled=0;lineage=9e2884e9:0
+      - Root=1-66226092-20b922fd33ddd16034833a1a;Parent=6a66612f6967c16c;Sampled=0;lineage=9e2884e9:0
       X-Cache:
       - Miss from cloudfront
       access-control-allow-origin:
@@ -40,11 +40,11 @@ interactions:
       etag:
       - W/"ca6-5I/CUrQ2ovlK692Nso8DlOXmBgs"
       x-amz-apigw-id:
-      - T2Vp1Hp2vHcEGYA=
+      - WeQG8F_tvHcEI0A=
       x-amzn-Remapped-content-length:
       - '3238'
       x-amzn-RequestId:
-      - be925c31-7370-4b2c-9eb5-3e52503957cc
+      - 04075c45-eb9a-494f-b2b4-708256e63f09
       x-powered-by:
       - Express
     status:
@@ -60,7 +60,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.31.0
+      - python-requests/2.28.2
     method: GET
     uri: https://earth-search.aws.element84.com/v1/collections
   response:
@@ -440,15 +440,15 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Wed, 28 Feb 2024 13:33:50 GMT
+      - Fri, 19 Apr 2024 12:16:18 GMT
       Via:
-      - 1.1 e466a87164c3f9591e3c8ac45a4b2074.cloudfront.net (CloudFront)
+      - 1.1 bcab77f1ffe9d73bbe5ff7a973cd0160.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - NHiFlYcAXCEEwrJuKsDhaCcQ9RDx__Iez2oO_Eq4KxLxhEe_herrTw==
+      - laXR7UbUMsVueAbi3M2xL2_SlSO8QqropWVIOrYeKDJiF6BTp_vMtQ==
       X-Amz-Cf-Pop:
       - DEN52-C1
       X-Amzn-Trace-Id:
-      - Root=1-65df363e-4c510fa33b27b4c91ff2eb5a;Parent=76bee76f2e46978d;Sampled=0;lineage=9e2884e9:0
+      - Root=1-66226092-0023a34e3f2028655abf919e;Parent=3b7b34841b21f595;Sampled=0;lineage=9e2884e9:0
       X-Cache:
       - Miss from cloudfront
       access-control-allow-origin:
@@ -456,11 +456,11 @@ interactions:
       etag:
       - W/"111da-kesa2bXEvhVemV0iVMsLq3nWZAE"
       x-amz-apigw-id:
-      - T2Vp2H_KvHcEM7g=
+      - WeQG8HgaPHcEuVQ=
       x-amzn-Remapped-content-length:
       - '70106'
       x-amzn-RequestId:
-      - a15a3bb0-e43c-484a-8415-6b694b14a6d5
+      - a6f7836f-849d-4c46-80d8-83722c5d01be
       x-powered-by:
       - Express
     status:

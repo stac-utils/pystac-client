@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [v0.7.7]
+
 ### Changed
 
 - Updated to **pystac** v1.10.0 [#661](https://github.com/stac-utils/pystac-client/pull/661)
@@ -345,7 +347,7 @@ are in a single HTTP session, handle pagination and respects conformance
 
 ### Changed
 
-- CLI: pass in heades as list of KEY=VALUE pairs
+- CLI: pass in headers as list of KEY=VALUE pairs
 
 ### Fixed
 
@@ -356,7 +358,8 @@ are in a single HTTP session, handle pagination and respects conformance
 
 Initial release.
 
-[Unreleased]: <https://github.com/stac-utils/pystac-client/compare/v0.7.6...main>
+[Unreleased]: <https://github.com/stac-utils/pystac-client/compare/v0.7.7...main>
+[v0.7.7]: <https://github.com/stac-utils/pystac-client/compare/v0.7.6...v0.7.7>
 [v0.7.6]: <https://github.com/stac-utils/pystac-client/compare/v0.7.5...v0.7.6>
 [v0.7.5]: <https://github.com/stac-utils/pystac-client/compare/v0.7.4...v0.7.5>
 [v0.7.4]: <https://github.com/stac-utils/pystac-client/compare/v0.7.3...v0.7.4>

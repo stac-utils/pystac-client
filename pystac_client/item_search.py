@@ -42,8 +42,7 @@ DATETIME_REGEX = re.compile(
 
 class GeoInterface(Protocol):
     @property
-    def __geo_interface__(self) -> Dict[str, Any]:
-        ...
+    def __geo_interface__(self) -> Dict[str, Any]: ...
 
 
 DatetimeOrTimestamp = Optional[Union[datetime_, str]]
