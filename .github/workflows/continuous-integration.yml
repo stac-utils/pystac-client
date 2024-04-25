@@ -27,6 +27,9 @@ jobs:
           - ubuntu-latest
           - windows-latest
           - macos-latest
+        exclude:  # macos-latest is arm64, which doesn't have this python
+          - os: macos-latest
+            python-version: "3.9"
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python ${{ matrix.python-version }}
