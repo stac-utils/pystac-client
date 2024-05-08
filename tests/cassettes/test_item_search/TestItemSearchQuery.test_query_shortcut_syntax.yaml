@@ -14,13 +14,13 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - python-requests/2.31.0
+      - python-requests/2.28.2
     method: POST
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/search
   response:
     body:
       string: !!binary |
-        H4sIAHY/8mQC/+2dbW/bOBKA/4phYPvlbIkvEknlEBx2s2ixB+zuoe19uSIwFJt21LMtQZKT5hb9
+        H4sIAPFgImYC/+2dbW/bOBKA/4phYPvlbIkvEknlEBx2s2ixB+zuoe19uSIwFJt21LMtQZKT5hb9
         7zekJJuWFDtN4viNRVvEFE0Oh0Py8Xg4+aubPySye9F9L8N8kcqreDqVwzyK591ed1yUZd2LL391
         oxHUussHs4HnIU6ZN8juB1gMEEMDggjGiATwnpub+BvU73PqYIoE4j2POkHAMA96qhD5DGPc8zwH
         MSbwda8mADQxjeb/LfpM5RSeDE2ZytphkkyjYagK3a+ZfnKbyjE8uc3zJLtw3WQazmUepg/DeJYs
@@ -81,7 +81,7 @@ interactions:
       Content-Type:
       - application/geo+json
       Date:
-      - Fri, 01 Sep 2023 19:45:58 GMT
+      - Fri, 19 Apr 2024 12:17:53 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
@@ -91,7 +91,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20230901T194558Z-cguw4bv4rt4gv3uycqrdt607zg000000031g00000000v483
+      - 20240419T121753Z-r1d64b84798jr4bwmduznny3h400000000zg000000001et5
     status:
       code: 200
       message: OK
@@ -110,13 +110,13 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - python-requests/2.31.0
+      - python-requests/2.28.2
     method: POST
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/search
   response:
     body:
       string: !!binary |
-        H4sIAHc/8mQC/+2dbW/bOBKA/4phYPvlbIkvEknlEBx2s2ixB+zuoe19uSIwFJt21LMtQZKT5hb9
+        H4sIAPJgImYC/+2dbW/bOBKA/4phYPvlbIkvEknlEBx2s2ixB+zuoe19uSIwFJt21LMtQZKT5hb9
         7zekJJuWFDtN4viNRVvEFE0Oh0Py8Xg4+aubPySye9F9L8N8kcqreDqVwzyK591ed1yUZd2LL391
         oxHUussHs4HnIU6ZN8juB1gMEEMDggjGiATwnpub+BvU73PqYIoE4j2POkHAMA96qhD5DGPc8zwH
         MSbwda8mADQxjeb/LfpM5RSeDE2ZytphkkyjYagK3a+ZfnKbyjE8uc3zJLtw3WQazmUepg/DeJYs
@@ -164,26 +164,30 @@ interactions:
         Hw7W8BGu8kUDvBfkzIVfj3wWgrwMofHWzHO4kX1Zd3qcCH3dxNm9g93Lu8nAkIa36pz8P40v7seQ
         hgAA
     headers:
+      Accept-Ranges:
+      - bytes
       Access-Control-Allow-Credentials:
       - 'true'
       Access-Control-Allow-Origin:
       - '*'
-      Content-Encoding:
-      - gzip
+      Connection:
+      - keep-alive
       Content-Length:
       - '2625'
       Content-Type:
       - application/geo+json
       Date:
-      - Fri, 01 Sep 2023 19:45:58 GMT
+      - Fri, 19 Apr 2024 12:17:54 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
-      Vary:
-      - Accept-Encoding
-      X-Azure-Ref:
-      - 0dj/yZAAAAABWxNvDB3ckTJycEoGaqdL8REVOMzAxMDAwMTA5MDExADkyN2FiZmE2LTE5ZjYtNGFmMS1hMDlkLWM5NTlkOWExZTY0NA==
       X-Cache:
       - CONFIG_NOCACHE
+      content-encoding:
+      - gzip
+      vary:
+      - Accept-Encoding
+      x-azure-ref:
+      - 20240419T121753Z-r1d64b84798lqbsjb7447xnesc000000013000000000208v
     status:
       code: 200
       message: OK

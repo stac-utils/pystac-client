@@ -9,7 +9,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.31.0
+      - python-requests/2.28.2
     method: GET
     uri: https://earth-search.aws.element84.com/v0
   response:
@@ -28,26 +28,26 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 01 Sep 2023 19:44:38 GMT
+      - Fri, 19 Apr 2024 12:16:15 GMT
       Via:
-      - 1.1 f9a3ca802cab4ac43bafc4dd8667ef98.cloudfront.net (CloudFront)
+      - 1.1 5539e869b7b6ea60eddee5f69c9a0d9c.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - s0bors_7PQuckmf2Kxmn-sbmR9SuHVPJjOxE2cKR_mAuep6ClvLfuA==
+      - evTiGrEN17oqwM72illKx9CzIslXP-Ox0LtD6o8Ipu07Yr_CyrWTXg==
       X-Amz-Cf-Pop:
       - DEN52-C1
       X-Amzn-Trace-Id:
-      - Root=1-64f23f26-4d81223c1cef028c375fc2ab;Sampled=0;lineage=308471e4:0
+      - Root=1-6622608f-4c446c832323f381196baadf;Parent=7d6d58af5243c81d;Sampled=0;lineage=308471e4:0
       X-Cache:
       - Miss from cloudfront
       x-amz-apigw-id:
-      - Kl7OFEbZPHcFewQ=
+      - WeQGgHbuPHcEhAA=
       x-amzn-RequestId:
-      - 14555b8c-2d58-40a7-9558-a2a816c74fbc
+      - a82fc2f7-0588-4d7e-a648-a6178765560f
     status:
       code: 200
       message: OK
 - request:
-    body: '{"limit": 1, "collections": ["sentinel-s2-l2a-cogs"]}'
+    body: '{"collections": ["sentinel-s2-l2a-cogs"], "limit": 1}'
     headers:
       Accept:
       - '*/*'
@@ -60,7 +60,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - python-requests/2.31.0
+      - python-requests/2.28.2
     method: POST
     uri: https://earth-search.aws.element84.com/v0/search
   response:
@@ -99,21 +99,21 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 01 Sep 2023 19:44:39 GMT
+      - Fri, 19 Apr 2024 12:16:16 GMT
       Via:
-      - 1.1 f9a3ca802cab4ac43bafc4dd8667ef98.cloudfront.net (CloudFront)
+      - 1.1 5539e869b7b6ea60eddee5f69c9a0d9c.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - vhjX4YmtLbkqeQ-Oha3WGWrVdcDreYX0HOc05LObLMTVF1cHN-uV2A==
+      - 2yFdkxCly9ph7rGJMpkjkXnC7oM03RI_xwOAPqiKmEK_d7cgFCq5Fg==
       X-Amz-Cf-Pop:
       - DEN52-C1
       X-Amzn-Trace-Id:
-      - Root=1-64f23f26-14922751020f5f7b4857fb9b;Sampled=0;lineage=308471e4:0
+      - Root=1-6622608f-5f9b98cd632e5de8090ea535;Parent=575aa78022ed3a3d;Sampled=0;lineage=308471e4:0
       X-Cache:
       - Miss from cloudfront
       x-amz-apigw-id:
-      - Kl7OGGivvHcFZZA=
+      - WeQGhHC1vHcEaDw=
       x-amzn-RequestId:
-      - b5f2df4d-661f-4d5d-8b75-9b32c363484c
+      - f7cef2cc-2483-49de-8cc9-909f74e51412
     status:
       code: 200
       message: OK

@@ -14,13 +14,13 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - python-requests/2.31.0
+      - python-requests/2.28.2
     method: POST
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/search
   response:
     body:
       string: !!binary |
-        H4sIAHc/8mQC/+2daW/jSJKG/4phYPrL2lLeRy0Ki5kadGMWmJlFd++XLRiGbKdt9eqCRJe7dtD/
+        H4sIAPJgImYC/+2daW/jSJKG/4phYPrL2lLeRy0Ki5kadGMWmJlFd++XLRiGbKdt9eqCRJe7dtD/
         fTN5Jg+TkmyJVxhdDTlFJTMjg8lH4YiX/7oMvm/M5afLH80seNmaL+vFwtwH8/Xq8uryMWrbXX76
         +q/L+YM96ltwu7xlDEkq2O3u9RarWyTQLUEEY0S0/czd3fp3e/y1pBNMkULyitGJ1gJLfeUaERcY
         4yvGJkgIhW+uCgOwXSzmq/+Nzrk1C/vOvT+m+OjZZrOY389c4/S3XfjO89Y82neeg2Cz+zSdbhaz
@@ -120,7 +120,7 @@ interactions:
       Content-Type:
       - application/geo+json
       Date:
-      - Fri, 01 Sep 2023 19:45:59 GMT
+      - Fri, 19 Apr 2024 12:17:55 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
@@ -130,7 +130,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20230901T194559Z-gm6zqefc797mtcdhyq4ezdqbg8000000032g000000006nxn
+      - 20240419T121754Z-r1d64b84798k9kgfgqm60ccvdc000000016g00000000083z
     status:
       code: 200
       message: OK
@@ -149,13 +149,13 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - python-requests/2.31.0
+      - python-requests/2.28.2
     method: POST
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/search
   response:
     body:
       string: !!binary |
-        H4sIAHg/8mQC/+2daW/jSJKG/4phYPrL2lLeRy0Ki5kadGMWmJlFd++XLRiGbKdt9eqCRJe7dtD/
+        H4sIAPNgImYC/+2daW/jSJKG/4phYPrL2lLeRy0Ki5kadGMWmJlFd++XLRiGbKdt9eqCRJe7dtD/
         fTN5Jg+TkmyJVxhdDTlFJTMjg8lH4YiX/7oMvm/M5afLH80seNmaL+vFwtwH8/Xq8uryMWrbXX76
         +q/L+YM96ltwu7xlDEkq2O3u9RarWyTQLUEEY0S0/czd3fp3e/y1pBNMkULyitGJ1gJLfeUaERcY
         4yvGJkgIhW+uCgOwXSzmq/+Nzrk1C/vOvT+m+OjZZrOY389c4/S3XfjO89Y82neeg2Cz+zSdbhaz
@@ -255,7 +255,7 @@ interactions:
       Content-Type:
       - application/geo+json
       Date:
-      - Fri, 01 Sep 2023 19:46:00 GMT
+      - Fri, 19 Apr 2024 12:17:55 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
@@ -265,7 +265,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20230901T194600Z-2v13twu0fp4xt53phqag2nvrc4000000032000000000hhe8
+      - 20240419T121755Z-r1d64b84798zmn9fm1xu8a701n000000012g0000000007v0
     status:
       code: 200
       message: OK

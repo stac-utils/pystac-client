@@ -42,8 +42,7 @@ DATETIME_REGEX = re.compile(
 
 class GeoInterface(Protocol):
     @property
-    def __geo_interface__(self) -> Dict[str, Any]:
-        ...
+    def __geo_interface__(self) -> Dict[str, Any]: ...
 
 
 DatetimeOrTimestamp = Optional[Union[datetime_, str]]
@@ -671,7 +670,7 @@ class ItemSearch:
         resp = self._stac_io.read_json(self.url, method=self.method, parameters=params)
         found = None
         if "context" in resp:
-            found = resp["context"]["matched"]
+            found = resp["context"].get("matched", None)
         elif "numberMatched" in resp:
             found = resp["numberMatched"]
         if found is None:

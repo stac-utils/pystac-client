@@ -17,6 +17,7 @@ import pystac
 import pystac.utils
 import pystac.validation
 from pystac import CatalogType, Collection
+from pystac.layout import APILayoutStrategy, HrefLayoutStrategy
 from requests import Request
 
 from pystac_client._utils import Modifiable, call_modifier
@@ -61,6 +62,7 @@ class Client(pystac.Catalog, QueryablesMixin):
     """
 
     _stac_io: Optional[StacApiIO]
+    _fallback_strategy: HrefLayoutStrategy = APILayoutStrategy()
 
     def __init__(
         self,
@@ -71,6 +73,7 @@ class Client(pystac.Catalog, QueryablesMixin):
         extra_fields: Optional[Dict[str, Any]] = None,
         href: Optional[str] = None,
         catalog_type: CatalogType = CatalogType.ABSOLUTE_PUBLISHED,
+        strategy: Optional[HrefLayoutStrategy] = None,
         *,
         modifier: Optional[Callable[[Modifiable], None]] = None,
         **kwargs: Dict[str, Any],
@@ -83,6 +86,7 @@ class Client(pystac.Catalog, QueryablesMixin):
             extra_fields=extra_fields,
             href=href,
             catalog_type=catalog_type,
+            strategy=strategy,
             **kwargs,
         )
         self.modifier = modifier
@@ -438,12 +442,14 @@ class Client(pystac.Catalog, QueryablesMixin):
                 call_modifier(self.modifier, collection)
                 yield collection
 
-    def get_items(self, *ids: str, recursive: bool = False) -> Iterator["Item_Type"]:
+    def get_items(
+        self, *ids: str, recursive: Optional[bool] = None
+    ) -> Iterator["Item_Type"]:
         """Return all items of this catalog.
 
         Args:
             ids: Zero or more item ids to find.
-            recursive: unused
+            recursive: unused in pystac-client, but needed for falling back to pystac
 
         Return:
             Iterator[Item]: Iterator of items whose parent is this
@@ -454,7 +460,9 @@ class Client(pystac.Catalog, QueryablesMixin):
             yield from search.items()
         else:
             self._warn_about_fallback("ITEM_SEARCH")
-            for item in super().get_items(*ids, recursive=True):
+            for item in super().get_items(
+                *ids, recursive=recursive is None or recursive
+            ):
                 call_modifier(self.modifier, item)
                 yield item
 
@@ -514,8 +522,8 @@ class Client(pystac.Catalog, QueryablesMixin):
                 total number of Items returned from the :meth:`items`,
                 :meth:`item_collections`, and :meth:`items_as_dicts methods`. The client
                 will continue to request pages of items until the number of max items is
-                reached. This parameter defaults to 100. Setting this to ``None`` will
-                allow iteration over a possibly very large number of results.
+                reached. Setting this to ``None`` will allow iteration over a possibly
+                very large number of results.
             limit: A recommendation to the service as to the number of items to return
                 *per page* of results. Defaults to 100.
             ids: List of one or more Item ids to filter on.

@@ -13,13 +13,13 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - python-requests/2.31.0
+      - python-requests/2.28.2
     method: POST
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/search
   response:
     body:
       string: !!binary |
-        H4sIAHU/8mQC/+2dbW/bOBKA/4phYPvlbIkvEkn5EBx2s2ixB+x20fa+XBAYik3b6sqSIMl5uUX/
+        H4sIAPBgImYC/+2dbW/bOBKA/4phYPvlbIkvEkn5EBx2s2ixB+x20fa+XBAYik3b6sqSIMl5uUX/
         +w0pyaJlx06bOLZjFU1hUxQ1nBmSjyZD9u9u/pDI7qD7Xvr5IpWXcRjKUR7EUbfXnRRlWXdw9Xc3
         GEOt23w4HzoO4pQ5w+xuiMUQMTQkiGCMiAf33NzE91C/z6mFKRKI9xxqeR7D3OupQuQyjHHPcSzE
         mMDXvYYA0EQYRH8Vz0xlCFdGpkxlbT9JwmDkq0L7a6avzFI5gSuzPE+ygW0noR/J3E8fRvE8WeQy
@@ -63,26 +63,30 @@ interactions:
         Qz/0NNH5eh1jI3mf7yQtcMpZrJj7z4+fvzyPvDIw9mimmDweaz8PYQ3PuwOMVjEdF45X4HmRe6RO
         WzbATelYO6AaTfFfMip7M9C2fzrKHRHcPv8xpXqBFf4PztVArCFxAAA=
     headers:
+      Accept-Ranges:
+      - bytes
       Access-Control-Allow-Credentials:
       - 'true'
       Access-Control-Allow-Origin:
       - '*'
-      Content-Encoding:
-      - gzip
+      Connection:
+      - keep-alive
       Content-Length:
       - '2435'
       Content-Type:
       - application/geo+json
       Date:
-      - Fri, 01 Sep 2023 19:45:57 GMT
+      - Fri, 19 Apr 2024 12:17:52 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
-      Vary:
-      - Accept-Encoding
-      X-Azure-Ref:
-      - 0dT/yZAAAAABCQhzAlwnFQJz/xzs83JBHREVOMzAxMDAwMTA5MDQ3ADkyN2FiZmE2LTE5ZjYtNGFmMS1hMDlkLWM5NTlkOWExZTY0NA==
       X-Cache:
       - CONFIG_NOCACHE
+      content-encoding:
+      - gzip
+      vary:
+      - Accept-Encoding
+      x-azure-ref:
+      - 20240419T121752Z-r1d64b84798k9kgfgqm60ccvdc000000013g000000001k6n
     status:
       code: 200
       message: OK
@@ -101,13 +105,13 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - python-requests/2.31.0
+      - python-requests/2.28.2
     method: POST
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/search
   response:
     body:
       string: !!binary |
-        H4sIAHU/8mQC/+2dW4+jOBaA/0oUafplU2BsMCar0kpTq2nNSjM96umnbUURSZyEHgIISF121P99
+        H4sIAPBgImYC/+2dW4+jOBaA/0oUafplU2BsMCar0kpTq2nNSjM96umnbUURSZyEHgIISF121P99
         jw0EB0glqVQ6N0pdpZQx9rnF+Tg6dfrvbvoS8W6/+wt302XMH0Lf5+PUC4NurzvNxpJu/+vfXW8C
         sx7T4WJomsgmlAwTPjTYEFE0xMhgyDFM8cJBGFtw82gUPsONdzbRDIdgQnom0RyHYmz35KDhGA7u
         maaGKMU2HvQqosAavhf8le0ecx+ujFXp8tluFPne2BWD+rdEXpnHfApX5mkaJX1dj3w34Kkbv4zD
@@ -149,26 +153,30 @@ interactions:
         oPV6jywanazOI3uwE75SOE3YWMafeCuFf/Eg16YvXb8ruVXQLVwm12MNoZFqjV3+d70zIvvDt8nN
         C7j0fxBHTtHhcgAA
     headers:
+      Accept-Ranges:
+      - bytes
       Access-Control-Allow-Credentials:
       - 'true'
       Access-Control-Allow-Origin:
       - '*'
-      Content-Encoding:
-      - gzip
+      Connection:
+      - keep-alive
       Content-Length:
       - '2292'
       Content-Type:
       - application/geo+json
       Date:
-      - Fri, 01 Sep 2023 19:45:57 GMT
+      - Fri, 19 Apr 2024 12:17:52 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
-      Vary:
-      - Accept-Encoding
-      X-Azure-Ref:
-      - 0dT/yZAAAAACHjPrLZQQAQL2GvhaIauF8REVOMzAxMDAwMTA5MDQ3ADkyN2FiZmE2LTE5ZjYtNGFmMS1hMDlkLWM5NTlkOWExZTY0NA==
       X-Cache:
       - CONFIG_NOCACHE
+      content-encoding:
+      - gzip
+      vary:
+      - Accept-Encoding
+      x-azure-ref:
+      - 20240419T121752Z-r1d64b84798k9kgfgqm60ccvdc000000013g000000001k72
     status:
       code: 200
       message: OK

@@ -12,10 +12,10 @@ license = { text = "Apache-2.0" }
 classifiers = [
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
     "Operating System :: OS Independent",
     "Natural Language :: English",
     "Development Status :: 4 - Beta",
@@ -28,7 +28,7 @@ classifiers = [
 requires-python = ">=3.8"
 dependencies = [
     "requests>=2.28.2",
-    "pystac[validation]>=1.8.2",
+    "pystac[validation]>=1.10.0",
     "python-dateutil>=2.8.2",
 ]
 dynamic = ["version"]
@@ -38,39 +38,39 @@ stac-client = "pystac_client.cli:cli"
 
 [project.optional-dependencies]
 dev = [
-    "black~=23.3",
+    "black~=24.0",
     "codespell~=2.2.4",
     "coverage~=7.2",
     "doc8~=1.1.1",
-    "importlib-metadata~=6.7",
+    "importlib-metadata~=7.0",
     "mypy~=1.2",
     "orjson~=3.8",
     "pre-commit~=3.2",
     "pytest-benchmark~=4.0.0",
     "pytest-console-scripts~=1.4.0",
-    "pytest-cov~=4.1.0",
+    "pytest-cov~=5.0",
     "pytest-recording~=0.13",
-    "pytest~=7.4",
+    "pytest~=8.0",
     "recommonmark~=0.7.1",
-    "requests-mock~=1.11.0",
-    "ruff==0.1.2",
+    "requests-mock~=1.12",
+    "ruff==0.4.3",
     "tomli~=2.0; python_version<'3.11'",
-    "types-python-dateutil~=2.8.19",
+    "types-python-dateutil>=2.8.19,<2.10.0",
     "types-requests~=2.31.0",
 ]
 docs = [
     "Sphinx~=6.2",
     "boto3~=1.26",
     "cartopy~=0.21",
-    "geojson~=3.0.1",
+    "geojson~=3.1.0",
     "geopandas~=0.14.0",
     "geoviews~=1.9",
-    "hvplot~=0.9.0",
+    "hvplot~=0.10.0",
     "ipykernel~=6.22",
     "ipython~=8.12",
     "jinja2<4.0",
     "matplotlib~=3.8",
-    "myst-parser~=2.0",
+    "myst-parser~=3.0",
     "nbsphinx~=0.9",
     "pydata-sphinx-theme~=0.13",
     "pygeoif~=1.0",
@@ -107,7 +107,7 @@ select = ["E", "F", "W", "I"]
 
 [tool.pytest.ini_options]
 markers = "vcr: records network activity"
-addopts = "--benchmark-skip -Werror --block-network"
+addopts = "--benchmark-skip --block-network"
 
 [tool.mypy]
 show_error_codes = true

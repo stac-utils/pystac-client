@@ -6,6 +6,11 @@ on:
       - main
   pull_request:
 
+concurrency:
+  # Cancel running job if another commit is pushed to the branch
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     name: build
@@ -14,23 +19,31 @@ jobs:
       fail-fast: false
       matrix:
         python-version:
-          - "3.8"
           - "3.9"
           - "3.10"
           - "3.11"
+          - "3.12"
         os:
           - ubuntu-latest
           - windows-latest
           - macos-latest
+        exclude:  # macos-latest is arm64, which doesn't have this python
+          - os: macos-latest
+            python-version: "3.9"
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-          cache: "pip"
+      - name: Download uv (non-Windows)
+        if: ${{ runner.os != 'Windows' }}
+        run: curl -LsSf https://astral.sh/uv/install.sh | sh
+      - name: Download uv (Windows)
+        if: ${{ runner.os == 'Windows' }}
+        run: irm https://astral.sh/uv/install.ps1 | iex
       - name: Install package with dev requirements
-        run: pip install .[dev]
+        run: uv pip install --system .[dev]
       - name: Run pre-commit
         run: pre-commit run --all-files
       - name: Run pytest
@@ -38,7 +51,7 @@ jobs:
       - name: Run coverage
         run: coverage xml
       - name: Upload All coverage to Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           file: ./coverage.xml
@@ -49,16 +62,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: 3.9
-          cache: "pip"
-      - name: Install with dev requirements
-        run: pip install .[dev]
-      - name: Install minimum requirements
-        run: ./scripts/install-min-requirements
-      - name: Test
-        run: ./scripts/test
+      - name: Download uv
+        run: curl -LsSf https://astral.sh/uv/install.sh | sh
+      - name: Install dev requirements
+        run: uv pip install --system .[dev]
+      - name: Install with min requirements
+        run: uv pip install --system --resolution=lowest-direct --reinstall .
+      - name: Run pytest
+        run: pytest -Werror -s --block-network
 
   docs:
     name: docs
@@ -70,7 +84,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Setup Conda Environment
-        uses: conda-incubator/setup-miniconda@v2.2.0
+        uses: conda-incubator/setup-miniconda@v3.0.4
         with:
           miniforge-variant: Mambaforge
           miniforge-version: latest
@@ -88,16 +102,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: 3.9
-          cache: "pip"
-      - name: Install
-        run: pip install .[dev]
+      - name: Download uv
+        run: curl -LsSf https://astral.sh/uv/install.sh | sh
+      - name: Install with dev requirements
+        run: uv pip install --system --pre .[dev]
       - name: Install any pre-releases of pystac
-        run: pip install -U --pre pystac
-      - name: Test
-        run: ./scripts/test
+        run: uv pip install --system -U --pre pystac
+      - name: Run pytest
+        run: pytest -Werror -s --block-network
 
   upstream:
     name: upstream
@@ -105,27 +120,29 @@ jobs:
     if: github.event_name != 'pull_request'
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: 3.9
-          cache: "pip"
+      - name: Download uv
+        run: curl -LsSf https://astral.sh/uv/install.sh | sh
       - name: Install
-        run: pip install .[dev]
+        run: uv pip install --system .[dev]
       - name: Install pystac from main
-        run: pip install --force-reinstall git+https://github.com/stac-utils/pystac.git
-      - name: Test
-        run: ./scripts/test
+        run: uv pip install --system --force-reinstall git+https://github.com/stac-utils/pystac.git
+      - name: Run pytest
+        run: pytest -Werror -s --block-network
 
   dev-and-docs-requirements:
     name: dev and docs requirements check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: 3.9
-          cache: "pip"
+      - name: Download uv
+        run: curl -LsSf https://astral.sh/uv/install.sh | sh
       - name: Install geos
         run: sudo apt -y install libgeos-dev
       - name: Install
-        run: pip install .[dev,docs]
+        run: uv pip install --system .[dev,docs]

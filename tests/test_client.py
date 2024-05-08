@@ -405,8 +405,9 @@ class TestAPI:
         # Mock the collection
         requests_mock.get(pc_collection_href, status_code=200, json=pc_collection_dict)
 
-        with pytest.warns(DoesNotConformTo, match="COLLECTIONS, FEATURES"):
-            _ = next(api.get_collections())
+        with pytest.warns(FallbackToPystac):
+            with pytest.warns(DoesNotConformTo, match="COLLECTIONS, FEATURES"):
+                _ = next(api.get_collections())
 
         history = requests_mock.request_history
         assert len(history) == 2
@@ -703,3 +704,51 @@ def test_get_items_without_ids() -> None:
         "https://planetarycomputer.microsoft.com/api/stac/v1/",
     )
     next(client.get_items())
+
+
+@pytest.mark.vcr
+def test_non_recursion_on_fallback() -> None:
+    path = "https://raw.githubusercontent.com/stac-utils/pystac/v1.9.0/docs/example-catalog/catalog.json"
+    catalog = Client.from_file(path)
+    with pytest.warns(FallbackToPystac):
+        [i for i in catalog.get_items()]
+
+
+@pytest.mark.vcr
+def test_fallback_strategy() -> None:
+    """Make sure links get recreated correctly using APILayoutStrategy."""
+
+    client = Client.open(
+        "https://planetarycomputer.microsoft.com/api/stac/v1/",
+    )
+    col = client.get_collection("landsat-c2-l2")
+    item = next(col.get_items())
+
+    item_href = item.self_href
+    col_href = col.self_href
+    root_href = client.self_href
+
+    col.links = []
+    item.links = []
+
+    client.add_child(col)
+    col.add_item(item)
+
+    assert col.self_href == col_href
+
+    assert (col_parent := col.get_single_link("parent"))
+    assert col_parent.href == root_href
+
+    assert (col_root := col.get_single_link("root"))
+    assert col_root.href == root_href
+
+    assert item.self_href == item_href
+
+    assert (item_col := item.get_single_link("collection"))
+    assert item_col.href == col_href
+
+    assert (item_parent := item.get_single_link("parent"))
+    assert item_parent.href == col_href
+
+    assert (item_root := item.get_single_link("root"))
+    assert item_root.href == root_href

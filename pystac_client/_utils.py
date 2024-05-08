@@ -1,11 +1,13 @@
 import warnings
-from typing import Callable, Optional, Union
+from typing import Any, Callable, Dict, Optional, Union
 
 import pystac
 
 from pystac_client.errors import IgnoredResultWarning
 
-Modifiable = Union[pystac.Collection, pystac.Item, pystac.ItemCollection, dict]
+Modifiable = Union[
+    pystac.Collection, pystac.Item, pystac.ItemCollection, Dict[Any, Any]
+]
 
 
 def call_modifier(
