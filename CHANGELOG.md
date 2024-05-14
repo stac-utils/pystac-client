@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - Update `requires-python` in metadata to require >= 3.9 ([#684](https://github.com/stac-utils/pystac-client/pull/684))
+- Interpret naive datetimes as UTC [#686](https://github.com/stac-utils/pystac-client/pull/686)
 
 ## [v0.7.7]
 
