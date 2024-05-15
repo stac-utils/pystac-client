@@ -826,3 +826,12 @@ def test_multiple_collections() -> None:
     )
     collections = set(item.collection_id for item in search.items())
     assert collections == {"sentinel-2-l2a", "landsat-c2-l2"}
+
+
+def test_naive_datetime() -> None:
+    search = ItemSearch(
+        url="https://earth-search.aws.element84.com/v1/search",
+        datetime=datetime(2024, 5, 14, 4, 25, 42, tzinfo=None),
+        method="POST",
+    )
+    assert search.get_parameters()["datetime"] == "2024-05-14T04:25:42Z"

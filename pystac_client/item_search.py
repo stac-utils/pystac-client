@@ -438,7 +438,8 @@ class ItemSearch:
 
     @staticmethod
     def _to_utc_isoformat(dt: datetime_) -> str:
-        dt = dt.astimezone(timezone.utc)
+        if dt.tzinfo is not None:
+            dt = dt.astimezone(timezone.utc)
         dt = dt.replace(tzinfo=None)
         return f'{dt.isoformat("T")}Z'
 
