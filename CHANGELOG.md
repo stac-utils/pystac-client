@@ -7,12 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [v0.8.0] - 2024-05-17
+
 ### Fixed
 
 - Update `requires-python` in metadata to require >= 3.9 ([#684](https://github.com/stac-utils/pystac-client/pull/684))
 - Interpret naive datetimes as UTC [#686](https://github.com/stac-utils/pystac-client/pull/686)
 
-## [v0.7.7]
+## [v0.7.7] - 2024-04-19
 
 ### Changed
 
@@ -25,7 +27,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Respect the `REQUESTS_CA_BUNDLE` and `CURL_CA_BUNDLE` environment variables when sending requests [#669](https://github.com/stac-utils/pystac-client/pull/669)
 
-## [v0.7.6]
+## [v0.7.6] - 2024-02-28
 
 ### Fixed
 
@@ -364,7 +366,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Initial release.
 
-[Unreleased]: https://github.com/stac-utils/pystac-client/compare/v0.7.7...main
+[Unreleased]: https://github.com/stac-utils/pystac-client/compare/v0.8.0...main
+[v0.8.0]: https://github.com/stac-utils/pystac-client/compare/v0.7.7...v0.8.0
 [v0.7.7]: https://github.com/stac-utils/pystac-client/compare/v0.7.6...v0.7.7
 [v0.7.6]: https://github.com/stac-utils/pystac-client/compare/v0.7.5...v0.7.6
 [v0.7.5]: https://github.com/stac-utils/pystac-client/compare/v0.7.4...v0.7.5
