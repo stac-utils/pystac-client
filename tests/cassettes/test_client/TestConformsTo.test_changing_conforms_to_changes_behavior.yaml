@@ -9,7 +9,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.28.2
+      - python-requests/2.31.0
     method: GET
     uri: https://earth-search.aws.element84.com/v0
   response:
@@ -28,21 +28,21 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 19 Apr 2024 12:16:34 GMT
+      - Fri, 17 May 2024 13:07:32 GMT
       Via:
-      - 1.1 23a3716b2d5bd9224b2cf2d510f83524.cloudfront.net (CloudFront)
+      - 1.1 543364398a9b5ee1ed0d763a4bb2c14a.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - THbJIwMOIsLs2mn7vQyvwvD2_XcnNuEM3VaN8rrzlvD0rMiWGyQfHw==
+      - zmK81g3Ef-UWPz8RXi4uPhwHiuo7FjIEukaFOb1pYA-uzSaISzSX7w==
       X-Amz-Cf-Pop:
       - DEN52-C1
       X-Amzn-Trace-Id:
-      - Root=1-662260a2-4d244a55371988aa70e8f8b0;Parent=73c73b58414f05f9;Sampled=0;lineage=308471e4:0
+      - Root=1-66475694-05eaed0f45e9b2aa7be99b9b;Parent=1c4cf8404e22a964;Sampled=0;lineage=308471e4:0
       X-Cache:
       - Miss from cloudfront
       x-amz-apigw-id:
-      - WeQJZHwXPHcEs2A=
+      - X6p3SHfTPHcEYBw=
       x-amzn-RequestId:
-      - 85357e13-0b6d-4689-9029-2f522cf3e400
+      - 5e2982fd-3ce9-4e43-bcdd-74014ae8c949
     status:
       code: 200
       message: OK
@@ -56,7 +56,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.28.2
+      - python-requests/2.31.0
     method: GET
     uri: https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a
   response:
@@ -98,21 +98,21 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 19 Apr 2024 12:16:34 GMT
+      - Fri, 17 May 2024 13:07:32 GMT
       Via:
-      - 1.1 23a3716b2d5bd9224b2cf2d510f83524.cloudfront.net (CloudFront)
+      - 1.1 543364398a9b5ee1ed0d763a4bb2c14a.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - -OSCdSBat5zFZjI5riIjoLWtO0UVjsu1UnBR4KZ80sPCYcprXu832Q==
+      - vDX6XfGp2OK-BkVEthIje0FIkPQavfzOJUr30AbF5IH-6pkME5QUyg==
       X-Amz-Cf-Pop:
       - DEN52-C1
       X-Amzn-Trace-Id:
-      - Root=1-662260a2-6e6284462643befb4d0b0d1c;Parent=106b8399321350b9;Sampled=0;lineage=308471e4:0
+      - Root=1-66475694-5fe2f6276ecd473c5e1aec1d;Parent=6fb57f10507f151d;Sampled=0;lineage=308471e4:0
       X-Cache:
       - Miss from cloudfront
       x-amz-apigw-id:
-      - WeQJaH_ivHcEGLA=
+      - X6p3TETSPHcEgiw=
       x-amzn-RequestId:
-      - af0fd1ed-c0bf-4f18-9394-b37f6075fae2
+      - 94b93ab8-080a-43fa-9909-2103e4a033b7
     status:
       code: 200
       message: OK
@@ -126,7 +126,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.28.2
+      - python-requests/2.31.0
     method: GET
     uri: https://earth-search.aws.element84.com/v0/collections
   response:
@@ -232,21 +232,21 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 19 Apr 2024 12:16:34 GMT
+      - Fri, 17 May 2024 13:07:33 GMT
       Via:
-      - 1.1 23a3716b2d5bd9224b2cf2d510f83524.cloudfront.net (CloudFront)
+      - 1.1 543364398a9b5ee1ed0d763a4bb2c14a.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - pm7BE-GFouOrurjGA3LtQi5uIuGumB4fgZQE5DfjXpnJfg8IFxDo7Q==
+      - 3Bu-24T5o8cB8dIT-eMv9Cg9AatIuABnIY8-p_cL9emwmzcfYtllAQ==
       X-Amz-Cf-Pop:
       - DEN52-C1
       X-Amzn-Trace-Id:
-      - Root=1-662260a2-29e7d51606d82a9654b923df;Parent=6914476b68ad5a5a;Sampled=0;lineage=308471e4:0
+      - Root=1-66475694-6ed25c701266f1fb5372a684;Parent=336b0b225a9338c8;Sampled=0;lineage=308471e4:0
       X-Cache:
       - Miss from cloudfront
       x-amz-apigw-id:
-      - WeQJbF7uPHcEeiQ=
+      - X6p3UEzqvHcET-Q=
       x-amzn-RequestId:
-      - 6dfd584b-5fbd-46d4-b09b-6a0a768aee7f
+      - 18295921-3e5b-4f39-82f0-a96b82494048
     status:
       code: 200
       message: OK
