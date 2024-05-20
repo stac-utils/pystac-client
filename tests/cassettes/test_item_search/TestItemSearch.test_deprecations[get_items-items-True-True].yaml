@@ -13,13 +13,13 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - python-requests/2.28.2
+      - python-requests/2.31.0
     method: POST
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/search
   response:
     body:
       string: !!binary |
-        H4sIANZgImYC/+2dbW/bOBKA/4phYPvlbIkvEkn5EBx2s2ixB+x20fa+XBAYik3b6sqSIMl5uUX/
+        H4sIAMhWR2YC/+2dbW/bOBKA/4phYPvlbIkvEkn5EBx2s2ixB+x20fa+XBAYik3b6sqSIMl5uUX/
         +w0pyaJlx06bOLZjFU1hUxQ1nBmSjyZD9u9u/pDI7qD7Xvr5IpWXcRjKUR7EUbfXnRRlWXdw9Xc3
         GEOt23w4HzoO4pQ5w+xuiMUQMTQkiGCMiAf33NzE91C/z6mFKRKI9xxqeR7D3OupQuQyjHHPcSzE
         mMDXvYYA0EQYRH8Vz0xlCFdGpkxlbT9JwmDkq0L7a6avzFI5gSuzPE+ygW0noR/J3E8fRvE8WeQy
@@ -76,7 +76,7 @@ interactions:
       Content-Type:
       - application/geo+json
       Date:
-      - Fri, 19 Apr 2024 12:17:27 GMT
+      - Fri, 17 May 2024 13:08:24 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
@@ -86,7 +86,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20240419T121726Z-r1d64b84798k9kgfgqm60ccvdc000000012g000000001uen
+      - 20240517T130824Z-176fb699484psnfd7e8eumndb8000000023g000000005863
     status:
       code: 200
       message: OK
@@ -105,13 +105,13 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - python-requests/2.28.2
+      - python-requests/2.31.0
     method: POST
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/search
   response:
     body:
       string: !!binary |
-        H4sIANdgImYC/+2dW4+jOBaA/0oUafplU2BsMCar0kpTq2nNSjM96umnbUURSZyEHgIISF121P99
+        H4sIAMhWR2YC/+2dW4+jOBaA/0oUafplU2BsMCar0kpTq2nNSjM96umnbUURSZyEHgIISF121P99
         jw0EB0glqVQ6N0pdpZQx9rnF+Tg6dfrvbvoS8W6/+wt302XMH0Lf5+PUC4NurzvNxpJu/+vfXW8C
         sx7T4WJomsgmlAwTPjTYEFE0xMhgyDFM8cJBGFtw82gUPsONdzbRDIdgQnom0RyHYmz35KDhGA7u
         maaGKMU2HvQqosAavhf8le0ecx+ujFXp8tluFPne2BWD+rdEXpnHfApX5mkaJX1dj3w34Kkbv4zD
@@ -166,7 +166,7 @@ interactions:
       Content-Type:
       - application/geo+json
       Date:
-      - Fri, 19 Apr 2024 12:17:27 GMT
+      - Fri, 17 May 2024 13:08:24 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
@@ -176,7 +176,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20240419T121727Z-r1d64b84798k9kgfgqm60ccvdc000000012g000000001ueq
+      - 20240517T130824Z-176fb699484psnfd7e8eumndb8000000023g00000000586f
     status:
       code: 200
       message: OK
@@ -194,13 +194,13 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - python-requests/2.28.2
+      - python-requests/2.31.0
     method: POST
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/search
   response:
     body:
       string: !!binary |
-        H4sIANdgImYC/+2dbW/bOBKA/4phYPvlbIkvEkn5EBx2s2ixB+x20fa+XBAYik3b6sqSIMl5uUX/
+        H4sIAMhWR2YC/+2dbW/bOBKA/4phYPvlbIkvEkn5EBx2s2ixB+x20fa+XBAYik3b6sqSIMl5uUX/
         +w0pyaJlx06bOLZjFU1hUxQ1nBmSjyZD9u9u/pDI7qD7Xvr5IpWXcRjKUR7EUbfXnRRlWXdw9Xc3
         GEOt23w4HzoO4pQ5w+xuiMUQMTQkiGCMiAf33NzE91C/z6mFKRKI9xxqeR7D3OupQuQyjHHPcSzE
         mMDXvYYA0EQYRH8Vz0xlCFdGpkxlbT9JwmDkq0L7a6avzFI5gSuzPE+ygW0noR/J3E8fRvE8WeQy
@@ -257,7 +257,7 @@ interactions:
       Content-Type:
       - application/geo+json
       Date:
-      - Fri, 19 Apr 2024 12:17:27 GMT
+      - Fri, 17 May 2024 13:08:25 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
@@ -267,7 +267,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20240419T121727Z-r1d64b84798k9kgfgqm60ccvdc000000012g000000001ues
+      - 20240517T130824Z-176fb699484psnfd7e8eumndb8000000023g00000000586n
     status:
       code: 200
       message: OK
@@ -286,13 +286,13 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - python-requests/2.28.2
+      - python-requests/2.31.0
     method: POST
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/search
   response:
     body:
       string: !!binary |
-        H4sIANdgImYC/+2dW4+jOBaA/0oUafplU2BsMCar0kpTq2nNSjM96umnbUURSZyEHgIISF121P99
+        H4sIAMlWR2YC/+2dW4+jOBaA/0oUafplU2BsMCar0kpTq2nNSjM96umnbUURSZyEHgIISF121P99
         jw0EB0glqVQ6N0pdpZQx9rnF+Tg6dfrvbvoS8W6/+wt302XMH0Lf5+PUC4NurzvNxpJu/+vfXW8C
         sx7T4WJomsgmlAwTPjTYEFE0xMhgyDFM8cJBGFtw82gUPsONdzbRDIdgQnom0RyHYmz35KDhGA7u
         maaGKMU2HvQqosAavhf8le0ecx+ujFXp8tluFPne2BWD+rdEXpnHfApX5mkaJX1dj3w34Kkbv4zD
@@ -347,7 +347,7 @@ interactions:
       Content-Type:
       - application/geo+json
       Date:
-      - Fri, 19 Apr 2024 12:17:27 GMT
+      - Fri, 17 May 2024 13:08:25 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
@@ -357,7 +357,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20240419T121727Z-r1d64b84798k9kgfgqm60ccvdc000000012g000000001uet
+      - 20240517T130825Z-176fb699484psnfd7e8eumndb8000000023g00000000586v
     status:
       code: 200
       message: OK
@@ -403,8 +403,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -514,17 +513,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '24320'
+      - '24148'
       Content-Type:
       - application/json
       Date:
-      - Fri, 19 Apr 2024 12:17:28 GMT
+      - Fri, 17 May 2024 13:08:25 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20240419T121727Z-r1d64b84798jr4bwmduznny3h400000001000000000014vy
+      - 20240517T130825Z-176fb699484fm68tv5w43dcsts00000003d0000000002390
     status:
       code: 200
       message: OK
@@ -570,8 +569,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -681,17 +679,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '24320'
+      - '24148'
       Content-Type:
       - application/json
       Date:
-      - Fri, 19 Apr 2024 12:17:28 GMT
+      - Fri, 17 May 2024 13:08:26 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20240419T121728Z-r1d64b84798wszqnt36u6u26kc00000000yg000000002yk1
+      - 20240517T130825Z-176fb6994848wzhgpm13ex1t6n00000004v0000000001fy2
     status:
       code: 200
       message: OK
@@ -737,8 +735,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -848,17 +845,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '24320'
+      - '24148'
       Content-Type:
       - application/json
       Date:
-      - Fri, 19 Apr 2024 12:17:29 GMT
+      - Fri, 17 May 2024 13:08:26 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20240419T121729Z-r1d64b847988zpqc5vfygrv6gw00000000y0000000002qtu
+      - 20240517T130826Z-176fb699484rn6j248ht6f01xs00000005dg0000000013px
     status:
       code: 200
       message: OK
@@ -904,8 +901,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -1015,17 +1011,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '24320'
+      - '24148'
       Content-Type:
       - application/json
       Date:
-      - Fri, 19 Apr 2024 12:17:30 GMT
+      - Fri, 17 May 2024 13:08:27 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20240419T121729Z-r1d64b847986xdqpssg6q3p4f40000000110000000001mf1
+      - 20240517T130827Z-176fb699484llr8x4h01pk2np800000002zg000000003fhv
     status:
       code: 200
       message: OK
@@ -1071,8 +1067,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -1182,17 +1177,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '24320'
+      - '24148'
       Content-Type:
       - application/json
       Date:
-      - Fri, 19 Apr 2024 12:17:30 GMT
+      - Fri, 17 May 2024 13:08:28 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20240419T121730Z-r1d64b84798c9pjhtpsqnac6ng00000000yg0000000042ss
+      - 20240517T130827Z-176fb699484hkpbhkvu2qahzgs00000002a0000000000exe
     status:
       code: 200
       message: OK
@@ -1238,8 +1233,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -1349,17 +1343,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '24320'
+      - '24148'
       Content-Type:
       - application/json
       Date:
-      - Fri, 19 Apr 2024 12:17:32 GMT
+      - Fri, 17 May 2024 13:08:28 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20240419T121731Z-r1d64b84798cmk4ht6km53p96w00000000w0000000003241
+      - 20240517T130828Z-176fb699484llr8x4h01pk2np80000000320000000000ska
     status:
       code: 200
       message: OK
@@ -1405,8 +1399,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -1516,17 +1509,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '24320'
+      - '24148'
       Content-Type:
       - application/json
       Date:
-      - Fri, 19 Apr 2024 12:17:32 GMT
+      - Fri, 17 May 2024 13:08:29 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20240419T121732Z-r1d64b84798k9kgfgqm60ccvdc000000014g00000000138s
+      - 20240517T130828Z-176fb699484p5r97d8qvv97ges00000001sg0000000036q7
     status:
       code: 200
       message: OK
@@ -1572,8 +1565,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -1683,17 +1675,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '24320'
+      - '24148'
       Content-Type:
       - application/json
       Date:
-      - Fri, 19 Apr 2024 12:17:33 GMT
+      - Fri, 17 May 2024 13:08:29 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20240419T121732Z-r1d64b847984gl6ls5zqvud8zg00000000xg000000002zyh
+      - 20240517T130829Z-176fb699484f5mtrypygea5me800000003900000000034kb
     status:
       code: 200
       message: OK
@@ -1739,8 +1731,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -1850,17 +1841,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '24320'
+      - '24148'
       Content-Type:
       - application/json
       Date:
-      - Fri, 19 Apr 2024 12:17:33 GMT
+      - Fri, 17 May 2024 13:08:30 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20240419T121733Z-r1d64b847986xdqpssg6q3p4f40000000110000000001mh3
+      - 20240517T130829Z-176fb6994848pjbqc9f1ke47f0000000030g00000000562y
     status:
       code: 200
       message: OK
@@ -1906,8 +1897,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -2017,17 +2007,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '24320'
+      - '24148'
       Content-Type:
       - application/json
       Date:
-      - Fri, 19 Apr 2024 12:17:34 GMT
+      - Fri, 17 May 2024 13:08:30 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20240419T121733Z-r1d64b84798kvjx6x2940xw3gc00000000x0000000003xge
+      - 20240517T130830Z-176fb699484n9w8p1ekp0ra3n400000001r00000000045r1
     status:
       code: 200
       message: OK
@@ -2073,8 +2063,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -2184,17 +2173,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '24320'
+      - '24148'
       Content-Type:
       - application/json
       Date:
-      - Fri, 19 Apr 2024 12:17:34 GMT
+      - Fri, 17 May 2024 13:08:31 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20240419T121734Z-r1d64b84798tclfw9c5g7t2t8400000000wg00000000371y
+      - 20240517T130831Z-176fb699484mfbxbqxeutz87us00000004bg000000003bum
     status:
       code: 200
       message: OK
@@ -2240,8 +2229,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -2351,17 +2339,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '24320'
+      - '24148'
       Content-Type:
       - application/json
       Date:
-      - Fri, 19 Apr 2024 12:17:35 GMT
+      - Fri, 17 May 2024 13:08:32 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20240419T121734Z-r1d64b84798zmn9fm1xu8a701n00000000y0000000002wnu
+      - 20240517T130831Z-176fb699484r8rkgcatm6tv8n0000000028g000000000k8w
     status:
       code: 200
       message: OK
@@ -2407,8 +2395,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -2518,17 +2505,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '24320'
+      - '24148'
       Content-Type:
       - application/json
       Date:
-      - Fri, 19 Apr 2024 12:17:35 GMT
+      - Fri, 17 May 2024 13:08:32 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20240419T121735Z-r1d64b847985lxs55tw4e5188000000000v00000000040vm
+      - 20240517T130832Z-176fb6994847smjw9rat6c72nc00000002yg000000002b77
     status:
       code: 200
       message: OK
@@ -2574,8 +2561,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -2685,17 +2671,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '24320'
+      - '24148'
       Content-Type:
       - application/json
       Date:
-      - Fri, 19 Apr 2024 12:17:36 GMT
+      - Fri, 17 May 2024 13:08:33 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20240419T121735Z-r1d64b84798ms6cvuxtm9ctuvw0000000140000000000n8m
+      - 20240517T130832Z-176fb699484xz524wwvuuuabg0000000029g0000000013r5
     status:
       code: 200
       message: OK
@@ -2741,8 +2727,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -2852,17 +2837,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '24320'
+      - '24148'
       Content-Type:
       - application/json
       Date:
-      - Fri, 19 Apr 2024 12:17:36 GMT
+      - Fri, 17 May 2024 13:08:33 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20240419T121736Z-r1d64b84798llm46rdsenqf51c00000000y00000000042a2
+      - 20240517T130833Z-176fb699484zv9drud21byk66g00000004xg00000000264c
     status:
       code: 200
       message: OK
@@ -2908,8 +2893,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -3019,17 +3003,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '24320'
+      - '24148'
       Content-Type:
       - application/json
       Date:
-      - Fri, 19 Apr 2024 12:17:37 GMT
+      - Fri, 17 May 2024 13:08:34 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20240419T121736Z-r1d64b847985lxs55tw4e5188000000000xg000000003qyy
+      - 20240517T130833Z-176fb699484sqc4wt4xu93vwns00000002b00000000036m8
     status:
       code: 200
       message: OK
@@ -3075,8 +3059,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -3186,17 +3169,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '24320'
+      - '24148'
       Content-Type:
       - application/json
       Date:
-      - Fri, 19 Apr 2024 12:17:37 GMT
+      - Fri, 17 May 2024 13:08:34 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20240419T121737Z-r1d64b84798gkld5p9u0sxb0hc00000000z000000000432z
+      - 20240517T130834Z-176fb699484mfbxbqxeutz87us00000004g000000000223k
     status:
       code: 200
       message: OK
@@ -3242,8 +3225,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -3353,17 +3335,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '24320'
+      - '24148'
       Content-Type:
       - application/json
       Date:
-      - Fri, 19 Apr 2024 12:17:38 GMT
+      - Fri, 17 May 2024 13:08:35 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20240419T121738Z-r1d64b84798bhvd2wwvs04dem800000001700000000005c4
+      - 20240517T130835Z-176fb6994844gnms9yc9su628w00000003xg000000004sp3
     status:
       code: 200
       message: OK
@@ -3409,8 +3391,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -3520,17 +3501,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '24320'
+      - '24148'
       Content-Type:
       - application/json
       Date:
-      - Fri, 19 Apr 2024 12:17:39 GMT
+      - Fri, 17 May 2024 13:08:35 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20240419T121738Z-r1d64b84798xrn647n02g0euk00000000130000000001yts
+      - 20240517T130835Z-176fb6994844gnms9yc9su628w00000003yg000000004gz8
     status:
       code: 200
       message: OK
@@ -3576,8 +3557,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -3687,17 +3667,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '24320'
+      - '24148'
       Content-Type:
       - application/json
       Date:
-      - Fri, 19 Apr 2024 12:17:39 GMT
+      - Fri, 17 May 2024 13:08:36 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20240419T121739Z-r1d64b84798f2jv4ms51kxbg0s000000012g0000000005a6
+      - 20240517T130836Z-176fb699484rn6j248ht6f01xs000000059000000000504t
     status:
       code: 200
       message: OK
@@ -3743,8 +3723,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -3854,17 +3833,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '24320'
+      - '24148'
       Content-Type:
       - application/json
       Date:
-      - Fri, 19 Apr 2024 12:17:40 GMT
+      - Fri, 17 May 2024 13:08:37 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20240419T121739Z-r1d64b84798bxscvaranad8pbw00000000z0000000003npa
+      - 20240517T130836Z-176fb699484r8rkgcatm6tv8n0000000021g000000003q2k
     status:
       code: 200
       message: OK
@@ -3910,8 +3889,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -4021,17 +3999,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '24320'
+      - '24148'
       Content-Type:
       - application/json
       Date:
-      - Fri, 19 Apr 2024 12:17:40 GMT
+      - Fri, 17 May 2024 13:08:37 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20240419T121740Z-r1d64b84798tclfw9c5g7t2t8400000000y00000000029se
+      - 20240517T130837Z-176fb699484t8cjvwrqyfq344w00000003k0000000004egh
     status:
       code: 200
       message: OK
@@ -4077,8 +4055,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -4188,17 +4165,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '24320'
+      - '24148'
       Content-Type:
       - application/json
       Date:
-      - Fri, 19 Apr 2024 12:17:41 GMT
+      - Fri, 17 May 2024 13:08:38 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20240419T121740Z-r1d64b8479878kmdkedcsm2ckw000000010g000000003w46
+      - 20240517T130837Z-176fb699484sqc4wt4xu93vwns00000002dg000000002shy
     status:
       code: 200
       message: OK
@@ -4244,8 +4221,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -4355,17 +4331,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '24320'
+      - '24148'
       Content-Type:
       - application/json
       Date:
-      - Fri, 19 Apr 2024 12:17:41 GMT
+      - Fri, 17 May 2024 13:08:38 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20240419T121741Z-r1d64b84798cmk4ht6km53p96w00000000xg000000001zpr
+      - 20240517T130838Z-176fb6994846cj8w3m48p07ut8000000022g000000000bhk
     status:
       code: 200
       message: OK
@@ -4411,8 +4387,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -4522,17 +4497,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '24320'
+      - '24148'
       Content-Type:
       - application/json
       Date:
-      - Fri, 19 Apr 2024 12:17:42 GMT
+      - Fri, 17 May 2024 13:08:39 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20240419T121742Z-r1d64b84798kvjx6x2940xw3gc00000000xg0000000044yy
+      - 20240517T130838Z-176fb699484zwrkgp2u9g5356000000003pg00000000345a
     status:
       code: 200
       message: OK
@@ -4578,8 +4553,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -4689,17 +4663,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '24320'
+      - '24148'
       Content-Type:
       - application/json
       Date:
-      - Fri, 19 Apr 2024 12:17:42 GMT
+      - Fri, 17 May 2024 13:08:39 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20240419T121742Z-r1d64b84798gkld5p9u0sxb0hc000000014g00000000094z
+      - 20240517T130839Z-176fb699484dwhsb810771cc580000000360000000003daq
     status:
       code: 200
       message: OK
@@ -4745,8 +4719,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -4856,17 +4829,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '24320'
+      - '24148'
       Content-Type:
       - application/json
       Date:
-      - Fri, 19 Apr 2024 12:17:43 GMT
+      - Fri, 17 May 2024 13:08:40 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20240419T121742Z-r1d64b84798ms6cvuxtm9ctuvw0000000130000000000mfe
+      - 20240517T130839Z-176fb699484qvqljmd8atyzg9w00000004mg000000003tp5
     status:
       code: 200
       message: OK
@@ -4912,8 +4885,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -5023,17 +4995,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '24320'
+      - '24148'
       Content-Type:
       - application/json
       Date:
-      - Fri, 19 Apr 2024 12:17:43 GMT
+      - Fri, 17 May 2024 13:08:40 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20240419T121743Z-r1d64b84798ch9ksgdmdbfr6a800000000y0000000003yw5
+      - 20240517T130840Z-176fb699484f5mtrypygea5me8000000036g000000003a5u
     status:
       code: 200
       message: OK
@@ -5079,8 +5051,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -5190,17 +5161,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '24320'
+      - '24148'
       Content-Type:
       - application/json
       Date:
-      - Fri, 19 Apr 2024 12:17:44 GMT
+      - Fri, 17 May 2024 13:08:41 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20240419T121744Z-r1d64b84798sg2dnz26r0sydc800000000ug000000002umu
+      - 20240517T130841Z-176fb699484sw7l622x6xqnwmw00000001m000000000312k
     status:
       code: 200
       message: OK
@@ -5246,8 +5217,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -5357,17 +5327,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '24320'
+      - '24148'
       Content-Type:
       - application/json
       Date:
-      - Fri, 19 Apr 2024 12:17:45 GMT
+      - Fri, 17 May 2024 13:08:42 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20240419T121744Z-r1d64b84798wszqnt36u6u26kc00000000w0000000003c49
+      - 20240517T130841Z-176fb699484zv9drud21byk66g000000050g000000000uuq
     status:
       code: 200
       message: OK
@@ -5413,8 +5383,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -5524,17 +5493,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '24320'
+      - '24148'
       Content-Type:
       - application/json
       Date:
-      - Fri, 19 Apr 2024 12:17:45 GMT
+      - Fri, 17 May 2024 13:08:42 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20240419T121745Z-r1d64b84798llm46rdsenqf51c0000000130000000000xxt
+      - 20240517T130842Z-176fb699484p5r97d8qvv97ges00000001p0000000003ur7
     status:
       code: 200
       message: OK
@@ -5580,8 +5549,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -5691,17 +5659,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '24320'
+      - '24148'
       Content-Type:
       - application/json
       Date:
-      - Fri, 19 Apr 2024 12:17:46 GMT
+      - Fri, 17 May 2024 13:08:43 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20240419T121745Z-r1d64b84798v4zn2fq51p59a7c000000014g000000000x50
+      - 20240517T130842Z-176fb699484pd5jdfdua18cfy800000001v0000000001qgx
     status:
       code: 200
       message: OK
@@ -5747,8 +5715,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -5858,17 +5825,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '24320'
+      - '24148'
       Content-Type:
       - application/json
       Date:
-      - Fri, 19 Apr 2024 12:17:46 GMT
+      - Fri, 17 May 2024 13:08:43 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20240419T121746Z-r1d64b84798zmn9fm1xu8a701n00000000xg000000003s30
+      - 20240517T130843Z-176fb699484fm68tv5w43dcsts00000003gg000000000hdk
     status:
       code: 200
       message: OK
@@ -5914,8 +5881,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -6025,17 +5991,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '24320'
+      - '24148'
       Content-Type:
       - application/json
       Date:
-      - Fri, 19 Apr 2024 12:17:47 GMT
+      - Fri, 17 May 2024 13:08:44 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20240419T121747Z-r1d64b84798h6c5ktanchcrq64000000011000000000382t
+      - 20240517T130843Z-176fb699484zv9drud21byk66g00000004u00000000030xn
     status:
       code: 200
       message: OK
@@ -6081,8 +6047,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -6192,17 +6157,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '24320'
+      - '24148'
       Content-Type:
       - application/json
       Date:
-      - Fri, 19 Apr 2024 12:17:48 GMT
+      - Fri, 17 May 2024 13:08:44 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20240419T121747Z-r1d64b84798p72v5aw1118630n00000000w00000000031wc
+      - 20240517T130844Z-176fb699484jslvgt1huw0x8sc00000003ag0000000054mx
     status:
       code: 200
       message: OK
@@ -6248,8 +6213,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -6359,17 +6323,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '24320'
+      - '24148'
       Content-Type:
       - application/json
       Date:
-      - Fri, 19 Apr 2024 12:17:48 GMT
+      - Fri, 17 May 2024 13:08:45 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20240419T121748Z-r1d64b84798wszqnt36u6u26kc00000000w0000000003c5c
+      - 20240517T130844Z-176fb699484t8cjvwrqyfq344w00000003qg000000002sfm
     status:
       code: 200
       message: OK
@@ -6415,8 +6379,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -6526,17 +6489,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '24320'
+      - '24148'
       Content-Type:
       - application/json
       Date:
-      - Fri, 19 Apr 2024 12:17:49 GMT
+      - Fri, 17 May 2024 13:08:45 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20240419T121748Z-r1d64b847986xdqpssg6q3p4f400000000zg000000001neg
+      - 20240517T130845Z-176fb699484vln5csmrymfm7gw00000004g0000000002esp
     status:
       code: 200
       message: OK
@@ -6582,8 +6545,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -6693,17 +6655,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '24320'
+      - '24148'
       Content-Type:
       - application/json
       Date:
-      - Fri, 19 Apr 2024 12:17:49 GMT
+      - Fri, 17 May 2024 13:08:46 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20240419T121749Z-r1d64b8479878kmdkedcsm2ckw000000016g000000000ht1
+      - 20240517T130846Z-176fb699484rn6j248ht6f01xs00000005dg0000000013zw
     status:
       code: 200
       message: OK
@@ -6749,8 +6711,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -6860,17 +6821,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '24320'
+      - '24148'
       Content-Type:
       - application/json
       Date:
-      - Fri, 19 Apr 2024 12:17:50 GMT
+      - Fri, 17 May 2024 13:08:46 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20240419T121749Z-r1d64b84798bxscvaranad8pbw000000010g000000003hs9
+      - 20240517T130846Z-176fb699484t8cjvwrqyfq344w00000003t0000000001scu
     status:
       code: 200
       message: OK
@@ -6916,8 +6877,7 @@ interactions:
         Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
-        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"Landsat
-        8 Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2"},{"rel":"child","type":"application/json","title":"C-CAP
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
         Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
         3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
         Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
@@ -7027,17 +6987,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '24320'
+      - '24148'
       Content-Type:
       - application/json
       Date:
-      - Fri, 19 Apr 2024 12:17:50 GMT
+      - Fri, 17 May 2024 13:08:47 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20240419T121750Z-r1d64b84798llm46rdsenqf51c00000000yg000000003w03
+      - 20240517T130846Z-176fb6994848wzhgpm13ex1t6n00000004vg000000001mh7
     status:
       code: 200
       message: OK
