@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Use singular `include` and `exclude` Field extension key names to align with the extension documentation. [#690](https://github.com/stac-utils/pystac-client/issues/690)
+
 ## [v0.8.0] - 2024-05-17
 
 ### Fixed
