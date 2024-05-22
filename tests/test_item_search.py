@@ -468,23 +468,23 @@ class TestItemSearchParams:
 
         search = ItemSearch(url=SEARCH_URL, fields="id,collection,+foo,-bar")
         assert search.get_parameters()["fields"] == {
-            "excludes": ["bar"],
-            "includes": ["id", "collection", "foo"],
+            "exclude": ["bar"],
+            "include": ["id", "collection", "foo"],
         }
 
         search = ItemSearch(url=SEARCH_URL, fields=["id", "collection", "+foo", "-bar"])
         assert search.get_parameters()["fields"] == {
-            "excludes": ["bar"],
-            "includes": ["id", "collection", "foo"],
+            "exclude": ["bar"],
+            "include": ["id", "collection", "foo"],
         }
 
         search = ItemSearch(
             url=SEARCH_URL,
-            fields={"excludes": ["bar"], "includes": ["id", "collection"]},
+            fields={"exclude": ["bar"], "include": ["id", "collection"]},
         )
         assert search.get_parameters()["fields"] == {
-            "excludes": ["bar"],
-            "includes": ["id", "collection"],
+            "exclude": ["bar"],
+            "include": ["id", "collection"],
         }
 
         search = ItemSearch(
@@ -500,7 +500,7 @@ class TestItemSearchParams:
         search = ItemSearch(
             url=SEARCH_URL,
             method="GET",
-            fields={"excludes": ["bar"], "includes": ["id", "collection"]},
+            fields={"exclude": ["bar"], "include": ["id", "collection"]},
         )
         assert search.get_parameters()["fields"] == "+id,+collection,-bar"
 
