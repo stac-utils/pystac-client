@@ -633,12 +633,12 @@ class ItemSearch:
                 includes.append(field[1:])
             else:
                 includes.append(field)
-        return {"includes": includes, "excludes": excludes}
+        return {"include": includes, "exclude": excludes}
 
     @staticmethod
     def _fields_dict_to_str(fields: Fields) -> str:
-        includes = [f"+{x}" for x in fields.get("includes", [])]
-        excludes = [f"-{x}" for x in fields.get("excludes", [])]
+        includes = [f"+{x}" for x in fields.get("include", [])]
+        excludes = [f"-{x}" for x in fields.get("exclude", [])]
         return ",".join(chain(includes, excludes))
 
     @staticmethod
