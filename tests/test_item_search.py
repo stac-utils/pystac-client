@@ -850,3 +850,17 @@ def test_fields() -> None:
     assert "geometry" not in item
     assert "assets" not in item
     assert "links" not in item
+
+
+def test_feature() -> None:
+    search = ItemSearch(
+        url="https://earth-search.aws.element84.com/v1/search",
+        intersects={
+            "type": "Feature",
+            "geometry": {"type": "Point", "coordinates": [-105.1019, 40.1672]},
+        },
+    )
+    assert search.get_parameters()["intersects"] == {
+        "type": "Point",
+        "coordinates": [-105.1019, 40.1672],
+    }
