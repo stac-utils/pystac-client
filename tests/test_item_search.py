@@ -468,23 +468,23 @@ class TestItemSearchParams:
 
         search = ItemSearch(url=SEARCH_URL, fields="id,collection,+foo,-bar")
         assert search.get_parameters()["fields"] == {
-            "excludes": ["bar"],
-            "includes": ["id", "collection", "foo"],
+            "exclude": ["bar"],
+            "include": ["id", "collection", "foo"],
         }
 
         search = ItemSearch(url=SEARCH_URL, fields=["id", "collection", "+foo", "-bar"])
         assert search.get_parameters()["fields"] == {
-            "excludes": ["bar"],
-            "includes": ["id", "collection", "foo"],
+            "exclude": ["bar"],
+            "include": ["id", "collection", "foo"],
         }
 
         search = ItemSearch(
             url=SEARCH_URL,
-            fields={"excludes": ["bar"], "includes": ["id", "collection"]},
+            fields={"exclude": ["bar"], "include": ["id", "collection"]},
         )
         assert search.get_parameters()["fields"] == {
-            "excludes": ["bar"],
-            "includes": ["id", "collection"],
+            "exclude": ["bar"],
+            "include": ["id", "collection"],
         }
 
         search = ItemSearch(
@@ -500,7 +500,7 @@ class TestItemSearchParams:
         search = ItemSearch(
             url=SEARCH_URL,
             method="GET",
-            fields={"excludes": ["bar"], "includes": ["id", "collection"]},
+            fields={"exclude": ["bar"], "include": ["id", "collection"]},
         )
         assert search.get_parameters()["fields"] == "+id,+collection,-bar"
 
@@ -835,3 +835,32 @@ def test_naive_datetime() -> None:
         method="POST",
     )
     assert search.get_parameters()["datetime"] == "2024-05-14T04:25:42Z"
+
+
+@pytest.mark.vcr
+def test_fields() -> None:
+    search = ItemSearch(
+        url="https://earth-search.aws.element84.com/v1/search",
+        collections=["sentinel-2-c1-l2a"],
+        intersects={"type": "Point", "coordinates": [-105.1019, 40.1672]},
+        max_items=1,
+        fields=["-geometry", "-assets", "-links"],
+    )
+    item = next(search.items_as_dicts())
+    assert "geometry" not in item
+    assert "assets" not in item
+    assert "links" not in item
+
+
+def test_feature() -> None:
+    search = ItemSearch(
+        url="https://earth-search.aws.element84.com/v1/search",
+        intersects={
+            "type": "Feature",
+            "geometry": {"type": "Point", "coordinates": [-105.1019, 40.1672]},
+        },
+    )
+    assert search.get_parameters()["intersects"] == {
+        "type": "Point",
+        "coordinates": [-105.1019, 40.1672],
+    }
