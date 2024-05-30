@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Support for "Feature" type `intersects` dictionaries [#696](https://github.com/stac-utils/pystac-client/pull/696)
+
 ## [v0.8.1] - 2024-05-23
 
 ### Fixed

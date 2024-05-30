@@ -179,11 +179,10 @@ class ItemSearch:
         bbox: A list, tuple, or iterator representing a bounding box of 2D
             or 3D coordinates. Results will be filtered
             to only those intersecting the bounding box.
-        intersects: A string or dictionary representing a GeoJSON geometry, or
-            an object that implements a
-            ``__geo_interface__`` property, as supported by several libraries
-            including Shapely, ArcPy, PySAL, and
-            geojson. Results filtered to only those intersecting the geometry.
+        intersects: A string or dictionary representing a GeoJSON geometry or feature,
+            or an object that implements a ``__geo_interface__`` property, as supported
+            by several libraries including Shapely, ArcPy, PySAL, and geojson. Results
+            filtered to only those intersecting the geometry.
         datetime: Either a single datetime or datetime range used to filter results.
             You may express a single datetime using a :class:`datetime.datetime`
             instance, a `RFC 3339-compliant <https://tools.ietf.org/html/rfc3339>`__
@@ -646,7 +645,10 @@ class ItemSearch:
         if value is None:
             return None
         if isinstance(value, dict):
-            return deepcopy(value)
+            if value.get("type") == "Feature":
+                return deepcopy(value.get("geometry"))
+            else:
+                return deepcopy(value)
         if isinstance(value, str):
             return dict(json.loads(value))
         if hasattr(value, "__geo_interface__"):
