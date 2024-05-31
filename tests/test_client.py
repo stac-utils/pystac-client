@@ -760,7 +760,7 @@ def test_set_queryables(tmp_path: Path) -> None:
     """Make sure we can write queryables."""
 
     client = Client.open(
-        "https://planetarycomputer.microsoft.com/api/stac/v1/",
+        "https://explorer.digitalearth.africa/stac/",
     )
 
     queryables = client.get_queryables()
