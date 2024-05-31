@@ -2,6 +2,7 @@ import json
 import os.path
 import warnings
 from datetime import datetime
+from pathlib import Path
 from tempfile import TemporaryDirectory
 from typing import Any, Dict
 from urllib.parse import parse_qs, urlsplit
@@ -752,3 +753,23 @@ def test_fallback_strategy() -> None:
 
     assert (item_root := item.get_single_link("root"))
     assert item_root.href == root_href
+
+
+@pytest.mark.vcr
+def test_set_queryables(tmp_path: Path) -> None:
+    """Make sure we can write queryables."""
+
+    client = Client.open(
+        "https://planetarycomputer.microsoft.com/api/stac/v1/",
+    )
+
+    queryables = client.get_queryables()
+
+    # Transactions are not supported in the default StacApiIO
+    with pytest.raises(APIError):
+        client.set_queryables(queryables)
+
+    # write content to a temp file
+    tmp_file = tmp_path / "queryables.json"
+    client.write_queryables_to(queryables, str(tmp_file))
+    assert json.loads(tmp_file.read_text()) == queryables
