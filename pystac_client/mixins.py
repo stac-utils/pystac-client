@@ -68,13 +68,13 @@ class QueryablesMixin(BaseMixin):
         href = self._get_href(QUERYABLES_REL, link, QUERYABLES_ENDPOINT)
         return href
 
-    def write_queryables_to(self, queryables: Dict[str, Any], url: str) -> None:
-        """Write a queryables to a given endpoint"""
+    def set_queryables(self, queryables: Dict[str, Any], url: Option[str]) -> None:
+        """Write a queryables to an endpoint.
+        
+        Defaults to the queryables href as defined by the STAC API extension.
+        """
         if self._stac_io is None:
-            raise APIError("API access is not properly configured")
+            raise APIError("API access is not properly configured (`_stac_io` not set)")
+        if url is None:
+            url = self._get_queryables_href()
         self._stac_io.save_json(url, queryables)
-
-    def set_queryables(self, queryables: Dict[str, Any]) -> None:
-        """Write a queryables to the default endpoint"""
-        url = self._get_queryables_href()
-        self.write_queryables_to(queryables, url)
