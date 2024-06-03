@@ -771,5 +771,5 @@ def test_set_queryables(tmp_path: Path) -> None:
 
     # write content to a temp file
     tmp_file = tmp_path / "queryables.json"
-    client.write_queryables_to(queryables, str(tmp_file))
+    client.set_queryables(queryables, str(tmp_file))
     assert json.loads(tmp_file.read_text()) == queryables

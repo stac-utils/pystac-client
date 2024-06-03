@@ -68,9 +68,11 @@ class QueryablesMixin(BaseMixin):
         href = self._get_href(QUERYABLES_REL, link, QUERYABLES_ENDPOINT)
         return href
 
-    def set_queryables(self, queryables: Dict[str, Any], url: Option[str]) -> None:
+    def set_queryables(
+        self, queryables: Dict[str, Any], url: Optional[str] = None
+    ) -> None:
         """Write a queryables to an endpoint.
-        
+
         Defaults to the queryables href as defined by the STAC API extension.
         """
         if self._stac_io is None:
