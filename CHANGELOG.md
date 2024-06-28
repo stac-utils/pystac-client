@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+- Allow to write queryables [#698](https://github.com/stac-utils/pystac-client/pull/698)
+
 ## [v0.8.2] - 2024-05-30
 
 ### Added
