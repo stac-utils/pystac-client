@@ -96,7 +96,10 @@ class StacApiIO(DefaultStacIO):
             self.session.mount("https://", HTTPAdapter(max_retries=max_retries))
         self.timeout = timeout
         self.update(
-            headers=headers, parameters=parameters, request_modifier=request_modifier
+            headers=headers,
+            parameters=parameters,
+            request_modifier=request_modifier,
+            timeout=timeout,
         )
 
     def update(
@@ -271,9 +274,17 @@ class StacApiIO(DefaultStacIO):
             return result
 
         if info.object_type == pystac.STACObjectType.COLLECTION:
-            return pystac_client.collection_client.CollectionClient.from_dict(
-                d, href=str(href), root=root, migrate=False, preserve_dict=preserve_dict
+            collection_client = (
+                pystac_client.collection_client.CollectionClient.from_dict(
+                    d,
+                    href=str(href),
+                    root=root,
+                    migrate=False,
+                    preserve_dict=preserve_dict,
+                )
             )
+            collection_client._stac_io = self
+            return collection_client
 
         if info.object_type == pystac.STACObjectType.ITEM:
             return pystac.Item.from_dict(

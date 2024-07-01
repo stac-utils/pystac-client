@@ -99,11 +99,13 @@ ignore-path = "docs/_build,docs/tutorials"
 max-line-length = 130
 
 [tool.ruff]
-ignore = ["E722", "E731"]
 line-length = 88
+
+[tool.ruff.lint]
+ignore = ["E722", "E731"]
 select = ["E", "F", "W", "I"]
 
-[tool.ruff.per-file-ignores]
+[tool.ruff.lint.per-file-ignores]
 "__init__.py" = ["F401"]
 "test_item_search.py" = ["E501"]
 
