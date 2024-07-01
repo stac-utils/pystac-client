@@ -274,9 +274,11 @@ class StacApiIO(DefaultStacIO):
             return result
 
         if info.object_type == pystac.STACObjectType.COLLECTION:
-            return pystac_client.collection_client.CollectionClient.from_dict(
+            result = pystac_client.collection_client.CollectionClient.from_dict(
                 d, href=str(href), root=root, migrate=False, preserve_dict=preserve_dict
             )
+            result._stac_io = self
+            return result
 
         if info.object_type == pystac.STACObjectType.ITEM:
             return pystac.Item.from_dict(

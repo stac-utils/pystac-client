@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Actually set `timeout` when initializing `StacApiIO` [#709](https://github.com/stac-utils/pystac-client/pull/709)
+- Set `_stac_io` on `CollectionClient` when reading [#709](https://github.com/stac-utils/pystac-client/pull/709)
+
 ## [v0.8.2] - 2024-05-30
 
 ### Added
