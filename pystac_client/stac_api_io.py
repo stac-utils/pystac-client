@@ -96,7 +96,10 @@ class StacApiIO(DefaultStacIO):
             self.session.mount("https://", HTTPAdapter(max_retries=max_retries))
         self.timeout = timeout
         self.update(
-            headers=headers, parameters=parameters, request_modifier=request_modifier
+            headers=headers,
+            parameters=parameters,
+            request_modifier=request_modifier,
+            timeout=timeout,
         )
 
     def update(
