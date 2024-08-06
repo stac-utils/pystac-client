@@ -6,7 +6,7 @@ dependencies:
   - cartopy
   - geos
   - pandoc
-  - python=3.9
+  - python=3.10
   - pip
   - pip:
       - -e ../[docs]
