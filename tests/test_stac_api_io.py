@@ -2,6 +2,7 @@ import typing
 from pathlib import Path
 from urllib.parse import parse_qs, urlsplit
 
+import pystac
 import pytest
 from pytest import MonkeyPatch
 from requests_mock.mocker import Mocker
@@ -274,3 +275,17 @@ class TestSTAC_IOOverride:
         stac_api_io = StacApiIO()
         with pytest.raises(APIError):
             stac_api_io.request("https://earth-search.aws.element84.com/v1/")
+
+
+@pytest.mark.vcr
+def test_stac_io_in_pystac() -> None:
+    # https://github.com/stac-utils/pystac-client/issues/706
+    collection = pystac.read_file(
+        href="tests/data/planetary-computer-collection.json",
+        stac_io=StacApiIO(timeout=42),
+    )
+    root = collection.get_root()
+    assert root
+    stac_io = root._stac_io
+    assert isinstance(stac_io, StacApiIO)
+    assert stac_io.timeout == 42
