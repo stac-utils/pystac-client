@@ -14,37 +14,31 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - python-requests/2.31.0
+      - python-requests/2.32.3
     method: POST
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/search
   response:
     body:
-      string: !!binary |
-        H4sIAKFWR2YC/8VWbW/bNhD+K4KA5stkiaJt+WUwBtRDgw5oO2T9VMMQaOkkM5NIgaTjeEX++46U
-        bKt20XVrhgBxQB3v5bkXPbrPvjk04M/9N8DMTsFSVhVkhkvhB37RyrQ/X332eY5aRZXWKU3IlJBR
-        KvZpPElJQlJK4llM4zEeKCFxPETjzUY+ouFgSsKETihNApqEs+F4NAusbJwQOhoFdBKiwWw6WQcX
-        SNBFxcWfbXAFFd5kfXCdNmuaimfMCqN77W62Cgq82RrT6HkUNRUTYJg6ZLJudgZUWPNMSS0LE6Io
-        Yg2PtGFZ9BBH5wg6Eow3/lNwDN4wBcK8QGAl5f8WthdGQ1V8PUwJ8qfnzzDiBmodffdE9Tqh4IHD
-        /r/ByZlhFo6NHtWs+eWMa2Fh3diLxb+Yc8NNZSv2jjWeLDxrfi6jgUcTbU1d+U844ExrMDjQ+DLV
-        rAR7uMjAIoDdHrQJN5XcIGoF4Z6LXO51iLm1lXsghGLhIgvHFjAhWe2wRQ5y9C3ooeG9NjscEYqK
-        n71eyxfY8lbYKFnwChZZJXf5QDaG1/wvyNGDkpVjBt9W1F+fC3F3+/rtnbf8cOsZtERNkPMNE3n7
-        JgtWOyXnA5tSS5F2MoUy2+Xu8VYBiCul0kl7aq+rHVxpbaywp/T+7d2VjuAKZTnoTPHGkQrKgKkB
-        F4ViDsz6KfBrnCiX4nN1qyjz7Pu79WgupgmHnIt+/U8Aez14c/vr0nsHxskxCbPd1RtEU73MzOHL
-        Et435eXc3TdQ9jM5o+yl8vEktHngRDkqwjROCij77Y8P7709N1svh4LtKuMhWeeguCifgSaOUUP7
-        78cI46blgIUrQPuQbnj+2ApeTZbxK7qk+BveFFLVzCwaUX6T/c/V4/ZgR7bNHfL0yJS9at11d96Z
-        RZ+bVTtPISJ/mWKdSiIfQLmk1heTZ/WesFLIc/j6qIOrUKvwu6wOpWyJR6qcC2acs9WqW1vGhJ5W
-        mXWwulpmJrNRJ8a9h5Bpf8e5XoeSKT07+cL12rayt/IgO9nFIMBOyQaU4eA+JaXGxQydBpaIAfnZ
-        JmFLOYjpIB5/JGTu/j6hpXUwPyDHdSqts/t5t6uNh4g3CUlAZ5PZMLGn8WiYDIkTTZNJjKd1ZwON
-        Lv05TWbxpHOMX3oDbkk8+tVbZmu6iikdkSCOyehkbhQT2nYNry16G+MU3z4MrPQUNTj+YkSAdbFb
-        RYp0CELbjcI2+ziv9mpwvgpLpIXdJuQyAokzGqKXSGdbqFl43Gr+0dJCbtvwNQ/rDg9Om2475XTc
-        N/9yh33xbe7Hw2gcoGxrv45/A+lel4M+DAAA
+      string: '{"type":"FeatureCollection","features":[{"id":"fl_m_2608004_nw_17_060_20191215_20200113","bbox":[-80.627226,26.93549,-80.560244,27.001987],"type":"Feature","links":[{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/fl_m_2608004_nw_17_060_20191215_20200113"},{"rel":"preview","href":"https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=naip&item=fl_m_2608004_nw_17_060_20191215_20200113","title":"Map
+        of item","type":"text/html"}],"assets":{"image":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/26080/m_2608004_nw_17_060_20191215.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"RGBIR
+        COG tile","eo:bands":[{"name":"Red","common_name":"red"},{"name":"Green","common_name":"green"},{"name":"Blue","common_name":"blue"},{"name":"NIR","common_name":"nir","description":"near-infrared"}]},"metadata":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_fgdc_2019/26080/m_2608004_nw_17_060_20191215.txt","type":"text/plain","roles":["metadata"],"title":"FGDC
+        Metdata"},"thumbnail":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/26080/m_2608004_nw_17_060_20191215.200.jpg","type":"image/jpeg","roles":["thumbnail"],"title":"Thumbnail"},"tilejson":{"title":"TileJSON
+        with default rendering","href":"https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=naip&item=fl_m_2608004_nw_17_060_20191215_20200113&assets=image&asset_bidx=image%7C1%2C2%2C3&format=png","type":"application/json","roles":["tiles"]},"rendered_preview":{"title":"Rendered
+        preview","rel":"preview","href":"https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=naip&item=fl_m_2608004_nw_17_060_20191215_20200113&assets=image&asset_bidx=image%7C1%2C2%2C3&format=png","roles":["overview"],"type":"image/png"}},"geometry":{"type":"Polygon","coordinates":[[[-80.560502,26.93549],[-80.560244,27.001794],[-80.627008,27.001987],[-80.627226,26.935682],[-80.560502,26.93549]]]},"collection":"naip","properties":{"gsd":0.6,"datetime":"2019-12-15T00:00:00Z","naip:year":"2019","proj:bbox":[537006.0,2979366.0,543630.0,2986710.0],"proj:epsg":26917,"naip:state":"fl","proj:shape":[12240,11040],"proj:transform":[0.6,0.0,537006.0,0.0,-0.6,2986710.0,0.0,0.0,1.0]},"stac_extensions":["https://stac-extensions.github.io/eo/v1.0.0/schema.json","https://stac-extensions.github.io/projection/v1.0.0/schema.json"],"stac_version":"1.0.0"}],"links":[{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search"}]}'
     headers:
       Accept-Ranges:
       - bytes
       Access-Control-Allow-Credentials:
       - 'true'
+      Access-Control-Allow-Headers:
+      - X-PC-Request-Entity,DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, OPTIONS
       Access-Control-Allow-Origin:
       - '*'
+      Access-Control-Max-Age:
+      - '1728000'
       Connection:
       - keep-alive
       Content-Length:
@@ -52,9 +46,9 @@ interactions:
       Content-Type:
       - application/geo+json
       Date:
-      - Fri, 17 May 2024 13:07:47 GMT
+      - Fri, 09 Aug 2024 15:14:02 GMT
       Strict-Transport-Security:
-      - max-age=15724800; includeSubDomains
+      - max-age=31536000; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       content-encoding:
@@ -62,7 +56,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20240517T130745Z-176fb699484b5l48434w4bn21c00000003h0000000002ku4
+      - 20240809T151359Z-1674bbd94cc8qw2lprcgkkehss00000000t00000000060tf
     status:
       code: 200
       message: OK

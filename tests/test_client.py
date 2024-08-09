@@ -578,7 +578,7 @@ class TestSigning:
 class TestQueryables:
     @pytest.mark.vcr
     def test_get_queryables(self) -> None:
-        api = Client.open(STAC_URLS["PLANETARY-COMPUTER"])
+        api = Client.open("https://stac.sage.uvt.ro/")
         with pytest.warns(MissingLink, match="queryables"):
             result = api.get_queryables()
         assert "properties" in result
