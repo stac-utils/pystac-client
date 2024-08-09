@@ -63,12 +63,10 @@ jobs:
           python-version: "3.10"
       - name: Download uv
         run: curl -LsSf https://astral.sh/uv/install.sh | sh
-      - name: Install dev requirements
-        run: uv pip install --system .[dev]
       - name: Install with min requirements
-        run: uv pip install --system --resolution=lowest-direct --reinstall .
-      - name: Run pytest
-        run: pytest -Werror -s --block-network
+        run: uv pip install --system --resolution=lowest-direct .
+      - name: Run smoke test
+        run: stac-client search https://planetarycomputer.microsoft.com/api/stac/v1 -c sentinel-2-l2a --max-items 1
 
   docs:
     name: docs

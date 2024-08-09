@@ -9,86 +9,163 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.31.0
+      - python-requests/2.32.3
     method: GET
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/
   response:
     body:
-      string: !!binary |
-        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
+      string: '{"type":"Catalog","id":"microsoft-pc","title":"Microsoft Planetary
+        Computer STAC API","description":"Searchable spatiotemporal metadata describing
+        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","https://api.stacspec.org/v1.0.0/item-search#fields","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","https://api.stacspec.org/v1.0.0/ogcapi-features","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","https://api.stacspec.org/v1.0.0/item-search#query","https://api.stacspec.org/v1.0.0/collections","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter","https://api.stacspec.org/v1.0.0/item-search","https://api.stacspec.org/v1.0.0/core","https://api.stacspec.org/v1.0.0/item-search#sort"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
+        conformance classes implemented by this server","href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance"},{"rel":"search","type":"application/geo+json","title":"STAC
+        search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"GET"},{"rel":"search","type":"application/geo+json","title":"STAC
+        search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"POST"},{"rel":"http://www.opengis.net/def/rel/ogc/1.0/queryables","type":"application/schema+json","title":"Queryables","href":"https://planetarycomputer.microsoft.com/api/stac/v1/queryables","method":"GET"},{"rel":"child","type":"application/json","title":"Daymet
+        Annual Puerto Rico","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-annual-pr"},{"rel":"child","type":"application/json","title":"Daymet
+        Daily Hawaii","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-daily-hi"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Seamless DEMs","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-seamless"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Digital Surface Model","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-dsm"},{"rel":"child","type":"application/json","title":"Forest
+        Inventory and Analysis","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/fia"},{"rel":"child","type":"application/json","title":"Sentinel
+        1 Radiometrically Terrain Corrected (RTC)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-rtc"},{"rel":"child","type":"application/json","title":"gridMET","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gridmet"},{"rel":"child","type":"application/json","title":"Daymet
+        Annual North America","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-annual-na"},{"rel":"child","type":"application/json","title":"Daymet
+        Monthly North America","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-monthly-na"},{"rel":"child","type":"application/json","title":"Daymet
+        Annual Hawaii","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-annual-hi"},{"rel":"child","type":"application/json","title":"Daymet
+        Monthly Hawaii","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-monthly-hi"},{"rel":"child","type":"application/json","title":"Daymet
+        Monthly Puerto Rico","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-monthly-pr"},{"rel":"child","type":"application/json","title":"gNATSGO
+        Soil Database - Tables","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gnatsgo-tables"},{"rel":"child","type":"application/json","title":"HGB:
+        Harmonized Global Biomass for 2010","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/hgb"},{"rel":"child","type":"application/json","title":"Copernicus
+        DEM GLO-30","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/cop-dem-glo-30"},{"rel":"child","type":"application/json","title":"Copernicus
+        DEM GLO-90","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/cop-dem-glo-90"},{"rel":"child","type":"application/json","title":"GOES-R
+        Cloud & Moisture Imagery","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/goes-cmi"},{"rel":"child","type":"application/json","title":"TerraClimate","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/terraclimate"},{"rel":"child","type":"application/json","title":"Earth
+        Exchange Global Daily Downscaled Projections (NEX-GDDP-CMIP6)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/nasa-nex-gddp-cmip6"},{"rel":"child","type":"application/json","title":"GPM
+        IMERG","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gpm-imerg-hhr"},{"rel":"child","type":"application/json","title":"gNATSGO
+        Soil Database - Rasters","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gnatsgo-rasters"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Height above Ground","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-hag"},{"rel":"child","type":"application/json","title":"10m
+        Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
+        Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
+        Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
+        Forest/Non-Forest Annual Mosaic","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/alos-fnf-mosaic"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Returns","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-returns"},{"rel":"child","type":"application/json","title":"MoBI:
+        Map of Biodiversity Importance","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mobi"},{"rel":"child","type":"application/json","title":"Landsat
+        Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l2"},{"rel":"child","type":"application/json","title":"ERA5
+        - PDS","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/era5-pds"},{"rel":"child","type":"application/json","title":"Chloris
+        Biomass","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/chloris-biomass"},{"rel":"child","type":"application/json","title":"HydroForecast
+        - Kwando & Upper Zambezi Rivers","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/kaza-hydroforecast"},{"rel":"child","type":"application/json","title":"Planet-NICFI
+        Basemaps (Analytic)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/planet-nicfi-analytic"},{"rel":"child","type":"application/json","title":"MODIS
+        Gross Primary Productivity 8-Day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-17A2H-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Land Surface Temperature/Emissivity 8-Day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-11A2-061"},{"rel":"child","type":"application/json","title":"Daymet
+        Daily Puerto Rico","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-daily-pr"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Digital Terrain Model (Native)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-dtm-native"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Classification","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-classification"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Digital Terrain Model","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-dtm"},{"rel":"child","type":"application/json","title":"USGS
+        Gap Land Cover","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gap"},{"rel":"child","type":"application/json","title":"MODIS
+        Gross Primary Productivity 8-Day Gap-Filled","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-17A2HGF-061"},{"rel":"child","type":"application/json","title":"Planet-NICFI
+        Basemaps (Visual)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/planet-nicfi-visual"},{"rel":"child","type":"application/json","title":"Global
+        Biodiversity Information Facility (GBIF)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gbif"},{"rel":"child","type":"application/json","title":"MODIS
+        Net Primary Production Yearly Gap-Filled","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-17A3HGF-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Surface Reflectance 8-Day (500m)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-09A1-061"},{"rel":"child","type":"application/json","title":"ALOS
+        World 3D-30m","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/alos-dem"},{"rel":"child","type":"application/json","title":"ALOS
+        PALSAR Annual Mosaic","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/alos-palsar-mosaic"},{"rel":"child","type":"application/json","title":"Deltares
+        Global Water Availability","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/deltares-water-availability"},{"rel":"child","type":"application/json","title":"MODIS
+        Net Evapotranspiration Yearly Gap-Filled","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-16A3GF-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Land Surface Temperature/3-Band Emissivity 8-Day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-21A2-061"},{"rel":"child","type":"application/json","title":"US
+        Census","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/us-census"},{"rel":"child","type":"application/json","title":"JRC
+        Global Surface Water","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/jrc-gsw"},{"rel":"child","type":"application/json","title":"Deltares
+        Global Flood Maps","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/deltares-floods"},{"rel":"child","type":"application/json","title":"MODIS
+        Nadir BRDF-Adjusted Reflectance (NBAR) Daily","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-43A4-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Surface Reflectance 8-Day (250m)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-09Q1-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Thermal Anomalies/Fire Daily","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-14A1-061"},{"rel":"child","type":"application/json","title":"HREA:
+        High Resolution Electricity Access","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/hrea"},{"rel":"child","type":"application/json","title":"MODIS
+        Vegetation Indices 16-Day (250m)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-13Q1-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Thermal Anomalies/Fire 8-Day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-14A2-061"},{"rel":"child","type":"application/json","title":"Sentinel-2
+        Level-2A","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a"},{"rel":"child","type":"application/json","title":"MODIS
+        Leaf Area Index/FPAR 8-Day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-15A2H-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Land Surface Temperature/Emissivity Daily","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-11A1-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Leaf Area Index/FPAR 4-Day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-15A3H-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Vegetation Indices 16-Day (500m)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-13A1-061"},{"rel":"child","type":"application/json","title":"Daymet
+        Daily North America","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-daily-na"},{"rel":"child","type":"application/json","title":"Land
+        Cover of Canada","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/nrcan-landcover"},{"rel":"child","type":"application/json","title":"MODIS
+        Snow Cover 8-day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-10A2-061"},{"rel":"child","type":"application/json","title":"ECMWF
+        Open Data (real-time)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/ecmwf-forecast"},{"rel":"child","type":"application/json","title":"NOAA
+        MRMS QPE 24-Hour Pass 2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-mrms-qpe-24h-pass2"},{"rel":"child","type":"application/json","title":"Sentinel
+        1 Level-1 Ground Range Detected (GRD)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-grd"},{"rel":"child","type":"application/json","title":"NASADEM
+        HGT v001","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/nasadem"},{"rel":"child","type":"application/json","title":"Esri
+        10-Meter Land Cover (10-class)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc"},{"rel":"child","type":"application/json","title":"Landsat
+        Collection 2 Level-1","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l1"},{"rel":"child","type":"application/json","title":"Denver
+        Regional Council of Governments Land Use Land Cover","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/drcog-lulc"},{"rel":"child","type":"application/json","title":"Chesapeake
+        Land Cover (7-class)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/chesapeake-lc-7"},{"rel":"child","type":"application/json","title":"Chesapeake
+        Land Cover (13-class)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/chesapeake-lc-13"},{"rel":"child","type":"application/json","title":"Chesapeake
+        Land Use","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/chesapeake-lu"},{"rel":"child","type":"application/json","title":"NOAA
+        MRMS QPE 1-Hour Pass 1","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-mrms-qpe-1h-pass1"},{"rel":"child","type":"application/json","title":"NOAA
+        MRMS QPE 1-Hour Pass 2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-mrms-qpe-1h-pass2"},{"rel":"child","type":"application/json","title":"Monthly
+        NOAA U.S. Climate Gridded Dataset (NClimGrid)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-nclimgrid-monthly"},{"rel":"child","type":"application/json","title":"GOES-R
+        Lightning Detection","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/goes-glm"},{"rel":"child","type":"application/json","title":"USDA
+        Cropland Data Layers (CDLs)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/usda-cdl"},{"rel":"child","type":"application/json","title":"Urban
+        Innovation Eclipse Sensor Data","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/eclipse"},{"rel":"child","type":"application/json","title":"ESA
+        Climate Change Initiative Land Cover Maps (Cloud Optimized GeoTIFF)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/esa-cci-lc"},{"rel":"child","type":"application/json","title":"ESA
+        Climate Change Initiative Land Cover Maps (NetCDF)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/esa-cci-lc-netcdf"},{"rel":"child","type":"application/json","title":"FWS
+        National Wetlands Inventory","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/fws-nwi"},{"rel":"child","type":"application/json","title":"USGS
+        LCMAP CONUS Collection 1.3","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/usgs-lcmap-conus-v13"},{"rel":"child","type":"application/json","title":"USGS
+        LCMAP Hawaii Collection 1.0","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/usgs-lcmap-hawaii-v10"},{"rel":"child","type":"application/json","title":"NOAA
+        US Tabular Climate Normals","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-climate-normals-tabular"},{"rel":"child","type":"application/json","title":"NOAA
+        US Gridded Climate Normals (NetCDF)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-climate-normals-netcdf"},{"rel":"child","type":"application/json","title":"NOAA
+        US Gridded Climate Normals (Cloud-Optimized GeoTIFF)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-climate-normals-gridded"},{"rel":"child","type":"application/json","title":"ASTER
+        L1T","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/aster-l1t"},{"rel":"child","type":"application/json","title":"CIL
+        Global Downscaled Projections for Climate Impacts Research (CC-BY-SA-4.0)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/cil-gdpcir-cc-by-sa"},{"rel":"child","type":"application/json","title":"NAIP:
+        National Agriculture Imagery Program","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"child","type":"application/json","title":"10m
+        Annual Land Use Land Cover (9-class) V1","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-9-class"},{"rel":"child","type":"application/json","title":"Biodiversity
+        Intactness","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-biodiversity"},{"rel":"child","type":"application/json","title":"Sea
+        Surface Temperature - WHOI CDR","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-cdr-sea-surface-temperature-whoi"},{"rel":"child","type":"application/json","title":"Global
+        Ocean Heat Content CDR","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-cdr-ocean-heat-content"},{"rel":"child","type":"application/json","title":"CIL
+        Global Downscaled Projections for Climate Impacts Research (CC0-1.0)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/cil-gdpcir-cc0"},{"rel":"child","type":"application/json","title":"CIL
+        Global Downscaled Projections for Climate Impacts Research (CC-BY-4.0)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/cil-gdpcir-cc-by"},{"rel":"child","type":"application/json","title":"Sea
+        Surface Temperature - WHOI CDR NetCDFs","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-cdr-sea-surface-temperature-whoi-netcdf"},{"rel":"child","type":"application/json","title":"Sea
+        Surface Temperature - Optimum Interpolation CDR","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-cdr-sea-surface-temperature-optimum-interpolation"},{"rel":"child","type":"application/json","title":"MODIS
+        Snow Cover Daily","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-10A1-061"},{"rel":"child","type":"application/json","title":"Sentinel-5P
+        Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-5p-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Water (Full Resolution)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-olci-wfr-l2-netcdf"},{"rel":"child","type":"application/json","title":"Global
+        Ocean Heat Content CDR NetCDFs","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-cdr-ocean-heat-content-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Global Aerosol","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-synergy-aod-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        10-Day Surface Reflectance and NDVI (SPOT VEGETATION)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-synergy-v10-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Land (Full Resolution)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-olci-lfr-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Land Radar Altimetry","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-sral-lan-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Land Surface Temperature","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-slstr-lst-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Sea Surface Temperature","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-slstr-wst-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Ocean Radar Altimetry","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-sral-wat-l2-netcdf"},{"rel":"child","type":"application/json","title":"Microsoft
+        Building Footprints","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/ms-buildings"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Fire Radiative Power","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-slstr-frp-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Land Surface Reflectance and Aerosol","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-synergy-syn-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Top of Atmosphere Reflectance (SPOT VEGETATION)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-synergy-vgp-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        1-Day Surface Reflectance and NDVI (SPOT VEGETATION)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-synergy-vg1-l2-netcdf"},{"rel":"child","type":"application/json","title":"ESA
+        WorldCover","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/esa-worldcover"},{"rel":"service-desc","type":"application/vnd.oai.openapi+json;version=3.0","title":"OpenAPI
+        service description","href":"https://planetarycomputer.microsoft.com/api/stac/v1/openapi.json"},{"rel":"service-doc","type":"text/html","title":"OpenAPI
+        service documentation","href":"https://planetarycomputer.microsoft.com/api/stac/v1/docs"}],"stac_extensions":[]}'
     headers:
       Accept-Ranges:
       - bytes
       Access-Control-Allow-Credentials:
       - 'true'
+      Access-Control-Allow-Headers:
+      - X-PC-Request-Entity,DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, OPTIONS
       Access-Control-Allow-Origin:
       - '*'
+      Access-Control-Max-Age:
+      - '1728000'
       Connection:
       - keep-alive
       Content-Length:
-      - '3247'
+      - '3297'
       Content-Type:
       - application/json
       Date:
-      - Fri, 17 May 2024 13:07:33 GMT
+      - Fri, 09 Aug 2024 15:13:38 GMT
       Strict-Transport-Security:
-      - max-age=15724800; includeSubDomains
+      - max-age=31536000; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       content-encoding:
@@ -96,7 +173,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20240517T130733Z-176fb699484t8cjvwrqyfq344w00000003pg000000003n0v
+      - 20240809T151338Z-1674bbd94ccst79rbwyfu0y62s0000000arg0000000046ny
     status:
       code: 200
       message: OK
@@ -110,214 +187,554 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.31.0
+      - python-requests/2.32.3
     method: GET
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/collections/cil-gdpcir-cc-by
   response:
     body:
-      string: !!binary |
-        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
-        vAAA
+      string: "{\"id\":\"cil-gdpcir-cc-by\",\"type\":\"Collection\",\"links\":[{\"rel\":\"items\",\"type\":\"application/geo+json\",\"href\":\"https://planetarycomputer.microsoft.com/api/stac/v1/collections/cil-gdpcir-cc-by/items\"},{\"rel\":\"parent\",\"type\":\"application/json\",\"href\":\"https://planetarycomputer.microsoft.com/api/stac/v1/\"},{\"rel\":\"root\",\"type\":\"application/json\",\"href\":\"https://planetarycomputer.microsoft.com/api/stac/v1/\"},{\"rel\":\"self\",\"type\":\"application/json\",\"href\":\"https://planetarycomputer.microsoft.com/api/stac/v1/collections/cil-gdpcir-cc-by\"},{\"rel\":\"license\",\"href\":\"https://spdx.org/licenses/CC-BY-4.0.html\",\"type\":\"text/html\",\"title\":\"Creative
+        Commons Attribution 4.0 International\"},{\"rel\":\"cite-as\",\"href\":\"https://zenodo.org/record/6403794\",\"type\":\"text/html\"},{\"rel\":\"describedby\",\"href\":\"https://github.com/ClimateImpactLab/downscaleCMIP6/\",\"type\":\"text/html\",\"title\":\"Project
+        homepage\"},{\"rel\":\"describedby\",\"href\":\"https://planetarycomputer.microsoft.com/dataset/cil-gdpcir-cc-by\",\"title\":\"Human
+        readable dataset overview and reference\",\"type\":\"text/html\"}],\"title\":\"CIL
+        Global Downscaled Projections for Climate Impacts Research (CC-BY-4.0)\",\"assets\":{\"thumbnail\":{\"href\":\"https://ai4edatasetspublicassets.blob.core.windows.net/assets/pc_thumbnails/gdpcir.png\",\"type\":\"image/png\",\"title\":\"Thumbnail\"},\"geoparquet-items\":{\"href\":\"abfs://items/cil-gdpcir-cc-by.parquet\",\"type\":\"application/x-parquet\",\"roles\":[\"stac-items\"],\"title\":\"GeoParquet
+        STAC items\",\"description\":\"Snapshot of the collection's STAC items exported
+        to GeoParquet format.\",\"msft:partition_info\":{\"is_partitioned\":false},\"table:storage_options\":{\"account_name\":\"pcstacitems\"}}},\"extent\":{\"spatial\":{\"bbox\":[[-180,-90,180,90]]},\"temporal\":{\"interval\":[[\"1950-01-01T00:00:00Z\",\"2100-12-31T00:00:00Z\"]]}},\"license\":\"CC-BY-4.0\",\"sci:doi\":\"10.5194/egusphere-2022-1513\",\"keywords\":[\"CMIP6\",\"Climate
+        Impact Lab\",\"Rhodium Group\",\"Precipitation\",\"Temperature\"],\"providers\":[{\"url\":\"https://impactlab.org/\",\"name\":\"Climate
+        Impact Lab\",\"roles\":[\"producer\"]},{\"url\":\"https://planetarycomputer.microsoft.com/\",\"name\":\"Microsoft\",\"roles\":[\"host\"]}],\"summaries\":{\"cmip6:variable\":[\"pr\",\"tasmax\",\"tasmin\"],\"cmip6:source_id\":[\"BCC-CSM2-MR\",\"ACCESS-ESM1-5\",\"ACCESS-CM2\",\"MIROC-ES2L\",\"MIROC6\",\"NorESM2-LM\",\"NorESM2-MM\",\"GFDL-CM4\",\"GFDL-ESM4\",\"NESM3\",\"MPI-ESM1-2-HR\",\"HadGEM3-GC31-LL\",\"UKESM1-0-LL\",\"MPI-ESM1-2-LR\",\"EC-Earth3\",\"EC-Earth3-AerChem\",\"EC-Earth3-CC\",\"EC-Earth3-Veg\",\"EC-Earth3-Veg-LR\",\"CMCC-CM2-SR5\",\"CMCC-ESM2\"],\"cmip6:experiment_id\":[\"historical\",\"ssp126\",\"ssp245\",\"ssp370\",\"ssp585\"],\"cmip6:institution_id\":[\"BCC\",\"CAS\",\"CCCma\",\"CMCC\",\"CSIRO\",\"CSIRO-ARCCSS\",\"DKRZ\",\"EC-Earth-Consortium\",\"INM\",\"MIROC\",\"MOHC\",\"MPI-M\",\"NCC\",\"NOAA-GFDL\",\"NUIST\"]},\"description\":\"The
+        World Climate Research Programme's [6th Coupled Model Intercomparison Project
+        (CMIP6)](https://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip6) represents an
+        enormous advance in the quality, detail, and scope of climate modeling.\\n\\nThe
+        [Global Downscaled Projections for Climate Impacts Research](https://github.com/ClimateImpactLab/downscaleCMIP6)
+        dataset makes this modeling more applicable to understanding the impacts of
+        changes in the climate on humans and society with two key developments: trend-preserving
+        bias correction and downscaling. In this dataset, the [Climate Impact Lab](https://impactlab.org)
+        provides global, daily minimum and maximum air temperature at the surface
+        (`tasmin` and `tasmax`) and daily cumulative surface precipitation (`pr`)
+        corresponding to the CMIP6 historical, ssp1-2.6, ssp2-4.5, ssp3-7.0, and ssp5-8.5
+        scenarios for 25 global climate models on a 1/4-degree regular global grid.\\n\\n##
+        Accessing the data\\n\\nGDPCIR data can be accessed on the Microsoft Planetary
+        Computer. The dataset is made of of three collections, distinguished by data
+        license:\\n* [Public domain (CC0-1.0) collection](https://planetarycomputer.microsoft.com/dataset/cil-gdpcir-cc0)\\n*
+        [Attribution (CC BY 4.0) collection](https://planetarycomputer.microsoft.com/dataset/cil-gdpcir-cc-by)\\n\\nEach
+        modeling center with bias corrected and downscaled data in this collection
+        falls into one of these license categories - see the [table below](/dataset/cil-gdpcir-cc-by#available-institutions-models-and-scenarios-by-license-collection)
+        to see which model is in each collection, and see the section below on [Citing,
+        Licensing, and using data produced by this project](/dataset/cil-gdpcir-cc-by#citing-licensing-and-using-data-produced-by-this-project)
+        for citations and additional information about each license.\\n\\n## Data
+        format & contents\\n\\nThe data is stored as partitioned zarr stores (see
+        [https://zarr.readthedocs.io](https://zarr.readthedocs.io)), each of which
+        includes thousands of data and metadata files covering the full time span
+        of the experiment. Historical zarr stores contain just over 50 GB, while SSP
+        zarr stores contain nearly 70GB. Each store is stored as a 32-bit float, with
+        dimensions time (daily datetime), lat (float latitude), and lon (float longitude).
+        The data is chunked at each interval of 365 days and 90 degree interval of
+        latitude and longitude. Therefore, each chunk is `(365, 360, 360)`, with each
+        chunk occupying approximately 180MB in memory.\\n\\nHistorical data is daily,
+        excluding leap days, from Jan 1, 1950 to Dec 31, 2014; SSP data is daily,
+        excluding leap days, from Jan 1, 2015 to either Dec 31, 2099 or Dec 31, 2100,
+        depending on data availability in the source GCM.\\n\\nThe spatial domain
+        covers all 0.25-degree grid cells, indexed by the grid center, with grid edges
+        on the quarter-degree, using a -180 to 180 longitude convention. Thus, the
+        \u201Clon\u201D coordinate extends from -179.875 to 179.875, and the \u201Clat\u201D
+        coordinate extends from -89.875 to 89.875, with intermediate values at each
+        0.25-degree increment between (e.g. -179.875, -179.625, -179.375, etc).\\n\\n##
+        Available institutions, models, and scenarios by license collection\\n\\n|
+        Modeling institution |   Source model    |           Available experiments
+        \           |   License collection   |\\n| -------------------- | -----------------
+        | ------------------------------------------ | ---------------------- |\\n|
+        CAS                  | FGOALS-g3 [^1]    | SSP2-4.5, SSP3-7.0, and SSP5-8.5
+        \          | Public domain datasets |\\n| INM                  | INM-CM4-8
+        \        | SSP1-2.6, SSP2-4.5, SSP3-7.0, and SSP5-8.5 | Public domain datasets
+        |\\n| INM                  | INM-CM5-0         | SSP1-2.6, SSP2-4.5, SSP3-7.0,
+        and SSP5-8.5 | Public domain datasets |\\n| BCC                  | BCC-CSM2-MR
+        \      | SSP1-2.6, SSP2-4.5, SSP3-7.0, and SSP5-8.5 | CC-BY-40               |\\n|
+        CMCC                 | CMCC-CM2-SR5      | ssp1-2.6, ssp2-4.5, ssp3-7.0, ssp5-8.5
+        \    | CC-BY-40               |\\n| CMCC                 | CMCC-ESM2         |
+        ssp1-2.6, ssp2-4.5, ssp3-7.0, ssp5-8.5     | CC-BY-40               |\\n|
+        CSIRO-ARCCSS         | ACCESS-CM2        | SSP2-4.5 and SSP3-7.0                      |
+        CC-BY-40               |\\n| CSIRO                | ACCESS-ESM1-5     | SSP1-2.6,
+        SSP2-4.5, and SSP3-7.0           | CC-BY-40               |\\n| MIROC                |
+        MIROC-ES2L        | SSP1-2.6, SSP2-4.5, SSP3-7.0, and SSP5-8.5 | CC-BY-40
+        \              |\\n| MIROC                | MIROC6            | SSP1-2.6,
+        SSP2-4.5, SSP3-7.0, and SSP5-8.5 | CC-BY-40               |\\n| MOHC                 |
+        HadGEM3-GC31-LL   | SSP1-2.6, SSP2-4.5, and SSP5-8.5           | CC-BY-40
+        \              |\\n| MOHC                 | UKESM1-0-LL       | SSP1-2.6,
+        SSP2-4.5, SSP3-7.0, and SSP5-8.5 | CC-BY-40               |\\n| MPI-M                |
+        MPI-ESM1-2-LR     | SSP1-2.6, SSP2-4.5, SSP3-7.0, and SSP5-8.5 | CC-BY-40
+        \              |\\n| MPI-M/DKRZ [^2]      | MPI-ESM1-2-HR     | SSP1-2.6 and
+        SSP5-8.5                      | CC-BY-40               |\\n| NCC                  |
+        NorESM2-LM        | SSP1-2.6, SSP2-4.5, SSP3-7.0, and SSP5-8.5 | CC-BY-40
+        \              |\\n| NCC                  | NorESM2-MM        | SSP1-2.6,
+        SSP2-4.5, SSP3-7.0, and SSP5-8.5 | CC-BY-40               |\\n| NOAA-GFDL
+        \           | GFDL-CM4          | SSP2-4.5 and SSP5-8.5                      |
+        CC-BY-40               |\\n| NOAA-GFDL            | GFDL-ESM4         | SSP1-2.6,
+        SSP2-4.5, SSP3-7.0, and SSP5-8.5 | CC-BY-40               |\\n| NUIST                |
+        NESM3             | SSP1-2.6, SSP2-4.5, and SSP5-8.5           | CC-BY-40
+        \              |\\n| EC-Earth-Consortium  | EC-Earth3         | ssp1-2.6,
+        ssp2-4.5, ssp3-7.0, and ssp5-8.5 | CC-BY-40               |\\n| EC-Earth-Consortium
+        \ | EC-Earth3-AerChem | ssp370                                     | CC-BY-40
+        \              |\\n| EC-Earth-Consortium  | EC-Earth3-CC      | ssp245 and
+        ssp585                          | CC-BY-40               |\\n| EC-Earth-Consortium
+        \ | EC-Earth3-Veg     | ssp1-2.6, ssp2-4.5, ssp3-7.0, and ssp5-8.5 | CC-BY-40
+        \              |\\n| EC-Earth-Consortium  | EC-Earth3-Veg-LR  | ssp1-2.6,
+        ssp2-4.5, ssp3-7.0, and ssp5-8.5 | CC-BY-40               |\\n| CCCma                |
+        CanESM5           | ssp1-2.6, ssp2-4.5, ssp3-7.0, ssp5-8.5     | CC-BY-40[^3]
+        \          |\\n\\n*Notes:*\\n\\n[^1]: At the time of running, no ssp1-2.6
+        precipitation data was available. Therefore, we provide `tasmin` and `tamax`
+        for this model and experiment, but not `pr`. All other model/experiment combinations
+        in the above table include all three variables.\\n\\n[^2]: The institution
+        which ran MPI-ESM1-2-HR\u2019s historical (CMIP) simulations is `MPI-M`, while
+        the future (ScenarioMIP) simulations were run by `DKRZ`. Therefore, the institution
+        component of `MPI-ESM1-2-HR` filepaths differ between `historical` and `SSP`
+        scenarios.\\n\\n[^3]: This dataset was previously licensed as [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/),
+        but was relicensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0)
+        in March, 2023. \\n\\n## Project methods\\n\\nThis project makes use of statistical
+        bias correction and downscaling algorithms, which are specifically designed
+        to accurately represent changes in the extremes. For this reason, we selected
+        Quantile Delta Mapping (QDM), following the method introduced by [Cannon et
+        al. (2015)](https://doi.org/10.1175/JCLI-D-14-00754.1), which preserves quantile-specific
+        trends from the GCM while fitting the full distribution for a given day-of-year
+        to a reference dataset (ERA5).\\n\\nWe then introduce a similar method tailored
+        to increase spatial resolution while preserving extreme behavior, Quantile-Preserving
+        Localized-Analog Downscaling (QPLAD).\\n\\nTogether, these methods provide
+        a robust means to handle both the central and tail behavior seen in climate
+        model output, while aligning the full distribution to a state-of-the-art reanalysis
+        dataset and providing the spatial granularity needed to study surface impacts.\\n\\nFor
+        further documentation, see [Global downscaled projections for climate impacts
+        research (GDPCIR): preserving extremes for modeling future climate impacts](https://egusphere.copernicus.org/preprints/2023/egusphere-2022-1513/)
+        (EGUsphere, 2022 [preprint]).\\n\\n## Citing, licensing, and using data produced
+        by this project\\n\\nProjects making use of the data produced as part of the
+        Climate Impact Lab Global Downscaled Projections for Climate Impacts Research
+        (CIL GDPCIR) project are requested to cite both this project and the source
+        datasets from which these results are derived. Additionally, the use of data
+        derived from some GCMs *requires* citations, and some modeling centers impose
+        licensing restrictions & requirements on derived works. See each GCM's license
+        info in the links below for more information.\\n\\n### CIL GDPCIR\\n\\nUsers
+        are requested to cite this project in derived works. Our method documentation
+        paper may be cited using the following:\\n\\n> Gergel, D. R., Malevich, S.
+        B., McCusker, K. E., Tenezakis, E., Delgado, M. T., Fish, M. A., and Kopp,
+        R. E.: Global downscaled projections for climate impacts research (GDPCIR):
+        preserving extremes for modeling future climate impacts, EGUsphere [preprint],
+        https://doi.org/10.5194/egusphere-2022-1513, 2023. \\n\\nThe code repository
+        may be cited using the following:\\n\\n> Diana Gergel, Kelly McCusker, Brewster
+        Malevich, Emile Tenezakis, Meredith Fish, Michael Delgado (2022). ClimateImpactLab/downscaleCMIP6:
+        (v1.0.0). Zenodo. https://doi.org/10.5281/zenodo.6403794\\n\\n### ERA5\\n\\nAdditionally,
+        we request you cite the historical dataset used in bias correction and downscaling,
+        ERA5. See the [ECMWF guide to citing a dataset on the Climate Data Store](https://confluence.ecmwf.int/display/CKB/How+to+acknowledge+and+cite+a+Climate+Data+Store+%28CDS%29+catalogue+entry+and+the+data+published+as+part+of+it):\\n\\n>
+        Hersbach, H, et al. The ERA5 global reanalysis. Q J R Meteorol Soc.2020; 146:
+        1999\u20132049. DOI: [10.1002/qj.3803](https://doi.org/10.1002/qj.3803)\\n>\\n>
+        Mu\xF1oz Sabater, J., (2019): ERA5-Land hourly data from 1981 to present.
+        Copernicus Climate Change Service (C3S) Climate Data Store (CDS). (Accessed
+        on June 4, 2021), DOI: [10.24381/cds.e2161bac](https://doi.org/10.24381/cds.e2161bac)\\n>\\n>
+        Mu\xF1oz Sabater, J., (2021): ERA5-Land hourly data from 1950 to 1980. Copernicus
+        Climate Change Service (C3S) Climate Data Store (CDS). (Accessed on June 4,
+        2021), DOI: [10.24381/cds.e2161bac](https://doi.org/10.24381/cds.e2161bac)\\n\\n###
+        GCM-specific citations & licenses\\n\\nThe CMIP6 simulation data made available
+        through the Earth System Grid Federation (ESGF) are subject to Creative Commons
+        [BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) or [BY-NC-SA
+        4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) licenses. The Climate
+        Impact Lab has reached out to each of the modeling institutions to request
+        waivers from these terms so the outputs of this project may be used with fewer
+        restrictions, and has been granted permission to release the data using the
+        licenses listed here.\\n\\n#### Public Domain Datasets\\n\\nThe following
+        bias corrected and downscaled model simulations are available in the public
+        domain using a [CC0 1.0 Universal Public Domain Declaration](https://creativecommons.org/publicdomain/zero/1.0/).
+        Access the collection on Planetary Computer at https://planetarycomputer.microsoft.com/dataset/cil-gdpcir-cc0.\\n\\n*
+        **FGOALS-g3**\\n\\n  License description: [data_licenses/FGOALS-g3.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/FGOALS-g3.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > Li, Lijuan **(2019)**. *CAS FGOALS-g3 model output
+        prepared for CMIP6 CMIP*. Version 20190826. Earth System Grid Federation.
+        https://doi.org/10.22033/ESGF/CMIP6.1783\\n\\n  ScenarioMIP Citation:\\n\\n
+        \ > Li, Lijuan **(2019)**. *CAS FGOALS-g3 model output prepared for CMIP6
+        ScenarioMIP*. SSP1-2.6 version 20190818; SSP2-4.5 version 20190818; SSP3-7.0
+        version 20190820; SSP5-8.5 tasmax version 20190819; SSP5-8.5 tasmin version
+        20190819; SSP5-8.5 pr version 20190818. Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.2056\\n\\n\\n*
+        **INM-CM4-8**\\n\\n  License description: [data_licenses/INM-CM4-8.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/INM-CM4-8.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > Volodin, Evgeny; Mortikov, Evgeny; Gritsun, Andrey;
+        Lykossov, Vasily; Galin, Vener; Diansky, Nikolay; Gusev, Anatoly; Kostrykin,
+        Sergey; Iakovlev, Nikolay; Shestakova, Anna; Emelina, Svetlana **(2019)**.
+        *INM INM-CM4-8 model output prepared for CMIP6 CMIP*. Version 20190530. Earth
+        System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.1422\\n\\n  ScenarioMIP
+        Citation:\\n\\n  > Volodin, Evgeny; Mortikov, Evgeny; Gritsun, Andrey; Lykossov,
+        Vasily; Galin, Vener; Diansky, Nikolay; Gusev, Anatoly; Kostrykin, Sergey;
+        Iakovlev, Nikolay; Shestakova, Anna; Emelina, Svetlana **(2019)**. *INM INM-CM4-8
+        model output prepared for CMIP6 ScenarioMIP*. Version 20190603. Earth System
+        Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.12321\\n\\n\\n* **INM-CM5-0**\\n\\n
+        \ License description: [data_licenses/INM-CM5-0.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/INM-CM5-0.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > Volodin, Evgeny; Mortikov, Evgeny; Gritsun, Andrey;
+        Lykossov, Vasily; Galin, Vener; Diansky, Nikolay; Gusev, Anatoly; Kostrykin,
+        Sergey; Iakovlev, Nikolay; Shestakova, Anna; Emelina, Svetlana **(2019)**.
+        *INM INM-CM5-0 model output prepared for CMIP6 CMIP*. Version 20190610. Earth
+        System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.1423\\n\\n  ScenarioMIP
+        Citation:\\n\\n  > Volodin, Evgeny; Mortikov, Evgeny; Gritsun, Andrey; Lykossov,
+        Vasily; Galin, Vener; Diansky, Nikolay; Gusev, Anatoly; Kostrykin, Sergey;
+        Iakovlev, Nikolay; Shestakova, Anna; Emelina, Svetlana **(2019)**. *INM INM-CM5-0
+        model output prepared for CMIP6 ScenarioMIP*. SSP1-2.6 version 20190619; SSP2-4.5
+        version 20190619; SSP3-7.0 version 20190618; SSP5-8.5 version 20190724. Earth
+        System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.12322\\n\\n\\n####
+        CC-BY-4.0\\n\\nThe following bias corrected and downscaled model simulations
+        are licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
+        Note that this license requires citation of the source model output (included
+        here). Please see https://creativecommons.org/licenses/by/4.0/ for more information.
+        Access the collection on Planetary Computer at https://planetarycomputer.microsoft.com/dataset/cil-gdpcir-cc-by.\\n\\n*
+        **ACCESS-CM2**\\n\\n  License description: [data_licenses/ACCESS-CM2.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/ACCESS-CM2.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > Dix, Martin; Bi, Doahua; Dobrohotoff, Peter; Fiedler,
+        Russell; Harman, Ian; Law, Rachel; Mackallah, Chloe; Marsland, Simon; O'Farrell,
+        Siobhan; Rashid, Harun; Srbinovsky, Jhan; Sullivan, Arnold; Trenham, Claire;
+        Vohralik, Peter; Watterson, Ian; Williams, Gareth; Woodhouse, Matthew; Bodman,
+        Roger; Dias, Fabio Boeira; Domingues, Catia; Hannah, Nicholas; Heerdegen,
+        Aidan; Savita, Abhishek; Wales, Scott; Allen, Chris; Druken, Kelsey; Evans,
+        Ben; Richards, Clare; Ridzwan, Syazwan Mohamed; Roberts, Dale; Smillie, Jon;
+        Snow, Kate; Ward, Marshall; Yang, Rui **(2019)**. *CSIRO-ARCCSS ACCESS-CM2
+        model output prepared for CMIP6 CMIP*. Version 20191108. Earth System Grid
+        Federation. https://doi.org/10.22033/ESGF/CMIP6.2281\\n\\n  ScenarioMIP Citation:\\n\\n
+        \ > Dix, Martin; Bi, Doahua; Dobrohotoff, Peter; Fiedler, Russell; Harman,
+        Ian; Law, Rachel; Mackallah, Chloe; Marsland, Simon; O'Farrell, Siobhan; Rashid,
+        Harun; Srbinovsky, Jhan; Sullivan, Arnold; Trenham, Claire; Vohralik, Peter;
+        Watterson, Ian; Williams, Gareth; Woodhouse, Matthew; Bodman, Roger; Dias,
+        Fabio Boeira; Domingues, Catia; Hannah, Nicholas; Heerdegen, Aidan; Savita,
+        Abhishek; Wales, Scott; Allen, Chris; Druken, Kelsey; Evans, Ben; Richards,
+        Clare; Ridzwan, Syazwan Mohamed; Roberts, Dale; Smillie, Jon; Snow, Kate;
+        Ward, Marshall; Yang, Rui **(2019)**. *CSIRO-ARCCSS ACCESS-CM2 model output
+        prepared for CMIP6 ScenarioMIP*. Version 20191108. Earth System Grid Federation.
+        https://doi.org/10.22033/ESGF/CMIP6.2285\\n\\n\\n* **ACCESS-ESM1-5**\\n\\n
+        \ License description: [data_licenses/ACCESS-ESM1-5.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/ACCESS-ESM1-5.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > Ziehn, Tilo; Chamberlain, Matthew; Lenton, Andrew;
+        Law, Rachel; Bodman, Roger; Dix, Martin; Wang, Yingping; Dobrohotoff, Peter;
+        Srbinovsky, Jhan; Stevens, Lauren; Vohralik, Peter; Mackallah, Chloe; Sullivan,
+        Arnold; O'Farrell, Siobhan; Druken, Kelsey **(2019)**. *CSIRO ACCESS-ESM1.5
+        model output prepared for CMIP6 CMIP*. Version 20191115. Earth System Grid
+        Federation. https://doi.org/10.22033/ESGF/CMIP6.2288\\n\\n  ScenarioMIP Citation:\\n\\n
+        \ > Ziehn, Tilo; Chamberlain, Matthew; Lenton, Andrew; Law, Rachel; Bodman,
+        Roger; Dix, Martin; Wang, Yingping; Dobrohotoff, Peter; Srbinovsky, Jhan;
+        Stevens, Lauren; Vohralik, Peter; Mackallah, Chloe; Sullivan, Arnold; O'Farrell,
+        Siobhan; Druken, Kelsey **(2019)**. *CSIRO ACCESS-ESM1.5 model output prepared
+        for CMIP6 ScenarioMIP*. Version 20191115. Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.2291\\n\\n\\n*
+        **BCC-CSM2-MR**\\n\\n  License description: [data_licenses/BCC-CSM2-MR.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/BCC-CSM2-MR.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > Xin, Xiaoge; Zhang, Jie; Zhang, Fang; Wu, Tongwen;
+        Shi, Xueli; Li, Jianglong; Chu, Min; Liu, Qianxia; Yan, Jinghui; Ma, Qiang;
+        Wei, Min **(2018)**. *BCC BCC-CSM2MR model output prepared for CMIP6 CMIP*.
+        Version 20181126. Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.1725\\n\\n
+        \ ScenarioMIP Citation:\\n\\n  > Xin, Xiaoge; Wu, Tongwen; Shi, Xueli; Zhang,
+        Fang; Li, Jianglong; Chu, Min; Liu, Qianxia; Yan, Jinghui; Ma, Qiang; Wei,
+        Min **(2019)**. *BCC BCC-CSM2MR model output prepared for CMIP6 ScenarioMIP*.
+        SSP1-2.6 version 20190315; SSP2-4.5 version 20190318; SSP3-7.0 version 20190318;
+        SSP5-8.5 version 20190318. Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.1732\\n\\n\\n*
+        **CMCC-CM2-SR5**\\n\\n  License description: [data_licenses/CMCC-CM2-SR5.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/CMCC-CM2-SR5.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > Lovato, Tomas; Peano, Daniele **(2020)**. *CMCC
+        CMCC-CM2-SR5 model output prepared for CMIP6 CMIP*. Version 20200616. Earth
+        System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.1362\\n\\n  ScenarioMIP
+        Citation:\\n\\n  > Lovato, Tomas; Peano, Daniele **(2020)**. *CMCC CMCC-CM2-SR5
+        model output prepared for CMIP6 ScenarioMIP*. SSP1-2.6 version 20200717; SSP2-4.5
+        version 20200617; SSP3-7.0 version 20200622; SSP5-8.5 version 20200622. Earth
+        System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.1365\\n\\n\\n*
+        **CMCC-ESM2**\\n\\n  License description: [data_licenses/CMCC-ESM2.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/CMCC-ESM2.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > Lovato, Tomas; Peano, Daniele; Butensch\xF6n, Momme
+        **(2021)**. *CMCC CMCC-ESM2 model output prepared for CMIP6 CMIP*. Version
+        20210114. Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.13164\\n\\n
+        \ ScenarioMIP Citation:\\n\\n  > Lovato, Tomas; Peano, Daniele; Butensch\xF6n,
+        Momme **(2021)**. *CMCC CMCC-ESM2 model output prepared for CMIP6 ScenarioMIP*.
+        SSP1-2.6 version 20210126; SSP2-4.5 version 20210129; SSP3-7.0 version 20210202;
+        SSP5-8.5 version 20210126. Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.13168\\n\\n\\n*
+        **EC-Earth3-AerChem**\\n\\n  License description: [data_licenses/EC-Earth3-AerChem.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/EC-Earth3-AerChem.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > EC-Earth Consortium (EC-Earth) **(2020)**. *EC-Earth-Consortium
+        EC-Earth3-AerChem model output prepared for CMIP6 CMIP*. Version 20200624.
+        Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.639\\n\\n
+        \ ScenarioMIP Citation:\\n\\n  > EC-Earth Consortium (EC-Earth) **(2020)**.
+        *EC-Earth-Consortium EC-Earth3-AerChem model output prepared for CMIP6 ScenarioMIP*.
+        Version 20200827. Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.724\\n\\n\\n*
+        **EC-Earth3-CC**\\n\\n  License description: [data_licenses/EC-Earth3-CC.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/EC-Earth3-CC.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > EC-Earth Consortium (EC-Earth) **(2020)**. *EC-Earth-Consortium
+        EC-Earth-3-CC model output prepared for CMIP6 CMIP*. Version 20210113. Earth
+        System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.640\\n\\n  ScenarioMIP
+        Citation:\\n\\n  > EC-Earth Consortium (EC-Earth) **(2021)**. *EC-Earth-Consortium
+        EC-Earth3-CC model output prepared for CMIP6 ScenarioMIP*. Version 20210113.
+        Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.15327\\n\\n\\n*
+        **EC-Earth3-Veg-LR**\\n\\n  License description: [data_licenses/EC-Earth3-Veg-LR.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/EC-Earth3-Veg-LR.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > EC-Earth Consortium (EC-Earth) **(2020)**. *EC-Earth-Consortium
+        EC-Earth3-Veg-LR model output prepared for CMIP6 CMIP*. Version 20200217.
+        Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.643\\n\\n
+        \ ScenarioMIP Citation:\\n\\n  > EC-Earth Consortium (EC-Earth) **(2020)**.
+        *EC-Earth-Consortium EC-Earth3-Veg-LR model output prepared for CMIP6 ScenarioMIP*.
+        SSP1-2.6 version 20201201; SSP2-4.5 version 20201123; SSP3-7.0 version 20201123;
+        SSP5-8.5 version 20201201. Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.728\\n\\n\\n*
+        **EC-Earth3-Veg**\\n\\n  License description: [data_licenses/EC-Earth3-Veg.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/EC-Earth3-Veg.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > EC-Earth Consortium (EC-Earth) **(2019)**. *EC-Earth-Consortium
+        EC-Earth3-Veg model output prepared for CMIP6 CMIP*. Version 20200225. Earth
+        System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.642\\n\\n  ScenarioMIP
+        Citation:\\n\\n  > EC-Earth Consortium (EC-Earth) **(2019)**. *EC-Earth-Consortium
+        EC-Earth3-Veg model output prepared for CMIP6 ScenarioMIP*. Version 20200225.
+        Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.727\\n\\n\\n*
+        **EC-Earth3**\\n\\n  License description: [data_licenses/EC-Earth3.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/EC-Earth3.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > EC-Earth Consortium (EC-Earth) **(2019)**. *EC-Earth-Consortium
+        EC-Earth3 model output prepared for CMIP6 CMIP*. Version 20200310. Earth System
+        Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.181\\n\\n  ScenarioMIP
+        Citation:\\n\\n  > EC-Earth Consortium (EC-Earth) **(2019)**. *EC-Earth-Consortium
+        EC-Earth3 model output prepared for CMIP6 ScenarioMIP*. Version 20200310.
+        Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.251\\n\\n\\n*
+        **GFDL-CM4**\\n\\n  License description: [data_licenses/GFDL-CM4.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/GFDL-CM4.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > Guo, Huan; John, Jasmin G; Blanton, Chris; McHugh,
+        Colleen; Nikonov, Serguei; Radhakrishnan, Aparna; Rand, Kristopher; Zadeh,
+        Niki T.; Balaji, V; Durachta, Jeff; Dupuis, Christopher; Menzel, Raymond;
+        Robinson, Thomas; Underwood, Seth; Vahlenkamp, Hans; Bushuk, Mitchell; Dunne,
+        Krista A.; Dussin, Raphael; Gauthier, Paul PG; Ginoux, Paul; Griffies, Stephen
+        M.; Hallberg, Robert; Harrison, Matthew; Hurlin, William; Lin, Pu; Malyshev,
+        Sergey; Naik, Vaishali; Paulot, Fabien; Paynter, David J; Ploshay, Jeffrey;
+        Reichl, Brandon G; Schwarzkopf, Daniel M; Seman, Charles J; Shao, Andrew;
+        Silvers, Levi; Wyman, Bruce; Yan, Xiaoqin; Zeng, Yujin; Adcroft, Alistair;
+        Dunne, John P.; Held, Isaac M; Krasting, John P.; Horowitz, Larry W.; Milly,
+        P.C.D; Shevliakova, Elena; Winton, Michael; Zhao, Ming; Zhang, Rong **(2018)**.
+        *NOAA-GFDL GFDL-CM4 model output*. Version 20180701. Earth System Grid Federation.
+        https://doi.org/10.22033/ESGF/CMIP6.1402\\n\\n  ScenarioMIP Citation:\\n\\n
+        \ > Guo, Huan; John, Jasmin G; Blanton, Chris; McHugh, Colleen; Nikonov, Serguei;
+        Radhakrishnan, Aparna; Rand, Kristopher; Zadeh, Niki T.; Balaji, V; Durachta,
+        Jeff; Dupuis, Christopher; Menzel, Raymond; Robinson, Thomas; Underwood, Seth;
+        Vahlenkamp, Hans; Dunne, Krista A.; Gauthier, Paul PG; Ginoux, Paul; Griffies,
+        Stephen M.; Hallberg, Robert; Harrison, Matthew; Hurlin, William; Lin, Pu;
+        Malyshev, Sergey; Naik, Vaishali; Paulot, Fabien; Paynter, David J; Ploshay,
+        Jeffrey; Schwarzkopf, Daniel M; Seman, Charles J; Shao, Andrew; Silvers, Levi;
+        Wyman, Bruce; Yan, Xiaoqin; Zeng, Yujin; Adcroft, Alistair; Dunne, John P.;
+        Held, Isaac M; Krasting, John P.; Horowitz, Larry W.; Milly, Chris; Shevliakova,
+        Elena; Winton, Michael; Zhao, Ming; Zhang, Rong **(2018)**. *NOAA-GFDL GFDL-CM4
+        model output prepared for CMIP6 ScenarioMIP*. Version 20180701. Earth System
+        Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.9242\\n\\n\\n* **GFDL-ESM4**\\n\\n
+        \ License description: [data_licenses/GFDL-ESM4.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/GFDL-ESM4.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > Krasting, John P.; John, Jasmin G; Blanton, Chris;
+        McHugh, Colleen; Nikonov, Serguei; Radhakrishnan, Aparna; Rand, Kristopher;
+        Zadeh, Niki T.; Balaji, V; Durachta, Jeff; Dupuis, Christopher; Menzel, Raymond;
+        Robinson, Thomas; Underwood, Seth; Vahlenkamp, Hans; Dunne, Krista A.; Gauthier,
+        Paul PG; Ginoux, Paul; Griffies, Stephen M.; Hallberg, Robert; Harrison, Matthew;
+        Hurlin, William; Malyshev, Sergey; Naik, Vaishali; Paulot, Fabien; Paynter,
+        David J; Ploshay, Jeffrey; Reichl, Brandon G; Schwarzkopf, Daniel M; Seman,
+        Charles J; Silvers, Levi; Wyman, Bruce; Zeng, Yujin; Adcroft, Alistair; Dunne,
+        John P.; Dussin, Raphael; Guo, Huan; He, Jian; Held, Isaac M; Horowitz, Larry
+        W.; Lin, Pu; Milly, P.C.D; Shevliakova, Elena; Stock, Charles; Winton, Michael;
+        Wittenberg, Andrew T.; Xie, Yuanyu; Zhao, Ming **(2018)**. *NOAA-GFDL GFDL-ESM4
+        model output prepared for CMIP6 CMIP*. Version 20190726. Earth System Grid
+        Federation. https://doi.org/10.22033/ESGF/CMIP6.1407\\n\\n  ScenarioMIP Citation:\\n\\n
+        \ > John, Jasmin G; Blanton, Chris; McHugh, Colleen; Radhakrishnan, Aparna;
+        Rand, Kristopher; Vahlenkamp, Hans; Wilson, Chandin; Zadeh, Niki T.; Dunne,
+        John P.; Dussin, Raphael; Horowitz, Larry W.; Krasting, John P.; Lin, Pu;
+        Malyshev, Sergey; Naik, Vaishali; Ploshay, Jeffrey; Shevliakova, Elena; Silvers,
+        Levi; Stock, Charles; Winton, Michael; Zeng, Yujin **(2018)**. *NOAA-GFDL
+        GFDL-ESM4 model output prepared for CMIP6 ScenarioMIP*. Version 20180701.
+        Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.1414\\n\\n\\n*
+        **HadGEM3-GC31-LL**\\n\\n  License description: [data_licenses/HadGEM3-GC31-LL.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/HadGEM3-GC31-LL.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > Ridley, Jeff; Menary, Matthew; Kuhlbrodt, Till;
+        Andrews, Martin; Andrews, Tim **(2018)**. *MOHC HadGEM3-GC31-LL model output
+        prepared for CMIP6 CMIP*. Version 20190624. Earth System Grid Federation.
+        https://doi.org/10.22033/ESGF/CMIP6.419\\n\\n  ScenarioMIP Citation:\\n\\n
+        \ > Good, Peter **(2019)**. *MOHC HadGEM3-GC31-LL model output prepared for
+        CMIP6 ScenarioMIP*. SSP1-2.6 version 20200114; SSP2-4.5 version 20190908;
+        SSP5-8.5 version 20200114. Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.10845\\n\\n\\n*
+        **MIROC-ES2L**\\n\\n  License description: [data_licenses/MIROC-ES2L.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/MIROC-ES2L.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > Hajima, Tomohiro; Abe, Manabu; Arakawa, Osamu; Suzuki,
+        Tatsuo; Komuro, Yoshiki; Ogura, Tomoo; Ogochi, Koji; Watanabe, Michio; Yamamoto,
+        Akitomo; Tatebe, Hiroaki; Noguchi, Maki A.; Ohgaito, Rumi; Ito, Akinori; Yamazaki,
+        Dai; Ito, Akihiko; Takata, Kumiko; Watanabe, Shingo; Kawamiya, Michio; Tachiiri,
+        Kaoru **(2019)**. *MIROC MIROC-ES2L model output prepared for CMIP6 CMIP*.
+        Version 20191129. Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.902\\n\\n
+        \ ScenarioMIP Citation:\\n\\n  > Tachiiri, Kaoru; Abe, Manabu; Hajima, Tomohiro;
+        Arakawa, Osamu; Suzuki, Tatsuo; Komuro, Yoshiki; Ogochi, Koji; Watanabe, Michio;
+        Yamamoto, Akitomo; Tatebe, Hiroaki; Noguchi, Maki A.; Ohgaito, Rumi; Ito,
+        Akinori; Yamazaki, Dai; Ito, Akihiko; Takata, Kumiko; Watanabe, Shingo; Kawamiya,
+        Michio **(2019)**. *MIROC MIROC-ES2L model output prepared for CMIP6 ScenarioMIP*.
+        Version 20200318. Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.936\\n\\n\\n*
+        **MIROC6**\\n\\n  License description: [data_licenses/MIROC6.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/MIROC6.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > Tatebe, Hiroaki; Watanabe, Masahiro **(2018)**.
+        *MIROC MIROC6 model output prepared for CMIP6 CMIP*. Version 20191016. Earth
+        System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.881\\n\\n  ScenarioMIP
+        Citation:\\n\\n  > Shiogama, Hideo; Abe, Manabu; Tatebe, Hiroaki **(2019)**.
+        *MIROC MIROC6 model output prepared for CMIP6 ScenarioMIP*. Version 20191016.
+        Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.898\\n\\n\\n*
+        **MPI-ESM1-2-HR**\\n\\n  License description: [data_licenses/MPI-ESM1-2-HR.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/MPI-ESM1-2-HR.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > Jungclaus, Johann; Bittner, Matthias; Wieners, Karl-Hermann;
+        Wachsmann, Fabian; Schupfner, Martin; Legutke, Stephanie; Giorgetta, Marco;
+        Reick, Christian; Gayler, Veronika; Haak, Helmuth; de Vrese, Philipp; Raddatz,
+        Thomas; Esch, Monika; Mauritsen, Thorsten; von Storch, Jin-Song; Behrens,
+        J\xF6rg; Brovkin, Victor; Claussen, Martin; Crueger, Traute; Fast, Irina;
+        Fiedler, Stephanie; Hagemann, Stefan; Hohenegger, Cathy; Jahns, Thomas; Kloster,
+        Silvia; Kinne, Stefan; Lasslop, Gitta; Kornblueh, Luis; Marotzke, Jochem;
+        Matei, Daniela; Meraner, Katharina; Mikolajewicz, Uwe; Modali, Kameswarrao;
+        M\xFCller, Wolfgang; Nabel, Julia; Notz, Dirk; Peters-von Gehlen, Karsten;
+        Pincus, Robert; Pohlmann, Holger; Pongratz, Julia; Rast, Sebastian; Schmidt,
+        Hauke; Schnur, Reiner; Schulzweida, Uwe; Six, Katharina; Stevens, Bjorn; Voigt,
+        Aiko; Roeckner, Erich **(2019)**. *MPI-M MPIESM1.2-HR model output prepared
+        for CMIP6 CMIP*. Version 20190710. Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.741\\n\\n
+        \ ScenarioMIP Citation:\\n\\n  > Schupfner, Martin; Wieners, Karl-Hermann;
+        Wachsmann, Fabian; Steger, Christian; Bittner, Matthias; Jungclaus, Johann;
+        Fr\xFCh, Barbara; Pankatz, Klaus; Giorgetta, Marco; Reick, Christian; Legutke,
+        Stephanie; Esch, Monika; Gayler, Veronika; Haak, Helmuth; de Vrese, Philipp;
+        Raddatz, Thomas; Mauritsen, Thorsten; von Storch, Jin-Song; Behrens, J\xF6rg;
+        Brovkin, Victor; Claussen, Martin; Crueger, Traute; Fast, Irina; Fiedler,
+        Stephanie; Hagemann, Stefan; Hohenegger, Cathy; Jahns, Thomas; Kloster, Silvia;
+        Kinne, Stefan; Lasslop, Gitta; Kornblueh, Luis; Marotzke, Jochem; Matei, Daniela;
+        Meraner, Katharina; Mikolajewicz, Uwe; Modali, Kameswarrao; M\xFCller, Wolfgang;
+        Nabel, Julia; Notz, Dirk; Peters-von Gehlen, Karsten; Pincus, Robert; Pohlmann,
+        Holger; Pongratz, Julia; Rast, Sebastian; Schmidt, Hauke; Schnur, Reiner;
+        Schulzweida, Uwe; Six, Katharina; Stevens, Bjorn; Voigt, Aiko; Roeckner, Erich
+        **(2019)**. *DKRZ MPI-ESM1.2-HR model output prepared for CMIP6 ScenarioMIP*.
+        Version 20190710. Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.2450\\n\\n\\n*
+        **MPI-ESM1-2-LR**\\n\\n  License description: [data_licenses/MPI-ESM1-2-LR.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/MPI-ESM1-2-LR.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > Wieners, Karl-Hermann; Giorgetta, Marco; Jungclaus,
+        Johann; Reick, Christian; Esch, Monika; Bittner, Matthias; Legutke, Stephanie;
+        Schupfner, Martin; Wachsmann, Fabian; Gayler, Veronika; Haak, Helmuth; de
+        Vrese, Philipp; Raddatz, Thomas; Mauritsen, Thorsten; von Storch, Jin-Song;
+        Behrens, J\xF6rg; Brovkin, Victor; Claussen, Martin; Crueger, Traute; Fast,
+        Irina; Fiedler, Stephanie; Hagemann, Stefan; Hohenegger, Cathy; Jahns, Thomas;
+        Kloster, Silvia; Kinne, Stefan; Lasslop, Gitta; Kornblueh, Luis; Marotzke,
+        Jochem; Matei, Daniela; Meraner, Katharina; Mikolajewicz, Uwe; Modali, Kameswarrao;
+        M\xFCller, Wolfgang; Nabel, Julia; Notz, Dirk; Peters-von Gehlen, Karsten;
+        Pincus, Robert; Pohlmann, Holger; Pongratz, Julia; Rast, Sebastian; Schmidt,
+        Hauke; Schnur, Reiner; Schulzweida, Uwe; Six, Katharina; Stevens, Bjorn; Voigt,
+        Aiko; Roeckner, Erich **(2019)**. *MPI-M MPIESM1.2-LR model output prepared
+        for CMIP6 CMIP*. Version 20190710. Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.742\\n\\n
+        \ ScenarioMIP Citation:\\n\\n  > Wieners, Karl-Hermann; Giorgetta, Marco;
+        Jungclaus, Johann; Reick, Christian; Esch, Monika; Bittner, Matthias; Gayler,
+        Veronika; Haak, Helmuth; de Vrese, Philipp; Raddatz, Thomas; Mauritsen, Thorsten;
+        von Storch, Jin-Song; Behrens, J\xF6rg; Brovkin, Victor; Claussen, Martin;
+        Crueger, Traute; Fast, Irina; Fiedler, Stephanie; Hagemann, Stefan; Hohenegger,
+        Cathy; Jahns, Thomas; Kloster, Silvia; Kinne, Stefan; Lasslop, Gitta; Kornblueh,
+        Luis; Marotzke, Jochem; Matei, Daniela; Meraner, Katharina; Mikolajewicz,
+        Uwe; Modali, Kameswarrao; M\xFCller, Wolfgang; Nabel, Julia; Notz, Dirk; Peters-von
+        Gehlen, Karsten; Pincus, Robert; Pohlmann, Holger; Pongratz, Julia; Rast,
+        Sebastian; Schmidt, Hauke; Schnur, Reiner; Schulzweida, Uwe; Six, Katharina;
+        Stevens, Bjorn; Voigt, Aiko; Roeckner, Erich **(2019)**. *MPI-M MPIESM1.2-LR
+        model output prepared for CMIP6 ScenarioMIP*. Version 20190710. Earth System
+        Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.793\\n\\n\\n* **NESM3**\\n\\n
+        \ License description: [data_licenses/NESM3.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/NESM3.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > Cao, Jian; Wang, Bin **(2019)**. *NUIST NESMv3 model
+        output prepared for CMIP6 CMIP*. Version 20190812. Earth System Grid Federation.
+        https://doi.org/10.22033/ESGF/CMIP6.2021\\n\\n  ScenarioMIP Citation:\\n\\n
+        \ > Cao, Jian **(2019)**. *NUIST NESMv3 model output prepared for CMIP6 ScenarioMIP*.
+        SSP1-2.6 version 20190806; SSP2-4.5 version 20190805; SSP5-8.5 version 20190811.
+        Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.2027\\n\\n\\n*
+        **NorESM2-LM**\\n\\n  License description: [data_licenses/NorESM2-LM.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/NorESM2-LM.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > Seland, \xD8yvind; Bentsen, Mats; Olivi\xE8, Dirk
+        Jan Leo; Toniazzo, Thomas; Gjermundsen, Ada; Graff, Lise Seland; Debernard,
+        Jens Boldingh; Gupta, Alok Kumar; He, Yanchun; Kirkev\xE5g, Alf; Schwinger,
+        J\xF6rg; Tjiputra, Jerry; Aas, Kjetil Schanke; Bethke, Ingo; Fan, Yuanchao;
+        Griesfeller, Jan; Grini, Alf; Guo, Chuncheng; Ilicak, Mehmet; Karset, Inger
+        Helene Hafsahl; Landgren, Oskar Andreas; Liakka, Johan; Moseid, Kine Onsum;
+        Nummelin, Aleksi; Spensberger, Clemens; Tang, Hui; Zhang, Zhongshi; Heinze,
+        Christoph; Iversen, Trond; Schulz, Michael **(2019)**. *NCC NorESM2-LM model
+        output prepared for CMIP6 CMIP*. Version 20190815. Earth System Grid Federation.
+        https://doi.org/10.22033/ESGF/CMIP6.502\\n\\n  ScenarioMIP Citation:\\n\\n
+        \ > Seland, \xD8yvind; Bentsen, Mats; Olivi\xE8, Dirk Jan Leo; Toniazzo, Thomas;
+        Gjermundsen, Ada; Graff, Lise Seland; Debernard, Jens Boldingh; Gupta, Alok
+        Kumar; He, Yanchun; Kirkev\xE5g, Alf; Schwinger, J\xF6rg; Tjiputra, Jerry;
+        Aas, Kjetil Schanke; Bethke, Ingo; Fan, Yuanchao; Griesfeller, Jan; Grini,
+        Alf; Guo, Chuncheng; Ilicak, Mehmet; Karset, Inger Helene Hafsahl; Landgren,
+        Oskar Andreas; Liakka, Johan; Moseid, Kine Onsum; Nummelin, Aleksi; Spensberger,
+        Clemens; Tang, Hui; Zhang, Zhongshi; Heinze, Christoph; Iversen, Trond; Schulz,
+        Michael **(2019)**. *NCC NorESM2-LM model output prepared for CMIP6 ScenarioMIP*.
+        Version 20191108. Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.604\\n\\n\\n*
+        **NorESM2-MM**\\n\\n  License description: [data_licenses/NorESM2-MM.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/NorESM2-MM.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > Bentsen, Mats; Olivi\xE8, Dirk Jan Leo; Seland,
+        \xD8yvind; Toniazzo, Thomas; Gjermundsen, Ada; Graff, Lise Seland; Debernard,
+        Jens Boldingh; Gupta, Alok Kumar; He, Yanchun; Kirkev\xE5g, Alf; Schwinger,
+        J\xF6rg; Tjiputra, Jerry; Aas, Kjetil Schanke; Bethke, Ingo; Fan, Yuanchao;
+        Griesfeller, Jan; Grini, Alf; Guo, Chuncheng; Ilicak, Mehmet; Karset, Inger
+        Helene Hafsahl; Landgren, Oskar Andreas; Liakka, Johan; Moseid, Kine Onsum;
+        Nummelin, Aleksi; Spensberger, Clemens; Tang, Hui; Zhang, Zhongshi; Heinze,
+        Christoph; Iversen, Trond; Schulz, Michael **(2019)**. *NCC NorESM2-MM model
+        output prepared for CMIP6 CMIP*. Version 20191108. Earth System Grid Federation.
+        https://doi.org/10.22033/ESGF/CMIP6.506\\n\\n  ScenarioMIP Citation:\\n\\n
+        \ > Bentsen, Mats; Olivi\xE8, Dirk Jan Leo; Seland, \xD8yvind; Toniazzo, Thomas;
+        Gjermundsen, Ada; Graff, Lise Seland; Debernard, Jens Boldingh; Gupta, Alok
+        Kumar; He, Yanchun; Kirkev\xE5g, Alf; Schwinger, J\xF6rg; Tjiputra, Jerry;
+        Aas, Kjetil Schanke; Bethke, Ingo; Fan, Yuanchao; Griesfeller, Jan; Grini,
+        Alf; Guo, Chuncheng; Ilicak, Mehmet; Karset, Inger Helene Hafsahl; Landgren,
+        Oskar Andreas; Liakka, Johan; Moseid, Kine Onsum; Nummelin, Aleksi; Spensberger,
+        Clemens; Tang, Hui; Zhang, Zhongshi; Heinze, Christoph; Iversen, Trond; Schulz,
+        Michael **(2019)**. *NCC NorESM2-MM model output prepared for CMIP6 ScenarioMIP*.
+        Version 20191108. Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.608\\n\\n\\n*
+        **UKESM1-0-LL**\\n\\n  License description: [data_licenses/UKESM1-0-LL.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/UKESM1-0-LL.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > Tang, Yongming; Rumbold, Steve; Ellis, Rich; Kelley,
+        Douglas; Mulcahy, Jane; Sellar, Alistair; Walton, Jeremy; Jones, Colin **(2019)**.
+        *MOHC UKESM1.0-LL model output prepared for CMIP6 CMIP*. Version 20190627.
+        Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.1569\\n\\n
+        \ ScenarioMIP Citation:\\n\\n  > Good, Peter; Sellar, Alistair; Tang, Yongming;
+        Rumbold, Steve; Ellis, Rich; Kelley, Douglas; Kuhlbrodt, Till; Walton, Jeremy
+        **(2019)**. *MOHC UKESM1.0-LL model output prepared for CMIP6 ScenarioMIP*.
+        SSP1-2.6 version 20190708; SSP2-4.5 version 20190715; SSP3-7.0 version 20190726;
+        SSP5-8.5 version 20190726. Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.1567\\n\\n*
+        **CanESM5**\\n\\n  License description: [data_licenses/CanESM5.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/CanESM5.txt).
+        Note: this dataset was previously licensed\\n  under CC BY-SA 4.0, but was
+        relicensed as CC BY 4.0 in March, 2023.\\n\\n  CMIP Citation:\\n\\n  > Swart,
+        Neil Cameron; Cole, Jason N.S.; Kharin, Viatcheslav V.; Lazare, Mike; Scinocca,
+        John F.; Gillett, Nathan P.; Anstey, James; Arora, Vivek; Christian, James
+        R.; Jiao, Yanjun; Lee, Warren G.; Majaess, Fouad; Saenko, Oleg A.; Seiler,
+        Christian; Seinen, Clint; Shao, Andrew; Solheim, Larry; von Salzen, Knut;
+        Yang, Duo; Winter, Barbara; Sigmond, Michael **(2019)**. *CCCma CanESM5 model
+        output prepared for CMIP6 CMIP*. Version 20190429. Earth System Grid Federation.
+        https://doi.org/10.22033/ESGF/CMIP6.1303\\n\\n  ScenarioMIP Citation:\\n\\n
+        \ > Swart, Neil Cameron; Cole, Jason N.S.; Kharin, Viatcheslav V.; Lazare,
+        Mike; Scinocca, John F.; Gillett, Nathan P.; Anstey, James; Arora, Vivek;
+        Christian, James R.; Jiao, Yanjun; Lee, Warren G.; Majaess, Fouad; Saenko,
+        Oleg A.; Seiler, Christian; Seinen, Clint; Shao, Andrew; Solheim, Larry; von
+        Salzen, Knut; Yang, Duo; Winter, Barbara; Sigmond, Michael **(2019)**. *CCCma
+        CanESM5 model output prepared for CMIP6 ScenarioMIP*. Version 20190429. Earth
+        System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.1317\\n\\n## Acknowledgements\\n\\nThis
+        work is the result of many years worth of work by members of the [Climate
+        Impact Lab](https://impactlab.org), but would not have been possible without
+        many contributions from across the wider scientific and computing communities.\\n\\nSpecifically,
+        we would like to acknowledge the World Climate Research Programme's Working
+        Group on Coupled Modeling, which is responsible for CMIP, and we would like
+        to thank the climate modeling groups for producing and making their model
+        output available. We would particularly like to thank the modeling institutions
+        whose results are included as an input to this repository (listed above) for
+        their contributions to the CMIP6 project and for responding to and granting
+        our requests for license waivers.\\n\\nWe would also like to thank Lamont-Doherty
+        Earth Observatory, the [Pangeo Consortium](https://github.com/pangeo-data)
+        (and especially the [ESGF Cloud Data Working Group](https://pangeo-data.github.io/pangeo-cmip6-cloud/#))
+        and Google Cloud and the Google Public Datasets program for making the [CMIP6
+        Google Cloud collection](https://console.cloud.google.com/marketplace/details/noaa-public/cmip6)
+        possible. In particular we're extremely grateful to [Ryan Abernathey](https://github.com/rabernat),
+        [Naomi Henderson](https://github.com/naomi-henderson), [Charles Blackmon-Luca](https://github.com/charlesbluca),
+        [Aparna Radhakrishnan](https://github.com/aradhakrishnanGFDL), [Julius Busecke](https://github.com/jbusecke),
+        and [Charles Stern](https://github.com/cisaacstern) for the huge amount of
+        work they've done to translate the ESGF CMIP6 netCDF archives into consistently-formattted,
+        analysis-ready zarr stores on Google Cloud.\\n\\nWe're also grateful to the
+        [xclim developers](https://github.com/Ouranosinc/xclim/graphs/contributors)
+        ([DOI: 10.5281/zenodo.2795043](https://doi.org/10.5281/zenodo.2795043)), in
+        particular [Pascal Bourgault](https://github.com/aulemahal), [David Huard](https://github.com/huard),
+        and [Travis Logan](https://github.com/tlogan2000), for implementing the QDM
+        bias correction method in the xclim python package, supporting our QPLAD implementation
+        into the package, and ongoing support in integrating dask into downscaling
+        workflows. For method advice and useful conversations, we would like to thank
+        Keith Dixon, Dennis Adams-Smith, and [Joe Hamman](https://github.com/jhamman).\\n\\n##
+        Financial support\\n\\nThis research has been supported by The Rockefeller
+        Foundation and the Microsoft AI for Earth Initiative.\\n\\n## Additional links:\\n\\n*
+        CIL GDPCIR project homepage: [github.com/ClimateImpactLab/downscaleCMIP6](https://github.com/ClimateImpactLab/downscaleCMIP6)\\n*
+        Project listing on zenodo: https://doi.org/10.5281/zenodo.6403794\\n* Climate
+        Impact Lab homepage: [impactlab.org](https://impactlab.org)\",\"item_assets\":{\"pr\":{\"type\":\"application/vnd+zarr\",\"roles\":[\"data\"],\"title\":\"Precipitation\",\"description\":\"Precipitation\"},\"tasmax\":{\"type\":\"application/vnd+zarr\",\"roles\":[\"data\"],\"title\":\"Daily
+        Maximum Near-Surface Air Temperature\",\"description\":\"Daily Maximum Near-Surface
+        Air Temperature\"},\"tasmin\":{\"type\":\"application/vnd+zarr\",\"roles\":[\"data\"],\"title\":\"Daily
+        Minimum Near-Surface Air Temperature\",\"description\":\"Daily Minimum Near-Surface
+        Air Temperature\"}},\"msft:region\":\"westeurope\",\"stac_version\":\"1.0.0\",\"msft:group_id\":\"cil-gdpcir\",\"cube:variables\":{\"pr\":{\"type\":\"data\",\"unit\":\"mm
+        day-1\",\"attrs\":{\"units\":\"mm day-1\"},\"dimensions\":[\"time\",\"lat\",\"lon\"]},\"tasmax\":{\"type\":\"data\",\"unit\":\"K\",\"attrs\":{\"units\":\"K\",\"comment\":\"maximum
+        near-surface (usually, 2 meter) air temperature (add cell_method attribute
+        'time: max')\",\"long_name\":\"Daily Maximum Near-Surface Air Temperature\",\"coordinates\":\"height\",\"cell_methods\":\"area:
+        mean time: maximum (interval: 5 minutes)\",\"cell_measures\":\"area: areacella\",\"original_name\":\"TREFHTMX\",\"standard_name\":\"air_temperature\"},\"dimensions\":[\"time\",\"lat\",\"lon\"],\"description\":\"Daily
+        Maximum Near-Surface Air Temperature\"},\"tasmin\":{\"type\":\"data\",\"unit\":\"K\",\"attrs\":{\"units\":\"K\",\"comment\":\"minimum
+        near-surface (usually, 2 meter) air temperature (add cell_method attribute
+        'time: min')\",\"long_name\":\"Daily Minimum Near-Surface Air Temperature\",\"coordinates\":\"height\",\"cell_methods\":\"area:
+        mean time: minimum (interval: 5 minutes)\",\"cell_measures\":\"area: areacella\",\"original_name\":\"TREFHTMN\",\"standard_name\":\"air_temperature\"},\"dimensions\":[\"time\",\"lat\",\"lon\"],\"description\":\"Daily
+        Minimum Near-Surface Air Temperature\"}},\"msft:container\":\"cil-gdpcir\",\"cube:dimensions\":{\"lat\":{\"axis\":\"y\",\"step\":0.25,\"type\":\"spatial\",\"extent\":[-89.875,89.875],\"reference_system\":\"epsg:4326\"},\"lon\":{\"axis\":\"x\",\"step\":0.25,\"type\":\"spatial\",\"extent\":[-179.875,179.875],\"reference_system\":\"epsg:4326\"},\"time\":{\"step\":\"P1DT0H0M0S\",\"type\":\"temporal\",\"extent\":[\"1950-01-01T12:00:00Z\",\"2100-12-31T12:00:00Z\"],\"description\":\"time\"}},\"stac_extensions\":[\"https://stac-extensions.github.io/item-assets/v1.0.0/schema.json\",\"https://stac-extensions.github.io/scientific/v1.0.0/schema.json\"],\"msft:storage_account\":\"rhgeuwest\",\"msft:short_description\":\"Climate
+        Impact Lab Global Downscaled Projections for Climate Impacts Research (CC-BY-4.0)\"}"
     headers:
       Accept-Ranges:
       - bytes
       Access-Control-Allow-Credentials:
       - 'true'
+      Access-Control-Allow-Headers:
+      - X-PC-Request-Entity,DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, OPTIONS
       Access-Control-Allow-Origin:
       - '*'
+      Access-Control-Max-Age:
+      - '1728000'
       Connection:
       - keep-alive
       Content-Length:
@@ -325,9 +742,9 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 17 May 2024 13:07:33 GMT
+      - Fri, 09 Aug 2024 15:13:39 GMT
       Strict-Transport-Security:
-      - max-age=15724800; includeSubDomains
+      - max-age=31536000; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       content-encoding:
@@ -335,7 +752,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20240517T130733Z-176fb699484t8cjvwrqyfq344w00000003pg000000003n12
+      - 20240809T151338Z-1674bbd94ccx6mr72hx2ynd0hn0000000s10000000002g7t
     status:
       code: 200
       message: OK
@@ -349,55 +766,45 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.31.0
+      - python-requests/2.32.3
     method: GET
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/collections/cil-gdpcir-cc-by/items/cil-gdpcir-NUIST-NESM3-ssp585-r1i1p1f1-day
   response:
     body:
-      string: !!binary |
-        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
-        Guf+v8IKgqNbFwAA
+      string: '{"id":"cil-gdpcir-NUIST-NESM3-ssp585-r1i1p1f1-day","bbox":[-180,-90,180,90],"type":"Feature","links":[{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/cil-gdpcir-cc-by"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/cil-gdpcir-cc-by"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/cil-gdpcir-cc-by/items/cil-gdpcir-NUIST-NESM3-ssp585-r1i1p1f1-day"}],"assets":{"pr":{"href":"abfs://cil-gdpcir/ScenarioMIP/NUIST/NESM3/ssp585/r1i1p1f1/day/pr/v1.1.zarr","cmip6:grid":"T63","msft:https-url":"https://rhgeuwest.blob.core.windows.net/cil-gdpcir/ScenarioMIP/NUIST/NESM3/ssp585/r1i1p1f1/day/pr/v1.1.zarr","cmip6:grid_label":"gn","cmip6:tracking_id":"hdl:21.14100/ed432434-922e-4cea-8400-c321598fd7cf\nhdl:21.14100/abea2bb8-09d0-4114-9051-fe232efe108e\nhdl:21.14100/205a607f-75f4-4919-b495-45fa8fdb77b8","cmip6:variable_id":"pr","xarray:open_kwargs":{"chunks":{},"engine":"zarr","consolidated":true,"storage_options":{"account_name":"rhgeuwest"}},"cmip6:creation_date":"2019-08-11T09:53:50Z","type":"application/vnd+zarr"},"tasmax":{"href":"abfs://cil-gdpcir/ScenarioMIP/NUIST/NESM3/ssp585/r1i1p1f1/day/tasmax/v1.1.zarr","cmip6:grid":"T63","msft:https-url":"https://rhgeuwest.blob.core.windows.net/cil-gdpcir/ScenarioMIP/NUIST/NESM3/ssp585/r1i1p1f1/day/tasmax/v1.1.zarr","cmip6:grid_label":"gn","cmip6:tracking_id":"hdl:21.14100/01f58d9c-1317-467e-813d-a2358cdf7954\nhdl:21.14100/e027cda7-ac28-4e00-b03f-53ad2e6d30b4\nhdl:21.14100/3898bc79-5174-4fcc-9637-4573914ad548","cmip6:variable_id":"tasmax","xarray:open_kwargs":{"chunks":{},"engine":"zarr","consolidated":true,"storage_options":{"account_name":"rhgeuwest"}},"cmip6:creation_date":"2019-08-11T09:50:24Z","type":"application/vnd+zarr"},"tasmin":{"href":"abfs://cil-gdpcir/ScenarioMIP/NUIST/NESM3/ssp585/r1i1p1f1/day/tasmin/v1.1.zarr","cmip6:grid":"T63","msft:https-url":"https://rhgeuwest.blob.core.windows.net/cil-gdpcir/ScenarioMIP/NUIST/NESM3/ssp585/r1i1p1f1/day/tasmin/v1.1.zarr","cmip6:grid_label":"gn","cmip6:tracking_id":"hdl:21.14100/1998e7f0-ad6a-4720-8150-9085db6f96b8\nhdl:21.14100/ca181871-4103-481d-8764-b74c2448427f\nhdl:21.14100/fceb22c4-0454-4d68-bb48-1d903df19e63","cmip6:variable_id":"tasmin","xarray:open_kwargs":{"chunks":{},"engine":"zarr","consolidated":true,"storage_options":{"account_name":"rhgeuwest"}},"cmip6:creation_date":"2019-08-11T09:48:45Z","type":"application/vnd+zarr"}},"geometry":{"type":"Polygon","coordinates":[[[180,-90],[180,90],[-180,90],[-180,-90],[180,-90]]]},"collection":"cil-gdpcir-cc-by","properties":{"datetime":null,"cmip6:realm":"atmos","cmip6:source":"NESM
+        v3 (2016): \naerosol: none\natmos: ECHAM v6.3 (T63; 192 x 96 longitude/latitude;
+        47 levels; top level 1 Pa)\natmosChem: none\nland: JSBACH v3.1\nlandIce: none\nocean:
+        NEMO v3.4 (NEMO v3.4, tripolar primarily 1deg; 384 x 362 longitude/latitude;
+        46 levels; top grid cell 0-6 m)\nocnBgchem: none\nseaIce: CICE4.1","end_datetime":"2100-12-31T12:00:00Z","cmip6:license":"https://github.com/ClimateImpactLab/downscaleCMIP6/tree/master/data_licenses/NESM3.txt","cmip6:mip_era":"CMIP6","cmip6:product":"model-output","cmip6:table_id":"day","cube:variables":{"pr":{"type":"data","unit":"mm
+        day-1","attrs":{"units":"mm day-1"},"shape":[31390,720,1440],"dimensions":["time","lat","lon"]},"tasmax":{"type":"data","unit":"K","attrs":{"units":"K","comment":"maximum
+        near-surface (usually, 2 meter) air temperature (add cell_method attribute
+        ''time: max'')","history":"2019-08-11T09:50:24Z altered by CMOR: Treated scalar
+        dimension: ''height''. 2019-08-11T09:50:24Z altered by CMOR: Inverted axis:
+        lat.","long_name":"Daily Maximum Near-Surface Air Temperature","cell_methods":"area:
+        mean time: maximum","cell_measures":"area: areacella","standard_name":"air_temperature"},"shape":[31390,720,1440],"dimensions":["time","lat","lon"],"description":"Daily
+        Maximum Near-Surface Air Temperature"},"tasmin":{"type":"data","unit":"K","attrs":{"units":"K","comment":"minimum
+        near-surface (usually, 2 meter) air temperature (add cell_method attribute
+        ''time: min'')","history":"2019-08-11T09:48:45Z altered by CMOR: Treated scalar
+        dimension: ''height''. 2019-08-11T09:48:45Z altered by CMOR: Inverted axis:
+        lat.","long_name":"Daily Minimum Near-Surface Air Temperature","cell_methods":"area:
+        mean time: minimum","cell_measures":"area: areacella","standard_name":"air_temperature"},"shape":[31390,720,1440],"dimensions":["time","lat","lon"],"description":"Daily
+        Minimum Near-Surface Air Temperature"}},"start_datetime":"2015-01-01T12:00:00Z","cmip6:frequency":"day","cmip6:source_id":"NESM3","cube:dimensions":{"lat":{"axis":"y","step":0.25,"type":"spatial","extent":[-89.875,89.875],"reference_system":"epsg:4326"},"lon":{"axis":"x","step":0.25,"type":"spatial","extent":[-179.875,179.875],"reference_system":"epsg:4326"},"time":{"step":"P1DT0H0M0S","type":"temporal","extent":["2015-01-01T12:00:00Z","2100-12-31T12:00:00Z"],"description":"time"}},"cmip6:experiment":"update
+        of RCP8.5 based on SSP5","cmip6:Conventions":"CF-1.7 CMIP-6.2","cmip6:activity_id":"ScenarioMIP","cmip6:institution":"Nanjing
+        University of Information Science and Technology, Nanjing, 210044, China","cmip6:source_type":"AOGCM","cmip6:experiment_id":"ssp585","cmip6:forcing_index":1,"cmip6:physics_index":1,"cmip6:variant_label":"r1i1p1f1","cmip6:institution_id":"NUIST","cmip6:sub_experiment":"none","cmip6:further_info_url":"https://furtherinfo.es-doc.org/CMIP6.NUIST.NESM3.ssp585.none.r1i1p1f1","cmip6:realization_index":1,"cmip6:sub_experiment_id":"none","cmip6:data_specs_version":"01.00.30","cmip6:nominal_resolution":"250
+        km","cmip6:initialization_index":1},"stac_extensions":["https://stac-extensions.github.io/datacube/v2.0.0/schema.json"],"stac_version":"1.0.0"}'
     headers:
       Accept-Ranges:
       - bytes
       Access-Control-Allow-Credentials:
       - 'true'
+      Access-Control-Allow-Headers:
+      - X-PC-Request-Entity,DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, OPTIONS
       Access-Control-Allow-Origin:
       - '*'
+      Access-Control-Max-Age:
+      - '1728000'
       Connection:
       - keep-alive
       Content-Length:
@@ -405,9 +812,9 @@ interactions:
       Content-Type:
       - application/geo+json
       Date:
-      - Fri, 17 May 2024 13:07:34 GMT
+      - Fri, 09 Aug 2024 15:13:39 GMT
       Strict-Transport-Security:
-      - max-age=15724800; includeSubDomains
+      - max-age=31536000; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       content-encoding:
@@ -415,7 +822,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20240517T130733Z-176fb699484t8cjvwrqyfq344w00000003pg000000003n16
+      - 20240809T151339Z-1674bbd94ccxqlf59uku4s1r4w0000000beg000000007n4m
     status:
       code: 200
       message: OK
@@ -429,214 +836,554 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.31.0
+      - python-requests/2.32.3
     method: GET
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/collections/cil-gdpcir-cc-by
   response:
     body:
-      string: !!binary |
-        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
-        vAAA
+      string: "{\"id\":\"cil-gdpcir-cc-by\",\"type\":\"Collection\",\"links\":[{\"rel\":\"items\",\"type\":\"application/geo+json\",\"href\":\"https://planetarycomputer.microsoft.com/api/stac/v1/collections/cil-gdpcir-cc-by/items\"},{\"rel\":\"parent\",\"type\":\"application/json\",\"href\":\"https://planetarycomputer.microsoft.com/api/stac/v1/\"},{\"rel\":\"root\",\"type\":\"application/json\",\"href\":\"https://planetarycomputer.microsoft.com/api/stac/v1/\"},{\"rel\":\"self\",\"type\":\"application/json\",\"href\":\"https://planetarycomputer.microsoft.com/api/stac/v1/collections/cil-gdpcir-cc-by\"},{\"rel\":\"license\",\"href\":\"https://spdx.org/licenses/CC-BY-4.0.html\",\"type\":\"text/html\",\"title\":\"Creative
+        Commons Attribution 4.0 International\"},{\"rel\":\"cite-as\",\"href\":\"https://zenodo.org/record/6403794\",\"type\":\"text/html\"},{\"rel\":\"describedby\",\"href\":\"https://github.com/ClimateImpactLab/downscaleCMIP6/\",\"type\":\"text/html\",\"title\":\"Project
+        homepage\"},{\"rel\":\"describedby\",\"href\":\"https://planetarycomputer.microsoft.com/dataset/cil-gdpcir-cc-by\",\"title\":\"Human
+        readable dataset overview and reference\",\"type\":\"text/html\"}],\"title\":\"CIL
+        Global Downscaled Projections for Climate Impacts Research (CC-BY-4.0)\",\"assets\":{\"thumbnail\":{\"href\":\"https://ai4edatasetspublicassets.blob.core.windows.net/assets/pc_thumbnails/gdpcir.png\",\"type\":\"image/png\",\"title\":\"Thumbnail\"},\"geoparquet-items\":{\"href\":\"abfs://items/cil-gdpcir-cc-by.parquet\",\"type\":\"application/x-parquet\",\"roles\":[\"stac-items\"],\"title\":\"GeoParquet
+        STAC items\",\"description\":\"Snapshot of the collection's STAC items exported
+        to GeoParquet format.\",\"msft:partition_info\":{\"is_partitioned\":false},\"table:storage_options\":{\"account_name\":\"pcstacitems\"}}},\"extent\":{\"spatial\":{\"bbox\":[[-180,-90,180,90]]},\"temporal\":{\"interval\":[[\"1950-01-01T00:00:00Z\",\"2100-12-31T00:00:00Z\"]]}},\"license\":\"CC-BY-4.0\",\"sci:doi\":\"10.5194/egusphere-2022-1513\",\"keywords\":[\"CMIP6\",\"Climate
+        Impact Lab\",\"Rhodium Group\",\"Precipitation\",\"Temperature\"],\"providers\":[{\"url\":\"https://impactlab.org/\",\"name\":\"Climate
+        Impact Lab\",\"roles\":[\"producer\"]},{\"url\":\"https://planetarycomputer.microsoft.com/\",\"name\":\"Microsoft\",\"roles\":[\"host\"]}],\"summaries\":{\"cmip6:variable\":[\"pr\",\"tasmax\",\"tasmin\"],\"cmip6:source_id\":[\"BCC-CSM2-MR\",\"ACCESS-ESM1-5\",\"ACCESS-CM2\",\"MIROC-ES2L\",\"MIROC6\",\"NorESM2-LM\",\"NorESM2-MM\",\"GFDL-CM4\",\"GFDL-ESM4\",\"NESM3\",\"MPI-ESM1-2-HR\",\"HadGEM3-GC31-LL\",\"UKESM1-0-LL\",\"MPI-ESM1-2-LR\",\"EC-Earth3\",\"EC-Earth3-AerChem\",\"EC-Earth3-CC\",\"EC-Earth3-Veg\",\"EC-Earth3-Veg-LR\",\"CMCC-CM2-SR5\",\"CMCC-ESM2\"],\"cmip6:experiment_id\":[\"historical\",\"ssp126\",\"ssp245\",\"ssp370\",\"ssp585\"],\"cmip6:institution_id\":[\"BCC\",\"CAS\",\"CCCma\",\"CMCC\",\"CSIRO\",\"CSIRO-ARCCSS\",\"DKRZ\",\"EC-Earth-Consortium\",\"INM\",\"MIROC\",\"MOHC\",\"MPI-M\",\"NCC\",\"NOAA-GFDL\",\"NUIST\"]},\"description\":\"The
+        World Climate Research Programme's [6th Coupled Model Intercomparison Project
+        (CMIP6)](https://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip6) represents an
+        enormous advance in the quality, detail, and scope of climate modeling.\\n\\nThe
+        [Global Downscaled Projections for Climate Impacts Research](https://github.com/ClimateImpactLab/downscaleCMIP6)
+        dataset makes this modeling more applicable to understanding the impacts of
+        changes in the climate on humans and society with two key developments: trend-preserving
+        bias correction and downscaling. In this dataset, the [Climate Impact Lab](https://impactlab.org)
+        provides global, daily minimum and maximum air temperature at the surface
+        (`tasmin` and `tasmax`) and daily cumulative surface precipitation (`pr`)
+        corresponding to the CMIP6 historical, ssp1-2.6, ssp2-4.5, ssp3-7.0, and ssp5-8.5
+        scenarios for 25 global climate models on a 1/4-degree regular global grid.\\n\\n##
+        Accessing the data\\n\\nGDPCIR data can be accessed on the Microsoft Planetary
+        Computer. The dataset is made of of three collections, distinguished by data
+        license:\\n* [Public domain (CC0-1.0) collection](https://planetarycomputer.microsoft.com/dataset/cil-gdpcir-cc0)\\n*
+        [Attribution (CC BY 4.0) collection](https://planetarycomputer.microsoft.com/dataset/cil-gdpcir-cc-by)\\n\\nEach
+        modeling center with bias corrected and downscaled data in this collection
+        falls into one of these license categories - see the [table below](/dataset/cil-gdpcir-cc-by#available-institutions-models-and-scenarios-by-license-collection)
+        to see which model is in each collection, and see the section below on [Citing,
+        Licensing, and using data produced by this project](/dataset/cil-gdpcir-cc-by#citing-licensing-and-using-data-produced-by-this-project)
+        for citations and additional information about each license.\\n\\n## Data
+        format & contents\\n\\nThe data is stored as partitioned zarr stores (see
+        [https://zarr.readthedocs.io](https://zarr.readthedocs.io)), each of which
+        includes thousands of data and metadata files covering the full time span
+        of the experiment. Historical zarr stores contain just over 50 GB, while SSP
+        zarr stores contain nearly 70GB. Each store is stored as a 32-bit float, with
+        dimensions time (daily datetime), lat (float latitude), and lon (float longitude).
+        The data is chunked at each interval of 365 days and 90 degree interval of
+        latitude and longitude. Therefore, each chunk is `(365, 360, 360)`, with each
+        chunk occupying approximately 180MB in memory.\\n\\nHistorical data is daily,
+        excluding leap days, from Jan 1, 1950 to Dec 31, 2014; SSP data is daily,
+        excluding leap days, from Jan 1, 2015 to either Dec 31, 2099 or Dec 31, 2100,
+        depending on data availability in the source GCM.\\n\\nThe spatial domain
+        covers all 0.25-degree grid cells, indexed by the grid center, with grid edges
+        on the quarter-degree, using a -180 to 180 longitude convention. Thus, the
+        \u201Clon\u201D coordinate extends from -179.875 to 179.875, and the \u201Clat\u201D
+        coordinate extends from -89.875 to 89.875, with intermediate values at each
+        0.25-degree increment between (e.g. -179.875, -179.625, -179.375, etc).\\n\\n##
+        Available institutions, models, and scenarios by license collection\\n\\n|
+        Modeling institution |   Source model    |           Available experiments
+        \           |   License collection   |\\n| -------------------- | -----------------
+        | ------------------------------------------ | ---------------------- |\\n|
+        CAS                  | FGOALS-g3 [^1]    | SSP2-4.5, SSP3-7.0, and SSP5-8.5
+        \          | Public domain datasets |\\n| INM                  | INM-CM4-8
+        \        | SSP1-2.6, SSP2-4.5, SSP3-7.0, and SSP5-8.5 | Public domain datasets
+        |\\n| INM                  | INM-CM5-0         | SSP1-2.6, SSP2-4.5, SSP3-7.0,
+        and SSP5-8.5 | Public domain datasets |\\n| BCC                  | BCC-CSM2-MR
+        \      | SSP1-2.6, SSP2-4.5, SSP3-7.0, and SSP5-8.5 | CC-BY-40               |\\n|
+        CMCC                 | CMCC-CM2-SR5      | ssp1-2.6, ssp2-4.5, ssp3-7.0, ssp5-8.5
+        \    | CC-BY-40               |\\n| CMCC                 | CMCC-ESM2         |
+        ssp1-2.6, ssp2-4.5, ssp3-7.0, ssp5-8.5     | CC-BY-40               |\\n|
+        CSIRO-ARCCSS         | ACCESS-CM2        | SSP2-4.5 and SSP3-7.0                      |
+        CC-BY-40               |\\n| CSIRO                | ACCESS-ESM1-5     | SSP1-2.6,
+        SSP2-4.5, and SSP3-7.0           | CC-BY-40               |\\n| MIROC                |
+        MIROC-ES2L        | SSP1-2.6, SSP2-4.5, SSP3-7.0, and SSP5-8.5 | CC-BY-40
+        \              |\\n| MIROC                | MIROC6            | SSP1-2.6,
+        SSP2-4.5, SSP3-7.0, and SSP5-8.5 | CC-BY-40               |\\n| MOHC                 |
+        HadGEM3-GC31-LL   | SSP1-2.6, SSP2-4.5, and SSP5-8.5           | CC-BY-40
+        \              |\\n| MOHC                 | UKESM1-0-LL       | SSP1-2.6,
+        SSP2-4.5, SSP3-7.0, and SSP5-8.5 | CC-BY-40               |\\n| MPI-M                |
+        MPI-ESM1-2-LR     | SSP1-2.6, SSP2-4.5, SSP3-7.0, and SSP5-8.5 | CC-BY-40
+        \              |\\n| MPI-M/DKRZ [^2]      | MPI-ESM1-2-HR     | SSP1-2.6 and
+        SSP5-8.5                      | CC-BY-40               |\\n| NCC                  |
+        NorESM2-LM        | SSP1-2.6, SSP2-4.5, SSP3-7.0, and SSP5-8.5 | CC-BY-40
+        \              |\\n| NCC                  | NorESM2-MM        | SSP1-2.6,
+        SSP2-4.5, SSP3-7.0, and SSP5-8.5 | CC-BY-40               |\\n| NOAA-GFDL
+        \           | GFDL-CM4          | SSP2-4.5 and SSP5-8.5                      |
+        CC-BY-40               |\\n| NOAA-GFDL            | GFDL-ESM4         | SSP1-2.6,
+        SSP2-4.5, SSP3-7.0, and SSP5-8.5 | CC-BY-40               |\\n| NUIST                |
+        NESM3             | SSP1-2.6, SSP2-4.5, and SSP5-8.5           | CC-BY-40
+        \              |\\n| EC-Earth-Consortium  | EC-Earth3         | ssp1-2.6,
+        ssp2-4.5, ssp3-7.0, and ssp5-8.5 | CC-BY-40               |\\n| EC-Earth-Consortium
+        \ | EC-Earth3-AerChem | ssp370                                     | CC-BY-40
+        \              |\\n| EC-Earth-Consortium  | EC-Earth3-CC      | ssp245 and
+        ssp585                          | CC-BY-40               |\\n| EC-Earth-Consortium
+        \ | EC-Earth3-Veg     | ssp1-2.6, ssp2-4.5, ssp3-7.0, and ssp5-8.5 | CC-BY-40
+        \              |\\n| EC-Earth-Consortium  | EC-Earth3-Veg-LR  | ssp1-2.6,
+        ssp2-4.5, ssp3-7.0, and ssp5-8.5 | CC-BY-40               |\\n| CCCma                |
+        CanESM5           | ssp1-2.6, ssp2-4.5, ssp3-7.0, ssp5-8.5     | CC-BY-40[^3]
+        \          |\\n\\n*Notes:*\\n\\n[^1]: At the time of running, no ssp1-2.6
+        precipitation data was available. Therefore, we provide `tasmin` and `tamax`
+        for this model and experiment, but not `pr`. All other model/experiment combinations
+        in the above table include all three variables.\\n\\n[^2]: The institution
+        which ran MPI-ESM1-2-HR\u2019s historical (CMIP) simulations is `MPI-M`, while
+        the future (ScenarioMIP) simulations were run by `DKRZ`. Therefore, the institution
+        component of `MPI-ESM1-2-HR` filepaths differ between `historical` and `SSP`
+        scenarios.\\n\\n[^3]: This dataset was previously licensed as [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/),
+        but was relicensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0)
+        in March, 2023. \\n\\n## Project methods\\n\\nThis project makes use of statistical
+        bias correction and downscaling algorithms, which are specifically designed
+        to accurately represent changes in the extremes. For this reason, we selected
+        Quantile Delta Mapping (QDM), following the method introduced by [Cannon et
+        al. (2015)](https://doi.org/10.1175/JCLI-D-14-00754.1), which preserves quantile-specific
+        trends from the GCM while fitting the full distribution for a given day-of-year
+        to a reference dataset (ERA5).\\n\\nWe then introduce a similar method tailored
+        to increase spatial resolution while preserving extreme behavior, Quantile-Preserving
+        Localized-Analog Downscaling (QPLAD).\\n\\nTogether, these methods provide
+        a robust means to handle both the central and tail behavior seen in climate
+        model output, while aligning the full distribution to a state-of-the-art reanalysis
+        dataset and providing the spatial granularity needed to study surface impacts.\\n\\nFor
+        further documentation, see [Global downscaled projections for climate impacts
+        research (GDPCIR): preserving extremes for modeling future climate impacts](https://egusphere.copernicus.org/preprints/2023/egusphere-2022-1513/)
+        (EGUsphere, 2022 [preprint]).\\n\\n## Citing, licensing, and using data produced
+        by this project\\n\\nProjects making use of the data produced as part of the
+        Climate Impact Lab Global Downscaled Projections for Climate Impacts Research
+        (CIL GDPCIR) project are requested to cite both this project and the source
+        datasets from which these results are derived. Additionally, the use of data
+        derived from some GCMs *requires* citations, and some modeling centers impose
+        licensing restrictions & requirements on derived works. See each GCM's license
+        info in the links below for more information.\\n\\n### CIL GDPCIR\\n\\nUsers
+        are requested to cite this project in derived works. Our method documentation
+        paper may be cited using the following:\\n\\n> Gergel, D. R., Malevich, S.
+        B., McCusker, K. E., Tenezakis, E., Delgado, M. T., Fish, M. A., and Kopp,
+        R. E.: Global downscaled projections for climate impacts research (GDPCIR):
+        preserving extremes for modeling future climate impacts, EGUsphere [preprint],
+        https://doi.org/10.5194/egusphere-2022-1513, 2023. \\n\\nThe code repository
+        may be cited using the following:\\n\\n> Diana Gergel, Kelly McCusker, Brewster
+        Malevich, Emile Tenezakis, Meredith Fish, Michael Delgado (2022). ClimateImpactLab/downscaleCMIP6:
+        (v1.0.0). Zenodo. https://doi.org/10.5281/zenodo.6403794\\n\\n### ERA5\\n\\nAdditionally,
+        we request you cite the historical dataset used in bias correction and downscaling,
+        ERA5. See the [ECMWF guide to citing a dataset on the Climate Data Store](https://confluence.ecmwf.int/display/CKB/How+to+acknowledge+and+cite+a+Climate+Data+Store+%28CDS%29+catalogue+entry+and+the+data+published+as+part+of+it):\\n\\n>
+        Hersbach, H, et al. The ERA5 global reanalysis. Q J R Meteorol Soc.2020; 146:
+        1999\u20132049. DOI: [10.1002/qj.3803](https://doi.org/10.1002/qj.3803)\\n>\\n>
+        Mu\xF1oz Sabater, J., (2019): ERA5-Land hourly data from 1981 to present.
+        Copernicus Climate Change Service (C3S) Climate Data Store (CDS). (Accessed
+        on June 4, 2021), DOI: [10.24381/cds.e2161bac](https://doi.org/10.24381/cds.e2161bac)\\n>\\n>
+        Mu\xF1oz Sabater, J., (2021): ERA5-Land hourly data from 1950 to 1980. Copernicus
+        Climate Change Service (C3S) Climate Data Store (CDS). (Accessed on June 4,
+        2021), DOI: [10.24381/cds.e2161bac](https://doi.org/10.24381/cds.e2161bac)\\n\\n###
+        GCM-specific citations & licenses\\n\\nThe CMIP6 simulation data made available
+        through the Earth System Grid Federation (ESGF) are subject to Creative Commons
+        [BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) or [BY-NC-SA
+        4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) licenses. The Climate
+        Impact Lab has reached out to each of the modeling institutions to request
+        waivers from these terms so the outputs of this project may be used with fewer
+        restrictions, and has been granted permission to release the data using the
+        licenses listed here.\\n\\n#### Public Domain Datasets\\n\\nThe following
+        bias corrected and downscaled model simulations are available in the public
+        domain using a [CC0 1.0 Universal Public Domain Declaration](https://creativecommons.org/publicdomain/zero/1.0/).
+        Access the collection on Planetary Computer at https://planetarycomputer.microsoft.com/dataset/cil-gdpcir-cc0.\\n\\n*
+        **FGOALS-g3**\\n\\n  License description: [data_licenses/FGOALS-g3.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/FGOALS-g3.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > Li, Lijuan **(2019)**. *CAS FGOALS-g3 model output
+        prepared for CMIP6 CMIP*. Version 20190826. Earth System Grid Federation.
+        https://doi.org/10.22033/ESGF/CMIP6.1783\\n\\n  ScenarioMIP Citation:\\n\\n
+        \ > Li, Lijuan **(2019)**. *CAS FGOALS-g3 model output prepared for CMIP6
+        ScenarioMIP*. SSP1-2.6 version 20190818; SSP2-4.5 version 20190818; SSP3-7.0
+        version 20190820; SSP5-8.5 tasmax version 20190819; SSP5-8.5 tasmin version
+        20190819; SSP5-8.5 pr version 20190818. Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.2056\\n\\n\\n*
+        **INM-CM4-8**\\n\\n  License description: [data_licenses/INM-CM4-8.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/INM-CM4-8.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > Volodin, Evgeny; Mortikov, Evgeny; Gritsun, Andrey;
+        Lykossov, Vasily; Galin, Vener; Diansky, Nikolay; Gusev, Anatoly; Kostrykin,
+        Sergey; Iakovlev, Nikolay; Shestakova, Anna; Emelina, Svetlana **(2019)**.
+        *INM INM-CM4-8 model output prepared for CMIP6 CMIP*. Version 20190530. Earth
+        System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.1422\\n\\n  ScenarioMIP
+        Citation:\\n\\n  > Volodin, Evgeny; Mortikov, Evgeny; Gritsun, Andrey; Lykossov,
+        Vasily; Galin, Vener; Diansky, Nikolay; Gusev, Anatoly; Kostrykin, Sergey;
+        Iakovlev, Nikolay; Shestakova, Anna; Emelina, Svetlana **(2019)**. *INM INM-CM4-8
+        model output prepared for CMIP6 ScenarioMIP*. Version 20190603. Earth System
+        Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.12321\\n\\n\\n* **INM-CM5-0**\\n\\n
+        \ License description: [data_licenses/INM-CM5-0.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/INM-CM5-0.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > Volodin, Evgeny; Mortikov, Evgeny; Gritsun, Andrey;
+        Lykossov, Vasily; Galin, Vener; Diansky, Nikolay; Gusev, Anatoly; Kostrykin,
+        Sergey; Iakovlev, Nikolay; Shestakova, Anna; Emelina, Svetlana **(2019)**.
+        *INM INM-CM5-0 model output prepared for CMIP6 CMIP*. Version 20190610. Earth
+        System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.1423\\n\\n  ScenarioMIP
+        Citation:\\n\\n  > Volodin, Evgeny; Mortikov, Evgeny; Gritsun, Andrey; Lykossov,
+        Vasily; Galin, Vener; Diansky, Nikolay; Gusev, Anatoly; Kostrykin, Sergey;
+        Iakovlev, Nikolay; Shestakova, Anna; Emelina, Svetlana **(2019)**. *INM INM-CM5-0
+        model output prepared for CMIP6 ScenarioMIP*. SSP1-2.6 version 20190619; SSP2-4.5
+        version 20190619; SSP3-7.0 version 20190618; SSP5-8.5 version 20190724. Earth
+        System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.12322\\n\\n\\n####
+        CC-BY-4.0\\n\\nThe following bias corrected and downscaled model simulations
+        are licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
+        Note that this license requires citation of the source model output (included
+        here). Please see https://creativecommons.org/licenses/by/4.0/ for more information.
+        Access the collection on Planetary Computer at https://planetarycomputer.microsoft.com/dataset/cil-gdpcir-cc-by.\\n\\n*
+        **ACCESS-CM2**\\n\\n  License description: [data_licenses/ACCESS-CM2.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/ACCESS-CM2.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > Dix, Martin; Bi, Doahua; Dobrohotoff, Peter; Fiedler,
+        Russell; Harman, Ian; Law, Rachel; Mackallah, Chloe; Marsland, Simon; O'Farrell,
+        Siobhan; Rashid, Harun; Srbinovsky, Jhan; Sullivan, Arnold; Trenham, Claire;
+        Vohralik, Peter; Watterson, Ian; Williams, Gareth; Woodhouse, Matthew; Bodman,
+        Roger; Dias, Fabio Boeira; Domingues, Catia; Hannah, Nicholas; Heerdegen,
+        Aidan; Savita, Abhishek; Wales, Scott; Allen, Chris; Druken, Kelsey; Evans,
+        Ben; Richards, Clare; Ridzwan, Syazwan Mohamed; Roberts, Dale; Smillie, Jon;
+        Snow, Kate; Ward, Marshall; Yang, Rui **(2019)**. *CSIRO-ARCCSS ACCESS-CM2
+        model output prepared for CMIP6 CMIP*. Version 20191108. Earth System Grid
+        Federation. https://doi.org/10.22033/ESGF/CMIP6.2281\\n\\n  ScenarioMIP Citation:\\n\\n
+        \ > Dix, Martin; Bi, Doahua; Dobrohotoff, Peter; Fiedler, Russell; Harman,
+        Ian; Law, Rachel; Mackallah, Chloe; Marsland, Simon; O'Farrell, Siobhan; Rashid,
+        Harun; Srbinovsky, Jhan; Sullivan, Arnold; Trenham, Claire; Vohralik, Peter;
+        Watterson, Ian; Williams, Gareth; Woodhouse, Matthew; Bodman, Roger; Dias,
+        Fabio Boeira; Domingues, Catia; Hannah, Nicholas; Heerdegen, Aidan; Savita,
+        Abhishek; Wales, Scott; Allen, Chris; Druken, Kelsey; Evans, Ben; Richards,
+        Clare; Ridzwan, Syazwan Mohamed; Roberts, Dale; Smillie, Jon; Snow, Kate;
+        Ward, Marshall; Yang, Rui **(2019)**. *CSIRO-ARCCSS ACCESS-CM2 model output
+        prepared for CMIP6 ScenarioMIP*. Version 20191108. Earth System Grid Federation.
+        https://doi.org/10.22033/ESGF/CMIP6.2285\\n\\n\\n* **ACCESS-ESM1-5**\\n\\n
+        \ License description: [data_licenses/ACCESS-ESM1-5.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/ACCESS-ESM1-5.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > Ziehn, Tilo; Chamberlain, Matthew; Lenton, Andrew;
+        Law, Rachel; Bodman, Roger; Dix, Martin; Wang, Yingping; Dobrohotoff, Peter;
+        Srbinovsky, Jhan; Stevens, Lauren; Vohralik, Peter; Mackallah, Chloe; Sullivan,
+        Arnold; O'Farrell, Siobhan; Druken, Kelsey **(2019)**. *CSIRO ACCESS-ESM1.5
+        model output prepared for CMIP6 CMIP*. Version 20191115. Earth System Grid
+        Federation. https://doi.org/10.22033/ESGF/CMIP6.2288\\n\\n  ScenarioMIP Citation:\\n\\n
+        \ > Ziehn, Tilo; Chamberlain, Matthew; Lenton, Andrew; Law, Rachel; Bodman,
+        Roger; Dix, Martin; Wang, Yingping; Dobrohotoff, Peter; Srbinovsky, Jhan;
+        Stevens, Lauren; Vohralik, Peter; Mackallah, Chloe; Sullivan, Arnold; O'Farrell,
+        Siobhan; Druken, Kelsey **(2019)**. *CSIRO ACCESS-ESM1.5 model output prepared
+        for CMIP6 ScenarioMIP*. Version 20191115. Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.2291\\n\\n\\n*
+        **BCC-CSM2-MR**\\n\\n  License description: [data_licenses/BCC-CSM2-MR.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/BCC-CSM2-MR.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > Xin, Xiaoge; Zhang, Jie; Zhang, Fang; Wu, Tongwen;
+        Shi, Xueli; Li, Jianglong; Chu, Min; Liu, Qianxia; Yan, Jinghui; Ma, Qiang;
+        Wei, Min **(2018)**. *BCC BCC-CSM2MR model output prepared for CMIP6 CMIP*.
+        Version 20181126. Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.1725\\n\\n
+        \ ScenarioMIP Citation:\\n\\n  > Xin, Xiaoge; Wu, Tongwen; Shi, Xueli; Zhang,
+        Fang; Li, Jianglong; Chu, Min; Liu, Qianxia; Yan, Jinghui; Ma, Qiang; Wei,
+        Min **(2019)**. *BCC BCC-CSM2MR model output prepared for CMIP6 ScenarioMIP*.
+        SSP1-2.6 version 20190315; SSP2-4.5 version 20190318; SSP3-7.0 version 20190318;
+        SSP5-8.5 version 20190318. Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.1732\\n\\n\\n*
+        **CMCC-CM2-SR5**\\n\\n  License description: [data_licenses/CMCC-CM2-SR5.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/CMCC-CM2-SR5.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > Lovato, Tomas; Peano, Daniele **(2020)**. *CMCC
+        CMCC-CM2-SR5 model output prepared for CMIP6 CMIP*. Version 20200616. Earth
+        System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.1362\\n\\n  ScenarioMIP
+        Citation:\\n\\n  > Lovato, Tomas; Peano, Daniele **(2020)**. *CMCC CMCC-CM2-SR5
+        model output prepared for CMIP6 ScenarioMIP*. SSP1-2.6 version 20200717; SSP2-4.5
+        version 20200617; SSP3-7.0 version 20200622; SSP5-8.5 version 20200622. Earth
+        System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.1365\\n\\n\\n*
+        **CMCC-ESM2**\\n\\n  License description: [data_licenses/CMCC-ESM2.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/CMCC-ESM2.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > Lovato, Tomas; Peano, Daniele; Butensch\xF6n, Momme
+        **(2021)**. *CMCC CMCC-ESM2 model output prepared for CMIP6 CMIP*. Version
+        20210114. Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.13164\\n\\n
+        \ ScenarioMIP Citation:\\n\\n  > Lovato, Tomas; Peano, Daniele; Butensch\xF6n,
+        Momme **(2021)**. *CMCC CMCC-ESM2 model output prepared for CMIP6 ScenarioMIP*.
+        SSP1-2.6 version 20210126; SSP2-4.5 version 20210129; SSP3-7.0 version 20210202;
+        SSP5-8.5 version 20210126. Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.13168\\n\\n\\n*
+        **EC-Earth3-AerChem**\\n\\n  License description: [data_licenses/EC-Earth3-AerChem.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/EC-Earth3-AerChem.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > EC-Earth Consortium (EC-Earth) **(2020)**. *EC-Earth-Consortium
+        EC-Earth3-AerChem model output prepared for CMIP6 CMIP*. Version 20200624.
+        Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.639\\n\\n
+        \ ScenarioMIP Citation:\\n\\n  > EC-Earth Consortium (EC-Earth) **(2020)**.
+        *EC-Earth-Consortium EC-Earth3-AerChem model output prepared for CMIP6 ScenarioMIP*.
+        Version 20200827. Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.724\\n\\n\\n*
+        **EC-Earth3-CC**\\n\\n  License description: [data_licenses/EC-Earth3-CC.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/EC-Earth3-CC.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > EC-Earth Consortium (EC-Earth) **(2020)**. *EC-Earth-Consortium
+        EC-Earth-3-CC model output prepared for CMIP6 CMIP*. Version 20210113. Earth
+        System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.640\\n\\n  ScenarioMIP
+        Citation:\\n\\n  > EC-Earth Consortium (EC-Earth) **(2021)**. *EC-Earth-Consortium
+        EC-Earth3-CC model output prepared for CMIP6 ScenarioMIP*. Version 20210113.
+        Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.15327\\n\\n\\n*
+        **EC-Earth3-Veg-LR**\\n\\n  License description: [data_licenses/EC-Earth3-Veg-LR.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/EC-Earth3-Veg-LR.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > EC-Earth Consortium (EC-Earth) **(2020)**. *EC-Earth-Consortium
+        EC-Earth3-Veg-LR model output prepared for CMIP6 CMIP*. Version 20200217.
+        Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.643\\n\\n
+        \ ScenarioMIP Citation:\\n\\n  > EC-Earth Consortium (EC-Earth) **(2020)**.
+        *EC-Earth-Consortium EC-Earth3-Veg-LR model output prepared for CMIP6 ScenarioMIP*.
+        SSP1-2.6 version 20201201; SSP2-4.5 version 20201123; SSP3-7.0 version 20201123;
+        SSP5-8.5 version 20201201. Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.728\\n\\n\\n*
+        **EC-Earth3-Veg**\\n\\n  License description: [data_licenses/EC-Earth3-Veg.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/EC-Earth3-Veg.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > EC-Earth Consortium (EC-Earth) **(2019)**. *EC-Earth-Consortium
+        EC-Earth3-Veg model output prepared for CMIP6 CMIP*. Version 20200225. Earth
+        System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.642\\n\\n  ScenarioMIP
+        Citation:\\n\\n  > EC-Earth Consortium (EC-Earth) **(2019)**. *EC-Earth-Consortium
+        EC-Earth3-Veg model output prepared for CMIP6 ScenarioMIP*. Version 20200225.
+        Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.727\\n\\n\\n*
+        **EC-Earth3**\\n\\n  License description: [data_licenses/EC-Earth3.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/EC-Earth3.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > EC-Earth Consortium (EC-Earth) **(2019)**. *EC-Earth-Consortium
+        EC-Earth3 model output prepared for CMIP6 CMIP*. Version 20200310. Earth System
+        Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.181\\n\\n  ScenarioMIP
+        Citation:\\n\\n  > EC-Earth Consortium (EC-Earth) **(2019)**. *EC-Earth-Consortium
+        EC-Earth3 model output prepared for CMIP6 ScenarioMIP*. Version 20200310.
+        Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.251\\n\\n\\n*
+        **GFDL-CM4**\\n\\n  License description: [data_licenses/GFDL-CM4.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/GFDL-CM4.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > Guo, Huan; John, Jasmin G; Blanton, Chris; McHugh,
+        Colleen; Nikonov, Serguei; Radhakrishnan, Aparna; Rand, Kristopher; Zadeh,
+        Niki T.; Balaji, V; Durachta, Jeff; Dupuis, Christopher; Menzel, Raymond;
+        Robinson, Thomas; Underwood, Seth; Vahlenkamp, Hans; Bushuk, Mitchell; Dunne,
+        Krista A.; Dussin, Raphael; Gauthier, Paul PG; Ginoux, Paul; Griffies, Stephen
+        M.; Hallberg, Robert; Harrison, Matthew; Hurlin, William; Lin, Pu; Malyshev,
+        Sergey; Naik, Vaishali; Paulot, Fabien; Paynter, David J; Ploshay, Jeffrey;
+        Reichl, Brandon G; Schwarzkopf, Daniel M; Seman, Charles J; Shao, Andrew;
+        Silvers, Levi; Wyman, Bruce; Yan, Xiaoqin; Zeng, Yujin; Adcroft, Alistair;
+        Dunne, John P.; Held, Isaac M; Krasting, John P.; Horowitz, Larry W.; Milly,
+        P.C.D; Shevliakova, Elena; Winton, Michael; Zhao, Ming; Zhang, Rong **(2018)**.
+        *NOAA-GFDL GFDL-CM4 model output*. Version 20180701. Earth System Grid Federation.
+        https://doi.org/10.22033/ESGF/CMIP6.1402\\n\\n  ScenarioMIP Citation:\\n\\n
+        \ > Guo, Huan; John, Jasmin G; Blanton, Chris; McHugh, Colleen; Nikonov, Serguei;
+        Radhakrishnan, Aparna; Rand, Kristopher; Zadeh, Niki T.; Balaji, V; Durachta,
+        Jeff; Dupuis, Christopher; Menzel, Raymond; Robinson, Thomas; Underwood, Seth;
+        Vahlenkamp, Hans; Dunne, Krista A.; Gauthier, Paul PG; Ginoux, Paul; Griffies,
+        Stephen M.; Hallberg, Robert; Harrison, Matthew; Hurlin, William; Lin, Pu;
+        Malyshev, Sergey; Naik, Vaishali; Paulot, Fabien; Paynter, David J; Ploshay,
+        Jeffrey; Schwarzkopf, Daniel M; Seman, Charles J; Shao, Andrew; Silvers, Levi;
+        Wyman, Bruce; Yan, Xiaoqin; Zeng, Yujin; Adcroft, Alistair; Dunne, John P.;
+        Held, Isaac M; Krasting, John P.; Horowitz, Larry W.; Milly, Chris; Shevliakova,
+        Elena; Winton, Michael; Zhao, Ming; Zhang, Rong **(2018)**. *NOAA-GFDL GFDL-CM4
+        model output prepared for CMIP6 ScenarioMIP*. Version 20180701. Earth System
+        Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.9242\\n\\n\\n* **GFDL-ESM4**\\n\\n
+        \ License description: [data_licenses/GFDL-ESM4.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/GFDL-ESM4.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > Krasting, John P.; John, Jasmin G; Blanton, Chris;
+        McHugh, Colleen; Nikonov, Serguei; Radhakrishnan, Aparna; Rand, Kristopher;
+        Zadeh, Niki T.; Balaji, V; Durachta, Jeff; Dupuis, Christopher; Menzel, Raymond;
+        Robinson, Thomas; Underwood, Seth; Vahlenkamp, Hans; Dunne, Krista A.; Gauthier,
+        Paul PG; Ginoux, Paul; Griffies, Stephen M.; Hallberg, Robert; Harrison, Matthew;
+        Hurlin, William; Malyshev, Sergey; Naik, Vaishali; Paulot, Fabien; Paynter,
+        David J; Ploshay, Jeffrey; Reichl, Brandon G; Schwarzkopf, Daniel M; Seman,
+        Charles J; Silvers, Levi; Wyman, Bruce; Zeng, Yujin; Adcroft, Alistair; Dunne,
+        John P.; Dussin, Raphael; Guo, Huan; He, Jian; Held, Isaac M; Horowitz, Larry
+        W.; Lin, Pu; Milly, P.C.D; Shevliakova, Elena; Stock, Charles; Winton, Michael;
+        Wittenberg, Andrew T.; Xie, Yuanyu; Zhao, Ming **(2018)**. *NOAA-GFDL GFDL-ESM4
+        model output prepared for CMIP6 CMIP*. Version 20190726. Earth System Grid
+        Federation. https://doi.org/10.22033/ESGF/CMIP6.1407\\n\\n  ScenarioMIP Citation:\\n\\n
+        \ > John, Jasmin G; Blanton, Chris; McHugh, Colleen; Radhakrishnan, Aparna;
+        Rand, Kristopher; Vahlenkamp, Hans; Wilson, Chandin; Zadeh, Niki T.; Dunne,
+        John P.; Dussin, Raphael; Horowitz, Larry W.; Krasting, John P.; Lin, Pu;
+        Malyshev, Sergey; Naik, Vaishali; Ploshay, Jeffrey; Shevliakova, Elena; Silvers,
+        Levi; Stock, Charles; Winton, Michael; Zeng, Yujin **(2018)**. *NOAA-GFDL
+        GFDL-ESM4 model output prepared for CMIP6 ScenarioMIP*. Version 20180701.
+        Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.1414\\n\\n\\n*
+        **HadGEM3-GC31-LL**\\n\\n  License description: [data_licenses/HadGEM3-GC31-LL.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/HadGEM3-GC31-LL.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > Ridley, Jeff; Menary, Matthew; Kuhlbrodt, Till;
+        Andrews, Martin; Andrews, Tim **(2018)**. *MOHC HadGEM3-GC31-LL model output
+        prepared for CMIP6 CMIP*. Version 20190624. Earth System Grid Federation.
+        https://doi.org/10.22033/ESGF/CMIP6.419\\n\\n  ScenarioMIP Citation:\\n\\n
+        \ > Good, Peter **(2019)**. *MOHC HadGEM3-GC31-LL model output prepared for
+        CMIP6 ScenarioMIP*. SSP1-2.6 version 20200114; SSP2-4.5 version 20190908;
+        SSP5-8.5 version 20200114. Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.10845\\n\\n\\n*
+        **MIROC-ES2L**\\n\\n  License description: [data_licenses/MIROC-ES2L.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/MIROC-ES2L.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > Hajima, Tomohiro; Abe, Manabu; Arakawa, Osamu; Suzuki,
+        Tatsuo; Komuro, Yoshiki; Ogura, Tomoo; Ogochi, Koji; Watanabe, Michio; Yamamoto,
+        Akitomo; Tatebe, Hiroaki; Noguchi, Maki A.; Ohgaito, Rumi; Ito, Akinori; Yamazaki,
+        Dai; Ito, Akihiko; Takata, Kumiko; Watanabe, Shingo; Kawamiya, Michio; Tachiiri,
+        Kaoru **(2019)**. *MIROC MIROC-ES2L model output prepared for CMIP6 CMIP*.
+        Version 20191129. Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.902\\n\\n
+        \ ScenarioMIP Citation:\\n\\n  > Tachiiri, Kaoru; Abe, Manabu; Hajima, Tomohiro;
+        Arakawa, Osamu; Suzuki, Tatsuo; Komuro, Yoshiki; Ogochi, Koji; Watanabe, Michio;
+        Yamamoto, Akitomo; Tatebe, Hiroaki; Noguchi, Maki A.; Ohgaito, Rumi; Ito,
+        Akinori; Yamazaki, Dai; Ito, Akihiko; Takata, Kumiko; Watanabe, Shingo; Kawamiya,
+        Michio **(2019)**. *MIROC MIROC-ES2L model output prepared for CMIP6 ScenarioMIP*.
+        Version 20200318. Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.936\\n\\n\\n*
+        **MIROC6**\\n\\n  License description: [data_licenses/MIROC6.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/MIROC6.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > Tatebe, Hiroaki; Watanabe, Masahiro **(2018)**.
+        *MIROC MIROC6 model output prepared for CMIP6 CMIP*. Version 20191016. Earth
+        System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.881\\n\\n  ScenarioMIP
+        Citation:\\n\\n  > Shiogama, Hideo; Abe, Manabu; Tatebe, Hiroaki **(2019)**.
+        *MIROC MIROC6 model output prepared for CMIP6 ScenarioMIP*. Version 20191016.
+        Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.898\\n\\n\\n*
+        **MPI-ESM1-2-HR**\\n\\n  License description: [data_licenses/MPI-ESM1-2-HR.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/MPI-ESM1-2-HR.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > Jungclaus, Johann; Bittner, Matthias; Wieners, Karl-Hermann;
+        Wachsmann, Fabian; Schupfner, Martin; Legutke, Stephanie; Giorgetta, Marco;
+        Reick, Christian; Gayler, Veronika; Haak, Helmuth; de Vrese, Philipp; Raddatz,
+        Thomas; Esch, Monika; Mauritsen, Thorsten; von Storch, Jin-Song; Behrens,
+        J\xF6rg; Brovkin, Victor; Claussen, Martin; Crueger, Traute; Fast, Irina;
+        Fiedler, Stephanie; Hagemann, Stefan; Hohenegger, Cathy; Jahns, Thomas; Kloster,
+        Silvia; Kinne, Stefan; Lasslop, Gitta; Kornblueh, Luis; Marotzke, Jochem;
+        Matei, Daniela; Meraner, Katharina; Mikolajewicz, Uwe; Modali, Kameswarrao;
+        M\xFCller, Wolfgang; Nabel, Julia; Notz, Dirk; Peters-von Gehlen, Karsten;
+        Pincus, Robert; Pohlmann, Holger; Pongratz, Julia; Rast, Sebastian; Schmidt,
+        Hauke; Schnur, Reiner; Schulzweida, Uwe; Six, Katharina; Stevens, Bjorn; Voigt,
+        Aiko; Roeckner, Erich **(2019)**. *MPI-M MPIESM1.2-HR model output prepared
+        for CMIP6 CMIP*. Version 20190710. Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.741\\n\\n
+        \ ScenarioMIP Citation:\\n\\n  > Schupfner, Martin; Wieners, Karl-Hermann;
+        Wachsmann, Fabian; Steger, Christian; Bittner, Matthias; Jungclaus, Johann;
+        Fr\xFCh, Barbara; Pankatz, Klaus; Giorgetta, Marco; Reick, Christian; Legutke,
+        Stephanie; Esch, Monika; Gayler, Veronika; Haak, Helmuth; de Vrese, Philipp;
+        Raddatz, Thomas; Mauritsen, Thorsten; von Storch, Jin-Song; Behrens, J\xF6rg;
+        Brovkin, Victor; Claussen, Martin; Crueger, Traute; Fast, Irina; Fiedler,
+        Stephanie; Hagemann, Stefan; Hohenegger, Cathy; Jahns, Thomas; Kloster, Silvia;
+        Kinne, Stefan; Lasslop, Gitta; Kornblueh, Luis; Marotzke, Jochem; Matei, Daniela;
+        Meraner, Katharina; Mikolajewicz, Uwe; Modali, Kameswarrao; M\xFCller, Wolfgang;
+        Nabel, Julia; Notz, Dirk; Peters-von Gehlen, Karsten; Pincus, Robert; Pohlmann,
+        Holger; Pongratz, Julia; Rast, Sebastian; Schmidt, Hauke; Schnur, Reiner;
+        Schulzweida, Uwe; Six, Katharina; Stevens, Bjorn; Voigt, Aiko; Roeckner, Erich
+        **(2019)**. *DKRZ MPI-ESM1.2-HR model output prepared for CMIP6 ScenarioMIP*.
+        Version 20190710. Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.2450\\n\\n\\n*
+        **MPI-ESM1-2-LR**\\n\\n  License description: [data_licenses/MPI-ESM1-2-LR.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/MPI-ESM1-2-LR.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > Wieners, Karl-Hermann; Giorgetta, Marco; Jungclaus,
+        Johann; Reick, Christian; Esch, Monika; Bittner, Matthias; Legutke, Stephanie;
+        Schupfner, Martin; Wachsmann, Fabian; Gayler, Veronika; Haak, Helmuth; de
+        Vrese, Philipp; Raddatz, Thomas; Mauritsen, Thorsten; von Storch, Jin-Song;
+        Behrens, J\xF6rg; Brovkin, Victor; Claussen, Martin; Crueger, Traute; Fast,
+        Irina; Fiedler, Stephanie; Hagemann, Stefan; Hohenegger, Cathy; Jahns, Thomas;
+        Kloster, Silvia; Kinne, Stefan; Lasslop, Gitta; Kornblueh, Luis; Marotzke,
+        Jochem; Matei, Daniela; Meraner, Katharina; Mikolajewicz, Uwe; Modali, Kameswarrao;
+        M\xFCller, Wolfgang; Nabel, Julia; Notz, Dirk; Peters-von Gehlen, Karsten;
+        Pincus, Robert; Pohlmann, Holger; Pongratz, Julia; Rast, Sebastian; Schmidt,
+        Hauke; Schnur, Reiner; Schulzweida, Uwe; Six, Katharina; Stevens, Bjorn; Voigt,
+        Aiko; Roeckner, Erich **(2019)**. *MPI-M MPIESM1.2-LR model output prepared
+        for CMIP6 CMIP*. Version 20190710. Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.742\\n\\n
+        \ ScenarioMIP Citation:\\n\\n  > Wieners, Karl-Hermann; Giorgetta, Marco;
+        Jungclaus, Johann; Reick, Christian; Esch, Monika; Bittner, Matthias; Gayler,
+        Veronika; Haak, Helmuth; de Vrese, Philipp; Raddatz, Thomas; Mauritsen, Thorsten;
+        von Storch, Jin-Song; Behrens, J\xF6rg; Brovkin, Victor; Claussen, Martin;
+        Crueger, Traute; Fast, Irina; Fiedler, Stephanie; Hagemann, Stefan; Hohenegger,
+        Cathy; Jahns, Thomas; Kloster, Silvia; Kinne, Stefan; Lasslop, Gitta; Kornblueh,
+        Luis; Marotzke, Jochem; Matei, Daniela; Meraner, Katharina; Mikolajewicz,
+        Uwe; Modali, Kameswarrao; M\xFCller, Wolfgang; Nabel, Julia; Notz, Dirk; Peters-von
+        Gehlen, Karsten; Pincus, Robert; Pohlmann, Holger; Pongratz, Julia; Rast,
+        Sebastian; Schmidt, Hauke; Schnur, Reiner; Schulzweida, Uwe; Six, Katharina;
+        Stevens, Bjorn; Voigt, Aiko; Roeckner, Erich **(2019)**. *MPI-M MPIESM1.2-LR
+        model output prepared for CMIP6 ScenarioMIP*. Version 20190710. Earth System
+        Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.793\\n\\n\\n* **NESM3**\\n\\n
+        \ License description: [data_licenses/NESM3.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/NESM3.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > Cao, Jian; Wang, Bin **(2019)**. *NUIST NESMv3 model
+        output prepared for CMIP6 CMIP*. Version 20190812. Earth System Grid Federation.
+        https://doi.org/10.22033/ESGF/CMIP6.2021\\n\\n  ScenarioMIP Citation:\\n\\n
+        \ > Cao, Jian **(2019)**. *NUIST NESMv3 model output prepared for CMIP6 ScenarioMIP*.
+        SSP1-2.6 version 20190806; SSP2-4.5 version 20190805; SSP5-8.5 version 20190811.
+        Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.2027\\n\\n\\n*
+        **NorESM2-LM**\\n\\n  License description: [data_licenses/NorESM2-LM.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/NorESM2-LM.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > Seland, \xD8yvind; Bentsen, Mats; Olivi\xE8, Dirk
+        Jan Leo; Toniazzo, Thomas; Gjermundsen, Ada; Graff, Lise Seland; Debernard,
+        Jens Boldingh; Gupta, Alok Kumar; He, Yanchun; Kirkev\xE5g, Alf; Schwinger,
+        J\xF6rg; Tjiputra, Jerry; Aas, Kjetil Schanke; Bethke, Ingo; Fan, Yuanchao;
+        Griesfeller, Jan; Grini, Alf; Guo, Chuncheng; Ilicak, Mehmet; Karset, Inger
+        Helene Hafsahl; Landgren, Oskar Andreas; Liakka, Johan; Moseid, Kine Onsum;
+        Nummelin, Aleksi; Spensberger, Clemens; Tang, Hui; Zhang, Zhongshi; Heinze,
+        Christoph; Iversen, Trond; Schulz, Michael **(2019)**. *NCC NorESM2-LM model
+        output prepared for CMIP6 CMIP*. Version 20190815. Earth System Grid Federation.
+        https://doi.org/10.22033/ESGF/CMIP6.502\\n\\n  ScenarioMIP Citation:\\n\\n
+        \ > Seland, \xD8yvind; Bentsen, Mats; Olivi\xE8, Dirk Jan Leo; Toniazzo, Thomas;
+        Gjermundsen, Ada; Graff, Lise Seland; Debernard, Jens Boldingh; Gupta, Alok
+        Kumar; He, Yanchun; Kirkev\xE5g, Alf; Schwinger, J\xF6rg; Tjiputra, Jerry;
+        Aas, Kjetil Schanke; Bethke, Ingo; Fan, Yuanchao; Griesfeller, Jan; Grini,
+        Alf; Guo, Chuncheng; Ilicak, Mehmet; Karset, Inger Helene Hafsahl; Landgren,
+        Oskar Andreas; Liakka, Johan; Moseid, Kine Onsum; Nummelin, Aleksi; Spensberger,
+        Clemens; Tang, Hui; Zhang, Zhongshi; Heinze, Christoph; Iversen, Trond; Schulz,
+        Michael **(2019)**. *NCC NorESM2-LM model output prepared for CMIP6 ScenarioMIP*.
+        Version 20191108. Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.604\\n\\n\\n*
+        **NorESM2-MM**\\n\\n  License description: [data_licenses/NorESM2-MM.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/NorESM2-MM.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > Bentsen, Mats; Olivi\xE8, Dirk Jan Leo; Seland,
+        \xD8yvind; Toniazzo, Thomas; Gjermundsen, Ada; Graff, Lise Seland; Debernard,
+        Jens Boldingh; Gupta, Alok Kumar; He, Yanchun; Kirkev\xE5g, Alf; Schwinger,
+        J\xF6rg; Tjiputra, Jerry; Aas, Kjetil Schanke; Bethke, Ingo; Fan, Yuanchao;
+        Griesfeller, Jan; Grini, Alf; Guo, Chuncheng; Ilicak, Mehmet; Karset, Inger
+        Helene Hafsahl; Landgren, Oskar Andreas; Liakka, Johan; Moseid, Kine Onsum;
+        Nummelin, Aleksi; Spensberger, Clemens; Tang, Hui; Zhang, Zhongshi; Heinze,
+        Christoph; Iversen, Trond; Schulz, Michael **(2019)**. *NCC NorESM2-MM model
+        output prepared for CMIP6 CMIP*. Version 20191108. Earth System Grid Federation.
+        https://doi.org/10.22033/ESGF/CMIP6.506\\n\\n  ScenarioMIP Citation:\\n\\n
+        \ > Bentsen, Mats; Olivi\xE8, Dirk Jan Leo; Seland, \xD8yvind; Toniazzo, Thomas;
+        Gjermundsen, Ada; Graff, Lise Seland; Debernard, Jens Boldingh; Gupta, Alok
+        Kumar; He, Yanchun; Kirkev\xE5g, Alf; Schwinger, J\xF6rg; Tjiputra, Jerry;
+        Aas, Kjetil Schanke; Bethke, Ingo; Fan, Yuanchao; Griesfeller, Jan; Grini,
+        Alf; Guo, Chuncheng; Ilicak, Mehmet; Karset, Inger Helene Hafsahl; Landgren,
+        Oskar Andreas; Liakka, Johan; Moseid, Kine Onsum; Nummelin, Aleksi; Spensberger,
+        Clemens; Tang, Hui; Zhang, Zhongshi; Heinze, Christoph; Iversen, Trond; Schulz,
+        Michael **(2019)**. *NCC NorESM2-MM model output prepared for CMIP6 ScenarioMIP*.
+        Version 20191108. Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.608\\n\\n\\n*
+        **UKESM1-0-LL**\\n\\n  License description: [data_licenses/UKESM1-0-LL.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/UKESM1-0-LL.txt)\\n\\n
+        \ CMIP Citation:\\n\\n  > Tang, Yongming; Rumbold, Steve; Ellis, Rich; Kelley,
+        Douglas; Mulcahy, Jane; Sellar, Alistair; Walton, Jeremy; Jones, Colin **(2019)**.
+        *MOHC UKESM1.0-LL model output prepared for CMIP6 CMIP*. Version 20190627.
+        Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.1569\\n\\n
+        \ ScenarioMIP Citation:\\n\\n  > Good, Peter; Sellar, Alistair; Tang, Yongming;
+        Rumbold, Steve; Ellis, Rich; Kelley, Douglas; Kuhlbrodt, Till; Walton, Jeremy
+        **(2019)**. *MOHC UKESM1.0-LL model output prepared for CMIP6 ScenarioMIP*.
+        SSP1-2.6 version 20190708; SSP2-4.5 version 20190715; SSP3-7.0 version 20190726;
+        SSP5-8.5 version 20190726. Earth System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.1567\\n\\n*
+        **CanESM5**\\n\\n  License description: [data_licenses/CanESM5.txt](https://raw.githubusercontent.com/ClimateImpactLab/downscaleCMIP6/master/data_licenses/CanESM5.txt).
+        Note: this dataset was previously licensed\\n  under CC BY-SA 4.0, but was
+        relicensed as CC BY 4.0 in March, 2023.\\n\\n  CMIP Citation:\\n\\n  > Swart,
+        Neil Cameron; Cole, Jason N.S.; Kharin, Viatcheslav V.; Lazare, Mike; Scinocca,
+        John F.; Gillett, Nathan P.; Anstey, James; Arora, Vivek; Christian, James
+        R.; Jiao, Yanjun; Lee, Warren G.; Majaess, Fouad; Saenko, Oleg A.; Seiler,
+        Christian; Seinen, Clint; Shao, Andrew; Solheim, Larry; von Salzen, Knut;
+        Yang, Duo; Winter, Barbara; Sigmond, Michael **(2019)**. *CCCma CanESM5 model
+        output prepared for CMIP6 CMIP*. Version 20190429. Earth System Grid Federation.
+        https://doi.org/10.22033/ESGF/CMIP6.1303\\n\\n  ScenarioMIP Citation:\\n\\n
+        \ > Swart, Neil Cameron; Cole, Jason N.S.; Kharin, Viatcheslav V.; Lazare,
+        Mike; Scinocca, John F.; Gillett, Nathan P.; Anstey, James; Arora, Vivek;
+        Christian, James R.; Jiao, Yanjun; Lee, Warren G.; Majaess, Fouad; Saenko,
+        Oleg A.; Seiler, Christian; Seinen, Clint; Shao, Andrew; Solheim, Larry; von
+        Salzen, Knut; Yang, Duo; Winter, Barbara; Sigmond, Michael **(2019)**. *CCCma
+        CanESM5 model output prepared for CMIP6 ScenarioMIP*. Version 20190429. Earth
+        System Grid Federation. https://doi.org/10.22033/ESGF/CMIP6.1317\\n\\n## Acknowledgements\\n\\nThis
+        work is the result of many years worth of work by members of the [Climate
+        Impact Lab](https://impactlab.org), but would not have been possible without
+        many contributions from across the wider scientific and computing communities.\\n\\nSpecifically,
+        we would like to acknowledge the World Climate Research Programme's Working
+        Group on Coupled Modeling, which is responsible for CMIP, and we would like
+        to thank the climate modeling groups for producing and making their model
+        output available. We would particularly like to thank the modeling institutions
+        whose results are included as an input to this repository (listed above) for
+        their contributions to the CMIP6 project and for responding to and granting
+        our requests for license waivers.\\n\\nWe would also like to thank Lamont-Doherty
+        Earth Observatory, the [Pangeo Consortium](https://github.com/pangeo-data)
+        (and especially the [ESGF Cloud Data Working Group](https://pangeo-data.github.io/pangeo-cmip6-cloud/#))
+        and Google Cloud and the Google Public Datasets program for making the [CMIP6
+        Google Cloud collection](https://console.cloud.google.com/marketplace/details/noaa-public/cmip6)
+        possible. In particular we're extremely grateful to [Ryan Abernathey](https://github.com/rabernat),
+        [Naomi Henderson](https://github.com/naomi-henderson), [Charles Blackmon-Luca](https://github.com/charlesbluca),
+        [Aparna Radhakrishnan](https://github.com/aradhakrishnanGFDL), [Julius Busecke](https://github.com/jbusecke),
+        and [Charles Stern](https://github.com/cisaacstern) for the huge amount of
+        work they've done to translate the ESGF CMIP6 netCDF archives into consistently-formattted,
+        analysis-ready zarr stores on Google Cloud.\\n\\nWe're also grateful to the
+        [xclim developers](https://github.com/Ouranosinc/xclim/graphs/contributors)
+        ([DOI: 10.5281/zenodo.2795043](https://doi.org/10.5281/zenodo.2795043)), in
+        particular [Pascal Bourgault](https://github.com/aulemahal), [David Huard](https://github.com/huard),
+        and [Travis Logan](https://github.com/tlogan2000), for implementing the QDM
+        bias correction method in the xclim python package, supporting our QPLAD implementation
+        into the package, and ongoing support in integrating dask into downscaling
+        workflows. For method advice and useful conversations, we would like to thank
+        Keith Dixon, Dennis Adams-Smith, and [Joe Hamman](https://github.com/jhamman).\\n\\n##
+        Financial support\\n\\nThis research has been supported by The Rockefeller
+        Foundation and the Microsoft AI for Earth Initiative.\\n\\n## Additional links:\\n\\n*
+        CIL GDPCIR project homepage: [github.com/ClimateImpactLab/downscaleCMIP6](https://github.com/ClimateImpactLab/downscaleCMIP6)\\n*
+        Project listing on zenodo: https://doi.org/10.5281/zenodo.6403794\\n* Climate
+        Impact Lab homepage: [impactlab.org](https://impactlab.org)\",\"item_assets\":{\"pr\":{\"type\":\"application/vnd+zarr\",\"roles\":[\"data\"],\"title\":\"Precipitation\",\"description\":\"Precipitation\"},\"tasmax\":{\"type\":\"application/vnd+zarr\",\"roles\":[\"data\"],\"title\":\"Daily
+        Maximum Near-Surface Air Temperature\",\"description\":\"Daily Maximum Near-Surface
+        Air Temperature\"},\"tasmin\":{\"type\":\"application/vnd+zarr\",\"roles\":[\"data\"],\"title\":\"Daily
+        Minimum Near-Surface Air Temperature\",\"description\":\"Daily Minimum Near-Surface
+        Air Temperature\"}},\"msft:region\":\"westeurope\",\"stac_version\":\"1.0.0\",\"msft:group_id\":\"cil-gdpcir\",\"cube:variables\":{\"pr\":{\"type\":\"data\",\"unit\":\"mm
+        day-1\",\"attrs\":{\"units\":\"mm day-1\"},\"dimensions\":[\"time\",\"lat\",\"lon\"]},\"tasmax\":{\"type\":\"data\",\"unit\":\"K\",\"attrs\":{\"units\":\"K\",\"comment\":\"maximum
+        near-surface (usually, 2 meter) air temperature (add cell_method attribute
+        'time: max')\",\"long_name\":\"Daily Maximum Near-Surface Air Temperature\",\"coordinates\":\"height\",\"cell_methods\":\"area:
+        mean time: maximum (interval: 5 minutes)\",\"cell_measures\":\"area: areacella\",\"original_name\":\"TREFHTMX\",\"standard_name\":\"air_temperature\"},\"dimensions\":[\"time\",\"lat\",\"lon\"],\"description\":\"Daily
+        Maximum Near-Surface Air Temperature\"},\"tasmin\":{\"type\":\"data\",\"unit\":\"K\",\"attrs\":{\"units\":\"K\",\"comment\":\"minimum
+        near-surface (usually, 2 meter) air temperature (add cell_method attribute
+        'time: min')\",\"long_name\":\"Daily Minimum Near-Surface Air Temperature\",\"coordinates\":\"height\",\"cell_methods\":\"area:
+        mean time: minimum (interval: 5 minutes)\",\"cell_measures\":\"area: areacella\",\"original_name\":\"TREFHTMN\",\"standard_name\":\"air_temperature\"},\"dimensions\":[\"time\",\"lat\",\"lon\"],\"description\":\"Daily
+        Minimum Near-Surface Air Temperature\"}},\"msft:container\":\"cil-gdpcir\",\"cube:dimensions\":{\"lat\":{\"axis\":\"y\",\"step\":0.25,\"type\":\"spatial\",\"extent\":[-89.875,89.875],\"reference_system\":\"epsg:4326\"},\"lon\":{\"axis\":\"x\",\"step\":0.25,\"type\":\"spatial\",\"extent\":[-179.875,179.875],\"reference_system\":\"epsg:4326\"},\"time\":{\"step\":\"P1DT0H0M0S\",\"type\":\"temporal\",\"extent\":[\"1950-01-01T12:00:00Z\",\"2100-12-31T12:00:00Z\"],\"description\":\"time\"}},\"stac_extensions\":[\"https://stac-extensions.github.io/item-assets/v1.0.0/schema.json\",\"https://stac-extensions.github.io/scientific/v1.0.0/schema.json\"],\"msft:storage_account\":\"rhgeuwest\",\"msft:short_description\":\"Climate
+        Impact Lab Global Downscaled Projections for Climate Impacts Research (CC-BY-4.0)\"}"
     headers:
       Accept-Ranges:
       - bytes
       Access-Control-Allow-Credentials:
       - 'true'
+      Access-Control-Allow-Headers:
+      - X-PC-Request-Entity,DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, OPTIONS
       Access-Control-Allow-Origin:
       - '*'
+      Access-Control-Max-Age:
+      - '1728000'
       Connection:
       - keep-alive
       Content-Length:
@@ -644,9 +1391,9 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 17 May 2024 13:07:34 GMT
+      - Fri, 09 Aug 2024 15:13:40 GMT
       Strict-Transport-Security:
-      - max-age=15724800; includeSubDomains
+      - max-age=31536000; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       content-encoding:
@@ -654,7 +1401,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20240517T130734Z-176fb699484t8cjvwrqyfq344w00000003pg000000003n19
+      - 20240809T151339Z-1674bbd94cc6mmz7u7hv6bk5fc0000000s10000000002mnt
     status:
       code: 200
       message: OK
