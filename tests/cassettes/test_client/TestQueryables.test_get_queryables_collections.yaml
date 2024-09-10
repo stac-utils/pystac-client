@@ -9,86 +9,163 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.31.0
+      - python-requests/2.32.3
     method: GET
     uri: https://planetarycomputer.microsoft.com/api/stac/v1
   response:
     body:
-      string: !!binary |
-        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
+      string: '{"type":"Catalog","id":"microsoft-pc","title":"Microsoft Planetary
+        Computer STAC API","description":"Searchable spatiotemporal metadata describing
+        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","https://api.stacspec.org/v1.0.0/item-search#fields","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","https://api.stacspec.org/v1.0.0/ogcapi-features","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","https://api.stacspec.org/v1.0.0/item-search#query","https://api.stacspec.org/v1.0.0/collections","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter","https://api.stacspec.org/v1.0.0/item-search","https://api.stacspec.org/v1.0.0/core","https://api.stacspec.org/v1.0.0/item-search#sort"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
+        conformance classes implemented by this server","href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance"},{"rel":"search","type":"application/geo+json","title":"STAC
+        search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"GET"},{"rel":"search","type":"application/geo+json","title":"STAC
+        search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"POST"},{"rel":"http://www.opengis.net/def/rel/ogc/1.0/queryables","type":"application/schema+json","title":"Queryables","href":"https://planetarycomputer.microsoft.com/api/stac/v1/queryables","method":"GET"},{"rel":"child","type":"application/json","title":"Daymet
+        Annual Puerto Rico","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-annual-pr"},{"rel":"child","type":"application/json","title":"Daymet
+        Daily Hawaii","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-daily-hi"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Seamless DEMs","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-seamless"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Digital Surface Model","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-dsm"},{"rel":"child","type":"application/json","title":"Forest
+        Inventory and Analysis","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/fia"},{"rel":"child","type":"application/json","title":"Sentinel
+        1 Radiometrically Terrain Corrected (RTC)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-rtc"},{"rel":"child","type":"application/json","title":"gridMET","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gridmet"},{"rel":"child","type":"application/json","title":"Daymet
+        Annual North America","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-annual-na"},{"rel":"child","type":"application/json","title":"Daymet
+        Monthly North America","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-monthly-na"},{"rel":"child","type":"application/json","title":"Daymet
+        Annual Hawaii","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-annual-hi"},{"rel":"child","type":"application/json","title":"Daymet
+        Monthly Hawaii","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-monthly-hi"},{"rel":"child","type":"application/json","title":"Daymet
+        Monthly Puerto Rico","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-monthly-pr"},{"rel":"child","type":"application/json","title":"gNATSGO
+        Soil Database - Tables","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gnatsgo-tables"},{"rel":"child","type":"application/json","title":"HGB:
+        Harmonized Global Biomass for 2010","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/hgb"},{"rel":"child","type":"application/json","title":"Copernicus
+        DEM GLO-30","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/cop-dem-glo-30"},{"rel":"child","type":"application/json","title":"Copernicus
+        DEM GLO-90","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/cop-dem-glo-90"},{"rel":"child","type":"application/json","title":"GOES-R
+        Cloud & Moisture Imagery","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/goes-cmi"},{"rel":"child","type":"application/json","title":"TerraClimate","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/terraclimate"},{"rel":"child","type":"application/json","title":"Earth
+        Exchange Global Daily Downscaled Projections (NEX-GDDP-CMIP6)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/nasa-nex-gddp-cmip6"},{"rel":"child","type":"application/json","title":"GPM
+        IMERG","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gpm-imerg-hhr"},{"rel":"child","type":"application/json","title":"gNATSGO
+        Soil Database - Rasters","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gnatsgo-rasters"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Height above Ground","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-hag"},{"rel":"child","type":"application/json","title":"10m
+        Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
+        Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
+        Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
+        Forest/Non-Forest Annual Mosaic","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/alos-fnf-mosaic"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Returns","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-returns"},{"rel":"child","type":"application/json","title":"MoBI:
+        Map of Biodiversity Importance","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mobi"},{"rel":"child","type":"application/json","title":"Landsat
+        Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l2"},{"rel":"child","type":"application/json","title":"ERA5
+        - PDS","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/era5-pds"},{"rel":"child","type":"application/json","title":"Chloris
+        Biomass","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/chloris-biomass"},{"rel":"child","type":"application/json","title":"HydroForecast
+        - Kwando & Upper Zambezi Rivers","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/kaza-hydroforecast"},{"rel":"child","type":"application/json","title":"Planet-NICFI
+        Basemaps (Analytic)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/planet-nicfi-analytic"},{"rel":"child","type":"application/json","title":"MODIS
+        Gross Primary Productivity 8-Day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-17A2H-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Land Surface Temperature/Emissivity 8-Day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-11A2-061"},{"rel":"child","type":"application/json","title":"Daymet
+        Daily Puerto Rico","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-daily-pr"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Digital Terrain Model (Native)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-dtm-native"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Classification","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-classification"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Digital Terrain Model","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-dtm"},{"rel":"child","type":"application/json","title":"USGS
+        Gap Land Cover","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gap"},{"rel":"child","type":"application/json","title":"MODIS
+        Gross Primary Productivity 8-Day Gap-Filled","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-17A2HGF-061"},{"rel":"child","type":"application/json","title":"Planet-NICFI
+        Basemaps (Visual)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/planet-nicfi-visual"},{"rel":"child","type":"application/json","title":"Global
+        Biodiversity Information Facility (GBIF)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gbif"},{"rel":"child","type":"application/json","title":"MODIS
+        Net Primary Production Yearly Gap-Filled","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-17A3HGF-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Surface Reflectance 8-Day (500m)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-09A1-061"},{"rel":"child","type":"application/json","title":"ALOS
+        World 3D-30m","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/alos-dem"},{"rel":"child","type":"application/json","title":"ALOS
+        PALSAR Annual Mosaic","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/alos-palsar-mosaic"},{"rel":"child","type":"application/json","title":"Deltares
+        Global Water Availability","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/deltares-water-availability"},{"rel":"child","type":"application/json","title":"MODIS
+        Net Evapotranspiration Yearly Gap-Filled","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-16A3GF-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Land Surface Temperature/3-Band Emissivity 8-Day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-21A2-061"},{"rel":"child","type":"application/json","title":"US
+        Census","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/us-census"},{"rel":"child","type":"application/json","title":"JRC
+        Global Surface Water","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/jrc-gsw"},{"rel":"child","type":"application/json","title":"Deltares
+        Global Flood Maps","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/deltares-floods"},{"rel":"child","type":"application/json","title":"MODIS
+        Nadir BRDF-Adjusted Reflectance (NBAR) Daily","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-43A4-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Surface Reflectance 8-Day (250m)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-09Q1-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Thermal Anomalies/Fire Daily","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-14A1-061"},{"rel":"child","type":"application/json","title":"HREA:
+        High Resolution Electricity Access","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/hrea"},{"rel":"child","type":"application/json","title":"MODIS
+        Vegetation Indices 16-Day (250m)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-13Q1-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Thermal Anomalies/Fire 8-Day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-14A2-061"},{"rel":"child","type":"application/json","title":"Sentinel-2
+        Level-2A","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a"},{"rel":"child","type":"application/json","title":"MODIS
+        Leaf Area Index/FPAR 8-Day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-15A2H-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Land Surface Temperature/Emissivity Daily","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-11A1-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Leaf Area Index/FPAR 4-Day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-15A3H-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Vegetation Indices 16-Day (500m)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-13A1-061"},{"rel":"child","type":"application/json","title":"Daymet
+        Daily North America","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-daily-na"},{"rel":"child","type":"application/json","title":"Land
+        Cover of Canada","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/nrcan-landcover"},{"rel":"child","type":"application/json","title":"MODIS
+        Snow Cover 8-day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-10A2-061"},{"rel":"child","type":"application/json","title":"ECMWF
+        Open Data (real-time)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/ecmwf-forecast"},{"rel":"child","type":"application/json","title":"NOAA
+        MRMS QPE 24-Hour Pass 2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-mrms-qpe-24h-pass2"},{"rel":"child","type":"application/json","title":"Sentinel
+        1 Level-1 Ground Range Detected (GRD)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-grd"},{"rel":"child","type":"application/json","title":"NASADEM
+        HGT v001","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/nasadem"},{"rel":"child","type":"application/json","title":"Esri
+        10-Meter Land Cover (10-class)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc"},{"rel":"child","type":"application/json","title":"Landsat
+        Collection 2 Level-1","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l1"},{"rel":"child","type":"application/json","title":"Denver
+        Regional Council of Governments Land Use Land Cover","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/drcog-lulc"},{"rel":"child","type":"application/json","title":"Chesapeake
+        Land Cover (7-class)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/chesapeake-lc-7"},{"rel":"child","type":"application/json","title":"Chesapeake
+        Land Cover (13-class)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/chesapeake-lc-13"},{"rel":"child","type":"application/json","title":"Chesapeake
+        Land Use","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/chesapeake-lu"},{"rel":"child","type":"application/json","title":"NOAA
+        MRMS QPE 1-Hour Pass 1","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-mrms-qpe-1h-pass1"},{"rel":"child","type":"application/json","title":"NOAA
+        MRMS QPE 1-Hour Pass 2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-mrms-qpe-1h-pass2"},{"rel":"child","type":"application/json","title":"Monthly
+        NOAA U.S. Climate Gridded Dataset (NClimGrid)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-nclimgrid-monthly"},{"rel":"child","type":"application/json","title":"GOES-R
+        Lightning Detection","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/goes-glm"},{"rel":"child","type":"application/json","title":"USDA
+        Cropland Data Layers (CDLs)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/usda-cdl"},{"rel":"child","type":"application/json","title":"Urban
+        Innovation Eclipse Sensor Data","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/eclipse"},{"rel":"child","type":"application/json","title":"ESA
+        Climate Change Initiative Land Cover Maps (Cloud Optimized GeoTIFF)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/esa-cci-lc"},{"rel":"child","type":"application/json","title":"ESA
+        Climate Change Initiative Land Cover Maps (NetCDF)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/esa-cci-lc-netcdf"},{"rel":"child","type":"application/json","title":"FWS
+        National Wetlands Inventory","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/fws-nwi"},{"rel":"child","type":"application/json","title":"USGS
+        LCMAP CONUS Collection 1.3","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/usgs-lcmap-conus-v13"},{"rel":"child","type":"application/json","title":"USGS
+        LCMAP Hawaii Collection 1.0","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/usgs-lcmap-hawaii-v10"},{"rel":"child","type":"application/json","title":"NOAA
+        US Tabular Climate Normals","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-climate-normals-tabular"},{"rel":"child","type":"application/json","title":"NOAA
+        US Gridded Climate Normals (NetCDF)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-climate-normals-netcdf"},{"rel":"child","type":"application/json","title":"NOAA
+        US Gridded Climate Normals (Cloud-Optimized GeoTIFF)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-climate-normals-gridded"},{"rel":"child","type":"application/json","title":"ASTER
+        L1T","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/aster-l1t"},{"rel":"child","type":"application/json","title":"CIL
+        Global Downscaled Projections for Climate Impacts Research (CC-BY-SA-4.0)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/cil-gdpcir-cc-by-sa"},{"rel":"child","type":"application/json","title":"NAIP:
+        National Agriculture Imagery Program","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"child","type":"application/json","title":"10m
+        Annual Land Use Land Cover (9-class) V1","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-9-class"},{"rel":"child","type":"application/json","title":"Biodiversity
+        Intactness","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-biodiversity"},{"rel":"child","type":"application/json","title":"Sea
+        Surface Temperature - WHOI CDR","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-cdr-sea-surface-temperature-whoi"},{"rel":"child","type":"application/json","title":"Global
+        Ocean Heat Content CDR","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-cdr-ocean-heat-content"},{"rel":"child","type":"application/json","title":"CIL
+        Global Downscaled Projections for Climate Impacts Research (CC0-1.0)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/cil-gdpcir-cc0"},{"rel":"child","type":"application/json","title":"CIL
+        Global Downscaled Projections for Climate Impacts Research (CC-BY-4.0)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/cil-gdpcir-cc-by"},{"rel":"child","type":"application/json","title":"Sea
+        Surface Temperature - WHOI CDR NetCDFs","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-cdr-sea-surface-temperature-whoi-netcdf"},{"rel":"child","type":"application/json","title":"Sea
+        Surface Temperature - Optimum Interpolation CDR","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-cdr-sea-surface-temperature-optimum-interpolation"},{"rel":"child","type":"application/json","title":"MODIS
+        Snow Cover Daily","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-10A1-061"},{"rel":"child","type":"application/json","title":"Sentinel-5P
+        Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-5p-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Water (Full Resolution)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-olci-wfr-l2-netcdf"},{"rel":"child","type":"application/json","title":"Global
+        Ocean Heat Content CDR NetCDFs","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-cdr-ocean-heat-content-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Global Aerosol","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-synergy-aod-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        10-Day Surface Reflectance and NDVI (SPOT VEGETATION)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-synergy-v10-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Land (Full Resolution)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-olci-lfr-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Land Radar Altimetry","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-sral-lan-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Land Surface Temperature","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-slstr-lst-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Sea Surface Temperature","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-slstr-wst-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Ocean Radar Altimetry","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-sral-wat-l2-netcdf"},{"rel":"child","type":"application/json","title":"Microsoft
+        Building Footprints","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/ms-buildings"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Fire Radiative Power","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-slstr-frp-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Land Surface Reflectance and Aerosol","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-synergy-syn-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Top of Atmosphere Reflectance (SPOT VEGETATION)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-synergy-vgp-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        1-Day Surface Reflectance and NDVI (SPOT VEGETATION)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-synergy-vg1-l2-netcdf"},{"rel":"child","type":"application/json","title":"ESA
+        WorldCover","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/esa-worldcover"},{"rel":"service-desc","type":"application/vnd.oai.openapi+json;version=3.0","title":"OpenAPI
+        service description","href":"https://planetarycomputer.microsoft.com/api/stac/v1/openapi.json"},{"rel":"service-doc","type":"text/html","title":"OpenAPI
+        service documentation","href":"https://planetarycomputer.microsoft.com/api/stac/v1/docs"}],"stac_extensions":[]}'
     headers:
       Accept-Ranges:
       - bytes
       Access-Control-Allow-Credentials:
       - 'true'
+      Access-Control-Allow-Headers:
+      - X-PC-Request-Entity,DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, OPTIONS
       Access-Control-Allow-Origin:
       - '*'
+      Access-Control-Max-Age:
+      - '1728000'
       Connection:
       - keep-alive
       Content-Length:
-      - '3247'
+      - '3297'
       Content-Type:
       - application/json
       Date:
-      - Fri, 17 May 2024 13:07:31 GMT
+      - Fri, 09 Aug 2024 15:13:34 GMT
       Strict-Transport-Security:
-      - max-age=15724800; includeSubDomains
+      - max-age=31536000; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       content-encoding:
@@ -96,7 +173,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20240517T130731Z-176fb699484ck74lg1wset0wx0000000058g0000000004fs
+      - 20240809T151333Z-1674bbd94cch86jzby4ce68uc80000000q7g0000000048e0
     status:
       code: 200
       message: OK
@@ -110,86 +187,163 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.31.0
+      - python-requests/2.32.3
     method: GET
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/
   response:
     body:
-      string: !!binary |
-        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
+      string: '{"type":"Catalog","id":"microsoft-pc","title":"Microsoft Planetary
+        Computer STAC API","description":"Searchable spatiotemporal metadata describing
+        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","https://api.stacspec.org/v1.0.0/item-search#fields","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","https://api.stacspec.org/v1.0.0/ogcapi-features","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","https://api.stacspec.org/v1.0.0/item-search#query","https://api.stacspec.org/v1.0.0/collections","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter","https://api.stacspec.org/v1.0.0/item-search","https://api.stacspec.org/v1.0.0/core","https://api.stacspec.org/v1.0.0/item-search#sort"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
+        conformance classes implemented by this server","href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance"},{"rel":"search","type":"application/geo+json","title":"STAC
+        search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"GET"},{"rel":"search","type":"application/geo+json","title":"STAC
+        search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"POST"},{"rel":"http://www.opengis.net/def/rel/ogc/1.0/queryables","type":"application/schema+json","title":"Queryables","href":"https://planetarycomputer.microsoft.com/api/stac/v1/queryables","method":"GET"},{"rel":"child","type":"application/json","title":"Daymet
+        Annual Puerto Rico","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-annual-pr"},{"rel":"child","type":"application/json","title":"Daymet
+        Daily Hawaii","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-daily-hi"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Seamless DEMs","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-seamless"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Digital Surface Model","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-dsm"},{"rel":"child","type":"application/json","title":"Forest
+        Inventory and Analysis","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/fia"},{"rel":"child","type":"application/json","title":"Sentinel
+        1 Radiometrically Terrain Corrected (RTC)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-rtc"},{"rel":"child","type":"application/json","title":"gridMET","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gridmet"},{"rel":"child","type":"application/json","title":"Daymet
+        Annual North America","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-annual-na"},{"rel":"child","type":"application/json","title":"Daymet
+        Monthly North America","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-monthly-na"},{"rel":"child","type":"application/json","title":"Daymet
+        Annual Hawaii","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-annual-hi"},{"rel":"child","type":"application/json","title":"Daymet
+        Monthly Hawaii","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-monthly-hi"},{"rel":"child","type":"application/json","title":"Daymet
+        Monthly Puerto Rico","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-monthly-pr"},{"rel":"child","type":"application/json","title":"gNATSGO
+        Soil Database - Tables","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gnatsgo-tables"},{"rel":"child","type":"application/json","title":"HGB:
+        Harmonized Global Biomass for 2010","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/hgb"},{"rel":"child","type":"application/json","title":"Copernicus
+        DEM GLO-30","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/cop-dem-glo-30"},{"rel":"child","type":"application/json","title":"Copernicus
+        DEM GLO-90","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/cop-dem-glo-90"},{"rel":"child","type":"application/json","title":"GOES-R
+        Cloud & Moisture Imagery","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/goes-cmi"},{"rel":"child","type":"application/json","title":"TerraClimate","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/terraclimate"},{"rel":"child","type":"application/json","title":"Earth
+        Exchange Global Daily Downscaled Projections (NEX-GDDP-CMIP6)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/nasa-nex-gddp-cmip6"},{"rel":"child","type":"application/json","title":"GPM
+        IMERG","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gpm-imerg-hhr"},{"rel":"child","type":"application/json","title":"gNATSGO
+        Soil Database - Rasters","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gnatsgo-rasters"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Height above Ground","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-hag"},{"rel":"child","type":"application/json","title":"10m
+        Annual Land Use Land Cover (9-class) V2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-annual-v02"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Intensity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-intensity"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Point Source","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-pointsourceid"},{"rel":"child","type":"application/json","title":"MTBS:
+        Monitoring Trends in Burn Severity","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mtbs"},{"rel":"child","type":"application/json","title":"C-CAP
+        Regional Land Cover and Change","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-c-cap"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Point Cloud","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-copc"},{"rel":"child","type":"application/json","title":"MODIS
+        Burned Area Monthly","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-64A1-061"},{"rel":"child","type":"application/json","title":"ALOS
+        Forest/Non-Forest Annual Mosaic","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/alos-fnf-mosaic"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Returns","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-returns"},{"rel":"child","type":"application/json","title":"MoBI:
+        Map of Biodiversity Importance","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/mobi"},{"rel":"child","type":"application/json","title":"Landsat
+        Collection 2 Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l2"},{"rel":"child","type":"application/json","title":"ERA5
+        - PDS","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/era5-pds"},{"rel":"child","type":"application/json","title":"Chloris
+        Biomass","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/chloris-biomass"},{"rel":"child","type":"application/json","title":"HydroForecast
+        - Kwando & Upper Zambezi Rivers","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/kaza-hydroforecast"},{"rel":"child","type":"application/json","title":"Planet-NICFI
+        Basemaps (Analytic)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/planet-nicfi-analytic"},{"rel":"child","type":"application/json","title":"MODIS
+        Gross Primary Productivity 8-Day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-17A2H-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Land Surface Temperature/Emissivity 8-Day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-11A2-061"},{"rel":"child","type":"application/json","title":"Daymet
+        Daily Puerto Rico","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-daily-pr"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Digital Terrain Model (Native)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-dtm-native"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Classification","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-classification"},{"rel":"child","type":"application/json","title":"USGS
+        3DEP Lidar Digital Terrain Model","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-lidar-dtm"},{"rel":"child","type":"application/json","title":"USGS
+        Gap Land Cover","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gap"},{"rel":"child","type":"application/json","title":"MODIS
+        Gross Primary Productivity 8-Day Gap-Filled","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-17A2HGF-061"},{"rel":"child","type":"application/json","title":"Planet-NICFI
+        Basemaps (Visual)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/planet-nicfi-visual"},{"rel":"child","type":"application/json","title":"Global
+        Biodiversity Information Facility (GBIF)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/gbif"},{"rel":"child","type":"application/json","title":"MODIS
+        Net Primary Production Yearly Gap-Filled","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-17A3HGF-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Surface Reflectance 8-Day (500m)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-09A1-061"},{"rel":"child","type":"application/json","title":"ALOS
+        World 3D-30m","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/alos-dem"},{"rel":"child","type":"application/json","title":"ALOS
+        PALSAR Annual Mosaic","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/alos-palsar-mosaic"},{"rel":"child","type":"application/json","title":"Deltares
+        Global Water Availability","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/deltares-water-availability"},{"rel":"child","type":"application/json","title":"MODIS
+        Net Evapotranspiration Yearly Gap-Filled","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-16A3GF-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Land Surface Temperature/3-Band Emissivity 8-Day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-21A2-061"},{"rel":"child","type":"application/json","title":"US
+        Census","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/us-census"},{"rel":"child","type":"application/json","title":"JRC
+        Global Surface Water","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/jrc-gsw"},{"rel":"child","type":"application/json","title":"Deltares
+        Global Flood Maps","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/deltares-floods"},{"rel":"child","type":"application/json","title":"MODIS
+        Nadir BRDF-Adjusted Reflectance (NBAR) Daily","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-43A4-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Surface Reflectance 8-Day (250m)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-09Q1-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Thermal Anomalies/Fire Daily","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-14A1-061"},{"rel":"child","type":"application/json","title":"HREA:
+        High Resolution Electricity Access","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/hrea"},{"rel":"child","type":"application/json","title":"MODIS
+        Vegetation Indices 16-Day (250m)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-13Q1-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Thermal Anomalies/Fire 8-Day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-14A2-061"},{"rel":"child","type":"application/json","title":"Sentinel-2
+        Level-2A","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a"},{"rel":"child","type":"application/json","title":"MODIS
+        Leaf Area Index/FPAR 8-Day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-15A2H-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Land Surface Temperature/Emissivity Daily","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-11A1-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Leaf Area Index/FPAR 4-Day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-15A3H-061"},{"rel":"child","type":"application/json","title":"MODIS
+        Vegetation Indices 16-Day (500m)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-13A1-061"},{"rel":"child","type":"application/json","title":"Daymet
+        Daily North America","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/daymet-daily-na"},{"rel":"child","type":"application/json","title":"Land
+        Cover of Canada","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/nrcan-landcover"},{"rel":"child","type":"application/json","title":"MODIS
+        Snow Cover 8-day","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-10A2-061"},{"rel":"child","type":"application/json","title":"ECMWF
+        Open Data (real-time)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/ecmwf-forecast"},{"rel":"child","type":"application/json","title":"NOAA
+        MRMS QPE 24-Hour Pass 2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-mrms-qpe-24h-pass2"},{"rel":"child","type":"application/json","title":"Sentinel
+        1 Level-1 Ground Range Detected (GRD)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-grd"},{"rel":"child","type":"application/json","title":"NASADEM
+        HGT v001","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/nasadem"},{"rel":"child","type":"application/json","title":"Esri
+        10-Meter Land Cover (10-class)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc"},{"rel":"child","type":"application/json","title":"Landsat
+        Collection 2 Level-1","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l1"},{"rel":"child","type":"application/json","title":"Denver
+        Regional Council of Governments Land Use Land Cover","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/drcog-lulc"},{"rel":"child","type":"application/json","title":"Chesapeake
+        Land Cover (7-class)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/chesapeake-lc-7"},{"rel":"child","type":"application/json","title":"Chesapeake
+        Land Cover (13-class)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/chesapeake-lc-13"},{"rel":"child","type":"application/json","title":"Chesapeake
+        Land Use","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/chesapeake-lu"},{"rel":"child","type":"application/json","title":"NOAA
+        MRMS QPE 1-Hour Pass 1","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-mrms-qpe-1h-pass1"},{"rel":"child","type":"application/json","title":"NOAA
+        MRMS QPE 1-Hour Pass 2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-mrms-qpe-1h-pass2"},{"rel":"child","type":"application/json","title":"Monthly
+        NOAA U.S. Climate Gridded Dataset (NClimGrid)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-nclimgrid-monthly"},{"rel":"child","type":"application/json","title":"GOES-R
+        Lightning Detection","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/goes-glm"},{"rel":"child","type":"application/json","title":"USDA
+        Cropland Data Layers (CDLs)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/usda-cdl"},{"rel":"child","type":"application/json","title":"Urban
+        Innovation Eclipse Sensor Data","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/eclipse"},{"rel":"child","type":"application/json","title":"ESA
+        Climate Change Initiative Land Cover Maps (Cloud Optimized GeoTIFF)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/esa-cci-lc"},{"rel":"child","type":"application/json","title":"ESA
+        Climate Change Initiative Land Cover Maps (NetCDF)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/esa-cci-lc-netcdf"},{"rel":"child","type":"application/json","title":"FWS
+        National Wetlands Inventory","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/fws-nwi"},{"rel":"child","type":"application/json","title":"USGS
+        LCMAP CONUS Collection 1.3","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/usgs-lcmap-conus-v13"},{"rel":"child","type":"application/json","title":"USGS
+        LCMAP Hawaii Collection 1.0","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/usgs-lcmap-hawaii-v10"},{"rel":"child","type":"application/json","title":"NOAA
+        US Tabular Climate Normals","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-climate-normals-tabular"},{"rel":"child","type":"application/json","title":"NOAA
+        US Gridded Climate Normals (NetCDF)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-climate-normals-netcdf"},{"rel":"child","type":"application/json","title":"NOAA
+        US Gridded Climate Normals (Cloud-Optimized GeoTIFF)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-climate-normals-gridded"},{"rel":"child","type":"application/json","title":"ASTER
+        L1T","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/aster-l1t"},{"rel":"child","type":"application/json","title":"CIL
+        Global Downscaled Projections for Climate Impacts Research (CC-BY-SA-4.0)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/cil-gdpcir-cc-by-sa"},{"rel":"child","type":"application/json","title":"NAIP:
+        National Agriculture Imagery Program","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"child","type":"application/json","title":"10m
+        Annual Land Use Land Cover (9-class) V1","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-9-class"},{"rel":"child","type":"application/json","title":"Biodiversity
+        Intactness","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-biodiversity"},{"rel":"child","type":"application/json","title":"Sea
+        Surface Temperature - WHOI CDR","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-cdr-sea-surface-temperature-whoi"},{"rel":"child","type":"application/json","title":"Global
+        Ocean Heat Content CDR","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-cdr-ocean-heat-content"},{"rel":"child","type":"application/json","title":"CIL
+        Global Downscaled Projections for Climate Impacts Research (CC0-1.0)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/cil-gdpcir-cc0"},{"rel":"child","type":"application/json","title":"CIL
+        Global Downscaled Projections for Climate Impacts Research (CC-BY-4.0)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/cil-gdpcir-cc-by"},{"rel":"child","type":"application/json","title":"Sea
+        Surface Temperature - WHOI CDR NetCDFs","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-cdr-sea-surface-temperature-whoi-netcdf"},{"rel":"child","type":"application/json","title":"Sea
+        Surface Temperature - Optimum Interpolation CDR","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-cdr-sea-surface-temperature-optimum-interpolation"},{"rel":"child","type":"application/json","title":"MODIS
+        Snow Cover Daily","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/modis-10A1-061"},{"rel":"child","type":"application/json","title":"Sentinel-5P
+        Level-2","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-5p-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Water (Full Resolution)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-olci-wfr-l2-netcdf"},{"rel":"child","type":"application/json","title":"Global
+        Ocean Heat Content CDR NetCDFs","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/noaa-cdr-ocean-heat-content-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Global Aerosol","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-synergy-aod-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        10-Day Surface Reflectance and NDVI (SPOT VEGETATION)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-synergy-v10-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Land (Full Resolution)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-olci-lfr-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Land Radar Altimetry","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-sral-lan-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Land Surface Temperature","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-slstr-lst-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Sea Surface Temperature","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-slstr-wst-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Ocean Radar Altimetry","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-sral-wat-l2-netcdf"},{"rel":"child","type":"application/json","title":"Microsoft
+        Building Footprints","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/ms-buildings"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Fire Radiative Power","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-slstr-frp-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Land Surface Reflectance and Aerosol","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-synergy-syn-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        Top of Atmosphere Reflectance (SPOT VEGETATION)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-synergy-vgp-l2-netcdf"},{"rel":"child","type":"application/json","title":"Sentinel-3
+        1-Day Surface Reflectance and NDVI (SPOT VEGETATION)","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-3-synergy-vg1-l2-netcdf"},{"rel":"child","type":"application/json","title":"ESA
+        WorldCover","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/esa-worldcover"},{"rel":"service-desc","type":"application/vnd.oai.openapi+json;version=3.0","title":"OpenAPI
+        service description","href":"https://planetarycomputer.microsoft.com/api/stac/v1/openapi.json"},{"rel":"service-doc","type":"text/html","title":"OpenAPI
+        service documentation","href":"https://planetarycomputer.microsoft.com/api/stac/v1/docs"}],"stac_extensions":[]}'
     headers:
       Accept-Ranges:
       - bytes
       Access-Control-Allow-Credentials:
       - 'true'
+      Access-Control-Allow-Headers:
+      - X-PC-Request-Entity,DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, OPTIONS
       Access-Control-Allow-Origin:
       - '*'
+      Access-Control-Max-Age:
+      - '1728000'
       Connection:
       - keep-alive
       Content-Length:
-      - '3247'
+      - '3297'
       Content-Type:
       - application/json
       Date:
-      - Fri, 17 May 2024 13:07:31 GMT
+      - Fri, 09 Aug 2024 15:13:34 GMT
       Strict-Transport-Security:
-      - max-age=15724800; includeSubDomains
+      - max-age=31536000; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       content-encoding:
@@ -197,7 +351,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20240517T130731Z-176fb699484ck74lg1wset0wx0000000058g0000000004fu
+      - 20240809T151334Z-1674bbd94ccx6mr72hx2ynd0hn0000000rwg000000005uhq
     status:
       code: 200
       message: OK
@@ -211,45 +365,47 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.31.0
+      - python-requests/2.32.3
     method: GET
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-seamless
   response:
     body:
-      string: !!binary |
-        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
-        +2UzY2PWUNnbYizUGY0M3f0DwNPiSksOAAA=
+      string: '{"id":"3dep-seamless","type":"Collection","links":[{"rel":"items","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-seamless/items"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-seamless"},{"rel":"license","href":"https://www.usgs.gov/faqs/what-are-terms-uselicensing-map-services-and-data-national-map?qt-news_science_products=0#qt-news_science_products","title":"Public
+        Domain"},{"rel":"describedby","href":"https://planetarycomputer.microsoft.com/dataset/3dep-seamless","title":"Human
+        readable dataset overview and reference","type":"text/html"}],"title":"USGS
+        3DEP Seamless DEMs","assets":{"thumbnail":{"href":"https://ai4edatasetspublicassets.blob.core.windows.net/assets/pc_thumbnails/threedep.png","type":"image/png","roles":["thumbnail"],"title":"USGS
+        3DEP"},"geoparquet-items":{"href":"abfs://items/3dep-seamless.parquet","type":"application/x-parquet","roles":["stac-items"],"title":"GeoParquet
+        STAC items","description":"Snapshot of the collection''s STAC items exported
+        to GeoParquet format.","msft:partition_info":{"is_partitioned":false},"table:storage_options":{"account_name":"pcstacitems"}}},"extent":{"spatial":{"bbox":[[-174.001666666983,-15.00166666667,164.0016666666,84.00166666666]]},"temporal":{"interval":[["1925-01-01T00:00:00Z","2020-05-06T00:00:00Z"]]}},"license":"PDDL-1.0","keywords":["USGS","3DEP","NED","Elevation","DEM"],"providers":[{"url":"https://www.usgs.gov/core-science-systems/ngp/3dep","name":"USGS","roles":["processor","producer","licensor"]},{"url":"https://planetarycomputer.microsoft.com","name":"Microsoft","roles":["host"]}],"summaries":{"gsd":[10,30]},"description":"U.S.-wide
+        digital elevation data at horizontal resolutions ranging from one to sixty
+        meters.\n\nThe [USGS 3D Elevation Program (3DEP) Datasets](https://www.usgs.gov/core-science-systems/ngp/3dep)
+        from the [National Map](https://www.usgs.gov/core-science-systems/national-geospatial-program/national-map)
+        are the primary elevation data product produced and distributed by the USGS.
+        The 3DEP program provides raster elevation data for the conterminous United
+        States, Alaska, Hawaii, and the island territories, at a variety of spatial
+        resolutions.  The seamless DEM layers produced by the 3DEP program are updated
+        frequently to integrate newly available, improved elevation source data.  \n\nDEM
+        layers are available nationally at grid spacings of 1 arc-second (approximately
+        30 meters) for the conterminous United States, and at approximately 1, 3,
+        and 9 meters for parts of the United States. Most seamless DEM data for Alaska
+        is available at a resolution of approximately 60 meters, where only lower
+        resolution source data exist.\n","item_assets":{"data":{"type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"]},"gpkg":{"type":"application/geopackage+sqlite3","roles":["metadata"]},"metadata":{"type":"application/xml","roles":["metadata"]},"thumbnail":{"type":"image/jpeg","roles":["thumbnail"]}},"stac_version":"1.0.0","msft:container":"3dep","stac_extensions":["https://stac-extensions.github.io/item-assets/v1.0.0/schema.json","https://stac-extensions.github.io/table/v1.2.0/schema.json"],"msft:storage_account":"ai4edataeuwest","msft:short_description":"U.S.-wide
+        digital elevation data at horizontal resolutions ranging from one to sixty
+        meters","msft:region":"westeurope"}'
     headers:
       Accept-Ranges:
       - bytes
       Access-Control-Allow-Credentials:
       - 'true'
+      Access-Control-Allow-Headers:
+      - X-PC-Request-Entity,DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, OPTIONS
       Access-Control-Allow-Origin:
       - '*'
+      Access-Control-Max-Age:
+      - '1728000'
       Connection:
       - keep-alive
       Content-Length:
@@ -257,9 +413,9 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 17 May 2024 13:07:31 GMT
+      - Fri, 09 Aug 2024 15:13:35 GMT
       Strict-Transport-Security:
-      - max-age=15724800; includeSubDomains
+      - max-age=31536000; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       content-encoding:
@@ -267,7 +423,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20240517T130731Z-176fb699484ck74lg1wset0wx0000000058g0000000004fy
+      - 20240809T151334Z-1674bbd94ccjgcn5750gb32t5n0000000rv0000000004ym7
     status:
       code: 200
       message: OK
@@ -281,29 +437,33 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.31.0
+      - python-requests/2.32.3
     method: GET
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-seamless/queryables
   response:
     body:
-      string: !!binary |
-        H4sIAJNWR2YC/61UwW7TQBD9lWibA4jE6xapqL5VtFQ5FUhPtAht7LGzkb27nZ1URMH/3lk7TpZS
-        pEhwi9+8mTfvjZ2tGOtCZGJJ5HwmpauVAVK4yW3j1gSYNDpH621JCUNSOS09qVw+ncrc1jXkpK3x
-        8n0BbupBNTV4Lx/XgBu14N9iImjjgBXsYsXk8KypDsD87vLj6MuemXBp7PMlNGq3D6+z8tZMezCx
-        WMkCVUnT9IPssRPucWgdIGnWyrYimNmKMUIZmerJPgmLewd5N+rpNEmTVGqCZhrAWKtDkwCcyAJK
-        bXTvMrcIUtX1bSnP5EFYsurB14x7R7MrRgrwOWoXegdcF2BIlxpQtBNR+W7dXUJm3Sx6vFAEpBuI
-        ip5QmyqSucwf1xohKJcWG0WMhb5p18i5KOLzBeE3Dw/v0jRL01/f3o7/WOtq0Ar7gG2AcPNKhlwK
-        eXTR7UL6BIrWCF1OL/3fDJNeTWFfbbv7rTJwvjqYvRfaEFScxYRDqWvx/TD9+vP8ZpTbAva9fqlc
-        nJRCVEE33NBH+DCzjV7BrnUiGvVz1rPP+EGb4YGpYIofx5zj2hSjPe8fT/LbrMEmoTI+jD3C6uFN
-        sgZu+Yz328jjeezxvJ3EtYu4dtFGwd/t9Xksf0lIR+UyD8z/lsyLaeGUSwTgP58Moeo4f1/la89o
-        2/YZIlQvPvYEAAA=
+      string: '{"$id":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-seamless/queryables","type":"object","title":"STAC
+        Queryables.","$schema":"http://json-schema.org/draft-07/schema#","properties":{"id":{"$ref":"https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json#/definitions/core/allOf/2/properties/id","title":"Item
+        ID","description":"Item identifier"},"gsd":{"type":"number"},"datetime":{"type":"string","title":"Acquired","format":"date-time","pattern":"(\\+00:00|Z)$","description":"Datetime"},"geometry":{"$ref":"https://geojson.org/schema/Feature.json","title":"Item
+        Geometry","description":"Item Geometry"},"proj:epsg":{"type":["integer","null"],"title":"EPSG
+        code"},"proj:shape":{"type":"array","items":{"type":"integer"},"title":"Shape","maxItems":2,"minItems":2},"end_datetime":{"type":"string","title":"End
+        datetime","format":"date-time","pattern":"(\\+00:00|Z)$","description":"End
+        datetime"},"proj:transform":{"type":"array","items":{"type":"number"},"oneOf":[{"maxItems":6,"minItems":6},{"maxItems":9,"minItems":9}],"title":"Transform"},"start_datetime":{"type":"string","title":"Start
+        datetime","format":"date-time","pattern":"(\\+00:00|Z)$","description":"Start
+        datetime"},"threedep:region":{"type":"string","title":"Region"}}}'
     headers:
       Accept-Ranges:
       - bytes
       Access-Control-Allow-Credentials:
       - 'true'
+      Access-Control-Allow-Headers:
+      - X-PC-Request-Entity,DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, OPTIONS
       Access-Control-Allow-Origin:
       - '*'
+      Access-Control-Max-Age:
+      - '1728000'
       Connection:
       - keep-alive
       Content-Length:
@@ -311,9 +471,9 @@ interactions:
       Content-Type:
       - application/schema+json
       Date:
-      - Fri, 17 May 2024 13:07:31 GMT
+      - Fri, 09 Aug 2024 15:13:36 GMT
       Strict-Transport-Security:
-      - max-age=15724800; includeSubDomains
+      - max-age=31536000; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       content-encoding:
@@ -321,7 +481,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20240517T130731Z-176fb699484ck74lg1wset0wx0000000058g0000000004g0
+      - 20240809T151335Z-1674bbd94ccsh9rkxqt3ydwbrw00000009x0000000005k2d
     status:
       code: 200
       message: OK
@@ -335,132 +495,307 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.31.0
+      - python-requests/2.32.3
     method: GET
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/collections/fia
   response:
     body:
-      string: !!binary |
-        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
-        AA==
+      string: '{"id":"fia","type":"Collection","links":[{"rel":"items","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/fia/items"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/fia"},{"rel":"license","href":"https://www.fs.usda.gov/rds/archive/datauseinfo/open","type":"text/html","title":"USDA
+        Open Access Data Use Agreement"},{"rel":"describedby","href":"https://planetarycomputer.microsoft.com/dataset/fia","title":"Human
+        readable dataset overview and reference","type":"text/html"}],"title":"Forest
+        Inventory and Analysis","assets":{"guide":{"href":"https://www.fia.fs.fed.us/library/database-documentation/current/ver80/FIADB%20User%20Guide%20P2_8-0.pdf","type":"application/pdf","roles":["metadata"],"title":"Database
+        Description and User Guide"},"thumbnail":{"href":"https://ai4edatasetspublicassets.blob.core.windows.net/assets/pc_thumbnails/fia.png","type":"image/gif","title":"Forest
+        Inventory and Analysis"},"geoparquet-items":{"href":"abfs://items/fia.parquet","type":"application/x-parquet","roles":["stac-items"],"title":"GeoParquet
+        STAC items","description":"Snapshot of the collection''s STAC items exported
+        to GeoParquet format.","msft:partition_info":{"is_partitioned":false},"table:storage_options":{"account_name":"pcstacitems"}}},"extent":{"spatial":{"bbox":[[138.06,0.92,163.05,9.78],[165.28,4.57,172.03,14.61],[131.13,2.95,134.73,8.1],[-124.763068,24.523096,-66.949895,49.384358],[-179.148909,51.214183,-129.974167,71.365162],[172.461667,51.357688,179.77847,53.01075],[-178.334698,18.910361,-154.806773,28.402123],[144.618068,13.234189,144.956712,13.654383],[-67.945404,17.88328,-65.220703,18.515683],[144.886331,14.110472,146.064818,20.553802],[-65.085452,17.673976,-64.564907,18.412655],[-171.089874,-14.548699,-168.1433,-11.046934],[-178.334698,18.910361,-154.806773,28.402123]]},"temporal":{"interval":[["2020-06-01T00:00:00Z",null]]}},"license":"CC0-1.0","keywords":["Forest","Species","Carbon","Biomass","USDA","Forest
+        Service"],"providers":[{"url":"https://www.fia.fs.fed.us/","name":"Forest
+        Inventory & Analysis","roles":["producer","licensor"]},{"url":"https://carbonplan.org/","name":"CarbonPlan","roles":["processor"]},{"url":"https://planetarycomputer.microsoft.com","name":"Microsoft","roles":["host"]}],"description":"Status
+        and trends on U.S. forest location, health, growth, mortality, and production,
+        from the U.S. Forest Service''s  [Forest Inventory and Analysis](https://www.fia.fs.fed.us/)
+        (FIA) program.\n\nThe Forest Inventory and Analysis (FIA) dataset is a nationwide
+        survey of the forest assets of the United States. The FIA research program
+        has been in existence since 1928.  FIA''s primary objective is to determine
+        the extent, condition, volume, growth, and use of trees on the nation''s forest
+        land.\n\nDomain: continental U.S., 1928-2018\n\nResolution: plot-level (irregular
+        polygon)\n\nThis dataset was curated and brought to Azure by [CarbonPlan](https://carbonplan.org/).\n","item_assets":{"data":{"type":"application/x-parquet","roles":["data"],"title":"Dataset
+        root","table:storage_options":{"account_name":"cpdataeuwest"}}},"stac_version":"1.0.0","table:tables":[{"name":"Survey
+        Table","description":"Survey table. This table contains one record for each
+        year an inventory is conducted in a State for annual inventory or one record
+        for each periodic inventory. <br><br>* SURVEY.CN = PLOT.SRV_CN links the unique
+        inventory record for a State and year to the plot records.","msft:item_name":"survey"},{"name":"County
+        Table","description":"County table. This table contains survey unit codes
+        and is also a reference table for the county codes and names. <br><br>* COUNTY.CN
+        = PLOT.CTY_CN links the unique county record to the plot record.","msft:item_name":"county"},{"name":"Plot
+        Table","description":"Plot table. This table provides information relevant
+        to the entire 1-acre field plot. This table links to most other tables, and
+        the linkage is made using PLOT.CN = TABLE_NAME.PLT_CN (TABLE_NAME is the name
+        of any table containing the column name PLT_CN). Below are some examples of
+        linking PLOT to other tables. <br><br>* PLOT.CN = COND.PLT_CN links the unique
+        plot record to the condition class record(s). <br><br>* PLOT.CN = SUBPLOT.PLT_CN
+        links the unique plot record to the subplot records. <br><br>* PLOT.CN = TREE.PLT_CN
+        links the unique plot record to the tree records. <br><br>* PLOT.CN = SEEDLING.PLT_CN
+        links the unique plot record to the seedling records.","msft:item_name":"plot"},{"name":"Condition
+        Table","description":"Condition table. This table provides information on
+        the discrete combination of landscape attributes that define the condition
+        (a condition will have the same land class, reserved status, owner group,
+        forest type, stand-size class, regeneration status, and stand density). <br><br>*
+        PLOT.CN = COND.PLT_CN links the condition class record(s) to the plot table.
+        <br><br>* COND.PLT_CN = SITETREE.PLT_CN and COND.CONDID = SITETREE.CONDID
+        links the condition class record to the site tree data. <br><br>* COND.PLT_CN
+        = TREE.PLT_CN and COND.CONDID = TREE.CONDID links the condition class record
+        to the tree data.","msft:item_name":"cond"},{"name":"Subplot Table","description":"Subplot
+        table. This table describes the features of a single subplot. There are multiple
+        subplots per 1-acre field plot and there can be multiple conditions sampled
+        on each subplot. <br><br>* PLOT.CN = SUBPLOT.PLT_CN links the unique plot
+        record to the subplot records. <br><br>* SUBPLOT.PLT_CN = COND.PLT_CN and
+        SUBPLOT.MACRCOND = COND.CONDID links the macroplot conditions to the condition
+        class record. <br><br>* SUBPLOT.PLT_CN = COND.PLT_CN and SUBPLOT.SUBPCOND
+        = COND.CONDID links the subplot conditions to the condition class record.
+        <br><br>* SUBPLOT.PLT_CN = COND.PLT_CN and SUBPLOT.MICRCOND = COND.CONDID
+        links the microplot conditions to the condition class record.","msft:item_name":"subplot"},{"name":"Subplot
+        Condition Table","description":"Subplot condition table. This table contains
+        information about the proportion of a subplot in a condition. <br><br>* PLOT.CN
+        = SUBP_COND.PLT_CN links the subplot condition class record to the plot table.
+        <br><br>* SUBP_COND.PLT_CN = COND.PLT_CN and SUBP_COND.CONDID = COND.CONDID
+        links the condition class records found on the four subplots to the subplot
+        description.","msft:item_name":"subp_cond"},{"name":"boundary","description":"Boundary
+        table. This table provides a description of the demarcation line between two
+        conditions that occur on a single subplot","msft:item_name":"boundary"},{"name":"Subplot
+        Condition Change Matrix","description":"Subplot condition change matrix table.
+        This table contains information about the mix of current and previous conditions
+        that occupy the same area on the subplot. <br><br>* PLOT.CN = SUBP_COND_CHNG_MTRX.PLT_CN
+        links the subplot condition change matrix records to the unique plot record.
+        <br><br>* PLOT.PREV_PLT_CN = SUBP_COND_CHNG_MTRX.PREV_PLT_CN links the subplot
+        condition change matrix records to the unique previous plot record.","msft:item_name":"subp_cond_chng_mtrx"},{"name":"Tree
+        Table","description":"Tree table. This table provides information for each
+        tree 1 inch in diameter and larger found on a microplot, subplot, or core
+        optional macroplot. <br><br>* PLOT.CN = TREE.PLT_CN links the tree records
+        to the unique plot record. <br><br>* COND.PLT_CN = TREE.PLT_CN and COND.CONDID
+        = TREE.CONDID links the tree records to the unique condition record.","msft:item_name":"tree"},{"name":"Tree
+        Woodland Stems Table","description":"Tree woodland stems table. This table
+        stores data for the individual stems of a woodland species tree. Individual
+        woodland stem diameter measurements contribute to the calculation of the diameter
+        stored on the parent TREE table record. <br><br>* TREE.CN = TREE_WOODLAND_STEMS.TRE_CN
+        links a woodland stems record to the corresponding unique tree record.","msft:item_name":"tree_woodland_stems"},{"name":"Tree
+        Regional Biomass Table","description":"Tree regional biomass table. This table
+        contains biomass estimates computed using equations and methodology that varies
+        by FIA work unit. This table retains valuable information for generating biomass
+        estimates that match earlier published reports. <br><br>* TREE.CN = TREE_REGIONAL_BIOMASS.TRE_CN
+        links a tree regional biomass record to the corresponding unique tree.","msft:item_name":"tree_regional_biomass"},{"name":"Tree
+        Net Growth, Removal, and Mortality Component Table","description":"Tree net
+        growth, removal, and mortality component table. This table stores information
+        used to compute net growth, removals, and mortality estimates for remeasurement
+        trees. Each remeasurement tree has a single record in this table. <br><br>*
+        TREE_GRM_COMPONENT.TRE_CN = TREE.TRE_CN links the records in this table to
+        the corresponding tree record in the TREE table.","msft:item_name":"tree_grm_component"},{"name":"Tree
+        Net Growth, Removal, and Mortality Midpoint Table","description":"Tree net
+        growth, removal, and mortality midpoint table. This table contains information
+        about a remeasured tree at the midpoint of the remeasurement period. It does
+        not contain a record for every tree. Midpoint estimates are computed for trees
+        that experience mortality, removal, or land use diversion or reversion. The
+        information in this table is used to compute net growth, removal, and mortality
+        estimates on remeasurement trees. <br><br>* TREE_GRM_MIDPT.TRE_CN = TREE.TRE_CN
+        links the records in this table to the corresponding tree record in the TREE
+        table.","msft:item_name":"tree_grm_midpt"},{"name":"Tree Net Growth, Removal,
+        and Mortality Begin Table","description":"Tree net growth, removal, and mortality
+        begin table. This table contains information for remeasured trees where values
+        have been calculated for the beginning of the remeasurement period. Only those
+        trees where information was recalculated for time 1 (T1) are included. The
+        information in this table is used to produce net growth, removal and mortality
+        estimates on remeasured trees. <br><br>* TREE_GRM_BEGIN.TRE_CN = TREE.TRE_CN
+        links the records in this table to the corresponding tree record in the TREE
+        table.","msft:item_name":"tree_grm_begin"},{"name":"Tree Net Growth, Removal,
+        and Mortality Estimation Table","description":"Tree net growth, removal, and
+        mortality estimation table. This table contains information used to produce
+        estimates of growth, removals and mortality. <br><br>* PLOT.CN = TREE_GRM_ESTN.PLT_CN
+        links the tree GRM estimation records to the unique plot record. <br><br>*
+        TREE.CN = TREE_GRM_ESTN.TRE_CN links the tree GRM estimation records to the
+        unique tree record.","msft:item_name":"tree_grm_estn"},{"name":"Seedling Table","description":"Seedling
+        table. This table provides a count of the number of live trees of a species
+        found on a microplot that are less than 1 inch in diameter but at least 6
+        inches in length for conifer species or at least 12 inches in length for hardwood
+        species. <br><br>* PLOT.CN = SEEDLING.PLT_CN links the seedling records to
+        the unique plot record. <br><br>* COND.PLT_CN = SEEDLING.PLT_CN and COND.CONDID
+        = SEEDLING.CONDID links the condition record to the seedling record.","msft:item_name":"seedling"},{"name":"Site
+        Tree Table","description":"Site tree table. This table provides information
+        on the site tree(s) collected in order to calculate site index and/or site
+        productivity information for a condition. <br><br>* PLOT.CN = SITETREE.PLT_CN
+        links the site tree records to the unique plot record. <br><br>* SITETREE.PLT_CN
+        = COND.PLT_CN and SITETREE.CONDID = COND.CONDID links the site tree record(s)
+        to the unique condition class record.","msft:item_name":"sitetree"},{"name":"Invasive
+        Subplot Species Table","description":"Invasive subplot species table. This
+        table provides percent cover data of invasive species identified on the subplot.
+        <br><br>* PLOT.CN = INVASIVE_SUBPLOT_SPP.PLT_CN links the invasive subplot
+        species record(s) to the unique plot record. <br><br>* SUBP_COND.PLT_CN =
+        INVASIVE_SUBPLOT_SPP.PLT_CN and SUBP_COND.CONDID = INVASIVE_SUBPLOT_SPP.CONDID
+        and SUBP_COND.SUBP = INVASIVE_SUBPLOT_SPP.SUBP links the invasive subplot
+        species record(s) to the unique subplot condition record. <br><br>* INVASIVE_SUBPLOT_SPP.VEG_SPCD
+        = REF_PLANT_DICTIONARY.SYMBOL links the invasive vegetation subplot NRCS species
+        code to the plant dictionary reference species code.","msft:item_name":"invasive_subplot_spp"},{"name":"Phase
+        2 Vegetation Subplot Species Table","description":"Phase 2 Vegetation subplot
+        species table. This table provides percent cover data of vegetation species
+        identified on the subplot. <br><br>* PLOT.CN = P2VEG_SUBPLOT_SPP.PLT_CN links
+        the vegetation subplot species record(s) to the unique plot record. <br><br>*
+        SUBP_COND.PLT_CN = P2VEG_SUBPLOT_SPP.PLT_CN and SUBP_COND.CONDID = P2VEG_SUBPLOT_SPP.CONDID
+        and SUBP_COND.SUBP = P2VEG_SUBPLOT_SPP.SUBP links the vegetation subplot species
+        record(s) to the unique subplot condition record. <br><br>* P2VEG_SUBPLOT_SPP.VEG_SPCD
+        = REF_PLANT_DICTIONARY.SYMBOL links the P2 vegetation subplot NRCS species
+        code to the plant dictionary reference species code.","msft:item_name":"p2veg_subplot_spp"},{"name":"Phase
+        2 Vegetation Subplot Structure Table","description":"Phase 2 Vegetation subplot
+        structure table. This table provides percent cover by layer by growth habit.
+        <br><br>* PLOT.CN = P2VEG_SUBP_STRUCTURE. PLT_CN links the subplot structure
+        record(s) to the unique plot record. <br><br>* SUBP_COND.PLT_CN = P2VEG_SUBP_STRUCTURE.PLT_CN
+        and SUBP_COND.CONDID = P2VEG_SUBP_STRUCTURE.CONDID and SUBP_COND.SUBP = P2VEG_SUBP_STRUCTURE.SUBP
+        links the vegetation subplot structure record(s) to the unique subplot condition
+        record.","msft:item_name":"p2veg_subp_structure"},{"name":"Down Woody Material
+        Visit Table","description":"Down woody material visit table. This table provides
+        general information on down woody material indicator visit, such as the date
+        of the DWM survey. <br><br>* PLOT.CN = DWM_VISIT.PLT_CN links the down woody
+        material indicator visit record to the unique plot record.","msft:item_name":"dwm_visit"},{"name":"Down
+        Woody Material Coarse Woody Debris Table","description":"Down woody material
+        coarse woody debris table. This table provides information for each piece
+        of coarse woody debris measured along the transects. <br><br>* PLOT.CN = DWM_COARSE_WOODY_DEBRIS.PLT_CN
+        links the down woody material coarse woody debris records to the unique plot
+        record. <br><br>* COND.PLT_CN = DWM_COARSE_WOODY_DEBRIS.PLT_CN and COND.CONDID=
+        DWM_COARSE_WOODY_DEBRIS.CONDID links the coarse woody debris records to the
+        unique condition record.","msft:item_name":"dwm_coarse_woody_debris"},{"name":"Down
+        Woody Material Duff, Litter, Fuel Table","description":"Down woody material
+        duff, litter, fuel table. This table provides information on the duff, litter,
+        fuelbed depths measured at a point on the transects. <br><br>* PLOT.CN = DWM_DUFF_LITTER_FUEL.PLT_CN
+        links the duff, litter, fuelbed records to the unique plot record. <br><br>*
+        COND.PLT_CN = DWM_DUFF_LITTER_FUEL.PLT_CN and COND.CONDID= DWM_DUFF_LITTER_FUEL.CONDID
+        links the duff, litter, fuel records to the unique condition record.","msft:item_name":"dwm_duff_litter_fuel"},{"name":"Down
+        Woody Material Fine Woody Debris Table","description":"Down woody material
+        fine woody debris table. This table provides information on the fine woody
+        debris measured along a segment of the transects. <br><br>* PLOT.CN = DWM_FINE_WOODY_DEBRIS.PLT_CN
+        links the fine woody debris records to the unique plot record. <br><br>* COND.PLT_CN
+        = DWM_FINE_WOODY_DEBRIS.PLT_CN and COND.CONDID= DWM_FINE_WOODY_DEBRIS.CONDID
+        links the fine woody debris records to the unique condition record.","msft:item_name":"dwm_fine_woody_debris"},{"name":"Down
+        Woody Material Microplot Fuel Table","description":"Down woody material microplot
+        fuel table. This table provides information on the fuel loads (shrubs and
+        herbs) measured on the microplot. <br><br>* PLOT.CN = DWM_MICROPLOT_FUEL.PLT_CN
+        links the microplot fuel records to the unique plot record.","msft:item_name":"dwm_microplot_fuel"},{"name":"Down
+        Woody Material Residual Pile Table","description":"Down woody material residual
+        pile table. This table provides information on the wood piles measured on
+        the subplot. <br><br>* PLOT.CN = DWM_RESIDUAL_PILE.PLT_CN links the wood piles
+        records to the unique plot record. <br><br>* COND.PLT_CN = DWM_RESIDUAL_PILE.PLT_CN
+        and COND.CONDID= DWM_RESIDUAL_PILE.CONDID links the wood piles records to
+        the unique condition record.","msft:item_name":"dwm_residual_pile"},{"name":"Down
+        Woody Material Transect Segment Table","description":"Down woody material
+        transect segment table. This table describes the down woody material transect
+        segment lengths by condition class. <br><br>* PLOT.CN = DWM_TRANSECT_SEGMENT.PLT_CN
+        links the down woody material transect length records to the unique plot record.
+        <br><br>* COND.PLT_CN = DWM_TRANSECT_SEGMENT.PLT_CN and COND.CONDID= DWM_TRANSECT_SEGMENT.CONDID
+        links the down woody material transect segment records to the unique condition
+        record.","msft:item_name":"dwm_transect_segment"},{"name":"Condition Down
+        Woody Material Calculation Table","description":"Condition down woody material
+        calculation table. This table contains calculated values and condition-level
+        estimates for down woody attributes by plot number (PLOT), condition class
+        number (CONDID), and evaluation identifier (EVALID). <br><br>* PLOT.CN = COND_DWM_CALC.PLT_CN
+        links the down woody material calculation records to the unique plot record.
+        <br><br>* COND.CN = COND_DWM_CALC.CND_CN links the down woody material calculation
+        records to the unique condition record. <br><br>* POP_STRATUM. CN = COND_DWM_CALC.STRATUM_CN
+        links the down woody material calculation records to the unique population
+        stratum record.","msft:item_name":"cond_dwm_calc"},{"name":"Plot Regeneration
+        Table","description":"Plot regeneration table. This table contains the information
+        for the four subplots describing the amount of animal browse pressure exerted
+        on the regeneration of trees. <br><br>* PLOT.CN = PLOT_REGEN.PLT_CN links
+        the unique plot record to the unique plot regeneration record.","msft:item_name":"plot_regen"},{"name":"Subplot
+        Regeneration Table","description":"Subplot regeneration table. This table
+        provides information on the subplot survey status and the site survey limitations,
+        if any, for the tree regeneration study. <br><br>* PLOT.CN = SUBPLOT_REGEN.PLT_CN
+        links the unique plot record to the subplot regeneration records. <br><br>*
+        SUBPLOT.PLT_CN = SUBPLOT_REGEN.PLT_CN and SUBPLOT.SUBP = SUBPLOT_REGEN.SUBP
+        links the subplot record to the subplot regeneration record.","msft:item_name":"subplot_regen"},{"name":"Seedling
+        Regeneration Table","description":"Seedling regeneration. This table contains
+        provides information on the seedling count by condition, species, source,
+        and length class for the tree regeneration study. <br><br>* PLOT.CN = SEEDLING_REGEN.PLT_CN
+        links the unique plot record to the seedling regeneration records. <br><br>*
+        COND.PLT_CN = SEEDLING_REGEN.PLT_CN and COND.CONDID = SEEDLING_REGEN.CONDID
+        links the regeneration seedling records to the unique condition record.","msft:item_name":"seedling_regen"},{"name":"Population
+        Estimation Unit Table","description":"Population estimation unit table. This
+        table contains information about estimation units. An estimation unit is a
+        geographic area that can be drawn on a map. It has a known area, and the sampling
+        intensity must be the same within a stratum within an estimation unit. Generally,
+        estimation units are contiguous areas, but exceptions are made when certain
+        ownerships, usually National Forests, are sampled at different intensities.
+        One record in the POP_ESTN_UNIT table corresponds to a single estimation unit.
+        POP_ESTN_UNIT.CN = POP_STRATUM.ESTN_UNIT_CN links the unique stratified geographical
+        area (ESTN_UNIT) to the strata (STRATUMCD) that are assigned to each ESTN_UNIT.","msft:item_name":"pop_estn_unit"},{"name":"Population
+        Evaluation Table","description":"Population evaluation table. This table provides
+        information about evaluations. An evaluation is the combination of a set of
+        plots (the sample) and a set of Phase 1 data (obtained through remote sensing,
+        called a stratification) that can be used to produce population estimates
+        for a State (an evaluation may be created to produce population estimates
+        for a region other than a State, such as the Black Hills National Forest).
+        A record in the POP_EVAL table identifies one evaluation and provides some
+        descriptive information about how the evaluation may be used. <br><br>* POP_ESTN_UNIT.EVAL_CN
+        = POP_EVAL.CN links the unique evaluation identifier (EVALID) in the POP_EVAL
+        table to the unique geographical areas (ESTN_UNIT) that are stratified. Within
+        a population evaluation (EVALID) there can be multiple population estimation
+        units, or geographic areas across which there are a number of values being
+        estimated (e.g., estimation of volume across counties for a given State).","msft:item_name":"pop_eval"},{"name":"Population
+        Evaluation Attribute Table","description":"Population evaluation attribute
+        table. This table provides information as to which population estimates can
+        be provided by an evaluation. If an evaluation can produce only 22 of all
+        the population estimates in the REF_POP_ATTRIBUTE table, there will be 22
+        records in the POP_EVAL_ATTRIBUTE table (one per population estimate) for
+        that evaluation. <br><br>* POP_EVAL.CN = POP_EVAL_ATTRIBUTE.EVAL_CN links
+        the unique evaluation identifier to the list of population estimates that
+        can be derived for that evaluation.","msft:item_name":"pop_eval_attribute"},{"name":"Population
+        Evaluation Group Table","description":"Population evaluation group table.
+        This table lists and describes the evaluation groups. One record in the POP_EVAL_GRP
+        table can be linked to all the evaluations that were used in generating estimates
+        for a State inventory report. <br><br>* POP_EVAL_GRP.CN = POP_EVAL_TYP.EVAL_GRP_CN
+        links the evaluation group record to the evaluation type record.","msft:item_name":"pop_eval_grp"},{"name":"Population
+        Evaluation Type Table","description":"Population evaluation type table. This
+        table provides information on the type of evaluations that were used to generate
+        a set of tables for an inventory report. In a typical State inventory report,
+        one evaluation is used to generate an estimate of the total land area; a second
+        evaluation is used to generate current estimates of volume, numbers of trees
+        and biomass; and a third evaluation is used for estimating growth, removals
+        and mortality. <br><br>* POP_EVAL_TYP.EVAL_CN = POP_EVAL.CN links the evaluation
+        type record to the evaluation record. <br><br>* POP_EVAL_TYP.EVAL_GRP_CN =
+        POP_EVAL_GRP.CN links the evaluation type record to the evaluation group record.
+        <br><br>* POP_EVAL_TYP.EVAL_TYP = REF_POP_EVAL_TYP_DESCR.EVAL_TYP links an
+        evaluation type record to an evaluation type description reference record.","msft:item_name":"pop_eval_typ"},{"name":"Population
+        Plot Stratum Assignment Table","description":"Population plot stratum assignment
+        table. This table provides a way to assign stratum information to a plot.
+        Stratum information is assigned to a plot by overlaying the plot''s location
+        on the Phase 1 imagery. Plots are linked to their appropriate stratum for
+        an evaluation via the POP_PLOT_STRATUM_ASSGN table. <br><br>* POP_PLOT_STRATUM_ASSGN.PLT_CN
+        = PLOT.CN links the stratum assigned to the plot record.","msft:item_name":"pop_plot_stratum_assgn"},{"name":"Population
+        Stratum Table","description":"Population stratum table. This table provides
+        information about individual strata. The area within an estimation unit is
+        divided into strata. The area for each stratum can be calculated by determining
+        the proportion of Phase 1 pixels/plots in each stratum and multiplying that
+        proportion by the total area in the estimation unit. Information for a single
+        stratum is stored in a single record of the POP_STRATUM table. <br><br>* POP_STRATUM.CN
+        = POP_PLOT_STRATUM_ASSGN.STRATUM_CN links the defined stratum to each plot.","msft:item_name":"pop_stratum"},{"name":"Plot
+        Geometry Table","description":"Plot geometry table. This table contains geometric
+        attributes associated with the plot location, such as the hydrological unit
+        and roadless codes. <br><br>* PLOTGEOM.CN = PLOT.CN links the unique plot
+        record between the two tables.","msft:item_name":"plotgeom"},{"name":"Plot
+        Snapshot Table","description":"Plot snapshot table. This table combines the
+        information in the PLOT table with information in the PLOT_EVAL_GRP and POP_STRATUM
+        tables to provide a snapshot of the plot records with their associated expansion
+        and adjustment factors. <br><br>* PLOTSNAP.CN = PLOT.CN links the unique plot
+        record between the two tables.","msft:item_name":"plotsnap"}],"msft:container":"cpdata","stac_extensions":["https://stac-extensions.github.io/item-assets/v1.0.0/schema.json","https://stac-extensions.github.io/table/v1.2.0/schema.json"],"msft:storage_account":"cpdataeuwest","msft:short_description":"Status
+        and trends on U.S. forest location, health, growth, mortality, and production,
+        from the U.S. Forest Service''s Forest Inventory and Analysis (FIA) program","msft:region":"westeurope"}'
     headers:
       Accept-Ranges:
       - bytes
       Access-Control-Allow-Credentials:
       - 'true'
+      Access-Control-Allow-Headers:
+      - X-PC-Request-Entity,DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, OPTIONS
       Access-Control-Allow-Origin:
       - '*'
+      Access-Control-Max-Age:
+      - '1728000'
       Connection:
       - keep-alive
       Content-Length:
@@ -468,9 +803,9 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 17 May 2024 13:07:32 GMT
+      - Fri, 09 Aug 2024 15:13:36 GMT
       Strict-Transport-Security:
-      - max-age=15724800; includeSubDomains
+      - max-age=31536000; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       content-encoding:
@@ -478,7 +813,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20240517T130732Z-176fb699484ck74lg1wset0wx0000000058g0000000004g2
+      - 20240809T151336Z-1674bbd94ccr56pfqknwrbqmxg0000000rtg000000005g6u
     status:
       code: 200
       message: OK
@@ -492,26 +827,31 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.31.0
+      - python-requests/2.32.3
     method: GET
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/collections/fia/queryables
   response:
     body:
-      string: !!binary |
-        H4sIAJRWR2YC/61STU/CQBD9K6Ry0Cjd4sWkNyJqOBmDJ0Nilu0UhrTdZXZKQpD/7mz5FDmQ6LFv
-        3ryP2a6iNmZRGk2ZnU+VcoWugDUtjS1dzUBxiYastznHAintUHnWRi26ytiiAMNoK69y1GpeAy31
-        uAAf3UW8dCC6djwTSvhGLgIwfO89tt72zFhGbW+mUOptCgkx87bqbMDY0kRlpHPuJA9qg13JjiPr
-        gBjFK11FocIqahPkR1U2ZB+HuN6BaaQW3TiJE4UMZSeAx14NGgfgSmWQY4WbbsYSKF0Ur7m6Vwdj
-        Ja6HXgPZbQ36gmTgDaELuzscM6gYcwSK1kLQDIwlhMzbM3kmrCZHcj0zr5EgOOSWSs2Chb1Osyj9
-        NcvjBIPr0eg2SdIk+fq4af+y7++8xHcCtgSm5ZlbySj0bk60PcYzaK4Jmnuc9nzZKZ1tu5+KJ1TZ
-        5yV9n6qstef9sfMPLckgPwDxRSmGgflvOU7U1uv1N1LmhvpuAwAA
+      string: '{"$id":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/fia/queryables","type":"object","title":"STAC
+        Queryables.","$schema":"http://json-schema.org/draft-07/schema#","properties":{"id":{"$ref":"https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json#/definitions/core/allOf/2/properties/id","title":"Item
+        ID","description":"Item identifier"},"datetime":{"type":"string","title":"Acquired","format":"date-time","pattern":"(\\+00:00|Z)$","description":"Datetime"},"geometry":{"$ref":"https://geojson.org/schema/Feature.json","title":"Item
+        Geometry","description":"Item Geometry"},"end_datetime":{"type":"string","title":"End
+        datetime","format":"date-time","pattern":"(\\+00:00|Z)$","description":"End
+        datetime"},"start_datetime":{"type":"string","title":"Start datetime","format":"date-time","pattern":"(\\+00:00|Z)$","description":"Start
+        datetime"}}}'
     headers:
       Accept-Ranges:
       - bytes
       Access-Control-Allow-Credentials:
       - 'true'
+      Access-Control-Allow-Headers:
+      - X-PC-Request-Entity,DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, OPTIONS
       Access-Control-Allow-Origin:
       - '*'
+      Access-Control-Max-Age:
+      - '1728000'
       Connection:
       - keep-alive
       Content-Length:
@@ -519,9 +859,9 @@ interactions:
       Content-Type:
       - application/schema+json
       Date:
-      - Fri, 17 May 2024 13:07:32 GMT
+      - Fri, 09 Aug 2024 15:13:36 GMT
       Strict-Transport-Security:
-      - max-age=15724800; includeSubDomains
+      - max-age=31536000; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       content-encoding:
@@ -529,7 +869,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20240517T130732Z-176fb699484ck74lg1wset0wx0000000058g0000000004g5
+      - 20240809T151336Z-1674bbd94cc6bwstkah7sm8pbs0000000s0000000000127g
     status:
       code: 200
       message: OK
@@ -543,26 +883,31 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.31.0
+      - python-requests/2.32.3
     method: GET
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/collections/fia/queryables
   response:
     body:
-      string: !!binary |
-        H4sIAJRWR2YC/61STU/CQBD9K6Ry0Cjd4sWkNyJqOBmDJ0Nilu0UhrTdZXZKQpD/7mz5FDmQ6LFv
-        3ryP2a6iNmZRGk2ZnU+VcoWugDUtjS1dzUBxiYastznHAintUHnWRi26ytiiAMNoK69y1GpeAy31
-        uAAf3UW8dCC6djwTSvhGLgIwfO89tt72zFhGbW+mUOptCgkx87bqbMDY0kRlpHPuJA9qg13JjiPr
-        gBjFK11FocIqahPkR1U2ZB+HuN6BaaQW3TiJE4UMZSeAx14NGgfgSmWQY4WbbsYSKF0Ur7m6Vwdj
-        Ja6HXgPZbQ36gmTgDaELuzscM6gYcwSK1kLQDIwlhMzbM3kmrCZHcj0zr5EgOOSWSs2Chb1Osyj9
-        NcvjBIPr0eg2SdIk+fq4af+y7++8xHcCtgSm5ZlbySj0bk60PcYzaK4Jmnuc9nzZKZ1tu5+KJ1TZ
-        5yV9n6qstef9sfMPLckgPwDxRSmGgflvOU7U1uv1N1LmhvpuAwAA
+      string: '{"$id":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/fia/queryables","type":"object","title":"STAC
+        Queryables.","$schema":"http://json-schema.org/draft-07/schema#","properties":{"id":{"$ref":"https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json#/definitions/core/allOf/2/properties/id","title":"Item
+        ID","description":"Item identifier"},"datetime":{"type":"string","title":"Acquired","format":"date-time","pattern":"(\\+00:00|Z)$","description":"Datetime"},"geometry":{"$ref":"https://geojson.org/schema/Feature.json","title":"Item
+        Geometry","description":"Item Geometry"},"end_datetime":{"type":"string","title":"End
+        datetime","format":"date-time","pattern":"(\\+00:00|Z)$","description":"End
+        datetime"},"start_datetime":{"type":"string","title":"Start datetime","format":"date-time","pattern":"(\\+00:00|Z)$","description":"Start
+        datetime"}}}'
     headers:
       Accept-Ranges:
       - bytes
       Access-Control-Allow-Credentials:
       - 'true'
+      Access-Control-Allow-Headers:
+      - X-PC-Request-Entity,DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, OPTIONS
       Access-Control-Allow-Origin:
       - '*'
+      Access-Control-Max-Age:
+      - '1728000'
       Connection:
       - keep-alive
       Content-Length:
@@ -570,9 +915,9 @@ interactions:
       Content-Type:
       - application/schema+json
       Date:
-      - Fri, 17 May 2024 13:07:32 GMT
+      - Fri, 09 Aug 2024 15:13:37 GMT
       Strict-Transport-Security:
-      - max-age=15724800; includeSubDomains
+      - max-age=31536000; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       content-encoding:
@@ -580,7 +925,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20240517T130732Z-176fb699484ck74lg1wset0wx0000000058g0000000004g8
+      - 20240809T151336Z-1674bbd94cccthxwr4u45vdkkc0000000rgg000000004pb6
     status:
       code: 200
       message: OK
@@ -594,29 +939,33 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.31.0
+      - python-requests/2.32.3
     method: GET
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-seamless/queryables
   response:
     body:
-      string: !!binary |
-        H4sIAJRWR2YC/61UwW7TQBD9lWibA4jE6xapqL5VtFQ5FUhPtAht7LGzkb27nZ1URMH/3lk7TpZS
-        pEhwi9+8mTfvjZ2tGOtCZGJJ5HwmpauVAVK4yW3j1gSYNDpH621JCUNSOS09qVw+ncrc1jXkpK3x
-        8n0BbupBNTV4Lx/XgBu14N9iImjjgBXsYsXk8KypDsD87vLj6MuemXBp7PMlNGq3D6+z8tZMezCx
-        WMkCVUnT9IPssRPucWgdIGnWyrYimNmKMUIZmerJPgmLewd5N+rpNEmTVGqCZhrAWKtDkwCcyAJK
-        bXTvMrcIUtX1bSnP5EFYsurB14x7R7MrRgrwOWoXegdcF2BIlxpQtBNR+W7dXUJm3Sx6vFAEpBuI
-        ip5QmyqSucwf1xohKJcWG0WMhb5p18i5KOLzBeE3Dw/v0jRL01/f3o7/WOtq0Ar7gG2AcPNKhlwK
-        eXTR7UL6BIrWCF1OL/3fDJNeTWFfbbv7rTJwvjqYvRfaEFScxYRDqWvx/TD9+vP8ZpTbAva9fqlc
-        nJRCVEE33NBH+DCzjV7BrnUiGvVz1rPP+EGb4YGpYIofx5zj2hSjPe8fT/LbrMEmoTI+jD3C6uFN
-        sgZu+Yz328jjeezxvJ3EtYu4dtFGwd/t9Xksf0lIR+UyD8z/lsyLaeGUSwTgP58Moeo4f1/la89o
-        2/YZIlQvPvYEAAA=
+      string: '{"$id":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/3dep-seamless/queryables","type":"object","title":"STAC
+        Queryables.","$schema":"http://json-schema.org/draft-07/schema#","properties":{"id":{"$ref":"https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json#/definitions/core/allOf/2/properties/id","title":"Item
+        ID","description":"Item identifier"},"gsd":{"type":"number"},"datetime":{"type":"string","title":"Acquired","format":"date-time","pattern":"(\\+00:00|Z)$","description":"Datetime"},"geometry":{"$ref":"https://geojson.org/schema/Feature.json","title":"Item
+        Geometry","description":"Item Geometry"},"proj:epsg":{"type":["integer","null"],"title":"EPSG
+        code"},"proj:shape":{"type":"array","items":{"type":"integer"},"title":"Shape","maxItems":2,"minItems":2},"end_datetime":{"type":"string","title":"End
+        datetime","format":"date-time","pattern":"(\\+00:00|Z)$","description":"End
+        datetime"},"proj:transform":{"type":"array","items":{"type":"number"},"oneOf":[{"maxItems":6,"minItems":6},{"maxItems":9,"minItems":9}],"title":"Transform"},"start_datetime":{"type":"string","title":"Start
+        datetime","format":"date-time","pattern":"(\\+00:00|Z)$","description":"Start
+        datetime"},"threedep:region":{"type":"string","title":"Region"}}}'
     headers:
       Accept-Ranges:
       - bytes
       Access-Control-Allow-Credentials:
       - 'true'
+      Access-Control-Allow-Headers:
+      - X-PC-Request-Entity,DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, OPTIONS
       Access-Control-Allow-Origin:
       - '*'
+      Access-Control-Max-Age:
+      - '1728000'
       Connection:
       - keep-alive
       Content-Length:
@@ -624,9 +973,9 @@ interactions:
       Content-Type:
       - application/schema+json
       Date:
-      - Fri, 17 May 2024 13:07:32 GMT
+      - Fri, 09 Aug 2024 15:13:37 GMT
       Strict-Transport-Security:
-      - max-age=15724800; includeSubDomains
+      - max-age=31536000; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       content-encoding:
@@ -634,7 +983,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20240517T130732Z-176fb699484ck74lg1wset0wx0000000058g0000000004gb
+      - 20240809T151337Z-1674bbd94ccnt5kj388he69he800000009bg000000000c96
     status:
       code: 200
       message: OK
