@@ -9,94 +9,54 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.31.0
+      - python-requests/2.32.3
     method: GET
-    uri: https://planetarycomputer.microsoft.com/api/stac/v1
+    uri: https://stac.sage.uvt.ro/
   response:
     body:
-      string: !!binary |
-        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
+      string: "{\"type\":\"Catalog\",\"id\":\"stac-fastapi\",\"title\":\"UVT STAC
+        Catalog\",\"description\":\"Spatio-Temporal Asset Catalog containing various
+        geospatial products distributed by West University of Timisoara\",\"stac_version\":\"1.0.0\",\"conformsTo\":[\"https://api.stacspec.org/v1.0.0/ogcapi-features\",\"https://api.stacspec.org/v1.0.0-rc.3/item-search#fields\",\"https://api.stacspec.org/v1.0.0-rc.2/item-search#query\",\"https://api.stacspec.org/v1.0.0-rc.2/item-search#sort\",\"http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson\",\"https://api.stacspec.org/v1.0.0/collections\",\"https://api.stacspec.org/v1.0.0-rc.2/item-search#context\",\"http://www.opengis.net/spec/cql2/1.0/conf/cql2-text\",\"http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter\",\"http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/features-filter\",\"http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30\",\"http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core\",\"http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2\",\"https://api.stacspec.org/v1.0.0/core\",\"https://api.stacspec.org/v1.0.0/item-search\",\"https://api.stacspec.org/v1.0.0-rc.2/item-search#filter\"],\"links\":[{\"rel\":\"self\",\"type\":\"application/json\",\"href\":\"https://stac.sage.uvt.ro/\"},{\"rel\":\"root\",\"type\":\"application/json\",\"href\":\"https://stac.sage.uvt.ro/\"},{\"rel\":\"data\",\"type\":\"application/json\",\"href\":\"https://stac.sage.uvt.ro/collections\"},{\"rel\":\"conformance\",\"type\":\"application/json\",\"title\":\"STAC/WFS3
+        conformance classes implemented by this server\",\"href\":\"https://stac.sage.uvt.ro/conformance\"},{\"rel\":\"search\",\"type\":\"application/geo+json\",\"title\":\"STAC
+        search\",\"href\":\"https://stac.sage.uvt.ro/search\",\"method\":\"GET\"},{\"rel\":\"search\",\"type\":\"application/geo+json\",\"title\":\"STAC
+        search\",\"href\":\"https://stac.sage.uvt.ro/search\",\"method\":\"POST\"},{\"rel\":\"child\",\"type\":\"application/json\",\"title\":\"Copernicus
+        DEM 30m\",\"href\":\"https://stac.sage.uvt.ro/collections/copernicus-dem-30\"},{\"rel\":\"child\",\"type\":\"application/json\",\"title\":\"Sentinel-2
+        Level-1C - Rom\xE2nia\",\"href\":\"https://stac.sage.uvt.ro/collections/sentinel-2-l1c\"},{\"rel\":\"child\",\"type\":\"application/json\",\"title\":\"Sentinel-2
+        Level-1C - Rom\xE2nia - Vegetation Index\",\"href\":\"https://stac.sage.uvt.ro/collections/sentinel-2-l1c-ndvi\"},{\"rel\":\"child\",\"type\":\"application/json\",\"title\":\"ANCPI
+        MNT - Rom\xE2nia County Level - Numerical Terrain Model\",\"href\":\"https://stac.sage.uvt.ro/collections/ancpi-judete-mnt\"},{\"rel\":\"child\",\"type\":\"application/json\",\"title\":\"Sentinel
+        1 Level-1 Ground Range Detected (GRD)\",\"href\":\"https://stac.sage.uvt.ro/collections/sentinel-1-grd\"},{\"rel\":\"child\",\"type\":\"application/json\",\"title\":\"Corine
+        Land Cover 2018 (Vectorial)\",\"href\":\"https://stac.sage.uvt.ro/collections/clc-2018-20-vector\"},{\"rel\":\"child\",\"type\":\"application/json\",\"title\":\"Corine
+        Land Cover 2018 (Raster)\",\"href\":\"https://stac.sage.uvt.ro/collections/clc-2018-20\"},{\"rel\":\"child\",\"type\":\"application/json\",\"title\":\"Sentinel
+        1 Radiometrically Terrain Corrected (RTC)\",\"href\":\"https://stac.sage.uvt.ro/collections/sentinel-1-rtc\"},{\"rel\":\"child\",\"type\":\"application/json\",\"title\":\"MAJA
+        CAMS Products\",\"href\":\"https://stac.sage.uvt.ro/collections/maja-cams\"},{\"rel\":\"child\",\"type\":\"application/json\",\"title\":\"Sentinel-2
+        Level-2A MAJA - Rom\xE2nia\",\"href\":\"https://stac.sage.uvt.ro/collections/sentinel-2-l2a-maja\"},{\"rel\":\"child\",\"type\":\"application/json\",\"title\":\"ESA
+        WorldCover 2020\",\"href\":\"https://stac.sage.uvt.ro/collections/esa-worldcover-2020\"},{\"rel\":\"child\",\"type\":\"application/json\",\"title\":\"ESA
+        WorldCover 2021\",\"href\":\"https://stac.sage.uvt.ro/collections/esa-worldcover-2021\"},{\"rel\":\"service-desc\",\"type\":\"application/vnd.oai.openapi+json;version=3.0\",\"title\":\"OpenAPI
+        service description\",\"href\":\"https://stac.sage.uvt.ro/api\"},{\"rel\":\"service-doc\",\"type\":\"text/html\",\"title\":\"OpenAPI
+        service documentation\",\"href\":\"https://stac.sage.uvt.ro/api.html\"}],\"stac_extensions\":[]}"
     headers:
-      Accept-Ranges:
-      - bytes
       Access-Control-Allow-Credentials:
       - 'true'
+      Access-Control-Allow-Headers:
+      - DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, OPTIONS
       Access-Control-Allow-Origin:
       - '*'
+      Access-Control-Expose-Headers:
+      - '*, X-CustomResponseHeader'
+      Access-Control-Max-Age:
+      - '1728000'
       Connection:
       - keep-alive
       Content-Length:
-      - '3247'
+      - '3893'
       Content-Type:
       - application/json
       Date:
-      - Fri, 17 May 2024 13:07:30 GMT
+      - Fri, 09 Aug 2024 15:23:26 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
-      X-Cache:
-      - CONFIG_NOCACHE
-      content-encoding:
-      - gzip
-      vary:
-      - Accept-Encoding
-      x-azure-ref:
-      - 20240517T130730Z-176fb699484dwhsb810771cc580000000380000000002rk5
     status:
       code: 200
       message: OK
@@ -110,114 +70,38 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.31.0
+      - python-requests/2.32.3
     method: GET
-    uri: https://planetarycomputer.microsoft.com/api/stac/v1/queryables
+    uri: https://stac.sage.uvt.ro/queryables
   response:
     body:
-      string: !!binary |
-        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
-        ce48AAA=
+      string: '{"$id":"https://stac.sage.uvt.ro/queryables","type":"object","title":"STAC
+        Queryables.","$schema":"http://json-schema.org/draft-07/schema#","properties":{"id":{"$ref":"https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json#/definitions/core/allOf/2/properties/id","title":"Item
+        ID","description":"Item identifier"},"datetime":{"type":"string","title":"Acquired","format":"date-time","pattern":"(\\+00:00|Z)$","description":"Datetime"},"geometry":{"$ref":"https://geojson.org/schema/Feature.json","title":"Item
+        Geometry","description":"Item Geometry"},"platform":{"type":"string"},"proj:epsg":{"type":"number"},"instruments":{"type":"array"},"s2:mgrs_tile":{"type":"string"},"constellation":{"type":"string"},"s2:granule_id":{"type":"string"},"eo:cloud_cover":{"$ref":"https://stac-extensions.github.io/eo/v1.0.0/schema.json#/definitions/fieldsproperties/eo:cloud_cover"},"s2:datatake_id":{"type":"string"},"s2:product_uri":{"type":"string"},"s2:datastrip_id":{"type":"string"},"s2:product_type":{"type":"string"},"sat:orbit_state":{"type":"string"},"s2:datatake_type":{"type":"string"},"s2:generation_time":{"type":"string"},"sat:relative_orbit":{"type":"number"},"s2:mean_solar_zenith":{"type":"number"},"s2:mean_solar_azimuth":{"type":"number"},"s2:processing_baseline":{"type":"string"},"s2:snow_ice_percentage":{"type":"number"},"s2:degraded_msi_data_percentage":{"type":"number"}}}'
     headers:
-      Accept-Ranges:
-      - bytes
       Access-Control-Allow-Credentials:
       - 'true'
+      Access-Control-Allow-Headers:
+      - DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, OPTIONS
       Access-Control-Allow-Origin:
       - '*'
+      Access-Control-Expose-Headers:
+      - '*, X-CustomResponseHeader'
+      Access-Control-Max-Age:
+      - '1728000'
       Connection:
       - keep-alive
       Content-Length:
-      - '4337'
+      - '1399'
       Content-Type:
       - application/schema+json
       Date:
-      - Fri, 17 May 2024 13:07:31 GMT
+      - Fri, 09 Aug 2024 15:23:27 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
-      X-Cache:
-      - CONFIG_NOCACHE
-      content-encoding:
-      - gzip
-      vary:
-      - Accept-Encoding
-      x-azure-ref:
-      - 20240517T130730Z-176fb699484dwhsb810771cc580000000380000000002rkg
     status:
       code: 200
       message: OK
