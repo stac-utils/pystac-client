@@ -11,7 +11,7 @@ from pystac import STACError, STACTypeError
 
 from .client import Client
 from .conformance import ConformanceClasses
-from .item_search import (
+from .search import (
     OPS,
     BBoxLike,
     CollectionsLike,

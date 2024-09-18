@@ -25,7 +25,9 @@ from pystac_client.collection_client import CollectionClient
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.errors import ClientTypeError
 from pystac_client.exceptions import APIError
-from pystac_client.item_search import (
+from pystac_client.item_search import ItemSearch
+from pystac_client.mixins import QUERYABLES_ENDPOINT, QueryablesMixin
+from pystac_client.search import (
     BBoxLike,
     CollectionsLike,
     DatetimeLike,
@@ -34,11 +36,9 @@ from pystac_client.item_search import (
     FilterLike,
     IDsLike,
     IntersectsLike,
-    ItemSearch,
     QueryLike,
     SortbyLike,
 )
-from pystac_client.mixins import QUERYABLES_ENDPOINT, QueryablesMixin
 from pystac_client.stac_api_io import StacApiIO, Timeout
 from pystac_client.warnings import DoesNotConformTo, FallbackToPystac, NoConformsTo
 
