@@ -80,11 +80,15 @@ def collection_matches(
         any(
             temporal_intervals_overlap(
                 [
-                    datetime.fromisoformat(_datetime)
+                    datetime.fromisoformat(_datetime.replace("Z", "+00:00"))
                     for _datetime in temporal_interval_str.split("/")
                 ],
                 [
-                    datetime.fromisoformat(_datetime) if _datetime else None
+                    (
+                        datetime.fromisoformat(_datetime.replace("Z", "+00:00"))
+                        if _datetime
+                        else None
+                    )
                     for _datetime in collection_temporal_interval
                 ],
             )

@@ -219,7 +219,7 @@ class TestCollectionSearch:
 
     @pytest.mark.vcr
     def test_client_side_datetime(self) -> None:
-        _datetime_interval = ["2024-09-15T00:00:00Z", "2024-09-16T00:00:00Z"]
+        _datetime_interval = ["2024-09-15T00:00:00+00:00", "2024-09-16T00:00:00+00:00"]
         limit = 10
         search = CollectionSearch(
             url=f"{STAC_URLS['EARTH-SEARCH']}/collections",
