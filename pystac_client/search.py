@@ -1,6 +1,7 @@
 import json
 import re
 import warnings
+from abc import ABC
 from collections.abc import Iterable, Mapping
 from copy import deepcopy
 from datetime import datetime as datetime_
@@ -125,7 +126,7 @@ def dict_merge(
     return dct
 
 
-class BaseSearch:
+class BaseSearch(ABC):
     _stac_io: StacApiIO
 
     def __init__(
@@ -148,6 +149,7 @@ class BaseSearch:
         sortby: Optional[SortbyLike] = None,
         fields: Optional[FieldsLike] = None,
         modifier: Optional[Callable[[Modifiable], None]] = None,
+        q: Optional[str] = None,
     ):
         self.url = url
         self.client = client
@@ -174,6 +176,7 @@ class BaseSearch:
             "filter-lang": self._format_filter_lang(filter, filter_lang),
             "sortby": self._format_sortby(sortby),
             "fields": self._format_fields(fields),
+            "q": q,
         }
 
         self._parameters: Dict[str, Any] = {
@@ -209,7 +212,7 @@ class BaseSearch:
         return params
 
     def url_with_parameters(self) -> str:
-        """Returns this item search url with parameters, appropriate for a GET request.
+        """Returns the search url with parameters, appropriate for a GET request.
 
         Examples:
 
