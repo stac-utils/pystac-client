@@ -243,6 +243,15 @@ class TestCollectionSearch:
                 for collection_temporal_interval in collection.extent.temporal.intervals
             ), f"{collection.id} failed check"
 
+    def test_client_side_extra_args(self) -> None:
+        with pytest.raises(ValueError):
+            CollectionSearch(
+                url=f"{STAC_URLS['EARTH-SEARCH']}/collections",
+                collection_search_extension_enabled=False,
+                collection_search_free_text_enabled=False,
+                filter="title LIKE '%nope%'",
+            )
+
     @pytest.mark.vcr
     def test_result_paging_max_collections(self) -> None:
         max_collections = 15

@@ -274,6 +274,7 @@ class CollectionSearch(BaseSearch):
                     + ". Filtering will be performed client-side where only bbox, "
                     "datetime, and q arguments are supported"
                 )
+                self._validate_client_side_args()
             else:
                 if not self._collection_search_free_text_enabled:
                     warnings.warn(
@@ -289,6 +290,19 @@ class CollectionSearch(BaseSearch):
             )
             self._collection_search_free_text_enabled = (
                 collection_search_free_text_enabled
+            )
+            self._validate_client_side_args()
+
+    def _validate_client_side_args(self) -> None:
+        """Client-side filtering only supports the bbox, datetime, and q parameters."""
+        args = {key for key, value in self._parameters.items() if value is not None}
+        extras = args - {"bbox", "datetime", "q", "limit", "max_items"}
+
+        if extras:
+            raise ValueError(
+                "Only the limit, max_collections, bbox, datetime, and q arguments are "
+                "supported for client-side filtering but these extra arguments were "
+                "provided: " + ",".join(extras)
             )
 
     @lru_cache(1)
