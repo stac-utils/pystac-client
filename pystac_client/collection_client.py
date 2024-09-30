@@ -19,8 +19,8 @@ from pystac.layout import APILayoutStrategy, HrefLayoutStrategy
 from pystac_client._utils import Modifiable, call_modifier
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.exceptions import APIError
-from pystac_client.item_search import ItemSearch
 from pystac_client.mixins import QueryablesMixin
+from pystac_client.search import ItemSearch
 from pystac_client.stac_api_io import StacApiIO
 from pystac_client.warnings import FallbackToPystac
 

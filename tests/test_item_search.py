@@ -11,7 +11,7 @@ from pytest_benchmark.fixture import BenchmarkFixture
 from requests_mock import Mocker
 
 from pystac_client import Client
-from pystac_client.item_search import ItemSearch
+from pystac_client.search import ItemSearch
 
 from .helpers import STAC_URLS, read_data_file
 

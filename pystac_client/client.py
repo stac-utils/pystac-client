@@ -26,7 +26,6 @@ from pystac_client.collection_search import CollectionSearch
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.errors import ClientTypeError
 from pystac_client.exceptions import APIError
-from pystac_client.item_search import ItemSearch
 from pystac_client.mixins import QUERYABLES_ENDPOINT, QueryablesMixin
 from pystac_client.search import (
     BBoxLike,
@@ -37,6 +36,7 @@ from pystac_client.search import (
     FilterLike,
     IDsLike,
     IntersectsLike,
+    ItemSearch,
     QueryLike,
     SortbyLike,
 )
