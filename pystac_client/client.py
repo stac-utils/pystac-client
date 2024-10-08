@@ -737,7 +737,7 @@ class Client(pystac.Catalog, QueryablesMixin):
             or self.conforms_to(ConformanceClasses.COLLECTIONS)
         ):
             raise DoesNotConformTo(
-                "COLLECTION-SEARCH",
+                "COLLECTION_SEARCH",
                 "COLLECTIONS",
                 "There is no fallback option available for search.",
             )
