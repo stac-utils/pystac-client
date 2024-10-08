@@ -136,6 +136,154 @@ interactions:
       - openresty
       Strict-Transport-Security:
       - max-age=31536000 ; includeSubDomains
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+      X-Served-By:
+      - emc.spacebel.be
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: ''
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.32.3
+    method: GET
+    uri: https://emc.spacebel.be/collections?limit=1&q=%22monthly+cloudless+mosaics%22
+  response:
+    body:
+      string: "{\n  \"collections\": [{\n    \"extent\": {\n      \"spatial\": {\"bbox\":
+        [[\n        -180,\n        -90,\n        180,\n        90\n      ]]},\n      \"temporal\":
+        {\"interval\": [[\n        null,\n        null\n      ]]}\n    },\n    \"stac_version\":
+        \"1.0.0\",\n    \"keywords\": [\n      \"Forestry\",\n      \"Forest Management\"\n
+        \   ],\n    \"created\": \"2023-09-05T00:00:00.00Z\",\n    \"description\":
+        \"Creating monthly cloudless mosaics of images is invaluable for forest management
+        as they provide a consistent and clear view of the forest canopy throughout
+        the year. These mosaics enable forest managers to track seasonal changes,
+        identify potential threats like pest infestations or wildfires, and make informed
+        decisions regarding tree health and growth. Additionally, by having a reliable
+        historical record of forest conditions, these mosaics assist in long-term
+        planning and sustainable resource management. Furthermore, the accessibility
+        and accuracy of monthly cloudless mosaics enhance collaboration among stakeholders,
+        allowing suitable policy development.\",\n    \"type\": \"Collection\",\n
+        \   \"title\": \"Cloudless True Color Data\",\n    \"license\": \"various\",\n
+        \   \"assets\": {\n      \"search\": {\n        \"roles\": [\"search\"],\n
+        \       \"href\": \"https://fedeo-client.ceos.org?url=https://emc.spacebel.be/api?httpAccept=application/opensearchdescription%252Bxml&uid=F-TCC\",\n
+        \       \"type\": \"text/html\",\n        \"title\": \"Search client\"\n      },\n
+        \     \"metadata_ogc_17_069r3\": {\n        \"roles\": [\"metadata\"],\n        \"href\":
+        \"https://emc.spacebel.be/collections/F-TCC\",\n        \"type\": \"application/geo+json;profile=\\\"http://www.opengis.net/spec/ogcapi-features-1/1.0\\\"\",\n
+        \       \"title\": \"OGC 17-069r3 metadata\"\n      },\n      \"metadata_iso_19139\":
+        {\n        \"roles\": [\"metadata\"],\n        \"href\": \"https://emc.spacebel.be/collections/F-TCC?httpAccept=application/vnd.iso.19139%2Bxml\",\n
+        \       \"title\": \"ISO 19139 metadata\",\n        \"type\": \"application/vnd.iso.19139+xml\"\n
+        \     },\n      \"metadata_iso_19139_2\": {\n        \"roles\": [\"metadata\"],\n
+        \       \"href\": \"https://emc.spacebel.be/collections/F-TCC?httpAccept=application/vnd.iso.19139-2%2Bxml\",\n
+        \       \"title\": \"ISO 19139-2 metadata\",\n        \"type\": \"application/vnd.iso.19139-2+xml\"\n
+        \     },\n      \"metadata_dif_10\": {\n        \"roles\": [\"metadata\"],\n
+        \       \"href\": \"https://emc.spacebel.be/collections/F-TCC?httpAccept=application/dif10%2Bxml\",\n
+        \       \"title\": \"DIF-10 metadata\",\n        \"type\": \"application/dif10+xml\"\n
+        \     },\n      \"metadata_iso_19115_3\": {\n        \"roles\": [\"metadata\"],\n
+        \       \"href\": \"https://emc.spacebel.be/collections/F-TCC?httpAccept=application/vnd.iso.19115-3%2Bxml\",\n
+        \       \"title\": \"ISO 19115-3 metadata\",\n        \"type\": \"application/vnd.iso.19115-3+xml\"\n
+        \     },\n      \"metadata_ogc_17_084r1\": {\n        \"roles\": [\"metadata\"],\n
+        \       \"href\": \"https://emc.spacebel.be/collections/F-TCC?mode=owc\",\n
+        \       \"title\": \"OGC 17-084r1 metadata\",\n        \"type\": \"application/geo+json;profile=\\\"http://www.opengis.net/spec/eoc-geojson/1.0\\\"\"\n
+        \     },\n      \"metadata_html\": {\n        \"roles\": [\"metadata\"],\n
+        \       \"href\": \"https://emc.spacebel.be/collections/F-TCC?httpAccept=text/html\",\n
+        \       \"title\": \"HTML\",\n        \"type\": \"text/html\"\n      },\n
+        \     \"quicklook\": {\n        \"roles\": [\"overview\"],\n        \"href\":
+        \"https://eovoc.spacebel.be/images/tcc.png\",\n        \"type\": \"image/png\",\n
+        \       \"title\": \"graphic overview\"\n      }\n    },\n    \"links\": [\n
+        \     {\n        \"rel\": \"self\",\n        \"href\": \"https://emc.spacebel.be/collections/F-TCC\",\n
+        \       \"type\": \"application/json\"\n      },\n      {\n        \"rel\":
+        \"root\",\n        \"href\": \"https://emc.spacebel.be\",\n        \"type\":
+        \"application/json\",\n        \"title\": \"FedEO Clearinghouse\"\n      },\n
+        \     {\n        \"rel\": \"parent\",\n        \"href\": \"https://emc.spacebel.be\",\n
+        \       \"title\": \"collections\",\n        \"type\": \"application/json\"\n
+        \     },\n      {\n        \"rel\": \"items\",\n        \"href\": \"https://emc.spacebel.be/collections/F-TCC/items?httpAccept=application/geo%2Bjson;profile=https://stacspec.org\",\n
+        \       \"type\": \"application/geo+json\",\n        \"title\": \"Datasets
+        search for the series F-TCC\"\n      },\n      {\n        \"rel\": \"http://www.opengis.net/def/rel/ogc/1.0/queryables\",\n
+        \       \"href\": \"https://emc.spacebel.be/collections/F-TCC/queryables\",\n
+        \       \"type\": \"application/schema+json\",\n        \"title\": \"Queryables
+        for F-TCC\"\n      },\n      {\n        \"rel\": \"search\",\n        \"href\":
+        \"https://emc.spacebel.be/collections/series/items/F-TCC/api\",\n        \"type\":
+        \"application/opensearchdescription+xml\",\n        \"title\": \"OpenSearch
+        Description Document\"\n      },\n      {\n        \"rel\": \"ordering\",\n
+        \       \"href\": \"https://emc.spacebel.be/ordering?collection=F-TCC\",\n
+        \       \"type\": \"text/html\",\n        \"title\": \"Order F-TCC Product\"\n
+        \     },\n      {\n        \"rel\": \"describedby\",\n        \"href\": \"https://eovoc.spacebel.be/images/F-TCC_Brochure_vs3.pdf\",\n
+        \       \"type\": \"application/pdf\",\n        \"title\": \"F-TCC Brochure
+        - F-TCC Product Description\"\n      },\n      {\n        \"rel\": \"alternate\",\n
+        \       \"href\": \"https://emc.spacebel.be/collections/F-TCC?httpAccept=application/atom%2Bxml\",\n
+        \       \"type\": \"application/atom+xml\",\n        \"title\": \"Atom format\"\n
+        \     },\n      {\n        \"rel\": \"alternate\",\n        \"href\": \"https://emc.spacebel.be/collections/F-TCC?httpAccept=application/xml\",\n
+        \       \"type\": \"application/xml\",\n        \"title\": \"Dublin Core metadata\"\n
+        \     },\n      {\n        \"rel\": \"alternate\",\n        \"href\": \"https://emc.spacebel.be/collections/F-TCC?httpAccept=application/ld%2Bjson;profile=https://schema.org\",\n
+        \       \"type\": \"application/ld+json;profile=\\\"https://schema.org\\\"\",\n
+        \       \"title\": \"JSON-LD (schema.org) metadata\"\n      },\n      {\n
+        \       \"rel\": \"alternate\",\n        \"href\": \"https://emc.spacebel.be/collections/F-TCC?httpAccept=application/ld%2Bjson;profile=http://data.europa.eu/930/\",\n
+        \       \"type\": \"application/ld+json;profile=\\\"http://data.europa.eu/930/\\\"\",\n
+        \       \"title\": \"JSON-LD (GeoDCAT-AP) metadata\"\n      },\n      {\n
+        \       \"rel\": \"alternate\",\n        \"href\": \"https://emc.spacebel.be/collections/F-TCC?httpAccept=application/rdf%2Bxml\",\n
+        \       \"type\": \"application/rdf+xml\",\n        \"title\": \"RDF/XML metadata\"\n
+        \     },\n      {\n        \"rel\": \"alternate\",\n        \"href\": \"https://emc.spacebel.be/collections/F-TCC?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
+        \       \"type\": \"application/rdf+xml;profile=\\\"https://schema.org\\\"\",\n
+        \       \"title\": \"RDF/XML (schema.org) metadata\"\n      },\n      {\n
+        \       \"rel\": \"alternate\",\n        \"href\": \"https://emc.spacebel.be/collections/F-TCC?httpAccept=application/rdf%2Bxml;profile=http://data.europa.eu/930/\",\n
+        \       \"type\": \"application/rdf+xml;profile=\\\"http://data.europa.eu/930/\\\"\",\n
+        \       \"title\": \"RDF/XML (GeoDCAT-AP) metadata\"\n      },\n      {\n
+        \       \"rel\": \"alternate\",\n        \"href\": \"https://emc.spacebel.be/collections/F-TCC?httpAccept=text/turtle;profile=https://schema.org\",\n
+        \       \"type\": \"text/turtle;profile=\\\"https://schema.org\\\"\",\n        \"title\":
+        \"Turtle (schema.org) metadata\"\n      },\n      {\n        \"rel\": \"alternate\",\n
+        \       \"href\": \"https://emc.spacebel.be/collections/F-TCC?httpAccept=text/turtle;profile=http://data.europa.eu/930/\",\n
+        \       \"type\": \"text/turtle;profile=\\\"http://data.europa.eu/930/\\\"\",\n
+        \       \"title\": \"Turtle (GeoDCAT-AP) metadata\"\n      },\n      {\n        \"rel\":
+        \"related\",\n        \"href\": \"https://emc.spacebel.be/series/eo:organisationName/Spacebel
+        SA\",\n        \"title\": \"More collections for Spacebel SA\"\n      }\n
+        \   ],\n    \"id\": \"F-TCC\",\n    \"updated\": \"2023-09-05T00:00:00.00Z\",\n
+        \   \"providers\": [\n      {\n        \"roles\": [\"producer\"],\n        \"name\":
+        \"Spacebel SA\",\n        \"url\": \"http://www.spacebel.com\"\n      },\n
+        \     {\n        \"roles\": [\"host\"],\n        \"name\": \"FedEO Clearinghouse\",\n
+        \       \"url\": \"https://emc.spacebel.be/readme.html\"\n      }\n    ]\n
+        \ }],\n  \"numberReturned\": 1,\n  \"links\": [\n    {\n      \"rel\": \"self\",\n
+        \     \"href\": \"https://emc.spacebel.be/collections?limit=1&q=%22monthly+cloudless+mosaics%22\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"This document\"\n
+        \   },\n    {\n      \"rel\": \"http://www.opengis.net/def/rel/ogc/1.0/queryables\",\n
+        \     \"href\": \"https://emc.spacebel.be/collections/queryables\",\n      \"type\":
+        \"application/schema+json\",\n      \"title\": \"Queryables for collection
+        search\"\n    }\n  ],\n  \"numberMatched\": 1\n}"
+    headers:
+      Access-Control-Allow-Headers:
+      - X-PINGOTHER, Content-Type, Authorization, Accept
+      Access-Control-Allow-Methods:
+      - POST,GET,PUT,HEAD,OPTIONS,DELETE
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Tue, 08 Oct 2024 17:56:07 GMT
+      Expires:
+      - '0'
+      Pragma:
+      - no-cache
+      Server:
+      - openresty
+      Strict-Transport-Security:
+      - max-age=31536000 ; includeSubDomains
       Transfer-Encoding:
       - chunked
       X-Content-Type-Options:

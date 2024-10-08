@@ -111,6 +111,8 @@ class TestCollectionSearch:
         assert all(isinstance(collection, pystac.Collection) for collection in results)
         assert all(search_string in collection.description for collection in results)
 
+        assert search.matched()
+
     @pytest.mark.vcr
     def test_datetime_results(self) -> None:
         min_datetime = datetime(2024, 1, 1, 0, 0, 1, tzinfo=tzutc())
@@ -167,6 +169,52 @@ class TestCollectionSearch:
                 assert bboxes_overlap(bbox, tuple(float(coord) for coord in _bbox))
 
     @pytest.mark.vcr
+    def test_result_paging(self) -> None:
+        search = CollectionSearch(
+            url=COLLECTION_SEARCH_URL,
+            collection_search_extension_enabled=True,
+            collection_search_free_text_enabled=True,
+            q="sentinel",
+            limit=10,
+            max_collections=20,
+        )
+
+        # Check that the current page changes on the ItemSearch instance when a new page
+        # is requested
+        pages = list(search.pages())
+
+        assert pages[0] != pages[1]
+
+    @pytest.mark.vcr
+    def test_enabled_but_client_side_q(self) -> None:
+        q = "sentinel"
+        limit = 5
+        search = CollectionSearch(
+            url=COLLECTION_SEARCH_URL,
+            collection_search_extension_enabled=True,
+            collection_search_free_text_enabled=False,
+            limit=limit,
+            max_collections=limit,
+            q=q,
+        )
+
+        collection_list = search.collection_list()
+        assert len(collection_list) <= limit
+
+        for collection in search.collections():
+            text_fields = []
+            if collection.description:
+                text_fields.append(collection.description)
+            if collection.title:
+                text_fields.append(collection.title)
+            if collection.keywords:
+                text_fields.extend(collection.keywords)
+
+            assert any(
+                q in text_field.lower() for text_field in text_fields
+            ), f"{collection.id} failed check"
+
+    @pytest.mark.vcr
     def test_client_side_q(self) -> None:
         q = "sentinel"
         limit = 10
@@ -194,6 +242,8 @@ class TestCollectionSearch:
             assert any(
                 q in text_field.lower() for text_field in text_fields
             ), f"{collection.id} failed check"
+
+        assert search.matched() is not None
 
     @pytest.mark.vcr
     def test_client_side_bbox(self) -> None:
