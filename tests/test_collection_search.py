@@ -243,7 +243,10 @@ class TestCollectionSearch:
                 q in text_field.lower() for text_field in text_fields
             ), f"{collection.id} failed check"
 
-        assert search.matched() is not None
+        with pytest.warns(
+            UserWarning, match="numberMatched or context.matched not in response"
+        ):
+            assert search.matched() is not None
 
     @pytest.mark.vcr
     def test_client_side_bbox(self) -> None:
