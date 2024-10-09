@@ -7,7 +7,8 @@ Python library.
 CLI
 ~~~
 
-Use the CLI to quickly make searches and output or save the results.
+Use the CLI to quickly make item- or collection-level searches and
+output or save the results.
 
 The ``--matched`` switch performs a search with limit=1 so does not get
 any Items, but gets the total number of matches which will be output to
@@ -17,6 +18,15 @@ the screen (if supported by the STAC API).
 
     $ stac-client search https://earth-search.aws.element84.com/v1 -c sentinel-2-l2a --bbox -72.5 40.5 -72 41 --matched
     3141 items matched
+
+The ``--matched`` flag can also be used for collection search to get
+the total number of collections that match your search terms.
+
+
+.. code-block:: console
+
+    $ stac-client collections https://emc.spacebel.be --q sentinel-2 --matched
+    76 collections matched
 
 If the same URL is to be used over and over, define an environment
 variable to be used in the CLI call:
@@ -87,6 +97,25 @@ than once to use additional operators.
     $ stac-client search ${STAC_API_URL} -c sentinel-2-l2a --bbox -72.5 40.5 -72 41 --datetime 2020-01-01/2020-01-31 --query "eo:cloud_cover<10" "eo:cloud_cover>5" --matched
     4 items matched
 
+
+Collection searches can also use multiple filters like this example
+search for collections that include the term ``"biomass`` and have
+a spatial extent that intersects Scandinavia.
+
+.. code-block:: console
+
+    $ stac-client collections ${STAC_API_URL} --q biomass --bbox 0.09 54.72 33.31 71.36  --matched
+    4 items matched
+
+Since most STAC APIs have not yet implemented the collection search 
+extension, ``pystac-client`` will perform a limited client-side 
+filter on the full list of collections using only the ``bbox``, 
+``datetime``, and ``q`` (free-text search) parameters.
+In the case that the STAC API does not support collection search, a
+warning will be displayed to inform you that the filter is being
+applied client-side.
+
+
 Python
 ~~~~~~
 
@@ -99,7 +128,7 @@ specific STAC API (use the root URL):
 
     client = Client.open("https://earth-search.aws.element84.com/v1")
 
-Create a search:
+Create an item-level search:
 
 .. code-block:: python
 
@@ -125,3 +154,23 @@ The ``ItemCollection`` can then be saved as a GeoJSON FeatureCollection.
 
     item_collection = search.item_collection()
     item_collection.save_object('my_itemcollection.json')
+
+
+Create a collection-level search:
+
+.. code-block:: python
+
+    collection_search = client.collection_search(
+        q='"sentinel-2" OR "sentinel-1"',
+    )
+    print(f"{collection_search.matched()} collections found")
+
+
+The ``collections()`` iterator method can be used to iterate through all
+resulting collections.
+
+.. code-block:: python
+
+    for collection in collection_search.collections():
+        print(collection.id)
+
