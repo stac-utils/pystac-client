@@ -99,13 +99,13 @@ than once to use additional operators.
 
 
 Collection searches can also use multiple filters like this example
-search for collections that include the term ``"biomass`` and have
+search for collections that include the term ``"biomass"`` and have
 a spatial extent that intersects Scandinavia.
 
 .. code-block:: console
 
-    $ stac-client collections ${STAC_API_URL} --q biomass --bbox 0.09 54.72 33.31 71.36  --matched
-    4 items matched
+    $ stac-client collections https://emc.spacebel.be --q biomass --bbox 0.09 54.72 33.31 71.36  --matched
+    43 items matched
 
 Since most STAC APIs have not yet implemented the collection search 
 extension, ``pystac-client`` will perform a limited client-side 
