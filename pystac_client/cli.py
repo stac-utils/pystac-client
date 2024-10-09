@@ -88,15 +88,48 @@ def search(
     return 0
 
 
-def collections(client: Client, save: Optional[str] = None) -> int:
+def collections(
+    client: Client,
+    save: Optional[str] = None,
+    matched: bool = False,
+    *,
+    max_collections: Optional[int] = None,
+    limit: Optional[int] = None,
+    bbox: Optional[BBoxLike] = None,
+    datetime: Optional[DatetimeLike] = None,
+    q: Optional[str] = None,
+    query: Optional[QueryLike] = None,
+    filter: Optional[FilterLike] = None,
+    filter_lang: Optional[FilterLangLike] = None,
+    sortby: Optional[SortbyLike] = None,
+    fields: Optional[FieldsLike] = None,
+) -> int:
     """Fetch collections from collections endpoint"""
     try:
-        collections_dicts = [c.to_dict() for c in client.get_all_collections()]
-        if save:
-            with open(save, "w") as f:
-                f.write(json.dumps(collections_dicts))
+        result = client.collection_search(
+            max_collections=max_collections,
+            limit=limit,
+            bbox=bbox,
+            datetime=datetime,
+            q=q,
+            query=query,
+            filter=filter,
+            filter_lang=filter_lang,
+            sortby=sortby,
+            fields=fields,
+        )
+        if matched:
+            if (nmatched := result.matched()) is not None:
+                print(f"{nmatched} collections matched")
+            else:
+                raise KeyError("'matched' is not supported for this catalog")
         else:
-            print(json.dumps(collections_dicts))
+            collections_dicts = [c.to_dict() for c in result.collections()]
+            if save:
+                with open(save, "w") as f:
+                    f.write(json.dumps(collections_dicts))
+            else:
+                print(json.dumps(collections_dicts))
     except STACTypeError as e:
         raise STACError(
             f"The client at {client.self_href} is OK, but one or more of the "
@@ -218,9 +251,48 @@ def parse_args(args: List[str]) -> Dict[str, Any]:
     )
     add_warnings_behavior(parser)
 
+    collections_group = parser.add_argument_group("collection search options")
+    collections_group.add_argument(
+        "--bbox", help="Bounding box (min lon, min lat, max lon, max lat)", nargs=4
+    )
+    collections_group.add_argument(
+        "--datetime",
+        help="Single datetime or begin and end datetime "
+        "(e.g., 2017-01-01/2017-02-15)",
+    )
+    collections_group.add_argument("--q", help="Free-text search query")
+    collections_group.add_argument(
+        "--query",
+        nargs="*",
+        help=f"Query properties of form KEY=VALUE ({','.join(OPS)} supported)",
+    )
+    collections_group.add_argument(
+        "--filter",
+        help="Filter on queryables using language specified in filter-lang parameter",
+    )
+    collections_group.add_argument(
+        "--filter-lang",
+        help="Filter language used within the filter parameter",
+        default="cql2-json",
+    )
+    collections_group.add_argument("--sortby", help="Sort by fields", nargs="*")
+    collections_group.add_argument(
+        "--fields", help="Control what fields get returned", nargs="*"
+    )
+    collections_group.add_argument("--limit", help="Page size limit", type=int)
+    collections_group.add_argument(
+        "--max-collections",
+        dest="max_collections",
+        help="Max collections to retrieve from search",
+        type=int,
+    )
+
     output_group = parser.add_argument_group("output options")
     output_group.add_argument(
         "--save", help="Filename to save collections to", default=None
+    )
+    output_group.add_argument(
+        "--matched", help="Print number matched", default=False, action="store_true"
     )
 
     # search command
