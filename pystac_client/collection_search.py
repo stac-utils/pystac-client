@@ -76,12 +76,25 @@ def collection_matches(
     # check for overlap between the provided temporal interval and the collection's
     # temporal extent
     collection_temporal_intervals = collection_dict["extent"]["temporal"]["interval"]
+
+    # process the user-provided temporal interval
+    temporal_interval = (
+        temporal_interval_str.split("/") if temporal_interval_str else None
+    )
+
+    # replace .. in open intervals with actual strings
+    if temporal_interval:
+        if temporal_interval[0] == "..":
+            temporal_interval[0] = datetime.min.replace(tzinfo=timezone.utc).isoformat()
+        if temporal_interval[1] == "..":
+            temporal_interval[1] = datetime.max.replace(tzinfo=timezone.utc).isoformat()
+
     datetime_overlaps = not temporal_interval_str or (
         any(
             temporal_intervals_overlap(
                 [
                     datetime.fromisoformat(_datetime.replace("Z", "+00:00"))
-                    for _datetime in temporal_interval_str.split("/")
+                    for _datetime in temporal_interval
                 ],
                 [
                     (
@@ -470,3 +483,23 @@ class CollectionSearch(BaseSearch):
             Collection.from_dict(collection, preserve_dict=False, root=self.client)
             for collection in collection_list
         ]
+
+    @lru_cache(1)
+    def collection_list_as_dict(self) -> Dict[str, Any]:
+        """
+        Get the matching collections as a dict.
+
+        The dictionary will have a single key:
+
+        1. ``'collections'`` with the value being a list of dictionaries
+            for the matching collections.
+
+        Return:
+            Dict : A dictionary with the list of matching collections
+        """
+        collections = []
+        for page in self.pages_as_dicts():
+            for collection in page["collections"]:
+                collections.append(collection)
+
+        return {"collections": collections}
