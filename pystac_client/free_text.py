@@ -16,6 +16,9 @@ def parse_query_for_sqlite(q: str) -> str:
     # separate out search terms, quoted exact phrases, commas, and exact phrases
     tokens = [token.strip() for token in re.findall(r'"[^"]*"|,|[\(\)]|[^,\s\(\)]+', q)]
 
+    # special characters that need to be escaped or quoted for sqlite fts5
+    special_chars = set("-@&:^~<>=")
+
     for i, token in enumerate(tokens):
         if token.startswith("+"):
             tokens[i] = token[1:].strip()
@@ -23,6 +26,10 @@ def parse_query_for_sqlite(q: str) -> str:
             tokens[i] = "NOT " + token[1:].strip()
         elif token == ",":
             tokens[i] = "OR"
+        elif any(char in token for char in special_chars):
+            # Escape any existing double quotes in the token
+            escaped_token = token.replace('"', '""')
+            tokens[i] = f'"{escaped_token}"'
 
     return " ".join(tokens)
 

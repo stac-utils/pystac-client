@@ -9,6 +9,20 @@ def test_sqlite_single_term() -> None:
     assert not sqlite_text_search(query, {"description": "No match here"})
 
 
+def test_sqlite_special_characters() -> None:
+    query = "sentinel-2"
+    assert sqlite_text_search(query, {"description": "The sentinel-2 node was true"})
+    assert not sqlite_text_search(query, {"description": "No, just sentinel-1 here"})
+
+    query = "sentinel+2"
+    assert sqlite_text_search(query, {"description": "The sentinel+2 node was true"})
+    assert not sqlite_text_search(query, {"description": "No, just sentinel+1 here"})
+
+    query = "sentinel@2"
+    assert sqlite_text_search(query, {"description": "The sentinel@2 node was true"})
+    assert not sqlite_text_search(query, {"description": "No, just sentinel@1 here"})
+
+
 def test_sqlite_exact_phrase() -> None:
     query = '"climate model"'
     assert sqlite_text_search(query, {"description": "The climate model is impressive"})
