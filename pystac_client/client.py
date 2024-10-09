@@ -722,14 +722,13 @@ class Client(pystac.Catalog, QueryablesMixin):
                 Use `items_as_dicts` to avoid object unmarshalling errors.
 
         Returns:
-            collection_search : An CollectionSearch instance that can be used to iterate
+            collection_search : A CollectionSearch instance that can be used to iterate
             through Collections.
 
         Raises:
-            NotImplementedError: If the API does not conform to the `Item Search spec
-                <https://github.com/radiantearth/stac-api-spec/tree/master/item-search>`__
-                or does not have a link with
-                a ``"rel"`` type of ``"search"``.
+            NotImplementedError: If the API does not conform to either the `STAC API -
+                Collection Search spec <https://github.com/stac-api-extensions/collection-search>`__
+                or the `STAC API - Collections spec <https://api.stacspec.org/v1.0.0/collections>`__.
         """
 
         if not (
