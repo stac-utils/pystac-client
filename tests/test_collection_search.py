@@ -111,7 +111,7 @@ class TestCollectionSearch:
         assert all(isinstance(collection, pystac.Collection) for collection in results)
         assert all(search_string in collection.description for collection in results)
 
-        assert search.matched()
+        assert search.matched() == 1
 
     @pytest.mark.vcr
     def test_datetime_results(self) -> None:
@@ -186,6 +186,22 @@ class TestCollectionSearch:
         assert pages[0] != pages[1]
 
     @pytest.mark.vcr
+    def test_matched(self) -> None:
+        q = "sentinel"
+        search = CollectionSearch(
+            url=f"{STAC_URLS['EARTH-SEARCH']}/collections",
+            collection_search_extension_enabled=False,
+            collection_search_free_text_enabled=False,
+            q=q,
+            limit=4,
+        )
+
+        with pytest.warns(
+            UserWarning, match="numberMatched or context.matched not in response"
+        ):
+            assert search.matched() == 5
+
+    @pytest.mark.vcr
     def test_enabled_but_client_side_q(self) -> None:
         q = "sentinel"
         limit = 5
@@ -200,6 +216,8 @@ class TestCollectionSearch:
 
         collection_list = search.collection_list()
         assert len(collection_list) <= limit
+        collection_list_dict = search.collection_list_as_dict()
+        assert len(collection_list_dict["collections"]) == len(collection_list)
 
         for collection in search.collections():
             text_fields = []
@@ -242,11 +260,6 @@ class TestCollectionSearch:
             assert any(
                 q in text_field.lower() for text_field in text_fields
             ), f"{collection.id} failed check"
-
-        with pytest.warns(
-            UserWarning, match="numberMatched or context.matched not in response"
-        ):
-            assert search.matched() is not None
 
     @pytest.mark.vcr
     def test_client_side_bbox(self) -> None:

@@ -336,19 +336,28 @@ class CollectionSearch(BaseSearch):
             int: Total count of matched collections. If counts are not supported `None`
             is returned.
         """
-        params = {**self.get_parameters(), "limit": 1}
-        resp = self._stac_io.read_json(self.url, method=self.method, parameters=params)
         found = None
+        iter = self.pages_as_dicts()
+        page = next(iter, None)
+
+        if not page:
+            return 0
+
         # if collection search and free-text are fully supported, try reading a value
         # from the search result context
         if (
             self._collection_search_extension_enabled
             and self._collection_search_free_text_enabled
         ):
-            if "context" in resp:
-                found = resp["context"].get("matched", None)
-            elif "numberMatched" in resp:
-                found = resp["numberMatched"]
+            if "context" in page:
+                found = page["context"].get("matched", None)
+            elif "numberMatched" in page:
+                found = page["numberMatched"]
+
+        if not found:
+            count = len(page["collections"])
+            for page in iter:
+                count += len(page["collections"])
 
         # if context is missing or if collection search and free-text are not supported,
         # just count the records
