@@ -356,14 +356,12 @@ class CollectionSearch(BaseSearch):
 
         if not found:
             count = len(page["collections"])
+
             for page in iter:
+                print(f"found {len(page['collections'])} on the next page")
                 count += len(page["collections"])
 
-        # if context is missing or if collection search and free-text are not supported,
-        # just count the records
-        if found is None:
-            warnings.warn("numberMatched or context.matched not in response")
-            found = len(self.collection_list())
+            found = count
 
         return found
 

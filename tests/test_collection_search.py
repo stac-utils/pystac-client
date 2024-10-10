@@ -196,10 +196,7 @@ class TestCollectionSearch:
             limit=4,
         )
 
-        with pytest.warns(
-            UserWarning, match="numberMatched or context.matched not in response"
-        ):
-            assert search.matched() == 5
+        assert search.matched() == 5
 
     @pytest.mark.vcr
     def test_enabled_but_client_side_q(self) -> None:
