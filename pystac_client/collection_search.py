@@ -281,20 +281,21 @@ class CollectionSearch(BaseSearch):
             self._collection_search_free_text_enabled = client.conforms_to(
                 ConformanceClasses.COLLECTION_SEARCH_FREE_TEXT
             )
-            if not self._collection_search_extension_enabled:
-                warnings.warn(
-                    str(DoesNotConformTo("COLLECTION_SEARCH"))
-                    + ". Filtering will be performed client-side where only bbox, "
-                    "datetime, and q arguments are supported"
-                )
-                self._validate_client_side_args()
-            else:
-                if not self._collection_search_free_text_enabled:
+            if any([bbox, datetime, q, query, filter, sortby, fields]):
+                if not self._collection_search_extension_enabled:
                     warnings.warn(
-                        str(DoesNotConformTo("COLLECTION_SEARCH#FREE_TEXT"))
-                        + ". Free-text search is not enabled for collection search"
-                        "Free-text filters will be applied client-side."
+                        str(DoesNotConformTo("COLLECTION_SEARCH"))
+                        + ". Filtering will be performed client-side where only bbox, "
+                        "datetime, and q arguments are supported"
                     )
+                    self._validate_client_side_args()
+                else:
+                    if not self._collection_search_free_text_enabled:
+                        warnings.warn(
+                            str(DoesNotConformTo("COLLECTION_SEARCH#FREE_TEXT"))
+                            + ". Free-text search is not enabled for collection search"
+                            "Free-text filters will be applied client-side."
+                        )
 
         else:
             self._stac_io = stac_io or StacApiIO()

@@ -516,9 +516,8 @@ class TestAPICollectionSearch:
 
         with strict():
             with pytest.raises(DoesNotConformTo, match="COLLECTION_SEARCH"):
-                api.collection_search(limit=10, max_collections=10)
+                api.collection_search(limit=10, max_collections=10, q="test")
 
-    @pytest.mark.vcr
     def test_search_conformance_warning(self) -> None:
         api = Client.from_file(str(TEST_DATA / "planetary-computer-root.json"))
 
@@ -527,7 +526,7 @@ class TestAPICollectionSearch:
 
         with strict():
             with pytest.warns(UserWarning, match="COLLECTION_SEARCH"):
-                api.collection_search(limit=10, max_collections=10)
+                api.collection_search(limit=10, max_collections=10, q="test")
 
     @pytest.mark.vcr
     def test_search(self, api: Client) -> None:

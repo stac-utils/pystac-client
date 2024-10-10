@@ -45,7 +45,7 @@ class TestCollectionPerformance:
 
         assert collection.id == COLLECTION_EXAMPLE["id"]
 
-    def test_single_item_search(
+    def test_single_collection_search(
         self, benchmark: BenchmarkFixture, single_href: str
     ) -> None:
         search = CollectionSearch(url=COLLECTION_SEARCH_URL, **COLLECTION_EXAMPLE)
