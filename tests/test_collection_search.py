@@ -132,8 +132,8 @@ class TestCollectionSearch:
         for collection in search.collections():
             for temporal_intervals in collection.extent.temporal.intervals:
                 assert temporal_intervals_overlap(
-                    [temporal_intervals[0], temporal_intervals[1]],
-                    [min_datetime, max_datetime],
+                    (temporal_intervals[0], temporal_intervals[1]),
+                    (min_datetime, max_datetime),
                 )
 
         search = CollectionSearch(
@@ -148,8 +148,8 @@ class TestCollectionSearch:
         for collection in new_results:
             for temporal_intervals in collection.extent.temporal.intervals:
                 assert temporal_intervals_overlap(
-                    [temporal_intervals[0], temporal_intervals[1]],
-                    [min_datetime, max_datetime],
+                    (temporal_intervals[0], temporal_intervals[1]),
+                    (min_datetime, max_datetime),
                 )
 
     @pytest.mark.vcr
@@ -272,7 +272,7 @@ class TestCollectionSearch:
 
     @pytest.mark.vcr
     def test_client_side_datetime(self) -> None:
-        _datetime_interval = ["2024-09-15T00:00:00+00:00", "2024-09-16T00:00:00+00:00"]
+        _datetime_interval = ("2024-09-15T00:00:00+00:00", "2024-09-16T00:00:00+00:00")
         limit = 10
         search = CollectionSearch(
             url=f"{STAC_URLS['EARTH-SEARCH']}/collections",
@@ -286,12 +286,15 @@ class TestCollectionSearch:
         collection_list = search.collection_list()
         assert len(collection_list) <= limit
 
-        temporal_interval = [datetime.fromisoformat(ts) for ts in _datetime_interval]
+        temporal_interval = (
+            datetime.fromisoformat(_datetime_interval[0]),
+            datetime.fromisoformat(_datetime_interval[1]),
+        )
         for collection in search.collections():
             assert any(
                 temporal_intervals_overlap(
                     temporal_interval,
-                    collection_temporal_interval,
+                    (collection_temporal_interval[0], collection_temporal_interval[1]),
                 )
                 for collection_temporal_interval in collection.extent.temporal.intervals
             ), f"{collection.id} failed check"
@@ -340,37 +343,37 @@ def test_bboxes_overlap() -> None:
 
 def test_temporal_intervals_overlap() -> None:
     assert temporal_intervals_overlap(
-        [datetime(2024, 9, 1, tzinfo=tzutc()), datetime(2024, 9, 2, tzinfo=tzutc())],
-        [
+        (datetime(2024, 9, 1, tzinfo=tzutc()), datetime(2024, 9, 2, tzinfo=tzutc())),
+        (
             datetime(2024, 9, 1, 12, tzinfo=tzutc()),
             datetime(2024, 9, 2, 12, tzinfo=tzutc()),
-        ],
+        ),
     )
     assert temporal_intervals_overlap(
-        [datetime(2024, 9, 1, tzinfo=tzutc()), None],
-        [
+        (datetime(2024, 9, 1, tzinfo=tzutc()), None),
+        (
             datetime(2024, 9, 1, 12, tzinfo=tzutc()),
             datetime(2024, 9, 2, 12, tzinfo=tzutc()),
-        ],
+        ),
     )
     assert temporal_intervals_overlap(
-        [None, None],
-        [
+        (None, None),
+        (
             datetime(2024, 9, 1, 12, tzinfo=tzutc()),
             datetime(2024, 9, 2, 12, tzinfo=tzutc()),
-        ],
+        ),
     )
     assert not temporal_intervals_overlap(
-        [datetime(2023, 9, 1, tzinfo=tzutc()), datetime(2023, 9, 2, tzinfo=tzutc())],
-        [
+        (datetime(2023, 9, 1, tzinfo=tzutc()), datetime(2023, 9, 2, tzinfo=tzutc())),
+        (
             datetime(2024, 9, 1, 12, tzinfo=tzutc()),
             datetime(2024, 9, 2, 12, tzinfo=tzutc()),
-        ],
+        ),
     )
     assert not temporal_intervals_overlap(
-        [datetime(2023, 9, 1, tzinfo=tzutc()), datetime(2023, 9, 2, tzinfo=tzutc())],
-        [
+        (datetime(2023, 9, 1, tzinfo=tzutc()), datetime(2023, 9, 2, tzinfo=tzutc())),
+        (
             datetime(2024, 9, 1, 12, tzinfo=tzutc()),
             None,
-        ],
+        ),
     )

@@ -107,8 +107,9 @@ a spatial extent that intersects Scandinavia.
     $ stac-client collections https://emc.spacebel.be --q biomass --bbox 0.09 54.72 33.31 71.36  --matched
     43 items matched
 
-Since most STAC APIs have not yet implemented the collection search 
-extension, ``pystac-client`` will perform a limited client-side 
+Since most STAC APIs have not yet implemented the `collection search 
+extension <https://github.com/stac-api-extensions/collection-search>`_, 
+``pystac-client`` will perform a limited client-side 
 filter on the full list of collections using only the ``bbox``, 
 ``datetime``, and ``q`` (free-text search) parameters.
 In the case that the STAC API does not support collection search, a

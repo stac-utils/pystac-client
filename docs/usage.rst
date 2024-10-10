@@ -229,7 +229,7 @@ creating your :class:`Client<pystac_client.Client>`.
 CollectionClient
 ++++++++++++++++
 
-STAC APIs may optionally implement a ``/collections`` endpoint as describe in the
+STAC APIs may optionally implement a ``/collections`` endpoint as described in the
 `STAC API - Collections spec
 <https://github.com/radiantearth/stac-api-spec/tree/release/v1.0.0/ogcapi-features#stac-api---collections>`__. 
 This endpoint allows clients to search or inspect items within a particular collection.
@@ -257,7 +257,7 @@ every itme for the whole ``"sentinel-2-l2a"`` collection.
 CollectionSearch
 ++++++++++++++++
 
-STAC API services may optionally implement a ``/collections`` endpoint as describe in the
+STAC API services may optionally implement a ``/collections`` endpoint as described in the
 `STAC API - Collections spec
 <https://github.com/radiantearth/stac-api-spec/tree/release/v1.0.0/ogcapi-features#stac-api---collections>`__.
 The ``/collections`` endpoint can be extended with the 
@@ -281,10 +281,10 @@ requests to a service's "collections" endpoint. This method returns a
     ... )
 
 Instances of :class:`~pystac_client.CollectionSearch` have a handful of methods for
-getting matching collections into Python objects. The right method to use depends on
+getting matching collections as Python objects. The right method to use depends on
 how many of the matches you want to consume (a single collection at a time, a
 page at a time, or everything) and whether you want plain Python dictionaries
-representing the collections, or proper ``pystac`` objects.
+representing the collections, or :class:`pystac.Collection` objects.
 
 The following table shows the :class:`~pystac_client.CollectionSearch` methods for fetching
 matches, according to which set of matches to return and whether to return them as
@@ -325,7 +325,7 @@ described in the
 `STAC API - Collections: Collection Paging <https://github.com/radiantearth/stac-api-spec/blob/main/ogcapi-features/README.md#collection-pagination>`__
 section.
 
-Alternatively, the Collections can be returned within a list, where each
+Alternatively, the Collections can be returned as a list, where each
 list is one page of results retrieved from search:
 
 .. code-block:: python
@@ -378,10 +378,10 @@ requests to a service's "search" endpoint. This method returns a
     ... )
 
 Instances of :class:`~pystac_client.ItemSearch` have a handful of methods for
-getting matching items into Python objects. The right method to use depends on
+getting matching items as Python objects. The right method to use depends on
 how many of the matches you want to consume (a single item at a time, a
 page at a time, or everything) and whether you want plain Python dictionaries
-representing the items, or proper ``pystac`` objects.
+representing the items, or :class:`pystac.Item` objects.
 
 The following table shows the :class:`~pystac_client.ItemSearch` methods for fetching
 matches, according to which set of matches to return and whether to return them as

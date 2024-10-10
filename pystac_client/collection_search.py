@@ -9,10 +9,10 @@ from typing import (
     Iterator,
     List,
     Optional,
-    Sequence,
+    Tuple,
 )
 
-from pystac import Collection
+from pystac import Collection, TemporalExtent
 
 from pystac_client._utils import Modifiable, call_modifier
 from pystac_client.conformance import ConformanceClasses
@@ -36,7 +36,7 @@ if TYPE_CHECKING:
     from pystac_client import client as _client
 
 
-TemporalInterval = Sequence[Optional[datetime]]
+TemporalInterval = Tuple[Optional[datetime], Optional[datetime]]
 
 
 def temporal_intervals_overlap(
@@ -75,37 +75,43 @@ def collection_matches(
 
     # check for overlap between the provided temporal interval and the collection's
     # temporal extent
-    collection_temporal_intervals = collection_dict["extent"]["temporal"]["interval"]
+    collection_temporal_extent = TemporalExtent.from_dict(
+        collection_dict["extent"]["temporal"]
+    )
 
     # process the user-provided temporal interval
-    temporal_interval = (
+    search_temporal_interval = (
         temporal_interval_str.split("/") if temporal_interval_str else []
     )
 
     # replace .. in open intervals with actual strings
-    if temporal_interval:
-        if temporal_interval[0] == "..":
-            temporal_interval[0] = datetime.min.replace(tzinfo=timezone.utc).isoformat()
-        if temporal_interval[1] == "..":
-            temporal_interval[1] = datetime.max.replace(tzinfo=timezone.utc).isoformat()
+    if search_temporal_interval:
+        if search_temporal_interval[0] == "..":
+            search_temporal_interval[0] = datetime.min.replace(
+                tzinfo=timezone.utc
+            ).isoformat()
+        if search_temporal_interval[1] == "..":
+            search_temporal_interval[1] = datetime.max.replace(
+                tzinfo=timezone.utc
+            ).isoformat()
 
     datetime_overlaps = not temporal_interval_str or (
         any(
             temporal_intervals_overlap(
-                [
-                    datetime.fromisoformat(_datetime.replace("Z", "+00:00"))
-                    for _datetime in temporal_interval
-                ],
-                [
-                    (
-                        datetime.fromisoformat(_datetime.replace("Z", "+00:00"))
-                        if _datetime
-                        else None
-                    )
-                    for _datetime in collection_temporal_interval
-                ],
+                (
+                    datetime.fromisoformat(
+                        search_temporal_interval[0].replace("Z", "+00:00")
+                    ),
+                    datetime.fromisoformat(
+                        search_temporal_interval[1].replace("Z", "+00:00")
+                    ),
+                ),
+                (
+                    collection_temporal_interval[0],
+                    collection_temporal_interval[1],
+                ),
             )
-            for collection_temporal_interval in collection_temporal_intervals
+            for collection_temporal_interval in collection_temporal_extent.intervals
         )
     )
 
