@@ -79,7 +79,7 @@ def collection_matches(
 
     # process the user-provided temporal interval
     temporal_interval = (
-        temporal_interval_str.split("/") if temporal_interval_str else None
+        temporal_interval_str.split("/") if temporal_interval_str else []
     )
 
     # replace .. in open intervals with actual strings
