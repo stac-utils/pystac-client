@@ -6,7 +6,7 @@ import pytest
 from dateutil.tz import gettz, tzutc
 
 from pystac_client import Client
-from pystac_client.search import BaseSearch
+from pystac_client.item_search import BaseSearch
 
 from .helpers import STAC_URLS, read_data_file
 

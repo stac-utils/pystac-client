@@ -17,7 +17,7 @@ from pystac import Collection
 from pystac_client._utils import Modifiable, call_modifier
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.free_text import sqlite_text_search
-from pystac_client.search import (
+from pystac_client.item_search import (
     BaseSearch,
     BBox,
     BBoxLike,
