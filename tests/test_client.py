@@ -504,6 +504,45 @@ class TestAPISearch:
         assert len(items) > 100
 
 
+class TestAPICollectionSearch:
+    @pytest.fixture(scope="function")
+    def api(self) -> Client:
+        return Client.from_file(str(TEST_DATA / "fedeo_clearinghouse.json"))
+
+    def test_search_conformance_error(self, api: Client) -> None:
+        # Remove collection search conformance
+        api.remove_conforms_to("COLLECTION_SEARCH")
+        api.remove_conforms_to("COLLECTIONS")
+
+        with strict():
+            with pytest.raises(DoesNotConformTo, match="COLLECTION_SEARCH"):
+                api.collection_search(limit=10, max_collections=10, q="test")
+
+    def test_search_conformance_warning(self) -> None:
+        api = Client.from_file(str(TEST_DATA / "planetary-computer-root.json"))
+
+        # Remove collection search conformance just in case...
+        api.remove_conforms_to("COLLECTION_SEARCH")
+
+        with strict():
+            with pytest.warns(UserWarning, match="COLLECTION_SEARCH"):
+                api.collection_search(limit=10, max_collections=10, q="test")
+
+    @pytest.mark.vcr
+    def test_search(self, api: Client) -> None:
+        results = api.collection_search(
+            bbox=[-73.21, 43.99, -73.12, 44.05],
+            limit=10,
+            datetime=[datetime(2020, 1, 1, 0, 0, 0, tzinfo=tzutc()), None],
+        )
+
+        assert results._parameters == {
+            "bbox": (-73.21, 43.99, -73.12, 44.05),
+            "limit": 10,
+            "datetime": "2020-01-01T00:00:00Z/..",
+        }
+
+
 class MySign:
     def __init__(self) -> None:
         self.call_count = 0

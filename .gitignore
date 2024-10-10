@@ -620,3 +620,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+uv.lock

@@ -1,6 +1,7 @@
 import json
 import re
 import warnings
+from abc import ABC
 from collections.abc import Iterable, Mapping
 from copy import deepcopy
 from datetime import datetime as datetime_
@@ -91,15 +92,6 @@ OP_MAP = {
 OPS = list(OP_MAP.keys())
 
 
-def __getattr__(name: str) -> Any:
-    if name in ("DEFAUL_LIMIT", "DEFAULT_LIMIT_AND_MAX_ITEMS"):
-        warnings.warn(
-            f"{name} is deprecated and will be removed in v0.8", DeprecationWarning
-        )
-        return 100
-    raise AttributeError(f"module {__name__} has no attribute {name}")
-
-
 # from https://gist.github.com/angstwad/bf22d1822c38a92ec0a9#gistcomment-2622319
 def dict_merge(
     dct: Dict[Any, Any], merge_dct: Dict[Any, Any], add_keys: bool = True
@@ -135,120 +127,7 @@ def dict_merge(
     return dct
 
 
-class ItemSearch:
-    """Represents a deferred query to a STAC search endpoint as described in the
-    `STAC API - Item Search spec
-    <https://github.com/radiantearth/stac-api-spec/tree/master/item-search>`__.
-
-    No request is sent to the API until a method is called to iterate
-    through the resulting STAC Items, either :meth:`ItemSearch.item_collections`,
-    :meth:`ItemSearch.items`, or :meth:`ItemSearch.items_as_dicts`.
-
-    All parameters except `url``, ``method``, ``max_items``, and ``client``
-    correspond to query parameters
-    described in the `STAC API - Item Search: Query Parameters Table
-    <https://github.com/radiantearth/stac-api-spec/tree/master/item-search#query-parameter-table>`__
-    docs. Please refer
-    to those docs for details on how these parameters filter search results.
-
-    Args:
-        url: The URL to the search page of the STAC API.
-        method : The HTTP method to use when making a request to the service.
-            This must be either ``"GET"``, ``"POST"``, or
-            ``None``. If ``None``, this will default to ``"POST"``.
-            If a ``"POST"`` request receives a ``405`` status for
-            the response, it will automatically retry with
-            ``"GET"`` for all subsequent requests.
-        max_items : The maximum number of items to return from the search, even
-            if there are more matching results. This allows the client to limit the
-            total number of Items returned from the :meth:`items`,
-            :meth:`item_collections`, and :meth:`items_as_dicts methods`. The client
-            will continue to request pages of items until the number of max items is
-            reached. By default (``max_items=None``) all items matching the query
-            will be returned.
-        stac_io: An instance of StacIO for retrieving results. Normally comes
-            from the Client that returns this ItemSearch client: An instance of a
-            root Client used to set the root on resulting Items.
-        client: An instance of Client for retrieving results. This is normally populated
-            by the client that returns this ItemSearch instance.
-        limit: A recommendation to the service as to the number of items to return
-            *per page* of results. Defaults to 100.
-        ids: List of one or more Item ids to filter on.
-        collections: List of one or more Collection IDs or :class:`pystac.Collection`
-            instances.
-        bbox: A list, tuple, or iterator representing a bounding box of 2D
-            or 3D coordinates. Results will be filtered
-            to only those intersecting the bounding box.
-        intersects: A string or dictionary representing a GeoJSON geometry or feature,
-            or an object that implements a ``__geo_interface__`` property, as supported
-            by several libraries including Shapely, ArcPy, PySAL, and geojson. Results
-            filtered to only those intersecting the geometry.
-        datetime: Either a single datetime or datetime range used to filter results.
-            You may express a single datetime using a :class:`datetime.datetime`
-            instance, a `RFC 3339-compliant <https://tools.ietf.org/html/rfc3339>`__
-            timestamp, or a simple date string (see below). Instances of
-            :class:`datetime.datetime` may be either
-            timezone aware or unaware. Timezone aware instances will be converted to
-            a UTC timestamp before being passed
-            to the endpoint. Timezone unaware instances are assumed to represent UTC
-            timestamps. You may represent a
-            datetime range using a ``"/"`` separated string as described in the spec,
-            or a list, tuple, or iterator
-            of 2 timestamps or datetime instances. For open-ended ranges, use either
-            ``".."`` (``'2020-01-01:00:00:00Z/..'``,
-            ``['2020-01-01:00:00:00Z', '..']``) or a value of ``None``
-            (``['2020-01-01:00:00:00Z', None]``).
-
-            If using a simple date string, the datetime can be specified in
-            ``YYYY-mm-dd`` format, optionally truncating
-            to ``YYYY-mm`` or just ``YYYY``. Simple date strings will be expanded to
-            include the entire time period, for example:
-
-            - ``2017`` expands to ``2017-01-01T00:00:00Z/2017-12-31T23:59:59Z``
-            - ``2017-06`` expands to ``2017-06-01T00:00:00Z/2017-06-30T23:59:59Z``
-            - ``2017-06-10`` expands to ``2017-06-10T00:00:00Z/2017-06-10T23:59:59Z``
-
-            If used in a range, the end of the range expands to the end of that
-            day/month/year, for example:
-
-            - ``2017/2018`` expands to
-              ``2017-01-01T00:00:00Z/2018-12-31T23:59:59Z``
-            - ``2017-06/2017-07`` expands to
-              ``2017-06-01T00:00:00Z/2017-07-31T23:59:59Z``
-            - ``2017-06-10/2017-06-11`` expands to
-              ``2017-06-10T00:00:00Z/2017-06-11T23:59:59Z``
-
-        query: List or JSON of query parameters as per the STAC API `query` extension
-        filter: JSON of query parameters as per the STAC API `filter` extension
-        filter_lang: Language variant used in the filter body. If `filter` is a
-            dictionary or not provided, defaults
-            to 'cql2-json'. If `filter` is a string, defaults to `cql2-text`.
-        sortby: A single field or list of fields to sort the response by
-        fields: A list of fields to include in the response. Note this may
-            result in invalid STAC objects, as they may not have required fields.
-            Use `items_as_dicts` to avoid object unmarshalling errors.
-        modifier : A callable that modifies the children collection and items
-            returned by this Client. This can be useful for injecting
-            authentication parameters into child assets to access data
-            from non-public sources.
-
-            The callable should expect a single argument, which will be one
-            of the following types:
-
-            * :class:`pystac.Collection`
-            * :class:`pystac.Item`
-            * :class:`pystac.ItemCollection`
-            * A STAC item-like :class:`dict`
-            * A STAC collection-like :class:`dict`
-
-            The callable should mutate the argument in place and return ``None``.
-
-            ``modifier`` propagates recursively to children of this Client.
-            After getting a child collection with, e.g.
-            :meth:`Client.get_collection`, the child items of that collection
-            will still be signed with ``modifier``.
-    """
-
+class BaseSearch(ABC):
     _stac_io: StacApiIO
 
     def __init__(
@@ -271,16 +150,10 @@ class ItemSearch:
         sortby: Optional[SortbyLike] = None,
         fields: Optional[FieldsLike] = None,
         modifier: Optional[Callable[[Modifiable], None]] = None,
+        q: Optional[str] = None,
     ):
         self.url = url
         self.client = client
-
-        if client and client._stac_io is not None and stac_io is None:
-            self._stac_io = client._stac_io
-            if not client.conforms_to(ConformanceClasses.ITEM_SEARCH):
-                warnings.warn(DoesNotConformTo("ITEM_SEARCH"))
-        else:
-            self._stac_io = stac_io or StacApiIO()
 
         self._max_items = max_items
         if self._max_items is not None and limit is not None:
@@ -304,6 +177,7 @@ class ItemSearch:
             "filter-lang": self._format_filter_lang(filter, filter_lang),
             "sortby": self._format_sortby(sortby),
             "fields": self._format_fields(fields),
+            "q": q,
         }
 
         self._parameters: Dict[str, Any] = {
@@ -339,7 +213,7 @@ class ItemSearch:
         return params
 
     def url_with_parameters(self) -> str:
-        """Returns this item search url with parameters, appropriate for a GET request.
+        """Returns the search url with parameters, appropriate for a GET request.
 
         Examples:
 
@@ -657,6 +531,184 @@ class ItemSearch:
             "intersects must be of type None, str, dict, or an object that "
             "implements __geo_interface__"
         )
+
+
+if TYPE_CHECKING:
+    from pystac_client import client as _client
+
+
+def __getattr__(name: str) -> Any:
+    if name in ("DEFAUL_LIMIT", "DEFAULT_LIMIT_AND_MAX_ITEMS"):
+        warnings.warn(
+            f"{name} is deprecated and will be removed in v0.8", DeprecationWarning
+        )
+        return 100
+    raise AttributeError(f"module {__name__} has no attribute {name}")
+
+
+class ItemSearch(BaseSearch):
+    """Represents a deferred query to a STAC search endpoint as described in the
+    `STAC API - Item Search spec
+    <https://github.com/radiantearth/stac-api-spec/tree/master/item-search>`__.
+
+    No request is sent to the API until a method is called to iterate
+    through the resulting STAC Items, either :meth:`ItemSearch.item_collections`,
+    :meth:`ItemSearch.items`, or :meth:`ItemSearch.items_as_dicts`.
+
+    All parameters except `url``, ``method``, ``max_items``, and ``client``
+    correspond to query parameters
+    described in the `STAC API - Item Search: Query Parameters Table
+    <https://github.com/radiantearth/stac-api-spec/tree/master/item-search#query-parameter-table>`__
+    docs. Please refer
+    to those docs for details on how these parameters filter search results.
+
+    Args:
+        url: The URL to the search page of the STAC API.
+        method : The HTTP method to use when making a request to the service.
+            This must be either ``"GET"``, ``"POST"``, or
+            ``None``. If ``None``, this will default to ``"POST"``.
+            If a ``"POST"`` request receives a ``405`` status for
+            the response, it will automatically retry with
+            ``"GET"`` for all subsequent requests.
+        max_items : The maximum number of items to return from the search, even
+            if there are more matching results. This allows the client to limit the
+            total number of Items returned from the :meth:`items`,
+            :meth:`item_collections`, and :meth:`items_as_dicts methods`. The client
+            will continue to request pages of items until the number of max items is
+            reached. By default (``max_items=None``) all items matching the query
+            will be returned.
+        stac_io: An instance of StacIO for retrieving results. Normally comes
+            from the Client that returns this ItemSearch client: An instance of a
+            root Client used to set the root on resulting Items.
+        client: An instance of Client for retrieving results. This is normally populated
+            by the client that returns this ItemSearch instance.
+        limit: A recommendation to the service as to the number of items to return
+            *per page* of results. Defaults to 100.
+        ids: List of one or more Item ids to filter on.
+        collections: List of one or more Collection IDs or :class:`pystac.Collection`
+            instances.
+        bbox: A list, tuple, or iterator representing a bounding box of 2D
+            or 3D coordinates. Results will be filtered
+            to only those intersecting the bounding box.
+        intersects: A string or dictionary representing a GeoJSON geometry or feature,
+            or an object that implements a ``__geo_interface__`` property, as supported
+            by several libraries including Shapely, ArcPy, PySAL, and geojson. Results
+            filtered to only those intersecting the geometry.
+        datetime: Either a single datetime or datetime range used to filter results.
+            You may express a single datetime using a :class:`datetime.datetime`
+            instance, a `RFC 3339-compliant <https://tools.ietf.org/html/rfc3339>`__
+            timestamp, or a simple date string (see below). Instances of
+            :class:`datetime.datetime` may be either
+            timezone aware or unaware. Timezone aware instances will be converted to
+            a UTC timestamp before being passed
+            to the endpoint. Timezone unaware instances are assumed to represent UTC
+            timestamps. You may represent a
+            datetime range using a ``"/"`` separated string as described in the spec,
+            or a list, tuple, or iterator
+            of 2 timestamps or datetime instances. For open-ended ranges, use either
+            ``".."`` (``'2020-01-01:00:00:00Z/..'``,
+            ``['2020-01-01:00:00:00Z', '..']``) or a value of ``None``
+            (``['2020-01-01:00:00:00Z', None]``).
+
+            If using a simple date string, the datetime can be specified in
+            ``YYYY-mm-dd`` format, optionally truncating
+            to ``YYYY-mm`` or just ``YYYY``. Simple date strings will be expanded to
+            include the entire time period, for example:
+
+            - ``2017`` expands to ``2017-01-01T00:00:00Z/2017-12-31T23:59:59Z``
+            - ``2017-06`` expands to ``2017-06-01T00:00:00Z/2017-06-30T23:59:59Z``
+            - ``2017-06-10`` expands to ``2017-06-10T00:00:00Z/2017-06-10T23:59:59Z``
+
+            If used in a range, the end of the range expands to the end of that
+            day/month/year, for example:
+
+            - ``2017/2018`` expands to
+              ``2017-01-01T00:00:00Z/2018-12-31T23:59:59Z``
+            - ``2017-06/2017-07`` expands to
+              ``2017-06-01T00:00:00Z/2017-07-31T23:59:59Z``
+            - ``2017-06-10/2017-06-11`` expands to
+              ``2017-06-10T00:00:00Z/2017-06-11T23:59:59Z``
+
+        query: List or JSON of query parameters as per the STAC API `query` extension
+        filter: JSON of query parameters as per the STAC API `filter` extension
+        filter_lang: Language variant used in the filter body. If `filter` is a
+            dictionary or not provided, defaults
+            to 'cql2-json'. If `filter` is a string, defaults to `cql2-text`.
+        sortby: A single field or list of fields to sort the response by
+        fields: A list of fields to include in the response. Note this may
+            result in invalid STAC objects, as they may not have required fields.
+            Use `items_as_dicts` to avoid object unmarshalling errors.
+        modifier : A callable that modifies the children collection and items
+            returned by this Client. This can be useful for injecting
+            authentication parameters into child assets to access data
+            from non-public sources.
+
+            The callable should expect a single argument, which will be one
+            of the following types:
+
+            * :class:`pystac.Collection`
+            * :class:`pystac.Item`
+            * :class:`pystac.ItemCollection`
+            * A STAC item-like :class:`dict`
+            * A STAC collection-like :class:`dict`
+
+            The callable should mutate the argument in place and return ``None``.
+
+            ``modifier`` propagates recursively to children of this Client.
+            After getting a child collection with, e.g.
+            :meth:`Client.get_collection`, the child items of that collection
+            will still be signed with ``modifier``.
+    """
+
+    _stac_io: StacApiIO
+
+    def __init__(
+        self,
+        url: str,
+        *,
+        method: Optional[str] = "POST",
+        max_items: Optional[int] = None,
+        stac_io: Optional[StacApiIO] = None,
+        client: Optional["_client.Client"] = None,
+        limit: Optional[int] = None,
+        ids: Optional[IDsLike] = None,
+        collections: Optional[CollectionsLike] = None,
+        bbox: Optional[BBoxLike] = None,
+        intersects: Optional[IntersectsLike] = None,
+        datetime: Optional[DatetimeLike] = None,
+        query: Optional[QueryLike] = None,
+        filter: Optional[FilterLike] = None,
+        filter_lang: Optional[FilterLangLike] = None,
+        sortby: Optional[SortbyLike] = None,
+        fields: Optional[FieldsLike] = None,
+        modifier: Optional[Callable[[Modifiable], None]] = None,
+    ):
+        super().__init__(
+            url=url,
+            method=method,
+            max_items=max_items,
+            stac_io=stac_io,
+            client=client,
+            limit=limit,
+            ids=ids,
+            collections=collections,
+            bbox=bbox,
+            intersects=intersects,
+            datetime=datetime,
+            query=query,
+            filter=filter,
+            filter_lang=filter_lang,
+            sortby=sortby,
+            fields=fields,
+            modifier=modifier,
+        )
+
+        if client and client._stac_io is not None and stac_io is None:
+            self._stac_io = client._stac_io
+            if not client.conforms_to(ConformanceClasses.ITEM_SEARCH):
+                warnings.warn(DoesNotConformTo("ITEM_SEARCH"))
+        else:
+            self._stac_io = stac_io or StacApiIO()
 
     @lru_cache(1)
     def matched(self) -> Optional[int]:

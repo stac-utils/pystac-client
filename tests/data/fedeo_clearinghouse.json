@@ -1,0 +1,172 @@
+{
+  "extent": {
+    "spatial": {"bbox": [[
+      -180,
+      -90,
+      180,
+      90
+    ]]},
+    "temporal": {"interval": [[
+      null,
+      null
+    ]]}
+  },
+  "stac_version": "1.0.0",
+  "license": "various",
+  "description": "FedEO Clearinghouse provides interoperable access, following ISO/OGC interface guidelines, to Earth Observation metadata",
+  "links": [
+    {
+      "rel": "self",
+      "href": "https://emc.spacebel.be",
+      "type": "application/json",
+      "title": "This document"
+    },
+    {
+      "rel": "search",
+      "href": "https://emc.spacebel.be/api?httpAccept=application/opensearchdescription%2Bxml",
+      "type": "application/opensearchdescription+xml",
+      "title": "OpenSearch Description Document"
+    },
+    {
+      "rel": "service-desc",
+      "href": "https://emc.spacebel.be/api?httpAccept=application/vnd.oai.openapi%2Bjson;version=3.0",
+      "type": "application/vnd.oai.openapi+json;version=3.0",
+      "title": "OpenAPI definition in JSON format"
+    },
+    {
+      "rel": "service-desc",
+      "href": "https://emc.spacebel.be/api?httpAccept=application/json;profile=http://explain.z3950.org/dtd/2.0/",
+      "type": "application/json;profile=\"http://explain.z3950.org/dtd/2.0/\"",
+      "title": "Explain Document"
+    },
+    {
+      "rel": "service-desc",
+      "href": "https://emc.spacebel.be/api?httpAccept=application/sru%2Bxml",
+      "type": "application/sru+xml",
+      "title": "Explain Document"
+    },
+    {
+      "rel": "data",
+      "href": "https://emc.spacebel.be/collections",
+      "type": "application/json",
+      "title": "Metadata about the feature collections"
+    },
+    {
+      "rel": "data",
+      "href": "https://emc.spacebel.be/collections",
+      "type": "application/ld+json",
+      "title": "Metadata about the feature collections"
+    },
+    {
+      "rel": "data",
+      "href": "https://emc.spacebel.be/collections",
+      "type": "application/rdf+xml",
+      "title": "Metadata about the feature collections"
+    },
+    {
+      "rel": "data",
+      "href": "https://emc.spacebel.be/collections",
+      "type": "text/turtle",
+      "title": "Metadata about the feature collections"
+    },
+    {
+      "rel": "conformance",
+      "href": "https://emc.spacebel.be/conformance",
+      "type": "application/json",
+      "title": "OGC conformance classes implemented by this API"
+    },
+    {
+      "rel": "service-doc",
+      "href": "https://emc.spacebel.be/readme.html",
+      "type": "text/html",
+      "title": "API Documentation"
+    },
+    {
+      "rel": "service-doc",
+      "href": "https://emc.spacebel.be/index.html",
+      "type": "text/html",
+      "title": "API Documentation (Jupyter)"
+    },
+    {
+      "rel": "service-doc",
+      "href": "https://redocly.github.io/redoc/?url=https://emc.spacebel.be/api&nocors",
+      "type": "text/html",
+      "title": "API documentation in ReDoc format"
+    },
+    {
+      "rel": "service-doc",
+      "href": "http://petstore.swagger.io/?url=https://emc.spacebel.be/api",
+      "type": "text/html",
+      "title": "API documentation in Swagger.io format"
+    },
+    {
+      "rel": "alternate",
+      "href": "https://emc.spacebel.be?httpAccept=text/html",
+      "type": "text/html",
+      "title": "Landing Page in HTML media type."
+    },
+    {
+      "rel": "alternate",
+      "href": "https://emc.spacebel.be?httpAccept=application/ld%2Bjson",
+      "type": "application/ld+json",
+      "title": "Landing Page in JSON-LD media type."
+    },
+    {
+      "method": "GET",
+      "rel": "search",
+      "href": "https://emc.spacebel.be/search",
+      "type": "application/geo+json",
+      "title": "STAC Search"
+    },
+    {
+      "method": "POST",
+      "rel": "search",
+      "href": "https://emc.spacebel.be/search",
+      "type": "application/geo+json",
+      "title": "STAC Search"
+    },
+    {
+      "rel": "child",
+      "href": "https://emc.spacebel.be/series",
+      "type": "application/json",
+      "title": "Collections"
+    },
+    {
+      "rel": "child",
+      "href": "https://emc.spacebel.be/services",
+      "type": "application/json",
+      "title": "Services"
+    },
+    {
+      "rel": "root",
+      "href": "https://emc.spacebel.be",
+      "type": "application/json"
+    }
+  ],
+  "id": "fedeo",
+  "conformsTo": [
+    "http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core",
+    "http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30",
+    "http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson",
+    "http://www.opengis.net/spec/ogcapi_common-2/1.0/conf/collections",
+    "http://www.opengis.net/spec/ogcapi-common-2/1.0/conf/simple-query",
+    "http://www.opengis.net/spec/ogcapi-records-1/1.0/req/cql-filter",
+    "http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson",
+    "http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/features-filter",
+    "https://api.stacspec.org/v1.0.0-rc.2/core",
+    "https://api.stacspec.org/v1.0.0-rc.2/stac-search",
+    "https://api.stacspec.org/v1.0.0-rc.2/stac-response",
+    "https://api.stacspec.org/v1.0.0-rc.2/collection-search",
+    "https://api.stacspec.org/v1.0.0-rc.2/collection-search#filter",
+    "https://api.stacspec.org/v1.0.0-rc.1/collection-search#free-text",
+    "https://api.stacspec.org/v1.0.0-rc.1/collection-search#sort",
+    "https://api.stacspec.org/v1.0.0-rc.2/item-search",
+    "https://api.stacspec.org/v1.0.0-rc.2/item-search#filter",
+    "http://www.opengis.net/spec/cql2/1.0/conf/cql2-text",
+    "http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2",
+    "https://api.stacspec.org/v1.0.0/item-search#sort",
+    "https://api.stacspec.org/v1.0.0/ogcapi-features#sort"
+  ],
+  "title": "FedEO Clearinghouse",
+  "type": "Catalog"
+}

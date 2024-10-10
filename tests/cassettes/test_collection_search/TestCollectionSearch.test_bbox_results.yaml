@@ -1,0 +1,1229 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.32.3
+    method: GET
+    uri: https://emc.spacebel.be/collections?limit=10&bbox=-159.893%2C21.843%2C-159.176%2C22.266
+  response:
+    body:
+      string: "{\n  \"collections\": [\n    {\n      \"extent\": {\n        \"spatial\":
+        {\"bbox\": [[\n          -180,\n          -90,\n          180,\n          90\n
+        \       ]]},\n        \"temporal\": {\"interval\": [[\n          \"2002-05-20T00:00:00.000Z\",\n
+        \         \"2012-04-08T23:59:59.999Z\"\n        ]]}\n      },\n      \"stac_version\":
+        \"1.0.0\",\n      \"keywords\": [\n        \"World\",\n        \"800 km\",\n
+        \       \"5 - 1150 km\",\n        \"Sun-synchronous\",\n        \"Very High
+        Resolution - VHR (0 - 5m)\",\n        \"Medium Resolution - MR (20 - 500 m)\",\n
+        \       \"EARTH SCIENCE > BIOSPHERE > VEGETATION\",\n        \"EARTH SCIENCE
+        > OCEANS\",\n        \"EARTH SCIENCE > OCEANS > OCEAN TEMPERATURE\",\n        \"EARTH
+        SCIENCE > ATMOSPHERE\",\n        \"EARTH SCIENCE > ATMOSPHERE > CLOUDS\",\n
+        \       \"EARTH SCIENCE > ATMOSPHERE > PRECIPITATION\",\n        \"Vegetation\",\n
+        \       \"Oceans\",\n        \"Ocean Temperature\",\n        \"Atmosphere\",\n
+        \       \"Clouds\",\n        \"Precipitation\",\n        \"Imaging Spectrometers/Radiometers\",\n
+        \       \"Envisat\",\n        \"AATSR\"\n      ],\n      \"created\": \"2019-05-21T00:00:00.00Z\",\n
+        \     \"description\": \"The Averaged Surface Temperature (AST) Product contains
+        averaged geophysical data at two different resolutions, and with respect to
+        two different averaging schemes. Measurement data sets at resolutions of 0.5
+        by 0.5 degrees and 10 by 10 arcmin with respect to a latitude/longitude grid
+        provide continuity with existing ATSR products.  Other data sets contain data
+        averaged over equal area cells of 50 by 50 km and 17 by 17 km aligned with
+        the satellite ground track. Both top-of-atmosphere and surface data sets are
+        provided. The surface temperature data sets provide, for sea cells, nadir
+        and dual view sea surface temperatures, and for land cells, land surface temperature
+        and NDVI. Cloud data is also included. No ADS are included in the AST product;
+        auxiliary data is contained within the MDS. The data sets of the AST product
+        are arranged by surface type and resolution.  This product is a continuation
+        of ERS ATSR data.  The 3rd reprocessing of AATSR data was performed in 2013;
+        the processing updates that have been put in place and the scientific improvements
+        are outlined in full in the User Summary Note for the Third Envisat AATSR
+        Reprocessing  https://earth.esa.int/eogateway/documents/20142/37627/IDEAS-VEG-OQC-REP-2148-%28A%29ATSR-Third+Reprocessing-Dataset-User-Summary-v1-0.pdf\",\n
+        \     \"type\": \"Collection\",\n      \"title\": \"Envisat AATSR Averaged
+        Surface Temperature (AST) Product [ATS_AR__2P]\",\n      \"license\": \"various\",\n
+        \     \"assets\": {\n        \"metadata_ogc_17_069r3\": {\n          \"roles\":
+        [\"metadata\"],\n          \"href\": \"https://emc.spacebel.be/collections/ENVISAT.ATS.AR__2P\",\n
+        \         \"type\": \"application/geo+json;profile=\\\"http://www.opengis.net/spec/ogcapi-features-1/1.0\\\"\",\n
+        \         \"title\": \"OGC 17-069r3 metadata\"\n        },\n        \"metadata_iso_19139\":
+        {\n          \"roles\": [\"metadata\"],\n          \"href\": \"https://emc.spacebel.be/collections/ENVISAT.ATS.AR__2P?httpAccept=application/vnd.iso.19139%2Bxml\",\n
+        \         \"title\": \"ISO 19139 metadata\",\n          \"type\": \"application/vnd.iso.19139+xml\"\n
+        \       },\n        \"metadata_iso_19139_2\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/ENVISAT.ATS.AR__2P?httpAccept=application/vnd.iso.19139-2%2Bxml\",\n
+        \         \"title\": \"ISO 19139-2 metadata\",\n          \"type\": \"application/vnd.iso.19139-2+xml\"\n
+        \       },\n        \"metadata_dif_10\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/ENVISAT.ATS.AR__2P?httpAccept=application/dif10%2Bxml\",\n
+        \         \"title\": \"DIF-10 metadata\",\n          \"type\": \"application/dif10+xml\"\n
+        \       },\n        \"metadata_iso_19115_3\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/ENVISAT.ATS.AR__2P?httpAccept=application/vnd.iso.19115-3%2Bxml\",\n
+        \         \"title\": \"ISO 19115-3 metadata\",\n          \"type\": \"application/vnd.iso.19115-3+xml\"\n
+        \       },\n        \"metadata_ogc_17_084r1\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/ENVISAT.ATS.AR__2P?mode=owc\",\n
+        \         \"title\": \"OGC 17-084r1 metadata\",\n          \"type\": \"application/geo+json;profile=\\\"http://www.opengis.net/spec/eoc-geojson/1.0\\\"\"\n
+        \       },\n        \"metadata_html\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/ENVISAT.ATS.AR__2P?httpAccept=text/html\",\n
+        \         \"title\": \"HTML\",\n          \"type\": \"text/html\"\n        }\n
+        \     },\n      \"links\": [\n        {\n          \"rel\": \"self\",\n          \"href\":
+        \"https://emc.spacebel.be/collections/ENVISAT.ATS.AR__2P\",\n          \"type\":
+        \"application/json\"\n        },\n        {\n          \"rel\": \"root\",\n
+        \         \"href\": \"https://emc.spacebel.be\",\n          \"type\": \"application/json\",\n
+        \         \"title\": \"FedEO Clearinghouse\"\n        },\n        {\n          \"rel\":
+        \"parent\",\n          \"href\": \"https://emc.spacebel.be\",\n          \"title\":
+        \"collections\",\n          \"type\": \"application/json\"\n        },\n        {\n
+        \         \"rel\": \"describedby\",\n          \"href\": \"https://earth.esa.int/eogateway/documents/20142/37627/ENVISAT-1%20PRODUCTS%20SPECIFICATIONS%20-%20VOLUME%207-%20AATSR%20PRODUCTS%20SPECIFICATIONS\",\n
+        \         \"type\": \"application/pdf\",\n          \"title\": \"AATSR Product
+        Specification - Product Specifications\"\n        },\n        {\n          \"rel\":
+        \"describedby\",\n          \"href\": \"https://earth.esa.int/eogateway/instruments/aatsr/auxiliary-data\",\n
+        \         \"type\": \"text/html\",\n          \"title\": \"AATSR auxiliary
+        data - Auxiliary Data\"\n        },\n        {\n          \"rel\": \"describedby\",\n
+        \         \"href\": \"https://earth.esa.int/eogateway/instruments/aatsr/products-information\",\n
+        \         \"type\": \"text/html\",\n          \"title\": \"AATSR Product Information
+        - Product Information\"\n        },\n        {\n          \"rel\": \"describedby\",\n
+        \         \"href\": \"https://earth.esa.int/eogateway/documents/20142/37627/AATSR-product-handbook.pdf\",\n
+        \         \"type\": \"application/pdf\",\n          \"title\": \"AATSR Product
+        Handbook - User Manual\"\n        },\n        {\n          \"rel\": \"describedby\",\n
+        \         \"href\": \"https://earth.esa.int/eogateway/documents/20142/37627/AATSR-Level-2-ATS_AR__2P-Product-Quality-Readme-Information.pdf\",\n
+        \         \"type\": \"application/pdf\",\n          \"title\": \"ATS_AR__2P
+        Product Quality Readme Information - Product Specifications\"\n        },\n
+        \       {\n          \"rel\": \"describedby\",\n          \"href\": \"https://earth.esa.int/eogateway/search?text=&category=Document%20library&filter=envisat,aatsr\",\n
+        \         \"type\": \"text/html\",\n          \"title\": \"More AATSR Documents
+        - Product Specifications\"\n        },\n        {\n          \"rel\": \"describedby\",\n
+        \         \"href\": \"https://earth.esa.int/eogateway/search?text=&category=Tools%20and%20toolboxes&filter=aatsr\",\n
+        \         \"type\": \"text/html\",\n          \"title\": \"(A)ATSR Software
+        Tools - Tools\"\n        },\n        {\n          \"rel\": \"describedby\",\n
+        \         \"href\": \"https://esatellus.service-now.com/csp?id=esa_simple_request\",\n
+        \         \"type\": \"text/html\",\n          \"title\": \"Get Help? - ESA
+        Earth Observation User Services Portal\"\n        },\n        {\n          \"rel\":
+        \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/ENVISAT.ATS.AR__2P?httpAccept=application/atom%2Bxml\",\n
+        \         \"type\": \"application/atom+xml\",\n          \"title\": \"Atom
+        format\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
+        \"https://emc.spacebel.be/collections/ENVISAT.ATS.AR__2P?httpAccept=application/xml\",\n
+        \         \"type\": \"application/xml\",\n          \"title\": \"Dublin Core
+        metadata\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
+        \"https://emc.spacebel.be/collections/ENVISAT.ATS.AR__2P?httpAccept=application/ld%2Bjson;profile=https://schema.org\",\n
+        \         \"type\": \"application/ld+json;profile=\\\"https://schema.org\\\"\",\n
+        \         \"title\": \"JSON-LD (schema.org) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/ENVISAT.ATS.AR__2P?httpAccept=application/ld%2Bjson;profile=http://data.europa.eu/930/\",\n
+        \         \"type\": \"application/ld+json;profile=\\\"http://data.europa.eu/930/\\\"\",\n
+        \         \"title\": \"JSON-LD (GeoDCAT-AP) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/ENVISAT.ATS.AR__2P?httpAccept=application/rdf%2Bxml\",\n
+        \         \"type\": \"application/rdf+xml\",\n          \"title\": \"RDF/XML
+        metadata\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
+        \"https://emc.spacebel.be/collections/ENVISAT.ATS.AR__2P?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
+        \         \"type\": \"application/rdf+xml;profile=\\\"https://schema.org\\\"\",\n
+        \         \"title\": \"RDF/XML (schema.org) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/ENVISAT.ATS.AR__2P?httpAccept=application/rdf%2Bxml;profile=http://data.europa.eu/930/\",\n
+        \         \"type\": \"application/rdf+xml;profile=\\\"http://data.europa.eu/930/\\\"\",\n
+        \         \"title\": \"RDF/XML (GeoDCAT-AP) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/ENVISAT.ATS.AR__2P?httpAccept=text/turtle;profile=https://schema.org\",\n
+        \         \"type\": \"text/turtle;profile=\\\"https://schema.org\\\"\",\n
+        \         \"title\": \"Turtle (schema.org) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/ENVISAT.ATS.AR__2P?httpAccept=text/turtle;profile=http://data.europa.eu/930/\",\n
+        \         \"type\": \"text/turtle;profile=\\\"http://data.europa.eu/930/\\\"\",\n
+        \         \"title\": \"Turtle (GeoDCAT-AP) metadata\"\n        },\n        {\n
+        \         \"rel\": \"related\",\n          \"href\": \"https://emc.spacebel.be/series/eo:organisationName/ESA@ESRIN\",\n
+        \         \"title\": \"More collections for ESA/ESRIN\"\n        },\n        {\n
+        \         \"rel\": \"related\",\n          \"href\": \"https://emc.spacebel.be/series/eo:platform/Envisat\",\n
+        \         \"title\": \"More collections for Envisat platform\"\n        },\n
+        \       {\n          \"rel\": \"related\",\n          \"href\": \"https://emc.spacebel.be/series/concepts/instruments/702277a0-8a84-5af3-a8f4-31d712ff17c3\",\n
+        \         \"title\": \"More collections for AATSR instrument\"\n        }\n
+        \     ],\n      \"id\": \"ENVISAT.ATS.AR__2P\",\n      \"updated\": \"2022-11-11T00:00:00.00Z\",\n
+        \     \"providers\": [\n        {\n          \"roles\": [\"producer\"],\n
+        \         \"name\": \"ESA/ESRIN\",\n          \"url\": \"http://www.esa.int\"\n
+        \       },\n        {\n          \"roles\": [\"host\"],\n          \"name\":
+        \"FedEO Clearinghouse\",\n          \"url\": \"https://emc.spacebel.be/readme.html\"\n
+        \       }\n      ],\n      \"summaries\": {\n        \"instruments\": [\"AATSR\"],\n
+        \       \"platform\": [\"Envisat\"]\n      }\n    },\n    {\n      \"extent\":
+        {\n        \"spatial\": {\"bbox\": [[\n          -180,\n          -90,\n          180,\n
+        \         90\n        ]]},\n        \"temporal\": {\"interval\": [[\n          \"2002-05-20T00:00:00.000Z\",\n
+        \         \"2012-04-08T23:59:59.999Z\"\n        ]]}\n      },\n      \"stac_version\":
+        \"1.0.0\",\n      \"keywords\": [\n        \"World\",\n        \"800 km\",\n
+        \       \"5 - 1150 km\",\n        \"Sun-synchronous\",\n        \"EARTH SCIENCE
+        > OCEANS\",\n        \"EARTH SCIENCE > OCEANS > OCEAN TEMPERATURE\",\n        \"Oceans\",\n
+        \       \"Ocean Temperature\",\n        \"Imaging Spectrometers/Radiometers\",\n
+        \       \"Envisat\",\n        \"AATSR\"\n      ],\n      \"created\": \"2019-05-29T00:00:00.00Z\",\n
+        \     \"description\": \"The L2P product contains full resolution dual-view
+        Sea Surface Temperature (SST) values. These SST use the ARC SST retrieval
+        and cloud screening which differ from the methods used to produce the Gridded
+        Surface Temperature (ATS_NR__2P) products. In addition to SST, the L2P products
+        contain the ATSR Saharan Dust Index (ASDI) and the clear-sky probability estimated
+        by the ARC cloud detection algorithm.  The L2P processor also generates L3U
+        products; these are the L2P products averaged onto a regular grid at 0.1 degree
+        resolution (they are therefore similar to the AR / Meteo Envisat-format products).
+        \ The L2P and L3U products are provided in NetCDF-4 format following GHRSST
+        Data Specifications (GDS) v2.  The L2P/L3U archive was reprocessed in 2013
+        with a new processor based upon the ARC SST; the changes are outlined in full
+        in the L2P Reprocessing User Notehttps://earth.esa.int/eogateway/documents/20142/37627/User%20Note%20for%20%28A%29ATSR%20L2P%20Reprocessing\",\n
+        \     \"type\": \"Collection\",\n      \"title\": \"Envisat AATSR ARC L2P/L3U
+        \ [UPA-L2P_GHRSST/UPA-L3U_GHRSST]\",\n      \"license\": \"various\",\n      \"assets\":
+        {\n        \"metadata_ogc_17_069r3\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/ENVISAT.UPA-L2P-L3U\",\n
+        \         \"type\": \"application/geo+json;profile=\\\"http://www.opengis.net/spec/ogcapi-features-1/1.0\\\"\",\n
+        \         \"title\": \"OGC 17-069r3 metadata\"\n        },\n        \"metadata_iso_19139\":
+        {\n          \"roles\": [\"metadata\"],\n          \"href\": \"https://emc.spacebel.be/collections/ENVISAT.UPA-L2P-L3U?httpAccept=application/vnd.iso.19139%2Bxml\",\n
+        \         \"title\": \"ISO 19139 metadata\",\n          \"type\": \"application/vnd.iso.19139+xml\"\n
+        \       },\n        \"metadata_iso_19139_2\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/ENVISAT.UPA-L2P-L3U?httpAccept=application/vnd.iso.19139-2%2Bxml\",\n
+        \         \"title\": \"ISO 19139-2 metadata\",\n          \"type\": \"application/vnd.iso.19139-2+xml\"\n
+        \       },\n        \"metadata_dif_10\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/ENVISAT.UPA-L2P-L3U?httpAccept=application/dif10%2Bxml\",\n
+        \         \"title\": \"DIF-10 metadata\",\n          \"type\": \"application/dif10+xml\"\n
+        \       },\n        \"metadata_iso_19115_3\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/ENVISAT.UPA-L2P-L3U?httpAccept=application/vnd.iso.19115-3%2Bxml\",\n
+        \         \"title\": \"ISO 19115-3 metadata\",\n          \"type\": \"application/vnd.iso.19115-3+xml\"\n
+        \       },\n        \"metadata_ogc_17_084r1\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/ENVISAT.UPA-L2P-L3U?mode=owc\",\n
+        \         \"title\": \"OGC 17-084r1 metadata\",\n          \"type\": \"application/geo+json;profile=\\\"http://www.opengis.net/spec/eoc-geojson/1.0\\\"\"\n
+        \       },\n        \"metadata_html\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/ENVISAT.UPA-L2P-L3U?httpAccept=text/html\",\n
+        \         \"title\": \"HTML\",\n          \"type\": \"text/html\"\n        }\n
+        \     },\n      \"links\": [\n        {\n          \"rel\": \"self\",\n          \"href\":
+        \"https://emc.spacebel.be/collections/ENVISAT.UPA-L2P-L3U\",\n          \"type\":
+        \"application/json\"\n        },\n        {\n          \"rel\": \"root\",\n
+        \         \"href\": \"https://emc.spacebel.be\",\n          \"type\": \"application/json\",\n
+        \         \"title\": \"FedEO Clearinghouse\"\n        },\n        {\n          \"rel\":
+        \"parent\",\n          \"href\": \"https://emc.spacebel.be\",\n          \"title\":
+        \"collections\",\n          \"type\": \"application/json\"\n        },\n        {\n
+        \         \"rel\": \"describedby\",\n          \"href\": \"https://earth.esa.int/eogateway/instruments/aatsr/auxiliary-data\",\n
+        \         \"type\": \"text/html\",\n          \"title\": \"AATSR auxiliary
+        data - Auxiliary Data\"\n        },\n        {\n          \"rel\": \"describedby\",\n
+        \         \"href\": \"https://earth.esa.int/eogateway/documents/20142/37627/ENVISAT-1%20PRODUCTS%20SPECIFICATIONS%20-%20VOLUME%207-%20AATSR%20PRODUCTS%20SPECIFICATIONS\",\n
+        \         \"type\": \"application/pdf\",\n          \"title\": \"AATSR Products
+        Specifications - Product Specifications\"\n        },\n        {\n          \"rel\":
+        \"describedby\",\n          \"href\": \"https://earth.esa.int/eogateway/documents/20142/37627/AATSR-product-handbook.pdf\",\n
+        \         \"type\": \"application/pdf\",\n          \"title\": \"AATSR Product
+        Handbook - User Manual\"\n        },\n        {\n          \"rel\": \"describedby\",\n
+        \         \"href\": \"https://earth.esa.int/eogateway/instruments/aatsr/products-information\",\n
+        \         \"type\": \"text/html\",\n          \"title\": \"AATSR Product Information
+        - Product Information\"\n        },\n        {\n          \"rel\": \"describedby\",\n
+        \         \"href\": \"https://earth.esa.int/eogateway/documents/20142/37627/L2P-Product-Description.pdf\",\n
+        \         \"type\": \"application/pdf\",\n          \"title\": \"(A)ATSR SST
+        L2P/L3U Product User Guide - Product Specifications\"\n        },\n        {\n
+        \         \"rel\": \"describedby\",\n          \"href\": \"https://www.ghrsst.org/about-ghrsst/governance-documents/\",\n
+        \         \"type\": \"text/html\",\n          \"title\": \"GHRSST data specifications
+        - Product Specifications\"\n        },\n        {\n          \"rel\": \"describedby\",\n
+        \         \"href\": \"https://earth.esa.int/eogateway/search?text=&category=Document%20library&filter=envisat,aatsr\",\n
+        \         \"type\": \"text/html\",\n          \"title\": \"More AATSR Documents
+        - Product Specifications\"\n        },\n        {\n          \"rel\": \"describedby\",\n
+        \         \"href\": \"https://earth.esa.int/eogateway/search?text=&category=Tools%20and%20toolboxes&filter=aatsr\",\n
+        \         \"type\": \"text/html\",\n          \"title\": \"(A)ATSR Software
+        Tools - Tools\"\n        },\n        {\n          \"rel\": \"describedby\",\n
+        \         \"href\": \"https://esatellus.service-now.com/csp?id=esa_simple_request\",\n
+        \         \"type\": \"text/html\",\n          \"title\": \"Get Help? - ESA
+        Earth Observation User Services Portal\"\n        },\n        {\n          \"rel\":
+        \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/ENVISAT.UPA-L2P-L3U?httpAccept=application/atom%2Bxml\",\n
+        \         \"type\": \"application/atom+xml\",\n          \"title\": \"Atom
+        format\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
+        \"https://emc.spacebel.be/collections/ENVISAT.UPA-L2P-L3U?httpAccept=application/xml\",\n
+        \         \"type\": \"application/xml\",\n          \"title\": \"Dublin Core
+        metadata\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
+        \"https://emc.spacebel.be/collections/ENVISAT.UPA-L2P-L3U?httpAccept=application/ld%2Bjson;profile=https://schema.org\",\n
+        \         \"type\": \"application/ld+json;profile=\\\"https://schema.org\\\"\",\n
+        \         \"title\": \"JSON-LD (schema.org) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/ENVISAT.UPA-L2P-L3U?httpAccept=application/ld%2Bjson;profile=http://data.europa.eu/930/\",\n
+        \         \"type\": \"application/ld+json;profile=\\\"http://data.europa.eu/930/\\\"\",\n
+        \         \"title\": \"JSON-LD (GeoDCAT-AP) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/ENVISAT.UPA-L2P-L3U?httpAccept=application/rdf%2Bxml\",\n
+        \         \"type\": \"application/rdf+xml\",\n          \"title\": \"RDF/XML
+        metadata\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
+        \"https://emc.spacebel.be/collections/ENVISAT.UPA-L2P-L3U?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
+        \         \"type\": \"application/rdf+xml;profile=\\\"https://schema.org\\\"\",\n
+        \         \"title\": \"RDF/XML (schema.org) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/ENVISAT.UPA-L2P-L3U?httpAccept=application/rdf%2Bxml;profile=http://data.europa.eu/930/\",\n
+        \         \"type\": \"application/rdf+xml;profile=\\\"http://data.europa.eu/930/\\\"\",\n
+        \         \"title\": \"RDF/XML (GeoDCAT-AP) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/ENVISAT.UPA-L2P-L3U?httpAccept=text/turtle;profile=https://schema.org\",\n
+        \         \"type\": \"text/turtle;profile=\\\"https://schema.org\\\"\",\n
+        \         \"title\": \"Turtle (schema.org) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/ENVISAT.UPA-L2P-L3U?httpAccept=text/turtle;profile=http://data.europa.eu/930/\",\n
+        \         \"type\": \"text/turtle;profile=\\\"http://data.europa.eu/930/\\\"\",\n
+        \         \"title\": \"Turtle (GeoDCAT-AP) metadata\"\n        },\n        {\n
+        \         \"rel\": \"related\",\n          \"href\": \"https://emc.spacebel.be/series/eo:organisationName/ESA@ESRIN\",\n
+        \         \"title\": \"More collections for ESA/ESRIN\"\n        },\n        {\n
+        \         \"rel\": \"related\",\n          \"href\": \"https://emc.spacebel.be/series/eo:platform/Envisat\",\n
+        \         \"title\": \"More collections for Envisat platform\"\n        },\n
+        \       {\n          \"rel\": \"related\",\n          \"href\": \"https://emc.spacebel.be/series/concepts/instruments/702277a0-8a84-5af3-a8f4-31d712ff17c3\",\n
+        \         \"title\": \"More collections for AATSR instrument\"\n        }\n
+        \     ],\n      \"id\": \"ENVISAT.UPA-L2P-L3U\",\n      \"updated\": \"2022-11-11T00:00:00.00Z\",\n
+        \     \"providers\": [\n        {\n          \"roles\": [\"producer\"],\n
+        \         \"name\": \"ESA/ESRIN\",\n          \"url\": \"http://www.esa.int\"\n
+        \       },\n        {\n          \"roles\": [\"host\"],\n          \"name\":
+        \"FedEO Clearinghouse\",\n          \"url\": \"https://emc.spacebel.be/readme.html\"\n
+        \       }\n      ],\n      \"summaries\": {\n        \"instruments\": [\"AATSR\"],\n
+        \       \"platform\": [\"Envisat\"]\n      }\n    },\n    {\n      \"extent\":
+        {\n        \"spatial\": {\"bbox\": [[\n          -180,\n          -90,\n          180,\n
+        \         90\n        ]]},\n        \"temporal\": {\"interval\": [[\n          \"2021-10-09T00:00:00.000Z\",\n
+        \         null\n        ]]}\n      },\n      \"stac_version\": \"1.0.0\",\n
+        \     \"keywords\": [\n        \"FedEO\",\n        \"SCIHUB\",\n        \"DIF10\",\n
+        \       \"Sea Surface Topography\",\n        \"EARTH SCIENCE > OCEANS > SEA
+        SURFACE TOPOGRAPHY\",\n        \"Radar Altimeters\",\n        \"Radiometers\",\n
+        \       \"Sentinel-6\",\n        \"POSEIDON-4\",\n        \"AMR-C\"\n      ],\n
+        \     \"created\": \"2024-01-02T00:00:00.00Z\",\n      \"description\": \"Copernicus
+        Sentinel-6 Michael Freilich is an Earth Observation satellite mission developed
+        to provide enhanced continuity to the very stable time series of mean sea
+        level measurements and ocean sea state that started in 1992, with the TOPEX/Poseidon
+        mission, then continued by the Jason-1, Jason-2 and Jason-3 satellite missions.\",\n
+        \     \"type\": \"Collection\",\n      \"title\": \"Sentinel-6 Products\",\n
+        \     \"license\": \"various\",\n      \"assets\": {\n        \"search\":
+        {\n          \"roles\": [\"search\"],\n          \"href\": \"https://fedeo-client.ceos.org?url=https://emc.spacebel.be/api?httpAccept=application/opensearchdescription%252Bxml&uid=EOP:ESA:SCIHUB:S6\",\n
+        \         \"type\": \"text/html\",\n          \"title\": \"Search client\"\n
+        \       },\n        \"metadata_ogc_17_069r3\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-6\",\n
+        \         \"type\": \"application/geo+json;profile=\\\"http://www.opengis.net/spec/ogcapi-features-1/1.0\\\"\",\n
+        \         \"title\": \"OGC 17-069r3 metadata\"\n        },\n        \"metadata_iso_19139\":
+        {\n          \"roles\": [\"metadata\"],\n          \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-6?httpAccept=application/vnd.iso.19139%2Bxml\",\n
+        \         \"title\": \"ISO 19139 metadata\",\n          \"type\": \"application/vnd.iso.19139+xml\"\n
+        \       },\n        \"metadata_iso_19139_2\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-6?httpAccept=application/vnd.iso.19139-2%2Bxml\",\n
+        \         \"title\": \"ISO 19139-2 metadata\",\n          \"type\": \"application/vnd.iso.19139-2+xml\"\n
+        \       },\n        \"metadata_dif_10\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-6?httpAccept=application/dif10%2Bxml\",\n
+        \         \"title\": \"DIF-10 metadata\",\n          \"type\": \"application/dif10+xml\"\n
+        \       },\n        \"metadata_iso_19115_3\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-6?httpAccept=application/vnd.iso.19115-3%2Bxml\",\n
+        \         \"title\": \"ISO 19115-3 metadata\",\n          \"type\": \"application/vnd.iso.19115-3+xml\"\n
+        \       },\n        \"metadata_ogc_17_084r1\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-6?mode=owc\",\n
+        \         \"title\": \"OGC 17-084r1 metadata\",\n          \"type\": \"application/geo+json;profile=\\\"http://www.opengis.net/spec/eoc-geojson/1.0\\\"\"\n
+        \       },\n        \"metadata_html\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-6?httpAccept=text/html\",\n
+        \         \"title\": \"HTML\",\n          \"type\": \"text/html\"\n        }\n
+        \     },\n      \"links\": [\n        {\n          \"rel\": \"self\",\n          \"href\":
+        \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-6\",\n          \"type\":
+        \"application/json\"\n        },\n        {\n          \"rel\": \"root\",\n
+        \         \"href\": \"https://emc.spacebel.be\",\n          \"type\": \"application/json\",\n
+        \         \"title\": \"FedEO Clearinghouse\"\n        },\n        {\n          \"rel\":
+        \"parent\",\n          \"href\": \"https://emc.spacebel.be\",\n          \"title\":
+        \"collections\",\n          \"type\": \"application/json\"\n        },\n        {\n
+        \         \"rel\": \"items\",\n          \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-6/items?httpAccept=application/geo%2Bjson;profile=https://stacspec.org\",\n
+        \         \"type\": \"application/geo+json\",\n          \"title\": \"Datasets
+        search for the series EOP:ESA:Sentinel-6\"\n        },\n        {\n          \"rel\":
+        \"http://www.opengis.net/def/rel/ogc/1.0/queryables\",\n          \"href\":
+        \"https://emc.spacebel.be/collections/EOP:ESA:SCIHUB:S6/queryables\",\n          \"type\":
+        \"application/schema+json\",\n          \"title\": \"Queryables for EOP:ESA:SCIHUB:S6\"\n
+        \       },\n        {\n          \"rel\": \"search\",\n          \"href\":
+        \"https://dataspace.copernicus.eu\",\n          \"title\": \"Copernicus Data
+        Space Ecosystem - Copernicus Data Space Ecosystem\"\n        },\n        {\n
+        \         \"rel\": \"search\",\n          \"href\": \"https://fedeo.ceos.org/opensearch/description.xml?parentIdentifier=EOP:ESA:SCIHUB:S6\",\n
+        \         \"title\": \"FedEO Clearinghouse - FedEO Clearinghouse\"\n        },\n
+        \       {\n          \"rel\": \"search\",\n          \"href\": \"https://emc.spacebel.be/collections/series/items/EOP:ESA:SCIHUB:S6/api\",\n
+        \         \"type\": \"application/opensearchdescription+xml\",\n          \"title\":
+        \"OpenSearch Description Document\"\n        },\n        {\n          \"rel\":
+        \"describedby\",\n          \"href\": \"https://sentinel.esa.int/web/sentinel/missions/sentinel-6\",\n
+        \         \"title\": \"ESA Sentinel-6 Online\"\n        },\n        {\n          \"rel\":
+        \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-6?httpAccept=application/atom%2Bxml\",\n
+        \         \"type\": \"application/atom+xml\",\n          \"title\": \"Atom
+        format\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
+        \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-6?httpAccept=application/xml\",\n
+        \         \"type\": \"application/xml\",\n          \"title\": \"Dublin Core
+        metadata\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
+        \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-6?httpAccept=application/ld%2Bjson;profile=https://schema.org\",\n
+        \         \"type\": \"application/ld+json;profile=\\\"https://schema.org\\\"\",\n
+        \         \"title\": \"JSON-LD (schema.org) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-6?httpAccept=application/ld%2Bjson;profile=http://data.europa.eu/930/\",\n
+        \         \"type\": \"application/ld+json;profile=\\\"http://data.europa.eu/930/\\\"\",\n
+        \         \"title\": \"JSON-LD (GeoDCAT-AP) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-6?httpAccept=application/rdf%2Bxml\",\n
+        \         \"type\": \"application/rdf+xml\",\n          \"title\": \"RDF/XML
+        metadata\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
+        \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-6?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
+        \         \"type\": \"application/rdf+xml;profile=\\\"https://schema.org\\\"\",\n
+        \         \"title\": \"RDF/XML (schema.org) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-6?httpAccept=application/rdf%2Bxml;profile=http://data.europa.eu/930/\",\n
+        \         \"type\": \"application/rdf+xml;profile=\\\"http://data.europa.eu/930/\\\"\",\n
+        \         \"title\": \"RDF/XML (GeoDCAT-AP) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-6?httpAccept=text/turtle;profile=https://schema.org\",\n
+        \         \"type\": \"text/turtle;profile=\\\"https://schema.org\\\"\",\n
+        \         \"title\": \"Turtle (schema.org) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-6?httpAccept=text/turtle;profile=http://data.europa.eu/930/\",\n
+        \         \"type\": \"text/turtle;profile=\\\"http://data.europa.eu/930/\\\"\",\n
+        \         \"title\": \"Turtle (GeoDCAT-AP) metadata\"\n        },\n        {\n
+        \         \"rel\": \"related\",\n          \"href\": \"https://emc.spacebel.be/series/eo:organisationName/ESA@ESRIN\",\n
+        \         \"title\": \"More collections for ESA/ESRIN\"\n        },\n        {\n
+        \         \"rel\": \"related\",\n          \"href\": \"https://emc.spacebel.be/series/eo:platform/Sentinel-6\",\n
+        \         \"title\": \"More collections for Sentinel-6 platform\"\n        },\n
+        \       {\n          \"rel\": \"related\",\n          \"href\": \"https://emc.spacebel.be/series/concepts/instruments/700b6e99-a527-5819-b283-4656c8832ea0\",\n
+        \         \"title\": \"More collections for AMR-C instrument\"\n        },\n
+        \       {\n          \"rel\": \"related\",\n          \"href\": \"https://emc.spacebel.be/series/concepts/instruments/5d1512a5-cb97-5e74-8778-35cd65c06936\",\n
+        \         \"title\": \"More collections for POSEIDON-4 instrument\"\n        }\n
+        \     ],\n      \"id\": \"EOP:ESA:Sentinel-6\",\n      \"updated\": \"2020-11-21T00:00:00.00Z\",\n
+        \     \"providers\": [\n        {\n          \"roles\": [\"producer\"],\n
+        \         \"name\": \"ESA/ESRIN\"\n        },\n        {\n          \"roles\":
+        [\"host\"],\n          \"name\": \"FedEO Clearinghouse\",\n          \"url\":
+        \"https://emc.spacebel.be/readme.html\"\n        }\n      ],\n      \"summaries\":
+        {\n        \"instruments\": [\n          \"AMR-C\",\n          \"POSEIDON-4\"\n
+        \       ],\n        \"platform\": [\"Sentinel-6\"]\n      }\n    },\n    {\n
+        \     \"extent\": {\n        \"spatial\": {\"bbox\": [[\n          -180,\n
+        \         -90,\n          180,\n          90\n        ]]},\n        \"temporal\":
+        {\"interval\": [[\n          \"2017-10-13T00:00:00.000Z\",\n          null\n
+        \       ]]}\n      },\n      \"stac_version\": \"1.0.0\",\n      \"keywords\":
+        [\n        \"FedEO\",\n        \"SCIHUB\",\n        \"DIF10\",\n        \"Air
+        Quality\",\n        \"EARTH SCIENCE > ATMOSPHERE > AIR QUALITY\",\n        \"Sentinel-5P\",\n
+        \       \"TROPOMI\"\n      ],\n      \"created\": \"2018-10-09T00:00:00.00Z\",\n
+        \     \"description\": \"The Sentinel-5P data offer for the Pre-Operations
+        Open Access Hub consists of Level-1B and Level-2 user products for the TROPOMI
+        instrument.\",\n      \"type\": \"Collection\",\n      \"title\": \"Sentinel-5P
+        Products\",\n      \"license\": \"various\",\n      \"assets\": {\n        \"search\":
+        {\n          \"roles\": [\"search\"],\n          \"href\": \"https://fedeo-client.ceos.org?url=https://emc.spacebel.be/api?httpAccept=application/opensearchdescription%252Bxml&uid=EOP:ESA:SCIHUB:S5P\",\n
+        \         \"type\": \"text/html\",\n          \"title\": \"Search client\"\n
+        \       },\n        \"metadata_ogc_17_069r3\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-5P\",\n
+        \         \"type\": \"application/geo+json;profile=\\\"http://www.opengis.net/spec/ogcapi-features-1/1.0\\\"\",\n
+        \         \"title\": \"OGC 17-069r3 metadata\"\n        },\n        \"metadata_iso_19139\":
+        {\n          \"roles\": [\"metadata\"],\n          \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-5P?httpAccept=application/vnd.iso.19139%2Bxml\",\n
+        \         \"title\": \"ISO 19139 metadata\",\n          \"type\": \"application/vnd.iso.19139+xml\"\n
+        \       },\n        \"metadata_iso_19139_2\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-5P?httpAccept=application/vnd.iso.19139-2%2Bxml\",\n
+        \         \"title\": \"ISO 19139-2 metadata\",\n          \"type\": \"application/vnd.iso.19139-2+xml\"\n
+        \       },\n        \"metadata_dif_10\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-5P?httpAccept=application/dif10%2Bxml\",\n
+        \         \"title\": \"DIF-10 metadata\",\n          \"type\": \"application/dif10+xml\"\n
+        \       },\n        \"metadata_iso_19115_3\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-5P?httpAccept=application/vnd.iso.19115-3%2Bxml\",\n
+        \         \"title\": \"ISO 19115-3 metadata\",\n          \"type\": \"application/vnd.iso.19115-3+xml\"\n
+        \       },\n        \"metadata_ogc_17_084r1\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-5P?mode=owc\",\n
+        \         \"title\": \"OGC 17-084r1 metadata\",\n          \"type\": \"application/geo+json;profile=\\\"http://www.opengis.net/spec/eoc-geojson/1.0\\\"\"\n
+        \       },\n        \"metadata_html\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-5P?httpAccept=text/html\",\n
+        \         \"title\": \"HTML\",\n          \"type\": \"text/html\"\n        }\n
+        \     },\n      \"links\": [\n        {\n          \"rel\": \"self\",\n          \"href\":
+        \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-5P\",\n          \"type\":
+        \"application/json\"\n        },\n        {\n          \"rel\": \"root\",\n
+        \         \"href\": \"https://emc.spacebel.be\",\n          \"type\": \"application/json\",\n
+        \         \"title\": \"FedEO Clearinghouse\"\n        },\n        {\n          \"rel\":
+        \"parent\",\n          \"href\": \"https://emc.spacebel.be\",\n          \"title\":
+        \"collections\",\n          \"type\": \"application/json\"\n        },\n        {\n
+        \         \"rel\": \"items\",\n          \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-5P/items?httpAccept=application/geo%2Bjson;profile=https://stacspec.org\",\n
+        \         \"type\": \"application/geo+json\",\n          \"title\": \"Datasets
+        search for the series EOP:ESA:Sentinel-5P\"\n        },\n        {\n          \"rel\":
+        \"http://www.opengis.net/def/rel/ogc/1.0/queryables\",\n          \"href\":
+        \"https://emc.spacebel.be/collections/EOP:ESA:SCIHUB:S5P/queryables\",\n          \"type\":
+        \"application/schema+json\",\n          \"title\": \"Queryables for EOP:ESA:SCIHUB:S5P\"\n
+        \       },\n        {\n          \"rel\": \"search\",\n          \"href\":
+        \"https://dataspace.copernicus.eu\",\n          \"title\": \"Copernicus Data
+        Space Ecosystem - Copernicus Data Space Ecosystem\"\n        },\n        {\n
+        \         \"rel\": \"search\",\n          \"href\": \"https://fedeo.ceos.org/opensearch/description.xml?parentIdentifier=EOP:ESA:SCIHUB:S5P\",\n
+        \         \"title\": \"FedEO Clearinghouse - FedEO Clearinghouse\"\n        },\n
+        \       {\n          \"rel\": \"search\",\n          \"href\": \"https://emc.spacebel.be/collections/series/items/EOP:ESA:SCIHUB:S5P/api\",\n
+        \         \"type\": \"application/opensearchdescription+xml\",\n          \"title\":
+        \"OpenSearch Description Document\"\n        },\n        {\n          \"rel\":
+        \"describedby\",\n          \"href\": \"https://sentinel.esa.int/web/sentinel/missions/sentinel-5P\",\n
+        \         \"title\": \"ESA Sentinel-5P Online\"\n        },\n        {\n          \"rel\":
+        \"describedby\",\n          \"href\": \"https://sentinels.copernicus.eu/web/sentinel/user-guides/sentinel-5p-tropomi\",\n
+        \         \"title\": \"Sentinel-5P TROPOMI User Guide \"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-5P?httpAccept=application/atom%2Bxml\",\n
+        \         \"type\": \"application/atom+xml\",\n          \"title\": \"Atom
+        format\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
+        \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-5P?httpAccept=application/xml\",\n
+        \         \"type\": \"application/xml\",\n          \"title\": \"Dublin Core
+        metadata\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
+        \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-5P?httpAccept=application/ld%2Bjson;profile=https://schema.org\",\n
+        \         \"type\": \"application/ld+json;profile=\\\"https://schema.org\\\"\",\n
+        \         \"title\": \"JSON-LD (schema.org) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-5P?httpAccept=application/ld%2Bjson;profile=http://data.europa.eu/930/\",\n
+        \         \"type\": \"application/ld+json;profile=\\\"http://data.europa.eu/930/\\\"\",\n
+        \         \"title\": \"JSON-LD (GeoDCAT-AP) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-5P?httpAccept=application/rdf%2Bxml\",\n
+        \         \"type\": \"application/rdf+xml\",\n          \"title\": \"RDF/XML
+        metadata\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
+        \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-5P?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
+        \         \"type\": \"application/rdf+xml;profile=\\\"https://schema.org\\\"\",\n
+        \         \"title\": \"RDF/XML (schema.org) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-5P?httpAccept=application/rdf%2Bxml;profile=http://data.europa.eu/930/\",\n
+        \         \"type\": \"application/rdf+xml;profile=\\\"http://data.europa.eu/930/\\\"\",\n
+        \         \"title\": \"RDF/XML (GeoDCAT-AP) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-5P?httpAccept=text/turtle;profile=https://schema.org\",\n
+        \         \"type\": \"text/turtle;profile=\\\"https://schema.org\\\"\",\n
+        \         \"title\": \"Turtle (schema.org) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-5P?httpAccept=text/turtle;profile=http://data.europa.eu/930/\",\n
+        \         \"type\": \"text/turtle;profile=\\\"http://data.europa.eu/930/\\\"\",\n
+        \         \"title\": \"Turtle (GeoDCAT-AP) metadata\"\n        },\n        {\n
+        \         \"rel\": \"related\",\n          \"href\": \"https://emc.spacebel.be/series/eo:organisationName/ESA@ESRIN\",\n
+        \         \"title\": \"More collections for ESA/ESRIN\"\n        },\n        {\n
+        \         \"rel\": \"related\",\n          \"href\": \"https://emc.spacebel.be/series/eo:platform/Sentinel-5P\",\n
+        \         \"title\": \"More collections for Sentinel-5P platform\"\n        },\n
+        \       {\n          \"rel\": \"related\",\n          \"href\": \"https://emc.spacebel.be/series/concepts/instruments/09f91afd-c0d2-52a9-9b50-b895a60917fa\",\n
+        \         \"title\": \"More collections for TROPOMI instrument\"\n        }\n
+        \     ],\n      \"id\": \"EOP:ESA:Sentinel-5P\",\n      \"updated\": \"2017-04-30T00:00:00.00Z\",\n
+        \     \"stac_extensions\": [\"https://stac-extensions.github.io/processing/v1.1.0/schema.json\"],\n
+        \     \"providers\": [\n        {\n          \"roles\": [\"producer\"],\n
+        \         \"name\": \"ESA/ESRIN\"\n        },\n        {\n          \"roles\":
+        [\"host\"],\n          \"name\": \"FedEO Clearinghouse\",\n          \"url\":
+        \"https://emc.spacebel.be/readme.html\"\n        }\n      ],\n      \"summaries\":
+        {\n        \"instruments\": [\"TROPOMI\"],\n        \"processing:lineage\":
+        [\"The Sentinel-5 Precursor objectives are to provide operational space-borne
+        observations in support to the operational monitoring of Air Quality, Climate,
+        Ozone and Surface UV. It will provide measurements of Ozone, NO_2, SO_2, Formaldehyde,
+        Aerosol, Carbonmonoxide, Methane, Clouds.\"],\n        \"platform\": [\"Sentinel-5P\"]\n
+        \     }\n    },\n    {\n      \"extent\": {\n        \"spatial\": {\"bbox\":
+        [[\n          -180,\n          -90,\n          180,\n          90\n        ]]},\n
+        \       \"temporal\": {\"interval\": [[\n          \"2016-06-22T00:00:00.000Z\",\n
+        \         null\n        ]]}\n      },\n      \"stac_version\": \"1.0.0\",\n
+        \     \"keywords\": [\n        \"World\",\n        \"Planet\",\n        \"Land
+        Surface\",\n        \"Mapping and Cartography\",\n        \"Natural Hazards
+        and Disaster Risk\",\n        \"EARTH SCIENCE > LAND SURFACE\",\n        \"EARTH
+        SCIENCE > HUMAN DIMENSIONS > NATURAL HAZARDS\",\n        \"VIS (0.40 - 0.75
+        \xB5m)\",\n        \"NIR (0.75 - 1.30 \xB5m)\",\n        \"Sun-synchronous\",\n
+        \       \"Very High Resolution - VHR (0 - 5m)\",\n        \"475 km (reference)\",\n
+        \       \"25 km\",\n        \"Imaging Spectrometers/Radiometers\",\n        \"PlanetScope\",\n
+        \       \"PlanetScope Camera\"\n      ],\n      \"created\": \"2019-08-09T00:00:00.00Z\",\n
+        \     \"description\": \"The PlanetScope Level 1B Basic Scene and Level 3B
+        Ortho Scene full archive products are available as part of Planet imagery
+        offer.  The Unrectified Asset: PlanetScope Basic Analytic Radiance (TOAR)
+        product is a Scaled Top of Atmosphere Radiance (at sensor) and sensor corrected
+        product, without correction for any geometric distortions inherent in the
+        imaging processes and is not mapped to a cartographic projection. The imagery
+        data is accompanied by Rational Polynomial Coefficients (RPCs) to enable orthorectification
+        by the user.  This kind of product is designed for users with advanced image
+        processing and geometric correction capabilities.     Basic Scene Product
+        Components and Format Product Components:\\t - Image File (GeoTIFF format)
+        - Metadata File (XML format) - Rational Polynomial Coefficients (XML format)
+        - Thumbnail File (GeoTIFF format) - Unusable Data Mask UDM File (GeoTIFF format)
+        - Usable Data Mask UDM2 File (GeoTIFF format) Bands: 4-band multispectral
+        image (blue, green, red, near-infrared) or 8-band (coastal-blue, blue, green
+        I, green, yellow, red, Rededge, near-infrared) Ground Sampling Distance:\\t
+        - Approximate, satellite altitude dependent - Dove-C: 3.0 m-4.1 m - Dove-R:
+        3.0 m-4.1 m - SuperDove: 3.7 m-4.2 m Accuracy: &lt;10 m RMSE    The Rectified
+        assets: The PlanetScope Ortho Scene product is radiometrically-, sensor- and
+        geometrically- corrected and is projected to a UTM/WGS84 cartographic map
+        projection. The geometric correction uses fine Digital Elevation Models (DEMs)
+        with a post spacing of between 30 and 90 metres.  Ortho Scene Product Components
+        and Format Product Components:\\t - Image File (GeoTIFF format) - Metadata
+        File (XML format) - Thumbnail File (GeoTIFF format) - Unusable Data Mask UDM
+        File (GeoTIFF format) - Usable Data Mask UDM2 File (GeoTIFF format) Bands:
+        3-band natural color (red, green, blue) or 4-band multispectral image (blue,
+        green, red, near-infrared) or 8-band (costal-blue, blue, green I, green, yellow,
+        red, RedEdge, near-infrared) Ground Sampling Distance:\\t - Approximate, satellite
+        altitude dependent - Dove-C: 3.0 m-4.1 m - Dove-R: 3.0 m-4.1 m  - SuperDove:
+        3.7 m-4.2 m Projection: UTM WGS84 Accuracy: &lt;10 m RMSE    PlanetScope Ortho
+        Scene product is available in the following:   PlanetScope Visual Ortho Scene
+        product is orthorectified and color-corrected (using a colour curve) 3-band
+        RGB Imagery. This correction attempts to optimise colours as seen by the human
+        eye providing images as they would look if viewed from the perspective of
+        the satellite  PlanetScope  Surface Reflectance product is orthorectified,
+        4-band BGRN or 8-band Coastal Blue, Blue, Green I, Green, Yellow, Red, RedEdge,
+        NIR Imagery with geometric, radiometric and  corrected for surface reflection.
+        This data is optimal for value-added image processing such as land cover classifications.
+        \ PlanetScope Analytic Ortho Scene Surface Reflectance product is orthorectified,
+        4-band BGRN or 8-band Coastal Blue, Blue, Green I, Green, Yellow, Red, RedEdge,
+        NIR Imagery with geometric, radiometric and calibrated to top of atmosphere
+        radiance.  _$$Planet Explorer Catalogue$$ https://www.planet.com/explorer/
+        can be accessed (Planet registration requested) to discover and check the
+        data readiness. It is worth to mention that the data distribution is based
+        on Data Voucher, corresponding to maximum amount of square kilometers can
+        be ordered and downloaded by the project in a maximum period of 15 moths (this
+        duration cannot be extended) starting from the project proposal acceptance
+        date. Each Date Voucher includes PlanetScope tile view streaming access for
+        a total of 20,000 tiles per calendar month during the project period.  All
+        details about the data provision, data access conditions and quota assignment
+        procedure are described in the _$$Terms of Applicability$$ https://earth.esa.int/eogateway/documents/20142/37627/Access-to-ESAs-Planet-Missions-Terms-of-Applicability.pdf
+        available in Resources section.\",\n      \"type\": \"Collection\",\n      \"title\":
+        \"PlanetScope Full Archive\",\n      \"license\": \"various\",\n      \"assets\":
+        {\n        \"metadata_ogc_17_069r3\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/PlanetScope.Full.Archive\",\n
+        \         \"type\": \"application/geo+json;profile=\\\"http://www.opengis.net/spec/ogcapi-features-1/1.0\\\"\",\n
+        \         \"title\": \"OGC 17-069r3 metadata\"\n        },\n        \"metadata_iso_19139\":
+        {\n          \"roles\": [\"metadata\"],\n          \"href\": \"https://emc.spacebel.be/collections/PlanetScope.Full.Archive?httpAccept=application/vnd.iso.19139%2Bxml\",\n
+        \         \"title\": \"ISO 19139 metadata\",\n          \"type\": \"application/vnd.iso.19139+xml\"\n
+        \       },\n        \"metadata_iso_19139_2\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/PlanetScope.Full.Archive?httpAccept=application/vnd.iso.19139-2%2Bxml\",\n
+        \         \"title\": \"ISO 19139-2 metadata\",\n          \"type\": \"application/vnd.iso.19139-2+xml\"\n
+        \       },\n        \"metadata_dif_10\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/PlanetScope.Full.Archive?httpAccept=application/dif10%2Bxml\",\n
+        \         \"title\": \"DIF-10 metadata\",\n          \"type\": \"application/dif10+xml\"\n
+        \       },\n        \"metadata_iso_19115_3\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/PlanetScope.Full.Archive?httpAccept=application/vnd.iso.19115-3%2Bxml\",\n
+        \         \"title\": \"ISO 19115-3 metadata\",\n          \"type\": \"application/vnd.iso.19115-3+xml\"\n
+        \       },\n        \"metadata_ogc_17_084r1\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/PlanetScope.Full.Archive?mode=owc\",\n
+        \         \"title\": \"OGC 17-084r1 metadata\",\n          \"type\": \"application/geo+json;profile=\\\"http://www.opengis.net/spec/eoc-geojson/1.0\\\"\"\n
+        \       },\n        \"metadata_html\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/PlanetScope.Full.Archive?httpAccept=text/html\",\n
+        \         \"title\": \"HTML\",\n          \"type\": \"text/html\"\n        }\n
+        \     },\n      \"links\": [\n        {\n          \"rel\": \"self\",\n          \"href\":
+        \"https://emc.spacebel.be/collections/PlanetScope.Full.Archive\",\n          \"type\":
+        \"application/json\"\n        },\n        {\n          \"rel\": \"root\",\n
+        \         \"href\": \"https://emc.spacebel.be\",\n          \"type\": \"application/json\",\n
+        \         \"title\": \"FedEO Clearinghouse\"\n        },\n        {\n          \"rel\":
+        \"parent\",\n          \"href\": \"https://emc.spacebel.be\",\n          \"title\":
+        \"collections\",\n          \"type\": \"application/json\"\n        },\n        {\n
+        \         \"rel\": \"describedby\",\n          \"href\": \"https://www.planet.com/products/#satellite-imagery\",\n
+        \         \"type\": \"text/html\",\n          \"title\": \"Planet products
+        - Catalogue\"\n        },\n        {\n          \"rel\": \"describedby\",\n
+        \         \"href\": \"https://earth.esa.int/eogateway/documents/20142/37627/Planet-combined-imagery-product-specs-2020.pdf?text=Combined-Imagery-Product-Spec.pdf\",\n
+        \         \"type\": \"application/pdf\",\n          \"title\": \"Planet Imagery
+        Product Specifications - Product Specifications\"\n        },\n        {\n
+        \         \"rel\": \"describedby\",\n          \"href\": \"https://developers.planet.com/docs/apps/explorer/\",\n
+        \         \"type\": \"application/pdf\",\n          \"title\": \"Planet Explorer
+        User Guide - User Manual\"\n        },\n        {\n          \"rel\": \"describedby\",\n
+        \         \"href\": \"https://www.planet.com/explorer/\",\n          \"type\":
+        \"text/html\",\n          \"title\": \"Planet Explorer Catalogue - Catalogue\"\n
+        \       },\n        {\n          \"rel\": \"describedby\",\n          \"href\":
+        \"https://earth.esa.int/eogateway/documents/20142/37627/Access-to-ESAs-Planet-Missions-Terms-of-Applicability.pdf\",\n
+        \         \"type\": \"application/pdf\",\n          \"title\": \"Planet Terms
+        of Applicability - Access Guide\"\n        },\n        {\n          \"rel\":
+        \"describedby\",\n          \"href\": \"https://esatellus.service-now.com/csp?id=esa_simple_request\",\n
+        \         \"type\": \"text/html\",\n          \"title\": \"Get Help? - ESA
+        Earth Observation User Services Portal\"\n        },\n        {\n          \"rel\":
+        \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/PlanetScope.Full.Archive?httpAccept=application/atom%2Bxml\",\n
+        \         \"type\": \"application/atom+xml\",\n          \"title\": \"Atom
+        format\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
+        \"https://emc.spacebel.be/collections/PlanetScope.Full.Archive?httpAccept=application/xml\",\n
+        \         \"type\": \"application/xml\",\n          \"title\": \"Dublin Core
+        metadata\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
+        \"https://emc.spacebel.be/collections/PlanetScope.Full.Archive?httpAccept=application/ld%2Bjson;profile=https://schema.org\",\n
+        \         \"type\": \"application/ld+json;profile=\\\"https://schema.org\\\"\",\n
+        \         \"title\": \"JSON-LD (schema.org) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/PlanetScope.Full.Archive?httpAccept=application/ld%2Bjson;profile=http://data.europa.eu/930/\",\n
+        \         \"type\": \"application/ld+json;profile=\\\"http://data.europa.eu/930/\\\"\",\n
+        \         \"title\": \"JSON-LD (GeoDCAT-AP) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/PlanetScope.Full.Archive?httpAccept=application/rdf%2Bxml\",\n
+        \         \"type\": \"application/rdf+xml\",\n          \"title\": \"RDF/XML
+        metadata\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
+        \"https://emc.spacebel.be/collections/PlanetScope.Full.Archive?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
+        \         \"type\": \"application/rdf+xml;profile=\\\"https://schema.org\\\"\",\n
+        \         \"title\": \"RDF/XML (schema.org) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/PlanetScope.Full.Archive?httpAccept=application/rdf%2Bxml;profile=http://data.europa.eu/930/\",\n
+        \         \"type\": \"application/rdf+xml;profile=\\\"http://data.europa.eu/930/\\\"\",\n
+        \         \"title\": \"RDF/XML (GeoDCAT-AP) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/PlanetScope.Full.Archive?httpAccept=text/turtle;profile=https://schema.org\",\n
+        \         \"type\": \"text/turtle;profile=\\\"https://schema.org\\\"\",\n
+        \         \"title\": \"Turtle (schema.org) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/PlanetScope.Full.Archive?httpAccept=text/turtle;profile=http://data.europa.eu/930/\",\n
+        \         \"type\": \"text/turtle;profile=\\\"http://data.europa.eu/930/\\\"\",\n
+        \         \"title\": \"Turtle (GeoDCAT-AP) metadata\"\n        },\n        {\n
+        \         \"rel\": \"related\",\n          \"href\": \"https://emc.spacebel.be/series/eo:organisationName/ESA@ESRIN\",\n
+        \         \"title\": \"More collections for ESA/ESRIN\"\n        },\n        {\n
+        \         \"rel\": \"related\",\n          \"href\": \"https://emc.spacebel.be/series/eo:platform/PlanetScope\",\n
+        \         \"title\": \"More collections for PlanetScope platform\"\n        },\n
+        \       {\n          \"rel\": \"related\",\n          \"href\": \"https://emc.spacebel.be/series/concepts/instruments/94314806-9c68-521a-87e2-8cd838eb9de0\",\n
+        \         \"title\": \"More collections for PlanetScope Camera instrument\"\n
+        \       }\n      ],\n      \"id\": \"PlanetScope.Full.Archive\",\n      \"updated\":
+        \"2023-06-13T13:23:41Z\",\n      \"providers\": [\n        {\n          \"roles\":
+        [\"producer\"],\n          \"name\": \"ESA/ESRIN\",\n          \"url\": \"http://www.esa.int\"\n
+        \       },\n        {\n          \"roles\": [\"host\"],\n          \"name\":
+        \"FedEO Clearinghouse\",\n          \"url\": \"https://emc.spacebel.be/readme.html\"\n
+        \       }\n      ],\n      \"summaries\": {\n        \"instruments\": [\"PlanetScope
+        Camera\"],\n        \"platform\": [\"PlanetScope\"]\n      }\n    },\n    {\n
+        \     \"extent\": {\n        \"spatial\": {\"bbox\": [[\n          -180,\n
+        \         -82,\n          180,\n          82\n        ]]},\n        \"temporal\":
+        {\"interval\": [[\n          \"1991-08-01T00:00:00.000Z\",\n          \"2003-06-22T23:59:59.999Z\"\n
+        \       ]]}\n      },\n      \"stac_version\": \"1.0.0\",\n      \"keywords\":
+        [\n        \"World\",\n        \"Agriculture\",\n        \"Forestry\",\n        \"Oceans\",\n
+        \       \"Ocean Temperature\",\n        \"Natural Hazards and Disaster Risk\",\n
+        \       \"Atmosphere\",\n        \"Clouds\",\n        \"Precipitation\",\n
+        \       \"EARTH SCIENCE > AGRICULTURE\",\n        \"EARTH SCIENCE > BIOSPHERE
+        > ECOSYSTEMS > TERRESTRIAL ECOSYSTEMS > FORESTS\",\n        \"EARTH SCIENCE
+        > OCEANS\",\n        \"EARTH SCIENCE > OCEANS > OCEAN TEMPERATURE\",\n        \"EARTH
+        SCIENCE > HUMAN DIMENSIONS > NATURAL HAZARDS\",\n        \"EARTH SCIENCE >
+        ATMOSPHERE\",\n        \"EARTH SCIENCE > ATMOSPHERE > CLOUDS\",\n        \"EARTH
+        SCIENCE > ATMOSPHERE > PRECIPITATION\",\n        \"Sun-synchronous\",\n        \"782
+        to 785 km\",\n        \"5 km\",\n        \"Imaging Spectrometers/Radiometers\",\n
+        \       \"ERS-1\",\n        \"ERS-2\",\n        \"ATSR-1\",\n        \"ATSR-2\"\n
+        \     ],\n      \"created\": \"2019-05-29T00:00:00.00Z\",\n      \"description\":
+        \"The Gridded Surface Temperature (GST) Product is the Level 2 full resolution
+        geophysical product. The product contains gridded sea-surface temperature
+        images using both nadir and dual view retrieval algorithms. The product includes
+        pixel latitude/longitude positions, X/Y offset and the results of the cloud-clearing/land-flagging.
+        \ It contains a single measurement data set the content of which is switchable,
+        that is to say, the content of each pixel field will depend on the surface
+        type. Specifically, the contents of the data fields will depend on the setting
+        of the forward and nadir cloud flags and the land flag.  The 3rd reprocessing
+        of ATSR data was performed in 2013; the processing updates that have been
+        put in place and the scientific improvements are outlined in full in the User
+        Summary Note for the Third ERS ATSR Reprocessing (https://earth.esa.int/eogateway/documents/20142/37627/IDEAS-VEG-OQC-REP-2148-%28A%29ATSR-Third+Reprocessing-Dataset-User-Summary-v1-0.pdf).\",\n
+        \     \"type\": \"Collection\",\n      \"title\": \"ERS-1/2 ATSR Gridded Surface
+        Temperature [AT1/AT2_NR__2P]\",\n      \"license\": \"various\",\n      \"assets\":
+        {\n        \"metadata_ogc_17_069r3\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/ERS.AT_NR__2P\",\n
+        \         \"type\": \"application/geo+json;profile=\\\"http://www.opengis.net/spec/ogcapi-features-1/1.0\\\"\",\n
+        \         \"title\": \"OGC 17-069r3 metadata\"\n        },\n        \"metadata_iso_19139\":
+        {\n          \"roles\": [\"metadata\"],\n          \"href\": \"https://emc.spacebel.be/collections/ERS.AT_NR__2P?httpAccept=application/vnd.iso.19139%2Bxml\",\n
+        \         \"title\": \"ISO 19139 metadata\",\n          \"type\": \"application/vnd.iso.19139+xml\"\n
+        \       },\n        \"metadata_iso_19139_2\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/ERS.AT_NR__2P?httpAccept=application/vnd.iso.19139-2%2Bxml\",\n
+        \         \"title\": \"ISO 19139-2 metadata\",\n          \"type\": \"application/vnd.iso.19139-2+xml\"\n
+        \       },\n        \"metadata_dif_10\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/ERS.AT_NR__2P?httpAccept=application/dif10%2Bxml\",\n
+        \         \"title\": \"DIF-10 metadata\",\n          \"type\": \"application/dif10+xml\"\n
+        \       },\n        \"metadata_iso_19115_3\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/ERS.AT_NR__2P?httpAccept=application/vnd.iso.19115-3%2Bxml\",\n
+        \         \"title\": \"ISO 19115-3 metadata\",\n          \"type\": \"application/vnd.iso.19115-3+xml\"\n
+        \       },\n        \"metadata_ogc_17_084r1\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/ERS.AT_NR__2P?mode=owc\",\n
+        \         \"title\": \"OGC 17-084r1 metadata\",\n          \"type\": \"application/geo+json;profile=\\\"http://www.opengis.net/spec/eoc-geojson/1.0\\\"\"\n
+        \       },\n        \"metadata_html\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/ERS.AT_NR__2P?httpAccept=text/html\",\n
+        \         \"title\": \"HTML\",\n          \"type\": \"text/html\"\n        }\n
+        \     },\n      \"links\": [\n        {\n          \"rel\": \"self\",\n          \"href\":
+        \"https://emc.spacebel.be/collections/ERS.AT_NR__2P\",\n          \"type\":
+        \"application/json\"\n        },\n        {\n          \"rel\": \"root\",\n
+        \         \"href\": \"https://emc.spacebel.be\",\n          \"type\": \"application/json\",\n
+        \         \"title\": \"FedEO Clearinghouse\"\n        },\n        {\n          \"rel\":
+        \"parent\",\n          \"href\": \"https://emc.spacebel.be\",\n          \"title\":
+        \"collections\",\n          \"type\": \"application/json\"\n        },\n        {\n
+        \         \"rel\": \"describedby\",\n          \"href\": \"https://earth.esa.int/eogateway/documents/20142/37627/Envisat-style%20products%20for%20ATSR-1%20and%20ATSR-2%20data\",\n
+        \         \"type\": \"application/pdf\",\n          \"title\": \"Envisat-style
+        products for ATSR-1 and ATSR-2 data - Products Specification\"\n        },\n
+        \       {\n          \"rel\": \"describedby\",\n          \"href\": \"https://earth.esa.int/eogateway/documents/20142/37627/ENVISAT-1%20PRODUCTS%20SPECIFICATIONS%20-%20VOLUME%207-%20AATSR%20PRODUCTS%20SPECIFICATIONS\",\n
+        \         \"type\": \"application/pdf\",\n          \"title\": \"AATSR Product
+        Specifications - Products Specification\"\n        },\n        {\n          \"rel\":
+        \"describedby\",\n          \"href\": \"https://earth.esa.int/eogateway/instruments/atsr/products-information\",\n
+        \         \"type\": \"text/html\",\n          \"title\": \"ATSR Product Information
+        - Product Information\"\n        },\n        {\n          \"rel\": \"describedby\",\n
+        \         \"href\": \"https://earth.esa.int/eogateway/search?text=&category=Document%20library&filter=atsr-1,atsr-2\",\n
+        \         \"type\": \"text/html\",\n          \"title\": \"More ATSR Documents
+        - Product Specifications\"\n        },\n        {\n          \"rel\": \"describedby\",\n
+        \         \"href\": \"https://earth.esa.int/eogateway/search?skipDetection=true&text=&category=Tools%20and%20toolboxes&filter=atsr-1,atsr-2\",\n
+        \         \"type\": \"text/html\",\n          \"title\": \"(A)ATSR Software
+        Tools - Tools\"\n        },\n        {\n          \"rel\": \"describedby\",\n
+        \         \"href\": \"https://esatellus.service-now.com/csp?id=esa_simple_request\",\n
+        \         \"type\": \"text/html\",\n          \"title\": \"Get Help? - ESA
+        Earth Observation User Services Portal\"\n        },\n        {\n          \"rel\":
+        \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/ERS.AT_NR__2P?httpAccept=application/atom%2Bxml\",\n
+        \         \"type\": \"application/atom+xml\",\n          \"title\": \"Atom
+        format\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
+        \"https://emc.spacebel.be/collections/ERS.AT_NR__2P?httpAccept=application/xml\",\n
+        \         \"type\": \"application/xml\",\n          \"title\": \"Dublin Core
+        metadata\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
+        \"https://emc.spacebel.be/collections/ERS.AT_NR__2P?httpAccept=application/ld%2Bjson;profile=https://schema.org\",\n
+        \         \"type\": \"application/ld+json;profile=\\\"https://schema.org\\\"\",\n
+        \         \"title\": \"JSON-LD (schema.org) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/ERS.AT_NR__2P?httpAccept=application/ld%2Bjson;profile=http://data.europa.eu/930/\",\n
+        \         \"type\": \"application/ld+json;profile=\\\"http://data.europa.eu/930/\\\"\",\n
+        \         \"title\": \"JSON-LD (GeoDCAT-AP) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/ERS.AT_NR__2P?httpAccept=application/rdf%2Bxml\",\n
+        \         \"type\": \"application/rdf+xml\",\n          \"title\": \"RDF/XML
+        metadata\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
+        \"https://emc.spacebel.be/collections/ERS.AT_NR__2P?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
+        \         \"type\": \"application/rdf+xml;profile=\\\"https://schema.org\\\"\",\n
+        \         \"title\": \"RDF/XML (schema.org) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/ERS.AT_NR__2P?httpAccept=application/rdf%2Bxml;profile=http://data.europa.eu/930/\",\n
+        \         \"type\": \"application/rdf+xml;profile=\\\"http://data.europa.eu/930/\\\"\",\n
+        \         \"title\": \"RDF/XML (GeoDCAT-AP) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/ERS.AT_NR__2P?httpAccept=text/turtle;profile=https://schema.org\",\n
+        \         \"type\": \"text/turtle;profile=\\\"https://schema.org\\\"\",\n
+        \         \"title\": \"Turtle (schema.org) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/ERS.AT_NR__2P?httpAccept=text/turtle;profile=http://data.europa.eu/930/\",\n
+        \         \"type\": \"text/turtle;profile=\\\"http://data.europa.eu/930/\\\"\",\n
+        \         \"title\": \"Turtle (GeoDCAT-AP) metadata\"\n        },\n        {\n
+        \         \"rel\": \"related\",\n          \"href\": \"https://emc.spacebel.be/series/eo:organisationName/ESA@ESRIN\",\n
+        \         \"title\": \"More collections for ESA/ESRIN\"\n        },\n        {\n
+        \         \"rel\": \"related\",\n          \"href\": \"https://emc.spacebel.be/series/eo:platform/ERS-1\",\n
+        \         \"title\": \"More collections for ERS-1 platform\"\n        },\n
+        \       {\n          \"rel\": \"related\",\n          \"href\": \"https://emc.spacebel.be/series/eo:platform/ERS-2\",\n
+        \         \"title\": \"More collections for ERS-2 platform\"\n        },\n
+        \       {\n          \"rel\": \"related\",\n          \"href\": \"https://emc.spacebel.be/series/concepts/instruments/93343b90-3e9f-5830-abe7-151cc69401c1\",\n
+        \         \"title\": \"More collections for ATSR-1 instrument\"\n        },\n
+        \       {\n          \"rel\": \"related\",\n          \"href\": \"https://emc.spacebel.be/series/concepts/instruments/f3ef7078-65ef-5dee-8c5c-61f9706a34ad\",\n
+        \         \"title\": \"More collections for ATSR-2 instrument\"\n        }\n
+        \     ],\n      \"id\": \"ERS.AT_NR__2P\",\n      \"updated\": \"2023-06-13T13:23:39Z\",\n
+        \     \"providers\": [\n        {\n          \"roles\": [\"producer\"],\n
+        \         \"name\": \"ESA/ESRIN\",\n          \"url\": \"http://www.esa.int\"\n
+        \       },\n        {\n          \"roles\": [\"host\"],\n          \"name\":
+        \"FedEO Clearinghouse\",\n          \"url\": \"https://emc.spacebel.be/readme.html\"\n
+        \       }\n      ],\n      \"summaries\": {\n        \"instruments\": [\n
+        \         \"ATSR-1\",\n          \"ATSR-2\"\n        ],\n        \"platform\":
+        [\n          \"ERS-1\",\n          \"ERS-2\"\n        ]\n      }\n    },\n
+        \   {\n      \"extent\": {\n        \"spatial\": {\"bbox\": [[\n          -180,\n
+        \         -90,\n          180,\n          90\n        ]]},\n        \"temporal\":
+        {\"interval\": [[\n          \"2016-12-01T00:00:00.000Z\",\n          \"2019-01-07T23:59:59.999Z\"\n
+        \       ]]}\n      },\n      \"stac_version\": \"1.0.0\",\n      \"keywords\":
+        [\n        \"World\",\n        \"WorldView\",\n        \"EUSI\",\n        \"Maxar\",\n
+        \       \"GeoEye\",\n        \"QuickBird\",\n        \"Cartosat\",\n        \"Agriculture\",\n
+        \       \"Forestry\",\n        \"Land Surface\",\n        \"Vegetation\",\n
+        \       \"Natural Hazards and Disaster Risk\",\n        \"Oceans\",\n        \"Snow
+        and Ice\",\n        \"EARTH SCIENCE > AGRICULTURE\",\n        \"EARTH SCIENCE
+        > BIOSPHERE > ECOSYSTEMS > TERRESTRIAL ECOSYSTEMS > FORESTS\",\n        \"EARTH
+        SCIENCE > LAND SURFACE\",\n        \"EARTH SCIENCE > BIOSPHERE > VEGETATION\",\n
+        \       \"EARTH SCIENCE > HUMAN DIMENSIONS > NATURAL HAZARDS\",\n        \"EARTH
+        SCIENCE > OCEANS\",\n        \"EARTH SCIENCE > CRYOSPHERE > SNOW/ICE\",\n
+        \       \"EARTH SCIENCE > TERRESTRIAL HYDROSPHERE > SNOW/ICE\",\n        \"VIS
+        (0.40 - 0.75 \xB5m)\",\n        \"NIR (0.75 - 1.30 \xB5m)\",\n        \"Sun-synchronous\",\n
+        \       \"Very High Resolution - VHR (0 - 5m)\",\n        \"617 km\",\n        \"13.1
+        km\",\n        \"Imaging Spectrometers/Radiometers\",\n        \"WorldView-4\",\n
+        \       \"SpaceView-110\"\n      ],\n      \"created\": \"2020-12-02T00:00:00.00Z\",\n
+        \     \"description\": \"WorldView-4 high resolution optical products are
+        available as part of the Maxar Standard Satellite Imagery products from the
+        QuickBird, WorldView-1/-2/-3/-4, and GeoEye-1 satellites. All details about
+        the data provision, data access conditions and quota assignment procedure
+        are described into the Terms of Applicability available in Resources section.
+        In particular, WorldView-4 offers archive panchromatic products up to 0.31m
+        GSD resolution, and 4-Bands Multispectral products up to 1.24m GSD resolution
+        \ Band Combination: Panchromatic and 4-bands Data Processing Level: STANDARD
+        (2A) / VIEW READY STANDARD (OR2A), VIEW READY STEREO, MAP-READY (ORTHO) 1:12.000
+        Orthorectified Resolutions: 0.30 m, 0.40 m, 0.50 m. 0.60 m  The options for
+        4-Bands are the following: \\u2022 4-Band Multispectral (BLUE, GREEN, RED,
+        NIR1) \\u2022 4-Band Pan-sharpened (BLUE, GREEN, RED, NIR1) \\u2022 4-Band
+        Bundle (PAN, BLUE, GREEN, RED, NIR1) \\u2022 3-Bands Natural Colour (pan-sharpened
+        BLUE, GREEN, RED) \\u2022 3-Band Colored Infrared (pan-sharpened GREEN, RED,
+        NIR1)  The list of available archived data can be retrieved using the Image
+        Library (https://www.euspaceimaging.com/image-library/) catalogue.\",\n      \"type\":
+        \"Collection\",\n      \"title\": \"WorldView-4 full archive\",\n      \"license\":
+        \"various\",\n      \"assets\": {\n        \"metadata_ogc_17_069r3\": {\n
+        \         \"roles\": [\"metadata\"],\n          \"href\": \"https://emc.spacebel.be/collections/WorldView-4.full.archive\",\n
+        \         \"type\": \"application/geo+json;profile=\\\"http://www.opengis.net/spec/ogcapi-features-1/1.0\\\"\",\n
+        \         \"title\": \"OGC 17-069r3 metadata\"\n        },\n        \"metadata_iso_19139\":
+        {\n          \"roles\": [\"metadata\"],\n          \"href\": \"https://emc.spacebel.be/collections/WorldView-4.full.archive?httpAccept=application/vnd.iso.19139%2Bxml\",\n
+        \         \"title\": \"ISO 19139 metadata\",\n          \"type\": \"application/vnd.iso.19139+xml\"\n
+        \       },\n        \"metadata_iso_19139_2\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/WorldView-4.full.archive?httpAccept=application/vnd.iso.19139-2%2Bxml\",\n
+        \         \"title\": \"ISO 19139-2 metadata\",\n          \"type\": \"application/vnd.iso.19139-2+xml\"\n
+        \       },\n        \"metadata_dif_10\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/WorldView-4.full.archive?httpAccept=application/dif10%2Bxml\",\n
+        \         \"title\": \"DIF-10 metadata\",\n          \"type\": \"application/dif10+xml\"\n
+        \       },\n        \"metadata_iso_19115_3\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/WorldView-4.full.archive?httpAccept=application/vnd.iso.19115-3%2Bxml\",\n
+        \         \"title\": \"ISO 19115-3 metadata\",\n          \"type\": \"application/vnd.iso.19115-3+xml\"\n
+        \       },\n        \"metadata_ogc_17_084r1\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/WorldView-4.full.archive?mode=owc\",\n
+        \         \"title\": \"OGC 17-084r1 metadata\",\n          \"type\": \"application/geo+json;profile=\\\"http://www.opengis.net/spec/eoc-geojson/1.0\\\"\"\n
+        \       },\n        \"metadata_html\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/WorldView-4.full.archive?httpAccept=text/html\",\n
+        \         \"title\": \"HTML\",\n          \"type\": \"text/html\"\n        }\n
+        \     },\n      \"links\": [\n        {\n          \"rel\": \"self\",\n          \"href\":
+        \"https://emc.spacebel.be/collections/WorldView-4.full.archive\",\n          \"type\":
+        \"application/json\"\n        },\n        {\n          \"rel\": \"root\",\n
+        \         \"href\": \"https://emc.spacebel.be\",\n          \"type\": \"application/json\",\n
+        \         \"title\": \"FedEO Clearinghouse\"\n        },\n        {\n          \"rel\":
+        \"parent\",\n          \"href\": \"https://emc.spacebel.be\",\n          \"title\":
+        \"collections\",\n          \"type\": \"application/json\"\n        },\n        {\n
+        \         \"rel\": \"describedby\",\n          \"href\": \"https://earth.esa.int/eogateway/documents/20142/37627/Map-Ready-imagery-data-sheet.pdf/83b9a034-5548-1fc7-4744-8d0fdb922f52\",\n
+        \         \"type\": \"application/pdf\",\n          \"title\": \"Map Ready
+        imagery data sheet - Product Specifications\"\n        },\n        {\n          \"rel\":
+        \"describedby\",\n          \"href\": \"https://earth.esa.int/eogateway/documents/20142/37627/DigitalGlobe-GeoStereo.pdf\",\n
+        \         \"type\": \"application/pdf\",\n          \"title\": \"GeoStereo
+        product details - Product Specifications\"\n        },\n        {\n          \"rel\":
+        \"describedby\",\n          \"href\": \"https://earth.esa.int/eogateway/documents/20142/37627/DigitalGlobe-Stereo-Imagery.pdf\",\n
+        \         \"type\": \"application/pdf\",\n          \"title\": \"Stereo product
+        details - Product Specifications\"\n        },\n        {\n          \"rel\":
+        \"describedby\",\n          \"href\": \"https://earth.esa.int/eogateway/documents/20142/37627/view-ready-imagery-data-sheet.pdf/e1476ac6-51cc-6052-c138-844dcc0200b8\",\n
+        \         \"type\": \"application/pdf\",\n          \"title\": \"View Ready
+        imagery data sheet - Product Specifications\"\n        },\n        {\n          \"rel\":
+        \"describedby\",\n          \"href\": \"https://earth.esa.int/eogateway/documents/20142/37627/WorldView-GeoEye-QuickBird-Terms-Of-Applicability.pdf\",\n
+        \         \"type\": \"application/pdf\",\n          \"title\": \"WorldView,
+        GeoEye, QuickBird Terms of Applicability - Access Guide\"\n        },\n        {\n
+        \         \"rel\": \"describedby\",\n          \"href\": \"https://esatellus.service-now.com/csp?id=esa_simple_request\",\n
+        \         \"type\": \"text/html\",\n          \"title\": \"Get Help? - ESA
+        Earth Observation User Services Portal\"\n        },\n        {\n          \"rel\":
+        \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/WorldView-4.full.archive?httpAccept=application/atom%2Bxml\",\n
+        \         \"type\": \"application/atom+xml\",\n          \"title\": \"Atom
+        format\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
+        \"https://emc.spacebel.be/collections/WorldView-4.full.archive?httpAccept=application/xml\",\n
+        \         \"type\": \"application/xml\",\n          \"title\": \"Dublin Core
+        metadata\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
+        \"https://emc.spacebel.be/collections/WorldView-4.full.archive?httpAccept=application/ld%2Bjson;profile=https://schema.org\",\n
+        \         \"type\": \"application/ld+json;profile=\\\"https://schema.org\\\"\",\n
+        \         \"title\": \"JSON-LD (schema.org) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/WorldView-4.full.archive?httpAccept=application/ld%2Bjson;profile=http://data.europa.eu/930/\",\n
+        \         \"type\": \"application/ld+json;profile=\\\"http://data.europa.eu/930/\\\"\",\n
+        \         \"title\": \"JSON-LD (GeoDCAT-AP) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/WorldView-4.full.archive?httpAccept=application/rdf%2Bxml\",\n
+        \         \"type\": \"application/rdf+xml\",\n          \"title\": \"RDF/XML
+        metadata\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
+        \"https://emc.spacebel.be/collections/WorldView-4.full.archive?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
+        \         \"type\": \"application/rdf+xml;profile=\\\"https://schema.org\\\"\",\n
+        \         \"title\": \"RDF/XML (schema.org) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/WorldView-4.full.archive?httpAccept=application/rdf%2Bxml;profile=http://data.europa.eu/930/\",\n
+        \         \"type\": \"application/rdf+xml;profile=\\\"http://data.europa.eu/930/\\\"\",\n
+        \         \"title\": \"RDF/XML (GeoDCAT-AP) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/WorldView-4.full.archive?httpAccept=text/turtle;profile=https://schema.org\",\n
+        \         \"type\": \"text/turtle;profile=\\\"https://schema.org\\\"\",\n
+        \         \"title\": \"Turtle (schema.org) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/WorldView-4.full.archive?httpAccept=text/turtle;profile=http://data.europa.eu/930/\",\n
+        \         \"type\": \"text/turtle;profile=\\\"http://data.europa.eu/930/\\\"\",\n
+        \         \"title\": \"Turtle (GeoDCAT-AP) metadata\"\n        },\n        {\n
+        \         \"rel\": \"related\",\n          \"href\": \"https://emc.spacebel.be/series/eo:organisationName/ESA@ESRIN\",\n
+        \         \"title\": \"More collections for ESA/ESRIN\"\n        },\n        {\n
+        \         \"rel\": \"related\",\n          \"href\": \"https://emc.spacebel.be/series/eo:platform/WorldView-4\",\n
+        \         \"title\": \"More collections for WorldView-4 platform\"\n        },\n
+        \       {\n          \"rel\": \"related\",\n          \"href\": \"https://emc.spacebel.be/series/concepts/instruments/081712d3-dc9b-5eee-a9f3-7c929d45f29c\",\n
+        \         \"title\": \"More collections for SpaceView-110 instrument\"\n        }\n
+        \     ],\n      \"id\": \"WorldView-4.full.archive\",\n      \"updated\":
+        \"2023-06-13T13:23:43Z\",\n      \"providers\": [\n        {\n          \"roles\":
+        [\"producer\"],\n          \"name\": \"ESA/ESRIN\",\n          \"url\": \"http://www.esa.int\"\n
+        \       },\n        {\n          \"roles\": [\"host\"],\n          \"name\":
+        \"FedEO Clearinghouse\",\n          \"url\": \"https://emc.spacebel.be/readme.html\"\n
+        \       }\n      ],\n      \"summaries\": {\n        \"instruments\": [\"SpaceView-110\"],\n
+        \       \"platform\": [\"WorldView-4\"]\n      }\n    },\n    {\n      \"extent\":
+        {\n        \"spatial\": {\"bbox\": [[\n          -180,\n          -90,\n          180,\n
+        \         90\n        ]]},\n        \"temporal\": {\"interval\": [[\n          \"1995-07-01T00:00:00.000Z\",\n
+        \         \"2015-12-31T23:59:59.999Z\"\n        ]]}\n      },\n      \"stac_version\":
+        \"1.0.0\",\n      \"sci:doi\": \"10.57780/esa-1268efe\",\n      \"keywords\":
+        [\n        \"World\",\n        \"Atmosphere\",\n        \"Atmospheric Chemistry\",\n
+        \       \"Atmospheric Radiation\",\n        \"Atmospheric Temperature\",\n
+        \       \"Climate\",\n        \"EARTH SCIENCE > ATMOSPHERE\",\n        \"EARTH
+        SCIENCE > ATMOSPHERE > ATMOSPHERIC CHEMISTRY\",\n        \"EARTH SCIENCE >
+        ATMOSPHERE > ATMOSPHERIC RADIATION\",\n        \"EARTH SCIENCE > ATMOSPHERE
+        > ATMOSPHERIC TEMPERATURE\",\n        \"EARTH SCIENCE > CLIMATE INDICATORS\",\n
+        \       \"Sun-synchronous\",\n        \"GDP 5.0\",\n        \"782 to 785 km\",\n
+        \       \"5 km\",\n        \"Spectrometers\",\n        \"ERS-2\",\n        \"GOME\"\n
+        \     ],\n      \"created\": \"2019-05-29T00:00:00.00Z\",\n      \"description\":
+        \"The GOME Total Column Water Vapour (TCWV) Climate product was generated
+        by the Max Planck Institute for Chemistry (MPIC), and the German Aerospace
+        Center (DLR) within the ESA GOME-Evolution project. It is a Level 3 type product
+        containing homogenized time-series of the global distribution of TCWV spanning
+        over more than two decades (1995-2015).  The data is provided as single netCDF
+        file, containing monthly mean TCWV (units kg/m2) with 1-degree resolution,
+        and is based on measurements from the satellite instruments ERS-2 GOME, Envisat
+        SCIAMACHY, and MetOp-A GOME-2.  Details are available in the paper by Beirle
+        et al, 2018,.  Please also consult the GOME TCWV Product Quality Readme file
+        before using the data. (https://earth.esa.int/eogateway/documents/20142/37627/GOME-TCWV-Product-sQuality-Readme-File.pdf)\",\n
+        \     \"type\": \"Collection\",\n      \"title\": \"GOME Total Column Water
+        Vapour Climate product\",\n      \"license\": \"various\",\n      \"assets\":
+        {\n        \"metadata_ogc_17_069r3\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/GOME_Evl_ClimateProd_TCWV\",\n
+        \         \"type\": \"application/geo+json;profile=\\\"http://www.opengis.net/spec/ogcapi-features-1/1.0\\\"\",\n
+        \         \"title\": \"OGC 17-069r3 metadata\"\n        },\n        \"metadata_iso_19139\":
+        {\n          \"roles\": [\"metadata\"],\n          \"href\": \"https://emc.spacebel.be/collections/GOME_Evl_ClimateProd_TCWV?httpAccept=application/vnd.iso.19139%2Bxml\",\n
+        \         \"title\": \"ISO 19139 metadata\",\n          \"type\": \"application/vnd.iso.19139+xml\"\n
+        \       },\n        \"metadata_iso_19139_2\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/GOME_Evl_ClimateProd_TCWV?httpAccept=application/vnd.iso.19139-2%2Bxml\",\n
+        \         \"title\": \"ISO 19139-2 metadata\",\n          \"type\": \"application/vnd.iso.19139-2+xml\"\n
+        \       },\n        \"metadata_dif_10\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/GOME_Evl_ClimateProd_TCWV?httpAccept=application/dif10%2Bxml\",\n
+        \         \"title\": \"DIF-10 metadata\",\n          \"type\": \"application/dif10+xml\"\n
+        \       },\n        \"metadata_iso_19115_3\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/GOME_Evl_ClimateProd_TCWV?httpAccept=application/vnd.iso.19115-3%2Bxml\",\n
+        \         \"title\": \"ISO 19115-3 metadata\",\n          \"type\": \"application/vnd.iso.19115-3+xml\"\n
+        \       },\n        \"metadata_ogc_17_084r1\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/GOME_Evl_ClimateProd_TCWV?mode=owc\",\n
+        \         \"title\": \"OGC 17-084r1 metadata\",\n          \"type\": \"application/geo+json;profile=\\\"http://www.opengis.net/spec/eoc-geojson/1.0\\\"\"\n
+        \       },\n        \"metadata_html\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/GOME_Evl_ClimateProd_TCWV?httpAccept=text/html\",\n
+        \         \"title\": \"HTML\",\n          \"type\": \"text/html\"\n        }\n
+        \     },\n      \"links\": [\n        {\n          \"rel\": \"cite-as\",\n
+        \         \"href\": \"https://doi.org/10.57780/esa-1268efe\",\n          \"type\":
+        \"text/html\",\n          \"title\": \"Landing page\"\n        },\n        {\n
+        \         \"rel\": \"self\",\n          \"href\": \"https://emc.spacebel.be/collections/GOME_Evl_ClimateProd_TCWV\",\n
+        \         \"type\": \"application/json\"\n        },\n        {\n          \"rel\":
+        \"root\",\n          \"href\": \"https://emc.spacebel.be\",\n          \"type\":
+        \"application/json\",\n          \"title\": \"FedEO Clearinghouse\"\n        },\n
+        \       {\n          \"rel\": \"parent\",\n          \"href\": \"https://emc.spacebel.be\",\n
+        \         \"title\": \"collections\",\n          \"type\": \"application/json\"\n
+        \       },\n        {\n          \"rel\": \"describedby\",\n          \"href\":
+        \"https://earth.esa.int/eogateway/documents/20142/37627/GOME-Data-Processor-DLFE-638-PSD-4B.pdf\",\n
+        \         \"type\": \"application/pdf\",\n          \"title\": \"GOME TCWV
+        Climate product Technical Documents - Product Specifications\"\n        },\n
+        \       {\n          \"rel\": \"describedby\",\n          \"href\": \"https://earth.esa.int/eogateway/documents/20142/37627/GOME-Level1-to-2-Algorithms-Description-DLFE-841-GDP-L12.pdf\",\n
+        \         \"type\": \"application/pdf\",\n          \"title\": \"GOME Level
+        1 to 2 Algorithms Description - Technical Note\"\n        },\n        {\n
+        \         \"rel\": \"describedby\",\n          \"href\": \"https://earth.esa.int/eogateway/documents/20142/37627/Algorithm-Theoretical-Basis-Document-for_GOME-Total-Column-Densities-of-Ozone-And-Nitrogen-Dioxid.pdf\",\n
+        \         \"type\": \"application/pdf\",\n          \"title\": \"Algorithm
+        Theoretical Basis Document for GOME Total Column Densities of Ozone and Nitrogen
+        Dioxide - Technical Note\"\n        },\n        {\n          \"rel\": \"describedby\",\n
+        \         \"href\": \"https://earth.esa.int/eogateway/documents/20142/37627/GOME-Disclaimer-2004-DLFE-640.pdf\",\n
+        \         \"type\": \"application/pdf\",\n          \"title\": \"Disclaimer
+        for GOME Level-1 and Level-2 Data Products - Technical Note\"\n        },\n
+        \       {\n          \"rel\": \"describedby\",\n          \"href\": \"https://earth.esa.int/eogateway/documents/20142/37627/GOME-Software-Databases-For-Level1-to-2-Processing-DLFE-843-GDP-DB.pdf\",\n
+        \         \"type\": \"application/pdf\",\n          \"title\": \"GOME Software
+        Databases for Level 1 to 2 Processing - Technical Note\"\n        },\n        {\n
+        \         \"rel\": \"describedby\",\n          \"href\": \"https://earth.esa.int/eogateway/documents/20142/37627/Data-Validation-Report-for-ERS-2-GOME-Data-Processor-upgrade-to-version4.0-DLFE-641.pdf\",\n
+        \         \"type\": \"application/pdf\",\n          \"title\": \"Delta Validation
+        Report for ERS-2 GOME Data Processor upgrade toversion 4.0 - Technical Note\"\n
+        \       },\n        {\n          \"rel\": \"describedby\",\n          \"href\":
+        \"https://earth.esa.int/eogateway/documents/20142/37627/GOME-Data-Processor-DLFE-656-DLR-GOME-SUM-gdp01-ex-4.pdf\",\n
+        \         \"type\": \"application/pdf\",\n          \"title\": \"GOME Data
+        Processor Extraction Software - User Manual\"\n        },\n        {\n          \"rel\":
+        \"describedby\",\n          \"href\": \"https://earth.esa.int/eogateway/search?category=Document+library&filter=gome\",\n
+        \         \"type\": \"text/html\",\n          \"title\": \"More GOME Documents
+        - Other\"\n        },\n        {\n          \"rel\": \"describedby\",\n          \"href\":
+        \"https://earth.esa.int/eogateway/instruments/gome/products-information\",\n
+        \         \"type\": \"text/html\",\n          \"title\": \"Documentation related
+        to GOME data quality - Other\"\n        },\n        {\n          \"rel\":
+        \"describedby\",\n          \"href\": \"https://esatellus.service-now.com/csp?id=esa_simple_request\",\n
+        \         \"type\": \"text/html\",\n          \"title\": \"Get Help? - ESA
+        Earth Observation User Services Portal\"\n        },\n        {\n          \"rel\":
+        \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/GOME_Evl_ClimateProd_TCWV?httpAccept=application/atom%2Bxml\",\n
+        \         \"type\": \"application/atom+xml\",\n          \"title\": \"Atom
+        format\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
+        \"https://emc.spacebel.be/collections/GOME_Evl_ClimateProd_TCWV?httpAccept=application/xml\",\n
+        \         \"type\": \"application/xml\",\n          \"title\": \"Dublin Core
+        metadata\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
+        \"https://emc.spacebel.be/collections/GOME_Evl_ClimateProd_TCWV?httpAccept=application/ld%2Bjson;profile=https://schema.org\",\n
+        \         \"type\": \"application/ld+json;profile=\\\"https://schema.org\\\"\",\n
+        \         \"title\": \"JSON-LD (schema.org) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/GOME_Evl_ClimateProd_TCWV?httpAccept=application/ld%2Bjson;profile=http://data.europa.eu/930/\",\n
+        \         \"type\": \"application/ld+json;profile=\\\"http://data.europa.eu/930/\\\"\",\n
+        \         \"title\": \"JSON-LD (GeoDCAT-AP) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/GOME_Evl_ClimateProd_TCWV?httpAccept=application/rdf%2Bxml\",\n
+        \         \"type\": \"application/rdf+xml\",\n          \"title\": \"RDF/XML
+        metadata\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
+        \"https://emc.spacebel.be/collections/GOME_Evl_ClimateProd_TCWV?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
+        \         \"type\": \"application/rdf+xml;profile=\\\"https://schema.org\\\"\",\n
+        \         \"title\": \"RDF/XML (schema.org) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/GOME_Evl_ClimateProd_TCWV?httpAccept=application/rdf%2Bxml;profile=http://data.europa.eu/930/\",\n
+        \         \"type\": \"application/rdf+xml;profile=\\\"http://data.europa.eu/930/\\\"\",\n
+        \         \"title\": \"RDF/XML (GeoDCAT-AP) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/GOME_Evl_ClimateProd_TCWV?httpAccept=text/turtle;profile=https://schema.org\",\n
+        \         \"type\": \"text/turtle;profile=\\\"https://schema.org\\\"\",\n
+        \         \"title\": \"Turtle (schema.org) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/GOME_Evl_ClimateProd_TCWV?httpAccept=text/turtle;profile=http://data.europa.eu/930/\",\n
+        \         \"type\": \"text/turtle;profile=\\\"http://data.europa.eu/930/\\\"\",\n
+        \         \"title\": \"Turtle (GeoDCAT-AP) metadata\"\n        },\n        {\n
+        \         \"rel\": \"related\",\n          \"href\": \"https://emc.spacebel.be/series/eo:organisationName/ESA@ESRIN\",\n
+        \         \"title\": \"More collections for ESA/ESRIN\"\n        },\n        {\n
+        \         \"rel\": \"related\",\n          \"href\": \"https://emc.spacebel.be/series/eo:platform/ERS-2\",\n
+        \         \"title\": \"More collections for ERS-2 platform\"\n        },\n
+        \       {\n          \"rel\": \"related\",\n          \"href\": \"https://emc.spacebel.be/series/concepts/instruments/a58b108b-492f-54a5-b807-cb97306b6aad\",\n
+        \         \"title\": \"More collections for GOME instrument\"\n        }\n
+        \     ],\n      \"id\": \"GOME_Evl_ClimateProd_TCWV\",\n      \"updated\":
+        \"2023-06-13T13:23:39Z\",\n      \"stac_extensions\": [\"https://stac-extensions.github.io/scientific/v1.0.0/schema.json\"],\n
+        \     \"providers\": [\n        {\n          \"roles\": [\"producer\"],\n
+        \         \"name\": \"ESA/ESRIN\",\n          \"url\": \"http://www.esa.int\"\n
+        \       },\n        {\n          \"roles\": [\"host\"],\n          \"name\":
+        \"FedEO Clearinghouse\",\n          \"url\": \"https://emc.spacebel.be/readme.html\"\n
+        \       }\n      ],\n      \"summaries\": {\n        \"instruments\": [\"GOME\"],\n
+        \       \"platform\": [\"ERS-2\"]\n      }\n    },\n    {\n      \"extent\":
+        {\n        \"spatial\": {\"bbox\": [[\n          -180,\n          -90,\n          180,\n
+        \         90\n        ]]},\n        \"temporal\": {\"interval\": [[\n          \"2001-11-01T00:00:00.000Z\",\n
+        \         \"2015-03-31T23:59:59.999Z\"\n        ]]}\n      },\n      \"stac_version\":
+        \"1.0.0\",\n      \"keywords\": [\n        \"World\",\n        \"Multispectral\",\n
+        \       \"Panchromatic\",\n        \"Pan-sharpened\",\n        \"EUSI\",\n
+        \       \"Maxar\",\n        \"GeoEye\",\n        \"WorldView\",\n        \"Cartosat\",\n
+        \       \"Vegetation\",\n        \"EARTH SCIENCE > BIOSPHERE > VEGETATION\",\n
+        \       \"VIS (0.40 - 0.75 \xB5m)\",\n        \"NIR (0.75 - 1.30 \xB5m)\",\n
+        \       \"Sun-synchronous\",\n        \"Very High Resolution - VHR (0 - 5m)\",\n
+        \       \"High Resolution - HR (5 - 20 m)\",\n        \"450 km\",\n        \"16.5
+        km\",\n        \"Cameras\",\n        \"QuickBird-2\",\n        \"BGI\"\n      ],\n
+        \     \"created\": \"2019-05-22T00:00:00.00Z\",\n      \"description\": \"QuickBird
+        high resolution optical products are available as part of the Maxar Standard
+        Satellite Imagery products from the QuickBird, WorldView-1/-2/-3/-4, and GeoEye-1
+        satellites. All details about the data provision, data access conditions and
+        quota assignment procedure are described into the Terms of Applicability available
+        in Resources section.  In particular, QuickBird offers archive panchromatic
+        products up to 0.60m GSD resolution and 4-Bands Multispectral products up
+        to 2.4m GSD resolution  \\u2022 Panchromatic and 4-bands - Levels: STANDARD
+        (2A) / VIEW READY STANDARD (OR2A), VIEW READY STEREO, MAP-READY (ORTHO) 1:12.000
+        Orthorectified, MAP-READY (ORTHO) 1:50.000 Orthorectified - Resolutions: 0.30
+        m, 0.40 m, 0.50 m. 0.60 m \\u2022 8-Bands - Levels: STANDARD (2A) / VIEW READY
+        STANDARD (OR2A), VIEW READY STEREO, MAP-READY (ORTHO) 1:12.000 Orthorectified
+        - Resolutions: 0.30 m, 0.40 m, 0.50 m. 0.60 m   4-Bands being an optional
+        from: \\u2022\\u2022 4-Band Multispectral (BLUE, GREEN, RED, NIR1) \\u2022
+        4-Band Pan-sharpened (BLUE, GREEN, RED, NIR1) \\u2022 4-Band Bundle (PAN,
+        BLUE, GREEN, RED, NIR1) \\u2022 3-Bands Natural Colour (pan-sharpened BLUE,
+        GREEN, RED)  \\u2022 3-Band Colored Infrared (pan-sharpened GREEN, RED, NIR1)
+        \\u2022 Natural Colour / Coloured Infrared (3-Band pan-sharpened)  The list
+        of available archived data can be retrieved using the Image Library (https://www.euspaceimaging.com/image-library/)
+        catalogue.\",\n      \"type\": \"Collection\",\n      \"title\": \"QuickBird
+        full archive\",\n      \"license\": \"various\",\n      \"assets\": {\n        \"metadata_ogc_17_069r3\":
+        {\n          \"roles\": [\"metadata\"],\n          \"href\": \"https://emc.spacebel.be/collections/QuickBird.full.archive\",\n
+        \         \"type\": \"application/geo+json;profile=\\\"http://www.opengis.net/spec/ogcapi-features-1/1.0\\\"\",\n
+        \         \"title\": \"OGC 17-069r3 metadata\"\n        },\n        \"metadata_iso_19139\":
+        {\n          \"roles\": [\"metadata\"],\n          \"href\": \"https://emc.spacebel.be/collections/QuickBird.full.archive?httpAccept=application/vnd.iso.19139%2Bxml\",\n
+        \         \"title\": \"ISO 19139 metadata\",\n          \"type\": \"application/vnd.iso.19139+xml\"\n
+        \       },\n        \"metadata_iso_19139_2\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/QuickBird.full.archive?httpAccept=application/vnd.iso.19139-2%2Bxml\",\n
+        \         \"title\": \"ISO 19139-2 metadata\",\n          \"type\": \"application/vnd.iso.19139-2+xml\"\n
+        \       },\n        \"metadata_dif_10\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/QuickBird.full.archive?httpAccept=application/dif10%2Bxml\",\n
+        \         \"title\": \"DIF-10 metadata\",\n          \"type\": \"application/dif10+xml\"\n
+        \       },\n        \"metadata_iso_19115_3\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/QuickBird.full.archive?httpAccept=application/vnd.iso.19115-3%2Bxml\",\n
+        \         \"title\": \"ISO 19115-3 metadata\",\n          \"type\": \"application/vnd.iso.19115-3+xml\"\n
+        \       },\n        \"metadata_ogc_17_084r1\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/QuickBird.full.archive?mode=owc\",\n
+        \         \"title\": \"OGC 17-084r1 metadata\",\n          \"type\": \"application/geo+json;profile=\\\"http://www.opengis.net/spec/eoc-geojson/1.0\\\"\"\n
+        \       },\n        \"metadata_html\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/QuickBird.full.archive?httpAccept=text/html\",\n
+        \         \"title\": \"HTML\",\n          \"type\": \"text/html\"\n        }\n
+        \     },\n      \"links\": [\n        {\n          \"rel\": \"self\",\n          \"href\":
+        \"https://emc.spacebel.be/collections/QuickBird.full.archive\",\n          \"type\":
+        \"application/json\"\n        },\n        {\n          \"rel\": \"root\",\n
+        \         \"href\": \"https://emc.spacebel.be\",\n          \"type\": \"application/json\",\n
+        \         \"title\": \"FedEO Clearinghouse\"\n        },\n        {\n          \"rel\":
+        \"parent\",\n          \"href\": \"https://emc.spacebel.be\",\n          \"title\":
+        \"collections\",\n          \"type\": \"application/json\"\n        },\n        {\n
+        \         \"rel\": \"describedby\",\n          \"href\": \"https://earth.esa.int/eogateway/documents/20142/37627/Map-Ready-imagery-data-sheet.pdf/83b9a034-5548-1fc7-4744-8d0fdb922f52\",\n
+        \         \"type\": \"application/pdf\",\n          \"title\": \"Map Ready
+        data imagery sheet - Product Sepcification\"\n        },\n        {\n          \"rel\":
+        \"describedby\",\n          \"href\": \"https://earth.esa.int/eogateway/documents/20142/37627/DigitalGlobe-GeoStereo.pdf\",\n
+        \         \"type\": \"application/pdf\",\n          \"title\": \"GeoStereo
+        product details - Product Sepcification\"\n        },\n        {\n          \"rel\":
+        \"describedby\",\n          \"href\": \"https://earth.esa.int/eogateway/documents/20142/37627/DigitalGlobe-Stereo-Imagery.pdf\",\n
+        \         \"type\": \"application/pdf\",\n          \"title\": \"Stereo product
+        details - Product Sepcification\"\n        },\n        {\n          \"rel\":
+        \"describedby\",\n          \"href\": \"https://earth.esa.int/eogateway/documents/20142/37627/view-ready-imagery-data-sheet.pdf/e1476ac6-51cc-6052-c138-844dcc0200b8\",\n
+        \         \"type\": \"application/pdf\",\n          \"title\": \"View Ready
+        imagery data sheet - Product Sepcification\"\n        },\n        {\n          \"rel\":
+        \"describedby\",\n          \"href\": \"https://earth.esa.int/eogateway/documents/20142/37627/WorldView-GeoEye-QuickBird-Terms-Of-Applicability.pdf\",\n
+        \         \"type\": \"application/pdf\",\n          \"title\": \"Indian Data
+        Terms of Applicability - Access guide\"\n        },\n        {\n          \"rel\":
+        \"describedby\",\n          \"href\": \"https://esatellus.service-now.com/csp?id=esa_simple_request&sys_id=f27b38f9dbdffe40e3cedb11ce961958\",\n
+        \         \"type\": \"text/html\",\n          \"title\": \"Get Help? - ESA
+        Earth Observation User Services Portal\"\n        },\n        {\n          \"rel\":
+        \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/QuickBird.full.archive?httpAccept=application/atom%2Bxml\",\n
+        \         \"type\": \"application/atom+xml\",\n          \"title\": \"Atom
+        format\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
+        \"https://emc.spacebel.be/collections/QuickBird.full.archive?httpAccept=application/xml\",\n
+        \         \"type\": \"application/xml\",\n          \"title\": \"Dublin Core
+        metadata\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
+        \"https://emc.spacebel.be/collections/QuickBird.full.archive?httpAccept=application/ld%2Bjson;profile=https://schema.org\",\n
+        \         \"type\": \"application/ld+json;profile=\\\"https://schema.org\\\"\",\n
+        \         \"title\": \"JSON-LD (schema.org) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/QuickBird.full.archive?httpAccept=application/ld%2Bjson;profile=http://data.europa.eu/930/\",\n
+        \         \"type\": \"application/ld+json;profile=\\\"http://data.europa.eu/930/\\\"\",\n
+        \         \"title\": \"JSON-LD (GeoDCAT-AP) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/QuickBird.full.archive?httpAccept=application/rdf%2Bxml\",\n
+        \         \"type\": \"application/rdf+xml\",\n          \"title\": \"RDF/XML
+        metadata\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
+        \"https://emc.spacebel.be/collections/QuickBird.full.archive?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
+        \         \"type\": \"application/rdf+xml;profile=\\\"https://schema.org\\\"\",\n
+        \         \"title\": \"RDF/XML (schema.org) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/QuickBird.full.archive?httpAccept=application/rdf%2Bxml;profile=http://data.europa.eu/930/\",\n
+        \         \"type\": \"application/rdf+xml;profile=\\\"http://data.europa.eu/930/\\\"\",\n
+        \         \"title\": \"RDF/XML (GeoDCAT-AP) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/QuickBird.full.archive?httpAccept=text/turtle;profile=https://schema.org\",\n
+        \         \"type\": \"text/turtle;profile=\\\"https://schema.org\\\"\",\n
+        \         \"title\": \"Turtle (schema.org) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/QuickBird.full.archive?httpAccept=text/turtle;profile=http://data.europa.eu/930/\",\n
+        \         \"type\": \"text/turtle;profile=\\\"http://data.europa.eu/930/\\\"\",\n
+        \         \"title\": \"Turtle (GeoDCAT-AP) metadata\"\n        },\n        {\n
+        \         \"rel\": \"related\",\n          \"href\": \"https://emc.spacebel.be/series/eo:organisationName/ESA@ESRIN\",\n
+        \         \"title\": \"More collections for ESA/ESRIN\"\n        },\n        {\n
+        \         \"rel\": \"related\",\n          \"href\": \"https://emc.spacebel.be/series/eo:platform/QuickBird-2\",\n
+        \         \"title\": \"More collections for QuickBird-2 platform\"\n        },\n
+        \       {\n          \"rel\": \"related\",\n          \"href\": \"https://emc.spacebel.be/series/concepts/instruments/aee4648e-d5cc-5e77-8354-87f45367f1a9\",\n
+        \         \"title\": \"More collections for BGI instrument\"\n        }\n
+        \     ],\n      \"id\": \"QuickBird.full.archive\",\n      \"updated\": \"2023-06-13T13:23:41Z\",\n
+        \     \"providers\": [\n        {\n          \"roles\": [\"producer\"],\n
+        \         \"name\": \"ESA/ESRIN\",\n          \"url\": \"http://www.esa.int\"\n
+        \       },\n        {\n          \"roles\": [\"host\"],\n          \"name\":
+        \"FedEO Clearinghouse\",\n          \"url\": \"https://emc.spacebel.be/readme.html\"\n
+        \       }\n      ],\n      \"summaries\": {\n        \"instruments\": [\"BGI\"],\n
+        \       \"platform\": [\"QuickBird-2\"]\n      }\n    },\n    {\n      \"extent\":
+        {\n        \"spatial\": {\"bbox\": [[\n          -180,\n          -90,\n          180,\n
+        \         90\n        ]]},\n        \"temporal\": {\"interval\": [[\n          \"2018-05-01T00:00:00.000Z\",\n
+        \         null\n        ]]}\n      },\n      \"stac_version\": \"1.0.0\",\n
+        \     \"keywords\": [\n        \"World\",\n        \"Oceans\",\n        \"Marine
+        Environment Monitoring\",\n        \"Ocean Circulation\",\n        \"EARTH
+        SCIENCE > OCEANS\",\n        \"EARTH SCIENCE > OCEANS > MARINE ENVIRONMENT
+        MONITORING\",\n        \"EARTH SCIENCE > OCEANS > OCEAN CIRCULATION\",\n        \"L-Band
+        (19.4 - 76.9 cm)\",\n        \"Sun-synchronous\",\n        \"302\",\n        \"758
+        km\",\n        \"1000 km\",\n        \"Interferometric Radiometers\",\n        \"SMOS\",\n
+        \       \"MIRAS\"\n      ],\n      \"created\": \"2019-05-31T00:00:00.00Z\",\n
+        \     \"description\": \"SMOS L3WS products are daily composite maps of the
+        collected SMOS L2 swath wind products for a specific day, provided with the
+        same grid than the Level 2 wind data (SMOS L2WS NRT) but separated into ascending
+        and descending passes.\\r\\rThis product is available the day after sensing
+        from Ifremer, in NetCDF format.\\r\\rBefore using this dataset, please check
+        the read-me-first note available in the Resources section below.\",\n      \"type\":
+        \"Collection\",\n      \"title\": \"SMOS L3 Daily Wind Speed\",\n      \"license\":
+        \"various\",\n      \"assets\": {\n        \"metadata_ogc_17_069r3\": {\n
+        \         \"roles\": [\"metadata\"],\n          \"href\": \"https://emc.spacebel.be/collections/L3SW_Open\",\n
+        \         \"type\": \"application/geo+json;profile=\\\"http://www.opengis.net/spec/ogcapi-features-1/1.0\\\"\",\n
+        \         \"title\": \"OGC 17-069r3 metadata\"\n        },\n        \"metadata_iso_19139\":
+        {\n          \"roles\": [\"metadata\"],\n          \"href\": \"https://emc.spacebel.be/collections/L3SW_Open?httpAccept=application/vnd.iso.19139%2Bxml\",\n
+        \         \"title\": \"ISO 19139 metadata\",\n          \"type\": \"application/vnd.iso.19139+xml\"\n
+        \       },\n        \"metadata_iso_19139_2\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/L3SW_Open?httpAccept=application/vnd.iso.19139-2%2Bxml\",\n
+        \         \"title\": \"ISO 19139-2 metadata\",\n          \"type\": \"application/vnd.iso.19139-2+xml\"\n
+        \       },\n        \"metadata_dif_10\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/L3SW_Open?httpAccept=application/dif10%2Bxml\",\n
+        \         \"title\": \"DIF-10 metadata\",\n          \"type\": \"application/dif10+xml\"\n
+        \       },\n        \"metadata_iso_19115_3\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/L3SW_Open?httpAccept=application/vnd.iso.19115-3%2Bxml\",\n
+        \         \"title\": \"ISO 19115-3 metadata\",\n          \"type\": \"application/vnd.iso.19115-3+xml\"\n
+        \       },\n        \"metadata_ogc_17_084r1\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/L3SW_Open?mode=owc\",\n
+        \         \"title\": \"OGC 17-084r1 metadata\",\n          \"type\": \"application/geo+json;profile=\\\"http://www.opengis.net/spec/eoc-geojson/1.0\\\"\"\n
+        \       },\n        \"metadata_html\": {\n          \"roles\": [\"metadata\"],\n
+        \         \"href\": \"https://emc.spacebel.be/collections/L3SW_Open?httpAccept=text/html\",\n
+        \         \"title\": \"HTML\",\n          \"type\": \"text/html\"\n        }\n
+        \     },\n      \"links\": [\n        {\n          \"rel\": \"self\",\n          \"href\":
+        \"https://emc.spacebel.be/collections/L3SW_Open\",\n          \"type\": \"application/json\"\n
+        \       },\n        {\n          \"rel\": \"root\",\n          \"href\": \"https://emc.spacebel.be\",\n
+        \         \"type\": \"application/json\",\n          \"title\": \"FedEO Clearinghouse\"\n
+        \       },\n        {\n          \"rel\": \"parent\",\n          \"href\":
+        \"https://emc.spacebel.be\",\n          \"title\": \"collections\",\n          \"type\":
+        \"application/json\"\n        },\n        {\n          \"rel\": \"alternate\",\n
+        \         \"href\": \"https://emc.spacebel.be/collections/L3SW_Open?httpAccept=application/atom%2Bxml\",\n
+        \         \"type\": \"application/atom+xml\",\n          \"title\": \"Atom
+        format\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
+        \"https://emc.spacebel.be/collections/L3SW_Open?httpAccept=application/xml\",\n
+        \         \"type\": \"application/xml\",\n          \"title\": \"Dublin Core
+        metadata\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
+        \"https://emc.spacebel.be/collections/L3SW_Open?httpAccept=application/ld%2Bjson;profile=https://schema.org\",\n
+        \         \"type\": \"application/ld+json;profile=\\\"https://schema.org\\\"\",\n
+        \         \"title\": \"JSON-LD (schema.org) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/L3SW_Open?httpAccept=application/ld%2Bjson;profile=http://data.europa.eu/930/\",\n
+        \         \"type\": \"application/ld+json;profile=\\\"http://data.europa.eu/930/\\\"\",\n
+        \         \"title\": \"JSON-LD (GeoDCAT-AP) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/L3SW_Open?httpAccept=application/rdf%2Bxml\",\n
+        \         \"type\": \"application/rdf+xml\",\n          \"title\": \"RDF/XML
+        metadata\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
+        \"https://emc.spacebel.be/collections/L3SW_Open?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
+        \         \"type\": \"application/rdf+xml;profile=\\\"https://schema.org\\\"\",\n
+        \         \"title\": \"RDF/XML (schema.org) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/L3SW_Open?httpAccept=application/rdf%2Bxml;profile=http://data.europa.eu/930/\",\n
+        \         \"type\": \"application/rdf+xml;profile=\\\"http://data.europa.eu/930/\\\"\",\n
+        \         \"title\": \"RDF/XML (GeoDCAT-AP) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/L3SW_Open?httpAccept=text/turtle;profile=https://schema.org\",\n
+        \         \"type\": \"text/turtle;profile=\\\"https://schema.org\\\"\",\n
+        \         \"title\": \"Turtle (schema.org) metadata\"\n        },\n        {\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/L3SW_Open?httpAccept=text/turtle;profile=http://data.europa.eu/930/\",\n
+        \         \"type\": \"text/turtle;profile=\\\"http://data.europa.eu/930/\\\"\",\n
+        \         \"title\": \"Turtle (GeoDCAT-AP) metadata\"\n        },\n        {\n
+        \         \"rel\": \"related\",\n          \"href\": \"https://emc.spacebel.be/series/eo:organisationName/ESA@ESRIN\",\n
+        \         \"title\": \"More collections for ESA/ESRIN\"\n        },\n        {\n
+        \         \"rel\": \"related\",\n          \"href\": \"https://emc.spacebel.be/series/eo:platform/SMOS\",\n
+        \         \"title\": \"More collections for SMOS platform\"\n        },\n
+        \       {\n          \"rel\": \"related\",\n          \"href\": \"https://emc.spacebel.be/series/concepts/instruments/5cda1e1d-7fb8-59c0-8a37-eaceff0ce027\",\n
+        \         \"title\": \"More collections for MIRAS instrument\"\n        }\n
+        \     ],\n      \"id\": \"L3SW_Open\",\n      \"updated\": \"2023-06-13T13:23:42Z\",\n
+        \     \"providers\": [\n        {\n          \"roles\": [\"producer\"],\n
+        \         \"name\": \"ESA/ESRIN\",\n          \"url\": \"https://earth.esa.int\"\n
+        \       },\n        {\n          \"roles\": [\"host\"],\n          \"name\":
+        \"FedEO Clearinghouse\",\n          \"url\": \"https://emc.spacebel.be/readme.html\"\n
+        \       }\n      ],\n      \"summaries\": {\n        \"instruments\": [\"MIRAS\"],\n
+        \       \"platform\": [\"SMOS\"]\n      }\n    }\n  ],\n  \"numberReturned\":
+        10,\n  \"links\": [\n    {\n      \"rel\": \"self\",\n      \"href\": \"https://emc.spacebel.be/collections?limit=10&bbox=-159.893%2C21.843%2C-159.176%2C22.266\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"This document\"\n
+        \   },\n    {\n      \"rel\": \"next\",\n      \"href\": \"https://emc.spacebel.be/collections?limit=10&bbox=-159.893%2C21.843%2C-159.176%2C22.266&startRecord=11\",\n
+        \     \"type\": \"application/json\",\n      \"title\": \"Next results\"\n
+        \   },\n    {\n      \"rel\": \"http://www.opengis.net/def/rel/ogc/1.0/queryables\",\n
+        \     \"href\": \"https://emc.spacebel.be/collections/queryables\",\n      \"type\":
+        \"application/schema+json\",\n      \"title\": \"Queryables for collection
+        search\"\n    }\n  ],\n  \"numberMatched\": 2314\n}"
+    headers:
+      Access-Control-Allow-Headers:
+      - X-PINGOTHER, Content-Type, Authorization, Accept
+      Access-Control-Allow-Methods:
+      - POST,GET,PUT,HEAD,OPTIONS,DELETE
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Thu, 26 Sep 2024 14:34:47 GMT
+      Expires:
+      - '0'
+      Pragma:
+      - no-cache
+      Server:
+      - openresty
+      Strict-Transport-Security:
+      - max-age=31536000 ; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+      X-Served-By:
+      - emc.spacebel.be
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: ''
+version: 1

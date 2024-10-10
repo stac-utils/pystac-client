@@ -22,6 +22,7 @@ from requests import Request
 
 from pystac_client._utils import Modifiable, call_modifier
 from pystac_client.collection_client import CollectionClient
+from pystac_client.collection_search import CollectionSearch
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.errors import ClientTypeError
 from pystac_client.exceptions import APIError
@@ -611,6 +612,142 @@ class Client(pystac.Catalog, QueryablesMixin):
             bbox=bbox,
             intersects=intersects,
             datetime=datetime,
+            query=query,
+            filter=filter,
+            filter_lang=filter_lang,
+            sortby=sortby,
+            fields=fields,
+            modifier=self.modifier,
+        )
+
+    def collection_search(
+        self,
+        *,
+        max_collections: Optional[int] = None,
+        limit: Optional[int] = None,
+        bbox: Optional[BBoxLike] = None,
+        datetime: Optional[DatetimeLike] = None,
+        q: Optional[str] = None,
+        query: Optional[QueryLike] = None,
+        filter: Optional[FilterLike] = None,
+        filter_lang: Optional[FilterLangLike] = None,
+        sortby: Optional[SortbyLike] = None,
+        fields: Optional[FieldsLike] = None,
+    ) -> CollectionSearch:
+        """Query the ``/collections`` endpoint using the given parameters.
+
+        This method returns an :class:`~pystac_client.CollectionSearch` instance. See
+        that class's documentation for details on how to get the number of matches and
+        iterate over results. The ``url``, `stac_io``, and ``client`` keywords are
+        supplied by this Client instance.
+
+        .. warning::
+
+            This method is fully implemented if the API conforms to the
+            `STAC API - Collection Search Extension
+            <https://github.com/stac-api-extensions/collection-search>`__
+            spec.
+
+            If the API does not conform to the Collection Search Extension but
+            conforms to `STAC API - Collections <https://api.stacspec.org/v1.0.0/collections/>`__
+            (has a ``"rel"`` type of ``"data"`` in its root catalog), a limited
+            client-side collection filtering process will be used. If the API does not
+            meet either of these criteria, this method will raise a
+            :exc:`NotImplementedError`.
+
+            Client-side filtering will only use the ``bbox``, ``datetime``, and ``q``
+            (free-text search) parameters.
+
+        Args:
+            max_collections : The maximum number of collections to return from the
+                search, even if there are more matching results. This client to limit
+                the total number of Collections returned from the :meth:`collections`,
+                :meth:`collection_list`, and :meth:`collections_as_dicts methods`. The
+                client will continue to request pages of collections until the number of
+                max collections is reached. Setting this to ``None`` will allow
+                iteration over a possibly very large number of results.
+            limit: A recommendation to the service as to the number of items to return
+                *per page* of results. Defaults to 100.
+            bbox: A list, tuple, or iterator representing a bounding box of 2D
+                or 3D coordinates. Results will be filtered
+                to only those intersecting the bounding box.
+            datetime: Either a single datetime or datetime range used to filter results.
+                You may express a single datetime using a :class:`datetime.datetime`
+                instance, a `RFC 3339-compliant <https://tools.ietf.org/html/rfc3339>`__
+                timestamp, or a simple date string (see below). Instances of
+                :class:`datetime.datetime` may be either
+                timezone aware or unaware. Timezone aware instances will be converted to
+                a UTC timestamp before being passed
+                to the endpoint. Timezone unaware instances are assumed to represent UTC
+                timestamps. You may represent a
+                datetime range using a ``"/"`` separated string as described in the
+                spec, or a list, tuple, or iterator
+                of 2 timestamps or datetime instances. For open-ended ranges, use either
+                ``".."`` (``'2020-01-01:00:00:00Z/..'``,
+                ``['2020-01-01:00:00:00Z', '..']``) or a value of ``None``
+                (``['2020-01-01:00:00:00Z', None]``).
+
+                If using a simple date string, the datetime can be specified in
+                ``YYYY-mm-dd`` format, optionally truncating
+                to ``YYYY-mm`` or just ``YYYY``. Simple date strings will be expanded to
+                include the entire time period, for example:
+
+                - ``2017`` expands to ``2017-01-01T00:00:00Z/2017-12-31T23:59:59Z``
+                - ``2017-06`` expands to ``2017-06-01T00:00:00Z/2017-06-30T23:59:59Z``
+                - ``2017-06-10`` expands to
+                  ``2017-06-10T00:00:00Z/2017-06-10T23:59:59Z``
+
+                If used in a range, the end of the range expands to the end of that
+                day/month/year, for example:
+
+                - ``2017/2018`` expands to
+                  ``2017-01-01T00:00:00Z/2018-12-31T23:59:59Z``
+                - ``2017-06/2017-07`` expands to
+                  ``2017-06-01T00:00:00Z/2017-07-31T23:59:59Z``
+                - ``2017-06-10/2017-06-11`` expands to
+                  ``2017-06-10T00:00:00Z/2017-06-11T23:59:59Z``
+
+            q: Free-text search query. See the `STAC API - Free Text Extension
+               Spec <https://github.com/stac-api-extensions/freetext-search>`__ for
+               details.
+            query: List or JSON of query parameters as per the STAC API `query`
+                extension
+            filter: JSON of query parameters as per the STAC API `filter` extension
+            filter_lang: Language variant used in the filter body. If `filter` is a
+                dictionary or not provided, defaults
+                to 'cql2-json'. If `filter` is a string, defaults to `cql2-text`.
+            sortby: A single field or list of fields to sort the response by
+            fields: A list of fields to include in the response. Note this may
+                result in invalid STAC objects, as they may not have required fields.
+                Use `items_as_dicts` to avoid object unmarshalling errors.
+
+        Returns:
+            collection_search : A CollectionSearch instance that can be used to iterate
+            through Collections.
+
+        Raises:
+            NotImplementedError: If the API does not conform to either the `STAC API -
+                Collection Search spec <https://github.com/stac-api-extensions/collection-search>`__
+                or the `STAC API - Collections spec <https://api.stacspec.org/v1.0.0/collections>`__.
+        """
+
+        if not (
+            self.conforms_to(ConformanceClasses.COLLECTION_SEARCH)
+            or self.conforms_to(ConformanceClasses.COLLECTIONS)
+        ) and any([bbox, datetime, q, query, filter, sortby, fields]):
+            raise DoesNotConformTo(
+                "COLLECTION_SEARCH or COLLECTIONS",
+                "there is no fallback option available for search.",
+            )
+
+        return CollectionSearch(
+            url=self._collections_href(),
+            client=self,
+            max_collections=max_collections,
+            limit=limit,
+            bbox=bbox,
+            datetime=datetime,
+            q=q,
             query=query,
             filter=filter,
             filter_lang=filter_lang,

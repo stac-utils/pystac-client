@@ -29,6 +29,16 @@ endpoint, if supported.
    :members:
    :undoc-members:
 
+Collection Search
+-----------------
+
+The `CollectionSearch` class represents a search of collections in a STAC API.
+
+.. autoclass:: pystac_client.CollectionSearch
+   :members:
+   :undoc-members:
+   :member-order: bysource
+
 Item Search
 -----------
 
@@ -38,6 +48,7 @@ The `ItemSearch` class represents a search of a STAC API.
    :members:
    :undoc-members:
    :member-order: bysource
+
 
 STAC API IO
 -----------
