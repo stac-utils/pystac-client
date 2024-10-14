@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Support for collection search via `CollectionSearch` class and associated client methods [#735](https://github.com/stac-utils/pystac-client/pull/735)
+
 ### Removed
 
 - Python 3.9 support [#724](https://github.com/stac-utils/pystac-client/pull/724)
