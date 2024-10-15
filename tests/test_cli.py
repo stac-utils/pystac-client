@@ -266,6 +266,23 @@ class TestCLICollections:
         assert result.stdout.startswith('[{"type": "Collection"')
 
     @pytest.mark.vcr
+    def test_collection_search(self, script_runner: ScriptRunner) -> None:
+        args = [
+            "stac-client",
+            "collections",
+            STAC_URLS["EARTH-SEARCH"],
+            "--q",
+            "sentinel",
+        ]
+        with pytest.warns(UserWarning, match="COLLECTION_SEARCH"):
+            result = script_runner.run(args, print_result=False)
+
+        assert result.success
+
+        collections = json.loads(result.stdout)
+        assert len(collections) == 5
+
+    @pytest.mark.vcr
     def test_save(self, script_runner: ScriptRunner) -> None:
         with tempfile.NamedTemporaryFile() as fp:
             path = fp.name

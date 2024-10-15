@@ -22,6 +22,10 @@ class ConformanceClasses(Enum):
     QUERY = "/item-search#query"
     FILTER = "/item-search#filter"
 
+    # collection search
+    COLLECTION_SEARCH = "/collection-search"
+    COLLECTION_SEARCH_FREE_TEXT = "/collection-search#free-text"
+
     @classmethod
     def get_by_name(cls, name: str) -> ConformanceClasses:
         for member in cls:
