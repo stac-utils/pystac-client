@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [v0.8.4] - 2024-10-16
+
 ### Added
 
 - Support for collection search via `CollectionSearch` class and associated client methods [#735](https://github.com/stac-utils/pystac-client/pull/735)
@@ -393,7 +395,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Initial release.
 
-[Unreleased]: https://github.com/stac-utils/pystac-client/compare/v0.8.3...main
+[Unreleased]: https://github.com/stac-utils/pystac-client/compare/v0.8.4...main
+[v0.8.4]: https://github.com/stac-utils/pystac-client/compare/v0.8.3...v0.8.4
 [v0.8.3]: https://github.com/stac-utils/pystac-client/compare/v0.8.2...v0.8.3
 [v0.8.2]: https://github.com/stac-utils/pystac-client/compare/v0.8.1...v0.8.2
 [v0.8.1]: https://github.com/stac-utils/pystac-client/compare/v0.8.0...v0.8.1
