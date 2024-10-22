@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Use urljoin to build hrefs [#746](https://github.com/stac-utils/pystac-client/pull/746)
+
 ## [v0.8.4] - 2024-10-16
 
 ### Added
