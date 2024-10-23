@@ -3,6 +3,7 @@ from typing import Any, Dict, Optional, Union
 
 import pystac
 
+from pystac_client._utils import urljoin
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.exceptions import APIError
 from pystac_client.stac_api_io import StacApiIO
@@ -25,7 +26,7 @@ class BaseMixin(StacAPIObject):
             href = link.absolute_href
         else:
             warnings.warn(MissingLink(rel, self.__class__.__name__), stacklevel=2)
-            href = f"{self.self_href.rstrip('/')}/{endpoint}"
+            href = urljoin(self.self_href, endpoint)
         return href
 
 

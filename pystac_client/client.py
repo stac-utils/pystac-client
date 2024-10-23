@@ -20,7 +20,7 @@ from pystac import CatalogType, Collection
 from pystac.layout import APILayoutStrategy, HrefLayoutStrategy
 from requests import Request
 
-from pystac_client._utils import Modifiable, call_modifier
+from pystac_client._utils import Modifiable, call_modifier, urljoin
 from pystac_client.collection_client import CollectionClient
 from pystac_client.collection_search import CollectionSearch
 from pystac_client.conformance import ConformanceClasses
@@ -786,11 +786,11 @@ class Client(pystac.Catalog, QueryablesMixin):
         data_link = self.get_single_link("data")
         href = self._get_href("data", data_link, "collections")
         if collection_id is not None:
-            return f"{href.rstrip('/')}/{collection_id}"
+            return urljoin(href, collection_id)
         return href
 
     def _get_collection_queryables_href(
         self, collection_id: Optional[str] = None
     ) -> str:
         href = self._collections_href(collection_id)
-        return f"{href.rstrip('/')}/{QUERYABLES_ENDPOINT}"
+        return urljoin(href, QUERYABLES_ENDPOINT)

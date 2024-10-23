@@ -791,3 +791,10 @@ def test_fallback_strategy() -> None:
 
     assert (item_root := item.get_single_link("root"))
     assert item_root.href == root_href
+
+
+@pytest.mark.vcr
+def test_query_string_in_collections_url() -> None:
+    # https://github.com/stac-utils/pystac-client/issues/745
+    client = Client.open("https://paituli.csc.fi/geoserver/ogc/stac/v1")
+    client.get_collection("sentinel2-l2a")

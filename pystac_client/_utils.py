@@ -1,3 +1,4 @@
+import urllib
 import warnings
 from typing import Any, Callable, Dict, Optional, Union
 
@@ -25,3 +26,12 @@ def call_modifier(
             "a function that returns 'None' or silence this warning.",
             IgnoredResultWarning,
         )
+
+
+def urljoin(href: str, name: str) -> str:
+    """Joins a path onto an existing href, respecting query strings, etc."""
+    url = urllib.parse.urlparse(href)
+    path = url.path
+    if not path.endswith("/"):
+        path += "/"
+    return urllib.parse.urlunparse(url._replace(path=path + name))
