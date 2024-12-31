@@ -1,4 +1,4 @@
-# STAC Client <!-- omit in toc -->
+# pystac-client
 
 [![CI](https://github.com/stac-utils/pystac-client/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/stac-utils/pystac-client/actions/workflows/continuous-integration.yml)
 [![Release](https://github.com/stac-utils/pystac-client/actions/workflows/release.yml/badge.svg)](https://github.com/stac-utils/pystac-client/actions/workflows/release.yml)
@@ -6,21 +6,15 @@
 [![Documentation](https://readthedocs.org/projects/pystac-client/badge/?version=stable)](https://pystac-client.readthedocs.io)
 [![codecov](https://codecov.io/gh/stac-utils/pystac-client/branch/main/graph/badge.svg)](https://codecov.io/gh/stac-utils/pystac-client)
 
-A Python client for working with [STAC](https://stacspec.org/) Catalogs and APIs.
-
-## Table of Contents
-
-- [Table of Contents](#table-of-contents)
-- [Installation](#installation)
-- [Documentation](#documentation)
-- [Development](#development)
+A Python client for working with [STAC](https://stacspec.org/) APIs.
 
 ## Installation
 
-Install from PyPi. Other than [PySTAC](https://pystac.readthedocs.io) itself, the only dependencies for pystac-client are the Python [requests](https://docs.python-requests.org) and [dateutil](https://dateutil.readthedocs.io) libraries.
+Install from PyPi.
+Other than [PySTAC](https://pystac.readthedocs.io) itself, the only dependencies for **pystac-client** are the Python [requests](https://docs.python-requests.org) and [dateutil](https://dateutil.readthedocs.io) libraries.
 
 ```shell
-pip install pystac-client
+python -m pip install pystac-client
 ```
 
 ## Documentation
