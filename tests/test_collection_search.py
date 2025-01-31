@@ -1,6 +1,6 @@
 from datetime import datetime
 from math import ceil
-from typing import Any, Dict
+from typing import Any
 
 import pystac
 import pytest
@@ -19,7 +19,7 @@ from .helpers import STAC_URLS, read_data_file
 
 COLLECTION_SEARCH_URL = f"{STAC_URLS['SPACEBEL']}/collections"
 
-COLLECTION_EXAMPLE: Dict[str, Any] = {
+COLLECTION_EXAMPLE: dict[str, Any] = {
     "id": "F-TCC",
     "q": '"cloudless mosaics"',
     "datetime": "2021-09-15T00:00:00Z",
@@ -68,7 +68,7 @@ class TestCollectionSearch:
         assert search.method == "GET"
 
     def test_method_params(self) -> None:
-        params_in: Dict[str, Any] = {
+        params_in: dict[str, Any] = {
             "bbox": (-72, 41, -71, 42),
             "datetime": "2021-01-01T00:00:00Z/2021-12-31T23:59:59Z",
             "q": "vegetation AND biomass",

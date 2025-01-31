@@ -2,7 +2,7 @@ import json
 import re
 import warnings
 from abc import ABC
-from collections.abc import Iterable, Mapping
+from collections.abc import Callable, Iterable, Iterator, Mapping
 from copy import deepcopy
 from datetime import datetime as datetime_
 from datetime import timezone
@@ -11,13 +11,8 @@ from itertools import chain
 from typing import (
     TYPE_CHECKING,
     Any,
-    Callable,
-    Dict,
-    Iterator,
-    List,
     Optional,
     Protocol,
-    Tuple,
     Union,
 )
 
@@ -43,41 +38,41 @@ DATETIME_REGEX = re.compile(
 
 class GeoInterface(Protocol):
     @property
-    def __geo_interface__(self) -> Dict[str, Any]: ...
+    def __geo_interface__(self) -> dict[str, Any]: ...
 
 
 DatetimeOrTimestamp = Optional[Union[datetime_, str]]
 Datetime = str
 DatetimeLike = Union[
     DatetimeOrTimestamp,
-    Tuple[DatetimeOrTimestamp, DatetimeOrTimestamp],
-    List[DatetimeOrTimestamp],
+    tuple[DatetimeOrTimestamp, DatetimeOrTimestamp],
+    list[DatetimeOrTimestamp],
     Iterator[DatetimeOrTimestamp],
 ]
 
-BBox = Tuple[float, ...]
-BBoxLike = Union[BBox, List[float], Iterator[float], str]
+BBox = tuple[float, ...]
+BBoxLike = Union[BBox, list[float], Iterator[float], str]
 
-Collections = Tuple[str, ...]
-CollectionsLike = Union[List[str], Iterator[str], str]
+Collections = tuple[str, ...]
+CollectionsLike = Union[list[str], Iterator[str], str]
 
-IDs = Tuple[str, ...]
-IDsLike = Union[IDs, str, List[str], Iterator[str]]
+IDs = tuple[str, ...]
+IDsLike = Union[IDs, str, list[str], Iterator[str]]
 
-Intersects = Dict[str, Any]
+Intersects = dict[str, Any]
 IntersectsLike = Union[str, GeoInterface, Intersects]
 
-Query = Dict[str, Any]
-QueryLike = Union[Query, List[str]]
+Query = dict[str, Any]
+QueryLike = Union[Query, list[str]]
 
 FilterLangLike = str
-FilterLike = Union[Dict[str, Any], str]
+FilterLike = Union[dict[str, Any], str]
 
-Sortby = List[Dict[str, str]]
-SortbyLike = Union[Sortby, str, List[str]]
+Sortby = list[dict[str, str]]
+SortbyLike = Union[Sortby, str, list[str]]
 
-Fields = Dict[str, List[str]]
-FieldsLike = Union[Fields, str, List[str]]
+Fields = dict[str, list[str]]
+FieldsLike = Union[Fields, str, list[str]]
 
 # these cannot be reordered or parsing will fail!
 OP_MAP = {
@@ -94,8 +89,8 @@ OPS = list(OP_MAP.keys())
 
 # from https://gist.github.com/angstwad/bf22d1822c38a92ec0a9#gistcomment-2622319
 def dict_merge(
-    dct: Dict[Any, Any], merge_dct: Dict[Any, Any], add_keys: bool = True
-) -> Dict[Any, Any]:
+    dct: dict[Any, Any], merge_dct: dict[Any, Any], add_keys: bool = True
+) -> dict[Any, Any]:
     """Recursive dict merge.
 
     Inspired by :meth:``dict.update()``, instead of
@@ -134,23 +129,23 @@ class BaseSearch(ABC):
         self,
         url: str,
         *,
-        method: Optional[str] = "POST",
-        max_items: Optional[int] = None,
-        stac_io: Optional[StacApiIO] = None,
+        method: str | None = "POST",
+        max_items: int | None = None,
+        stac_io: StacApiIO | None = None,
         client: Optional["_client.Client"] = None,
-        limit: Optional[int] = None,
-        ids: Optional[IDsLike] = None,
-        collections: Optional[CollectionsLike] = None,
-        bbox: Optional[BBoxLike] = None,
-        intersects: Optional[IntersectsLike] = None,
-        datetime: Optional[DatetimeLike] = None,
-        query: Optional[QueryLike] = None,
-        filter: Optional[FilterLike] = None,
-        filter_lang: Optional[FilterLangLike] = None,
-        sortby: Optional[SortbyLike] = None,
-        fields: Optional[FieldsLike] = None,
-        modifier: Optional[Callable[[Modifiable], None]] = None,
-        q: Optional[str] = None,
+        limit: int | None = None,
+        ids: IDsLike | None = None,
+        collections: CollectionsLike | None = None,
+        bbox: BBoxLike | None = None,
+        intersects: IntersectsLike | None = None,
+        datetime: DatetimeLike | None = None,
+        query: QueryLike | None = None,
+        filter: FilterLike | None = None,
+        filter_lang: FilterLangLike | None = None,
+        sortby: SortbyLike | None = None,
+        fields: FieldsLike | None = None,
+        modifier: Callable[[Modifiable], None] | None = None,
+        q: str | None = None,
     ):
         self.url = url
         self.client = client
@@ -180,11 +175,11 @@ class BaseSearch(ABC):
             "q": q,
         }
 
-        self._parameters: Dict[str, Any] = {
+        self._parameters: dict[str, Any] = {
             k: v for k, v in params.items() if v is not None
         }
 
-    def get_parameters(self) -> Dict[str, Any]:
+    def get_parameters(self) -> dict[str, Any]:
         if self.method == "POST":
             return self._parameters
         elif self.method == "GET":
@@ -192,7 +187,7 @@ class BaseSearch(ABC):
         else:
             raise Exception(f"Unsupported method {self.method}")
 
-    def _clean_params_for_get_request(self) -> Dict[str, Any]:
+    def _clean_params_for_get_request(self) -> dict[str, Any]:
         params = deepcopy(self._parameters)
         if "bbox" in params:
             params["bbox"] = ",".join(map(str, params["bbox"]))
@@ -238,7 +233,7 @@ class BaseSearch(ABC):
             raise ValueError("Could not construct a full url")
         return url
 
-    def _format_query(self, value: Optional[QueryLike]) -> Optional[Dict[str, Any]]:
+    def _format_query(self, value: QueryLike | None) -> dict[str, Any] | None:
         if value is None:
             return None
 
@@ -248,7 +243,7 @@ class BaseSearch(ABC):
         if isinstance(value, dict):
             return value
         elif isinstance(value, list):
-            query: Dict[str, Any] = {}
+            query: dict[str, Any] = {}
             for q in value:
                 if isinstance(q, str):
                     try:
@@ -258,7 +253,7 @@ class BaseSearch(ABC):
                             parts = q.split(op)
                             if len(parts) == 2:
                                 param = parts[0]
-                                val: Union[str, float] = parts[1]
+                                val: str | float = parts[1]
                                 if param == "gsd":
                                     val = float(val)
                                 query = dict_merge(query, {parts[0]: {OP_MAP[op]: val}})
@@ -272,8 +267,8 @@ class BaseSearch(ABC):
 
     @staticmethod
     def _format_filter_lang(
-        _filter: Optional[FilterLike], value: Optional[FilterLangLike]
-    ) -> Optional[str]:
+        _filter: FilterLike | None, value: FilterLangLike | None
+    ) -> str | None:
         if _filter is None:
             return None
 
@@ -288,7 +283,7 @@ class BaseSearch(ABC):
 
         return None
 
-    def _format_filter(self, value: Optional[FilterLike]) -> Optional[FilterLike]:
+    def _format_filter(self, value: FilterLike | None) -> FilterLike | None:
         if value is None:
             return None
 
@@ -298,7 +293,7 @@ class BaseSearch(ABC):
         return value
 
     @staticmethod
-    def _format_bbox(value: Optional[BBoxLike]) -> Optional[BBox]:
+    def _format_bbox(value: BBoxLike | None) -> BBox | None:
         if value is None:
             return None
 
@@ -319,7 +314,7 @@ class BaseSearch(ABC):
     def _to_isoformat_range(
         self,
         component: DatetimeOrTimestamp,
-    ) -> Tuple[str, Optional[str]]:
+    ) -> tuple[str, str | None]:
         """Converts a single DatetimeOrTimestamp into one or two Datetimes.
 
         This is required to expand a single value like "2017" out to the whole
@@ -373,7 +368,7 @@ class BaseSearch(ABC):
         else:
             return self._to_utc_isoformat(component), None
 
-    def _format_datetime(self, value: Optional[DatetimeLike]) -> Optional[Datetime]:
+    def _format_datetime(self, value: DatetimeLike | None) -> Datetime | None:
         if value is None:
             return None
         elif isinstance(value, datetime_):
@@ -406,7 +401,7 @@ class BaseSearch(ABC):
             )
 
     @staticmethod
-    def _format_collections(value: Optional[CollectionsLike]) -> Optional[Collections]:
+    def _format_collections(value: CollectionsLike | None) -> Collections | None:
         def _format(c: Any) -> Collections:
             if isinstance(c, str):
                 return (c,)
@@ -425,7 +420,7 @@ class BaseSearch(ABC):
         return _format(value)
 
     @staticmethod
-    def _format_ids(value: Optional[IDsLike]) -> Optional[IDs]:
+    def _format_ids(value: IDsLike | None) -> IDs | None:
         if value is None or isinstance(value, (tuple, list)) and not value:
             # We can't just check for truthiness here because of the Iterator[str] case
             return None
@@ -439,7 +434,7 @@ class BaseSearch(ABC):
         else:
             return tuple(value)
 
-    def _format_sortby(self, value: Optional[SortbyLike]) -> Optional[Sortby]:
+    def _format_sortby(self, value: SortbyLike | None) -> Sortby | None:
         if value is None:
             return None
 
@@ -460,7 +455,7 @@ class BaseSearch(ABC):
         )
 
     @staticmethod
-    def _sortby_part_to_dict(part: str) -> Dict[str, str]:
+    def _sortby_part_to_dict(part: str) -> dict[str, str]:
         if part.startswith("-"):
             return {"field": part[1:], "direction": "desc"}
         elif part.startswith("+"):
@@ -477,7 +472,7 @@ class BaseSearch(ABC):
             ]
         )
 
-    def _format_fields(self, value: Optional[FieldsLike]) -> Optional[Fields]:
+    def _format_fields(self, value: FieldsLike | None) -> Fields | None:
         if value is None:
             return None
 
@@ -496,9 +491,9 @@ class BaseSearch(ABC):
         )
 
     @staticmethod
-    def _fields_to_dict(fields: List[str]) -> Fields:
-        includes: List[str] = []
-        excludes: List[str] = []
+    def _fields_to_dict(fields: list[str]) -> Fields:
+        includes: list[str] = []
+        excludes: list[str] = []
         for field in fields:
             if field.startswith("-"):
                 excludes.append(field[1:])
@@ -515,7 +510,7 @@ class BaseSearch(ABC):
         return ",".join(chain(includes, excludes))
 
     @staticmethod
-    def _format_intersects(value: Optional[IntersectsLike]) -> Optional[Intersects]:
+    def _format_intersects(value: IntersectsLike | None) -> Intersects | None:
         if value is None:
             return None
         if isinstance(value, dict):
@@ -666,22 +661,22 @@ class ItemSearch(BaseSearch):
         self,
         url: str,
         *,
-        method: Optional[str] = "POST",
-        max_items: Optional[int] = None,
-        stac_io: Optional[StacApiIO] = None,
+        method: str | None = "POST",
+        max_items: int | None = None,
+        stac_io: StacApiIO | None = None,
         client: Optional["_client.Client"] = None,
-        limit: Optional[int] = None,
-        ids: Optional[IDsLike] = None,
-        collections: Optional[CollectionsLike] = None,
-        bbox: Optional[BBoxLike] = None,
-        intersects: Optional[IntersectsLike] = None,
-        datetime: Optional[DatetimeLike] = None,
-        query: Optional[QueryLike] = None,
-        filter: Optional[FilterLike] = None,
-        filter_lang: Optional[FilterLangLike] = None,
-        sortby: Optional[SortbyLike] = None,
-        fields: Optional[FieldsLike] = None,
-        modifier: Optional[Callable[[Modifiable], None]] = None,
+        limit: int | None = None,
+        ids: IDsLike | None = None,
+        collections: CollectionsLike | None = None,
+        bbox: BBoxLike | None = None,
+        intersects: IntersectsLike | None = None,
+        datetime: DatetimeLike | None = None,
+        query: QueryLike | None = None,
+        filter: FilterLike | None = None,
+        filter_lang: FilterLangLike | None = None,
+        sortby: SortbyLike | None = None,
+        fields: FieldsLike | None = None,
+        modifier: Callable[[Modifiable], None] | None = None,
     ):
         super().__init__(
             url=url,
@@ -711,7 +706,7 @@ class ItemSearch(BaseSearch):
             self._stac_io = stac_io or StacApiIO()
 
     @lru_cache(1)
-    def matched(self) -> Optional[int]:
+    def matched(self) -> int | None:
         """Return number matched for search
 
         Returns the value from the `numberMatched` or `context.matched` field.
@@ -747,7 +742,7 @@ class ItemSearch(BaseSearch):
             # already signed in items_as_dicts
             yield Item.from_dict(item, root=self.client, preserve_dict=False)
 
-    def items_as_dicts(self) -> Iterator[Dict[str, Any]]:
+    def items_as_dicts(self) -> Iterator[dict[str, Any]]:
         """Iterator that yields :class:`dict` instances for each item matching
         the given search parameters.
 
@@ -755,9 +750,7 @@ class ItemSearch(BaseSearch):
             Item : each Item matching the search criteria
         """
         for page in self.pages_as_dicts():
-            for item in page.get("features", []):
-                # already signed in pages_as_dicts
-                yield item
+            yield from page.get("features", [])
 
     # ------------------------------------------------------------------------
     # By Page
@@ -776,7 +769,7 @@ class ItemSearch(BaseSearch):
                     page, preserve_dict=False, root=self.client
                 )
 
-    def pages_as_dicts(self) -> Iterator[Dict[str, Any]]:
+    def pages_as_dicts(self) -> Iterator[dict[str, Any]]:
         """Iterator that yields :class:`dict` instances for each page
         of results from the search.
 
@@ -822,7 +815,7 @@ class ItemSearch(BaseSearch):
         )
 
     @lru_cache(1)
-    def item_collection_as_dict(self) -> Dict[str, Any]:
+    def item_collection_as_dict(self) -> dict[str, Any]:
         """
         Get the matching items as an item-collection-like dict.
 
@@ -906,7 +899,7 @@ class ItemSearch(BaseSearch):
         )
         return self.item_collection()
 
-    def get_all_items_as_dict(self) -> Dict[str, Any]:
+    def get_all_items_as_dict(self) -> dict[str, Any]:
         """DEPRECATED
 
         .. deprecated:: 0.4.0

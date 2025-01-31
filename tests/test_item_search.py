@@ -1,7 +1,7 @@
 import operator
 import urllib.parse
 from datetime import datetime, timedelta
-from typing import Any, Dict
+from typing import Any
 
 import pystac
 import pytest
@@ -29,7 +29,7 @@ INTERSECTS_EXAMPLE = {
     ],
 }
 
-ITEM_EXAMPLE: Dict[str, Any] = {"collections": "io-lulc", "ids": "60U-2020"}
+ITEM_EXAMPLE: dict[str, Any] = {"collections": "io-lulc", "ids": "60U-2020"}
 
 
 class TestItemPerformance:
@@ -79,7 +79,7 @@ class TestItemSearch:
         assert search.method == "GET"
 
     def test_method_params(self) -> None:
-        params_in: Dict[str, Any] = {
+        params_in: dict[str, Any] = {
             "bbox": (-72, 41, -71, 42),
             "ids": (
                 "idone",
@@ -171,7 +171,7 @@ class TestItemSearch:
         # Geo-interface object
         class MockGeoObject:
             @property
-            def __geo_interface__(self) -> Dict[str, Any]:
+            def __geo_interface__(self) -> dict[str, Any]:
                 return intersects_dict
 
         intersects_obj = MockGeoObject()
@@ -382,7 +382,7 @@ def test_multiple_collections() -> None:
         intersects={"type": "Point", "coordinates": [-105.1019, 40.1672]},
         datetime="2023-10-08",
     )
-    collections = set(item.collection_id for item in search.items())
+    collections = {item.collection_id for item in search.items()}
     assert collections == {"sentinel-2-l2a", "landsat-c2-l2"}
 
 

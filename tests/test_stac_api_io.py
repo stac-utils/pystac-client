@@ -73,7 +73,7 @@ class TestSTAC_IOOverride:
         header_value = "Some Value"
         url = "https://some-url.com/some-file.json"
 
-        def custom_modifier(request: typing.Any) -> typing.Union[typing.Any, None]:
+        def custom_modifier(request: typing.Any) -> typing.Any | None:
             request.headers["x-pirate-name"] = "yellowbeard"
             return request
 
@@ -96,7 +96,7 @@ class TestSTAC_IOOverride:
         header_value = "Some Value"
         url = "https://some-url.com/some-file.json"
 
-        def custom_modifier(request: typing.Any) -> typing.Union[typing.Any, None]:
+        def custom_modifier(request: typing.Any) -> typing.Any | None:
             request.headers["x-pirate-name"] = "yellowbeard"
             return None
 

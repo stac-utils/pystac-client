@@ -1,15 +1,10 @@
 import re
 import warnings
+from collections.abc import Callable, Iterator
 from functools import lru_cache
 from typing import (
     TYPE_CHECKING,
     Any,
-    Callable,
-    Dict,
-    Iterator,
-    List,
-    Optional,
-    Union,
     cast,
 )
 
@@ -62,22 +57,22 @@ class Client(pystac.Catalog, QueryablesMixin):
     such as searching items (e.g., /search endpoint).
     """
 
-    _stac_io: Optional[StacApiIO]
+    _stac_io: StacApiIO | None
     _fallback_strategy: HrefLayoutStrategy = APILayoutStrategy()
 
     def __init__(
         self,
         id: str,
         description: str,
-        title: Optional[str] = None,
-        stac_extensions: Optional[List[str]] = None,
-        extra_fields: Optional[Dict[str, Any]] = None,
-        href: Optional[str] = None,
+        title: str | None = None,
+        stac_extensions: list[str] | None = None,
+        extra_fields: dict[str, Any] | None = None,
+        href: str | None = None,
         catalog_type: CatalogType = CatalogType.ABSOLUTE_PUBLISHED,
-        strategy: Optional[HrefLayoutStrategy] = None,
+        strategy: HrefLayoutStrategy | None = None,
         *,
-        modifier: Optional[Callable[[Modifiable], None]] = None,
-        **kwargs: Dict[str, Any],
+        modifier: Callable[[Modifiable], None] | None = None,
+        **kwargs: dict[str, Any],
     ):
         super().__init__(
             id,
@@ -93,19 +88,19 @@ class Client(pystac.Catalog, QueryablesMixin):
         self.modifier = modifier
 
     def __repr__(self) -> str:
-        return "<Client id={}>".format(self.id)
+        return f"<Client id={self.id}>"
 
     @classmethod
     def open(
         cls,
         url: str,
-        headers: Optional[Dict[str, str]] = None,
-        parameters: Optional[Dict[str, Any]] = None,
-        ignore_conformance: Optional[bool] = None,
-        modifier: Optional[Callable[[Modifiable], None]] = None,
-        request_modifier: Optional[Callable[[Request], Union[Request, None]]] = None,
-        stac_io: Optional[StacApiIO] = None,
-        timeout: Optional[Timeout] = None,
+        headers: dict[str, str] | None = None,
+        parameters: dict[str, Any] | None = None,
+        ignore_conformance: bool | None = None,
+        modifier: Callable[[Modifiable], None] | None = None,
+        request_modifier: Callable[[Request], Request | None] | None = None,
+        stac_io: StacApiIO | None = None,
+        timeout: Timeout | None = None,
     ) -> "Client":
         """Opens a STAC Catalog or API
         This function will read the root catalog of a STAC Catalog or API
@@ -196,12 +191,12 @@ class Client(pystac.Catalog, QueryablesMixin):
     def from_file(  # type: ignore
         cls,
         href: str,
-        stac_io: Optional[StacApiIO] = None,
-        headers: Optional[Dict[str, str]] = None,
-        parameters: Optional[Dict[str, Any]] = None,
-        modifier: Optional[Callable[[Modifiable], None]] = None,
-        request_modifier: Optional[Callable[[Request], Union[Request, None]]] = None,
-        timeout: Optional[Timeout] = None,
+        stac_io: StacApiIO | None = None,
+        headers: dict[str, str] | None = None,
+        parameters: dict[str, Any] | None = None,
+        modifier: Callable[[Modifiable], None] | None = None,
+        request_modifier: Callable[[Request], Request | None] | None = None,
+        timeout: Timeout | None = None,
     ) -> "Client":
         """Open a STAC Catalog/API
 
@@ -232,15 +227,15 @@ class Client(pystac.Catalog, QueryablesMixin):
         """Whether server contains list of ``"conformsTo"`` URIs"""
         return "conformsTo" in self.extra_fields
 
-    def get_conforms_to(self) -> List[str]:
+    def get_conforms_to(self) -> list[str]:
         """List of ``"conformsTo"`` URIs
 
         Return:
             List[str]: List of  URIs that the server conforms to
         """
-        return cast(List[str], self.extra_fields.get("conformsTo", []).copy())
+        return cast(list[str], self.extra_fields.get("conformsTo", []).copy())
 
-    def set_conforms_to(self, conformance_uris: List[str]) -> None:
+    def set_conforms_to(self, conformance_uris: list[str]) -> None:
         """Set list of ``"conformsTo"`` URIs
 
         Args:
@@ -283,7 +278,7 @@ class Client(pystac.Catalog, QueryablesMixin):
             ]
         )
 
-    def conforms_to(self, conformance_class: Union[ConformanceClasses, str]) -> bool:
+    def conforms_to(self, conformance_class: ConformanceClasses | str) -> bool:
         """Checks whether the API conforms to the given standard.
 
         This method only checks
@@ -308,12 +303,12 @@ class Client(pystac.Catalog, QueryablesMixin):
     @classmethod
     def from_dict(
         cls,
-        d: Dict[str, Any],
-        href: Optional[str] = None,
-        root: Optional[pystac.Catalog] = None,
+        d: dict[str, Any],
+        href: str | None = None,
+        root: pystac.Catalog | None = None,
         migrate: bool = False,
         preserve_dict: bool = True,
-        modifier: Optional[Callable[[Modifiable], None]] = None,
+        modifier: Callable[[Modifiable], None] | None = None,
     ) -> "Client":
         try:
             # this will return a Client because we have used a StacApiIO instance
@@ -339,7 +334,7 @@ class Client(pystac.Catalog, QueryablesMixin):
             warnings.warn(DoesNotConformTo(*args), stacklevel=2)
         warnings.warn(FallbackToPystac(), stacklevel=2)
 
-    def get_merged_queryables(self, collections: List[str]) -> Dict[str, Any]:
+    def get_merged_queryables(self, collections: list[str]) -> dict[str, Any]:
         """Return the set of queryables in common to the specified collections.
 
         Queryables from multiple collections are unioned together, except in the case
@@ -381,8 +376,8 @@ class Client(pystac.Catalog, QueryablesMixin):
             response["properties"].update(resp["properties"])
         return response
 
-    @lru_cache()
-    def get_collection(self, collection_id: str) -> Union[Collection, CollectionClient]:
+    @lru_cache
+    def get_collection(self, collection_id: str) -> Collection | CollectionClient:
         """Get a single collection from this Catalog/API
 
         Args:
@@ -394,7 +389,7 @@ class Client(pystac.Catalog, QueryablesMixin):
         Raises:
             NotFoundError if collection_id does not exist.
         """
-        collection: Union[Collection, CollectionClient]
+        collection: Collection | CollectionClient
 
         if self._supports_collections():
             assert self._stac_io is not None
@@ -422,7 +417,7 @@ class Client(pystac.Catalog, QueryablesMixin):
         Return:
             Iterator[Union[Collection, CollectionClient]]: Collections in Catalog/API
         """
-        collection: Union[Collection, CollectionClient]
+        collection: Collection | CollectionClient
 
         if self._supports_collections():
             assert self._stac_io is not None
@@ -444,7 +439,7 @@ class Client(pystac.Catalog, QueryablesMixin):
                 yield collection
 
     def get_items(
-        self, *ids: str, recursive: Optional[bool] = None
+        self, *ids: str, recursive: bool | None = None
     ) -> Iterator["Item_Type"]:
         """Return all items of this catalog.
 
@@ -481,19 +476,19 @@ class Client(pystac.Catalog, QueryablesMixin):
     def search(
         self,
         *,
-        method: Optional[str] = "POST",
-        max_items: Optional[int] = None,
-        limit: Optional[int] = None,
-        ids: Optional[IDsLike] = None,
-        collections: Optional[CollectionsLike] = None,
-        bbox: Optional[BBoxLike] = None,
-        intersects: Optional[IntersectsLike] = None,
-        datetime: Optional[DatetimeLike] = None,
-        query: Optional[QueryLike] = None,
-        filter: Optional[FilterLike] = None,
-        filter_lang: Optional[FilterLangLike] = None,
-        sortby: Optional[SortbyLike] = None,
-        fields: Optional[FieldsLike] = None,
+        method: str | None = "POST",
+        max_items: int | None = None,
+        limit: int | None = None,
+        ids: IDsLike | None = None,
+        collections: CollectionsLike | None = None,
+        bbox: BBoxLike | None = None,
+        intersects: IntersectsLike | None = None,
+        datetime: DatetimeLike | None = None,
+        query: QueryLike | None = None,
+        filter: FilterLike | None = None,
+        filter_lang: FilterLangLike | None = None,
+        sortby: SortbyLike | None = None,
+        fields: FieldsLike | None = None,
     ) -> ItemSearch:
         """Query the ``/search`` endpoint using the given parameters.
 
@@ -623,16 +618,16 @@ class Client(pystac.Catalog, QueryablesMixin):
     def collection_search(
         self,
         *,
-        max_collections: Optional[int] = None,
-        limit: Optional[int] = None,
-        bbox: Optional[BBoxLike] = None,
-        datetime: Optional[DatetimeLike] = None,
-        q: Optional[str] = None,
-        query: Optional[QueryLike] = None,
-        filter: Optional[FilterLike] = None,
-        filter_lang: Optional[FilterLangLike] = None,
-        sortby: Optional[SortbyLike] = None,
-        fields: Optional[FieldsLike] = None,
+        max_collections: int | None = None,
+        limit: int | None = None,
+        bbox: BBoxLike | None = None,
+        datetime: DatetimeLike | None = None,
+        q: str | None = None,
+        query: QueryLike | None = None,
+        filter: FilterLike | None = None,
+        filter_lang: FilterLangLike | None = None,
+        sortby: SortbyLike | None = None,
+        fields: FieldsLike | None = None,
     ) -> CollectionSearch:
         """Query the ``/collections`` endpoint using the given parameters.
 
@@ -756,7 +751,7 @@ class Client(pystac.Catalog, QueryablesMixin):
             modifier=self.modifier,
         )
 
-    def get_search_link(self) -> Optional[pystac.Link]:
+    def get_search_link(self) -> pystac.Link | None:
         """Returns this client's search link.
 
         Searches for a link with rel="search" and either a GEOJSON or JSON media type.
@@ -782,15 +777,13 @@ class Client(pystac.Catalog, QueryablesMixin):
         href = self._get_href("search", search_link, "search")
         return href
 
-    def _collections_href(self, collection_id: Optional[str] = None) -> str:
+    def _collections_href(self, collection_id: str | None = None) -> str:
         data_link = self.get_single_link("data")
         href = self._get_href("data", data_link, "collections")
         if collection_id is not None:
             return urljoin(href, collection_id)
         return href
 
-    def _get_collection_queryables_href(
-        self, collection_id: Optional[str] = None
-    ) -> str:
+    def _get_collection_queryables_href(self, collection_id: str | None = None) -> str:
         href = self._collections_href(collection_id)
         return urljoin(href, QUERYABLES_ENDPOINT)

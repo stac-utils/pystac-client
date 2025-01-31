@@ -5,7 +5,7 @@ import os
 import re
 import sys
 import warnings
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 from pystac import STACError, STACTypeError
 
@@ -39,21 +39,21 @@ logger = logging.getLogger(__name__)
 def search(
     client: Client,
     matched: bool = False,
-    save: Optional[str] = None,
+    save: str | None = None,
     *,
     method: str = "GET",
-    max_items: Optional[int] = None,
-    limit: Optional[int] = None,
-    ids: Optional[IDsLike] = None,
-    collections: Optional[CollectionsLike] = None,
-    bbox: Optional[BBoxLike] = None,
-    intersects: Optional[IntersectsLike] = None,
-    datetime: Optional[DatetimeLike] = None,
-    query: Optional[QueryLike] = None,
-    filter: Optional[FilterLike] = None,
-    filter_lang: Optional[FilterLangLike] = None,
-    sortby: Optional[SortbyLike] = None,
-    fields: Optional[FieldsLike] = None,
+    max_items: int | None = None,
+    limit: int | None = None,
+    ids: IDsLike | None = None,
+    collections: CollectionsLike | None = None,
+    bbox: BBoxLike | None = None,
+    intersects: IntersectsLike | None = None,
+    datetime: DatetimeLike | None = None,
+    query: QueryLike | None = None,
+    filter: FilterLike | None = None,
+    filter_lang: FilterLangLike | None = None,
+    sortby: SortbyLike | None = None,
+    fields: FieldsLike | None = None,
 ) -> int:
     """Main function for performing a search"""
 
@@ -90,19 +90,19 @@ def search(
 
 def collections(
     client: Client,
-    save: Optional[str] = None,
+    save: str | None = None,
     matched: bool = False,
     *,
-    max_collections: Optional[int] = None,
-    limit: Optional[int] = None,
-    bbox: Optional[BBoxLike] = None,
-    datetime: Optional[DatetimeLike] = None,
-    q: Optional[str] = None,
-    query: Optional[QueryLike] = None,
-    filter: Optional[FilterLike] = None,
-    filter_lang: Optional[FilterLangLike] = None,
-    sortby: Optional[SortbyLike] = None,
-    fields: Optional[FieldsLike] = None,
+    max_collections: int | None = None,
+    limit: int | None = None,
+    bbox: BBoxLike | None = None,
+    datetime: DatetimeLike | None = None,
+    q: str | None = None,
+    query: QueryLike | None = None,
+    filter: FilterLike | None = None,
+    filter_lang: FilterLangLike | None = None,
+    sortby: SortbyLike | None = None,
+    fields: FieldsLike | None = None,
 ) -> int:
     """Fetch collections from collections endpoint"""
     try:
@@ -164,7 +164,7 @@ def add_warnings_behavior(parser: argparse.ArgumentParser) -> None:
     )
 
 
-def set_warnings(error: Optional[List[str]], ignore: Optional[List[str]]) -> None:
+def set_warnings(error: list[str] | None, ignore: list[str] | None) -> None:
     # First set filters on the base class
     if ignore is not None and len(ignore) == 0:
         warnings.filterwarnings("ignore", category=PystacClientWarning)
@@ -187,7 +187,7 @@ def set_warnings(error: Optional[List[str]], ignore: Optional[List[str]]) -> Non
 
 
 def set_conforms_to(
-    client: Client, clear: bool, remove: Optional[List[str]], add: Optional[List[str]]
+    client: Client, clear: bool, remove: list[str] | None, add: list[str] | None
 ) -> None:
     """Alters conforms_to settings on client in-place"""
     if clear:
@@ -200,7 +200,7 @@ def set_conforms_to(
             client.add_conforms_to(conformance_class)
 
 
-def parse_args(args: List[str]) -> Dict[str, Any]:
+def parse_args(args: list[str]) -> dict[str, Any]:
     desc = "STAC Client"
     dhf = argparse.ArgumentDefaultsHelpFormatter
     parser0 = argparse.ArgumentParser(description=desc)
