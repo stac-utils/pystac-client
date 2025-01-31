@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Updated to Python 3.10 syntax with **pyupgrade** [#783](https://github.com/stac-utils/pystac-client/pull/783/)
+
 ### Fixed
 
 - `Client.get_collection` for static catalogs [#782](https://github.com/stac-utils/pystac-client/pull/782)
