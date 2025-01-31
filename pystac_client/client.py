@@ -389,7 +389,7 @@ class Client(pystac.Catalog, QueryablesMixin):
         Raises:
             NotFoundError if collection_id does not exist.
         """
-        collection: Collection | CollectionClient
+        collection: Collection | CollectionClient | None = None
 
         if self._supports_collections():
             assert self._stac_io is not None
@@ -406,6 +406,11 @@ class Client(pystac.Catalog, QueryablesMixin):
             for collection in super().get_collections():
                 if collection.id == collection_id:
                     call_modifier(self.modifier, collection)
+                    break
+
+        if collection is None:
+            raise KeyError(f"Collection {collection_id} not found on catalog")
+
         return collection
 
     def get_collections(self) -> Iterator[Collection]:

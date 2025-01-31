@@ -793,6 +793,28 @@ def test_fallback_strategy() -> None:
     assert item_root.href == root_href
 
 
+def test_get_collection_fallback_strategy_for_static_catalogs() -> None:
+    client = Client.from_file(
+        str(TEST_DATA / "test-case-1" / "country-1" / "catalog.json")
+    )
+
+    with pytest.warns(FallbackToPystac):
+        area_1_1 = client.get_collection("area-1-1")
+
+    with pytest.warns(FallbackToPystac):
+        area_1_2 = client.get_collection("area-1-2")
+
+    assert area_1_1.id == "area-1-1"
+    assert area_1_2.id == "area-1-2"
+
+
+def test_get_collection_for_static_catalogs_raise_if_not_found() -> None:
+    client = Client.from_file(str(TEST_DATA / "test-case-1" / "catalog.json"))
+    with pytest.raises(KeyError, match="not found on catalog"):
+        with pytest.warns(FallbackToPystac):
+            client.get_collection("country-1")
+
+
 @pytest.mark.vcr
 def test_query_string_in_collections_url() -> None:
     # https://github.com/stac-utils/pystac-client/issues/745
