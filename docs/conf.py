@@ -8,7 +8,6 @@ import re
 import subprocess
 import sys
 from pathlib import Path
-from typing import List
 
 # -- Path setup --------------------------------------------------------------
 
@@ -112,7 +111,7 @@ html_logo = "_static/STAC-03.png"
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path: List[str] = ["_static"]
+html_static_path: list[str] = ["_static"]
 
 
 # -- Options for intersphinx extension ---------------------------------------

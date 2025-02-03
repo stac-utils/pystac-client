@@ -1,5 +1,5 @@
 import warnings
-from typing import Any, Dict, Optional, Union
+from typing import Any
 
 import pystac
 
@@ -14,14 +14,14 @@ QUERYABLES_ENDPOINT = "queryables"
 
 
 class StacAPIObject(pystac.STACObject):
-    _stac_io: Optional[StacApiIO]
+    _stac_io: StacApiIO | None
 
-    def conforms_to(self, conformance_class: Union[str, ConformanceClasses]) -> bool:
+    def conforms_to(self, conformance_class: str | ConformanceClasses) -> bool:
         raise NotImplementedError
 
 
 class BaseMixin(StacAPIObject):
-    def _get_href(self, rel: str, link: Optional[pystac.Link], endpoint: str) -> str:
+    def _get_href(self, rel: str, link: pystac.Link | None, endpoint: str) -> str:
         if link and isinstance(link.href, str):
             href = link.absolute_href
         else:
@@ -33,7 +33,7 @@ class BaseMixin(StacAPIObject):
 class QueryablesMixin(BaseMixin):
     """Mixin for adding support for /queryables endpoint"""
 
-    def get_queryables_from(self, url: str) -> Dict[str, Any]:
+    def get_queryables_from(self, url: str) -> dict[str, Any]:
         """Return all queryables.
 
         Output is a dictionary that can be used in ``jsonshema.validate``
@@ -57,7 +57,7 @@ class QueryablesMixin(BaseMixin):
 
         return result
 
-    def get_queryables(self) -> Dict[str, Any]:
+    def get_queryables(self) -> dict[str, Any]:
         url = self._get_queryables_href()
         return self.get_queryables_from(url)
 

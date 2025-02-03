@@ -1,6 +1,5 @@
 import json
 import tempfile
-from typing import List
 
 import pytest
 from pytest_console_scripts import ScriptRunner
@@ -90,7 +89,7 @@ class TestCLISearch:
             (["header=value-with-three-=-signs-=", "plain=jane"], 2),
         ],
     )
-    def test_headers(self, headers: List[str], good_header_count: int) -> None:
+    def test_headers(self, headers: list[str], good_header_count: int) -> None:
         args = [
             "search",
             STAC_URLS["PLANETARY-COMPUTER"],

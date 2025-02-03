@@ -1,12 +1,10 @@
-from typing import Optional
-
 from requests import Response
 
 
 class APIError(Exception):
     """Raised when unexpected server error."""
 
-    status_code: Optional[int]
+    status_code: int | None
 
     @classmethod
     def from_response(cls, response: Response) -> "APIError":

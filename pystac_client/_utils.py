@@ -1,18 +1,19 @@
 import urllib
 import warnings
-from typing import Any, Callable, Dict, Optional, Union
+from collections.abc import Callable
+from typing import Any, Union
 
 import pystac
 
 from pystac_client.errors import IgnoredResultWarning
 
 Modifiable = Union[
-    pystac.Collection, pystac.Item, pystac.ItemCollection, Dict[Any, Any]
+    pystac.Collection, pystac.Item, pystac.ItemCollection, dict[Any, Any]
 ]
 
 
 def call_modifier(
-    modifier: Optional[Callable[[Modifiable], None]], obj: Modifiable
+    modifier: Callable[[Modifiable], None] | None, obj: Modifiable
 ) -> None:
     """Calls the user's modifier and validates that the result is None."""
     if modifier is None:

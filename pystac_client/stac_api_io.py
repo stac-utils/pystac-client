@@ -1,16 +1,12 @@
 import json
 import logging
 import warnings
+from collections.abc import Callable, Iterator
 from copy import deepcopy
 from typing import (
     TYPE_CHECKING,
     Any,
-    Callable,
-    Dict,
-    Iterator,
-    List,
     Optional,
-    Tuple,
     Union,
 )
 from urllib.parse import urlparse
@@ -39,18 +35,18 @@ if TYPE_CHECKING:
 logger = logging.getLogger(__name__)
 
 
-Timeout = Union[float, Tuple[float, float], Tuple[float, None]]
+Timeout = Union[float, tuple[float, float], tuple[float, None]]
 
 
 class StacApiIO(DefaultStacIO):
     def __init__(
         self,
-        headers: Optional[Dict[str, str]] = None,
-        conformance: Optional[List[str]] = None,
-        parameters: Optional[Dict[str, Any]] = None,
-        request_modifier: Optional[Callable[[Request], Union[Request, None]]] = None,
-        timeout: Optional[Timeout] = None,
-        max_retries: Optional[Union[int, Retry]] = 5,
+        headers: dict[str, str] | None = None,
+        conformance: list[str] | None = None,
+        parameters: dict[str, Any] | None = None,
+        request_modifier: Callable[[Request], Request | None] | None = None,
+        timeout: Timeout | None = None,
+        max_retries: int | Retry | None = 5,
     ):
         """Initialize class for API IO
 
@@ -104,10 +100,10 @@ class StacApiIO(DefaultStacIO):
 
     def update(
         self,
-        headers: Optional[Dict[str, str]] = None,
-        parameters: Optional[Dict[str, Any]] = None,
-        request_modifier: Optional[Callable[[Request], Union[Request, None]]] = None,
-        timeout: Optional[Timeout] = None,
+        headers: dict[str, str] | None = None,
+        parameters: dict[str, Any] | None = None,
+        request_modifier: Callable[[Request], Request | None] | None = None,
+        timeout: Timeout | None = None,
     ) -> None:
         """Updates this StacApi's headers, parameters, and/or request_modifer.
 
@@ -177,9 +173,9 @@ class StacApiIO(DefaultStacIO):
     def request(
         self,
         href: str,
-        method: Optional[str] = None,
-        headers: Optional[Dict[str, str]] = None,
-        parameters: Optional[Dict[str, Any]] = None,
+        method: str | None = None,
+        headers: dict[str, str] | None = None,
+        parameters: dict[str, Any] | None = None,
     ) -> str:
         """Makes a request to an http endpoint
 
@@ -234,8 +230,8 @@ class StacApiIO(DefaultStacIO):
 
     def stac_object_from_dict(
         self,
-        d: Dict[str, Any],
-        href: Optional[pystac.link.HREF] = None,
+        d: dict[str, Any],
+        href: pystac.link.HREF | None = None,
         root: Optional["Catalog_Type"] = None,
         preserve_dict: bool = True,
     ) -> "STACObject_Type":
@@ -296,9 +292,9 @@ class StacApiIO(DefaultStacIO):
     def get_pages(
         self,
         url: str,
-        method: Optional[str] = None,
-        parameters: Optional[Dict[str, Any]] = None,
-    ) -> Iterator[Dict[str, Any]]:
+        method: str | None = None,
+        parameters: dict[str, Any] | None = None,
+    ) -> Iterator[dict[str, Any]]:
         """Iterator that yields dictionaries for each page at a STAC paging
         endpoint, e.g., /collections, /search
 

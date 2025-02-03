@@ -1,15 +1,11 @@
 from __future__ import annotations
 
 import warnings
+from collections.abc import Callable, Iterator
 from typing import (
     TYPE_CHECKING,
     Any,
-    Callable,
-    Dict,
-    Iterator,
-    List,
     Optional,
-    Union,
     cast,
 )
 
@@ -40,20 +36,20 @@ class CollectionClient(pystac.Collection, QueryablesMixin):
         id: str,
         description: str,
         extent: pystac.Extent,
-        title: Optional[str] = None,
-        stac_extensions: Optional[List[str]] = None,
-        href: Optional[str] = None,
-        extra_fields: Optional[Dict[str, Any]] = None,
-        catalog_type: Optional[pystac.CatalogType] = None,
+        title: str | None = None,
+        stac_extensions: list[str] | None = None,
+        href: str | None = None,
+        extra_fields: dict[str, Any] | None = None,
+        catalog_type: pystac.CatalogType | None = None,
         license: str = "proprietary",
-        keywords: Optional[List[str]] = None,
-        providers: Optional[List[pystac.Provider]] = None,
-        summaries: Optional[pystac.Summaries] = None,
-        assets: Optional[Dict[str, pystac.Asset]] = None,
-        strategy: Optional[HrefLayoutStrategy] = None,
+        keywords: list[str] | None = None,
+        providers: list[pystac.Provider] | None = None,
+        summaries: pystac.Summaries | None = None,
+        assets: dict[str, pystac.Asset] | None = None,
+        strategy: HrefLayoutStrategy | None = None,
         *,
-        modifier: Optional[Callable[[Modifiable], None]] = None,
-        **kwargs: Dict[str, Any],
+        modifier: Callable[[Modifiable], None] | None = None,
+        **kwargs: dict[str, Any],
     ):
         super().__init__(
             id,
@@ -79,13 +75,13 @@ class CollectionClient(pystac.Collection, QueryablesMixin):
     @classmethod
     def from_dict(
         cls,
-        d: Dict[str, Any],
-        href: Optional[str] = None,
-        root: Optional[Union[pystac.Catalog, Client]] = None,
+        d: dict[str, Any],
+        href: str | None = None,
+        root: pystac.Catalog | Client | None = None,
         migrate: bool = False,
         preserve_dict: bool = True,
-        modifier: Optional[Callable[[Modifiable], None]] = None,
-    ) -> "CollectionClient":
+        modifier: Callable[[Modifiable], None] | None = None,
+    ) -> CollectionClient:
         result = super().from_dict(d, href, root, migrate, preserve_dict)
         # error: Cannot assign to a method  [assignment]
         # https://github.com/python/mypy/issues/2427
@@ -93,9 +89,9 @@ class CollectionClient(pystac.Collection, QueryablesMixin):
         return result
 
     def __repr__(self) -> str:
-        return "<CollectionClient id={}>".format(self.id)
+        return f"<CollectionClient id={self.id}>"
 
-    def set_root(self, root: Optional[Union[pystac.Catalog, Client]]) -> None:
+    def set_root(self, root: pystac.Catalog | Client | None) -> None:
         # hook in to set_root and use it for setting _stac_io
         super().set_root(root=root)
         if root is None:
@@ -115,11 +111,11 @@ class CollectionClient(pystac.Collection, QueryablesMixin):
             )
         return root
 
-    def conforms_to(self, conformance_class: Union[ConformanceClasses, str]) -> bool:
+    def conforms_to(self, conformance_class: ConformanceClasses | str) -> bool:
         root = self.get_root()
         return root.conforms_to(conformance_class)
 
-    def get_items(self, *ids: str, recursive: bool = False) -> Iterator["Item_Type"]:
+    def get_items(self, *ids: str, recursive: bool = False) -> Iterator[Item_Type]:
         """Return all items in this Collection or specific items.
 
         If the Collection contains a link of with a `rel` value of `items`,
@@ -155,7 +151,7 @@ class CollectionClient(pystac.Collection, QueryablesMixin):
                     call_modifier(self.modifier, item)
                     yield item
 
-    def get_item(self, id: str, recursive: bool = False) -> Optional["Item_Type"]:
+    def get_item(self, id: str, recursive: bool = False) -> Item_Type | None:
         """Returns an item with a given ID.
 
         If the collection conforms to
