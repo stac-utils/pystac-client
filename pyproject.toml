@@ -1,6 +1,6 @@
 [project]
 name = "pystac-client"
-description = "Python library for working with SpatioTemporal Asset Catalog (STAC) APIs."
+description = "Python library for searching SpatioTemporal Asset Catalog (STAC) APIs."
 readme = "README.md"
 authors = [
     { name = "Jon Duckworth", email = "duckontheweb@gmail.com" },
@@ -35,9 +35,8 @@ dynamic = ["version"]
 [project.scripts]
 stac-client = "pystac_client.cli:cli"
 
-[project.optional-dependencies]
+[dependency-groups]
 dev = [
-    "black~=25.1",
     "codespell~=2.4.0",
     "coverage~=7.2",
     "doc8~=1.1.1",
@@ -68,7 +67,7 @@ docs = [
     "hvplot~=0.11.0",
     "ipykernel~=6.22",
     "ipython~=8.12",
-    "jinja2<4.0",
+    "jinja2>=3.0,<4.0",
     "matplotlib~=3.8",
     "myst-parser~=4.0",
     "nbsphinx~=0.9",
