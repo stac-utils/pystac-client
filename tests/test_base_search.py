@@ -1,6 +1,7 @@
 import json
+from collections.abc import Iterator
 from datetime import datetime
-from typing import Any, Dict, Iterator
+from typing import Any
 
 import pytest
 from dateutil.tz import gettz, tzutc
@@ -24,7 +25,7 @@ INTERSECTS_EXAMPLE = {
     ],
 }
 
-ITEM_EXAMPLE: Dict[str, Any] = {"collections": "io-lulc", "ids": "60U-2020"}
+ITEM_EXAMPLE: dict[str, Any] = {"collections": "io-lulc", "ids": "60U-2020"}
 
 
 class TestBaseSearchParams:

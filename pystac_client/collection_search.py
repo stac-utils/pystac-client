@@ -1,15 +1,11 @@
 import warnings
+from collections.abc import Callable, Iterator
 from datetime import datetime, timezone
 from functools import lru_cache
 from typing import (
     TYPE_CHECKING,
     Any,
-    Callable,
-    Dict,
-    Iterator,
-    List,
     Optional,
-    Tuple,
 )
 
 from pystac import Collection, TemporalExtent
@@ -36,7 +32,7 @@ if TYPE_CHECKING:
     from pystac_client import client as _client
 
 
-TemporalInterval = Tuple[Optional[datetime], Optional[datetime]]
+TemporalInterval = tuple[Optional[datetime], Optional[datetime]]
 
 
 def temporal_intervals_overlap(
@@ -59,10 +55,10 @@ def bboxes_overlap(bbox1: BBox, bbox2: BBox) -> bool:
 
 
 def collection_matches(
-    collection_dict: Dict[str, Any],
-    bbox: Optional[BBox] = None,
-    temporal_interval_str: Optional[Datetime] = None,
-    q: Optional[str] = None,
+    collection_dict: dict[str, Any],
+    bbox: BBox | None = None,
+    temporal_interval_str: Datetime | None = None,
+    q: str | None = None,
 ) -> bool:
     # check for overlap between provided bbox and the collection's spatial extent
     collection_bboxes = collection_dict["extent"]["spatial"]["bbox"]
@@ -245,19 +241,19 @@ class CollectionSearch(BaseSearch):
         self,
         url: str,
         *,
-        max_collections: Optional[int] = None,
-        stac_io: Optional[StacApiIO] = None,
+        max_collections: int | None = None,
+        stac_io: StacApiIO | None = None,
         client: Optional["_client.Client"] = None,
-        limit: Optional[int] = None,
-        bbox: Optional[BBoxLike] = None,
-        datetime: Optional[DatetimeLike] = None,
-        query: Optional[QueryLike] = None,
-        filter: Optional[FilterLike] = None,
-        filter_lang: Optional[FilterLangLike] = None,
-        sortby: Optional[SortbyLike] = None,
-        fields: Optional[FieldsLike] = None,
-        q: Optional[str] = None,
-        modifier: Optional[Callable[[Modifiable], None]] = None,
+        limit: int | None = None,
+        bbox: BBoxLike | None = None,
+        datetime: DatetimeLike | None = None,
+        query: QueryLike | None = None,
+        filter: FilterLike | None = None,
+        filter_lang: FilterLangLike | None = None,
+        sortby: SortbyLike | None = None,
+        fields: FieldsLike | None = None,
+        q: str | None = None,
+        modifier: Callable[[Modifiable], None] | None = None,
         collection_search_extension_enabled: bool = False,
         collection_search_free_text_enabled: bool = False,
     ):
@@ -326,7 +322,7 @@ class CollectionSearch(BaseSearch):
             )
 
     @lru_cache(1)
-    def matched(self) -> Optional[int]:
+    def matched(self) -> int | None:
         """Return number matched for search
 
         Returns the value from the `numberMatched` or `context.matched` field.
@@ -383,7 +379,7 @@ class CollectionSearch(BaseSearch):
             )
 
     @lru_cache(1)
-    def collections_as_dicts(self) -> Iterator[Dict[str, Any]]:
+    def collections_as_dicts(self) -> Iterator[dict[str, Any]]:
         """Iterator that yields :class:`dict` instances for each collection matching
         the given search parameters.
 
@@ -391,13 +387,11 @@ class CollectionSearch(BaseSearch):
             Collection : each Collection matching the search criteria
         """
         for page in self.pages_as_dicts():
-            for collection in page.get("collections", []):
-                # already signed in pages_as_dicts
-                yield collection
+            yield from page.get("collections", [])
 
     # ------------------------------------------------------------------------
     # By Page
-    def pages(self) -> Iterator[List[Collection]]:
+    def pages(self) -> Iterator[list[Collection]]:
         """Iterator that yields lists of Collection objects.  Each list is
         a page of results from the search.
 
@@ -414,7 +408,7 @@ class CollectionSearch(BaseSearch):
                     for collection in page["collections"]
                 ]
 
-    def pages_as_dicts(self) -> Iterator[Dict[str, Any]]:
+    def pages_as_dicts(self) -> Iterator[dict[str, Any]]:
         """Iterator that yields :class:`dict` instances for each page
         of results from the search.
 
@@ -482,7 +476,7 @@ class CollectionSearch(BaseSearch):
     # Everything
 
     @lru_cache(1)
-    def collection_list(self) -> List[Collection]:
+    def collection_list(self) -> list[Collection]:
         """
         Get the matching collections as a list of :py:class:`pystac.Collection` objects.
 
@@ -499,7 +493,7 @@ class CollectionSearch(BaseSearch):
         ]
 
     @lru_cache(1)
-    def collection_list_as_dict(self) -> Dict[str, Any]:
+    def collection_list_as_dict(self) -> dict[str, Any]:
         """
         Get the matching collections as a dict.
 

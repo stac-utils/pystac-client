@@ -3,7 +3,7 @@ import os.path
 import warnings
 from datetime import datetime
 from tempfile import TemporaryDirectory
-from typing import Any, Dict
+from typing import Any
 from urllib.parse import parse_qs, urlsplit
 
 import pystac
@@ -151,7 +151,7 @@ class TestAPI:
 
     def test_build_absolute_href_from_data_link(self, requests_mock: Mocker) -> None:
         pc_root = read_data_file("planetary-computer-root.json", parse_json=True)
-        assert isinstance(pc_root, Dict)
+        assert isinstance(pc_root, dict)
         for link in pc_root["links"]:
             if link["rel"] == "data":
                 link["href"] = "./collections"
@@ -184,7 +184,7 @@ class TestAPI:
 
     def test_error_if_no_self_href_or_data_link(self, requests_mock: Mocker) -> None:
         pc_root = read_data_file("planetary-computer-root.json", parse_json=True)
-        assert isinstance(pc_root, Dict)
+        assert isinstance(pc_root, dict)
         pc_root["links"] = [link for link in pc_root["links"] if link["rel"] != "data"]
         root_url = "http://pystac-client.test/"
         requests_mock.get(root_url, status_code=200, text=json.dumps(pc_root))

@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - Use [uv](https://docs.astral.sh/uv/) for development ([#784](https://github.com/stac-utils/pystac-client/pull/784))
+- Updated to Python 3.10 syntax with **pyupgrade** [#783](https://github.com/stac-utils/pystac-client/pull/783/)
 
 ### Fixed
 
