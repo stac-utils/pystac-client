@@ -4,9 +4,11 @@ build:
   os: ubuntu-22.04
   tools:
     python: "mambaforge-22.9"
-  commands:
-    - uv sync --group docs
-    - uv run -- sphinx-build -M html docs $READTHEDOCS_OUTPUT/html
+  jobs:
+    post_install:
+      - uv sync --group docs
+    html:
+      - uv run -- sphinx-build -M html docs $READTHEDOCS_OUTPUT/html
 
 sphinx:
   configuration: docs/conf.py
