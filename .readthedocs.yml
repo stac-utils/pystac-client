@@ -7,8 +7,9 @@ build:
   jobs:
     post_install:
       - uv sync --group docs
-    html:
-      - uv run -- sphinx-build -M html docs $READTHEDOCS_OUTPUT/html
+    build:
+      html:
+        - uv run -- sphinx-build -M html docs $READTHEDOCS_OUTPUT/html
 
 sphinx:
   configuration: docs/conf.py
