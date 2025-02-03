@@ -91,9 +91,8 @@ jobs:
         shell: bash -el {0}
     steps:
       - uses: actions/checkout@v4
-      - uses: conda-incubator/setup-miniconda@v3
-        with:
-          environment-file: docs/environment.yml
+      - name: Install pandoc
+        run: sudo apt-get install -y pandoc
       - name: Sync
         run: uv sync --group docs
       - name: Build docs

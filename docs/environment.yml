@@ -1,9 +1,0 @@
-name: pystac-client-docs
-channels:
-  - conda-forge
-  - defaults
-dependencies:
-  - geos
-  - pandoc
-  - python=3.10
-  - uv

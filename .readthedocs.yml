@@ -3,13 +3,15 @@ version: 2
 build:
   os: ubuntu-22.04
   tools:
-    python: "mambaforge-22.9"
+    python: "3.12"
   jobs:
     post_install:
       - uv sync --group docs
     build:
       html:
         - uv run -- sphinx-build -M html docs $READTHEDOCS_OUTPUT
+      pdf:
+        - uv run -- sphinx-build -M latexpdf docs $READTHEDOCS_OUTPUT
 
 sphinx:
   configuration: docs/conf.py
@@ -17,6 +19,3 @@ sphinx:
 formats:
   - pdf
   - htmlzip
-
-conda:
-  environment: docs/environment.yml
