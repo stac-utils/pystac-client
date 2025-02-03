@@ -88,6 +88,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: conda-incubator/setup-miniconda@v3
+        with:
+          environment-file: docs/environment.yml
       - uses: astral-sh/setup-uv@v5
       - name: Sync
         run: uv sync --group docs
