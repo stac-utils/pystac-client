@@ -5,11 +5,6 @@ build:
   tools:
     python: "mambaforge-22.9"
   commands:
-    # https://docs.readthedocs.io/en/stable/build-customization.html#install-dependencies-with-uv
-    # with adaptations to use workspaces+projects instead of `uv pip`
-    - asdf plugin add uv
-    - asdf install uv latest
-    - asdf global uv latest
     - uv sync --group docs
     - uv run -- sphinx-build -M html docs $READTHEDOCS_OUTPUT/html
 

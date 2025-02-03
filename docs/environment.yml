@@ -6,3 +6,4 @@ dependencies:
   - geos
   - pandoc
   - python=3.10
+  - uv
