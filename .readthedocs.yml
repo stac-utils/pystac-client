@@ -9,7 +9,7 @@ build:
       - uv sync --group docs
     build:
       html:
-        - uv run -- sphinx-build -M html docs $READTHEDOCS_OUTPUT/html
+        - uv run -- sphinx-build -M html docs $READTHEDOCS_OUTPUT
 
 sphinx:
   configuration: docs/conf.py
