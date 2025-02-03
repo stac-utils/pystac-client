@@ -17,6 +17,6 @@ if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
     if [ "${1:-}" = "--help" ]; then
         usage
     else
-        sphinx-build -M html docs docs/build
+        uv run -- sphinx-build -M html docs docs/build
     fi
 fi

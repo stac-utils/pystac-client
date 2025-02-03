@@ -3,10 +3,6 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - cartopy
   - geos
   - pandoc
   - python=3.10
-  - pip
-  - pip:
-      - -e ../[docs]

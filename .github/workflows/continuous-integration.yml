@@ -7,7 +7,6 @@ on:
   pull_request:
 
 concurrency:
-  # Cancel running job if another commit is pushed to the branch
   group: ${{ github.ref }}
   cancel-in-progress: true
 
@@ -16,41 +15,33 @@ jobs:
     name: build
     runs-on: ${{ matrix.os }}
     strategy:
-      fail-fast: false
       matrix:
         python-version:
           - "3.10"
           - "3.11"
           - "3.12"
+          - "3.13"
         os:
           - ubuntu-latest
           - windows-latest
           - macos-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
+      - uses: astral-sh/setup-uv@v5
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Download uv (non-Windows)
-        if: ${{ runner.os != 'Windows' }}
-        run: curl -LsSf https://astral.sh/uv/install.sh | sh
-      - name: Download uv (Windows)
-        if: ${{ runner.os == 'Windows' }}
-        run: irm https://astral.sh/uv/install.ps1 | iex
-      - name: Install package with dev requirements
-        run: uv pip install --system .[dev]
+      - name: Sync
+        run: uv sync
       - name: Run pre-commit
-        run: pre-commit run --all-files
+        run: uv run pre-commit run --all-files
       - name: Run pytest
-        run: pytest -Werror -s --block-network --cov pystac_client --cov-report term-missing
+        run: uv run pytest -Werror -s --block-network --cov pystac_client --cov-report term-missing
       - name: Run coverage
-        run: coverage xml
-      - name: Upload All coverage to Codecov
-        uses: codecov/codecov-action@v5
+        run: uv run coverage xml
+      - uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./coverage.xml
+          files: ./coverage.xml
           fail_ci_if_error: false
 
   min-versions:
@@ -58,54 +49,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: astral-sh/setup-uv@v5
         with:
           python-version: "3.10"
-      - name: Download uv
-        run: curl -LsSf https://astral.sh/uv/install.sh | sh
       - name: Install with min requirements
-        run: uv pip install --system --resolution=lowest-direct .
+        run: uv sync --no-dev --resolution=lowest-direct .
       - name: Run smoke test
-        run: stac-client search https://planetarycomputer.microsoft.com/api/stac/v1 -c sentinel-2-l2a --max-items 1
-
-  docs:
-    name: docs
-    runs-on: ubuntu-latest
-    # Required shell entrypoint to have properly activated conda environment
-    defaults:
-      run:
-        shell: bash -l {0}
-    steps:
-      - uses: actions/checkout@v4
-      - name: Setup Conda Environment
-        uses: conda-incubator/setup-miniconda@v3.1.1
-        with:
-          miniforge-version: latest
-          python-version: "3.10"
-          use-mamba: true
-          channel-priority: strict
-          environment-file: ./docs/environment.yml
-          activate-environment: pystac-client-docs
-          auto-activate-base: false
-      - name: Build docs
-        run: ./scripts/build-docs
+        run: stac-client search https://landsatlook.usgs.gov/stac-server -c landsat-c2l2-sr --max-items 1
 
   pre-release:
     name: pre-release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.10"
-      - name: Download uv
-        run: curl -LsSf https://astral.sh/uv/install.sh | sh
-      - name: Install with dev requirements
-        run: uv pip install --system --pre .[dev]
+      - uses: astral-sh/setup-uv@v5
+      - name: Sync
+        run: uv sync
       - name: Install any pre-releases of pystac
-        run: uv pip install --system -U --pre pystac
+        run: uv pip install -U --pre pystac
       - name: Run pytest
-        run: pytest -Werror -s --block-network
+        run: uv run pytest -Werror -s --block-network
 
   upstream:
     name: upstream
@@ -113,29 +76,19 @@ jobs:
     if: github.event_name != 'pull_request'
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.10"
-      - name: Download uv
-        run: curl -LsSf https://astral.sh/uv/install.sh | sh
-      - name: Install
-        run: uv pip install --system .[dev]
+      - uses: astral-sh/setup-uv@v5
+      - name: Sync
+        run: uv sync
       - name: Install pystac from main
-        run: uv pip install --system --force-reinstall git+https://github.com/stac-utils/pystac.git
+        run: uv pip install --force-reinstall git+https://github.com/stac-utils/pystac.git
       - name: Run pytest
-        run: pytest -Werror -s --block-network
+        run: uv run pytest -Werror -s --block-network
 
-  dev-and-docs-requirements:
-    name: dev and docs requirements check
+  docs:
+    name: docs
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.10"
-      - name: Download uv
-        run: curl -LsSf https://astral.sh/uv/install.sh | sh
-      - name: Install geos
-        run: sudo apt -y install libgeos-dev
-      - name: Install
-        run: uv pip install --system .[dev,docs]
+      - uses: astral-sh/setup-uv@v5
+      - name: Build docs
+        run: ./scripts/build-docs
