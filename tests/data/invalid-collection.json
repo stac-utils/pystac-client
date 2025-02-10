@@ -1,0 +1,37 @@
+{
+    "id": "planet",
+    "title": "Planet",
+    "extent": {},
+    "license": "proprietary",
+    "description": "Planet",
+    "stac_version": "1.0.0",
+    "item_type_accessor": "pl:item_type",
+    "links": [
+        {
+            "rel": "items",
+            "type": "application/geo+json",
+            "href": "https://csdap.earthdata.nasa.gov/stac/collections/planet/items"
+        },
+        {
+            "rel": "parent",
+            "type": "application/json",
+            "href": "https://csdap.earthdata.nasa.gov/stac/"
+        },
+        {
+            "rel": "root",
+            "type": "application/json",
+            "href": "https://csdap.earthdata.nasa.gov/stac/"
+        },
+        {
+            "rel": "self",
+            "type": "application/json",
+            "href": "https://csdap.earthdata.nasa.gov/stac/collections/planet"
+        },
+        {
+            "rel": "http://www.opengis.net/def/rel/ogc/1.0/queryables",
+            "type": "application/schema+json",
+            "title": "Queryables",
+            "href": "https://csdap.earthdata.nasa.gov/stac/collections/planet/queryables"
+        }
+    ]
+}

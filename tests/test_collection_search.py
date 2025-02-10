@@ -1,3 +1,4 @@
+import json
 from datetime import datetime
 from math import ceil
 from typing import Any
@@ -12,8 +13,10 @@ from pystac_client.client import Client
 from pystac_client.collection_search import (
     CollectionSearch,
     bboxes_overlap,
+    collection_matches,
     temporal_intervals_overlap,
 )
+from pystac_client.warnings import PystacClientWarning
 
 from .helpers import STAC_URLS, read_data_file
 
@@ -387,3 +390,10 @@ def test_temporal_intervals_overlap() -> None:
             None,
         ),
     )
+
+
+def test_invalid_collection() -> None:
+    # https://github.com/stac-utils/pystac-client/issues/786
+    data = json.loads(read_data_file("invalid-collection.json"))
+    with pytest.warns(PystacClientWarning):
+        collection_matches(data)

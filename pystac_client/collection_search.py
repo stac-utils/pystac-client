@@ -8,7 +8,7 @@ from typing import (
     Optional,
 )
 
-from pystac import Collection, TemporalExtent
+from pystac import Collection, Extent
 
 from pystac_client._utils import Modifiable, call_modifier
 from pystac_client.conformance import ConformanceClasses
@@ -26,7 +26,7 @@ from pystac_client.item_search import (
     SortbyLike,
 )
 from pystac_client.stac_api_io import StacApiIO
-from pystac_client.warnings import DoesNotConformTo
+from pystac_client.warnings import DoesNotConformTo, PystacClientWarning
 
 if TYPE_CHECKING:
     from pystac_client import client as _client
@@ -54,26 +54,21 @@ def bboxes_overlap(bbox1: BBox, bbox2: BBox) -> bool:
     return xmin1 <= xmax2 and xmin2 <= xmax1 and ymin1 <= ymax2 and ymin2 <= ymax1
 
 
-def collection_matches(
-    collection_dict: dict[str, Any],
+def _extent_matches(
+    extent: Extent,
     bbox: BBox | None = None,
     temporal_interval_str: Datetime | None = None,
-    q: str | None = None,
-) -> bool:
-    # check for overlap between provided bbox and the collection's spatial extent
-    collection_bboxes = collection_dict["extent"]["spatial"]["bbox"]
+) -> tuple[bool, bool]:
     bbox_overlaps = not bbox or (
         any(
-            bboxes_overlap(bbox, collection_bbox)
-            for collection_bbox in collection_bboxes
+            bboxes_overlap(bbox, tuple(collection_bbox))
+            for collection_bbox in extent.spatial.bboxes
         )
     )
 
     # check for overlap between the provided temporal interval and the collection's
     # temporal extent
-    collection_temporal_extent = TemporalExtent.from_dict(
-        collection_dict["extent"]["temporal"]
-    )
+    collection_temporal_extent = extent.temporal
 
     # process the user-provided temporal interval
     search_temporal_interval = (
@@ -110,6 +105,29 @@ def collection_matches(
             for collection_temporal_interval in collection_temporal_extent.intervals
         )
     )
+    return bbox_overlaps, datetime_overlaps
+
+
+def collection_matches(
+    collection_dict: dict[str, Any],
+    bbox: BBox | None = None,
+    temporal_interval_str: Datetime | None = None,
+    q: str | None = None,
+) -> bool:
+    # check for overlap between provided bbox and the collection's spatial extent
+    try:
+        extent = Extent.from_dict(collection_dict.get("extent", {}))
+    except Exception:
+        warnings.warn(
+            f"Unable to parse extent from collection={collection_dict.get('id', None)}",
+            PystacClientWarning,
+        )
+        bbox_overlaps = True
+        datetime_overlaps = True
+    else:
+        bbox_overlaps, datetime_overlaps = _extent_matches(
+            extent, bbox, temporal_interval_str
+        )
 
     # check for overlap between the provided free-text search query (q) and the
     # collection's title, description, and keywords
