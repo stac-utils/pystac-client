@@ -228,9 +228,9 @@ class TestCollectionSearch:
             if collection.keywords:
                 text_fields.extend(collection.keywords)
 
-            assert any(
-                q in text_field.lower() for text_field in text_fields
-            ), f"{collection.id} failed check"
+            assert any(q in text_field.lower() for text_field in text_fields), (
+                f"{collection.id} failed check"
+            )
 
     @pytest.mark.vcr
     def test_client_side_q(self) -> None:
@@ -257,9 +257,9 @@ class TestCollectionSearch:
             if collection.keywords:
                 text_fields.extend(collection.keywords)
 
-            assert any(
-                q in text_field.lower() for text_field in text_fields
-            ), f"{collection.id} failed check"
+            assert any(q in text_field.lower() for text_field in text_fields), (
+                f"{collection.id} failed check"
+            )
 
     @pytest.mark.vcr
     def test_client_side_bbox(self) -> None:

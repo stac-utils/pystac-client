@@ -56,8 +56,9 @@ extensions = [
 
 extlinks = {
     "tutorial": (
-        "https://github.com/stac-utils/pystac-client/"
-        "tree/{}/docs/tutorials/%s".format(git_branch),
+        "https://github.com/stac-utils/pystac-client/tree/{}/docs/tutorials/%s".format(
+            git_branch
+        ),
         "tutorial",
     )
 }
