@@ -309,7 +309,7 @@ class BaseSearch(ABC):
         if dt.tzinfo is not None:
             dt = dt.astimezone(timezone.utc)
         dt = dt.replace(tzinfo=None)
-        return f'{dt.isoformat("T")}Z'
+        return f"{dt.isoformat('T')}Z"
 
     def _to_isoformat_range(
         self,
