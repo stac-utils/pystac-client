@@ -124,7 +124,7 @@ def collections(
             else:
                 raise KeyError("'matched' is not supported for this catalog")
         else:
-            collections_dicts = [c.to_dict() for c in result.collections()]
+            collections_dicts = list(result.collections_as_dicts())
             if save:
                 with open(save, "w") as f:
                     f.write(json.dumps(collections_dicts))
@@ -257,8 +257,7 @@ def parse_args(args: list[str]) -> dict[str, Any]:
     )
     collections_group.add_argument(
         "--datetime",
-        help="Single datetime or begin and end datetime "
-        "(e.g., 2017-01-01/2017-02-15)",
+        help="Single datetime or begin and end datetime (e.g., 2017-01-01/2017-02-15)",
     )
     collections_group.add_argument("--q", help="Free-text search query")
     collections_group.add_argument(
@@ -318,8 +317,7 @@ def parse_args(args: list[str]) -> dict[str, Any]:
     )
     search_group.add_argument(
         "--datetime",
-        help="Single datetime or begin and end datetime "
-        "(e.g., 2017-01-01/2017-02-15)",
+        help="Single datetime or begin and end datetime (e.g., 2017-01-01/2017-02-15)",
     )
     search_group.add_argument(
         "--query",

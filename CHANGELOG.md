@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - `Client.get_collection` for static catalogs [#782](https://github.com/stac-utils/pystac-client/pull/782)
+- Permissive collection reading [#787](https://github.com/stac-utils/pystac-client/pull/787)
 
 ## [v0.8.5] - 2024-10-23
 
