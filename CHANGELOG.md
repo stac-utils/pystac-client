@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix usage documentation of `ItemSearch`
+
 ## [v0.8.6] - 2025-02-11
 
 ### Changed
