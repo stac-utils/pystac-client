@@ -372,7 +372,7 @@ requests to a service's "search" endpoint. This method returns a
     >>> from pystac_client import Client
     >>> catalog = Client.open('https://planetarycomputer.microsoft.com/api/stac/v1')
     >>> results = catalog.search(
-    ...     max_items=5
+    ...     max_items=5,
     ...     bbox=[-73.21, 43.99, -73.12, 44.05],
     ...     datetime=['2019-01-01T00:00:00Z', '2019-01-02T00:00:00Z'],
     ... )
