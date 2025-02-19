@@ -499,7 +499,7 @@ class Client(pystac.Catalog, QueryablesMixin):
 
         This method returns an :class:`~pystac_client.ItemSearch` instance. See that
         class's documentation for details on how to get the number of matches and
-        iterate over results. The ``url``, `stac_io``, and ``client`` keywords are
+        iterate over results. The ``url``, ``stac_io``, and ``client`` keywords are
         supplied by this Client instance.
 
         .. warning::
