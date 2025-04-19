@@ -1,13 +1,13 @@
 Quickstart
 ----------
 
-pystac-client can be used as either a Command Line Interface (CLI) or a
+PySTAC Client can be used as either a Command Line Interface (CLI) or a
 Python library.
 
 CLI
 ~~~
 
-Use the CLI to quickly make item- or collection-level searches and
+Use the CLI to quickly perform Item or Collection searches and
 output or save the results.
 
 The ``--matched`` switch performs a search with limit=1 so does not get
@@ -108,7 +108,7 @@ a spatial extent that intersects Scandinavia.
     43 items matched
 
 Since most STAC APIs have not yet implemented the `collection search 
-extension <https://github.com/stac-api-extensions/collection-search>`_, 
+extension <https://github.com/stac-api-extensions/collection-search>`__, 
 ``pystac-client`` will perform a limited client-side 
 filter on the full list of collections using only the ``bbox``, 
 ``datetime``, and ``q`` (free-text search) parameters.
@@ -120,8 +120,8 @@ applied client-side.
 Python
 ~~~~~~
 
-To use the Python library, first a Client instance is created for a
-specific STAC API (use the root URL):
+First, create a Client instance configured to use a specific STAC API by the root URL of that API. For this example, we
+will use `Earth Search <https://earth-search.aws.element84.com/v1>`__.
 
 .. code-block:: python
 
@@ -129,41 +129,53 @@ specific STAC API (use the root URL):
 
     client = Client.open("https://earth-search.aws.element84.com/v1")
 
-Create an item-level search:
+Create an Item Search instance that represents a search to run. This does not actually run a search yet --
+that does not happen until a method is called that requires data from the STAC API.
 
 .. code-block:: python
 
     search = client.search(
         max_items=10,
-        collections=['sentinel-2-l2a'],
+        collections=["sentinel-2-c1-l2a"],
         bbox=[-72.5,40.5,-72,41]
     )
+
+Calling ``matched()`` will send a request to the STAC API and retrieve a single item and metadata about how many Items
+match the search criteria.
+
+.. code-block:: python
+
     print(f"{search.matched()} items found")
 
-The ``items()`` iterator method can be used to iterate through all resulting items.
+The ``items()`` iterator method can be used to iterate through all resulting items. This iterator
+hides the pagination behavior that the may occur if there are sufficient results. Be careful with this
+method -- you could end up iterating over the entire catalog if ``max_items`` is not set!
 
 .. code-block:: python
 
     for item in search.items():
         print(item.id)
 
-Use `item_collection()` to convert all Items from a search into a single `PySTAC
+Use ``item_collection()`` to convert all Items from a search into a single `PySTAC
 ItemCollection <https://pystac.readthedocs.io/en/latest/api/pystac.html#pystac.ItemCollection>`__.
-The ``ItemCollection`` can then be saved as a GeoJSON FeatureCollection.
+The ``ItemCollection`` can then be saved as a GeoJSON FeatureCollection. This requires retrieving all
+of the results from the search, so it may take some time to retrieve all the paginated responses.
 
 .. code-block:: python
 
     item_collection = search.item_collection()
-    item_collection.save_object('my_itemcollection.json')
+    item_collection.save_object("my_itemcollection.json")
 
-
-Create a collection-level search:
+Some STAC APIs also implement the Collection Search Extension.
 
 .. code-block:: python
 
+    client = Client.open("https://emc.spacebel.be")
+
     collection_search = client.collection_search(
-        q='"sentinel-2" OR "sentinel-1"',
+        q='Sentinel-6',
     )
+    
     print(f"{collection_search.matched()} collections found")
 
 
@@ -172,6 +184,6 @@ resulting collections.
 
 .. code-block:: python
 
-    for collection in collection_search.collections():
-        print(collection.id)
+    for collection in collection_search.collections_as_dicts():
+        print(collection.get("id"))
 

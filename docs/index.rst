@@ -1,17 +1,10 @@
-.. pystac-client documentation master file, created by
-   sphinx-quickstart on Sat Feb 27 14:27:12 2021.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
 PySTAC Client Documentation
 ===========================
 
-The STAC Python Client (``pystac_client``) is a Python package for working with STAC
-Catalogs and APIs that conform to the
-`STAC <https://github.com/radiantearth/stac-spec>`__ and
-`STAC API <https://github.com/radiantearth/stac-api-spec>`__ specs in a seamless way.
+PySTAC Client is a is a Python package for working with `STAC <https://github.com/radiantearth/stac-spec>`__
+Catalogs and `STAC APIs <https://github.com/radiantearth/stac-api-spec>`__.
 PySTAC Client builds upon PySTAC through higher-level functionality and ability to
-leverage STAC API search endpoints.
+access STAC API search endpoints.
 
 STAC Versions
 =============
@@ -20,7 +13,7 @@ STAC Versions
 | pystac-client | STAC spec | STAC API Spec               |
 +===============+===========+=============================+
 | 0.8.x         | 1.0.x     | 1.0.0-beta.1 - 1.0.0        |
-+ --------------+-----------+-----------------------------+
++---------------+-----------+-----------------------------+
 | 0.7.x         | 1.0.x     | 1.0.0-beta.1 - 1.0.0        |
 +---------------+-----------+-----------------------------+
 | 0.6.x         | 1.0.x     | 1.0.0-beta.1 - 1.0.0-rc.2   |
@@ -37,13 +30,28 @@ STAC Versions
 Installation
 ------------
 
+``pystac-client`` requires `Python >=3.10 <https://www.python.org/>`__.
+
+pip:
+
 .. code-block:: console
 
    $ pip install pystac-client
 
-``pystac_client`` requires `Python >=3.8 <https://www.python.org/>`__.
+uv:
 
-This will install the dependencies :doc:`PySTAC <pystac:index>`,
+.. code-block:: console
+
+   $ uv add pystac-client
+
+poetry:
+
+.. code-block:: console
+
+   $ poetry add pystac-client
+
+
+This will install the dependencies :doc:`pystac <pystac:index>`,
 :doc:`python-dateutil <dateutil:index>`, and :doc:`requests <requests:index>`.
 
 Acknowledgements

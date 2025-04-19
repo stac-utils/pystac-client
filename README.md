@@ -10,11 +10,27 @@ A Python client for working with [STAC](https://stacspec.org/) APIs.
 
 ## Installation
 
-Install from PyPi.
-Other than [PySTAC](https://pystac.readthedocs.io) itself, the only dependencies for **pystac-client** are the Python [requests](https://docs.python-requests.org) and [dateutil](https://dateutil.readthedocs.io) libraries.
+PySTAC Client is published to PyPi as [pystac-client](https://pypi.org/project/pystac-client/).
+
+The only direct Python dependencies of **pystac-client** are [PySTAC](https://pystac.readthedocs.io),
+[requests](https://docs.python-requests.org), and [dateutil](https://dateutil.readthedocs.io).
+
+pip:
 
 ```shell
-python -m pip install pystac-client
+pip install pystac-client
+```
+
+uv:
+
+```shell
+uv add pystac-client
+```
+
+poetry:
+
+```shell
+poetry add pystac-client
 ```
 
 ## Documentation
