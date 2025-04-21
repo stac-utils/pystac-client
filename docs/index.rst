@@ -1,7 +1,7 @@
 PySTAC Client Documentation
 ===========================
 
-PySTAC Client is a is a Python package for working with `STAC <https://github.com/radiantearth/stac-spec>`__
+PySTAC Client is a Python package for working with `STAC <https://github.com/radiantearth/stac-spec>`__
 Catalogs and `STAC APIs <https://github.com/radiantearth/stac-api-spec>`__.
 PySTAC Client builds upon PySTAC through higher-level functionality and ability to
 access STAC API search endpoints.
