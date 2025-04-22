@@ -166,16 +166,15 @@ of the results from the search, so it may take some time to retrieve all the pag
     item_collection = search.item_collection()
     item_collection.save_object("my_itemcollection.json")
 
-Some STAC APIs also implement the Collection Search Extension.
+Some STAC APIs also implement the Collection Search Extension. Earth Search does not, so we use the
+ORNL_CLOUD CMR-STAC Catalog instead:
 
 .. code-block:: python
 
-    client = Client.open("https://emc.spacebel.be")
-
+    client = Client.open("https://cmr.earthdata.nasa.gov/stac/ORNL_CLOUD")
     collection_search = client.collection_search(
-        q='Sentinel-6',
+        q="rain",
     )
-    
     print(f"{collection_search.matched()} collections found")
 
 
@@ -184,6 +183,6 @@ resulting collections.
 
 .. code-block:: python
 
-    for collection in collection_search.collections_as_dicts():
-        print(collection.get("id"))
+    for collection in collection_search.collections():
+        print(collection.id)
 
