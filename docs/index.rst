@@ -32,24 +32,11 @@ Installation
 
 ``pystac-client`` requires `Python >=3.10 <https://www.python.org/>`__.
 
-pip:
+To install with pip, run:
 
 .. code-block:: console
 
-   $ pip install pystac-client
-
-uv:
-
-.. code-block:: console
-
-   $ uv add pystac-client
-
-poetry:
-
-.. code-block:: console
-
-   $ poetry add pystac-client
-
+   $ python -m pip install pystac-client
 
 This will install the dependencies :doc:`pystac <pystac:index>`,
 :doc:`python-dateutil <dateutil:index>`, and :doc:`requests <requests:index>`.

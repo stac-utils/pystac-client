@@ -15,22 +15,10 @@ PySTAC Client is published to PyPi as [pystac-client](https://pypi.org/project/p
 The only direct Python dependencies of **pystac-client** are [PySTAC](https://pystac.readthedocs.io),
 [requests](https://docs.python-requests.org), and [dateutil](https://dateutil.readthedocs.io).
 
-pip:
+To install with pip, run:
 
 ```shell
-pip install pystac-client
-```
-
-uv:
-
-```shell
-uv add pystac-client
-```
-
-poetry:
-
-```shell
-poetry add pystac-client
+python -m pip install pystac-client
 ```
 
 ## Documentation
