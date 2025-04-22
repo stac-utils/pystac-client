@@ -95,12 +95,11 @@ optional specifications:
 
 The :meth:`pystac_client.Client.conforms_to` method is used to check conformance
 against conformance classes (specs). To check an API for support for a given spec,
-pass the `conforms_to` function a :class:`ConformanceClasses` enum value.
+pass the `conforms_to` function the name of a :class:`ConformanceClasses`.
 
 .. code-block:: python
 
-    >>> from pystac_client import ConformanceClasses
-    >>> catalog.conforms_to(ConformanceClasses.ITEM_SEARCH)
+    >>> catalog.conforms_to("ITEM_SEARCH")
     True
 
 If the API does not advertise conformance with a particular spec, but it does support
@@ -111,9 +110,9 @@ there are no ``"conformsTo"`` uris set at all. But they can be explicitly set:
 
     >>> catalog = Client.open("https://earth-search.aws.element84.com/v0")
     <stdin>:1: NoConformsTo: Server does not advertise any conformance classes.
-    >>> catalog.conforms_to(ConformanceClasses.ITEM_SEARCH)
+    >>> catalog.conforms_to("ITEM_SEARCH")
     False
-    >>> catalog.add_conforms_to(ConformanceClasses.ITEM_SEARCH)
+    >>> catalog.add_conforms_to("ITEM_SEARCH")
 
 Note, updating ``"conformsTo"`` does not change what the server supports, it just
 changes PySTAC client's understanding of what the server supports.
