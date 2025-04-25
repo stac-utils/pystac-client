@@ -372,7 +372,6 @@ class CollectionSearch(BaseSearch):
             count = len(page["collections"])
 
             for page in iter:
-                print(f"found {len(page['collections'])} on the next page")
                 count += len(page["collections"])
 
             found = count
