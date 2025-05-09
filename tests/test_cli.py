@@ -236,6 +236,7 @@ class TestCLISearch:
             "cop-dem-glo-30",
             "--max-items",
             "1",
+            "--fields=-geometry,-assets",
         ]
         result = script_runner.run(args, print_result=True)
         assert result.success
