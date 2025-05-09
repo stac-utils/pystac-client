@@ -241,6 +241,7 @@ class TestCLISearch:
         result = script_runner.run(args, print_result=True)
         assert result.success
         assert "assets" not in result.stdout
+        assert "geometry" not in result.stdout
 
     @pytest.mark.vcr
     def test_save(self, script_runner: ScriptRunner) -> None:
