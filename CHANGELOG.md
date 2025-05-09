@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - Fix usage documentation of `ItemSearch`
+- Fix fields argument to CLI  ([#797](https://github.com/stac-utils/pystac-client/pull/797))
 
 ## [v0.8.6] - 2025-02-11
 

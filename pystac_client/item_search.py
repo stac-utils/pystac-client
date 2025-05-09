@@ -159,7 +159,6 @@ class BaseSearch(ABC):
 
         self.method = method
         self.modifier = modifier
-
         params = {
             "limit": limit,
             "bbox": self._format_bbox(bbox),
@@ -482,6 +481,8 @@ class BaseSearch(ABC):
         if isinstance(value, str):
             return self._fields_to_dict(value.split(","))
         if isinstance(value, list):
+            if len(value) == 1:
+                return self._fields_to_dict(value[0].split(","))
             return self._fields_to_dict(value)
         if isinstance(value, dict):
             return value
