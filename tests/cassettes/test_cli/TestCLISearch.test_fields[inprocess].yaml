@@ -1,0 +1,129 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: https://earth-search.aws.element84.com/v1
+  response:
+    body:
+      string: '{"stac_version":"1.0.0","type":"Catalog","id":"earth-search-aws","title":"Earth
+        Search by Element 84","description":"A STAC API of public datasets on AWS","links":[{"rel":"self","type":"application/json","href":"https://earth-search.aws.element84.com/v1"},{"rel":"root","type":"application/json","href":"https://earth-search.aws.element84.com/v1"},{"rel":"conformance","type":"application/json","href":"https://earth-search.aws.element84.com/v1/conformance"},{"rel":"data","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections"},{"rel":"search","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/search","method":"GET"},{"rel":"search","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/search","method":"POST"},{"rel":"aggregate","type":"application/json","href":"https://earth-search.aws.element84.com/v1/aggregate","method":"GET"},{"rel":"aggregations","type":"application/json","href":"https://earth-search.aws.element84.com/v1/aggregations"},{"rel":"service-desc","type":"application/vnd.oai.openapi","href":"https://earth-search.aws.element84.com/v1/api"},{"rel":"service-doc","type":"text/html","href":"https://earth-search.aws.element84.com/v1/api.html"},{"rel":"http://www.opengis.net/def/rel/ogc/1.0/queryables","type":"application/schema+json","href":"https://earth-search.aws.element84.com/v1/queryables"},{"rel":"server","type":"text/html","href":"https://stac-utils.github.io/stac-server/"},{"rel":"child","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/sentinel-2-pre-c1-l2a"},{"rel":"child","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30"},{"rel":"child","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/naip"},{"rel":"child","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-90"},{"rel":"child","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/landsat-c2-l2"},{"rel":"child","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a"},{"rel":"child","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/sentinel-2-l1c"},{"rel":"child","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/sentinel-2-c1-l2a"},{"rel":"child","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/sentinel-1-grd"}],"conformsTo":["https://api.stacspec.org/v1.0.0/core","https://api.stacspec.org/v1.0.0/collections","https://api.stacspec.org/v1.0.0/ogcapi-features","https://api.stacspec.org/v1.0.0/item-search","https://api.stacspec.org/v1.0.0/ogcapi-features#fields","https://api.stacspec.org/v1.0.0/ogcapi-features#sort","https://api.stacspec.org/v1.0.0/ogcapi-features#query","https://api.stacspec.org/v1.0.0/item-search#fields","https://api.stacspec.org/v1.0.0/item-search#sort","https://api.stacspec.org/v1.0.0/item-search#query","https://api.stacspec.org/v0.3.0/aggregation","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"]}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '3369'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Fri, 09 May 2025 18:51:22 GMT
+      Via:
+      - 1.1 bcb27567a77dcc9895a46a953f4c4938.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - R0SilanlwKPI7VhLt9FeCz9MtbEO3Ih2hKG89HRdtsZDr5pQYuza_Q==
+      X-Amz-Cf-Pop:
+      - BOS50-P3
+      X-Amzn-Trace-Id:
+      - Root=1-681e4eaa-13ddd74478f430100f5ed8f0;Parent=09bda837f611ecfa;Sampled=0;Lineage=1:9e2884e9:0
+      X-Cache:
+      - Miss from cloudfront
+      access-control-allow-origin:
+      - '*'
+      etag:
+      - W/"d29-QPs+H0wJLUX32EZKNgzG3k6wfQ8"
+      x-amz-apigw-id:
+      - KUE6vFTbPHcEqnA=
+      x-amzn-Remapped-content-length:
+      - '3369'
+      x-amzn-RequestId:
+      - cbcfd6da-1e2a-4e62-b2c8-59fdffa8653f
+      x-powered-by:
+      - Express
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"collections": ["cop-dem-glo-30"], "fields": {"include": [], "exclude":
+      ["geometry", "assets"]}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '97'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.31.0
+    method: POST
+    uri: https://earth-search.aws.element84.com/v1/search
+  response:
+    body:
+      string: '{"type":"FeatureCollection","stac_version":"1.0.0","stac_extensions":[],"context":{"limit":10,"matched":26450,"returned":10},"numberMatched":26450,"numberReturned":10,"features":[{"stac_version":"1.0.0","bbox":[-180.0013888888889,-89.99986111111112,-179.0013888888889,-88.99986111111112],"links":[{"rel":"self","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30/items/Copernicus_DSM_COG_10_S90_00_W180_00_DEM"},{"rel":"canonical","href":"s3://earthsearch-data/cop-dem-glo-30/Copernicus_DSM_COG_10_S90_00_W180_00_DEM/Copernicus_DSM_COG_10_S90_00_W180_00_DEM.json","type":"application/json"},{"rel":"handbook","description":"Also
+        includes data usage information","href":"https://object.cloud.sdsc.edu/v1/AUTH_opentopography/www/metadata/Copernicus_metadata.pdf","type":"application/pdf","title":"Copernicus
+        DEM User handbook"},{"rel":"parent","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30"},{"rel":"collection","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30"},{"rel":"root","type":"application/json","href":"https://earth-search.aws.element84.com/v1"},{"rel":"thumbnail","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30/items/Copernicus_DSM_COG_10_S90_00_W180_00_DEM/thumbnail"}],"id":"Copernicus_DSM_COG_10_S90_00_W180_00_DEM","collection":"cop-dem-glo-30","type":"Feature","properties":{"datetime":"2021-04-22T00:00:00Z"}},{"stac_version":"1.0.0","bbox":[-179.0013888888889,-89.99986111111112,-178.0013888888889,-88.99986111111112],"links":[{"rel":"self","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30/items/Copernicus_DSM_COG_10_S90_00_W179_00_DEM"},{"rel":"canonical","href":"s3://earthsearch-data/cop-dem-glo-30/Copernicus_DSM_COG_10_S90_00_W179_00_DEM/Copernicus_DSM_COG_10_S90_00_W179_00_DEM.json","type":"application/json"},{"rel":"handbook","description":"Also
+        includes data usage information","href":"https://object.cloud.sdsc.edu/v1/AUTH_opentopography/www/metadata/Copernicus_metadata.pdf","type":"application/pdf","title":"Copernicus
+        DEM User handbook"},{"rel":"parent","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30"},{"rel":"collection","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30"},{"rel":"root","type":"application/json","href":"https://earth-search.aws.element84.com/v1"},{"rel":"thumbnail","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30/items/Copernicus_DSM_COG_10_S90_00_W179_00_DEM/thumbnail"}],"id":"Copernicus_DSM_COG_10_S90_00_W179_00_DEM","collection":"cop-dem-glo-30","type":"Feature","properties":{"datetime":"2021-04-22T00:00:00Z"}},{"stac_version":"1.0.0","bbox":[-178.0013888888889,-89.99986111111112,-177.0013888888889,-88.99986111111112],"links":[{"rel":"self","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30/items/Copernicus_DSM_COG_10_S90_00_W178_00_DEM"},{"rel":"canonical","href":"s3://earthsearch-data/cop-dem-glo-30/Copernicus_DSM_COG_10_S90_00_W178_00_DEM/Copernicus_DSM_COG_10_S90_00_W178_00_DEM.json","type":"application/json"},{"rel":"handbook","description":"Also
+        includes data usage information","href":"https://object.cloud.sdsc.edu/v1/AUTH_opentopography/www/metadata/Copernicus_metadata.pdf","type":"application/pdf","title":"Copernicus
+        DEM User handbook"},{"rel":"parent","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30"},{"rel":"collection","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30"},{"rel":"root","type":"application/json","href":"https://earth-search.aws.element84.com/v1"},{"rel":"thumbnail","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30/items/Copernicus_DSM_COG_10_S90_00_W178_00_DEM/thumbnail"}],"id":"Copernicus_DSM_COG_10_S90_00_W178_00_DEM","collection":"cop-dem-glo-30","type":"Feature","properties":{"datetime":"2021-04-22T00:00:00Z"}},{"stac_version":"1.0.0","bbox":[-177.0013888888889,-89.99986111111112,-176.0013888888889,-88.99986111111112],"links":[{"rel":"self","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30/items/Copernicus_DSM_COG_10_S90_00_W177_00_DEM"},{"rel":"canonical","href":"s3://earthsearch-data/cop-dem-glo-30/Copernicus_DSM_COG_10_S90_00_W177_00_DEM/Copernicus_DSM_COG_10_S90_00_W177_00_DEM.json","type":"application/json"},{"rel":"handbook","description":"Also
+        includes data usage information","href":"https://object.cloud.sdsc.edu/v1/AUTH_opentopography/www/metadata/Copernicus_metadata.pdf","type":"application/pdf","title":"Copernicus
+        DEM User handbook"},{"rel":"parent","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30"},{"rel":"collection","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30"},{"rel":"root","type":"application/json","href":"https://earth-search.aws.element84.com/v1"},{"rel":"thumbnail","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30/items/Copernicus_DSM_COG_10_S90_00_W177_00_DEM/thumbnail"}],"id":"Copernicus_DSM_COG_10_S90_00_W177_00_DEM","collection":"cop-dem-glo-30","type":"Feature","properties":{"datetime":"2021-04-22T00:00:00Z"}},{"stac_version":"1.0.0","bbox":[-176.0013888888889,-89.99986111111112,-175.0013888888889,-88.99986111111112],"links":[{"rel":"self","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30/items/Copernicus_DSM_COG_10_S90_00_W176_00_DEM"},{"rel":"canonical","href":"s3://earthsearch-data/cop-dem-glo-30/Copernicus_DSM_COG_10_S90_00_W176_00_DEM/Copernicus_DSM_COG_10_S90_00_W176_00_DEM.json","type":"application/json"},{"rel":"handbook","description":"Also
+        includes data usage information","href":"https://object.cloud.sdsc.edu/v1/AUTH_opentopography/www/metadata/Copernicus_metadata.pdf","type":"application/pdf","title":"Copernicus
+        DEM User handbook"},{"rel":"parent","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30"},{"rel":"collection","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30"},{"rel":"root","type":"application/json","href":"https://earth-search.aws.element84.com/v1"},{"rel":"thumbnail","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30/items/Copernicus_DSM_COG_10_S90_00_W176_00_DEM/thumbnail"}],"id":"Copernicus_DSM_COG_10_S90_00_W176_00_DEM","collection":"cop-dem-glo-30","type":"Feature","properties":{"datetime":"2021-04-22T00:00:00Z"}},{"stac_version":"1.0.0","bbox":[-175.0013888888889,-89.99986111111112,-174.0013888888889,-88.99986111111112],"links":[{"rel":"self","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30/items/Copernicus_DSM_COG_10_S90_00_W175_00_DEM"},{"rel":"canonical","href":"s3://earthsearch-data/cop-dem-glo-30/Copernicus_DSM_COG_10_S90_00_W175_00_DEM/Copernicus_DSM_COG_10_S90_00_W175_00_DEM.json","type":"application/json"},{"rel":"handbook","description":"Also
+        includes data usage information","href":"https://object.cloud.sdsc.edu/v1/AUTH_opentopography/www/metadata/Copernicus_metadata.pdf","type":"application/pdf","title":"Copernicus
+        DEM User handbook"},{"rel":"parent","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30"},{"rel":"collection","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30"},{"rel":"root","type":"application/json","href":"https://earth-search.aws.element84.com/v1"},{"rel":"thumbnail","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30/items/Copernicus_DSM_COG_10_S90_00_W175_00_DEM/thumbnail"}],"id":"Copernicus_DSM_COG_10_S90_00_W175_00_DEM","collection":"cop-dem-glo-30","type":"Feature","properties":{"datetime":"2021-04-22T00:00:00Z"}},{"stac_version":"1.0.0","bbox":[-174.0013888888889,-89.99986111111112,-173.0013888888889,-88.99986111111112],"links":[{"rel":"self","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30/items/Copernicus_DSM_COG_10_S90_00_W174_00_DEM"},{"rel":"canonical","href":"s3://earthsearch-data/cop-dem-glo-30/Copernicus_DSM_COG_10_S90_00_W174_00_DEM/Copernicus_DSM_COG_10_S90_00_W174_00_DEM.json","type":"application/json"},{"rel":"handbook","description":"Also
+        includes data usage information","href":"https://object.cloud.sdsc.edu/v1/AUTH_opentopography/www/metadata/Copernicus_metadata.pdf","type":"application/pdf","title":"Copernicus
+        DEM User handbook"},{"rel":"parent","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30"},{"rel":"collection","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30"},{"rel":"root","type":"application/json","href":"https://earth-search.aws.element84.com/v1"},{"rel":"thumbnail","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30/items/Copernicus_DSM_COG_10_S90_00_W174_00_DEM/thumbnail"}],"id":"Copernicus_DSM_COG_10_S90_00_W174_00_DEM","collection":"cop-dem-glo-30","type":"Feature","properties":{"datetime":"2021-04-22T00:00:00Z"}},{"stac_version":"1.0.0","bbox":[-173.0013888888889,-89.99986111111112,-172.0013888888889,-88.99986111111112],"links":[{"rel":"self","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30/items/Copernicus_DSM_COG_10_S90_00_W173_00_DEM"},{"rel":"canonical","href":"s3://earthsearch-data/cop-dem-glo-30/Copernicus_DSM_COG_10_S90_00_W173_00_DEM/Copernicus_DSM_COG_10_S90_00_W173_00_DEM.json","type":"application/json"},{"rel":"handbook","description":"Also
+        includes data usage information","href":"https://object.cloud.sdsc.edu/v1/AUTH_opentopography/www/metadata/Copernicus_metadata.pdf","type":"application/pdf","title":"Copernicus
+        DEM User handbook"},{"rel":"parent","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30"},{"rel":"collection","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30"},{"rel":"root","type":"application/json","href":"https://earth-search.aws.element84.com/v1"},{"rel":"thumbnail","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30/items/Copernicus_DSM_COG_10_S90_00_W173_00_DEM/thumbnail"}],"id":"Copernicus_DSM_COG_10_S90_00_W173_00_DEM","collection":"cop-dem-glo-30","type":"Feature","properties":{"datetime":"2021-04-22T00:00:00Z"}},{"stac_version":"1.0.0","bbox":[-172.0013888888889,-89.99986111111112,-171.0013888888889,-88.99986111111112],"links":[{"rel":"self","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30/items/Copernicus_DSM_COG_10_S90_00_W172_00_DEM"},{"rel":"canonical","href":"s3://earthsearch-data/cop-dem-glo-30/Copernicus_DSM_COG_10_S90_00_W172_00_DEM/Copernicus_DSM_COG_10_S90_00_W172_00_DEM.json","type":"application/json"},{"rel":"handbook","description":"Also
+        includes data usage information","href":"https://object.cloud.sdsc.edu/v1/AUTH_opentopography/www/metadata/Copernicus_metadata.pdf","type":"application/pdf","title":"Copernicus
+        DEM User handbook"},{"rel":"parent","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30"},{"rel":"collection","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30"},{"rel":"root","type":"application/json","href":"https://earth-search.aws.element84.com/v1"},{"rel":"thumbnail","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30/items/Copernicus_DSM_COG_10_S90_00_W172_00_DEM/thumbnail"}],"id":"Copernicus_DSM_COG_10_S90_00_W172_00_DEM","collection":"cop-dem-glo-30","type":"Feature","properties":{"datetime":"2021-04-22T00:00:00Z"}},{"stac_version":"1.0.0","bbox":[-171.0013888888889,-89.99986111111112,-170.0013888888889,-88.99986111111112],"links":[{"rel":"self","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30/items/Copernicus_DSM_COG_10_S90_00_W171_00_DEM"},{"rel":"canonical","href":"s3://earthsearch-data/cop-dem-glo-30/Copernicus_DSM_COG_10_S90_00_W171_00_DEM/Copernicus_DSM_COG_10_S90_00_W171_00_DEM.json","type":"application/json"},{"rel":"handbook","description":"Also
+        includes data usage information","href":"https://object.cloud.sdsc.edu/v1/AUTH_opentopography/www/metadata/Copernicus_metadata.pdf","type":"application/pdf","title":"Copernicus
+        DEM User handbook"},{"rel":"parent","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30"},{"rel":"collection","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30"},{"rel":"root","type":"application/json","href":"https://earth-search.aws.element84.com/v1"},{"rel":"thumbnail","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30/items/Copernicus_DSM_COG_10_S90_00_W171_00_DEM/thumbnail"}],"id":"Copernicus_DSM_COG_10_S90_00_W171_00_DEM","collection":"cop-dem-glo-30","type":"Feature","properties":{"datetime":"2021-04-22T00:00:00Z"}}],"links":[{"rel":"next","title":"Next
+        page of Items","method":"POST","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/search","merge":false,"body":{"fields":{"include":[],"exclude":["geometry","assets"]},"collections":["cop-dem-glo-30"],"next":"2021-04-22T00:00:00Z,Copernicus_DSM_COG_10_S90_00_W171_00_DEM,cop-dem-glo-30"}},{"rel":"root","type":"application/json","href":"https://earth-search.aws.element84.com/v1"}]}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '14038'
+      Content-Type:
+      - application/geo+json; charset=utf-8
+      Date:
+      - Fri, 09 May 2025 18:51:23 GMT
+      Via:
+      - 1.1 665aacf5369b3dd562d74779bc60b708.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - OOCDqKCtW30Q9tBQWWi6wf49r8lgdNr1bp79W_ugS4xMTr1W1Ytizg==
+      X-Amz-Cf-Pop:
+      - BOS50-P3
+      X-Amzn-Trace-Id:
+      - Root=1-681e4eaa-48deccae2bdde1993cabb54d;Parent=1ede7ba434440125;Sampled=0;Lineage=1:9e2884e9:0
+      X-Cache:
+      - Miss from cloudfront
+      access-control-allow-origin:
+      - '*'
+      etag:
+      - W/"36d6-Yp3Ss1A+rOL1FLrKfyikyPdbank"
+      x-amz-apigw-id:
+      - KUE6xEt3PHcEdqA=
+      x-amzn-Remapped-content-length:
+      - '14038'
+      x-amzn-RequestId:
+      - 060d7e5f-e0b6-4fee-affc-6eb3f0e1c208
+      x-powered-by:
+      - Express
+    status:
+      code: 200
+      message: OK
+version: 1

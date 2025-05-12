@@ -227,6 +227,23 @@ class TestCLISearch:
         assert result.stdout[0].isdigit(), "Output does not start with a number"
 
     @pytest.mark.vcr
+    def test_fields(self, script_runner: ScriptRunner) -> None:
+        args = [
+            "stac-client",
+            "search",
+            STAC_URLS["EARTH-SEARCH"],
+            "-c",
+            "cop-dem-glo-30",
+            "--max-items",
+            "1",
+            "--fields=-geometry,-assets",
+        ]
+        result = script_runner.run(args, print_result=True)
+        assert result.success
+        assert "assets" not in result.stdout
+        assert "geometry" not in result.stdout
+
+    @pytest.mark.vcr
     def test_save(self, script_runner: ScriptRunner) -> None:
         with tempfile.NamedTemporaryFile() as fp:
             path = fp.name
