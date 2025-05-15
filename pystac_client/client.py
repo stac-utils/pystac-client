@@ -472,7 +472,9 @@ class Client(pystac.Catalog, QueryablesMixin):
             yield from search.items()
         else:
             self._warn_about_fallback("ITEM_SEARCH")
-            for item in super().get_items(*ids, recursive=recursive):
+            for item in super().get_items(
+                *ids, recursive=recursive is None or recursive
+            ):
                 call_modifier(self.modifier, item)
                 yield item
 
