@@ -457,7 +457,7 @@ class Client(pystac.Catalog, QueryablesMixin):
                 catalog.
         """
         if self.conforms_to(ConformanceClasses.ITEM_SEARCH):
-            if recursive:
+            if recursive is not False:
                 search = self.search(ids=ids)
                 try:
                     yield from search.items()
