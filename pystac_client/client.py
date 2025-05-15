@@ -463,8 +463,10 @@ class Client(pystac.Catalog, QueryablesMixin):
                     yield from search.items()
                     return
                 except APIError:
-                    child_catalogs = [catalog for catalog, _, _ in self.walk()]
-                    search = self.search(ids=ids, collections=[self, *child_catalogs])
+                    child_catalogs = [catalog.id for catalog, _, _ in self.walk()]
+                    search = self.search(
+                        ids=ids, collections=[self.id, *child_catalogs]
+                    )
             else:
                 search = self.search(ids=ids, collections=[self.id])
             yield from search.items()
