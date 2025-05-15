@@ -457,6 +457,8 @@ class Client(pystac.Catalog, QueryablesMixin):
                 catalog.
         """
         if self.conforms_to(ConformanceClasses.ITEM_SEARCH):
+            # Previously, recursive=None was treated the same as recursive=True.
+            # This if statement maintains this behaviour for backwards compatibility.
             if recursive is not False:
                 search = self.search(ids=ids)
                 try:
