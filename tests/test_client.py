@@ -738,7 +738,11 @@ def test_collections_are_clients() -> None:
 
 
 @pytest.mark.vcr
-def test_get_items_without_ids() -> None:
+def test_get_items_recursion_collections_required_without_ids() -> None:
+    """
+    Make sure recursion using /search works when the server requires collections
+    when searching
+    """
     client = Client.open(
         "https://planetarycomputer.microsoft.com/api/stac/v1/",
     )
@@ -746,11 +750,46 @@ def test_get_items_without_ids() -> None:
 
 
 @pytest.mark.vcr
+def test_get_items_recursion_no_collections_without_ids() -> None:
+    """
+    Make sure recursion using /search works when the server does not require collections
+    when searching
+    """
+    client = Client.open(
+        "https://paituli.csc.fi/geoserver/ogc/stac/v1/",
+    )
+    next(client.get_items())
+
+
+@pytest.mark.vcr
+def test_get_items_non_recursion() -> None:
+    """Make sure that non-recursive search is used when using /search"""
+    client = Client.open(
+        "https://planetarycomputer.microsoft.com/api/stac/v1/",
+    )
+    with pytest.raises(StopIteration):
+        next(client.get_items(recursive=False))
+
+
+@pytest.mark.vcr
 def test_non_recursion_on_fallback() -> None:
+    """
+    Make sure that non-recursive search using fallback only looks for
+    non-recursive items
+    """
+    path = "https://raw.githubusercontent.com/stac-utils/pystac/v1.9.0/docs/example-catalog/catalog.json"
+    catalog = Client.from_file(path)
+    with pytest.warns(FallbackToPystac), pytest.raises(StopIteration):
+        next(catalog.get_items(recursive=False))
+
+
+@pytest.mark.vcr
+def test_recursion_on_fallback() -> None:
+    """Make sure that recursive search using fallback looks for recursive items"""
     path = "https://raw.githubusercontent.com/stac-utils/pystac/v1.9.0/docs/example-catalog/catalog.json"
     catalog = Client.from_file(path)
     with pytest.warns(FallbackToPystac):
-        [i for i in catalog.get_items()]
+        next(catalog.get_items())
 
 
 @pytest.mark.vcr
