@@ -744,8 +744,9 @@ def test_get_items_recursion_collections_required_without_ids() -> None:
     when searching
     """
     client = Client.open(
-        "https://planetarycomputer.microsoft.com/api/stac/v1/",
+        "https://earth-search.aws.element84.com/v0",
     )
+    client.add_conforms_to("ITEM_SEARCH")
     next(client.get_items())
 
 

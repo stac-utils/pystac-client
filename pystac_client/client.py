@@ -461,14 +461,6 @@ class Client(pystac.Catalog, QueryablesMixin):
             # This if statement maintains this behaviour for backwards compatibility.
             if recursive is not False:
                 search = self.search(ids=ids)
-                try:
-                    yield from search.items()
-                    return
-                except APIError:
-                    child_catalogs = [catalog.id for catalog, _, _ in self.walk()]
-                    search = self.search(
-                        ids=ids, collections=[self.id, *child_catalogs]
-                    )
             else:
                 search = self.search(ids=ids, collections=[self.id])
             yield from search.items()
