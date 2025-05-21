@@ -443,21 +443,26 @@ class Client(pystac.Catalog, QueryablesMixin):
                 call_modifier(self.modifier, collection)
                 yield collection
 
-    def get_items(
-        self, *ids: str, recursive: bool | None = None
-    ) -> Iterator["Item_Type"]:
+    def get_items(self, *ids: str, recursive: bool = False) -> Iterator["Item_Type"]:
         """Return all items of this catalog.
 
         Args:
             ids: Zero or more item ids to find.
-            recursive: unused in pystac-client, but needed for falling back to pystac
+            recursive : If True, search this catalog and all children for the
+                item; otherwise, only search the items of this catalog. Defaults
+                to False.
 
         Return:
             Iterator[Item]: Iterator of items whose parent is this
                 catalog.
         """
         if self.conforms_to(ConformanceClasses.ITEM_SEARCH):
-            search = self.search(ids=ids)
+            # Previously, recursive=None was treated the same as recursive=True.
+            # This if statement maintains this behaviour for backwards compatibility.
+            if recursive is not False:
+                search = self.search(ids=ids)
+            else:
+                search = self.search(ids=ids, collections=[self.id])
             yield from search.items()
         else:
             self._warn_about_fallback("ITEM_SEARCH")
@@ -476,7 +481,7 @@ class Client(pystac.Catalog, QueryablesMixin):
                 catalogs or collections connected to this catalog through
                 child links.
         """
-        yield from self.get_items()
+        yield from self.get_items(recursive=True)
 
     def search(
         self,
