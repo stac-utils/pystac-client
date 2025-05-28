@@ -450,8 +450,9 @@ class Client(pystac.Catalog, QueryablesMixin):
 
         Args:
             ids: Zero or more item ids to find.
-            recursive: unused in pystac-client, but needed for falling back to pystac
-
+            recursive: If this client conforms to the ITEM_SEARCH conformance class,
+                this is unused and this will always yield items recursively.
+                Otherwise, this will only return items recursively if True or None.
         Return:
             Iterator[Item]: Iterator of items whose parent is this
                 catalog.
