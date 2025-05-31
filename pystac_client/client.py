@@ -36,7 +36,12 @@ from pystac_client.item_search import (
 )
 from pystac_client.mixins import QUERYABLES_ENDPOINT, QueryablesMixin
 from pystac_client.stac_api_io import StacApiIO, Timeout
-from pystac_client.warnings import DoesNotConformTo, FallbackToPystac, NoConformsTo, PystacClientWarning
+from pystac_client.warnings import (
+    DoesNotConformTo,
+    FallbackToPystac,
+    NoConformsTo,
+    PystacClientWarning,
+)
 
 if TYPE_CHECKING:
     from pystac.item import Item as Item_Type
@@ -462,7 +467,8 @@ class Client(pystac.Catalog, QueryablesMixin):
                 warnings.warn(
                     "Getting items recursively using the /search endpoint "
                     "(the recursive argument is being ignored).",
-                PystacClientWarning)
+                    PystacClientWarning,
+                )
             search = self.search(ids=ids)
             yield from search.items()
         else:
