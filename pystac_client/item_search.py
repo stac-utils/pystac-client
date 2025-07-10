@@ -11,7 +11,6 @@ from itertools import chain
 from typing import (
     TYPE_CHECKING,
     Any,
-    Literal,
     Optional,
     Protocol,
     Union,
@@ -130,7 +129,7 @@ class BaseSearch(ABC):
         self,
         url: str,
         *,
-        method: Literal["GET", "POST"] | None = "POST",
+        method: str | None = "POST",
         max_items: int | None = None,
         stac_io: StacApiIO | None = None,
         client: Optional["_client.Client"] = None,
@@ -270,7 +269,7 @@ class BaseSearch(ABC):
 
     @staticmethod
     def _format_filter_lang(
-        method: Literal["GET", "POST"] | None,
+        method: str | None,
         _filter: FilterLike | None,
         value: FilterLangLike | None,
     ) -> str | None:
@@ -290,7 +289,7 @@ class BaseSearch(ABC):
 
     def _format_filter(
         self,
-        method: Literal["GET", "POST"] | None,
+        method: str | None,
         filter_lang: FilterLangLike | None,
         value: FilterLike | None,
     ) -> FilterLike | None:
@@ -705,7 +704,7 @@ class ItemSearch(BaseSearch):
         self,
         url: str,
         *,
-        method: Literal["GET", "POST"] | None = "POST",
+        method: str | None = "POST",
         max_items: int | None = None,
         stac_io: StacApiIO | None = None,
         client: Optional["_client.Client"] = None,
