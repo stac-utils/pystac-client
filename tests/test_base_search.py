@@ -330,13 +330,13 @@ class TestBaseSearchParams:
         with pytest.raises(Exception):
             BaseSearch(url=SEARCH_URL, intersects=object())  # type: ignore
 
-    def test_filter_lang_default_for_dict(self) -> None:
-        search = BaseSearch(url=SEARCH_URL, filter={})
-        assert search.get_parameters()["filter-lang"] == "cql2-json"
-
-    def test_filter_lang_default_for_str(self) -> None:
-        search = BaseSearch(url=SEARCH_URL, filter="")
+    def test_filter_lang_default_for_method_despite_filter_as_dict(self) -> None:
+        search = BaseSearch(url=SEARCH_URL, method="GET", filter={})
         assert search.get_parameters()["filter-lang"] == "cql2-text"
+
+    def test_filter_lang_default_for_method_despite_filter_as_str(self) -> None:
+        search = BaseSearch(url=SEARCH_URL, method="POST", filter="")
+        assert search.get_parameters()["filter-lang"] == "cql2-json"
 
     def test_filter_lang_cql2_text(self) -> None:
         # Use specified filter_lang
@@ -352,6 +352,51 @@ class TestBaseSearchParams:
         # No filter provided
         search = BaseSearch(url=SEARCH_URL)
         assert "filter-lang" not in search.get_parameters()
+
+    def test_filter_conversion_to_cql2_json(self) -> None:
+        search = BaseSearch(url=SEARCH_URL, method="POST", filter="eo:cloud_cover<=10")
+        assert search.get_parameters()["filter-lang"] == "cql2-json"
+        assert search.get_parameters()["filter"] == {
+            "args": [{"property": "eo:cloud_cover"}, 10],
+            "op": "<=",
+        }
+
+    def test_filter_conversion_to_cql2_text(self) -> None:
+        search = BaseSearch(
+            url=SEARCH_URL,
+            method="GET",
+            filter={"op": "<=", "args": [{"property": "eo:cloud_cover"}, 10]},
+        )
+        assert search.get_parameters()["filter-lang"] == "cql2-text"
+        assert search.get_parameters()["filter"] == '("eo:cloud_cover" <= 10)'
+
+    def test_filter_conversion_does_not_happen_if_filter_lang_specified_json(
+        self,
+    ) -> None:
+        search = BaseSearch(
+            url=SEARCH_URL,
+            method="GET",
+            filter={"op": "<=", "args": [{"property": "eo:cloud_cover"}, 10]},
+            filter_lang="cql2-json",
+        )
+        # assert search.get_parameters()["filter-lang"] == "cql2-json"
+        assert (
+            search.get_parameters()["filter"]
+            == '{"op": "<=", "args": [{"property": "eo:cloud_cover"}, 10]}'
+        )
+
+    def test_filter_conversion_does_not_happen_if_filter_lang_specified_text(
+        self,
+    ) -> None:
+        search = BaseSearch(
+            url=SEARCH_URL,
+            method="POST",
+            filter="eo:cloud_cover<=10",
+            filter_lang="cql2-text",
+        )
+        # note that this is likely to fail when it hits the server
+        assert search.get_parameters()["filter-lang"] == "cql2-text"
+        assert search.get_parameters()["filter"] == "eo:cloud_cover<=10"
 
     def test_sortby(self) -> None:
         search = BaseSearch(url=SEARCH_URL, sortby="properties.datetime")
