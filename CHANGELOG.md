@@ -7,9 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Coerce cql2 style to match HTTP method using `cql2` library ([#804](https://github.com/stac-utils/pystac-client/pull/804))
+
 ### Fixed
 
-- Fix usage documentation of `ItemSearch`
+- Fix usage documentation of `ItemSearch` ([#790](https://github.com/stac-utils/pystac-client/pull/790))
 - Fix fields argument to CLI  ([#797](https://github.com/stac-utils/pystac-client/pull/797))
 - Clarify recursive behaviour of the `get_items` method in the method docstring ([#800](https://github.com/stac-utils/pystac-client/pull/800))
 

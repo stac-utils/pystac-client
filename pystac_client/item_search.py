@@ -159,6 +159,7 @@ class BaseSearch(ABC):
 
         self.method = method
         self.modifier = modifier
+
         params = {
             "limit": limit,
             "bbox": self._format_bbox(bbox),
@@ -167,8 +168,8 @@ class BaseSearch(ABC):
             "collections": self._format_collections(collections),
             "intersects": self._format_intersects(intersects),
             "query": self._format_query(query),
-            "filter": self._format_filter(filter),
-            "filter-lang": self._format_filter_lang(filter, filter_lang),
+            "filter": self._format_filter(method, filter_lang, filter),
+            "filter-lang": self._format_filter_lang(method, filter, filter_lang),
             "sortby": self._format_sortby(sortby),
             "fields": self._format_fields(fields),
             "q": q,
@@ -204,6 +205,8 @@ class BaseSearch(ABC):
             params["sortby"] = self._sortby_dict_to_str(params["sortby"])
         if "fields" in params:
             params["fields"] = self._fields_dict_to_str(params["fields"])
+        if "filter" in params and isinstance(params["filter"], dict):
+            params["filter"] = json.dumps(params["filter"])
         return params
 
     def url_with_parameters(self) -> str:
@@ -266,7 +269,9 @@ class BaseSearch(ABC):
 
     @staticmethod
     def _format_filter_lang(
-        _filter: FilterLike | None, value: FilterLangLike | None
+        method: str | None,
+        _filter: FilterLike | None,
+        value: FilterLangLike | None,
     ) -> str | None:
         if _filter is None:
             return None
@@ -274,20 +279,58 @@ class BaseSearch(ABC):
         if value is not None:
             return value
 
-        if isinstance(_filter, str):
+        if method == "GET":
             return "cql2-text"
 
-        if isinstance(_filter, dict):
+        if method == "POST":
             return "cql2-json"
 
         return None
 
-    def _format_filter(self, value: FilterLike | None) -> FilterLike | None:
-        if value is None:
+    def _format_filter(
+        self,
+        method: str | None,
+        filter_lang: FilterLangLike | None,
+        value: FilterLike | None,
+    ) -> FilterLike | None:
+        if not value:
             return None
 
         if self.client and not self.client.conforms_to(ConformanceClasses.FILTER):
             warnings.warn(DoesNotConformTo("FILTER"))
+
+        if method == "GET" and isinstance(value, str):
+            return value
+
+        if method == "POST" and isinstance(value, dict):
+            return value
+
+        # if filter_lang is specified, do not coerce
+        if filter_lang is not None:
+            return value
+
+        try:
+            import cql2
+
+            if isinstance(value, dict):
+                expr = cql2.parse_json(json.dumps(value))
+            else:
+                # could be cql2-text or stringified cql2-json
+                expr = cql2.Expr(value)
+
+        except ImportError as e:
+            raise ValueError(
+                "Unless you specify ``filter_lang`` pystac-client will try to convert "
+                "the filter to cql2-text or cql2-json based on the HTTP method "
+                "provided.\n"
+                "Resolve this error by installing ``cql2``: ``pip install cql2``"
+            ) from e
+
+        if method == "GET":
+            return str(expr.to_text())
+
+        if method == "POST":
+            return dict(expr.to_json())
 
         return value
 
