@@ -310,12 +310,13 @@ class BaseSearch(ABC):
             return value
 
         try:
-            from cql2 import Expr
+            import cql2
 
             if isinstance(value, dict):
-                expr = Expr(json.dumps(value))
+                expr = cql2.parse_json(json.dumps(value))
             else:
-                expr = Expr(value)
+                # could be cql2-text or stringified cql2-json
+                expr = cql2.Expr(value)
 
         except ImportError as e:
             raise ValueError(
