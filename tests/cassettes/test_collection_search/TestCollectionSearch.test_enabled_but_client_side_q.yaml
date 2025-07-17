@@ -87,10 +87,7 @@ interactions:
         \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-6?httpAccept=application/ld%2Bjson;profile=http://data.europa.eu/930/\",\n
         \         \"type\": \"application/ld+json;profile=\\\"http://data.europa.eu/930/\\\"\",\n
         \         \"title\": \"JSON-LD (GeoDCAT-AP) metadata\"\n        },\n        {\n
-        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-6?httpAccept=application/rdf%2Bxml\",\n
-        \         \"type\": \"application/rdf+xml\",\n          \"title\": \"RDF/XML
-        metadata\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
-        \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-6?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-6?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
         \         \"type\": \"application/rdf+xml;profile=\\\"https://schema.org\\\"\",\n
         \         \"title\": \"RDF/XML (schema.org) metadata\"\n        },\n        {\n
         \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-6?httpAccept=application/rdf%2Bxml;profile=http://data.europa.eu/930/\",\n
@@ -188,10 +185,7 @@ interactions:
         \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-5P?httpAccept=application/ld%2Bjson;profile=http://data.europa.eu/930/\",\n
         \         \"type\": \"application/ld+json;profile=\\\"http://data.europa.eu/930/\\\"\",\n
         \         \"title\": \"JSON-LD (GeoDCAT-AP) metadata\"\n        },\n        {\n
-        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-5P?httpAccept=application/rdf%2Bxml\",\n
-        \         \"type\": \"application/rdf+xml\",\n          \"title\": \"RDF/XML
-        metadata\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
-        \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-5P?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-5P?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
         \         \"type\": \"application/rdf+xml;profile=\\\"https://schema.org\\\"\",\n
         \         \"title\": \"RDF/XML (schema.org) metadata\"\n        },\n        {\n
         \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-5P?httpAccept=application/rdf%2Bxml;profile=http://data.europa.eu/930/\",\n
@@ -210,7 +204,7 @@ interactions:
         \       {\n          \"rel\": \"related\",\n          \"href\": \"https://emc.spacebel.be/series/concepts/instruments/09f91afd-c0d2-52a9-9b50-b895a60917fa\",\n
         \         \"title\": \"More collections for TROPOMI instrument\"\n        }\n
         \     ],\n      \"id\": \"EOP:ESA:Sentinel-5P\",\n      \"updated\": \"2017-04-30T00:00:00.00Z\",\n
-        \     \"stac_extensions\": [\"https://stac-extensions.github.io/processing/v1.1.0/schema.json\"],\n
+        \     \"stac_extensions\": [\"https://stac-extensions.github.io/processing/v1.2.0/schema.json\"],\n
         \     \"providers\": [\n        {\n          \"roles\": [\"producer\"],\n
         \         \"name\": \"ESA/ESRIN\"\n        },\n        {\n          \"roles\":
         [\"host\"],\n          \"name\": \"FedEO Clearinghouse\",\n          \"url\":
@@ -295,10 +289,7 @@ interactions:
         \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/F-FCC?httpAccept=application/ld%2Bjson;profile=http://data.europa.eu/930/\",\n
         \         \"type\": \"application/ld+json;profile=\\\"http://data.europa.eu/930/\\\"\",\n
         \         \"title\": \"JSON-LD (GeoDCAT-AP) metadata\"\n        },\n        {\n
-        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/F-FCC?httpAccept=application/rdf%2Bxml\",\n
-        \         \"type\": \"application/rdf+xml\",\n          \"title\": \"RDF/XML
-        metadata\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
-        \"https://emc.spacebel.be/collections/F-FCC?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/F-FCC?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
         \         \"type\": \"application/rdf+xml;profile=\\\"https://schema.org\\\"\",\n
         \         \"title\": \"RDF/XML (schema.org) metadata\"\n        },\n        {\n
         \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/F-FCC?httpAccept=application/rdf%2Bxml;profile=http://data.europa.eu/930/\",\n
@@ -425,10 +416,7 @@ interactions:
         \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/ENVISAT.RA2.MWS_2P?httpAccept=application/ld%2Bjson;profile=http://data.europa.eu/930/\",\n
         \         \"type\": \"application/ld+json;profile=\\\"http://data.europa.eu/930/\\\"\",\n
         \         \"title\": \"JSON-LD (GeoDCAT-AP) metadata\"\n        },\n        {\n
-        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/ENVISAT.RA2.MWS_2P?httpAccept=application/rdf%2Bxml\",\n
-        \         \"type\": \"application/rdf+xml\",\n          \"title\": \"RDF/XML
-        metadata\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
-        \"https://emc.spacebel.be/collections/ENVISAT.RA2.MWS_2P?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/ENVISAT.RA2.MWS_2P?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
         \         \"type\": \"application/rdf+xml;profile=\\\"https://schema.org\\\"\",\n
         \         \"title\": \"RDF/XML (schema.org) metadata\"\n        },\n        {\n
         \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/ENVISAT.RA2.MWS_2P?httpAccept=application/rdf%2Bxml;profile=http://data.europa.eu/930/\",\n
@@ -570,10 +558,7 @@ interactions:
         \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/MER.RR__1P?httpAccept=application/ld%2Bjson;profile=http://data.europa.eu/930/\",\n
         \         \"type\": \"application/ld+json;profile=\\\"http://data.europa.eu/930/\\\"\",\n
         \         \"title\": \"JSON-LD (GeoDCAT-AP) metadata\"\n        },\n        {\n
-        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/MER.RR__1P?httpAccept=application/rdf%2Bxml\",\n
-        \         \"type\": \"application/rdf+xml\",\n          \"title\": \"RDF/XML
-        metadata\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
-        \"https://emc.spacebel.be/collections/MER.RR__1P?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/MER.RR__1P?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
         \         \"type\": \"application/rdf+xml;profile=\\\"https://schema.org\\\"\",\n
         \         \"title\": \"RDF/XML (schema.org) metadata\"\n        },\n        {\n
         \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/MER.RR__1P?httpAccept=application/rdf%2Bxml;profile=http://data.europa.eu/930/\",\n
@@ -612,7 +597,7 @@ interactions:
         \   },\n    {\n      \"rel\": \"http://www.opengis.net/def/rel/ogc/1.0/queryables\",\n
         \     \"href\": \"https://emc.spacebel.be/collections/queryables\",\n      \"type\":
         \"application/schema+json\",\n      \"title\": \"Queryables for collection
-        search\"\n    }\n  ],\n  \"numberMatched\": 176\n}"
+        search\"\n    }\n  ],\n  \"numberMatched\": 216\n}"
     headers:
       Access-Control-Allow-Headers:
       - X-PINGOTHER, Content-Type, Authorization, Accept
@@ -627,7 +612,7 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Tue, 08 Oct 2024 18:16:25 GMT
+      - Thu, 17 Jul 2025 12:51:10 GMT
       Expires:
       - '0'
       Pragma:
@@ -636,6 +621,8 @@ interactions:
       - openresty
       Strict-Transport-Security:
       - max-age=31536000 ; includeSubDomains
+      Transfer-Encoding:
+      - chunked
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:
@@ -735,10 +722,7 @@ interactions:
         \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-6?httpAccept=application/ld%2Bjson;profile=http://data.europa.eu/930/\",\n
         \         \"type\": \"application/ld+json;profile=\\\"http://data.europa.eu/930/\\\"\",\n
         \         \"title\": \"JSON-LD (GeoDCAT-AP) metadata\"\n        },\n        {\n
-        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-6?httpAccept=application/rdf%2Bxml\",\n
-        \         \"type\": \"application/rdf+xml\",\n          \"title\": \"RDF/XML
-        metadata\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
-        \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-6?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-6?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
         \         \"type\": \"application/rdf+xml;profile=\\\"https://schema.org\\\"\",\n
         \         \"title\": \"RDF/XML (schema.org) metadata\"\n        },\n        {\n
         \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-6?httpAccept=application/rdf%2Bxml;profile=http://data.europa.eu/930/\",\n
@@ -836,10 +820,7 @@ interactions:
         \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-5P?httpAccept=application/ld%2Bjson;profile=http://data.europa.eu/930/\",\n
         \         \"type\": \"application/ld+json;profile=\\\"http://data.europa.eu/930/\\\"\",\n
         \         \"title\": \"JSON-LD (GeoDCAT-AP) metadata\"\n        },\n        {\n
-        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-5P?httpAccept=application/rdf%2Bxml\",\n
-        \         \"type\": \"application/rdf+xml\",\n          \"title\": \"RDF/XML
-        metadata\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
-        \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-5P?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-5P?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
         \         \"type\": \"application/rdf+xml;profile=\\\"https://schema.org\\\"\",\n
         \         \"title\": \"RDF/XML (schema.org) metadata\"\n        },\n        {\n
         \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-5P?httpAccept=application/rdf%2Bxml;profile=http://data.europa.eu/930/\",\n
@@ -858,7 +839,7 @@ interactions:
         \       {\n          \"rel\": \"related\",\n          \"href\": \"https://emc.spacebel.be/series/concepts/instruments/09f91afd-c0d2-52a9-9b50-b895a60917fa\",\n
         \         \"title\": \"More collections for TROPOMI instrument\"\n        }\n
         \     ],\n      \"id\": \"EOP:ESA:Sentinel-5P\",\n      \"updated\": \"2017-04-30T00:00:00.00Z\",\n
-        \     \"stac_extensions\": [\"https://stac-extensions.github.io/processing/v1.1.0/schema.json\"],\n
+        \     \"stac_extensions\": [\"https://stac-extensions.github.io/processing/v1.2.0/schema.json\"],\n
         \     \"providers\": [\n        {\n          \"roles\": [\"producer\"],\n
         \         \"name\": \"ESA/ESRIN\"\n        },\n        {\n          \"roles\":
         [\"host\"],\n          \"name\": \"FedEO Clearinghouse\",\n          \"url\":
@@ -943,10 +924,7 @@ interactions:
         \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/F-FCC?httpAccept=application/ld%2Bjson;profile=http://data.europa.eu/930/\",\n
         \         \"type\": \"application/ld+json;profile=\\\"http://data.europa.eu/930/\\\"\",\n
         \         \"title\": \"JSON-LD (GeoDCAT-AP) metadata\"\n        },\n        {\n
-        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/F-FCC?httpAccept=application/rdf%2Bxml\",\n
-        \         \"type\": \"application/rdf+xml\",\n          \"title\": \"RDF/XML
-        metadata\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
-        \"https://emc.spacebel.be/collections/F-FCC?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/F-FCC?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
         \         \"type\": \"application/rdf+xml;profile=\\\"https://schema.org\\\"\",\n
         \         \"title\": \"RDF/XML (schema.org) metadata\"\n        },\n        {\n
         \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/F-FCC?httpAccept=application/rdf%2Bxml;profile=http://data.europa.eu/930/\",\n
@@ -1073,10 +1051,7 @@ interactions:
         \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/ENVISAT.RA2.MWS_2P?httpAccept=application/ld%2Bjson;profile=http://data.europa.eu/930/\",\n
         \         \"type\": \"application/ld+json;profile=\\\"http://data.europa.eu/930/\\\"\",\n
         \         \"title\": \"JSON-LD (GeoDCAT-AP) metadata\"\n        },\n        {\n
-        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/ENVISAT.RA2.MWS_2P?httpAccept=application/rdf%2Bxml\",\n
-        \         \"type\": \"application/rdf+xml\",\n          \"title\": \"RDF/XML
-        metadata\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
-        \"https://emc.spacebel.be/collections/ENVISAT.RA2.MWS_2P?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/ENVISAT.RA2.MWS_2P?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
         \         \"type\": \"application/rdf+xml;profile=\\\"https://schema.org\\\"\",\n
         \         \"title\": \"RDF/XML (schema.org) metadata\"\n        },\n        {\n
         \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/ENVISAT.RA2.MWS_2P?httpAccept=application/rdf%2Bxml;profile=http://data.europa.eu/930/\",\n
@@ -1218,10 +1193,7 @@ interactions:
         \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/MER.RR__1P?httpAccept=application/ld%2Bjson;profile=http://data.europa.eu/930/\",\n
         \         \"type\": \"application/ld+json;profile=\\\"http://data.europa.eu/930/\\\"\",\n
         \         \"title\": \"JSON-LD (GeoDCAT-AP) metadata\"\n        },\n        {\n
-        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/MER.RR__1P?httpAccept=application/rdf%2Bxml\",\n
-        \         \"type\": \"application/rdf+xml\",\n          \"title\": \"RDF/XML
-        metadata\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
-        \"https://emc.spacebel.be/collections/MER.RR__1P?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/MER.RR__1P?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
         \         \"type\": \"application/rdf+xml;profile=\\\"https://schema.org\\\"\",\n
         \         \"title\": \"RDF/XML (schema.org) metadata\"\n        },\n        {\n
         \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/MER.RR__1P?httpAccept=application/rdf%2Bxml;profile=http://data.europa.eu/930/\",\n
@@ -1260,7 +1232,7 @@ interactions:
         \   },\n    {\n      \"rel\": \"http://www.opengis.net/def/rel/ogc/1.0/queryables\",\n
         \     \"href\": \"https://emc.spacebel.be/collections/queryables\",\n      \"type\":
         \"application/schema+json\",\n      \"title\": \"Queryables for collection
-        search\"\n    }\n  ],\n  \"numberMatched\": 176\n}"
+        search\"\n    }\n  ],\n  \"numberMatched\": 216\n}"
     headers:
       Access-Control-Allow-Headers:
       - X-PINGOTHER, Content-Type, Authorization, Accept
@@ -1275,7 +1247,7 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Tue, 08 Oct 2024 18:16:26 GMT
+      - Thu, 17 Jul 2025 12:51:11 GMT
       Expires:
       - '0'
       Pragma:
@@ -1284,6 +1256,8 @@ interactions:
       - openresty
       Strict-Transport-Security:
       - max-age=31536000 ; includeSubDomains
+      Transfer-Encoding:
+      - chunked
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:
@@ -1383,10 +1357,7 @@ interactions:
         \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-6?httpAccept=application/ld%2Bjson;profile=http://data.europa.eu/930/\",\n
         \         \"type\": \"application/ld+json;profile=\\\"http://data.europa.eu/930/\\\"\",\n
         \         \"title\": \"JSON-LD (GeoDCAT-AP) metadata\"\n        },\n        {\n
-        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-6?httpAccept=application/rdf%2Bxml\",\n
-        \         \"type\": \"application/rdf+xml\",\n          \"title\": \"RDF/XML
-        metadata\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
-        \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-6?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-6?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
         \         \"type\": \"application/rdf+xml;profile=\\\"https://schema.org\\\"\",\n
         \         \"title\": \"RDF/XML (schema.org) metadata\"\n        },\n        {\n
         \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-6?httpAccept=application/rdf%2Bxml;profile=http://data.europa.eu/930/\",\n
@@ -1484,10 +1455,7 @@ interactions:
         \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-5P?httpAccept=application/ld%2Bjson;profile=http://data.europa.eu/930/\",\n
         \         \"type\": \"application/ld+json;profile=\\\"http://data.europa.eu/930/\\\"\",\n
         \         \"title\": \"JSON-LD (GeoDCAT-AP) metadata\"\n        },\n        {\n
-        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-5P?httpAccept=application/rdf%2Bxml\",\n
-        \         \"type\": \"application/rdf+xml\",\n          \"title\": \"RDF/XML
-        metadata\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
-        \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-5P?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-5P?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
         \         \"type\": \"application/rdf+xml;profile=\\\"https://schema.org\\\"\",\n
         \         \"title\": \"RDF/XML (schema.org) metadata\"\n        },\n        {\n
         \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/EOP:ESA:Sentinel-5P?httpAccept=application/rdf%2Bxml;profile=http://data.europa.eu/930/\",\n
@@ -1506,7 +1474,7 @@ interactions:
         \       {\n          \"rel\": \"related\",\n          \"href\": \"https://emc.spacebel.be/series/concepts/instruments/09f91afd-c0d2-52a9-9b50-b895a60917fa\",\n
         \         \"title\": \"More collections for TROPOMI instrument\"\n        }\n
         \     ],\n      \"id\": \"EOP:ESA:Sentinel-5P\",\n      \"updated\": \"2017-04-30T00:00:00.00Z\",\n
-        \     \"stac_extensions\": [\"https://stac-extensions.github.io/processing/v1.1.0/schema.json\"],\n
+        \     \"stac_extensions\": [\"https://stac-extensions.github.io/processing/v1.2.0/schema.json\"],\n
         \     \"providers\": [\n        {\n          \"roles\": [\"producer\"],\n
         \         \"name\": \"ESA/ESRIN\"\n        },\n        {\n          \"roles\":
         [\"host\"],\n          \"name\": \"FedEO Clearinghouse\",\n          \"url\":
@@ -1591,10 +1559,7 @@ interactions:
         \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/F-FCC?httpAccept=application/ld%2Bjson;profile=http://data.europa.eu/930/\",\n
         \         \"type\": \"application/ld+json;profile=\\\"http://data.europa.eu/930/\\\"\",\n
         \         \"title\": \"JSON-LD (GeoDCAT-AP) metadata\"\n        },\n        {\n
-        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/F-FCC?httpAccept=application/rdf%2Bxml\",\n
-        \         \"type\": \"application/rdf+xml\",\n          \"title\": \"RDF/XML
-        metadata\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
-        \"https://emc.spacebel.be/collections/F-FCC?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/F-FCC?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
         \         \"type\": \"application/rdf+xml;profile=\\\"https://schema.org\\\"\",\n
         \         \"title\": \"RDF/XML (schema.org) metadata\"\n        },\n        {\n
         \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/F-FCC?httpAccept=application/rdf%2Bxml;profile=http://data.europa.eu/930/\",\n
@@ -1721,10 +1686,7 @@ interactions:
         \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/ENVISAT.RA2.MWS_2P?httpAccept=application/ld%2Bjson;profile=http://data.europa.eu/930/\",\n
         \         \"type\": \"application/ld+json;profile=\\\"http://data.europa.eu/930/\\\"\",\n
         \         \"title\": \"JSON-LD (GeoDCAT-AP) metadata\"\n        },\n        {\n
-        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/ENVISAT.RA2.MWS_2P?httpAccept=application/rdf%2Bxml\",\n
-        \         \"type\": \"application/rdf+xml\",\n          \"title\": \"RDF/XML
-        metadata\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
-        \"https://emc.spacebel.be/collections/ENVISAT.RA2.MWS_2P?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/ENVISAT.RA2.MWS_2P?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
         \         \"type\": \"application/rdf+xml;profile=\\\"https://schema.org\\\"\",\n
         \         \"title\": \"RDF/XML (schema.org) metadata\"\n        },\n        {\n
         \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/ENVISAT.RA2.MWS_2P?httpAccept=application/rdf%2Bxml;profile=http://data.europa.eu/930/\",\n
@@ -1866,10 +1828,7 @@ interactions:
         \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/MER.RR__1P?httpAccept=application/ld%2Bjson;profile=http://data.europa.eu/930/\",\n
         \         \"type\": \"application/ld+json;profile=\\\"http://data.europa.eu/930/\\\"\",\n
         \         \"title\": \"JSON-LD (GeoDCAT-AP) metadata\"\n        },\n        {\n
-        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/MER.RR__1P?httpAccept=application/rdf%2Bxml\",\n
-        \         \"type\": \"application/rdf+xml\",\n          \"title\": \"RDF/XML
-        metadata\"\n        },\n        {\n          \"rel\": \"alternate\",\n          \"href\":
-        \"https://emc.spacebel.be/collections/MER.RR__1P?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
+        \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/MER.RR__1P?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
         \         \"type\": \"application/rdf+xml;profile=\\\"https://schema.org\\\"\",\n
         \         \"title\": \"RDF/XML (schema.org) metadata\"\n        },\n        {\n
         \         \"rel\": \"alternate\",\n          \"href\": \"https://emc.spacebel.be/collections/MER.RR__1P?httpAccept=application/rdf%2Bxml;profile=http://data.europa.eu/930/\",\n
@@ -1908,7 +1867,7 @@ interactions:
         \   },\n    {\n      \"rel\": \"http://www.opengis.net/def/rel/ogc/1.0/queryables\",\n
         \     \"href\": \"https://emc.spacebel.be/collections/queryables\",\n      \"type\":
         \"application/schema+json\",\n      \"title\": \"Queryables for collection
-        search\"\n    }\n  ],\n  \"numberMatched\": 191\n}"
+        search\"\n    }\n  ],\n  \"numberMatched\": 216\n}"
     headers:
       Access-Control-Allow-Headers:
       - X-PINGOTHER, Content-Type, Authorization, Accept
@@ -1923,7 +1882,7 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Thu, 10 Oct 2024 14:02:34 GMT
+      - Thu, 17 Jul 2025 12:51:12 GMT
       Expires:
       - '0'
       Pragma:

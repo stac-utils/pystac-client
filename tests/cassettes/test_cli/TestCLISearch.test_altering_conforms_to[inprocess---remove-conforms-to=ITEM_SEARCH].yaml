@@ -19,20 +19,22 @@ interactions:
     headers:
       Connection:
       - keep-alive
+      Content-Encoding:
+      - gzip
       Content-Length:
-      - '3369'
+      - '612'
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Fri, 09 Aug 2024 15:13:05 GMT
+      - Thu, 17 Jul 2025 12:50:07 GMT
       Via:
-      - 1.1 f923e65cfb5d73f11ea9a89d42fad5fc.cloudfront.net (CloudFront)
+      - 1.1 12e4fc9256386a4cd8f000b9caa3e012.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - Vb4RYbwHg90MJHO2FT8YE9m06KAql9aKbciCCkSZvRYBHqx_kVDeEg==
+      - SZC7T6UXfwTFds9ScxeFl3NGIJ7rfz4Nr5f9bAPM6SoqF5xi93K3pA==
       X-Amz-Cf-Pop:
       - DEN52-C1
       X-Amzn-Trace-Id:
-      - Root=1-66b63201-4d39d7e145d70b3d0a044f17;Parent=2b110a789f63a22a;Sampled=0;lineage=9e2884e9:0
+      - Root=1-6878f17f-040a000b6239446109b35aad;Parent=4cc908d43ad21307;Sampled=0;Lineage=1:9e2884e9:0
       X-Cache:
       - Miss from cloudfront
       access-control-allow-origin:
@@ -40,11 +42,11 @@ interactions:
       etag:
       - W/"d29-QPs+H0wJLUX32EZKNgzG3k6wfQ8"
       x-amz-apigw-id:
-      - cPzAPGg0PHcEMdw=
+      - N2qsAHxCPHcEFAw=
       x-amzn-Remapped-content-length:
       - '3369'
       x-amzn-RequestId:
-      - 116f6a49-6e10-44aa-83a9-6f4e4635f28d
+      - bf75d666-867c-4b8a-972c-c8c1a4333d89
       x-powered-by:
       - Express
     status:

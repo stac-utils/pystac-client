@@ -14,12 +14,10 @@ interactions:
     uri: https://stac.sage.uvt.ro/
   response:
     body:
-      string: "{\"type\":\"Catalog\",\"id\":\"stac-fastapi\",\"title\":\"UVT STAC
-        Catalog\",\"description\":\"Spatio-Temporal Asset Catalog containing various
-        geospatial products distributed by West University of Timisoara\",\"stac_version\":\"1.0.0\",\"conformsTo\":[\"https://api.stacspec.org/v1.0.0/ogcapi-features\",\"https://api.stacspec.org/v1.0.0-rc.3/item-search#fields\",\"https://api.stacspec.org/v1.0.0-rc.2/item-search#query\",\"https://api.stacspec.org/v1.0.0-rc.2/item-search#sort\",\"http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson\",\"https://api.stacspec.org/v1.0.0/collections\",\"https://api.stacspec.org/v1.0.0-rc.2/item-search#context\",\"http://www.opengis.net/spec/cql2/1.0/conf/cql2-text\",\"http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter\",\"http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/features-filter\",\"http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30\",\"http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core\",\"http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2\",\"https://api.stacspec.org/v1.0.0/core\",\"https://api.stacspec.org/v1.0.0/item-search\",\"https://api.stacspec.org/v1.0.0-rc.2/item-search#filter\"],\"links\":[{\"rel\":\"self\",\"type\":\"application/json\",\"href\":\"https://stac.sage.uvt.ro/\"},{\"rel\":\"root\",\"type\":\"application/json\",\"href\":\"https://stac.sage.uvt.ro/\"},{\"rel\":\"data\",\"type\":\"application/json\",\"href\":\"https://stac.sage.uvt.ro/collections\"},{\"rel\":\"conformance\",\"type\":\"application/json\",\"title\":\"STAC/WFS3
+      string: "{\"type\":\"Catalog\",\"id\":\"stac-fastapi\",\"title\":\"stac-fastapi\",\"description\":\"stac-fastapi\",\"stac_version\":\"1.0.0\",\"conformsTo\":[\"http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter\",\"http://www.opengis.net/spec/cql2/1.0/conf/cql2-json\",\"http://www.opengis.net/spec/cql2/1.0/conf/cql2-text\",\"https://api.stacspec.org/v1.0.0/item-search#fields\",\"https://api.stacspec.org/v1.0.0/item-search#sort\",\"https://api.stacspec.org/v1.0.0/item-search\",\"http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson\",\"https://api.stacspec.org/v1.0.0/collections\",\"http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2\",\"https://api.stacspec.org/v1.0.0/core\",\"https://api.stacspec.org/v1.0.0-rc.2/item-search#filter\",\"http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core\",\"https://api.stacspec.org/v1.0.0/item-search#query\",\"https://api.stacspec.org/v1.0.0/ogcapi-features\",\"http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30\",\"http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/features-filter\"],\"links\":[{\"rel\":\"self\",\"type\":\"application/json\",\"href\":\"https://stac.sage.uvt.ro/\"},{\"rel\":\"root\",\"type\":\"application/json\",\"href\":\"https://stac.sage.uvt.ro/\"},{\"rel\":\"data\",\"type\":\"application/json\",\"href\":\"https://stac.sage.uvt.ro/collections\"},{\"rel\":\"conformance\",\"type\":\"application/json\",\"title\":\"STAC/OGC
         conformance classes implemented by this server\",\"href\":\"https://stac.sage.uvt.ro/conformance\"},{\"rel\":\"search\",\"type\":\"application/geo+json\",\"title\":\"STAC
         search\",\"href\":\"https://stac.sage.uvt.ro/search\",\"method\":\"GET\"},{\"rel\":\"search\",\"type\":\"application/geo+json\",\"title\":\"STAC
-        search\",\"href\":\"https://stac.sage.uvt.ro/search\",\"method\":\"POST\"},{\"rel\":\"child\",\"type\":\"application/json\",\"title\":\"Copernicus
+        search\",\"href\":\"https://stac.sage.uvt.ro/search\",\"method\":\"POST\"},{\"rel\":\"http://www.opengis.net/def/rel/ogc/1.0/queryables\",\"type\":\"application/schema+json\",\"title\":\"Queryables\",\"href\":\"https://stac.sage.uvt.ro/queryables\",\"method\":\"GET\"},{\"rel\":\"child\",\"type\":\"application/json\",\"title\":\"Copernicus
         DEM 30m\",\"href\":\"https://stac.sage.uvt.ro/collections/copernicus-dem-30\"},{\"rel\":\"child\",\"type\":\"application/json\",\"title\":\"Sentinel-2
         Level-1C - Rom\xE2nia\",\"href\":\"https://stac.sage.uvt.ro/collections/sentinel-2-l1c\"},{\"rel\":\"child\",\"type\":\"application/json\",\"title\":\"Sentinel-2
         Level-1C - Rom\xE2nia - Vegetation Index\",\"href\":\"https://stac.sage.uvt.ro/collections/sentinel-2-l1c-ndvi\"},{\"rel\":\"child\",\"type\":\"application/json\",\"title\":\"ANCPI
@@ -50,13 +48,17 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '3893'
+      - '896'
       Content-Type:
       - application/json
       Date:
-      - Fri, 09 Aug 2024 15:23:26 GMT
+      - Thu, 17 Jul 2025 12:50:26 GMT
       Strict-Transport-Security:
-      - max-age=15724800; includeSubDomains
+      - max-age=31536000; includeSubDomains
+      content-encoding:
+      - gzip
+      vary:
+      - Accept-Encoding
     status:
       code: 200
       message: OK
@@ -78,7 +80,7 @@ interactions:
       string: '{"$id":"https://stac.sage.uvt.ro/queryables","type":"object","title":"STAC
         Queryables.","$schema":"http://json-schema.org/draft-07/schema#","properties":{"id":{"$ref":"https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json#/definitions/core/allOf/2/properties/id","title":"Item
         ID","description":"Item identifier"},"datetime":{"type":"string","title":"Acquired","format":"date-time","pattern":"(\\+00:00|Z)$","description":"Datetime"},"geometry":{"$ref":"https://geojson.org/schema/Feature.json","title":"Item
-        Geometry","description":"Item Geometry"},"platform":{"type":"string"},"proj:epsg":{"type":"number"},"instruments":{"type":"array"},"s2:mgrs_tile":{"type":"string"},"constellation":{"type":"string"},"s2:granule_id":{"type":"string"},"eo:cloud_cover":{"$ref":"https://stac-extensions.github.io/eo/v1.0.0/schema.json#/definitions/fieldsproperties/eo:cloud_cover"},"s2:datatake_id":{"type":"string"},"s2:product_uri":{"type":"string"},"s2:datastrip_id":{"type":"string"},"s2:product_type":{"type":"string"},"sat:orbit_state":{"type":"string"},"s2:datatake_type":{"type":"string"},"s2:generation_time":{"type":"string"},"sat:relative_orbit":{"type":"number"},"s2:mean_solar_zenith":{"type":"number"},"s2:mean_solar_azimuth":{"type":"number"},"s2:processing_baseline":{"type":"string"},"s2:snow_ice_percentage":{"type":"number"},"s2:degraded_msi_data_percentage":{"type":"number"}}}'
+        Geometry","description":"Item Geometry"},"platform":{"type":"string"},"proj:bbox":{"type":"array"},"proj:epsg":{"type":"number"},"proj:shape":{"type":"array"},"instruments":{"type":"array"},"s2:mgrs_tile":{"type":"string"},"constellation":{"type":"string"},"proj:geometry":{"type":"object"},"proj:projjson":{"type":"object"},"s2:granule_id":{"type":"string"},"eo:cloud_cover":{"$ref":"https://stac-extensions.github.io/eo/v1.0.0/schema.json#/definitions/fieldsproperties/eo:cloud_cover"},"proj:transform":{"type":"array"},"s2:datatake_id":{"type":"string"},"s2:product_uri":{"type":"string"},"s2:datastrip_id":{"type":"string"},"s2:product_type":{"type":"string"},"sat:orbit_state":{"type":"string"},"s2:datatake_type":{"type":"string"},"s2:generation_time":{"type":"string"},"sat:relative_orbit":{"type":"number"},"eocubero:snow_cover":{"type":"number"},"s2:mean_solar_zenith":{"type":"number"},"s2:mean_solar_azimuth":{"type":"number"},"eocubero:rain-detected":{"type":"boolean"},"s2:processing_baseline":{"type":"string"},"s2:snow_ice_percentage":{"type":"number"},"eocubero:s2-source-item":{"type":"string"},"eocubero:hotspot-detected":{"type":"boolean"},"eocubero:sun-glint-detected":{"type":"boolean"},"s2:degraded_msi_data_percentage":{"type":"number"}},"additionalProperties":true}'
     headers:
       Access-Control-Allow-Credentials:
       - 'true'
@@ -95,13 +97,17 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '1399'
+      - '674'
       Content-Type:
       - application/schema+json
       Date:
-      - Fri, 09 Aug 2024 15:23:27 GMT
+      - Thu, 17 Jul 2025 12:50:26 GMT
       Strict-Transport-Security:
-      - max-age=15724800; includeSubDomains
+      - max-age=31536000; includeSubDomains
+      content-encoding:
+      - gzip
+      vary:
+      - Accept-Encoding
     status:
       code: 200
       message: OK

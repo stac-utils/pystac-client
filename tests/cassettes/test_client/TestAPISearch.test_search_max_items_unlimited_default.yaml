@@ -1012,7 +1012,7 @@ interactions:
       Content-Type:
       - application/geo+json
       Date:
-      - Fri, 09 Aug 2024 15:13:11 GMT
+      - Thu, 17 Jul 2025 12:50:16 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
@@ -1022,7 +1022,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20240809T151311Z-1674bbd94cc6mmz7u7hv6bk5fc0000000rz0000000004r3x
+      - 20250717T125015Z-167d46d96d8znrdrhC1DEN4cgc000000067g000000003f58
     status:
       code: 200
       message: OK
