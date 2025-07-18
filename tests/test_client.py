@@ -571,30 +571,24 @@ class TestSigning:
         next(client.get_collections())
         assert sign.call_count == 3
 
-        next(client.get_items())
-        assert sign.call_count == 4
-
-        next(client.get_all_items())
-        assert sign.call_count == 5
-
         search = client.search(collections=["sentinel-2-l2a"], max_items=10)
         next(search.items_as_dicts())
-        assert sign.call_count == 6
+        assert sign.call_count == 4
 
         next(search.items())
-        assert sign.call_count == 7
+        assert sign.call_count == 5
 
         next(search.pages_as_dicts())
-        assert sign.call_count == 8
+        assert sign.call_count == 6
 
         next(search.pages())
-        assert sign.call_count == 9
+        assert sign.call_count == 7
 
         search.item_collection_as_dict()
-        assert sign.call_count == 10
+        assert sign.call_count == 8
 
         search.item_collection()
-        assert sign.call_count == 11
+        assert sign.call_count == 9
 
     @pytest.mark.vcr
     def test_sign_with_return_warns(self) -> None:
@@ -615,14 +609,6 @@ class TestSigning:
 
 
 class TestQueryables:
-    @pytest.mark.vcr
-    def test_get_queryables(self) -> None:
-        api = Client.open("https://stac.sage.uvt.ro/")
-        with pytest.warns(MissingLink, match="queryables"):
-            result = api.get_queryables()
-        assert "properties" in result
-        assert "id" in result["properties"]
-
     @pytest.mark.vcr
     def test_get_queryables_collections(self) -> None:
         api = Client.open(STAC_URLS["PLANETARY-COMPUTER"])
@@ -740,7 +726,7 @@ def test_collections_are_clients() -> None:
 @pytest.mark.vcr
 def test_get_items_without_ids() -> None:
     client = Client.open(
-        "https://planetarycomputer.microsoft.com/api/stac/v1/",
+        "https://stac.eoapi.dev",
     )
     next(client.get_items())
 

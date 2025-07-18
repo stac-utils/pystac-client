@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: '{"ids": ["S2B_MSIL2A_20210610T115639_N0212_R066_T33XXG_20210613T185024.SAFE",
-      "fl_m_2608004_nw_17_060_20191215_20200113"]}'
+      "fl_m_2608004_nw_17_060_20191215_20200113"], "collections": ["naip"]}'
     headers:
       Accept:
       - '*/*'
@@ -10,7 +10,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '122'
+      - '147'
       Content-Type:
       - application/json
       User-Agent:
@@ -46,7 +46,7 @@ interactions:
       Content-Type:
       - application/geo+json
       Date:
-      - Fri, 09 Aug 2024 15:14:02 GMT
+      - Thu, 17 Jul 2025 12:57:26 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
@@ -56,7 +56,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20240809T151359Z-1674bbd94cc8qw2lprcgkkehss00000000t00000000060tf
+      - 20250717T125725Z-167d46d96d8mdxvvhC1DENbv1s00000003sg000000005e6a
     status:
       code: 200
       message: OK

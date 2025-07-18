@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [v0.9.0] - 2025-07-17
+
 ### Added
 
 - Coerce cql2 style to match HTTP method using `cql2` library ([#804](https://github.com/stac-utils/pystac-client/pull/804))
@@ -423,7 +425,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Initial release.
 
-[Unreleased]: https://github.com/stac-utils/pystac-client/compare/v0.8.6...main
+[Unreleased]: https://github.com/stac-utils/pystac-client/compare/v0.9.0...main
+[v0.9.0]: https://github.com/stac-utils/pystac-client/compare/v0.8.6...v0.9.0
 [v0.8.6]: https://github.com/stac-utils/pystac-client/compare/v0.8.5...v0.8.6
 [v0.8.5]: https://github.com/stac-utils/pystac-client/compare/v0.8.4...v0.8.5
 [v0.8.4]: https://github.com/stac-utils/pystac-client/compare/v0.8.3...v0.8.4

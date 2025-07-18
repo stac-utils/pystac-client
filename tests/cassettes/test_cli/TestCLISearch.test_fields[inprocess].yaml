@@ -9,7 +9,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.31.0
+      - python-requests/2.32.3
     method: GET
     uri: https://earth-search.aws.element84.com/v1
   response:
@@ -19,20 +19,22 @@ interactions:
     headers:
       Connection:
       - keep-alive
+      Content-Encoding:
+      - gzip
       Content-Length:
-      - '3369'
+      - '612'
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Fri, 09 May 2025 18:51:22 GMT
+      - Thu, 17 Jul 2025 12:50:10 GMT
       Via:
-      - 1.1 bcb27567a77dcc9895a46a953f4c4938.cloudfront.net (CloudFront)
+      - 1.1 5950a1c2bfcf1f3e07bedbb2efad39f2.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - R0SilanlwKPI7VhLt9FeCz9MtbEO3Ih2hKG89HRdtsZDr5pQYuza_Q==
+      - c7piICiUXaJK6hGILiSIE2yZYmXPN1Xi6iHgXTdteybd8cT1ZHhBiw==
       X-Amz-Cf-Pop:
-      - BOS50-P3
+      - DEN52-C1
       X-Amzn-Trace-Id:
-      - Root=1-681e4eaa-13ddd74478f430100f5ed8f0;Parent=09bda837f611ecfa;Sampled=0;Lineage=1:9e2884e9:0
+      - Root=1-6878f182-15d26f79267f18217a66cda0;Parent=316c5b4f776e769a;Sampled=0;Lineage=1:9e2884e9:0
       X-Cache:
       - Miss from cloudfront
       access-control-allow-origin:
@@ -40,11 +42,11 @@ interactions:
       etag:
       - W/"d29-QPs+H0wJLUX32EZKNgzG3k6wfQ8"
       x-amz-apigw-id:
-      - KUE6vFTbPHcEqnA=
+      - N2qsYEkNvHcECRA=
       x-amzn-Remapped-content-length:
       - '3369'
       x-amzn-RequestId:
-      - cbcfd6da-1e2a-4e62-b2c8-59fdffa8653f
+      - b506bd75-6dee-4c18-b889-7ea558419778
       x-powered-by:
       - Express
     status:
@@ -65,7 +67,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - python-requests/2.31.0
+      - python-requests/2.32.3
     method: POST
     uri: https://earth-search.aws.element84.com/v1/search
   response:
@@ -95,20 +97,22 @@ interactions:
     headers:
       Connection:
       - keep-alive
+      Content-Encoding:
+      - gzip
       Content-Length:
-      - '14038'
+      - '946'
       Content-Type:
       - application/geo+json; charset=utf-8
       Date:
-      - Fri, 09 May 2025 18:51:23 GMT
+      - Thu, 17 Jul 2025 12:50:10 GMT
       Via:
-      - 1.1 665aacf5369b3dd562d74779bc60b708.cloudfront.net (CloudFront)
+      - 1.1 350e87fe323bf8d725a381e15f465f40.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - OOCDqKCtW30Q9tBQWWi6wf49r8lgdNr1bp79W_ugS4xMTr1W1Ytizg==
+      - DyFSDYuLbgcdoJONuZIw0Zh1RGVR2BzqgrdYMeQxq3nl_iZabgAzwQ==
       X-Amz-Cf-Pop:
-      - BOS50-P3
+      - DEN52-C1
       X-Amzn-Trace-Id:
-      - Root=1-681e4eaa-48deccae2bdde1993cabb54d;Parent=1ede7ba434440125;Sampled=0;Lineage=1:9e2884e9:0
+      - Root=1-6878f182-04f84aff5a3e0ed729f31890;Parent=6d9094516b74a27c;Sampled=0;Lineage=1:9e2884e9:0
       X-Cache:
       - Miss from cloudfront
       access-control-allow-origin:
@@ -116,11 +120,11 @@ interactions:
       etag:
       - W/"36d6-Yp3Ss1A+rOL1FLrKfyikyPdbank"
       x-amz-apigw-id:
-      - KUE6xEt3PHcEdqA=
+      - N2qsZF1dPHcEN9g=
       x-amzn-Remapped-content-length:
       - '14038'
       x-amzn-RequestId:
-      - 060d7e5f-e0b6-4fee-affc-6eb3f0e1c208
+      - 775da2a5-feab-40c1-bfc2-531135fe691c
       x-powered-by:
       - Express
     status:
