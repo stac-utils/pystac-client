@@ -396,6 +396,9 @@ class Client(pystac.Catalog, QueryablesMixin):
         """
         collection: Collection | CollectionClient | None = None
 
+        if not collection_id:
+            raise ValueError("A `collection_id` must be provided.")
+
         if self._supports_collections():
             assert self._stac_io is not None
 
