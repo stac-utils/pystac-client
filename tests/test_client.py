@@ -801,6 +801,15 @@ def test_get_collection_for_static_catalogs_raise_if_not_found() -> None:
             client.get_collection("country-1")
 
 
+def test_get_collection_raises_if_collection_id_is_empty() -> None:
+    client = Client.from_file(str(TEST_DATA / "test-case-1" / "catalog.json"))
+    with pytest.raises(ValueError, match="A `collection_id` must be provided"):
+        client.get_collection("")
+
+    with pytest.raises(ValueError, match="A `collection_id` must be provided"):
+        client.get_collection(None)
+
+
 @pytest.mark.vcr
 def test_query_string_in_collections_url() -> None:
     # https://github.com/stac-utils/pystac-client/issues/745
