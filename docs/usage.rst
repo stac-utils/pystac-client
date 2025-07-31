@@ -357,7 +357,7 @@ ItemSearch
 
 STAC API services may optionally implement a ``/search`` endpoint as describe in the
 `STAC API - Item Search spec
-<https://github.com/radiantearth/stac-api-spec/tree/main/item-search`__. This
+<https://github.com/radiantearth/stac-api-spec/tree/main/item-search>`__. This
 endpoint allows clients to query STAC Items across the entire service using a variety
 of filter parameters. See the `Query Parameter Table
 <https://github.com/radiantearth/stac-api-spec/tree/main/item-search#query-parameter-table>`__
