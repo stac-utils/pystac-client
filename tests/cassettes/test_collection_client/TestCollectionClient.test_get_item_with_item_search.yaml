@@ -9,14 +9,14 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.4
     method: GET
     uri: https://planetarycomputer.microsoft.com/api/stac/v1
   response:
     body:
       string: '{"type":"Catalog","id":"microsoft-pc","title":"Microsoft Planetary
         Computer STAC API","description":"Searchable spatiotemporal metadata describing
-        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["https://api.stacspec.org/v1.0.0/item-search#sort","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/ogcapi-features","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson","https://api.stacspec.org/v1.0.0/item-search#fields","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","https://api.stacspec.org/v1.0.0/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","https://api.stacspec.org/v1.0.0/item-search#query","https://api.stacspec.org/v1.0.0/collections","https://api.stacspec.org/v1.0.0/item-search","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
+        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["https://api.stacspec.org/v1.0.0/item-search#fields","https://api.stacspec.org/v1.0.0/item-search#query","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","https://api.stacspec.org/v1.0.0/item-search","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","https://api.stacspec.org/v1.0.0/item-search#sort","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","https://api.stacspec.org/v1.0.0/collections","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","https://api.stacspec.org/v1.0.0/ogcapi-features","https://api.stacspec.org/v1.0.0/core"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
         conformance classes implemented by this server","href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"GET"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"POST"},{"rel":"http://www.opengis.net/def/rel/ogc/1.0/queryables","type":"application/schema+json","title":"Queryables","href":"https://planetarycomputer.microsoft.com/api/stac/v1/queryables","method":"GET"},{"rel":"child","type":"application/json","title":"Daymet
@@ -161,11 +161,11 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '3363'
+      - '3356'
       Content-Type:
       - application/json
       Date:
-      - Thu, 17 Jul 2025 12:50:51 GMT
+      - Thu, 31 Jul 2025 15:08:03 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
@@ -175,7 +175,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20250717T125051Z-167d46d96d82lsqphC1DENh89s0000000s20000000001nk3
+      - 20250731T150802Z-r17d779659cgb75vhC1DEN1dss00000005xg000000009cvb
     status:
       code: 200
       message: OK
@@ -189,14 +189,14 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.4
     method: GET
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/
   response:
     body:
       string: '{"type":"Catalog","id":"microsoft-pc","title":"Microsoft Planetary
         Computer STAC API","description":"Searchable spatiotemporal metadata describing
-        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["https://api.stacspec.org/v1.0.0/item-search#sort","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","https://api.stacspec.org/v1.0.0/ogcapi-features","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson","https://api.stacspec.org/v1.0.0/item-search#fields","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","https://api.stacspec.org/v1.0.0/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","https://api.stacspec.org/v1.0.0/item-search#query","https://api.stacspec.org/v1.0.0/collections","https://api.stacspec.org/v1.0.0/item-search","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
+        Earth science datasets hosted by the Microsoft Planetary Computer","stac_version":"1.0.0","conformsTo":["https://api.stacspec.org/v1.0.0/item-search#fields","https://api.stacspec.org/v1.0.0/item-search#query","https://api.stacspec.org/v1.0.0-rc.2/item-search#filter","http://www.opengis.net/spec/cql2/1.0/conf/cql2-text","https://api.stacspec.org/v1.0.0/item-search","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","https://api.stacspec.org/v1.0.0/item-search#sort","http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter","http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2","https://api.stacspec.org/v1.0.0/collections","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","http://www.opengis.net/spec/cql2/1.0/conf/cql2-json","https://api.stacspec.org/v1.0.0/ogcapi-features","https://api.stacspec.org/v1.0.0/core"],"links":[{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"data","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections"},{"rel":"conformance","type":"application/json","title":"STAC/OGC
         conformance classes implemented by this server","href":"https://planetarycomputer.microsoft.com/api/stac/v1/conformance"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"GET"},{"rel":"search","type":"application/geo+json","title":"STAC
         search","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search","method":"POST"},{"rel":"http://www.opengis.net/def/rel/ogc/1.0/queryables","type":"application/schema+json","title":"Queryables","href":"https://planetarycomputer.microsoft.com/api/stac/v1/queryables","method":"GET"},{"rel":"child","type":"application/json","title":"Daymet
@@ -341,11 +341,11 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '3363'
+      - '3356'
       Content-Type:
       - application/json
       Date:
-      - Thu, 17 Jul 2025 12:50:52 GMT
+      - Thu, 31 Jul 2025 15:08:03 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
@@ -355,7 +355,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20250717T125051Z-167d46d96d8h7x2fhC1DENd7yn0000000smg000000004qmp
+      - 20250731T150803Z-r17d779659cqdtckhC1DENvakn000000025g00000000205k
     status:
       code: 200
       message: OK
@@ -369,7 +369,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.4
     method: GET
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/collections/aster-l1t
   response:
@@ -451,7 +451,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 17 Jul 2025 12:50:52 GMT
+      - Thu, 31 Jul 2025 15:08:04 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
@@ -461,7 +461,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20250717T125052Z-167d46d96d85clfkhC1DEN7rkg0000000st000000000114m
+      - 20250731T150803Z-r17d779659c22gb9hC1DENxd5s00000004h00000000075uh
     status:
       code: 200
       message: OK
@@ -475,7 +475,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.4
     method: GET
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/search?ids=AST_L1T_00312272006020322_20150518201805&collections=aster-l1t
   response:
@@ -527,7 +527,7 @@ interactions:
       Content-Type:
       - application/geo+json
       Date:
-      - Thu, 17 Jul 2025 12:50:53 GMT
+      - Thu, 31 Jul 2025 15:08:05 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
@@ -537,7 +537,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20250717T125052Z-167d46d96d8kf92xhC1DEN2fsg0000000sfg000000002gcz
+      - 20250731T150804Z-r17d779659cgb75vhC1DEN1dss0000000630000000002y80
     status:
       code: 200
       message: OK
@@ -551,7 +551,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.4
     method: GET
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/search?ids=for-sure-not-a-real-id&collections=aster-l1t
   response:
@@ -577,13 +577,13 @@ interactions:
       Content-Type:
       - application/geo+json
       Date:
-      - Thu, 17 Jul 2025 12:50:53 GMT
+      - Thu, 31 Jul 2025 15:08:05 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
       - CONFIG_NOCACHE
       x-azure-ref:
-      - 20250717T125053Z-167d46d96d8rwmk4hC1DEN36180000000sng0000000040d5
+      - 20250731T150805Z-r17d779659cp5mbvhC1DEN7mgn00000003k0000000007hn3
     status:
       code: 200
       message: OK
@@ -597,7 +597,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.4
     method: GET
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/collections/aster-l1t/items?collections=aster-l1t
   response:
@@ -884,7 +884,7 @@ interactions:
       Content-Type:
       - application/geo+json
       Date:
-      - Thu, 17 Jul 2025 12:50:54 GMT
+      - Thu, 31 Jul 2025 15:08:05 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
@@ -894,7 +894,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20250717T125053Z-167d46d96d8kf92xhC1DEN2fsg0000000scg0000000044y7
+      - 20250731T150805Z-r17d779659c9xxfhhC1DEN13nn00000005yg000000008ht2
     status:
       code: 200
       message: OK

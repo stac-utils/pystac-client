@@ -9,7 +9,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.4
     method: GET
     uri: https://emc.spacebel.be/collections?limit=10&bbox=-159.893%2C21.843%2C-159.176%2C22.266
   response:
@@ -1213,7 +1213,7 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Thu, 17 Jul 2025 12:51:05 GMT
+      - Thu, 31 Jul 2025 15:08:16 GMT
       Expires:
       - '0'
       Pragma:

@@ -15,44 +15,44 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.4
     method: POST
     uri: https://earth-search.aws.element84.com/v1/search
   response:
     body:
-      string: '{"type":"FeatureCollection","stac_version":"1.0.0","stac_extensions":[],"context":{"limit":10,"matched":851,"returned":10},"numberMatched":851,"numberReturned":10,"features":[{"stac_version":"1.0.0","bbox":[-105.374632,39.661012,-104.884569,40.650821],"id":"S2C_T13TDE_20250716T175117_L2A","collection":"sentinel-2-c1-l2a","type":"Feature","properties":{"datetime":"2025-07-16T17:53:22.342000Z"}},{"stac_version":"1.0.0","bbox":[-106.183161,39.655762,-104.884569,40.65079],"id":"S2B_T13TDE_20250714T180139_L2A","collection":"sentinel-2-c1-l2a","type":"Feature","properties":{"datetime":"2025-07-14T18:02:58.965000Z"}},{"stac_version":"1.0.0","bbox":[-106.183161,39.655762,-104.884569,40.65079],"id":"S2A_T13TDE_20250711T175745_L2A","collection":"sentinel-2-c1-l2a","type":"Feature","properties":{"datetime":"2025-07-11T18:03:14.611000Z"}},{"stac_version":"1.0.0","bbox":[-105.360758,39.661056,-104.884569,40.65083],"id":"S2B_T13TDE_20250711T174908_L2A","collection":"sentinel-2-c1-l2a","type":"Feature","properties":{"datetime":"2025-07-11T17:53:02.705000Z"}},{"stac_version":"1.0.0","bbox":[-106.183161,39.655762,-104.884569,40.65079],"id":"S2C_T13TDE_20250709T175631_L2A","collection":"sentinel-2-c1-l2a","type":"Feature","properties":{"datetime":"2025-07-09T18:03:18.512000Z"}},{"stac_version":"1.0.0","bbox":[-105.372067,39.66102,-104.884569,40.650823],"id":"S2C_T13TDE_20250706T175116_L2A","collection":"sentinel-2-c1-l2a","type":"Feature","properties":{"datetime":"2025-07-06T17:53:21.750000Z"}},{"stac_version":"1.0.0","bbox":[-106.183161,39.655762,-104.884569,40.65079],"id":"S2B_T13TDE_20250704T180129_L2A","collection":"sentinel-2-c1-l2a","type":"Feature","properties":{"datetime":"2025-07-04T18:02:58.839000Z"}},{"stac_version":"1.0.0","bbox":[-105.36041,39.661057,-104.884569,40.65083],"id":"S2B_T13TDE_20250701T175049_L2A","collection":"sentinel-2-c1-l2a","type":"Feature","properties":{"datetime":"2025-07-01T17:53:02.109000Z"}},{"stac_version":"1.0.0","bbox":[-106.183161,39.655762,-104.884569,40.65079],"id":"S2C_T13TDE_20250629T175633_L2A","collection":"sentinel-2-c1-l2a","type":"Feature","properties":{"datetime":"2025-06-29T18:03:16.854000Z"}},{"stac_version":"1.0.0","bbox":[-105.362741,39.66105,-104.884569,40.650829],"id":"S2A_T13TDE_20250628T175133_L2A","collection":"sentinel-2-c1-l2a","type":"Feature","properties":{"datetime":"2025-06-28T17:53:15.659000Z"}}],"links":[{"rel":"next","title":"Next
-        page of Items","method":"POST","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/search","merge":false,"body":{"intersects":{"type":"Point","coordinates":[-105.1019,40.1672]},"fields":{"include":[],"exclude":["geometry","assets","links"]},"collections":["sentinel-2-c1-l2a"],"next":"2025-06-28T17:53:15.659000Z,S2A_T13TDE_20250628T175133_L2A,sentinel-2-c1-l2a"}},{"rel":"root","type":"application/json","href":"https://earth-search.aws.element84.com/v1"}]}'
+      string: '{"type":"FeatureCollection","stac_version":"1.0.0","stac_extensions":[],"context":{"limit":10,"matched":858,"returned":10},"numberMatched":858,"numberReturned":10,"features":[{"stac_version":"1.0.0","bbox":[-106.180233,39.655762,-104.885314,40.478304],"id":"S2C_T13TDE_20250729T180310_L2A","collection":"sentinel-2-c1-l2a","type":"Feature","properties":{"datetime":"2025-07-29T18:03:19.545000Z"}},{"stac_version":"1.0.0","bbox":[-106.183161,40.035521,-104.884569,40.65079],"id":"S2C_T13TDE_20250729T175521_L2A","collection":"sentinel-2-c1-l2a","type":"Feature","properties":{"datetime":"2025-07-29T18:03:12.927000Z"}},{"stac_version":"1.0.0","bbox":[-105.371484,39.661022,-104.884569,40.650824],"id":"S2C_T13TDE_20250726T175050_L2A","collection":"sentinel-2-c1-l2a","type":"Feature","properties":{"datetime":"2025-07-26T17:53:21.392000Z"}},{"stac_version":"1.0.0","bbox":[-106.183161,39.655762,-104.884569,40.65079],"id":"S2B_T13TDE_20250724T180145_L2A","collection":"sentinel-2-c1-l2a","type":"Feature","properties":{"datetime":"2025-07-24T18:02:57.483000Z"}},{"stac_version":"1.0.0","bbox":[-105.355745,39.661071,-104.884569,40.650833],"id":"S2B_T13TDE_20250721T174755_L2A","collection":"sentinel-2-c1-l2a","type":"Feature","properties":{"datetime":"2025-07-21T17:53:01.737000Z"}},{"stac_version":"1.0.0","bbox":[-106.183161,39.655762,-104.884569,40.65079],"id":"S2C_T13TDE_20250719T180004_L2A","collection":"sentinel-2-c1-l2a","type":"Feature","properties":{"datetime":"2025-07-19T18:03:18.659000Z"}},{"stac_version":"1.0.0","bbox":[-105.3723,39.661019,-104.884569,40.650823],"id":"S2A_T13TDE_20250718T175132_L2A","collection":"sentinel-2-c1-l2a","type":"Feature","properties":{"datetime":"2025-07-18T17:53:18.437000Z"}},{"stac_version":"1.0.0","bbox":[-105.374632,39.661012,-104.884569,40.650821],"id":"S2C_T13TDE_20250716T175117_L2A","collection":"sentinel-2-c1-l2a","type":"Feature","properties":{"datetime":"2025-07-16T17:53:22.342000Z"}},{"stac_version":"1.0.0","bbox":[-106.183161,39.655762,-104.884569,40.65079],"id":"S2B_T13TDE_20250714T180139_L2A","collection":"sentinel-2-c1-l2a","type":"Feature","properties":{"datetime":"2025-07-14T18:02:58.965000Z"}},{"stac_version":"1.0.0","bbox":[-106.183161,39.655762,-104.884569,40.65079],"id":"S2A_T13TDE_20250711T175745_L2A","collection":"sentinel-2-c1-l2a","type":"Feature","properties":{"datetime":"2025-07-11T18:03:14.611000Z"}}],"links":[{"rel":"next","title":"Next
+        page of Items","method":"POST","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/search","merge":false,"body":{"intersects":{"type":"Point","coordinates":[-105.1019,40.1672]},"fields":{"include":[],"exclude":["geometry","assets","links"]},"collections":["sentinel-2-c1-l2a"],"next":"2025-07-11T18:03:14.611000Z,S2A_T13TDE_20250711T175745_L2A,sentinel-2-c1-l2a"}},{"rel":"root","type":"application/json","href":"https://earth-search.aws.element84.com/v1"}]}'
     headers:
       Connection:
       - keep-alive
       Content-Encoding:
       - gzip
       Content-Length:
-      - '725'
+      - '742'
       Content-Type:
       - application/geo+json; charset=utf-8
       Date:
-      - Thu, 17 Jul 2025 12:52:06 GMT
+      - Thu, 31 Jul 2025 15:09:16 GMT
       Via:
-      - 1.1 39c272e966ab7a6f8a68d2222276a954.cloudfront.net (CloudFront)
+      - 1.1 a7bf7cf3a377b5000ee61eea3824eb74.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - BhQf0XvqG8K8qrCTs409dQVzIsU6oG4pp1azPa4_ksfQ3W3Bl5V1ng==
+      - OEnALjIFZsB36QRX3iyGnWLyJNRn4zwjIczgNaNzpT6HdfuzVSRAtw==
       X-Amz-Cf-Pop:
       - DEN52-C1
       X-Amzn-Trace-Id:
-      - Root=1-6878f1f6-565004651770c7bb2a7b9991;Parent=31d8f5adf357344d;Sampled=0;Lineage=1:9e2884e9:0
+      - Root=1-688b871c-2704d9ca167daa334ea6b889;Parent=03753bb5dc888908;Sampled=0;Lineage=1:9e2884e9:0
       X-Cache:
       - Miss from cloudfront
       access-control-allow-origin:
       - '*'
       etag:
-      - W/"b5d-GoQpo/ftBOGD6cKWklh/mfTPLI4"
+      - W/"b60-mGs4zn1Apd4rBG5P67PqKzvJzlk"
       x-amz-apigw-id:
-      - N2q-nEpoPHcEA5A=
+      - OlIMkHpGvHcEdZw=
       x-amzn-Remapped-content-length:
-      - '2909'
+      - '2912'
       x-amzn-RequestId:
-      - 0194af56-2335-4daa-a8c6-a14317d57611
+      - ebef9fdb-8958-4185-a0e7-ffb2dc153666
       x-powered-by:
       - Express
     status:

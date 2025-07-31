@@ -13,7 +13,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.4
     method: POST
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/search
   response:
@@ -99,7 +99,7 @@ interactions:
       Content-Type:
       - application/geo+json
       Date:
-      - Thu, 17 Jul 2025 12:51:23 GMT
+      - Thu, 31 Jul 2025 15:08:33 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
@@ -109,7 +109,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20250717T125123Z-167d46d96d89wd6bhC1DEN9n1n0000000sp0000000003hkh
+      - 20250731T150833Z-r17d779659cz4m9lhC1DENepy0000000024g0000000039db
     status:
       code: 200
       message: OK
@@ -127,7 +127,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.4
     method: POST
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/search
   response:
@@ -213,7 +213,7 @@ interactions:
       Content-Type:
       - application/geo+json
       Date:
-      - Thu, 17 Jul 2025 12:51:24 GMT
+      - Thu, 31 Jul 2025 15:08:34 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
@@ -223,7 +223,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20250717T125123Z-167d46d96d8ttf9rhC1DENb9c80000000shg000000000f09
+      - 20250731T150834Z-r17d779659cnzmbkhC1DENc1cg00000005yg0000000083xd
     status:
       code: 200
       message: OK
@@ -241,7 +241,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.4
     method: POST
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/search
   response:
@@ -327,7 +327,7 @@ interactions:
       Content-Type:
       - application/geo+json
       Date:
-      - Thu, 17 Jul 2025 12:51:24 GMT
+      - Thu, 31 Jul 2025 15:08:35 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
@@ -337,7 +337,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20250717T125124Z-167d46d96d8dtcxmhC1DEN584s0000000rx0000000004q93
+      - 20250731T150834Z-r17d779659cbwrpkhC1DEN2qus000000063g0000000023qm
     status:
       code: 200
       message: OK

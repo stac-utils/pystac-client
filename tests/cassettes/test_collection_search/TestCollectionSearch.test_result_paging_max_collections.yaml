@@ -9,7 +9,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.4
     method: GET
     uri: https://emc.spacebel.be/collections?limit=10&bbox=-92.379%2C46.662%2C-91.788%2C46.919
   response:
@@ -1213,7 +1213,7 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Thu, 17 Jul 2025 12:51:15 GMT
+      - Thu, 31 Jul 2025 15:08:25 GMT
       Expires:
       - '0'
       Pragma:
@@ -1245,7 +1245,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.4
     method: GET
     uri: https://emc.spacebel.be/collections?limit=10&bbox=-92.379%2C46.662%2C-91.788%2C46.919&startRecord=11
   response:
@@ -2574,7 +2574,7 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Thu, 17 Jul 2025 12:51:17 GMT
+      - Thu, 31 Jul 2025 15:08:26 GMT
       Expires:
       - '0'
       Pragma:
