@@ -594,7 +594,7 @@ class ItemSearch(BaseSearch):
     through the resulting STAC Items, either :meth:`ItemSearch.item_collections`,
     :meth:`ItemSearch.items`, or :meth:`ItemSearch.items_as_dicts`.
 
-    All parameters except `url``, ``method``, ``max_items``, and ``client``
+    All parameters except ``url``, ``method``, ``max_items``, and ``client``
     correspond to query parameters
     described in the `STAC API - Item Search: Query Parameters Table
     <https://github.com/radiantearth/stac-api-spec/tree/master/item-search#query-parameter-table>`__
