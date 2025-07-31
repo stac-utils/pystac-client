@@ -14,7 +14,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.4
     method: POST
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/search
   response:
@@ -46,7 +46,7 @@ interactions:
       Content-Type:
       - application/geo+json
       Date:
-      - Thu, 17 Jul 2025 12:57:26 GMT
+      - Thu, 31 Jul 2025 15:08:29 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
@@ -56,7 +56,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20250717T125725Z-167d46d96d8mdxvvhC1DENbv1s00000003sg000000005e6a
+      - 20250731T150828Z-r17d779659c8vbd8hC1DENmu9s000000020g000000008nx8
     status:
       code: 200
       message: OK

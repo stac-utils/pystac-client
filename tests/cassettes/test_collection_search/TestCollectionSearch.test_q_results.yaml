@@ -9,7 +9,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.4
     method: GET
     uri: https://emc.spacebel.be/collections?limit=10&q=%22monthly+cloudless+mosaics%22
   response:
@@ -127,7 +127,7 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Thu, 17 Jul 2025 12:50:57 GMT
+      - Thu, 31 Jul 2025 15:08:08 GMT
       Expires:
       - '0'
       Pragma:
@@ -157,7 +157,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.4
     method: GET
     uri: https://emc.spacebel.be/collections?limit=10&q=%22monthly+cloudless+mosaics%22
   response:
@@ -275,7 +275,7 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Thu, 17 Jul 2025 12:50:57 GMT
+      - Thu, 31 Jul 2025 15:08:08 GMT
       Expires:
       - '0'
       Pragma:

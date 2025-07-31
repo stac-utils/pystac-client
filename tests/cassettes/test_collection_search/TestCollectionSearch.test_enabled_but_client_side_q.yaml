@@ -9,7 +9,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.4
     method: GET
     uri: https://emc.spacebel.be/collections?limit=5&q=sentinel
   response:
@@ -612,7 +612,7 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Thu, 17 Jul 2025 12:51:10 GMT
+      - Thu, 31 Jul 2025 15:08:20 GMT
       Expires:
       - '0'
       Pragma:
@@ -644,7 +644,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.4
     method: GET
     uri: https://emc.spacebel.be/collections?limit=5&q=sentinel
   response:
@@ -1247,7 +1247,7 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Thu, 17 Jul 2025 12:51:11 GMT
+      - Thu, 31 Jul 2025 15:08:21 GMT
       Expires:
       - '0'
       Pragma:
@@ -1279,7 +1279,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.4
     method: GET
     uri: https://emc.spacebel.be/collections?limit=5&q=sentinel
   response:
@@ -1882,7 +1882,7 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Thu, 17 Jul 2025 12:51:12 GMT
+      - Thu, 31 Jul 2025 15:08:22 GMT
       Expires:
       - '0'
       Pragma:

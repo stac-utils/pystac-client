@@ -14,7 +14,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.4
     method: POST
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/search
   response:
@@ -1888,7 +1888,7 @@ interactions:
       Content-Type:
       - application/geo+json
       Date:
-      - Thu, 17 Jul 2025 12:55:45 GMT
+      - Thu, 31 Jul 2025 15:11:34 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
@@ -1898,7 +1898,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20250717T125544Z-167d46d96d896m2xhC1DENauaw0000000780000000000wzf
+      - 20250731T151133Z-r17d779659cxsjnnhC1DENgtwc0000000260000000001fw6
     status:
       code: 200
       message: OK
@@ -1917,7 +1917,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.4
     method: POST
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/search
   response:
@@ -3791,7 +3791,7 @@ interactions:
       Content-Type:
       - application/geo+json
       Date:
-      - Thu, 17 Jul 2025 12:55:46 GMT
+      - Thu, 31 Jul 2025 15:11:35 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Cache:
@@ -3801,7 +3801,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20250717T125545Z-167d46d96d8468jqhC1DENbu080000000s9g0000000024x3
+      - 20250731T151134Z-r17d779659cgb75vhC1DEN1dss000000064g00000000103f
     status:
       code: 200
       message: OK

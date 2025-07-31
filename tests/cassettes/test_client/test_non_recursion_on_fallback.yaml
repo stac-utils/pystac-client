@@ -9,7 +9,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.4
     method: GET
     uri: https://raw.githubusercontent.com/stac-utils/pystac/v1.9.0/docs/example-catalog/catalog.json
   response:
@@ -41,11 +41,11 @@ interactions:
       Cross-Origin-Resource-Policy:
       - cross-origin
       Date:
-      - Thu, 17 Jul 2025 12:50:35 GMT
+      - Thu, 31 Jul 2025 15:07:39 GMT
       ETag:
       - W/"4f517310845b65ca442e14b6613d76cdc06523f64710d84a6d49b93c49d0dca9"
       Expires:
-      - Thu, 17 Jul 2025 12:55:35 GMT
+      - Thu, 31 Jul 2025 15:12:39 GMT
       Source-Age:
       - '0'
       Strict-Transport-Security:
@@ -61,15 +61,15 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Fastly-Request-ID:
-      - 5fecb92ebfebdf17489da07563d10e97dff1f690
+      - 651f0460a4c654d9b1298de5fcef431bc2fca01f
       X-Frame-Options:
       - deny
       X-GitHub-Request-Id:
-      - F897:10A89A:550B6D:6CA5CF:6878F198
+      - 33F8:21DA39:77BCBA:993078:688B86BB
       X-Served-By:
-      - cache-den-kden1300063-DEN
+      - cache-den-kden1300058-DEN
       X-Timer:
-      - S1752756636.670090,VS0,VE92
+      - S1753974459.062898,VS0,VE101
       X-XSS-Protection:
       - 1; mode=block
     status:
@@ -85,7 +85,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.4
     method: GET
     uri: https://raw.githubusercontent.com/stac-utils/pystac/v1.9.0/docs/example-catalog/landsat-8-l1/collection.json
   response:
@@ -157,11 +157,11 @@ interactions:
       Cross-Origin-Resource-Policy:
       - cross-origin
       Date:
-      - Thu, 17 Jul 2025 12:50:35 GMT
+      - Thu, 31 Jul 2025 15:07:39 GMT
       ETag:
       - W/"d7e83b66298977e660cd41eced9df63c47c5075485bc81bbb67f17a4df051e24"
       Expires:
-      - Thu, 17 Jul 2025 12:55:35 GMT
+      - Thu, 31 Jul 2025 15:12:39 GMT
       Source-Age:
       - '0'
       Strict-Transport-Security:
@@ -177,15 +177,15 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Fastly-Request-ID:
-      - 668cd11a80fbe478224d1d8eeafabda345d62a4d
+      - f3a6e8203d374851550def7145dc9aee39182bed
       X-Frame-Options:
       - deny
       X-GitHub-Request-Id:
-      - 6DED:1C6FBA:53FAEF:6B95BA:6878F19A
+      - E202:F3FF1:6E4832:8FBBBD:688B86B8
       X-Served-By:
-      - cache-den-kden1300029-DEN
+      - cache-den-kden1300076-DEN
       X-Timer:
-      - S1752756636.824572,VS0,VE109
+      - S1753974459.204093,VS0,VE87
       X-XSS-Protection:
       - 1; mode=block
     status:
@@ -201,7 +201,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.4
     method: GET
     uri: https://raw.githubusercontent.com/stac-utils/pystac/v1.9.0/docs/example-catalog/landsat-8-l1/2018-06/LC80140332018166LGN00.json
   response:
@@ -317,11 +317,11 @@ interactions:
       Cross-Origin-Resource-Policy:
       - cross-origin
       Date:
-      - Thu, 17 Jul 2025 12:50:36 GMT
+      - Thu, 31 Jul 2025 15:07:39 GMT
       ETag:
       - W/"4aeda1cb7469bd902a948455e21ccb8b8cec0e530c5f287fa31532aeba8a4b4c"
       Expires:
-      - Thu, 17 Jul 2025 12:55:36 GMT
+      - Thu, 31 Jul 2025 15:12:39 GMT
       Source-Age:
       - '0'
       Strict-Transport-Security:
@@ -337,15 +337,15 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Fastly-Request-ID:
-      - ea0defa7bad71610459279c1e3686837bbf77c9f
+      - 1e7ef92dff1cf00a6099d33bcaacf75636cf3bda
       X-Frame-Options:
       - deny
       X-GitHub-Request-Id:
-      - 6334:2DC956:520C89:69A753:6878F197
+      - 1ADB:22988F:6DAD65:8F2214:688B86B9
       X-Served-By:
-      - cache-den-kden1300038-DEN
+      - cache-den-kden1300067-DEN
       X-Timer:
-      - S1752756636.994992,VS0,VE108
+      - S1753974459.328132,VS0,VE95
       X-XSS-Protection:
       - 1; mode=block
     status:
@@ -361,7 +361,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.4
     method: GET
     uri: https://raw.githubusercontent.com/stac-utils/pystac/v1.9.0/docs/example-catalog/landsat-8-l1/2018-05/LC80150322018141LGN00.json
   response:
@@ -477,11 +477,11 @@ interactions:
       Cross-Origin-Resource-Policy:
       - cross-origin
       Date:
-      - Thu, 17 Jul 2025 12:50:36 GMT
+      - Thu, 31 Jul 2025 15:07:39 GMT
       ETag:
       - W/"cd518c56745214a4d20ae145f9fb6edf689b57fc9ac77e1d3592c1476949550f"
       Expires:
-      - Thu, 17 Jul 2025 12:55:36 GMT
+      - Thu, 31 Jul 2025 15:12:39 GMT
       Source-Age:
       - '0'
       Strict-Transport-Security:
@@ -497,15 +497,15 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Fastly-Request-ID:
-      - 22a65d01c74301834b026b6d58c7ed244b86f7f7
+      - 8899fd014390cd678f829232e5032313aee941d2
       X-Frame-Options:
       - deny
       X-GitHub-Request-Id:
-      - 3CF8:295142:533BA6:6AD6B6:6878F194
+      - 2698:338F28:7481AA:95F5CA:688B86B8
       X-Served-By:
-      - cache-den-kden1300029-DEN
+      - cache-den-kden1300080-DEN
       X-Timer:
-      - S1752756636.162783,VS0,VE101
+      - S1753974459.456357,VS0,VE88
       X-XSS-Protection:
       - 1; mode=block
     status:
@@ -521,7 +521,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.4
     method: GET
     uri: https://raw.githubusercontent.com/stac-utils/pystac/v1.9.0/docs/example-catalog/landsat-8-l1/2018-07/LC80150332018189LGN00.json
   response:
@@ -637,11 +637,11 @@ interactions:
       Cross-Origin-Resource-Policy:
       - cross-origin
       Date:
-      - Thu, 17 Jul 2025 12:50:36 GMT
+      - Thu, 31 Jul 2025 15:07:39 GMT
       ETag:
       - W/"f1956bfe0994b5049095141c760f2d24f565019a6e81e1aec1816740157df998"
       Expires:
-      - Thu, 17 Jul 2025 12:55:36 GMT
+      - Thu, 31 Jul 2025 15:12:39 GMT
       Source-Age:
       - '0'
       Strict-Transport-Security:
@@ -657,15 +657,15 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Fastly-Request-ID:
-      - fd3e586f34cf0928954899c666359024d42ff77f
+      - 87edae353c9a8817346824d46ba4d79ca5151404
       X-Frame-Options:
       - deny
       X-GitHub-Request-Id:
-      - D2D0:9A716:54A06C:6C3BAF:6878F19B
+      - B01D:2CF9F0:436DB5:553CE8:688B86B8
       X-Served-By:
-      - cache-den-kden1300022-DEN
+      - cache-den-kden1300097-DEN
       X-Timer:
-      - S1752756636.327573,VS0,VE119
+      - S1753974460.579919,VS0,VE98
       X-XSS-Protection:
       - 1; mode=block
     status:
@@ -681,7 +681,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.4
     method: GET
     uri: https://raw.githubusercontent.com/stac-utils/pystac/v1.9.0/docs/example-catalog/landsat-8-l1/2018-06/LC80300332018166LGN00.json
   response:
@@ -798,11 +798,11 @@ interactions:
       Cross-Origin-Resource-Policy:
       - cross-origin
       Date:
-      - Thu, 17 Jul 2025 12:50:36 GMT
+      - Thu, 31 Jul 2025 15:07:39 GMT
       ETag:
       - W/"6da3b66dc885889ceff60c1a0618fcc959b22734a7a4d9646fe0f55f0869ca5f"
       Expires:
-      - Thu, 17 Jul 2025 12:55:36 GMT
+      - Thu, 31 Jul 2025 15:12:39 GMT
       Source-Age:
       - '0'
       Strict-Transport-Security:
@@ -818,15 +818,15 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Fastly-Request-ID:
-      - 0b95ffb0e0a08f01cc16c8c5f2e07bdf769104ba
+      - 644b3f6a0cc1868ac4c1d8db5eb862be5f6656f4
       X-Frame-Options:
       - deny
       X-GitHub-Request-Id:
-      - CA95:10A89A:550C03:6CA67F:6878F194
+      - 1AD7:1EA0F5:74C855:963BCF:688B86B8
       X-Served-By:
-      - cache-den-kden1300042-DEN
+      - cache-den-kden1300066-DEN
       X-Timer:
-      - S1752756637.501698,VS0,VE106
+      - S1753974460.713381,VS0,VE111
       X-XSS-Protection:
       - 1; mode=block
     status:

@@ -9,7 +9,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.4
     method: GET
     uri: https://paituli.csc.fi/geoserver/ogc/stac/v1
   response:
@@ -59,7 +59,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 17 Jul 2025 12:50:39 GMT
+      - Thu, 31 Jul 2025 15:07:52 GMT
       Link:
       - <https://paituli.csc.fi/geoserver/ogc/stac/v1/conformance?f=application%2Fjson>;
         rel="self"; type="application/json"; title="This document"
@@ -76,7 +76,7 @@ interactions:
       Server:
       - nginx/1.24.0
       Set-Cookie:
-      - GS_FLOW_CONTROL=GS_CFLOW_5b5418d4:198161cb6c1:-71a5
+      - GS_FLOW_CONTROL=GS_CFLOW_-39b4ff7d:1985e35967f:-5142
       Transfer-Encoding:
       - chunked
       X-Concurrent-Limit-ip:
@@ -106,9 +106,9 @@ interactions:
       Connection:
       - keep-alive
       Cookie:
-      - GS_FLOW_CONTROL=GS_CFLOW_5b5418d4:198161cb6c1:-71a5
+      - GS_FLOW_CONTROL=GS_CFLOW_-39b4ff7d:1985e35967f:-5142
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.4
     method: GET
     uri: https://paituli.csc.fi/geoserver/ogc/stac/v1?f=application%2Fjson
   response:
@@ -158,7 +158,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 17 Jul 2025 12:50:40 GMT
+      - Thu, 31 Jul 2025 15:07:53 GMT
       Link:
       - <https://paituli.csc.fi/geoserver/ogc/stac/v1/conformance?f=application%2Fjson>;
         rel="self"; type="application/json"; title="This document"
@@ -175,7 +175,7 @@ interactions:
       Server:
       - nginx/1.24.0
       Set-Cookie:
-      - GS_FLOW_CONTROL=GS_CFLOW_5b5418d4:198161cb6c1:-71a5
+      - GS_FLOW_CONTROL=GS_CFLOW_-39b4ff7d:1985e35967f:-5142
       Transfer-Encoding:
       - chunked
       X-Concurrent-Limit-ip:
@@ -205,16 +205,16 @@ interactions:
       Connection:
       - keep-alive
       Cookie:
-      - GS_FLOW_CONTROL=GS_CFLOW_5b5418d4:198161cb6c1:-71a5
+      - GS_FLOW_CONTROL=GS_CFLOW_-39b4ff7d:1985e35967f:-5142
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.4
     method: GET
     uri: https://paituli.csc.fi/geoserver/ogc/stac/v1/collections/sentinel2-l2a?f=application%2Fjson
   response:
     body:
       string: "{\"id\":\"sentinel2-l2a\",\"title\":\"Sentinel-2 L2A\",\"description\":\"Sentinel-2
         products, processed to Level-2A (Surface Reflectance), a selection of mostly
-        cloud-free products from Finland. More information: https://a3s.fi/sentinel-readme/README.txt\",\"crs\":[\"http://www.opengis.net/def/crs/OGC/1.3/CRS84\"],\"stac_version\":\"1.0.0\",\"license\":\"CC-BY-3.0-IGO\",\"type\":\"Collection\",\"extent\":{\"spatial\":{\"bbox\":[[17.370638358957653,59.39819844805931,33.248667706050284,70.30601749247492]]},\"temporal\":{\"interval\":[[\"2015-07-04T00:00:00.000+00:00\",\"2025-07-11T00:00:00.000+00:00\"]]}},\"providers\":[{\"name\":\"CSC
+        cloud-free products from Finland. More information: https://a3s.fi/sentinel-readme/README.txt\",\"crs\":[\"http://www.opengis.net/def/crs/OGC/1.3/CRS84\"],\"stac_version\":\"1.0.0\",\"license\":\"CC-BY-3.0-IGO\",\"type\":\"Collection\",\"extent\":{\"spatial\":{\"bbox\":[[17.370638358957653,59.39819844805931,33.248667706050284,70.30601749247492]]},\"temporal\":{\"interval\":[[\"2015-07-04T00:00:00.000+00:00\",\"2025-07-25T00:00:00.000+00:00\"]]}},\"providers\":[{\"name\":\"CSC
         Finland\",\"roles\":[\"host\"],\"url\":\"https://www.csc.fi/\"},{\"name\":\"ESA\",\"roles\":[\"producer\",\"licensor\"],\"url\":\"https://www.esa.int/\"},{\"name\":\"Maria
         Yli-Heikkil\xE4\",\"roles\":[\"processor\"]},{\"name\":\"Arttu Kivim\xE4ki\",\"roles\":[\"processor\"]},{\"name\":\"Matias
         Heino\",\"roles\":[\"processor\"]}],\"assets\":{\"metadata\":{\"href\":\"https://a3s.fi/sentinel-readme/README.txt\",\"roles\":[\"metadata\"]}},\"summaries\":{\"eo:bands\":[{\"name\":\"B01\",\"description\":\"Coastal:
@@ -256,11 +256,11 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 17 Jul 2025 12:50:41 GMT
+      - Thu, 31 Jul 2025 15:07:54 GMT
       Server:
       - nginx/1.24.0
       Set-Cookie:
-      - GS_FLOW_CONTROL=GS_CFLOW_5b5418d4:198161cb6c1:-71a5
+      - GS_FLOW_CONTROL=GS_CFLOW_-39b4ff7d:1985e35967f:-5142
       X-Concurrent-Limit-ip:
       - '10'
       X-Concurrent-Limit-user:
