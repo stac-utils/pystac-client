@@ -555,3 +555,33 @@ example from **odc-stac**'s documentation:
 
 
 See each packages's respective documentation for more examples and tutorials.
+
+.. _how_to:
+
+How To
+++++++++++++
+
+Get the latest dataset across multiple collections
+-----------------------------------------
+
+When searching for multiple datasets across different collections, each dataset may be derived from a different time period. You may want to get the latest dataset for each collection instead of all available datasets.
+
+.. code-block:: python
+
+    from pystac_client import Client
+
+    client = Client.open("https://planetarycomputer.microsoft.com/api/stac/v1")
+    items = []
+    for collection in ["nasadem", "esa-worldcover", "jrc-gsw"]:
+        items.append(
+            next(
+                client.search(
+                    collections=[collection], max_items=1, sortby="-properties.datetime"
+                ).items()
+            )
+        )
+
+The result will be a list containing the most recent item from each collection:
+
+    >>> items
+    [<Item id=NASADEM_HGT_s56w072>, <Item id=ESA_WorldCover_10m_2021_v200_S60W030>, <Item id=90W_80Nv1_3_2020>]
