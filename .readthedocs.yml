@@ -15,9 +15,9 @@ build:
       - UV_PROJECT_ENVIRONMENT="${READTHEDOCS_VIRTUALENV_PATH}" uv sync --group docs --link-mode=copy
     build:
       html:
-        - uv run -- sphinx-build -M html docs $READTHEDOCS_OUTPUT
+        - UV_PROJECT_ENVIRONMENT="${READTHEDOCS_VIRTUALENV_PATH}" uv run -- sphinx-build -M html docs $READTHEDOCS_OUTPUT
       pdf:
-        - uv run -- sphinx-build -M latexpdf docs $READTHEDOCS_OUTPUT
+        - UV_PROJECT_ENVIRONMENT="${READTHEDOCS_VIRTUALENV_PATH}" uv run -- sphinx-build -M latexpdf docs $READTHEDOCS_OUTPUT
 
 sphinx:
   configuration: docs/conf.py
