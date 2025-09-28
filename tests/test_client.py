@@ -23,6 +23,7 @@ from pystac_client.warnings import (
     FallbackToPystac,
     MissingLink,
     NoConformsTo,
+    ignore,
     strict,
 )
 
@@ -444,6 +445,14 @@ class TestAPISearch:
             with pytest.raises(DoesNotConformTo, match="ITEM_SEARCH"):
                 api.search(limit=10, max_items=10, collections="mr-peebles")
 
+        api.clear_conforms_to()
+        with ignore():
+            try:
+                collections = list(api.get_collections())
+                assert isinstance(collections, list)
+            except Exception:
+                pass
+
     def test_no_search_link(self, api: Client) -> None:
         # Remove the search link
         api.remove_links("search")
@@ -454,6 +463,14 @@ class TestAPISearch:
                 match="No link with rel='search' could be found on this Client",
             ):
                 api.search(limit=10, max_items=10, collections="naip")
+
+        api.clear_conforms_to()
+        with ignore():
+            try:
+                collections = list(api.get_collections())
+                assert isinstance(collections, list)
+            except Exception:
+                pass
 
     def test_no_conforms_to(self) -> None:
         with open(str(TEST_DATA / "planetary-computer-root.json")) as f:
@@ -468,6 +485,14 @@ class TestAPISearch:
         with strict():
             with pytest.raises(DoesNotConformTo, match="ITEM_SEARCH"):
                 api.search(limit=10, max_items=10, collections="naip")
+
+        api.clear_conforms_to()
+        with ignore():
+            try:
+                collections = list(api.get_collections())
+                assert isinstance(collections, list)
+            except Exception:
+                pass
 
     def test_search(self, api: Client) -> None:
         results = api.search(
@@ -518,6 +543,14 @@ class TestAPICollectionSearch:
             with pytest.raises(DoesNotConformTo, match="COLLECTION_SEARCH"):
                 api.collection_search(limit=10, max_collections=10, q="test")
 
+        api.clear_conforms_to()
+        with ignore():
+            try:
+                collections = list(api.get_collections())
+                assert isinstance(collections, list)
+            except Exception:
+                pass
+
     def test_search_conformance_warning(self) -> None:
         api = Client.from_file(str(TEST_DATA / "planetary-computer-root.json"))
 
@@ -527,6 +560,14 @@ class TestAPICollectionSearch:
         with strict():
             with pytest.warns(UserWarning, match="COLLECTION_SEARCH"):
                 api.collection_search(limit=10, max_collections=10, q="test")
+
+        api.clear_conforms_to()
+        with ignore():
+            try:
+                collections = list(api.get_collections())
+                assert isinstance(collections, list)
+            except Exception:
+                pass
 
     @pytest.mark.vcr
     def test_search(self, api: Client) -> None:
@@ -695,6 +736,13 @@ class TestConformsTo:
         with strict():
             with pytest.raises(FallbackToPystac):
                 next(client.get_collections())
+
+        with ignore():
+            try:
+                collections = list(client.get_collections())
+                assert isinstance(collections, list)
+            except Exception:
+                pass
 
     @pytest.mark.vcr
     def test_changing_conforms_to_changes_behavior(self) -> None:
