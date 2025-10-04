@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Add test coverage for stac_api_io.py error handling ([#835](https://github.com/stac-utils/pystac-client/pull/835))
+
 ### Changed
 
 - Make `get_collection` raise if `collection_id` is empty ([#809](https://github.com/stac-utils/pystac-client/pull/809))
