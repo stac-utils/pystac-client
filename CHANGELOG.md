@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Add comprehensive test coverage for warning context managers (`ignore()` and `strict()`) ([#832](https://github.com/stac-utils/pystac-client/pull/832))
+
 ### Changed
 
 - Make `get_collection` raise if `collection_id` is empty ([#809](https://github.com/stac-utils/pystac-client/pull/809))
