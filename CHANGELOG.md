@@ -11,11 +11,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Make `get_collection` raise if `collection_id` is empty ([#809](https://github.com/stac-utils/pystac-client/pull/809))
 
+### Added
+
+- Add comprehensive test coverage for ConformanceClasses enum ([#834](https://github.com/stac-utils/pystac-client/pull/834))
+
 ### Documentation
 
 - Update contributing guide to consistently use `uv` workflow ([#822](https://github.com/stac-utils/pystac-client/pull/822))
 - Fix format script to use `ruff-format` instead of deprecated `black` hook ([#822](https://github.com/stac-utils/pystac-client/pull/822))
 - Add "How to..." section to usage documentation with latest datetime search across multiple collections example ([#823](https://github.com/stac-utils/pystac-client/pull/823))
+
 
 ## [v0.9.0] - 2025-07-17
 
