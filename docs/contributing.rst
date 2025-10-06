@@ -8,15 +8,14 @@ way is to coordinate with the core developers via an issue or pull request conve
 Development installation
 ^^^^^^^^^^^^^^^^^^^^^^^^
 Fork PySTAC Client into your GitHub account. Clone the repo, install `uv
-<https://docs.astral.sh/uv/getting-started/installation/>`_ then sync and
-activate the created virtual environment:
+<https://docs.astral.sh/uv/getting-started/installation/>`_ then install the package in editable mode with development dependencies:
 
 .. code-block:: bash
 
     $ git clone git@github.com:your_user_name/pystac-client.git
     $ cd pystac-client
-    $ uv sync
-    $ source .venv/bin/activate
+    $ uv pip install -e . --group dev
+    $ uv run pre-commit install
 
 Testing
 ^^^^^^^
@@ -29,7 +28,7 @@ To run the tests and generate the coverage report:
 
 .. code-block:: bash
 
-    $ pytest -v -s --block-network --cov pystac_client --cov-report term-missing
+    $ uv run pytest -v -s --block-network --cov pystac_client --cov-report term-missing
 
 The PySTAC Client tests use `vcrpy <https://vcrpy.readthedocs.io/en/latest/>`_ to mock API calls
 with "pre-recorded" API responses. When adding new tests use the ``@pytest.mark.vcr`` decorator
@@ -38,7 +37,7 @@ repository.
 
 .. code-block:: bash
 
-    $ pytest -v -s --record-mode new_episodes
+    $ uv run pytest -v -s --record-mode new_episodes
     $ git add <new files here>
     $ git commit -a -m 'new test episodes'
 
@@ -48,7 +47,7 @@ should be "re-recorded":
 
 .. code-block:: bash
 
-    $ pytest -v -s --record-mode rewrite --block-network
+    $ uv run pytest -v -s --record-mode rewrite --block-network
     $ git commit -a -m 'updated test episodes'
 
 
@@ -60,20 +59,19 @@ linting is run before every commit. These hooks should be installed with:
 
 .. code-block:: bash
 
-    $ pre-commit install
+    $ uv run pre-commit install
 
 These can then be run independent of a commit with:
 
 .. code-block:: bash
 
-    $ pre-commit run --all-files
+    $ uv run pre-commit run --all-files
 
 PySTAC Client uses
 
-- `black <https://github.com/psf/black>`_ for Python code formatting
+- `ruff <https://docs.astral.sh/ruff/>`_ for Python code formatting and style checks
 - `codespell <https://github.com/codespell-project/codespell/>`_ to check code for common misspellings
 - `doc8 <https://github.com/pycqa/doc8>`_ for style checking on RST files in the docs
-- `ruff <https://beta.ruff.rs/docs/>`_ for Python style checks
 - `mypy <http://www.mypy-lang.org/>`_ for Python type annotation checks
 
 Once installed you can bypass pre-commit by adding the ``--no-verify`` (or ``-n``)
@@ -87,24 +85,24 @@ the entire suit of checks and tests that will be run the GitHub Action Pipeline,
 
 .. code-block:: bash
 
-    $ scripts/test
+    $ uv run scripts/test
 
 If automatic formatting is desired (incorrect formatting will cause the GitHub Action to fail),
-use the format script and commit the resulting files:
+use the format script (which uses ruff) and commit the resulting files:
 
 .. code-block:: bash
 
-    $ scripts/format
+    $ uv run scripts/format
     $ git commit -a -m 'formatting updates'
 
 
 To build the documentation, `install Pandoc <https://pandoc.org/installing.html>`_, install the
-Python documentation requirements via pip, then use the ``build-docs`` script:
+Python documentation requirements via uv, then use the ``build-docs`` script:
 
 .. code-block:: bash
 
-    $ pip install -e '.[docs]'
-    $ scripts/build-docs
+    $ uv pip install -e . --group docs
+    $ uv run scripts/build-docs
 
 CHANGELOG
 ^^^^^^^^^
@@ -134,7 +132,7 @@ To run the benchmarks, use the ``--benchmark-only`` flag:
 
 .. code-block:: bash
 
-    $ pytest --benchmark-only
+    $ uv run pytest --benchmark-only
     ============================= test session starts ==============================
     platform darwin -- Python 3.9.13, pytest-6.2.4, py-1.10.0, pluggy-0.13.1
     benchmark: 3.4.1 (defaults: timer=time.perf_counter disable_gc=False min_rounds=5 min_time=0.000005 max_time=1.0 calibration_precision=10 warmup=False warmup_iterations=100000)
