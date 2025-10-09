@@ -110,6 +110,10 @@ select = ["E", "F", "W", "I"]
 [tool.pytest.ini_options]
 markers = "vcr: records network activity"
 addopts = "--benchmark-skip --block-network"
+filterwarnings = [
+    "ignore::ResourceWarning",
+    "ignore::pytest.PytestUnraisableExceptionWarning",
+]
 
 [tool.mypy]
 show_error_codes = true
