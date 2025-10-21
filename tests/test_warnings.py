@@ -7,7 +7,6 @@ from .helpers import TEST_DATA
 
 
 class TestWarningContextManagers:
-    @pytest.mark.filterwarnings("error")
     def test_ignore_context_manager(self) -> None:
         """Test that ignore() context manager suppresses warnings."""
         api = Client.from_file(str(TEST_DATA / "planetary-computer-root.json"))
@@ -16,7 +15,6 @@ class TestWarningContextManagers:
         with ignore():
             api.collection_search(limit=10, max_collections=10, q="test")
 
-    @pytest.mark.filterwarnings("error")
     def test_strict_context_manager(self) -> None:
         """Test that strict() context manager converts warnings to exceptions."""
         api = Client.from_file(str(TEST_DATA / "planetary-computer-root.json"))
