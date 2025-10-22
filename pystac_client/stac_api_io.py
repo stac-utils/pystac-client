@@ -287,7 +287,11 @@ class StacApiIO(DefaultStacIO):
                 d, href=str(href), root=root, migrate=False, preserve_dict=preserve_dict
             )
 
-        raise ValueError(f"Unknown STAC object type {info.object_type}")
+        raise ValueError(
+            f"Unknown STAC object type {info.object_type}"
+        )  # pragma: no cover
+        # This is unreachable because pystac.identify_stac_object raises STACTypeError
+        # for unknown object types before this code is executed
 
     def get_pages(
         self,

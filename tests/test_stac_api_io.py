@@ -1,6 +1,5 @@
 import typing
 from pathlib import Path
-from typing import Any
 from urllib.parse import parse_qs, urlsplit
 
 import pystac
@@ -314,34 +313,3 @@ def test_write_text_to_href_url_error() -> None:
 
     with pytest.raises(APIError, match="Transactions not supported"):
         stac_api_io.write_text_to_href("https://example.com/write", "content")
-
-
-def test_stac_object_from_dict_unknown_type(monkeypatch: MonkeyPatch) -> None:
-    """Test that unknown STAC object types raise ValueError."""
-    stac_api_io = StacApiIO()
-
-    import json
-
-    with open("tests/data/planetary-computer-collection.json") as f:
-        real_stac_data = json.load(f)
-
-    # Mock identify_stac_object to return an unknown type
-    class MockInfo:
-        object_type = "UNKNOWN_TYPE"
-
-    def mock_identify_stac_object(d: dict[str, Any]) -> MockInfo:
-        return MockInfo()
-
-    # Mock migrate_to_latest to just return the data unchanged
-    def mock_migrate_to_latest(d: dict[str, Any], info: MockInfo) -> dict[str, Any]:
-        return d
-
-    monkeypatch.setattr(
-        "pystac_client.stac_api_io.identify_stac_object", mock_identify_stac_object
-    )
-    monkeypatch.setattr(
-        "pystac_client.stac_api_io.migrate_to_latest", mock_migrate_to_latest
-    )
-
-    with pytest.raises(ValueError, match="Unknown STAC object type"):
-        stac_api_io.stac_object_from_dict(real_stac_data)
