@@ -257,7 +257,9 @@ class TestItemSearch:
             items.extend(page["features"])
         assert num_pages == 2
         assert len(items) == 2
-        assert vcr.play_count == 3, "should have made the 2 valid requests and 1 autofix request"
+        assert vcr.play_count == 3, (
+            "should have made the 2 valid requests and 1 autofix request"
+        )
 
     @pytest.mark.vcr
     def test_result_paging_bad_next_link_autofix_disabled(self, vcr) -> None:
