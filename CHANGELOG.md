@@ -9,16 +9,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+- Add `autofix_paging` parameter to `StacApiIO` to allow auto-fix of invalid links returned by servers when iterating paged responses.
 - Add comprehensive test coverage for warning context managers (`ignore()` and `strict()`) ([#832](https://github.com/stac-utils/pystac-client/pull/832))
 - Moved -Werror to pyproject.toml ([#841](https://github.com/stac-utils/pystac-client/pull/841))
+- Add comprehensive test coverage for ConformanceClasses enum ([#834](https://github.com/stac-utils/pystac-client/pull/834))
 
 ### Changed
 
 - Make `get_collection` raise if `collection_id` is empty ([#809](https://github.com/stac-utils/pystac-client/pull/809))
-
-### Added
-
-- Add comprehensive test coverage for ConformanceClasses enum ([#834](https://github.com/stac-utils/pystac-client/pull/834))
 
 ### Documentation
 
