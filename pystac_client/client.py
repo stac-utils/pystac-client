@@ -392,7 +392,7 @@ class Client(pystac.Catalog, QueryablesMixin):
             Union[Collection, CollectionClient]: A STAC Collection
 
         Raises:
-            NotFoundError if collection_id does not exist.
+            KeyError if collection_id does not exist.
         """
         collection: Collection | CollectionClient | None = None
 
