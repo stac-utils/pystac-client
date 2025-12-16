@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - Make `get_collection` raise if `collection_id` is empty ([#809](https://github.com/stac-utils/pystac-client/pull/809))
+- Update `get_collection` to return None if no collection exists ([#861](https://github.com/stac-utils/pystac-client/pull/861))
 
 ### Added
 

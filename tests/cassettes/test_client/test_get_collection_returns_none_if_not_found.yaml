@@ -1,0 +1,105 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.32.4
+    method: GET
+    uri: https://earth-search.aws.element84.com/v1
+  response:
+    body:
+      string: '{"stac_version":"1.0.0","type":"Catalog","id":"earth-search-aws","title":"Earth
+        Search by Element 84","description":"A STAC API of public datasets on AWS","links":[{"rel":"self","type":"application/json","href":"https://earth-search.aws.element84.com/v1"},{"rel":"root","type":"application/json","href":"https://earth-search.aws.element84.com/v1"},{"rel":"conformance","type":"application/json","href":"https://earth-search.aws.element84.com/v1/conformance"},{"rel":"data","type":"application/json","href":"https://earth-search.aws.element84.com/v1/collections"},{"rel":"search","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/search","method":"GET"},{"rel":"search","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/search","method":"POST"},{"rel":"aggregate","type":"application/json","href":"https://earth-search.aws.element84.com/v1/aggregate","method":"GET"},{"rel":"aggregations","type":"application/json","href":"https://earth-search.aws.element84.com/v1/aggregations"},{"rel":"service-desc","type":"application/vnd.oai.openapi","href":"https://earth-search.aws.element84.com/v1/api"},{"rel":"service-doc","type":"text/html","href":"https://earth-search.aws.element84.com/v1/api.html"},{"rel":"http://www.opengis.net/def/rel/ogc/1.0/queryables","type":"application/schema+json","href":"https://earth-search.aws.element84.com/v1/queryables"},{"rel":"server","type":"text/html","href":"https://stac-utils.github.io/stac-server/"},{"rel":"child","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/sentinel-2-pre-c1-l2a"},{"rel":"child","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-30"},{"rel":"child","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/naip"},{"rel":"child","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/cop-dem-glo-90"},{"rel":"child","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/landsat-c2-l2"},{"rel":"child","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a"},{"rel":"child","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/sentinel-2-l1c"},{"rel":"child","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/sentinel-2-c1-l2a"},{"rel":"child","type":"application/geo+json","href":"https://earth-search.aws.element84.com/v1/collections/sentinel-1-grd"}],"conformsTo":["https://api.stacspec.org/v1.0.0/core","https://api.stacspec.org/v1.0.0/collections","https://api.stacspec.org/v1.0.0/ogcapi-features","https://api.stacspec.org/v1.0.0/item-search","https://api.stacspec.org/v1.0.0/ogcapi-features#fields","https://api.stacspec.org/v1.0.0/ogcapi-features#sort","https://api.stacspec.org/v1.0.0/ogcapi-features#query","https://api.stacspec.org/v1.0.0/item-search#fields","https://api.stacspec.org/v1.0.0/item-search#sort","https://api.stacspec.org/v1.0.0/item-search#query","https://api.stacspec.org/v0.3.0/aggregation","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30","http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"]}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '612'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 16 Dec 2025 14:13:21 GMT
+      Via:
+      - 1.1 81423e9dbafa2fcbc4e583dc457e4002.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - 8g02g62SSCq5AprzG3yV_FwjAYlu9y7D3sfkjeflNHN4KNt_mxY4VA==
+      X-Amz-Cf-Pop:
+      - BOS50-P5
+      X-Amzn-Trace-Id:
+      - Root=1-69416901-3333b72b4e0d3a1c117f4a04;Parent=7e4ae8e6e0356a35;Sampled=0;Lineage=1:9e2884e9:0
+      X-Cache:
+      - Miss from cloudfront
+      access-control-allow-origin:
+      - '*'
+      etag:
+      - W/"d29-QPs+H0wJLUX32EZKNgzG3k6wfQ8"
+      x-amz-apigw-id:
+      - Vr1YOF3cPHcEcHQ=
+      x-amzn-Remapped-content-length:
+      - '3369'
+      x-amzn-RequestId:
+      - b1e37c9f-6585-4a02-b36d-f542adbc17e0
+      x-powered-by:
+      - Express
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.32.4
+    method: GET
+    uri: https://earth-search.aws.element84.com/v1/collections/foo
+  response:
+    body:
+      string: '{"code":"NotFound","description":"Not Found"}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '45'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 16 Dec 2025 14:13:21 GMT
+      Via:
+      - 1.1 25674eb6b3a8da4a14756edb56fe49b6.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - x5LDZHvWAj80Vn9wtUTOVUc4dIbTsakFiWAK3sZG6EyX1ZGcqS4XDg==
+      X-Amz-Cf-Pop:
+      - BOS50-P5
+      X-Amzn-Trace-Id:
+      - Root=1-69416901-4bdb4fac624fae807d0039cc;Parent=79b93944f6ee55b1;Sampled=0;Lineage=1:9e2884e9:0
+      X-Cache:
+      - Error from cloudfront
+      access-control-allow-origin:
+      - '*'
+      etag:
+      - W/"2d-w2QFXCe6e41RSRvomKbcZAMy0ok"
+      x-amz-apigw-id:
+      - Vr1YRGn-PHcEZRQ=
+      x-amzn-Remapped-content-length:
+      - '45'
+      x-amzn-RequestId:
+      - d65dbeca-c2fd-4334-b27b-969184fcf3f5
+      x-powered-by:
+      - Express
+    status:
+      code: 404
+      message: Not Found
+version: 1
