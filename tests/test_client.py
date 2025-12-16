@@ -716,10 +716,10 @@ def test_collections_are_clients() -> None:
     catalog = Client.open(
         "https://planetarycomputer.microsoft.com/api/stac/v1/",
     )
-    item = catalog.get_collection("cil-gdpcir-cc-by").get_item(
-        "cil-gdpcir-NUIST-NESM3-ssp585-r1i1p1f1-day"
-    )
-    assert item
+    collection = catalog.get_collection("cil-gdpcir-cc-by")
+    assert collection is not None
+    item = collection.get_item("cil-gdpcir-NUIST-NESM3-ssp585-r1i1p1f1-day")
+    assert item is not None
     item.get_collection()
 
 
@@ -747,6 +747,8 @@ def test_fallback_strategy() -> None:
         "https://planetarycomputer.microsoft.com/api/stac/v1/",
     )
     col = client.get_collection("landsat-c2-l2")
+    assert col is not None
+
     item = next(col.get_items())
 
     item_href = item.self_href
@@ -786,9 +788,11 @@ def test_get_collection_fallback_strategy_for_static_catalogs() -> None:
 
     with pytest.warns(FallbackToPystac):
         area_1_1 = client.get_collection("area-1-1")
+        assert area_1_1 is not None
 
     with pytest.warns(FallbackToPystac):
         area_1_2 = client.get_collection("area-1-2")
+        assert area_1_2 is not None
 
     assert area_1_1.id == "area-1-1"
     assert area_1_2.id == "area-1-2"
