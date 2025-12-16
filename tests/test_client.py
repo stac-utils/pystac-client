@@ -794,11 +794,11 @@ def test_get_collection_fallback_strategy_for_static_catalogs() -> None:
     assert area_1_2.id == "area-1-2"
 
 
-def test_get_collection_for_static_catalogs_raise_if_not_found() -> None:
+def test_get_collection_for_static_catalogs_returns_none_if_not_found() -> None:
     client = Client.from_file(str(TEST_DATA / "test-case-1" / "catalog.json"))
-    with pytest.raises(KeyError, match="not found on catalog"):
-        with pytest.warns(FallbackToPystac):
-            client.get_collection("country-1")
+    with pytest.warns(FallbackToPystac):
+        collection = client.get_collection("country-1")
+        assert collection is None
 
 
 def test_get_collection_raises_if_collection_id_is_empty() -> None:
@@ -808,6 +808,13 @@ def test_get_collection_raises_if_collection_id_is_empty() -> None:
 
     with pytest.raises(ValueError, match="A `collection_id` must be provided"):
         client.get_collection(None)
+
+
+@pytest.mark.vcr
+def test_get_collection_returns_none_if_not_found() -> None:
+    client = Client.open(STAC_URLS["EARTH-SEARCH"])
+    collection = client.get_collection("foo")
+    assert collection is None
 
 
 @pytest.mark.vcr
