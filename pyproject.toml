@@ -59,7 +59,7 @@ dev = [
     "urllib3>=2.4",
 ]
 docs = [
-    "Sphinx~=8.0",
+    "Sphinx~=9.1",
     "boto3~=1.26",
     "cartopy~=0.21",
     "geojson~=3.2.0",
