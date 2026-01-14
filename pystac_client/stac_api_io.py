@@ -47,6 +47,7 @@ class StacApiIO(DefaultStacIO):
         request_modifier: Callable[[Request], Request | None] | None = None,
         timeout: Timeout | None = None,
         max_retries: int | Retry | None = 5,
+        autofix_paging: bool = True,
     ):
         """Initialize class for API IO
 
@@ -69,11 +70,15 @@ class StacApiIO(DefaultStacIO):
               <https://requests.readthedocs.io/en/latest/api/#main-interface>`__.
             max_retries: The number of times to retry requests. Set to ``None`` to
               disable retries.
+            autofix_paging: Whether to attempt automatically fixing paging issues
+              that can be identified from paged responses links mismatching expectations
+              compared to the original request.
 
         Return:
             StacApiIO : StacApiIO instance
         """
-        # TODO - this should super() to parent class
+        super().__init__(headers)
+        self.autofix_paging = autofix_paging
 
         if conformance is not None:
             warnings.warn(
@@ -311,7 +316,29 @@ class StacApiIO(DefaultStacIO):
         )
         while next_link:
             link = Link.from_dict(next_link)
-            page = self.read_json(link, parameters=parameters)
+            try:
+                page = self.read_json(link, parameters=parameters)
+            except APIError as exc:
+                # retry with fixes if enabled and changes could be identified
+                params = link.to_dict()
+                meth = params.get("method")
+                if link.href == url and meth == method:
+                    raise  # other unidentified error
+                if self.autofix_paging:
+                    logger.warning(
+                        "Error retrieving paged results from 'next' link "
+                        f"due to incompatible URL {link.href} or HTTP {meth} method. "
+                        "Retrying with original request parameters."
+                    )
+                    params["method"] = method
+                    page = self.read_json(url, method=method, parameters=params)
+                else:
+                    logger.error(
+                        "Error retrieving paged results from 'next' link "
+                        f"due to incompatible URL {link.href} or HTTP {meth} method.",
+                        exc_info=exc,
+                    )
+                    raise
             if not (page.get("features") or page.get("collections")):
                 return None
             yield page
