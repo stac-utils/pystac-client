@@ -37,7 +37,7 @@ jobs:
         run: uv run pytest -Werror -s --block-network --cov pystac_client --cov-report term-missing
       - name: Run coverage
         run: uv run coverage xml
-      - uses: codecov/codecov-action@v5
+      - uses: codecov/codecov-action@v6
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./coverage.xml
