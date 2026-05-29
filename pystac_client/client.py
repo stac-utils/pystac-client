@@ -382,17 +382,18 @@ class Client(pystac.Catalog, QueryablesMixin):
         return response
 
     @lru_cache
-    def get_collection(self, collection_id: str) -> Collection | CollectionClient:
+    def get_collection(
+        self, collection_id: str
+    ) -> Collection | CollectionClient | None:
         """Get a single collection from this Catalog/API
 
         Args:
             collection_id: The Collection ID to get
 
         Returns:
-            Union[Collection, CollectionClient]: A STAC Collection
+            Collection | CollectionClient | None: A STAC Collection or None if it does
+            not exist.
 
-        Raises:
-            NotFoundError if collection_id does not exist.
         """
         collection: Collection | CollectionClient | None = None
 
@@ -403,21 +404,25 @@ class Client(pystac.Catalog, QueryablesMixin):
             assert self._stac_io is not None
 
             url = self._collections_href(collection_id)
-            collection = CollectionClient.from_dict(
-                self._stac_io.read_json(url),
-                root=self,
-                modifier=self.modifier,
-            )
-            call_modifier(self.modifier, collection)
+            try:
+                collection = CollectionClient.from_dict(
+                    self._stac_io.read_json(url),
+                    root=self,
+                    modifier=self.modifier,
+                )
+            except APIError as err:
+                if getattr(err, "status_code", None) and err.status_code == 404:
+                    return None
+                else:
+                    raise err
         else:
             self._warn_about_fallback("COLLECTIONS", "FEATURES")
             for collection in super().get_collections():
                 if collection.id == collection_id:
-                    call_modifier(self.modifier, collection)
                     break
 
-        if collection is None:
-            raise KeyError(f"Collection {collection_id} not found on catalog")
+        if collection:
+            call_modifier(self.modifier, collection)
 
         return collection
 
