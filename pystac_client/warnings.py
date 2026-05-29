@@ -79,7 +79,7 @@ def ignore() -> Iterator[None]:
     >>> from pystac_client import Client
     >>> from pystac_client.warnings import ignore
     >>> with ignore():
-    ...     Client.open("https://perfect-api.test")
+    ...     Client.open("https://imperfect-api.test")
 
     For finer-grained control:
 
