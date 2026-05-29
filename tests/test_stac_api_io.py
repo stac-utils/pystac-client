@@ -289,3 +289,27 @@ def test_stac_io_in_pystac() -> None:
     stac_io = root._stac_io
     assert isinstance(stac_io, StacApiIO)
     assert stac_io.timeout == 42
+
+
+def test_request_decode_error(requests_mock: Mocker) -> None:
+    """Test that decode errors in request() are properly handled."""
+    url = "https://example.com/bad-encoding"
+    # Mock a response with invalid UTF-8 content
+    requests_mock.get(url, status_code=200, content=b"\xff\xfe\x00\x00")
+
+    stac_api_io = StacApiIO()
+
+    with pytest.raises(APIError) as excinfo:
+        stac_api_io.request(url)
+
+    assert (
+        "decode" in str(excinfo.value).lower() or "utf-8" in str(excinfo.value).lower()
+    )
+
+
+def test_write_text_to_href_url_error() -> None:
+    """Test that write_text_to_href raises APIError for URLs."""
+    stac_api_io = StacApiIO()
+
+    with pytest.raises(APIError, match="Transactions not supported"):
+        stac_api_io.write_text_to_href("https://example.com/write", "content")
