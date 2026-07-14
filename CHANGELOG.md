@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+- Add `autofix_paging` parameter to `StacApiIO` to allow auto-fix of invalid links returned by servers when iterating paged responses ([#852](https://github.com/stac-utils/pystac-client/pull/852)).
 - Add test coverage for stac_api_io.py error handling ([#835](https://github.com/stac-utils/pystac-client/pull/835))
 - Add comprehensive test coverage for warning context managers (`ignore()` and `strict()`) ([#832](https://github.com/stac-utils/pystac-client/pull/832))
 - Moved -Werror to pyproject.toml ([#841](https://github.com/stac-utils/pystac-client/pull/841))

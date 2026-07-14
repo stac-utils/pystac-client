@@ -11,7 +11,9 @@ from pytest_benchmark.fixture import BenchmarkFixture
 from requests_mock import Mocker
 
 from pystac_client import Client
+from pystac_client.exceptions import APIError
 from pystac_client.item_search import ItemSearch
+from pystac_client.stac_api_io import StacApiIO
 
 from .helpers import STAC_URLS, read_data_file
 
@@ -239,6 +241,39 @@ class TestItemSearch:
             items.extend(page["features"])
         assert num_pages == 3
         assert len(items) == 25
+
+    @pytest.mark.vcr
+    def test_result_paging_bad_next_link_autofix_enabled(self, vcr) -> None:
+        search = ItemSearch(
+            url=SEARCH_URL,
+            method="POST",
+            collections="naip",
+            limit=1,
+        )
+        num_pages = 0
+        items = list()
+        for page in search.pages_as_dicts():
+            num_pages += 1
+            items.extend(page["features"])
+        assert num_pages == 2
+        assert len(items) == 2
+        assert vcr.play_count == 3, (
+            "should have made the 2 valid requests and 1 autofix request"
+        )
+
+    @pytest.mark.vcr
+    def test_result_paging_bad_next_link_autofix_disabled(self, vcr) -> None:
+        search = ItemSearch(
+            url=SEARCH_URL,
+            method="POST",
+            collections="naip",
+            limit=1,
+            stac_io=StacApiIO(autofix_paging=False),
+        )
+        with pytest.raises(APIError, match="Method not allowed"):
+            for _ in search.pages_as_dicts():
+                pass
+        assert vcr.play_count == 2
 
     @pytest.mark.vcr
     def test_item_collection(self) -> None:
