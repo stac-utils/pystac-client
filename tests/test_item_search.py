@@ -190,6 +190,20 @@ class TestItemSearch:
         new_results = search.items()
         assert all(isinstance(item, pystac.Item) for item in new_results)
 
+        # Geo-interface object as feature
+        # https://github.com/stac-utils/pystac-client/issues/907#issuecomment-4904791395
+        class MockGeoObject2:
+            @property
+            def __geo_interface__(self) -> dict[str, Any]:
+                return {"type": "Feature", "geometry": intersects_dict}
+
+        intersects_obj2 = MockGeoObject2()
+        search = ItemSearch(
+            url=SEARCH_URL, intersects=intersects_obj2, collections="naip"
+        )
+        new_results = search.items()
+        assert all(isinstance(item, pystac.Item) for item in new_results)
+
     def test_get_with_query(self, requests_mock: Mocker) -> None:
         requests_mock.get(
             (
