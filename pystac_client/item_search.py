@@ -14,6 +14,7 @@ from typing import (
     Optional,
     Protocol,
     Union,
+    cast,
 )
 
 from dateutil.relativedelta import relativedelta
@@ -565,7 +566,15 @@ class BaseSearch(ABC):
         if isinstance(value, str):
             return dict(json.loads(value))
         if hasattr(value, "__geo_interface__"):
-            return dict(deepcopy(getattr(value, "__geo_interface__")))
+            geo_interface = dict(deepcopy(getattr(value, "__geo_interface__")))
+            if (
+                geo_interface.get("type") == "Feature"
+                and (geometry := geo_interface.get("geometry"))
+                and isinstance(geometry, dict)
+            ):
+                return cast(dict[str, Any], geometry)
+            else:
+                return geo_interface
         raise Exception(
             "intersects must be of type None, str, dict, or an object that "
             "implements __geo_interface__"
