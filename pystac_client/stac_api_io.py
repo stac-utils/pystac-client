@@ -67,8 +67,9 @@ class StacApiIO(DefaultStacIO):
             timeout: Optional float or (float, float) tuple following the semantics
               defined by `Requests
               <https://requests.readthedocs.io/en/latest/api/#main-interface>`__.
-            max_retries: The number of times to retry requests. Set to ``None`` to
-              disable retries.
+            max_retries: The number of times to retry requests or an
+              ``urllib3.utils.Retry`` instance for more advanced retry configurations.
+              Set to ``None`` to disable retries.
 
         Return:
             StacApiIO : StacApiIO instance
