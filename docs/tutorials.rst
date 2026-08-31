@@ -49,6 +49,16 @@ This tutorial demonstrates the use of pystac-client to calculate the
 percentage an Item's geometry that intesects with the area of interest
 (AOI) specified in the search by the `intersects` parameter.
 
+Item Search Across Collections
+-----------------------------------------------------
+
+- :tutorial:`GitHub version <item-search-collections.ipynb>`
+- :ref:`Docs version </tutorials/item-search-collections.ipynb>`
+
+This tutorial demonstrates searching more than one Collection in a
+single request with the `collections` parameter, and the effect of
+property filters on Collections that do not have the property.
+
 Authentication
 --------------
 
