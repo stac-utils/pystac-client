@@ -179,7 +179,8 @@ class CollectionSearch(BaseSearch):
         client: An instance of Client for retrieving results. This is normally populated
             by the client that returns this CollectionSearch instance.
         limit: A recommendation to the service as to the number of collections to return
-            *per page* of results. Defaults to 100.
+            *per page* of results. If not provided, no ``limit`` is sent and the
+            service's own default page size applies.
         bbox: A list, tuple, or iterator representing a bounding box of 2D
             or 3D coordinates. Results will be filtered
             to only those intersecting the bounding box.
