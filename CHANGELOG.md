@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- Add public `set_parameter` method to searches for setting request parameters not supported by the constructor ([#582](https://github.com/stac-utils/pystac-client/issues/582))
+- Add public `set_parameter` method to searches for setting request parameters not supported by the constructor ([#934](https://github.com/stac-utils/pystac-client/pull/934))
 - Warn when the requested item-search method is not advertised ([#912](https://github.com/stac-utils/pystac-client/pull/912))
 - Add test coverage for stac_api_io.py error handling ([#835](https://github.com/stac-utils/pystac-client/pull/835))
 - Add comprehensive test coverage for warning context managers (`ignore()` and `strict()`) ([#832](https://github.com/stac-utils/pystac-client/pull/832))
