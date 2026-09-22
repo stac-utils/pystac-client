@@ -197,13 +197,23 @@ class BaseSearch(ABC):
         attribute.
 
         The value is stored as-is: unlike the constructor arguments, it is not
-        validated or reformatted. It is the caller's responsibility to provide a
-        value in the shape the server expects, keeping in mind that the same
-        value is used for both ``GET`` (as a query string parameter) and
-        ``POST`` (as a JSON body member) requests. Setting a key that is already
-        present, including a standard parameter such as ``bbox``, overwrites the
-        previous value and therefore bypasses the formatting that the
-        constructor would have applied.
+        validated or coerced. It is the caller's responsibility to provide a
+        value in the shape the server expects. Setting a key that is already
+        present overwrites the previous value.
+
+        Note that only the *constructor* formatting is bypassed, not the
+        per-method serialization. For a ``POST`` search the stored value is sent
+        unchanged as a JSON body member. For a ``GET`` search the stored value
+        is still run through the serialization applied to the recognized
+        parameter names ``bbox``, ``ids``, ``collections``, ``intersects``,
+        ``query``, ``sortby``, ``fields`` and ``filter``. Overwriting one of
+        those names therefore requires the same internal shape the constructor
+        would have produced, not the query string shape. Passing an
+        already-serialized string instead produces a mangled value, e.g.
+        ``set_parameter("bbox", "1,2,3,4")`` is serialized as
+        ``"1,,,2,,,3,,,4"``, because the string is joined character by
+        character. Unrecognized names are passed through unchanged under both
+        methods.
 
         Args:
             key : The name of the parameter.

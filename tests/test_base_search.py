@@ -550,11 +550,41 @@ class TestBaseSearchSetParameter:
 
         assert search.get_parameters()["my_extension_parameter"] == "bar"
 
-    def test_overwrites_standard_parameter(self) -> None:
+    def test_overwrites_standard_parameter_post(self) -> None:
         search = BaseSearch(url=SEARCH_URL, method="POST", collections=["io-lulc"])
         search.set_parameter("collections", ["naip"])
 
+        # for POST the stored value is sent unchanged
         assert search.get_parameters()["collections"] == ["naip"]
+
+    def test_overwrites_standard_parameter_get(self) -> None:
+        # for GET the recognized parameter names are still serialized, so the
+        # value must be given in the internal shape, not the query string shape
+        search = BaseSearch(
+            url=SEARCH_URL, method="GET", bbox=[-104.5, 44.0, -104.0, 45.0]
+        )
+        search.set_parameter("bbox", [-106.0, 35.0, -105.0, 36.0])
+
+        assert search.get_parameters()["bbox"] == "-106.0,35.0,-105.0,36.0"
+
+    def test_overwrites_standard_parameter_get_with_serialized_value(self) -> None:
+        # passing an already-serialized string for a recognized name is joined
+        # character by character; documented on set_parameter as a caller error
+        search = BaseSearch(url=SEARCH_URL, method="GET")
+        search.set_parameter("bbox", "-106.0,35.0")
+
+        assert search.get_parameters()["bbox"] == ",".join("-106.0,35.0")
+
+    def test_unrecognized_name_is_not_serialized_for_get(self) -> None:
+        search = BaseSearch(url=SEARCH_URL, method="GET")
+        search.set_parameter("my_extension_bbox", [-106.0, 35.0, -105.0, 36.0])
+
+        assert search.get_parameters()["my_extension_bbox"] == [
+            -106.0,
+            35.0,
+            -105.0,
+            36.0,
+        ]
 
     def test_item_search(self) -> None:
         search = ItemSearch(url=SEARCH_URL, method="GET")
