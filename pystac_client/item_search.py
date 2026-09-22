@@ -188,6 +188,43 @@ class BaseSearch(ABC):
         else:
             raise Exception(f"Unsupported method {self.method}")
 
+    def set_parameter(self, key: str, value: Any) -> None:
+        """Sets a parameter to be sent with the search request.
+
+        This is the public way to add parameters that are not supported by the
+        search constructor, e.g. when experimenting with a proposed STAC API
+        extension, without having to modify the private ``_parameters``
+        attribute.
+
+        The value is stored as-is: unlike the constructor arguments, it is not
+        validated or reformatted. It is the caller's responsibility to provide a
+        value in the shape the server expects, keeping in mind that the same
+        value is used for both ``GET`` (as a query string parameter) and
+        ``POST`` (as a JSON body member) requests. Setting a key that is already
+        present, including a standard parameter such as ``bbox``, overwrites the
+        previous value and therefore bypasses the formatting that the
+        constructor would have applied.
+
+        Args:
+            key : The name of the parameter.
+            value : The value of the parameter.
+
+        Examples:
+
+        >>> search = ItemSearch(
+        ...    url="https://planetarycomputer.microsoft.com/api/stac/v1/search",
+        ...    collections=["cop-dem-glo-30"],
+        ...    method="GET",
+        ... )
+        >>> search.set_parameter("my_extension_parameter", "foobar")
+        >>> assert (
+        ...    search.url_with_parameters()
+        ...    == "https://planetarycomputer.microsoft.com/api/stac/v1/search?"
+        ...    "collections=cop-dem-glo-30&my_extension_parameter=foobar"
+        ... )
+        """
+        self._parameters[key] = value
+
     def _clean_params_for_get_request(self) -> dict[str, Any]:
         params = deepcopy(self._parameters)
         if "bbox" in params:

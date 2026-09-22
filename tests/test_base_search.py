@@ -7,11 +7,13 @@ import pytest
 from dateutil.tz import gettz, tzutc
 
 from pystac_client import Client
-from pystac_client.item_search import BaseSearch
+from pystac_client.collection_search import CollectionSearch
+from pystac_client.item_search import BaseSearch, ItemSearch
 
 from .helpers import STAC_URLS, read_data_file
 
 SEARCH_URL = f"{STAC_URLS['PLANETARY-COMPUTER']}/search"
+COLLECTION_SEARCH_URL = f"{STAC_URLS['SPACEBEL']}/collections"
 INTERSECTS_EXAMPLE = {
     "type": "Polygon",
     "coordinates": [
@@ -512,3 +514,56 @@ class TestBaseSearchParams:
             fields={"exclude": ["bar"], "include": ["id", "collection"]},
         )
         assert search.get_parameters()["fields"] == "+id,+collection,-bar"
+
+
+class TestBaseSearchSetParameter:
+    def test_get(self) -> None:
+        search = BaseSearch(url=SEARCH_URL, method="GET", collections=["io-lulc"])
+        search.set_parameter("my_extension_parameter", "foobar")
+
+        params = search.get_parameters()
+        assert params["my_extension_parameter"] == "foobar"
+        # existing parameters are preserved and still formatted for GET
+        assert params["collections"] == "io-lulc"
+
+    def test_get_url_with_parameters(self) -> None:
+        search = BaseSearch(url=SEARCH_URL, method="GET", collections=["io-lulc"])
+        search.set_parameter("my_extension_parameter", "foobar")
+
+        assert search.url_with_parameters() == (
+            f"{SEARCH_URL}?collections=io-lulc&my_extension_parameter=foobar"
+        )
+
+    def test_post(self) -> None:
+        search = BaseSearch(url=SEARCH_URL, method="POST", collections=["io-lulc"])
+        search.set_parameter("my_extension_parameter", {"foo": ["bar"]})
+
+        params = search.get_parameters()
+        # values are passed through unchanged for POST
+        assert params["my_extension_parameter"] == {"foo": ["bar"]}
+        assert params["collections"] == ("io-lulc",)
+
+    def test_update_existing_custom_parameter(self) -> None:
+        search = BaseSearch(url=SEARCH_URL)
+        search.set_parameter("my_extension_parameter", "foo")
+        search.set_parameter("my_extension_parameter", "bar")
+
+        assert search.get_parameters()["my_extension_parameter"] == "bar"
+
+    def test_overwrites_standard_parameter(self) -> None:
+        search = BaseSearch(url=SEARCH_URL, method="POST", collections=["io-lulc"])
+        search.set_parameter("collections", ["naip"])
+
+        assert search.get_parameters()["collections"] == ["naip"]
+
+    def test_item_search(self) -> None:
+        search = ItemSearch(url=SEARCH_URL, method="GET")
+        search.set_parameter("my_extension_parameter", "foobar")
+
+        assert search.get_parameters()["my_extension_parameter"] == "foobar"
+
+    def test_collection_search(self) -> None:
+        search = CollectionSearch(url=COLLECTION_SEARCH_URL)
+        search.set_parameter("my_extension_parameter", "foobar")
+
+        assert search.get_parameters()["my_extension_parameter"] == "foobar"
