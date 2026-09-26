@@ -631,7 +631,8 @@ class ItemSearch(BaseSearch):
         client: An instance of Client for retrieving results. This is normally populated
             by the client that returns this ItemSearch instance.
         limit: A recommendation to the service as to the number of items to return
-            *per page* of results. Defaults to 100.
+            *per page* of results. If not provided, no ``limit`` is sent and the
+            service's own default page size applies.
         ids: List of one or more Item ids to filter on.
         collections: List of one or more Collection IDs or :class:`pystac.Collection`
             instances.
