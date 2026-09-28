@@ -254,6 +254,39 @@ PySTAC client will use the API endpoint instead: `/collections/<collection_id>/i
 Note that calling list on this iterator will take a really long time since it will be retrieving
 every itme for the whole ``"sentinel-2-l2a"`` collection.
 
+Creating and deleting items
+---------------------------
+
+STAC APIs that implement the `STAC API - Transaction Extension
+<https://github.com/stac-api-extensions/transaction>`__ allow clients to write items.
+:meth:`pystac_client.CollectionClient.create_item` sends
+``POST /collections/<collection_id>/items`` and returns the item as created by the
+server, and :meth:`pystac_client.CollectionClient.delete_item` sends
+``DELETE /collections/<collection_id>/items/<item_id>``.
+
+.. code-block:: python
+
+    >>> catalog = Client.open(
+    ...     "https://stac.example.com",
+    ...     headers={"Authorization": "Bearer <token>"},
+    ... )
+    >>> collection = catalog.get_collection("my-collection")
+    >>> item = collection.create_item(pystac.Item.from_file("item.json"))
+    >>> collection.delete_item(item.id)
+
+Requests are made with the same headers, parameters, and ``request_modifier`` as every
+other request made by the ``Client``, so authentication works the same way as for
+reading. If the server returns an error, an :class:`~pystac_client.exceptions.APIError`
+is raised, with the HTTP status (e.g. ``401``, ``403``, ``404``) on its ``status_code``
+attribute. Both methods raise :class:`~pystac_client.warnings.DoesNotConformTo` if the
+API does not advertise the ``TRANSACTION`` conformance class.
+
+.. note::
+
+    These are not the same as :meth:`pystac.Catalog.add_item` and
+    :meth:`pystac.Catalog.remove_item`, which a ``Client`` or ``CollectionClient``
+    also has. Those only change the object in memory and never contact the API.
+
 CollectionSearch
 ++++++++++++++++
 

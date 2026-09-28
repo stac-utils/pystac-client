@@ -1,7 +1,9 @@
 from __future__ import annotations
 
+import json
 import warnings
 from collections.abc import Callable, Iterator
+from copy import deepcopy
 from typing import (
     TYPE_CHECKING,
     Any,
@@ -18,7 +20,7 @@ from pystac_client.exceptions import APIError
 from pystac_client.item_search import ItemSearch
 from pystac_client.mixins import QueryablesMixin
 from pystac_client.stac_api_io import StacApiIO
-from pystac_client.warnings import FallbackToPystac
+from pystac_client.warnings import DoesNotConformTo, FallbackToPystac
 
 if TYPE_CHECKING:
     from pystac.item import Item as Item_Type
@@ -204,6 +206,69 @@ class CollectionClient(pystac.Collection, QueryablesMixin):
             call_modifier(self.modifier, item)
 
         return item
+
+    def create_item(self, item: pystac.Item | dict[str, Any]) -> Item_Type:
+        """Create an item on the server in this collection.
+
+        Sends ``POST /collections/{collectionId}/items``. The API must support
+        the `Transaction extension
+        <https://github.com/stac-api-extensions/transaction>`__.
+
+        Args:
+            item : A :class:`pystac.Item` or item :class:`dict`. If ``collection``
+                is missing, it is set to this collection's id.
+
+        Return:
+            Item: The item from the server, or the item that was sent if the
+            server returns no item body.
+        """
+        url = self._transaction_items_href()
+        if isinstance(item, pystac.Item):
+            body = item.to_dict(include_self_link=False, transform_hrefs=False)
+        else:
+            body = deepcopy(item)
+
+        collection_id = body["collection"] = body.get("collection") or self.id
+        if collection_id != self.id:
+            raise ValueError(
+                f"Item has collection '{collection_id}', but is being created in "
+                f"collection '{self.id}'."
+            )
+
+        text = self._stac_io.request(url, method="POST", parameters=body)
+        data = json.loads(text) if text.strip() else {}
+        if "id" not in data:
+            data = body
+        item_url = f"{url.rstrip('/')}/{data['id']}"
+        created = cast(
+            pystac.Item,
+            self._stac_io.stac_object_from_dict(
+                data, href=item_url, root=self, preserve_dict=False
+            ),
+        )
+        call_modifier(self.modifier, created)
+        return created
+
+    def delete_item(self, item_id: str) -> None:
+        """Delete an item on the server from this collection.
+
+        Sends ``DELETE /collections/{collectionId}/items/{itemId}``. The API must
+        support the `Transaction extension
+        <https://github.com/stac-api-extensions/transaction>`__.
+
+        Args:
+            item_id : The id of the item to delete.
+        """
+        url = self._transaction_items_href()
+        if not item_id:
+            raise ValueError("An `item_id` must be provided.")
+        url = f"{url.rstrip('/')}/{item_id}"
+        self._stac_io.request(url, method="DELETE")
+
+    def _transaction_items_href(self) -> str:
+        if not self.conforms_to(ConformanceClasses.TRANSACTION):
+            raise DoesNotConformTo(ConformanceClasses.TRANSACTION.name)
+        return self._items_href()
 
     def _items_href(self) -> str:
         link = self.get_single_link("items")

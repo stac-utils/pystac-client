@@ -311,5 +311,32 @@ def test_write_text_to_href_url_error() -> None:
     """Test that write_text_to_href raises APIError for URLs."""
     stac_api_io = StacApiIO()
 
-    with pytest.raises(APIError, match="Transactions not supported"):
+    with pytest.raises(APIError, match="CollectionClient.create_item"):
         stac_api_io.write_text_to_href("https://example.com/write", "content")
+
+
+@pytest.mark.parametrize("method,status_code", [("POST", 201), ("PUT", 200)])
+def test_request_body_methods(
+    requests_mock: Mocker, method: str, status_code: int
+) -> None:
+    """Test that body methods send parameters as JSON and accept any 2xx status."""
+    url = "https://example.com/collections/c/items"
+    requests_mock.register_uri(method, url, status_code=status_code, text="")
+
+    assert StacApiIO().request(url, method=method, parameters={"id": "a"}) == ""
+
+    request = requests_mock.request_history[-1]
+    assert request.method == method
+    assert request.json() == {"id": "a"}
+
+
+def test_request_delete(requests_mock: Mocker) -> None:
+    """Test that DELETE is sent as-is and a 204 is a success."""
+    url = "https://example.com/collections/c/items/a"
+    requests_mock.delete(url, status_code=204)
+
+    assert StacApiIO().request(url, method="DELETE") == ""
+
+    request = requests_mock.request_history[-1]
+    assert request.method == "DELETE"
+    assert request.body is None
