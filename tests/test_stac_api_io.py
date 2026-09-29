@@ -315,7 +315,9 @@ def test_write_text_to_href_url_error() -> None:
         stac_api_io.write_text_to_href("https://example.com/write", "content")
 
 
-@pytest.mark.parametrize("method,status_code", [("POST", 201), ("PUT", 200)])
+@pytest.mark.parametrize(
+    "method,status_code", [("POST", 201), ("PUT", 200), ("PATCH", 200)]
+)
 def test_request_body_methods(
     requests_mock: Mocker, method: str, status_code: int
 ) -> None:

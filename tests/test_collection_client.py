@@ -202,6 +202,41 @@ class TestTransactions:
         with pytest.raises(DoesNotConformTo, match="TRANSACTION"):
             collection.create_item(self._item_dict())
 
+    def test_update_item(self, requests_mock: Mocker) -> None:
+        collection = self._open_collection(requests_mock)
+        item_dict = self._item_dict()
+        item_url = f"{self.items_url}/{item_dict['id']}"
+        requests_mock.put(item_url, status_code=204)
+
+        item = collection.update_item(item_dict)
+
+        request = requests_mock.request_history[-1]
+        assert request.method == "PUT"
+        assert request.url == item_url
+        assert request.json()["id"] == item_dict["id"]
+        assert item.id == item_dict["id"]
+
+    def test_patch_item(self, requests_mock: Mocker) -> None:
+        collection = self._open_collection(requests_mock)
+        item_dict = self._item_dict()
+        item_url = f"{self.items_url}/{item_dict['id']}"
+        requests_mock.patch(item_url, status_code=200, json=item_dict)
+
+        item = collection.patch_item(item_dict["id"], {"properties": {"x": 1}})
+
+        request = requests_mock.request_history[-1]
+        assert request.method == "PATCH"
+        assert request.url == item_url
+        assert request.json() == {"properties": {"x": 1}}
+        assert item is not None
+        assert item.get_self_href() == item_url
+
+    def test_patch_item_no_body(self, requests_mock: Mocker) -> None:
+        collection = self._open_collection(requests_mock)
+        requests_mock.patch(f"{self.items_url}/an-item", status_code=204)
+
+        assert collection.patch_item("an-item", {"properties": {"x": 1}}) is None
+
     def test_delete_item(self, requests_mock: Mocker) -> None:
         collection = self._open_collection(requests_mock)
         item_url = f"{self.items_url}/an-item"
@@ -212,6 +247,15 @@ class TestTransactions:
         request = requests_mock.request_history[-1]
         assert request.method == "DELETE"
         assert request.url == item_url
+
+    def test_delete_item_encodes_id(self, requests_mock: Mocker) -> None:
+        collection = self._open_collection(requests_mock)
+        item_url = f"{self.items_url}/a%2Fb%23c"
+        requests_mock.delete(item_url, status_code=204)
+
+        collection.delete_item("a/b#c")
+
+        assert requests_mock.request_history[-1].url == item_url
 
     @pytest.mark.parametrize("status_code", [401, 403, 404, 500])
     def test_delete_item_error(self, requests_mock: Mocker, status_code: int) -> None:

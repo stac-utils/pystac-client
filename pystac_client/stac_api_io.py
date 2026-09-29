@@ -231,9 +231,10 @@ class StacApiIO(DefaultStacIO):
     def write_text_to_href(self, href: str, *args: Any, **kwargs: Any) -> None:
         if _is_url(href):
             raise APIError(
-                "Writing to a STAC API by href is not supported. To add or remove "
-                "items on an API that supports the Transaction extension, use "
-                "CollectionClient.create_item and CollectionClient.delete_item."
+                "Writing to a STAC API by href is not supported. To write items "
+                "on an API that supports the Transaction extension, use "
+                "CollectionClient.create_item, update_item, patch_item, or "
+                "delete_item."
             )
         else:
             return super().write_text_to_href(href, *args, **kwargs)
