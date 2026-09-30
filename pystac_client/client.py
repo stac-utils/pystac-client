@@ -546,7 +546,8 @@ class Client(pystac.Catalog, QueryablesMixin):
                 reached. Setting this to ``None`` will allow iteration over a possibly
                 very large number of results.
             limit: A recommendation to the service as to the number of items to return
-                *per page* of results. Defaults to 100.
+                *per page* of results. If not provided, no ``limit`` is sent and the
+                service's own default page size applies.
             ids: List of one or more Item ids to filter on.
             collections: List of one or more Collection IDs or
                 :class:`pystac.Collection` instances. Only Items in one
@@ -701,7 +702,8 @@ class Client(pystac.Catalog, QueryablesMixin):
                 max collections is reached. Setting this to ``None`` will allow
                 iteration over a possibly very large number of results.
             limit: A recommendation to the service as to the number of items to return
-                *per page* of results. Defaults to 100.
+                *per page* of results. If not provided, no ``limit`` is sent and the
+                service's own default page size applies.
             bbox: A list, tuple, or iterator representing a bounding box of 2D
                 or 3D coordinates. Results will be filtered
                 to only those intersecting the bounding box.
