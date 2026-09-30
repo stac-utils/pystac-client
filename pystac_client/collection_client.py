@@ -1,13 +1,16 @@
 from __future__ import annotations
 
+import json
 import warnings
 from collections.abc import Callable, Iterator
+from copy import deepcopy
 from typing import (
     TYPE_CHECKING,
     Any,
     Optional,
     cast,
 )
+from urllib.parse import quote
 
 import pystac
 from pystac.layout import APILayoutStrategy, HrefLayoutStrategy
@@ -18,7 +21,7 @@ from pystac_client.exceptions import APIError
 from pystac_client.item_search import ItemSearch
 from pystac_client.mixins import QueryablesMixin
 from pystac_client.stac_api_io import StacApiIO
-from pystac_client.warnings import FallbackToPystac
+from pystac_client.warnings import DoesNotConformTo, FallbackToPystac
 
 if TYPE_CHECKING:
     from pystac.item import Item as Item_Type
@@ -203,6 +206,121 @@ class CollectionClient(pystac.Collection, QueryablesMixin):
         if item:
             call_modifier(self.modifier, item)
 
+        return item
+
+    def create_item(self, item: pystac.Item | dict[str, Any]) -> Item_Type:
+        """Create an item on the server in this collection.
+
+        Sends ``POST /collections/{collectionId}/items``. The API must support
+        the `Transaction extension
+        <https://github.com/stac-api-extensions/transaction>`__.
+
+        Args:
+            item : A :class:`pystac.Item` or item :class:`dict`. If ``collection``
+                is missing, it is set to this collection's id.
+
+        Return:
+            Item: The item from the server, or the item that was sent if the
+            server returns no item body.
+        """
+        url = self._transaction_items_href()
+        body = self._item_body(item)
+        text = self._stac_io.request(url, method="POST", parameters=body)
+        return self._item_from_dict(self._response_item(text) or body)
+
+    def update_item(self, item: pystac.Item | dict[str, Any]) -> Item_Type:
+        """Replace an existing item on the server in this collection.
+
+        Sends ``PUT /collections/{collectionId}/items/{itemId}``, using the id of
+        ``item``. The API must support the `Transaction extension
+        <https://github.com/stac-api-extensions/transaction>`__.
+
+        Args:
+            item : A :class:`pystac.Item` or item :class:`dict` that replaces the
+                existing item. If ``collection`` is missing, it is set to this
+                collection's id.
+
+        Return:
+            Item: The item from the server, or the item that was sent if the
+            server returns no item body.
+        """
+        body = self._item_body(item)
+        url = self._item_href(self._transaction_items_href(), body["id"])
+        text = self._stac_io.request(url, method="PUT", parameters=body)
+        return self._item_from_dict(self._response_item(text) or body)
+
+    def patch_item(self, item_id: str, patch: dict[str, Any]) -> Item_Type | None:
+        """Partially update an existing item on the server in this collection.
+
+        Sends ``PATCH /collections/{collectionId}/items/{itemId}`` with ``patch``
+        as a `JSON Merge Patch <https://datatracker.ietf.org/doc/html/rfc7386>`__.
+        The API must support the `Transaction extension
+        <https://github.com/stac-api-extensions/transaction>`__.
+
+        Args:
+            item_id : The id of the item to update.
+            patch : The fields to change. Fields set to ``None`` are removed.
+
+        Return:
+            Item or None: The updated item from the server, or None if the server
+            returns no item body.
+        """
+        url = self._transaction_items_href()
+        if not item_id:
+            raise ValueError("An `item_id` must be provided.")
+        url = self._item_href(url, item_id)
+        text = self._stac_io.request(url, method="PATCH", parameters=patch)
+        data = self._response_item(text)
+        return self._item_from_dict(data) if data else None
+
+    def delete_item(self, item_id: str) -> None:
+        """Delete an item on the server from this collection.
+
+        Sends ``DELETE /collections/{collectionId}/items/{itemId}``. The API must
+        support the `Transaction extension
+        <https://github.com/stac-api-extensions/transaction>`__.
+
+        Args:
+            item_id : The id of the item to delete.
+        """
+        url = self._transaction_items_href()
+        if not item_id:
+            raise ValueError("An `item_id` must be provided.")
+        url = self._item_href(url, item_id)
+        self._stac_io.request(url, method="DELETE")
+
+    def _transaction_items_href(self) -> str:
+        if not self.conforms_to(ConformanceClasses.TRANSACTION):
+            raise DoesNotConformTo(ConformanceClasses.TRANSACTION.name)
+        return self._items_href()
+
+    def _item_body(self, item: pystac.Item | dict[str, Any]) -> dict[str, Any]:
+        if isinstance(item, pystac.Item):
+            body = item.to_dict(include_self_link=False, transform_hrefs=False)
+        else:
+            body = deepcopy(item)
+        if not body.get("collection"):
+            body["collection"] = self.id
+        if body["collection"] != self.id:
+            raise ValueError(
+                f"Item has collection '{body['collection']}', but is being sent to "
+                f"collection '{self.id}'."
+            )
+        return body
+
+    def _response_item(self, text: str) -> dict[str, Any] | None:
+        data = json.loads(text) if text.strip() else {}
+        return data if "id" in data else None
+
+    def _item_href(self, items_href: str, item_id: str) -> str:
+        return f"{items_href.rstrip('/')}/{quote(item_id, safe='')}"
+
+    def _item_from_dict(self, data: dict[str, Any]) -> Item_Type:
+        item_url = self._item_href(self._items_href(), data["id"])
+        item = pystac.Item.from_dict(
+            data, href=item_url, root=self, preserve_dict=False
+        )
+        call_modifier(self.modifier, item)
         return item
 
     def _items_href(self) -> str:
