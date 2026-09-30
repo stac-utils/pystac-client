@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Update contributing guide to consistently use `uv` workflow ([#822](https://github.com/stac-utils/pystac-client/pull/822))
 - Fix format script to use `ruff-format` instead of deprecated `black` hook ([#822](https://github.com/stac-utils/pystac-client/pull/822))
 - Add "How to..." section to usage documentation with latest datetime search across multiple collections example ([#823](https://github.com/stac-utils/pystac-client/pull/823))
+- Correct the `limit` parameter docs: there is no client-side default of 100 since v0.7.4; when omitted, no `limit` is sent ([#PR](https://github.com/stac-utils/pystac-client/pull/PR))
 
 
 ## [v0.9.0] - 2025-07-17
