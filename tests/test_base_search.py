@@ -5,6 +5,7 @@ from typing import Any
 
 import pytest
 from dateutil.tz import gettz, tzutc
+from pystac import Collection
 
 from pystac_client import Client
 from pystac_client.item_search import BaseSearch
@@ -33,6 +34,16 @@ class TestBaseSearchParams:
     def sample_client(self) -> Client:
         api_content = read_data_file("planetary-computer-root.json", parse_json=True)
         return Client.from_dict(api_content)
+
+    @pytest.fixture
+    def sample_collections(self) -> list[Collection]:
+        collection_content = read_data_file(
+            "planetary-computer-collection.json", parse_json=True
+        )
+        return [
+            Collection.from_dict({**collection_content, "id": collection_id})
+            for collection_id in ("naip", "landsat8_l1tp")
+        ]
 
     def test_tuple_bbox(self) -> None:
         # Tuple input
@@ -268,6 +279,24 @@ class TestBaseSearchParams:
             yield from ["naip", "landsat8_l1tp"]
 
         search = BaseSearch(url=SEARCH_URL, collections=collectioner())
+        assert search.get_parameters()["collections"] == ("naip", "landsat8_l1tp")
+
+    def test_single_collection_object(
+        self, sample_collections: list[Collection]
+    ) -> None:
+        search = BaseSearch(url=SEARCH_URL, collections=sample_collections[0])
+        assert search.get_parameters()["collections"] == ("naip",)
+
+    def test_list_of_collection_objects(
+        self, sample_collections: list[Collection]
+    ) -> None:
+        search = BaseSearch(url=SEARCH_URL, collections=sample_collections)
+        assert search.get_parameters()["collections"] == ("naip", "landsat8_l1tp")
+
+    def test_generator_of_collection_objects(
+        self, sample_collections: list[Collection]
+    ) -> None:
+        search = BaseSearch(url=SEARCH_URL, collections=(c for c in sample_collections))
         assert search.get_parameters()["collections"] == ("naip", "landsat8_l1tp")
 
     def test_single_id_string(self) -> None:
