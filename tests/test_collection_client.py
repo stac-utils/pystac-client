@@ -143,21 +143,33 @@ class TestTransactions:
         assert item.properties["x"] == 1
         assert item.get_self_href() == f"{self.items_url}/{item_dict['id']}"
 
-    @pytest.mark.parametrize("response", ["", '{"status": "created"}'])
-    def test_create_item_from_dict_sets_collection(
-        self, requests_mock: Mocker, response: str
-    ) -> None:
+    def test_create_item_from_dict_sets_collection(self, requests_mock: Mocker) -> None:
         collection = self._open_collection(requests_mock)
         item_dict = self._item_dict()
         del item_dict["collection"]
-        requests_mock.post(self.items_url, status_code=201, text=response)
+        requests_mock.post(
+            self.items_url, status_code=201, json=lambda request, _: request.json()
+        )
 
         item = collection.create_item(item_dict)
 
         assert requests_mock.request_history[-1].json()["collection"] == "aster-l1t"
         assert "collection" not in item_dict
+        assert item is not None
         assert item.id == item_dict["id"]
         assert item.collection_id == "aster-l1t"
+
+    @pytest.mark.parametrize(
+        "status_code, response",
+        [(201, ""), (202, '{"id": "op-1", "status": "Pending"}')],
+    )
+    def test_create_item_no_item_body(
+        self, requests_mock: Mocker, status_code: int, response: str
+    ) -> None:
+        collection = self._open_collection(requests_mock)
+        requests_mock.post(self.items_url, status_code=status_code, text=response)
+
+        assert collection.create_item(self._item_dict()) is None
 
     def test_create_item_wrong_collection(self, requests_mock: Mocker) -> None:
         collection = self._open_collection(requests_mock)
@@ -214,7 +226,7 @@ class TestTransactions:
         assert request.method == "PUT"
         assert request.url == item_url
         assert request.json()["id"] == item_dict["id"]
-        assert item.id == item_dict["id"]
+        assert item is None
 
     def test_patch_item(self, requests_mock: Mocker) -> None:
         collection = self._open_collection(requests_mock)

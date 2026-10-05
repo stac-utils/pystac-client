@@ -208,7 +208,7 @@ class CollectionClient(pystac.Collection, QueryablesMixin):
 
         return item
 
-    def create_item(self, item: pystac.Item | dict[str, Any]) -> Item_Type:
+    def create_item(self, item: pystac.Item | dict[str, Any]) -> Item_Type | None:
         """Create an item on the server in this collection.
 
         Sends ``POST /collections/{collectionId}/items``. The API must support
@@ -220,15 +220,16 @@ class CollectionClient(pystac.Collection, QueryablesMixin):
                 is missing, it is set to this collection's id.
 
         Return:
-            Item: The item from the server, or the item that was sent if the
-            server returns no item body.
+            Item or None: The item from the server, or None if the server returns
+            no item body, e.g. a ``202 Accepted`` for a queued operation.
         """
         url = self._transaction_items_href()
         body = self._item_body(item)
         text = self._stac_io.request(url, method="POST", parameters=body)
-        return self._item_from_dict(self._response_item(text) or body)
+        data = self._response_item(text)
+        return self._item_from_dict(data) if data else None
 
-    def update_item(self, item: pystac.Item | dict[str, Any]) -> Item_Type:
+    def update_item(self, item: pystac.Item | dict[str, Any]) -> Item_Type | None:
         """Replace an existing item on the server in this collection.
 
         Sends ``PUT /collections/{collectionId}/items/{itemId}``, using the id of
@@ -241,13 +242,14 @@ class CollectionClient(pystac.Collection, QueryablesMixin):
                 collection's id.
 
         Return:
-            Item: The item from the server, or the item that was sent if the
-            server returns no item body.
+            Item or None: The item from the server, or None if the server returns
+            no item body, e.g. a ``202 Accepted`` for a queued operation.
         """
         body = self._item_body(item)
         url = self._item_href(self._transaction_items_href(), body["id"])
         text = self._stac_io.request(url, method="PUT", parameters=body)
-        return self._item_from_dict(self._response_item(text) or body)
+        data = self._response_item(text)
+        return self._item_from_dict(data) if data else None
 
     def patch_item(self, item_id: str, patch: dict[str, Any]) -> Item_Type | None:
         """Partially update an existing item on the server in this collection.
@@ -263,7 +265,7 @@ class CollectionClient(pystac.Collection, QueryablesMixin):
 
         Return:
             Item or None: The updated item from the server, or None if the server
-            returns no item body.
+            returns no item body, e.g. a ``202 Accepted`` for a queued operation.
         """
         url = self._item_href(self._transaction_items_href(), item_id)
         text = self._stac_io.request(url, method="PATCH", parameters=patch)
@@ -303,7 +305,7 @@ class CollectionClient(pystac.Collection, QueryablesMixin):
 
     def _response_item(self, text: str) -> dict[str, Any] | None:
         data = json.loads(text) if text.strip() else {}
-        return data if "id" in data else None
+        return data if data.get("type") == "Feature" else None
 
     def _item_href(self, items_href: str, item_id: str) -> str:
         return f"{items_href.rstrip('/')}/{quote(item_id, safe='')}"

@@ -277,6 +277,9 @@ extension's endpoints.
     >>> collection.patch_item(item.id, {"properties": {"eo:cloud_cover": 12.5}})
     >>> collection.delete_item(item.id)
 
+The create, update, and patch methods return the item from the server, or ``None`` if
+the server returns no item, e.g. a ``202 Accepted`` for a queued operation.
+
 Requests are made with the same headers, parameters, and ``request_modifier`` as every
 other request made by the ``Client``, so authentication works the same way as for
 reading. If the server returns an error, an :class:`~pystac_client.exceptions.APIError`
