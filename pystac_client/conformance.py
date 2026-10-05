@@ -22,6 +22,9 @@ class ConformanceClasses(Enum):
     QUERY = "/item-search#query"
     FILTER = "/item-search#filter"
 
+    # transaction extension
+    TRANSACTION = "/ogcapi-features/extensions/transaction"
+
     # collection search
     COLLECTION_SEARCH = "/collection-search"
     COLLECTION_SEARCH_FREE_TEXT = "/collection-search#free-text"

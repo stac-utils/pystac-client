@@ -14,12 +14,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Add comprehensive test coverage for warning context managers (`ignore()` and `strict()`) ([#832](https://github.com/stac-utils/pystac-client/pull/832))
 - Moved -Werror to pyproject.toml ([#841](https://github.com/stac-utils/pystac-client/pull/841))
 - Add comprehensive test coverage for ConformanceClasses enum ([#834](https://github.com/stac-utils/pystac-client/pull/834))
+- `CollectionClient.create_item`, `update_item`, `patch_item`, and `delete_item` for APIs that conform to the STAC API Transaction extension, plus a `TRANSACTION` conformance class ([#937](https://github.com/stac-utils/pystac-client/pull/937))
 
 ### Changed
 
 - Make `get_collection` raise if `collection_id` is empty ([#809](https://github.com/stac-utils/pystac-client/pull/809))
 - Update `get_collection` to return None if no collection exists ([#861](https://github.com/stac-utils/pystac-client/pull/861))
 - Update `CollectionsLike` type alias to include `pystac.Collection` ([#938](https://github.com/stac-utils/pystac-client/pull/938))
+- `StacApiIO.request` now sends the given HTTP method instead of falling back to `GET` for anything other than `POST`, and treats any 2xx status as success ([#937](https://github.com/stac-utils/pystac-client/pull/937))
 
 ### Documentation
 
