@@ -14,6 +14,7 @@ from typing import (
     Optional,
     Protocol,
     Union,
+    cast,
 )
 
 from dateutil.relativedelta import relativedelta
@@ -54,7 +55,9 @@ BBox = tuple[float, ...]
 BBoxLike = Union[BBox, list[float], Iterator[float], str]
 
 Collections = tuple[str, ...]
-CollectionsLike = Union[list[str], Iterator[str], str]
+CollectionsLike = Union[
+    list[Collection], Iterator[Collection], Collection, list[str], Iterator[str], str
+]
 
 IDs = tuple[str, ...]
 IDsLike = Union[IDs, str, list[str], Iterator[str]]
@@ -565,7 +568,15 @@ class BaseSearch(ABC):
         if isinstance(value, str):
             return dict(json.loads(value))
         if hasattr(value, "__geo_interface__"):
-            return dict(deepcopy(getattr(value, "__geo_interface__")))
+            geo_interface = dict(deepcopy(getattr(value, "__geo_interface__")))
+            if (
+                geo_interface.get("type") == "Feature"
+                and (geometry := geo_interface.get("geometry"))
+                and isinstance(geometry, dict)
+            ):
+                return cast(dict[str, Any], geometry)
+            else:
+                return geo_interface
         raise Exception(
             "intersects must be of type None, str, dict, or an object that "
             "implements __geo_interface__"
@@ -622,7 +633,8 @@ class ItemSearch(BaseSearch):
         client: An instance of Client for retrieving results. This is normally populated
             by the client that returns this ItemSearch instance.
         limit: A recommendation to the service as to the number of items to return
-            *per page* of results. Defaults to 100.
+            *per page* of results. If not provided, no ``limit`` is sent and the
+            service's own default page size applies.
         ids: List of one or more Item ids to filter on.
         collections: List of one or more Collection IDs or :class:`pystac.Collection`
             instances.

@@ -23,6 +23,7 @@ from pystac_client.warnings import (
     FallbackToPystac,
     MissingLink,
     NoConformsTo,
+    PystacClientWarning,
     strict,
 )
 
@@ -434,7 +435,11 @@ class TestAPI:
 class TestAPISearch:
     @pytest.fixture(scope="function")
     def api(self) -> Client:
-        return Client.from_file(str(TEST_DATA / "planetary-computer-root.json"))
+        api = Client.from_file(str(TEST_DATA / "planetary-computer-root.json"))
+        search_link = api.get_search_link()
+        assert search_link
+        search_link.extra_fields["method"] = "POST"
+        return api
 
     def test_search_conformance_error(self, api: Client) -> None:
         # Remove item search conformance
@@ -492,6 +497,69 @@ class TestAPISearch:
         search_link.media_type = MediaType.JSON
         api.add_link(search_link)
         api.search(limit=1, max_items=1, collections="naip")
+
+    @pytest.mark.parametrize(
+        ("advertised_method", "requested_method", "available_method"),
+        [
+            (None, "POST", "GET"),
+            ("GET", "POST", "GET"),
+            ("POST", "GET", "POST"),
+            ("GET", None, "GET"),
+        ],
+    )
+    def test_search_warns_if_method_is_not_advertised(
+        self,
+        api: Client,
+        advertised_method: str | None,
+        requested_method: str | None,
+        available_method: str,
+    ) -> None:
+        search_link = api.get_search_link()
+        assert search_link
+        search_link.extra_fields = (
+            {"method": advertised_method} if advertised_method else {}
+        )
+
+        requested_method_name = requested_method or "POST"
+        with pytest.warns(
+            PystacClientWarning,
+            match=(
+                f"requested method '{requested_method_name}'.*"
+                f"Available methods: {available_method}"
+            ),
+        ):
+            api.search(method=requested_method)
+
+    @pytest.mark.parametrize(
+        ("advertised_methods", "requested_method"),
+        [
+            (("GET", "POST"), "GET"),
+            (("GET", "POST"), "POST"),
+            (("POST",), None),
+        ],
+    )
+    def test_search_does_not_warn_if_method_is_advertised(
+        self,
+        api: Client,
+        advertised_methods: tuple[str, ...],
+        requested_method: str | None,
+    ) -> None:
+        search_link = api.get_search_link()
+        assert search_link
+        api.remove_links("search")
+        for method in advertised_methods:
+            api.add_link(
+                pystac.Link(
+                    rel="search",
+                    target=search_link.target,
+                    media_type=search_link.media_type,
+                    extra_fields={"method": method},
+                )
+            )
+
+        with warnings.catch_warnings():
+            warnings.simplefilter("error", PystacClientWarning)
+            api.search(method=requested_method)
 
     @pytest.mark.vcr
     def test_search_max_items_unlimited_default(self, api: Client) -> None:

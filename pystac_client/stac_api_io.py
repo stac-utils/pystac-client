@@ -37,6 +37,8 @@ logger = logging.getLogger(__name__)
 
 Timeout = Union[float, tuple[float, float], tuple[float, None]]
 
+_BODY_METHODS = ("POST", "PUT", "PATCH")
+
 
 class StacApiIO(DefaultStacIO):
     def __init__(
@@ -68,8 +70,9 @@ class StacApiIO(DefaultStacIO):
             timeout: Optional float or (float, float) tuple following the semantics
               defined by `Requests
               <https://requests.readthedocs.io/en/latest/api/#main-interface>`__.
-            max_retries: The number of times to retry requests. Set to ``None`` to
-              disable retries.
+            max_retries: The number of times to retry requests or an
+              ``urllib3.utils.Retry`` instance for more advanced retry configurations.
+              Set to ``None`` to disable retries.
             autofix_paging: Whether to attempt automatically fixing paging issues
               that can be identified from paged responses links mismatching expectations
               compared to the original request.
@@ -186,8 +189,10 @@ class StacApiIO(DefaultStacIO):
 
         Args:
             href (str): The request URL
-            method (Optional[str], optional): The http method to use, 'GET' or 'POST'.
-              Defaults to None, which will result in 'GET' being used.
+            method (Optional[str], optional): The http method to use, e.g. 'GET',
+              'POST', or 'DELETE'. Defaults to None, which will result in 'GET' being
+              used. For 'POST', 'PUT', and 'PATCH', ``parameters`` is sent as a JSON
+              body; for all other methods, it is sent as query string parameters.
             headers (Optional[Dict[str, str]], optional): Additional headers to include
                 in request. Defaults to None.
             parameters (Optional[Dict[str, Any]], optional): parameters to send with
@@ -199,16 +204,17 @@ class StacApiIO(DefaultStacIO):
         Return:
             str: The decoded response from the endpoint
         """
-        if method == "POST":
+        method = (method or "GET").upper()
+        if method in _BODY_METHODS:
             request = Request(method=method, url=href, headers=headers, json=parameters)
         else:
             params = deepcopy(parameters) or {}
-            request = Request(method="GET", url=href, headers=headers, params=params)
+            request = Request(method=method, url=href, headers=headers, params=params)
         try:
             modified = self._req_modifier(request) if self._req_modifier else None
             prepped = self.session.prepare_request(modified or request)
             msg = f"{prepped.method} {prepped.url} Headers: {prepped.headers}"
-            if method == "POST":
+            if method in _BODY_METHODS:
                 msg += f" Payload: {json.dumps(request.json)}"
             if self.timeout is not None:
                 msg += f" Timeout: {self.timeout}"
@@ -220,7 +226,7 @@ class StacApiIO(DefaultStacIO):
         except Exception as err:
             logger.debug(err)
             raise APIError(str(err))
-        if resp.status_code != 200:
+        if not 200 <= resp.status_code < 300:
             raise APIError.from_response(resp)
         try:
             return resp.content.decode("utf-8")
@@ -229,7 +235,12 @@ class StacApiIO(DefaultStacIO):
 
     def write_text_to_href(self, href: str, *args: Any, **kwargs: Any) -> None:
         if _is_url(href):
-            raise APIError("Transactions not supported")
+            raise APIError(
+                "Writing to a STAC API by href is not supported. To write items "
+                "on an API that supports the Transaction extension, use "
+                "CollectionClient.create_item, update_item, patch_item, or "
+                "delete_item."
+            )
         else:
             return super().write_text_to_href(href, *args, **kwargs)
 

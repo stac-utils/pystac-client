@@ -546,7 +546,8 @@ class Client(pystac.Catalog, QueryablesMixin):
                 reached. Setting this to ``None`` will allow iteration over a possibly
                 very large number of results.
             limit: A recommendation to the service as to the number of items to return
-                *per page* of results. Defaults to 100.
+                *per page* of results. If not provided, no ``limit`` is sent and the
+                service's own default page size applies.
             ids: List of one or more Item ids to filter on.
             collections: List of one or more Collection IDs or
                 :class:`pystac.Collection` instances. Only Items in one
@@ -621,6 +622,20 @@ class Client(pystac.Catalog, QueryablesMixin):
                 "ITEM_SEARCH", "There is no fallback option available for search."
             )
 
+        requested_method = method or "POST"
+        advertised_methods = {
+            link.extra_fields.get("method", "GET") or "GET"
+            for link in self._get_search_links()
+        }
+        if advertised_methods and requested_method not in advertised_methods:
+            warnings.warn(
+                f"The requested method '{requested_method}' is not advertised by "
+                "any root catalog search link. Available methods: "
+                f"{', '.join(sorted(advertised_methods))}",
+                PystacClientWarning,
+                stacklevel=2,
+            )
+
         return ItemSearch(
             url=self._search_href(),
             method=method,
@@ -687,7 +702,8 @@ class Client(pystac.Catalog, QueryablesMixin):
                 max collections is reached. Setting this to ``None`` will allow
                 iteration over a possibly very large number of results.
             limit: A recommendation to the service as to the number of items to return
-                *per page* of results. Defaults to 100.
+                *per page* of results. If not provided, no ``limit`` is sent and the
+                service's own default page size applies.
             bbox: A list, tuple, or iterator representing a bounding box of 2D
                 or 3D coordinates. Results will be filtered
                 to only those intersecting the bounding box.
@@ -776,6 +792,17 @@ class Client(pystac.Catalog, QueryablesMixin):
             modifier=self.modifier,
         )
 
+    def _get_search_links(self) -> Iterator[pystac.Link]:
+        return (
+            link
+            for link in self.links
+            if link.rel == "search"
+            and (
+                link.media_type == pystac.MediaType.GEOJSON
+                or link.media_type == pystac.MediaType.JSON
+            )
+        )
+
     def get_search_link(self) -> pystac.Link | None:
         """Returns this client's search link.
 
@@ -784,18 +811,7 @@ class Client(pystac.Catalog, QueryablesMixin):
         Returns:
             Optional[pystac.Link]: The search link, or None if there is not one found.
         """
-        return next(
-            (
-                link
-                for link in self.links
-                if link.rel == "search"
-                and (
-                    link.media_type == pystac.MediaType.GEOJSON
-                    or link.media_type == pystac.MediaType.JSON
-                )
-            ),
-            None,
-        )
+        return next(self._get_search_links(), None)
 
     def _search_href(self) -> str:
         search_link = self.get_search_link()

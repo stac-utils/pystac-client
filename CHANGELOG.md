@@ -10,21 +10,26 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - Add `autofix_paging` parameter to `StacApiIO` to allow auto-fix of invalid links returned by servers when iterating paged responses ([#852](https://github.com/stac-utils/pystac-client/pull/852)).
+- Warn when the requested item-search method is not advertised ([#912](https://github.com/stac-utils/pystac-client/pull/912))
 - Add test coverage for stac_api_io.py error handling ([#835](https://github.com/stac-utils/pystac-client/pull/835))
 - Add comprehensive test coverage for warning context managers (`ignore()` and `strict()`) ([#832](https://github.com/stac-utils/pystac-client/pull/832))
 - Moved -Werror to pyproject.toml ([#841](https://github.com/stac-utils/pystac-client/pull/841))
 - Add comprehensive test coverage for ConformanceClasses enum ([#834](https://github.com/stac-utils/pystac-client/pull/834))
+- `CollectionClient.create_item`, `update_item`, `patch_item`, and `delete_item` for APIs that conform to the STAC API Transaction extension, plus a `TRANSACTION` conformance class ([#937](https://github.com/stac-utils/pystac-client/pull/937))
 
 ### Changed
 
 - Make `get_collection` raise if `collection_id` is empty ([#809](https://github.com/stac-utils/pystac-client/pull/809))
 - Update `get_collection` to return None if no collection exists ([#861](https://github.com/stac-utils/pystac-client/pull/861))
+- Update `CollectionsLike` type alias to include `pystac.Collection` ([#938](https://github.com/stac-utils/pystac-client/pull/938))
+- `StacApiIO.request` now sends the given HTTP method instead of falling back to `GET` for anything other than `POST`, and treats any 2xx status as success ([#937](https://github.com/stac-utils/pystac-client/pull/937))
 
 ### Documentation
 
 - Update contributing guide to consistently use `uv` workflow ([#822](https://github.com/stac-utils/pystac-client/pull/822))
 - Fix format script to use `ruff-format` instead of deprecated `black` hook ([#822](https://github.com/stac-utils/pystac-client/pull/822))
 - Add "How to..." section to usage documentation with latest datetime search across multiple collections example ([#823](https://github.com/stac-utils/pystac-client/pull/823))
+- Correct the `limit` parameter docs: there is no client-side default of 100 since v0.7.4; when omitted, no `limit` is sent ([#PR](https://github.com/stac-utils/pystac-client/pull/PR))
 
 
 ## [v0.9.0] - 2025-07-17
