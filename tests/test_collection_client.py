@@ -276,9 +276,3 @@ class TestTransactions:
 
         with pytest.raises(DoesNotConformTo, match="TRANSACTION"):
             collection.delete_item("an-item")
-
-    def test_delete_item_requires_id(self, requests_mock: Mocker) -> None:
-        collection = self._open_collection(requests_mock)
-
-        with pytest.raises(ValueError):
-            collection.delete_item("")

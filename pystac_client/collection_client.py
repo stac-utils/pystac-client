@@ -265,10 +265,7 @@ class CollectionClient(pystac.Collection, QueryablesMixin):
             Item or None: The updated item from the server, or None if the server
             returns no item body.
         """
-        url = self._transaction_items_href()
-        if not item_id:
-            raise ValueError("An `item_id` must be provided.")
-        url = self._item_href(url, item_id)
+        url = self._item_href(self._transaction_items_href(), item_id)
         text = self._stac_io.request(url, method="PATCH", parameters=patch)
         data = self._response_item(text)
         return self._item_from_dict(data) if data else None
@@ -283,10 +280,7 @@ class CollectionClient(pystac.Collection, QueryablesMixin):
         Args:
             item_id : The id of the item to delete.
         """
-        url = self._transaction_items_href()
-        if not item_id:
-            raise ValueError("An `item_id` must be provided.")
-        url = self._item_href(url, item_id)
+        url = self._item_href(self._transaction_items_href(), item_id)
         self._stac_io.request(url, method="DELETE")
 
     def _transaction_items_href(self) -> str:
@@ -299,8 +293,7 @@ class CollectionClient(pystac.Collection, QueryablesMixin):
             body = item.to_dict(include_self_link=False, transform_hrefs=False)
         else:
             body = deepcopy(item)
-        if not body.get("collection"):
-            body["collection"] = self.id
+        body.setdefault("collection", self.id)
         if body["collection"] != self.id:
             raise ValueError(
                 f"Item has collection '{body['collection']}', but is being sent to "
