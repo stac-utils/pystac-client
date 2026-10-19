@@ -55,7 +55,9 @@ BBox = tuple[float, ...]
 BBoxLike = Union[BBox, list[float], Iterator[float], str]
 
 Collections = tuple[str, ...]
-CollectionsLike = Union[list[str], Iterator[str], str]
+CollectionsLike = Union[
+    list[Collection], Iterator[Collection], Collection, list[str], Iterator[str], str
+]
 
 IDs = tuple[str, ...]
 IDsLike = Union[IDs, str, list[str], Iterator[str]]
