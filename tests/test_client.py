@@ -1,6 +1,8 @@
+import contextlib
 import json
 import os.path
 import warnings
+from collections.abc import Callable
 from datetime import datetime
 from tempfile import TemporaryDirectory
 from typing import Any
@@ -28,6 +30,10 @@ from pystac_client.warnings import (
 )
 
 from .helpers import STAC_URLS, TEST_DATA, read_data_file
+
+COLLECTION_TRANSACTION_URI = (
+    "https://api.stacspec.org/v1.0.0/collections/extensions/transaction"
+)
 
 
 class TestAPI:
@@ -894,3 +900,305 @@ def test_query_string_in_collections_url() -> None:
     # https://github.com/stac-utils/pystac-client/issues/745
     client = Client.open("https://paituli.csc.fi/geoserver/ogc/stac/v1")
     client.get_collection("sentinel2-l2a")
+
+
+COLLECTION_WRITES: dict[str, Callable[[Client, dict[str, Any]], Any]] = {
+    "create": lambda client, body: client.create_collection(body),
+    "update": lambda client, body: client.update_collection(body),
+    "patch": lambda client, body: client.patch_collection(body["id"], {"x": 1}),
+    "delete": lambda client, body: client.delete_collection(body["id"]),
+}
+
+
+class TestCollectionTransactions:
+    root_url = STAC_URLS["PLANETARY-COMPUTER"]
+    collections_url = f"{root_url}/collections"
+    collection_url = f"{collections_url}/aster-l1t"
+
+    def _open_client(
+        self, requests_mock: Mocker, transaction: bool = True, **client_kwargs: Any
+    ) -> Client:
+        root = read_data_file("planetary-computer-root.json", parse_json=True)
+        if transaction:
+            root["conformsTo"].append(COLLECTION_TRANSACTION_URI)
+        requests_mock.get(self.root_url, status_code=200, json=root)
+        return Client.open(self.root_url, **client_kwargs)
+
+    def _collection_dict(self) -> dict[str, Any]:
+        collection: dict[str, Any] = read_data_file(
+            "planetary-computer-aster-l1t-collection.json", parse_json=True
+        )
+        return collection
+
+    def test_create_collection(self, requests_mock: Mocker) -> None:
+        client = self._open_client(requests_mock)
+        collection_dict = self._collection_dict()
+        # servers may add fields to the created collection
+        response = {**collection_dict, "title": "From the server"}
+        requests_mock.post(self.collections_url, status_code=201, json=response)
+
+        collection = client.create_collection(
+            pystac.Collection.from_dict(collection_dict)
+        )
+
+        request = requests_mock.request_history[-1]
+        assert request.method == "POST"
+        assert request.url == self.collections_url
+        assert request.json()["id"] == "aster-l1t"
+        assert not any(link["rel"] == "self" for link in request.json()["links"])
+        assert isinstance(collection, CollectionClient)
+        assert collection.title == "From the server"
+        assert collection.get_self_href() == self.collection_url
+        assert collection.get_root() is client
+
+    def test_create_collection_from_dict(self, requests_mock: Mocker) -> None:
+        client = self._open_client(requests_mock)
+        collection_dict = self._collection_dict()
+        requests_mock.post(
+            self.collections_url,
+            status_code=201,
+            json=lambda request, _: request.json(),
+        )
+
+        collection = client.create_collection(collection_dict)
+
+        assert requests_mock.request_history[-1].json() == collection_dict
+        assert isinstance(collection, CollectionClient)
+        assert collection.id == "aster-l1t"
+
+    @pytest.mark.parametrize(
+        "status_code, response",
+        [
+            (201, ""),
+            (202, '{"id": "op-1", "status": "Pending"}'),
+            (204, ""),
+        ],
+    )
+    def test_create_collection_no_collection_body(
+        self, requests_mock: Mocker, status_code: int, response: str
+    ) -> None:
+        client = self._open_client(requests_mock)
+        requests_mock.post(self.collections_url, status_code=status_code, text=response)
+
+        assert client.create_collection(self._collection_dict()) is None
+
+    @pytest.mark.parametrize("collection_id", [None, ""])
+    def test_create_collection_requires_id(
+        self, requests_mock: Mocker, collection_id: str | None
+    ) -> None:
+        client = self._open_client(requests_mock)
+        collection_dict = self._collection_dict()
+        collection_dict["id"] = collection_id
+
+        with pytest.raises(ValueError, match="A collection `id` must be provided"):
+            client.create_collection(collection_dict)
+
+        assert requests_mock.request_history[-1].method == "GET"
+
+    def test_create_collection_uses_stac_api_io(self, requests_mock: Mocker) -> None:
+        """Checks that headers and request modifiers apply to transactions."""
+
+        def add_auth(request: Any) -> None:
+            request.headers["Authorization"] = "Bearer token"
+
+        client = self._open_client(
+            requests_mock, headers={"x-custom": "value"}, request_modifier=add_auth
+        )
+        requests_mock.post(self.collections_url, status_code=201, text="")
+
+        client.create_collection(self._collection_dict())
+
+        request = requests_mock.request_history[-1]
+        assert request.headers["x-custom"] == "value"
+        assert request.headers["Authorization"] == "Bearer token"
+
+    def test_create_collection_applies_modifier(self, requests_mock: Mocker) -> None:
+        def sign(obj: Modifiable) -> None:
+            assert isinstance(obj, pystac.Collection)
+            obj.extra_fields["signed"] = True
+
+        client = self._open_client(requests_mock, modifier=sign)
+        requests_mock.post(
+            self.collections_url, status_code=201, json=self._collection_dict()
+        )
+
+        collection = client.create_collection(self._collection_dict())
+
+        assert collection is not None
+        assert collection.extra_fields["signed"] is True
+        assert collection.modifier is sign
+
+    @pytest.mark.parametrize("status_code", [400, 401, 403, 409, 500])
+    def test_create_collection_error(
+        self, requests_mock: Mocker, status_code: int
+    ) -> None:
+        client = self._open_client(requests_mock)
+        requests_mock.post(self.collections_url, status_code=status_code, text="nope")
+
+        with pytest.raises(APIError, match="nope") as excinfo:
+            client.create_collection(self._collection_dict())
+
+        assert excinfo.value.status_code == status_code
+
+    def test_update_collection(self, requests_mock: Mocker) -> None:
+        client = self._open_client(requests_mock)
+        collection_dict = self._collection_dict()
+        requests_mock.put(self.collection_url, status_code=200, json=collection_dict)
+
+        collection = client.update_collection(
+            pystac.Collection.from_dict(collection_dict)
+        )
+
+        request = requests_mock.request_history[-1]
+        assert request.method == "PUT"
+        assert request.url == self.collection_url
+        assert request.json()["id"] == "aster-l1t"
+        assert isinstance(collection, CollectionClient)
+
+    def test_update_collection_no_body(self, requests_mock: Mocker) -> None:
+        client = self._open_client(requests_mock)
+        requests_mock.put(self.collection_url, status_code=204)
+
+        assert client.update_collection(self._collection_dict()) is None
+
+    def test_patch_collection(self, requests_mock: Mocker) -> None:
+        client = self._open_client(requests_mock)
+        requests_mock.patch(
+            self.collection_url, status_code=200, json=self._collection_dict()
+        )
+
+        collection = client.patch_collection("aster-l1t", {"title": None})
+
+        request = requests_mock.request_history[-1]
+        assert request.method == "PATCH"
+        assert request.url == self.collection_url
+        assert request.json() == {"title": None}
+        assert isinstance(collection, CollectionClient)
+        assert collection.get_self_href() == self.collection_url
+
+    def test_patch_collection_no_body(self, requests_mock: Mocker) -> None:
+        client = self._open_client(requests_mock)
+        requests_mock.patch(self.collection_url, status_code=202, text="")
+
+        assert client.patch_collection("aster-l1t", {"title": "x"}) is None
+
+    def test_delete_collection(self, requests_mock: Mocker) -> None:
+        client = self._open_client(requests_mock)
+        requests_mock.delete(self.collection_url, status_code=204)
+
+        client.delete_collection("aster-l1t")
+
+        request = requests_mock.request_history[-1]
+        assert request.method == "DELETE"
+        assert request.url == self.collection_url
+
+    def test_delete_collection_encodes_id(self, requests_mock: Mocker) -> None:
+        client = self._open_client(requests_mock)
+        url = f"{self.collections_url}/a%2Fb%23c"
+        requests_mock.delete(url, status_code=204)
+
+        client.delete_collection("a/b#c")
+
+        assert requests_mock.request_history[-1].url == url
+
+    def test_get_collection_encodes_id(self, requests_mock: Mocker) -> None:
+        client = self._open_client(requests_mock)
+        collection_dict = {**self._collection_dict(), "id": "a/b#c"}
+        url = f"{self.collections_url}/a%2Fb%23c"
+        requests_mock.get(url, status_code=200, json=collection_dict)
+
+        collection = client.get_collection("a/b#c")
+
+        assert requests_mock.request_history[-1].url == url
+        assert collection is not None
+        assert collection.id == "a/b#c"
+
+    @pytest.mark.parametrize("write", COLLECTION_WRITES.values(), ids=COLLECTION_WRITES)
+    def test_write_requires_id(
+        self,
+        requests_mock: Mocker,
+        write: Callable[[Client, dict[str, Any]], Any],
+    ) -> None:
+        client = self._open_client(requests_mock)
+        collection_dict = {**self._collection_dict(), "id": ""}
+
+        with pytest.raises(ValueError, match="must be provided"):
+            write(client, collection_dict)
+
+        assert requests_mock.request_history[-1].method == "GET"
+
+    def test_create_collection_does_not_mutate_dict(
+        self, requests_mock: Mocker
+    ) -> None:
+        client = self._open_client(requests_mock)
+        collection_dict = self._collection_dict()
+
+        assert client._collection_body(collection_dict) is not collection_dict
+
+    @pytest.mark.parametrize("status_code", [401, 403, 404, 500])
+    def test_delete_collection_error(
+        self, requests_mock: Mocker, status_code: int
+    ) -> None:
+        client = self._open_client(requests_mock)
+        requests_mock.delete(
+            self.collection_url, status_code=status_code, json={"detail": "nope"}
+        )
+
+        with pytest.raises(APIError) as excinfo:
+            client.delete_collection("aster-l1t")
+
+        assert excinfo.value.status_code == status_code
+
+    @pytest.mark.parametrize("write", COLLECTION_WRITES.values(), ids=COLLECTION_WRITES)
+    def test_write_does_not_conform(
+        self,
+        requests_mock: Mocker,
+        write: Callable[[Client, dict[str, Any]], Any],
+    ) -> None:
+        client = self._open_client(requests_mock, transaction=False)
+
+        with pytest.raises(DoesNotConformTo, match="COLLECTION_TRANSACTION"):
+            write(client, self._collection_dict())
+
+        assert requests_mock.request_history[-1].method == "GET"
+
+    def test_item_transaction_is_not_collection_transaction(
+        self, requests_mock: Mocker
+    ) -> None:
+        client = self._open_client(requests_mock, transaction=False)
+        client.add_conforms_to("TRANSACTION")
+
+        with pytest.raises(DoesNotConformTo, match="COLLECTION_TRANSACTION"):
+            client.create_collection(self._collection_dict())
+
+    @pytest.mark.parametrize("status_code", [204, 500])
+    @pytest.mark.parametrize("write", COLLECTION_WRITES.values(), ids=COLLECTION_WRITES)
+    def test_write_clears_get_collection_cache(
+        self,
+        requests_mock: Mocker,
+        write: Callable[[Client, dict[str, Any]], Any],
+        status_code: int,
+    ) -> None:
+        client = self._open_client(requests_mock)
+        collection_dict = self._collection_dict()
+        get_mock = requests_mock.get(
+            self.collection_url, status_code=200, json=collection_dict
+        )
+        requests_mock.post(self.collections_url, status_code=status_code, text="")
+        for method in ("PUT", "PATCH", "DELETE"):
+            requests_mock.register_uri(
+                method, self.collection_url, status_code=status_code
+            )
+
+        client.get_collection("aster-l1t")
+        client.get_collection("aster-l1t")
+        assert get_mock.call_count == 1
+
+        error = (
+            pytest.raises(APIError) if status_code >= 400 else contextlib.nullcontext()
+        )
+        with error:
+            write(client, collection_dict)
+        client.get_collection("aster-l1t")
+
+        assert get_mock.call_count == 2

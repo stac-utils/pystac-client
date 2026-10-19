@@ -1,12 +1,15 @@
+import json
 import re
 import warnings
 from collections.abc import Callable, Iterator
+from copy import deepcopy
 from functools import lru_cache
 from typing import (
     TYPE_CHECKING,
     Any,
     cast,
 )
+from urllib.parse import quote
 
 import pystac
 import pystac.utils
@@ -456,6 +459,88 @@ class Client(pystac.Catalog, QueryablesMixin):
                 call_modifier(self.modifier, collection)
                 yield collection
 
+    def create_collection(
+        self, collection: Collection | dict[str, Any]
+    ) -> CollectionClient | None:
+        """Create a collection on the server.
+
+        Sends ``POST /collections``. The API must support the `Collection
+        Transaction extension
+        <https://github.com/stac-api-extensions/collection-transaction>`__.
+
+        Args:
+            collection : A :class:`pystac.Collection` or collection :class:`dict`.
+
+        Return:
+            CollectionClient or None: The collection from the server, or None if the
+            server returns no collection body, e.g. a ``202 Accepted`` for a queued
+            operation.
+        """
+        url = self._transaction_collections_href()
+        body = self._collection_body(collection)
+        return self._write_collection(url, "POST", body)
+
+    def update_collection(
+        self, collection: Collection | dict[str, Any]
+    ) -> CollectionClient | None:
+        """Replace an existing collection on the server.
+
+        Sends ``PUT /collections/{collectionId}``, using the id of ``collection``.
+        The API must support the `Collection Transaction extension
+        <https://github.com/stac-api-extensions/collection-transaction>`__.
+
+        Args:
+            collection : A :class:`pystac.Collection` or collection :class:`dict`
+                that replaces the existing collection.
+
+        Return:
+            CollectionClient or None: The collection from the server, or None if the
+            server returns no collection body, e.g. a ``202 Accepted`` for a queued
+            operation.
+        """
+        body = self._collection_body(collection)
+        url = self._transaction_collections_href(body["id"])
+        return self._write_collection(url, "PUT", body)
+
+    def patch_collection(
+        self, collection_id: str, patch: dict[str, Any]
+    ) -> CollectionClient | None:
+        """Partially update an existing collection on the server.
+
+        Sends ``PATCH /collections/{collectionId}`` with ``patch`` as a `JSON Merge
+        Patch <https://datatracker.ietf.org/doc/html/rfc7386>`__. The API must
+        support the `Collection Transaction extension
+        <https://github.com/stac-api-extensions/collection-transaction>`__.
+
+        Args:
+            collection_id : The id of the collection to update.
+            patch : The fields to change. Fields set to ``None`` are removed.
+
+        Return:
+            CollectionClient or None: The updated collection from the server, or None
+            if the server returns no collection body, e.g. a ``202 Accepted`` for a
+            queued operation.
+        """
+        url = self._transaction_collections_href(collection_id)
+        return self._write_collection(url, "PATCH", patch)
+
+    def delete_collection(self, collection_id: str) -> None:
+        """Delete a collection on the server.
+
+        Sends ``DELETE /collections/{collectionId}``. The API must support the
+        `Collection Transaction extension
+        <https://github.com/stac-api-extensions/collection-transaction>`__.
+
+        Args:
+            collection_id : The id of the collection to delete.
+        """
+        url = self._transaction_collections_href(collection_id)
+        assert self._stac_io is not None
+        try:
+            self._stac_io.request(url, method="DELETE")
+        finally:
+            self.get_collection.cache_clear()
+
     def get_items(
         self, *ids: str, recursive: bool | None = None
     ) -> Iterator["Item_Type"]:
@@ -822,8 +907,52 @@ class Client(pystac.Catalog, QueryablesMixin):
         data_link = self.get_single_link("data")
         href = self._get_href("data", data_link, "collections")
         if collection_id is not None:
-            return urljoin(href, collection_id)
+            return urljoin(href, quote(collection_id, safe=""))
         return href
+
+    def _transaction_collections_href(self, collection_id: str | None = None) -> str:
+        if not self.conforms_to(ConformanceClasses.COLLECTION_TRANSACTION):
+            raise DoesNotConformTo(ConformanceClasses.COLLECTION_TRANSACTION.name)
+        if collection_id == "":
+            raise ValueError("A `collection_id` must be provided.")
+        return self._collections_href(collection_id)
+
+    def _collection_body(
+        self, collection: Collection | dict[str, Any]
+    ) -> dict[str, Any]:
+        if isinstance(collection, Collection):
+            body = collection.to_dict(include_self_link=False, transform_hrefs=False)
+        else:
+            body = deepcopy(collection)
+        if not body.get("id"):
+            raise ValueError("A collection `id` must be provided.")
+        return body
+
+    def _write_collection(
+        self, url: str, method: str, body: dict[str, Any]
+    ) -> CollectionClient | None:
+        assert self._stac_io is not None
+        try:
+            text = self._stac_io.request(url, method=method, parameters=body)
+        finally:
+            self.get_collection.cache_clear()
+        data = self._response_collection(text)
+        return self._collection_from_dict(data) if data else None
+
+    def _response_collection(self, text: str) -> dict[str, Any] | None:
+        data = json.loads(text) if text.strip() else {}
+        return data if data.get("type") == "Collection" else None
+
+    def _collection_from_dict(self, data: dict[str, Any]) -> CollectionClient:
+        collection = CollectionClient.from_dict(
+            data,
+            href=self._collections_href(data["id"]),
+            root=self,
+            preserve_dict=False,
+            modifier=self.modifier,
+        )
+        call_modifier(self.modifier, collection)
+        return collection
 
     def _get_collection_queryables_href(self, collection_id: str | None = None) -> str:
         href = self._collections_href(collection_id)

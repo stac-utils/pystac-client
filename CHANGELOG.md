@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Moved -Werror to pyproject.toml ([#841](https://github.com/stac-utils/pystac-client/pull/841))
 - Add comprehensive test coverage for ConformanceClasses enum ([#834](https://github.com/stac-utils/pystac-client/pull/834))
 - `CollectionClient.create_item`, `update_item`, `patch_item`, and `delete_item` for APIs that conform to the STAC API Transaction extension, plus a `TRANSACTION` conformance class ([#937](https://github.com/stac-utils/pystac-client/pull/937))
+- `Client.create_collection`, `update_collection`, `patch_collection`, and `delete_collection` for APIs that conform to the STAC API Collection Transaction extension, plus a `COLLECTION_TRANSACTION` conformance class ([#944](https://github.com/stac-utils/pystac-client/pull/944))
 
 ### Changed
 
@@ -22,6 +23,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Update `get_collection` to return None if no collection exists ([#861](https://github.com/stac-utils/pystac-client/pull/861))
 - Update `CollectionsLike` type alias to include `pystac.Collection` ([#938](https://github.com/stac-utils/pystac-client/pull/938))
 - `StacApiIO.request` now sends the given HTTP method instead of falling back to `GET` for anything other than `POST`, and treats any 2xx status as success ([#937](https://github.com/stac-utils/pystac-client/pull/937))
+
+### Fixed
+
+- Conformance classes no longer match URIs that extend their path, e.g. `COLLECTIONS` no longer matches `.../collections/extensions/transaction` and `FEATURES` no longer matches `.../ogcapi-features/extensions/transaction`. URIs with a `#fragment` or a `:` suffix, e.g. `.../item-search#filter:item-search-filter`, still match ([#944](https://github.com/stac-utils/pystac-client/pull/944))
+- `Client.get_collection` and the collection queryables URL-encode the collection id, so ids containing characters such as `/`, `#`, or `?` resolve to the right URL ([#944](https://github.com/stac-utils/pystac-client/pull/944))
 
 ### Documentation
 
