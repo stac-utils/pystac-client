@@ -1,0 +1,72 @@
+version: 1
+interactions:
+- request:
+    body: '{"limit": 1, "bbox": [-73.21, 43.99, -73.12, 44.05], "collections": ["naip"]}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '78'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.32.4
+    method: POST
+    uri: https://planetarycomputer.microsoft.com/api/stac/v1/search
+  response:
+    body:
+      string: '{"type":"FeatureCollection","features":[
+        {"id":"vt_m_4307308_nw_18_030_20230622_20231113","bbox":[-73.130782,43.933691,-73.056636,44.003801],"type":"Feature","links":[{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/vt_m_4307308_nw_18_030_20230622_20231113"},{"rel":"preview","href":"https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=naip&item=vt_m_4307308_nw_18_030_20230622_20231113","title":"Map
+        of item","type":"text/html"}],"assets":{"image":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/vt/2023/vt_030cm_2023/43073/m_4307308_nw_18_030_20230622_20231113.tif","type":"image/tiff;
+        application=geotiff; profile=cloud-optimized","roles":["data"],"title":"RGBIR
+        COG tile","eo:bands":[{"name":"Red","common_name":"red"},{"name":"Green","common_name":"green"},{"name":"Blue","common_name":"blue"},{"name":"NIR","common_name":"nir","description":"near-infrared"}]},"thumbnail":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/vt/2023/vt_030cm_2023/43073/m_4307308_nw_18_030_20230622_20231113.200.jpg","type":"image/jpeg","roles":["thumbnail"],"title":"Thumbnail"},"tilejson":{"title":"TileJSON
+        with default rendering","href":"https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=naip&item=vt_m_4307308_nw_18_030_20230622_20231113&assets=image&asset_bidx=image%7C1%2C2%2C3&format=png","type":"application/json","roles":["tiles"]},"rendered_preview":{"title":"Rendered
+        preview","rel":"preview","href":"https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=naip&item=vt_m_4307308_nw_18_030_20230622_20231113&assets=image&asset_bidx=image%7C1%2C2%2C3&format=png","roles":["overview"],"type":"image/png"}},"geometry":{"type":"Polygon","coordinates":[[[-73.058882,43.933691],[-73.056636,44.002599],[-73.128619,44.003801],[-73.130782,43.93489],[-73.058882,43.933691]]]},"collection":"naip","properties":{"gsd":0.3,"datetime":"2023-06-22T16:00:00Z","naip:year":"2023","proj:bbox":[650027.7,4866339.600000001,655801.7999999999,4873997.4],"proj:epsg":26918,"providers":[{"url":"https://www.fsa.usda.gov/programs-and-services/aerial-photography/imagery-programs/naip-imagery/","name":"USDA
+        Farm Service Agency","roles":["producer","licensor"]}],"naip:state":"vt","proj:shape":[25526,19247],"proj:centroid":{"lat":43.96875,"lon":-73.09373},"proj:transform":[0.3,0.0,650027.7,0.0,-0.3,4873997.4,0.0,0.0,1.0]},"stac_extensions":["https://stac-extensions.github.io/eo/v1.0.0/schema.json","https://stac-extensions.github.io/projection/v1.0.0/schema.json"],"stac_version":"1.0.0"}
+        ],
+        "links":[{"rel":"next","type":"application/geo+json","method":"POST","href":"https://planetarycomputer.microsoft.com/api/stac/","body":{"limit":1,"bbox":[-73.21,43.99,-73.12,44.05],"collections":["naip"],"token":"next:naip:vt_m_4307307_nw_18_060_20211029"}},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search"}]}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2443'
+      Content-Type:
+      - application/geo+json
+      content-encoding:
+      - gzip
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"limit": 1, "bbox": [-73.21, 43.99, -73.12, 44.05], "collections": ["naip"],
+      "token": "next:naip:vt_m_4307307_nw_18_060_20211029"}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '132'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.32.4
+    method: POST
+    uri: https://planetarycomputer.microsoft.com/api/stac/   # invalid URI returned by previous response 'next' link
+  response:
+    body:
+      string: 'Method not allowed'
+    headers:
+      Content-Length:
+      - '18'
+      Content-Type:
+      - application/geo+json
+    status:
+      code: 405
+      message: 'Method not allowed'
