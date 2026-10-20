@@ -9,7 +9,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.4
+      - python-requests/2.34.2
     method: GET
     uri: https://emc.spacebel.be/
   response:
@@ -71,9 +71,16 @@ interactions:
         \     \"type\": \"application/json\"\n    }\n  ],\n  \"id\": \"fedeo\",\n
         \ \"conformsTo\": [\n    \"http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core\",\n
         \   \"http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30\",\n    \"http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson\",\n
-        \   \"http://www.opengis.net/spec/ogcapi_common-2/1.0/conf/collections\",\n
+        \   \"http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/queryables\",\n
+        \   \"http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/queryables-query-parameters\",\n
+        \   \"http://www.opengis.net/spec/ogcapi-common-1/1.0/conf/core\",\n    \"http://www.opengis.net/spec/ogcapi_common-2/1.0/conf/collections\",\n
         \   \"http://www.opengis.net/spec/ogcapi-common-2/1.0/conf/simple-query\",\n
-        \   \"http://www.opengis.net/spec/ogcapi-records-1/1.0/req/cql-filter\",\n
+        \   \"http://www.opengis.net/spec/ogcapi-common-2/1.0/conf/collections\",\n
+        \   \"http://www.opengis.net/spec/ogcapi-records-1/1.0/conf/searchable-catalog\",\n
+        \   \"http://www.opengis.net/spec/ogcapi-records-1/1.0/conf/core\",\n    \"http://www.opengis.net/spec/ogcapi-records-1/1.0/conf/record-collection\",\n
+        \   \"http://www.opengis.net/spec/ogcapi-records-1/1.0/conf/record-api\",\n
+        \   \"http://www.opengis.net/spec/ogcapi-records-1/1.0/conf/cql\",\n    \"http://www.opengis.net/spec/ogcapi-records-1/1.0/req/cql-filter\",\n
+        \   \"http://www.opengis.net/spec/ogcapi-records-1/1.0/conf/json\",\n    \"http://www.opengis.net/spec/ogcapi-records-1/1.0/conf/html\",\n
         \   \"http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson\",\n
         \   \"http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/features-filter\",\n
         \   \"http://www.opengis.net/spec/ogcapi-features-3/1.0/conf/filter\",\n    \"https://api.stacspec.org/v1.0.0/core\",\n
@@ -84,8 +91,10 @@ interactions:
         \   \"https://api.stacspec.org/v1.0.0-rc.3/item-search#filter\",\n    \"http://www.opengis.net/spec/cql2/1.0/conf/cql2-text\",\n
         \   \"http://www.opengis.net/spec/cql2/1.0/conf/basic-cql2\",\n    \"http://www.opengis.net/spec/cql2/1.0/conf/cql2-json\",\n
         \   \"http://www.opengis.net/spec/cql2/1.0/conf/advanced-comparison-operators\",\n
-        \   \"https://api.stacspec.org/v1.0.0/item-search#sort\",\n    \"https://api.stacspec.org/v1.0.0/ogcapi-features#sort\"\n
-        \ ],\n  \"title\": \"FedEO Clearinghouse\",\n  \"type\": \"Catalog\"\n}"
+        \   \"https://api.stacspec.org/v1.0.0/item-search#sort\",\n    \"https://api.stacspec.org/v1.0.0/ogcapi-features#sort\",\n
+        \   \"https://api.stacspec.org/v1.0.0/item-search#fields\",\n    \"https://api.stacspec.org/v1.0.0/ogcapi-features#fields\",\n
+        \   \"https://api.stacspec.org/v1.0.0-rc.1/collection-search#fields\"\n  ],\n
+        \ \"title\": \"FedEO Clearinghouse\",\n  \"type\": \"Catalog\"\n}"
     headers:
       Access-Control-Allow-Headers:
       - X-PINGOTHER, Content-Type, Authorization, Accept
@@ -98,11 +107,11 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '5868'
+      - '6851'
       Content-Type:
       - application/json
       Date:
-      - Thu, 31 Jul 2025 15:07:13 GMT
+      - Tue, 20 Oct 2026 16:40:26 GMT
       Expires:
       - '0'
       Pragma:

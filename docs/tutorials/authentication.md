@@ -19,9 +19,7 @@ b64_userpass = base64.b64encode(userpass.encode()).decode()
 # create the client
 client = pystac_client.Client.open(
     url="https://planetarycomputer.microsoft.com/api/stac/v1",
-    headers={
-        'Authorization': f"Basic {b64_userpass}"
-    }
+    headers={"Authorization": f"Basic {b64_userpass}"},
 )
 ```
 
@@ -49,11 +47,14 @@ region = "us-east-1"
 service_name = "execute-api"
 endpoint_id = "xxxxxxxx"
 deployment_stage = "dev"
-stac_api_url = f"https://{endpoint_id}.{service_name}.{region}.amazonaws.com/{deployment_stage}"
+stac_api_url = (
+    f"https://{endpoint_id}.{service_name}.{region}.amazonaws.com/{deployment_stage}"
+)
 
 # load AWS credentials
 credentials = boto3.Session(region_name=region).get_credentials()
 signer = botocore.auth.SigV4Auth(credentials, service_name, region)
+
 
 def sign_request(request: requests.Request) -> requests.Request:
     """Sign the request using AWS SigV4.
@@ -69,15 +70,13 @@ def sign_request(request: requests.Request) -> requests.Request:
         url=request.url,
         params=request.params,
         data=request.data,
-        headers=request.headers
+        headers=request.headers,
     )
     signer.add_auth(aws_request)
     request.headers = aws_request.headers
     return request
 
+
 # create the client
-client = pystac_client.Client.open(
-    url=stac_api_url,
-    request_modifier=sign_request
-)
+client = pystac_client.Client.open(url=stac_api_url, request_modifier=sign_request)
 ```

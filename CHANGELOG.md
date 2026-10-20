@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [v0.9.1] - 2026-10-20
+
 ### Added
 
 - Warn when the requested item-search method is not advertised ([#912](https://github.com/stac-utils/pystac-client/pull/912))
@@ -22,6 +24,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Update `get_collection` to return None if no collection exists ([#861](https://github.com/stac-utils/pystac-client/pull/861))
 - Update `CollectionsLike` type alias to include `pystac.Collection` ([#938](https://github.com/stac-utils/pystac-client/pull/938))
 - `StacApiIO.request` now sends the given HTTP method instead of falling back to `GET` for anything other than `POST`, and treats any 2xx status as success ([#937](https://github.com/stac-utils/pystac-client/pull/937))
+- Don't require `pystac[validation]` ([#943](https://github.com/stac-utils/pystac-client/pull/943))
 
 ### Documentation
 
@@ -449,7 +452,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Initial release.
 
-[Unreleased]: https://github.com/stac-utils/pystac-client/compare/v0.9.0...main
+[Unreleased]: https://github.com/stac-utils/pystac-client/compare/v0.9.1...main
+[v0.9.1]: https://github.com/stac-utils/pystac-client/compare/v0.9.0...v0.9.1
 [v0.9.0]: https://github.com/stac-utils/pystac-client/compare/v0.8.6...v0.9.0
 [v0.8.6]: https://github.com/stac-utils/pystac-client/compare/v0.8.5...v0.8.6
 [v0.8.5]: https://github.com/stac-utils/pystac-client/compare/v0.8.4...v0.8.5

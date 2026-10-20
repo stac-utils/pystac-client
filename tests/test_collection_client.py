@@ -92,6 +92,9 @@ class TestCollectionClient:
         collection_client = api.get_collection("landsat-c2-l2")
         assert collection_client is not None
         assert isinstance(collection_client, CollectionClient)
+        collection_client.remove_links(
+            "http://www.opengis.net/def/rel/ogc/1.0/queryables"
+        )
         with pytest.warns(MissingLink, match="/queryables"):
             result = collection_client.get_queryables()
         assert "instrument" in result["properties"]
