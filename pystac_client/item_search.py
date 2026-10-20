@@ -493,7 +493,7 @@ class BaseSearch(ABC):
             if value and isinstance(value[0], str):
                 return [self._sortby_part_to_dict(str(v)) for v in value]
             elif value and isinstance(value[0], dict):
-                return value  # type: ignore
+                return value
 
         raise Exception(
             "sortby must be of type None, str, List[str], or List[Dict[str, str]"
