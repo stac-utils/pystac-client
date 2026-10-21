@@ -234,7 +234,9 @@ class StacApiIO(DefaultStacIO):
                 "Writing to a STAC API by href is not supported. To write items "
                 "on an API that supports the Transaction extension, use "
                 "CollectionClient.create_item, update_item, patch_item, or "
-                "delete_item."
+                "delete_item. To write collections on an API that supports the "
+                "Collection Transaction extension, use Client.create_collection, "
+                "update_collection, patch_collection, or delete_collection."
             )
         else:
             return super().write_text_to_href(href, *args, **kwargs)
