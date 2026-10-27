@@ -14,49 +14,49 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - python-requests/2.32.4
+      - python-requests/2.34.2
     method: POST
     uri: https://planetarycomputer.microsoft.com/api/stac/v1/search
   response:
     body:
-      string: '{"type":"FeatureCollection","features":[{"id":"fl_m_2608004_nw_17_060_20191215_20200113","bbox":[-80.627226,26.93549,-80.560244,27.001987],"type":"Feature","links":[{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"self","type":"application/geo+json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/fl_m_2608004_nw_17_060_20191215_20200113"},{"rel":"preview","href":"https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=naip&item=fl_m_2608004_nw_17_060_20191215_20200113","title":"Map
+      string: '{"type":"FeatureCollection","links":[{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"self","type":"application/geo\u002Bjson","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search?collections=naip"}],"features":[{"id":"fl_m_2608004_nw_17_060_20191215_20200113","bbox":[-80.627226,26.93549,-80.560244,27.001987],"type":"Feature","links":[{"rel":"collection","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"parent","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip"},{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"self","type":"application/geo\u002Bjson","href":"https://planetarycomputer.microsoft.com/api/stac/v1/collections/naip/items/fl_m_2608004_nw_17_060_20191215_20200113"},{"rel":"preview","href":"https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=naip\u0026item=fl_m_2608004_nw_17_060_20191215_20200113","title":"Map
         of item","type":"text/html"}],"assets":{"image":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/26080/m_2608004_nw_17_060_20191215.tif","type":"image/tiff;
         application=geotiff; profile=cloud-optimized","roles":["data"],"title":"RGBIR
         COG tile","eo:bands":[{"name":"Red","common_name":"red"},{"name":"Green","common_name":"green"},{"name":"Blue","common_name":"blue"},{"name":"NIR","common_name":"nir","description":"near-infrared"}]},"metadata":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_fgdc_2019/26080/m_2608004_nw_17_060_20191215.txt","type":"text/plain","roles":["metadata"],"title":"FGDC
         Metdata"},"thumbnail":{"href":"https://naipeuwest.blob.core.windows.net/naip/v002/fl/2019/fl_60cm_2019/26080/m_2608004_nw_17_060_20191215.200.jpg","type":"image/jpeg","roles":["thumbnail"],"title":"Thumbnail"},"tilejson":{"title":"TileJSON
-        with default rendering","href":"https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=naip&item=fl_m_2608004_nw_17_060_20191215_20200113&assets=image&asset_bidx=image%7C1%2C2%2C3&format=png","type":"application/json","roles":["tiles"]},"rendered_preview":{"title":"Rendered
-        preview","rel":"preview","href":"https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=naip&item=fl_m_2608004_nw_17_060_20191215_20200113&assets=image&asset_bidx=image%7C1%2C2%2C3&format=png","roles":["overview"],"type":"image/png"}},"geometry":{"type":"Polygon","coordinates":[[[-80.560502,26.93549],[-80.560244,27.001794],[-80.627008,27.001987],[-80.627226,26.935682],[-80.560502,26.93549]]]},"collection":"naip","properties":{"gsd":0.6,"datetime":"2019-12-15T00:00:00Z","naip:year":"2019","proj:bbox":[537006.0,2979366.0,543630.0,2986710.0],"proj:epsg":26917,"naip:state":"fl","proj:shape":[12240,11040],"proj:transform":[0.6,0.0,537006.0,0.0,-0.6,2986710.0,0.0,0.0,1.0]},"stac_extensions":["https://stac-extensions.github.io/eo/v1.0.0/schema.json","https://stac-extensions.github.io/projection/v1.0.0/schema.json"],"stac_version":"1.0.0"}],"links":[{"rel":"root","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/"},{"rel":"self","type":"application/json","href":"https://planetarycomputer.microsoft.com/api/stac/v1/search"}]}'
+        with default rendering","href":"https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=naip\u0026item=fl_m_2608004_nw_17_060_20191215_20200113\u0026assets=image\u0026asset_bidx=image%7C1,2,3\u0026format=png","type":"application/json","roles":["tiles"]},"rendered_preview":{"title":"Rendered
+        preview","rel":"preview","href":"https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=naip\u0026item=fl_m_2608004_nw_17_060_20191215_20200113\u0026assets=image\u0026asset_bidx=image%7C1,2,3\u0026format=png","roles":["overview"],"type":"image/png"}},"geometry":{"type":"Polygon","coordinates":[[[-80.560502,26.93549],[-80.560244,27.001794],[-80.627008,27.001987],[-80.627226,26.935682],[-80.560502,26.93549]]]},"collection":"naip","properties":{"gsd":0.6,"datetime":"2019-12-15T00:00:00Z","naip:year":"2019","proj:bbox":[537006.0,2979366.0,543630.0,2986710.0],"proj:epsg":26917,"naip:state":"fl","proj:shape":[12240,11040],"proj:transform":[0.6,0.0,537006.0,0.0,-0.6,2986710.0,0.0,0.0,1.0]},"stac_extensions":["https://stac-extensions.github.io/eo/v1.0.0/schema.json","https://stac-extensions.github.io/projection/v1.0.0/schema.json"],"stac_version":"1.0.0"}],"numberReturned":1}'
     headers:
       Accept-Ranges:
       - bytes
-      Access-Control-Allow-Credentials:
-      - 'true'
-      Access-Control-Allow-Headers:
-      - X-PC-Request-Entity,DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization
-      Access-Control-Allow-Methods:
-      - PUT, GET, POST, OPTIONS
-      Access-Control-Allow-Origin:
-      - '*'
-      Access-Control-Max-Age:
-      - '1728000'
       Connection:
       - keep-alive
       Content-Length:
-      - '996'
+      - '3221'
       Content-Type:
-      - application/geo+json
+      - application/geo+json; charset=utf-8
       Date:
-      - Thu, 31 Jul 2025 15:08:29 GMT
-      Strict-Transport-Security:
+      - Tue, 20 Oct 2026 16:41:34 GMT
+      access-control-allow-credentials:
+      - 'true'
+      access-control-allow-headers:
+      - X-PC-Request-Entity,DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization
+      access-control-allow-methods:
+      - PUT, GET, POST, OPTIONS
+      access-control-allow-origin:
+      - '*'
+      access-control-max-age:
+      - '1728000'
+      strict-transport-security:
       - max-age=31536000; includeSubDomains
-      X-Cache:
-      - CONFIG_NOCACHE
-      content-encoding:
-      - gzip
       vary:
       - Accept-Encoding
       x-azure-ref:
-      - 20250731T150828Z-r17d779659c8vbd8hC1DENmu9s000000020g000000008nx8
+      - 20261020T164134Z-17cbd995b46fz8wvhC1CYSdtx00000001u7000000000003s
+      x-cache:
+      - CONFIG_NOCACHE
+      x-content-type-options:
+      - nosniff
     status:
       code: 200
       message: OK

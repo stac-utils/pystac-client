@@ -9,7 +9,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.4
+      - python-requests/2.34.2
     method: GET
     uri: https://emc.spacebel.be/collections?limit=10&q=%22monthly+cloudless+mosaics%22
   response:
@@ -34,8 +34,11 @@ interactions:
         \       \"type\": \"text/html\",\n        \"title\": \"Search client\"\n      },\n
         \     \"metadata_ogc_17_069r3\": {\n        \"roles\": [\"metadata\"],\n        \"href\":
         \"https://emc.spacebel.be/collections/F-TCC\",\n        \"type\": \"application/geo+json;profile=\\\"http://www.opengis.net/spec/ogcapi-features-1/1.0\\\"\",\n
-        \       \"title\": \"OGC 17-069r3 metadata\"\n      },\n      \"metadata_iso_19139\":
-        {\n        \"roles\": [\"metadata\"],\n        \"href\": \"https://emc.spacebel.be/collections/F-TCC?httpAccept=application/vnd.iso.19139%2Bxml\",\n
+        \       \"title\": \"OGC 17-069r3 metadata\"\n      },\n      \"metadata_iso_19115_4\":
+        {\n        \"roles\": [\"metadata\"],\n        \"href\": \"https://emc.spacebel.be/collections/F-TCC?httpAccept=application/vnd.iso.19115-4%2Bjson\",\n
+        \       \"title\": \"ISO19115-4\",\n        \"type\": \"application/vnd.iso.19115-4+json\"\n
+        \     },\n      \"metadata_iso_19139\": {\n        \"roles\": [\"metadata\"],\n
+        \       \"href\": \"https://emc.spacebel.be/collections/F-TCC?httpAccept=application/vnd.iso.19139%2Bxml\",\n
         \       \"title\": \"ISO 19139 metadata\",\n        \"type\": \"application/vnd.iso.19139+xml\"\n
         \     },\n      \"metadata_iso_19139_2\": {\n        \"roles\": [\"metadata\"],\n
         \       \"href\": \"https://emc.spacebel.be/collections/F-TCC?httpAccept=application/vnd.iso.19139-2%2Bxml\",\n
@@ -85,7 +88,9 @@ interactions:
         \       \"rel\": \"alternate\",\n        \"href\": \"https://emc.spacebel.be/collections/F-TCC?httpAccept=application/ld%2Bjson;profile=http://data.europa.eu/930/\",\n
         \       \"type\": \"application/ld+json;profile=\\\"http://data.europa.eu/930/\\\"\",\n
         \       \"title\": \"JSON-LD (GeoDCAT-AP) metadata\"\n      },\n      {\n
-        \       \"rel\": \"alternate\",\n        \"href\": \"https://emc.spacebel.be/collections/F-TCC?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
+        \       \"rel\": \"alternate\",\n        \"href\": \"https://emc.spacebel.be/collections/F-TCC?httpAccept=application/rdf%2Bxml\",\n
+        \       \"type\": \"application/rdf+xml\",\n        \"title\": \"RDF/XML metadata\"\n
+        \     },\n      {\n        \"rel\": \"alternate\",\n        \"href\": \"https://emc.spacebel.be/collections/F-TCC?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
         \       \"type\": \"application/rdf+xml;profile=\\\"https://schema.org\\\"\",\n
         \       \"title\": \"RDF/XML (schema.org) metadata\"\n      },\n      {\n
         \       \"rel\": \"alternate\",\n        \"href\": \"https://emc.spacebel.be/collections/F-TCC?httpAccept=application/rdf%2Bxml;profile=http://data.europa.eu/930/\",\n
@@ -100,6 +105,7 @@ interactions:
         \"related\",\n        \"href\": \"https://emc.spacebel.be/series/eo:organisationName/Spacebel
         SA\",\n        \"title\": \"More collections for Spacebel SA\"\n      }\n
         \   ],\n    \"id\": \"F-TCC\",\n    \"updated\": \"2023-09-05T00:00:00.00Z\",\n
+        \   \"stac_extensions\": [\"https://stac-extensions.github.io/external-ids/v1.0.0/schema.json\"],\n
         \   \"providers\": [\n      {\n        \"roles\": [\"producer\"],\n        \"name\":
         \"Spacebel SA\",\n        \"url\": \"http://www.spacebel.com\"\n      },\n
         \     {\n        \"roles\": [\"host\"],\n        \"name\": \"FedEO Clearinghouse\",\n
@@ -122,12 +128,10 @@ interactions:
       - no-cache, no-store, max-age=0, must-revalidate
       Connection:
       - keep-alive
-      Content-Length:
-      - '8149'
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Thu, 31 Jul 2025 15:08:08 GMT
+      - Tue, 20 Oct 2026 16:41:14 GMT
       Expires:
       - '0'
       Pragma:
@@ -136,6 +140,8 @@ interactions:
       - openresty
       Strict-Transport-Security:
       - max-age=31536000 ; includeSubDomains
+      Transfer-Encoding:
+      - chunked
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:
@@ -157,7 +163,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.4
+      - python-requests/2.34.2
     method: GET
     uri: https://emc.spacebel.be/collections?limit=10&q=%22monthly+cloudless+mosaics%22
   response:
@@ -182,8 +188,11 @@ interactions:
         \       \"type\": \"text/html\",\n        \"title\": \"Search client\"\n      },\n
         \     \"metadata_ogc_17_069r3\": {\n        \"roles\": [\"metadata\"],\n        \"href\":
         \"https://emc.spacebel.be/collections/F-TCC\",\n        \"type\": \"application/geo+json;profile=\\\"http://www.opengis.net/spec/ogcapi-features-1/1.0\\\"\",\n
-        \       \"title\": \"OGC 17-069r3 metadata\"\n      },\n      \"metadata_iso_19139\":
-        {\n        \"roles\": [\"metadata\"],\n        \"href\": \"https://emc.spacebel.be/collections/F-TCC?httpAccept=application/vnd.iso.19139%2Bxml\",\n
+        \       \"title\": \"OGC 17-069r3 metadata\"\n      },\n      \"metadata_iso_19115_4\":
+        {\n        \"roles\": [\"metadata\"],\n        \"href\": \"https://emc.spacebel.be/collections/F-TCC?httpAccept=application/vnd.iso.19115-4%2Bjson\",\n
+        \       \"title\": \"ISO19115-4\",\n        \"type\": \"application/vnd.iso.19115-4+json\"\n
+        \     },\n      \"metadata_iso_19139\": {\n        \"roles\": [\"metadata\"],\n
+        \       \"href\": \"https://emc.spacebel.be/collections/F-TCC?httpAccept=application/vnd.iso.19139%2Bxml\",\n
         \       \"title\": \"ISO 19139 metadata\",\n        \"type\": \"application/vnd.iso.19139+xml\"\n
         \     },\n      \"metadata_iso_19139_2\": {\n        \"roles\": [\"metadata\"],\n
         \       \"href\": \"https://emc.spacebel.be/collections/F-TCC?httpAccept=application/vnd.iso.19139-2%2Bxml\",\n
@@ -233,7 +242,9 @@ interactions:
         \       \"rel\": \"alternate\",\n        \"href\": \"https://emc.spacebel.be/collections/F-TCC?httpAccept=application/ld%2Bjson;profile=http://data.europa.eu/930/\",\n
         \       \"type\": \"application/ld+json;profile=\\\"http://data.europa.eu/930/\\\"\",\n
         \       \"title\": \"JSON-LD (GeoDCAT-AP) metadata\"\n      },\n      {\n
-        \       \"rel\": \"alternate\",\n        \"href\": \"https://emc.spacebel.be/collections/F-TCC?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
+        \       \"rel\": \"alternate\",\n        \"href\": \"https://emc.spacebel.be/collections/F-TCC?httpAccept=application/rdf%2Bxml\",\n
+        \       \"type\": \"application/rdf+xml\",\n        \"title\": \"RDF/XML metadata\"\n
+        \     },\n      {\n        \"rel\": \"alternate\",\n        \"href\": \"https://emc.spacebel.be/collections/F-TCC?httpAccept=application/rdf%2Bxml;profile=https://schema.org\",\n
         \       \"type\": \"application/rdf+xml;profile=\\\"https://schema.org\\\"\",\n
         \       \"title\": \"RDF/XML (schema.org) metadata\"\n      },\n      {\n
         \       \"rel\": \"alternate\",\n        \"href\": \"https://emc.spacebel.be/collections/F-TCC?httpAccept=application/rdf%2Bxml;profile=http://data.europa.eu/930/\",\n
@@ -248,6 +259,7 @@ interactions:
         \"related\",\n        \"href\": \"https://emc.spacebel.be/series/eo:organisationName/Spacebel
         SA\",\n        \"title\": \"More collections for Spacebel SA\"\n      }\n
         \   ],\n    \"id\": \"F-TCC\",\n    \"updated\": \"2023-09-05T00:00:00.00Z\",\n
+        \   \"stac_extensions\": [\"https://stac-extensions.github.io/external-ids/v1.0.0/schema.json\"],\n
         \   \"providers\": [\n      {\n        \"roles\": [\"producer\"],\n        \"name\":
         \"Spacebel SA\",\n        \"url\": \"http://www.spacebel.com\"\n      },\n
         \     {\n        \"roles\": [\"host\"],\n        \"name\": \"FedEO Clearinghouse\",\n
@@ -270,12 +282,10 @@ interactions:
       - no-cache, no-store, max-age=0, must-revalidate
       Connection:
       - keep-alive
-      Content-Length:
-      - '8149'
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Thu, 31 Jul 2025 15:08:08 GMT
+      - Tue, 20 Oct 2026 16:41:15 GMT
       Expires:
       - '0'
       Pragma:
@@ -284,6 +294,8 @@ interactions:
       - openresty
       Strict-Transport-Security:
       - max-age=31536000 ; includeSubDomains
+      Transfer-Encoding:
+      - chunked
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:

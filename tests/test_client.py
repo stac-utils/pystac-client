@@ -48,7 +48,7 @@ class TestAPI:
 
     @pytest.mark.vcr
     def test_links(self) -> None:
-        api = Client.open(STAC_URLS["PLANETARY-COMPUTER"])
+        api = Client.open(STAC_URLS["EARTH-SEARCH"])
 
         # Should be able to get collections via links as with a typical PySTAC Catalog
         collection_links = api.get_links("child")
@@ -689,6 +689,7 @@ class TestQueryables:
         with pytest.warns(MissingLink, match="queryables"):
             col = api.get_collection("3dep-seamless")
             assert isinstance(col, CollectionClient)
+            col.remove_links("http://www.opengis.net/def/rel/ogc/1.0/queryables")
             tdep_seamless_props = col.get_queryables()["properties"]
             col = api.get_collection("fia")
             assert isinstance(col, CollectionClient)

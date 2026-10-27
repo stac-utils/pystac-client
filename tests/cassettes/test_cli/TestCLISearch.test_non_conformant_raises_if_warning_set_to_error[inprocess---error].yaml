@@ -9,7 +9,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.4
+      - python-requests/2.34.2
     method: GET
     uri: https://earth-search.aws.element84.com/v0
   response:
@@ -28,21 +28,21 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 31 Jul 2025 15:07:01 GMT
+      - Tue, 20 Oct 2026 16:40:17 GMT
       Via:
-      - 1.1 5950a1c2bfcf1f3e07bedbb2efad39f2.cloudfront.net (CloudFront)
+      - 1.1 901770ea429e342cd86b7d04579a8c40.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - p4C3TRlVn4IfdoW4UsIqQx1oYf9ChFWIWao1g2SH0ctZzn_lJwuoiw==
+      - vUMIk6nVjrArW63rY70kbTZ128M1nwfNNMxKqyQAR-7sSMutjndANA==
       X-Amz-Cf-Pop:
-      - DEN52-C1
+      - DEN53-P4
       X-Amzn-Trace-Id:
-      - Root=1-688b8695-096349986390340c396403c6;Parent=5288ce6122788a3c;Sampled=0;Lineage=1:308471e4:0
+      - Root=1-6ad79971-2bc634635e291f374c56ca0e;Parent=4f581f0ce6629b74;Sampled=0;Lineage=1:308471e4:0
       X-Cache:
       - Miss from cloudfront
       x-amz-apigw-id:
-      - OlH3aE_xvHcElMA=
+      - FjTp0H9uvHcEB1g=
       x-amzn-RequestId:
-      - 5d0495a6-aae0-4935-9554-e81291239440
+      - 5015f2a9-f844-45a3-a8e3-c17a7911b2be
     status:
       code: 200
       message: OK
