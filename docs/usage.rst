@@ -293,6 +293,41 @@ API does not advertise the ``TRANSACTION`` conformance class.
     :meth:`pystac.Catalog.remove_item`, which a ``Client`` or ``CollectionClient``
     also has. Those only change the object in memory and never contact the API.
 
+Creating, updating, and deleting collections
+--------------------------------------------
+
+STAC APIs that implement the `STAC API - Collection Transaction Extension
+<https://github.com/stac-api-extensions/collection-transaction>`__ allow clients to
+write collections. :meth:`~pystac_client.Client.create_collection` (``POST``),
+:meth:`~pystac_client.Client.update_collection` (``PUT``),
+:meth:`~pystac_client.Client.patch_collection` (``PATCH``, as a
+`JSON Merge Patch <https://datatracker.ietf.org/doc/html/rfc7386>`__), and
+:meth:`~pystac_client.Client.delete_collection` (``DELETE``) map to the
+extension's endpoints.
+
+.. code-block:: python
+
+    >>> catalog = Client.open(
+    ...     "https://stac.example.com",
+    ...     headers={"Authorization": "Bearer <token>"},
+    ... )
+    >>> collection = catalog.create_collection(
+    ...     pystac.Collection.from_file("collection.json")
+    ... )
+    >>> catalog.patch_collection(collection.id, {"title": "A new title"})
+    >>> catalog.delete_collection(collection.id)
+
+The create, update, and patch methods return a
+:class:`~pystac_client.CollectionClient` for the collection from the server, or
+``None`` if the server returns no collection, e.g. a ``202 Accepted`` for a queued
+operation. Each write clears the cache of
+:meth:`~pystac_client.Client.get_collection`, so the next call reads the collection
+from the API again.
+
+Authentication and errors work the same way as for item transactions. These methods
+raise :class:`~pystac_client.warnings.DoesNotConformTo` if the API does not advertise
+the ``COLLECTION_TRANSACTION`` conformance class.
+
 CollectionSearch
 ++++++++++++++++
 
