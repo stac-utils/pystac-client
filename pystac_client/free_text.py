@@ -5,6 +5,7 @@ Uses the `SQLite FTS5 Extension <https://www.sqlite.org/fts5.html>`__ to impleme
 free-text search filtering.
 """
 
+import contextlib
 import re
 import sqlite3
 
@@ -45,7 +46,7 @@ def sqlite_text_search(q: str, text_fields: dict[str, str]) -> bool:
     column_clause = ", ".join(text_fields.keys())
     value_clause = ", ".join(["?" for _ in text_fields.keys()])
 
-    with sqlite3.connect(":memory:") as conn:  # Use an in-memory database
+    with contextlib.closing(sqlite3.connect(":memory:")) as conn:
         cursor = conn.cursor()
 
         cursor.execute(
@@ -60,6 +61,7 @@ def sqlite_text_search(q: str, text_fields: dict[str, str]) -> bool:
         """,
             tuple(text_fields.values()),
         )
+        conn.commit()
 
         cursor.execute(
             f"""
