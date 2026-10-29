@@ -46,8 +46,7 @@ def sqlite_text_search(q: str, text_fields: dict[str, str]) -> bool:
     column_clause = ", ".join(text_fields.keys())
     value_clause = ", ".join(["?" for _ in text_fields.keys()])
 
-    conn = sqlite3.connect(":memory:")  # Use an in-memory database
-    with contextlib.closing(conn), conn:
+    with contextlib.closing(sqlite3.connect(":memory:")) as conn:
         cursor = conn.cursor()
 
         cursor.execute(
