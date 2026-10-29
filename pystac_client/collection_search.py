@@ -456,8 +456,7 @@ class CollectionSearch(BaseSearch):
                         "q": self._parameters.get("q"),
                     }
                     collections = [
-                        collection
-                        for collection in filter(
+                        *filter(
                             lambda x: collection_matches(x, **args),
                             collections,
                         )
@@ -468,8 +467,7 @@ class CollectionSearch(BaseSearch):
                 elif not self._collection_search_free_text_enabled:
                     if q := self._parameters.get("q"):
                         collections = [
-                            collection
-                            for collection in filter(
+                            *filter(
                                 lambda x: collection_matches(x, q=q),
                                 collections,
                             )
