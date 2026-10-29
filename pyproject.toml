@@ -12,9 +12,9 @@ license = { text = "Apache-2.0" }
 classifiers = [
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
     "Operating System :: OS Independent",
     "Natural Language :: English",
     "Development Status :: 4 - Beta",
@@ -24,10 +24,10 @@ classifiers = [
     "Topic :: Software Development :: Libraries",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
-requires-python = ">=3.10"
+requires-python = ">=3.12"
 dependencies = [
     "requests>=2.28.2",
-    "pystac>=1.10.0",
+    "pystac-core>=1.15.0",
     "python-dateutil>=2.8.2",
 ]
 dynamic = ["version"]
@@ -53,7 +53,6 @@ dev = [
     "recommonmark~=0.7.1",
     "requests-mock~=1.12",
     "ruff==0.17.2",
-    "tomli~=2.0; python_version<'3.11'",
     "types-python-dateutil>=2.8.19,<2.10.0",
     "types-requests~=2.33.0",
     "urllib3>=2.4",
