@@ -397,7 +397,7 @@ class TestBaseSearchParams:
             filter={"op": "<=", "args": [{"property": "eo:cloud_cover"}, 10]},
         )
         assert search.get_parameters()["filter-lang"] == "cql2-text"
-        assert search.get_parameters()["filter"] == '("eo:cloud_cover" <= 10)'
+        assert search.get_parameters()["filter"] == "eo:cloud_cover <= 10"
 
     def test_filter_conversion_does_not_happen_if_filter_lang_specified_json(
         self,
