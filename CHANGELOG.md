@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Update minimum Python to 3.12 and depend on only pystac-core ([#952](https://github.com/stac-utils/pystac-client/pull/952/))
+
 ### Fixed
 
 - Fix sqlite3 in memory DB usage in ``pystac_cliner/free_text.py``.

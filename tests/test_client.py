@@ -811,7 +811,7 @@ def test_non_recursion_on_fallback() -> None:
     path = "https://raw.githubusercontent.com/stac-utils/pystac/v1.9.0/docs/example-catalog/catalog.json"
     catalog = Client.from_file(path)
     with pytest.warns(FallbackToPystac):
-        [i for i in catalog.get_items()]
+        [*catalog.get_items()]
 
 
 @pytest.mark.vcr
