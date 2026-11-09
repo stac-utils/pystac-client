@@ -15,6 +15,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Fix sqlite3 in memory DB usage in ``pystac_cliner/free_text.py``.
   The DB connection was not properly closed ([950](https://github.com/stac-utils/pystac-client/pull/950)).
+- Match STAC API v1.x conformance URIs, such as the Sort extension's
+  ``v1.1.0/item-search#sort`` ([#959](https://github.com/stac-utils/pystac-client/pull/959)).
 
 ## [v0.9.1] - 2026-10-20
 
