@@ -51,6 +51,8 @@ class TestConformanceClasses:
             ),
             (ConformanceClasses.ITEM_SEARCH, "v1.0.0/item-search#filter"),
             (ConformanceClasses.FEATURES, "v1.0.0/ogcapi-features#fields"),
+            (ConformanceClasses.CORE, "v1.1.0/core"),
+            (ConformanceClasses.SORT, "v1.1.0/item-search#sort"),
             (
                 ConformanceClasses.COLLECTION_SEARCH,
                 "v1.0.0-rc.1/collection-search#free-text",
@@ -81,7 +83,7 @@ class TestConformanceClasses:
             (ConformanceClasses.COLLECTION_TRANSACTION, "v1.0.0/collections"),
             (ConformanceClasses.ITEM_SEARCH, "v1.0.0/item-searching"),
             (ConformanceClasses.FILTER, "v1.0.0/item-search"),
-            (ConformanceClasses.CORE, "v1.1.0/core"),
+            (ConformanceClasses.CORE, "v2.0.0/core"),
         ],
     )
     def test_pattern_does_not_match(

@@ -51,13 +51,13 @@ class ConformanceClasses(Enum):
 
     @property
     def pattern(self) -> re.Pattern[str]:
-        """Matches URIs of this class, optionally followed by a ``#fragment`` or a
-        ``:`` suffix, such as ``/item-search#filter:item-search-filter``.
+        """Matches v1.x URIs of this class, optionally followed by a ``#fragment``
+        or a ``:`` suffix, such as ``/item-search#filter:item-search-filter``.
 
         URIs that extend the path, such as ``/collections/extensions/transaction``
         for ``COLLECTIONS``, do not match.
         """
         return re.compile(
-            rf"{re.escape('https://api.stacspec.org/v1.0.')}(.*)"
+            rf"{re.escape('https://api.stacspec.org/v1.')}\d+\.(.*)"
             rf"{re.escape(self.value)}(?:[#:].*)?$"
         )
