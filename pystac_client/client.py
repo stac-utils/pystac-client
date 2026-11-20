@@ -2,14 +2,12 @@ import json
 import re
 import warnings
 from collections.abc import Callable, Iterator
-from copy import deepcopy
 from functools import lru_cache
 from typing import (
     TYPE_CHECKING,
     Any,
     cast,
 )
-from urllib.parse import quote
 
 import pystac
 import pystac.utils
@@ -18,7 +16,14 @@ from pystac import CatalogType, Collection
 from pystac.layout import APILayoutStrategy, HrefLayoutStrategy
 from requests import Request
 
-from pystac_client._utils import Modifiable, call_modifier, urljoin
+from pystac_client._utils import (
+    Modifiable,
+    call_modifier,
+    child_href,
+    stac_body,
+    urljoin,
+)
+from pystac_client.catalogs import CatalogsMixin
 from pystac_client.collection_client import CollectionClient
 from pystac_client.collection_search import CollectionSearch
 from pystac_client.conformance import ConformanceClasses
@@ -50,7 +55,7 @@ if TYPE_CHECKING:
     from pystac.item import Item as Item_Type
 
 
-class Client(pystac.Catalog, QueryablesMixin):
+class Client(pystac.Catalog, QueryablesMixin, CatalogsMixin):
     """A Client for interacting with the root of a STAC Catalog or API
 
     Instances of the ``Client`` class inherit from :class:`pystac.Catalog`
@@ -337,6 +342,21 @@ class Client(pystac.Catalog, QueryablesMixin):
             ConformanceClasses.FEATURES
         )
 
+    def _missing_item_search_conformance(self) -> ConformanceClasses | None:
+        if not self.conforms_to(ConformanceClasses.ITEM_SEARCH):
+            return ConformanceClasses.ITEM_SEARCH
+        return None
+
+    def _supports_item_search(self) -> bool:
+        return self._missing_item_search_conformance() is None
+
+    def _require_item_search(self) -> None:
+        missing = self._missing_item_search_conformance()
+        if missing is not None:
+            raise DoesNotConformTo(
+                missing.name, "There is no fallback option available for search."
+            )
+
     def _warn_about_fallback(self, *args: str) -> None:
         if self.has_conforms_to():
             warnings.warn(DoesNotConformTo(*args), stacklevel=2)
@@ -404,20 +424,12 @@ class Client(pystac.Catalog, QueryablesMixin):
             raise ValueError("A `collection_id` must be provided.")
 
         if self._supports_collections():
-            assert self._stac_io is not None
-
-            url = self._collections_href(collection_id)
-            try:
-                collection = CollectionClient.from_dict(
-                    self._stac_io.read_json(url),
-                    root=self,
-                    modifier=self.modifier,
-                )
-            except APIError as err:
-                if getattr(err, "status_code", None) and err.status_code == 404:
-                    return None
-                else:
-                    raise err
+            data = self._read_json_or_none(self._collections_href(collection_id))
+            if data is None:
+                return None
+            collection = CollectionClient.from_dict(
+                data, root=self, modifier=self.modifier
+            )
         else:
             self._warn_about_fallback("COLLECTIONS", "FEATURES")
             for collection in super().get_collections():
@@ -477,7 +489,8 @@ class Client(pystac.Catalog, QueryablesMixin):
             operation.
         """
         url = self._transaction_collections_href()
-        body = self._collection_body(collection)
+        body = stac_body(collection, "collection")
+        self._validate_create_body(body, "collection")
         return self._write_collection(url, "POST", body)
 
     def update_collection(
@@ -498,7 +511,7 @@ class Client(pystac.Catalog, QueryablesMixin):
             server returns no collection body, e.g. a ``202 Accepted`` for a queued
             operation.
         """
-        body = self._collection_body(collection)
+        body = stac_body(collection, "collection")
         url = self._transaction_collections_href(body["id"])
         return self._write_collection(url, "PUT", body)
 
@@ -535,11 +548,7 @@ class Client(pystac.Catalog, QueryablesMixin):
             collection_id : The id of the collection to delete.
         """
         url = self._transaction_collections_href(collection_id)
-        assert self._stac_io is not None
-        try:
-            self._stac_io.request(url, method="DELETE")
-        finally:
-            self.get_collection.cache_clear()
+        self._delete(url)
 
     def get_items(
         self, *ids: str, recursive: bool | None = None
@@ -555,7 +564,7 @@ class Client(pystac.Catalog, QueryablesMixin):
             Iterator[Item]: Iterator of items whose parent is this
                 catalog.
         """
-        if self.conforms_to(ConformanceClasses.ITEM_SEARCH):
+        if self._supports_item_search():
             if recursive is False:
                 warnings.warn(
                     "Getting items recursively using the /search endpoint "
@@ -702,10 +711,7 @@ class Client(pystac.Catalog, QueryablesMixin):
                 a ``"rel"`` type of ``"search"``.
         """
 
-        if not self.conforms_to(ConformanceClasses.ITEM_SEARCH):
-            raise DoesNotConformTo(
-                "ITEM_SEARCH", "There is no fallback option available for search."
-            )
+        self._require_item_search()
 
         requested_method = method or "POST"
         advertised_methods = {
@@ -903,45 +909,66 @@ class Client(pystac.Catalog, QueryablesMixin):
         href = self._get_href("search", search_link, "search")
         return href
 
+    def _items_search_href(self) -> str:
+        return self._search_href()
+
     def _collections_href(self, collection_id: str | None = None) -> str:
         data_link = self.get_single_link("data")
         href = self._get_href("data", data_link, "collections")
-        if collection_id is not None:
-            return urljoin(href, quote(collection_id, safe=""))
-        return href
+        return child_href(href, collection_id)
 
     def _transaction_collections_href(self, collection_id: str | None = None) -> str:
-        if not self.conforms_to(ConformanceClasses.COLLECTION_TRANSACTION):
-            raise DoesNotConformTo(ConformanceClasses.COLLECTION_TRANSACTION.name)
+        self._require_collection_transaction()
         if collection_id == "":
             raise ValueError("A `collection_id` must be provided.")
         return self._collections_href(collection_id)
 
-    def _collection_body(
-        self, collection: Collection | dict[str, Any]
-    ) -> dict[str, Any]:
-        if isinstance(collection, Collection):
-            body = collection.to_dict(include_self_link=False, transform_hrefs=False)
-        else:
-            body = deepcopy(collection)
-        if not body.get("id"):
-            raise ValueError("A collection `id` must be provided.")
-        return body
+    def _require_collection_transaction(self) -> None:
+        self._require_conforms_to(ConformanceClasses.COLLECTION_TRANSACTION)
 
-    def _write_collection(
-        self, url: str, method: str, body: dict[str, Any]
-    ) -> CollectionClient | None:
+    def _transaction_items_href(self, collection: CollectionClient) -> str:
+        self._require_conforms_to(ConformanceClasses.TRANSACTION)
+        return collection._items_href()
+
+    def _require_conforms_to(self, conformance_class: ConformanceClasses) -> None:
+        if not self.conforms_to(conformance_class):
+            raise DoesNotConformTo(conformance_class.name)
+
+    def _delete(self, url: str) -> None:
+        assert self._stac_io is not None
+        try:
+            self._stac_io.request(url, method="DELETE")
+        finally:
+            self.get_collection.cache_clear()
+
+    def _read_json_or_none(self, url: str) -> dict[str, Any] | None:
+        assert self._stac_io is not None
+        try:
+            return self._stac_io.read_json(url)
+        except APIError as err:
+            if getattr(err, "status_code", None) == 404:
+                return None
+            raise err
+
+    def _validate_create_body(self, _body: dict[str, Any], _kind: str) -> None:
+        return None
+
+    def _write(
+        self, url: str, method: str, body: dict[str, Any], stac_type: str
+    ) -> dict[str, Any] | None:
         assert self._stac_io is not None
         try:
             text = self._stac_io.request(url, method=method, parameters=body)
         finally:
             self.get_collection.cache_clear()
-        data = self._response_collection(text)
-        return self._collection_from_dict(data) if data else None
-
-    def _response_collection(self, text: str) -> dict[str, Any] | None:
         data = json.loads(text) if text.strip() else {}
-        return data if data.get("type") == "Collection" else None
+        return data if data.get("type") == stac_type else None
+
+    def _write_collection(
+        self, url: str, method: str, body: dict[str, Any]
+    ) -> CollectionClient | None:
+        data = self._write(url, method, body, "Collection")
+        return self._collection_from_dict(data) if data else None
 
     def _collection_from_dict(self, data: dict[str, Any]) -> CollectionClient:
         collection = CollectionClient.from_dict(

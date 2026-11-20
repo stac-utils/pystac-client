@@ -17,6 +17,22 @@ understanding of conformance, and support for searching and paging through resul
    :undoc-members:
    :show-inheritance:
 
+Multi-Tenant Catalogs
+---------------------
+
+:class:`~pystac_client.Client` includes the methods of
+:class:`~pystac_client.catalogs.CatalogsMixin` for the experimental
+`STAC API - Multi-Tenant Catalogs Extension
+<https://github.com/StacLabs/multi-tenant-catalogs>`__. They return a
+:class:`~pystac_client.CatalogClient` for each catalog.
+
+.. autoclass:: pystac_client.catalogs.CatalogsMixin
+   :members:
+
+.. autoclass:: pystac_client.CatalogClient
+   :members:
+   :show-inheritance:
+
 Collection Client
 -----------------
 

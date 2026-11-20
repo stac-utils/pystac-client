@@ -1,4 +1,5 @@
 __all__ = [
+    "CatalogClient",
     "Client",
     "CollectionClient",
     "CollectionSearch",
@@ -9,6 +10,7 @@ __all__ = [
 ]
 
 from pystac_client._utils import Modifiable
+from pystac_client.catalog_client import CatalogClient
 from pystac_client.client import Client
 from pystac_client.collection_client import CollectionClient
 from pystac_client.collection_search import CollectionSearch

@@ -311,7 +311,7 @@ def test_write_text_to_href_url_error() -> None:
     """Test that write_text_to_href raises APIError for URLs."""
     stac_api_io = StacApiIO()
 
-    with pytest.raises(APIError, match="CollectionClient.create_item"):
+    with pytest.raises(APIError, match=r"create_item.*link_collection"):
         stac_api_io.write_text_to_href("https://example.com/write", "content")
 
 

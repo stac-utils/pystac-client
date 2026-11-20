@@ -15,7 +15,7 @@ from pystac import MediaType
 from requests_mock import Mocker
 
 from pystac_client import Client, CollectionClient
-from pystac_client._utils import Modifiable
+from pystac_client._utils import Modifiable, stac_body
 from pystac_client.conformance import ConformanceClasses
 from pystac_client.errors import ClientTypeError, IgnoredResultWarning
 from pystac_client.exceptions import APIError
@@ -1128,13 +1128,10 @@ class TestCollectionTransactions:
 
         assert requests_mock.request_history[-1].method == "GET"
 
-    def test_create_collection_does_not_mutate_dict(
-        self, requests_mock: Mocker
-    ) -> None:
-        client = self._open_client(requests_mock)
+    def test_create_collection_does_not_mutate_dict(self) -> None:
         collection_dict = self._collection_dict()
 
-        assert client._collection_body(collection_dict) is not collection_dict
+        assert stac_body(collection_dict, "collection") is not collection_dict
 
     @pytest.mark.parametrize("status_code", [401, 403, 404, 500])
     def test_delete_collection_error(
