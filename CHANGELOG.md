@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Experimental support for the STAC API Multi-Tenant Catalogs extension: `Client.get_catalogs` and `get_catalog` return a new `CatalogClient` scoped to a catalog. `Client.create_catalog`, `update_catalog`, and `delete_catalog`, and `CatalogClient.link_catalog`, `unlink_catalog`, `link_collection`, and `unlink_collection` organize catalogs. `Client` gets these methods from the new `CatalogsMixin`, and `CatalogsMixin.catalog_client_class` sets the class of the returned clients. Adds the `MULTI_TENANT_CATALOGS`, `MULTI_TENANT_CATALOGS_TRANSACTION`, and `MULTI_TENANT_CATALOGS_SEARCH` conformance classes, and `StacApiIO.get_pages` now pages through `catalogs` responses ([#960](https://github.com/stac-utils/pystac-client/pull/960))
+
 ### Changed
 
 - Update minimum Python to 3.12 and depend on only pystac-core ([#952](https://github.com/stac-utils/pystac-client/pull/952/))

@@ -30,6 +30,11 @@ class ConformanceClasses(Enum):
     COLLECTION_SEARCH = "/collection-search"
     COLLECTION_SEARCH_FREE_TEXT = "/collection-search#free-text"
 
+    # multi-tenant catalogs (experimental community extension)
+    MULTI_TENANT_CATALOGS = "/multi-tenant-catalogs"
+    MULTI_TENANT_CATALOGS_TRANSACTION = "/multi-tenant-catalogs/transaction"
+    MULTI_TENANT_CATALOGS_SEARCH = "/multi-tenant-catalogs/search"
+
     @classmethod
     def get_by_name(cls, name: str) -> ConformanceClasses:
         for member in cls:

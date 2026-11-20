@@ -1,6 +1,7 @@
 import urllib
 import warnings
 from collections.abc import Callable
+from copy import deepcopy
 from typing import Any, Union
 
 import pystac
@@ -36,3 +37,25 @@ def urljoin(href: str, name: str) -> str:
     if not path.endswith("/"):
         path += "/"
     return urllib.parse.urlunparse(url._replace(path=path + name))
+
+
+def child_href(href: str, child_id: str | None) -> str:
+    """Joins a URL-encoded id onto an href, or returns the href if the id is None."""
+    if child_id is None:
+        return href
+    return urljoin(href, urllib.parse.quote(child_id, safe=""))
+
+
+def stac_body(obj: pystac.STACObject | dict[str, Any], kind: str) -> dict[str, Any]:
+    """Returns a request body for a STAC object or dict, without its self link.
+
+    Raises:
+        ValueError: If the body has no ``id``.
+    """
+    if isinstance(obj, pystac.STACObject):
+        body = obj.to_dict(include_self_link=False, transform_hrefs=False)
+    else:
+        body = deepcopy(obj)
+    if not body.get("id"):
+        raise ValueError(f"A {kind} `id` must be provided.")
+    return body

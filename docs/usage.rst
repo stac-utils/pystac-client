@@ -328,6 +328,97 @@ Authentication and errors work the same way as for item transactions. These meth
 raise :class:`~pystac_client.warnings.DoesNotConformTo` if the API does not advertise
 the ``COLLECTION_TRANSACTION`` conformance class.
 
+Multi-tenant catalogs
+---------------------
+
+.. warning::
+
+    Experimental. The `STAC API - Multi-Tenant Catalogs Extension
+    <https://github.com/StacLabs/multi-tenant-catalogs>`__ is a community extension
+    at Proposal maturity. The methods in this section follow it and may change in a
+    minor release of pystac-client when the extension changes.
+
+APIs that implement the extension serve a registry of catalogs at ``/catalogs``.
+Catalogs can be nested, and a collection or catalog can belong to several catalogs.
+:class:`~pystac_client.Client` gets the methods for this extension from
+:class:`~pystac_client.catalogs.CatalogsMixin`.
+:meth:`~pystac_client.catalogs.CatalogsMixin.get_catalogs` and
+:meth:`~pystac_client.catalogs.CatalogsMixin.get_catalog` return a
+:class:`~pystac_client.CatalogClient`, a :class:`~pystac_client.Client` scoped to a
+catalog. Its
+:meth:`~pystac_client.Client.get_collections`,
+:meth:`~pystac_client.Client.get_collection`,
+:meth:`~pystac_client.catalogs.CatalogsMixin.get_catalogs`, and
+:meth:`~pystac_client.Client.search` use that catalog's endpoints, e.g.
+``/catalogs/{catalogId}/collections``. A ``CatalogClient`` uses the ``conformsTo`` of
+its catalog, or the current ones of the API root if the catalog has none. A
+``CatalogClient`` cannot be opened with :meth:`~pystac_client.Client.open`. The
+Multi-Tenant
+Catalogs, Transaction, and Collection Transaction conformance classes are always
+checked on the API root.
+
+.. code-block:: python
+
+    >>> catalog = Client.open("https://stac.example.com")
+    >>> [c.id for c in catalog.get_catalogs()]
+    ['forestry', 'fire']
+    >>> forestry = catalog.get_catalog("forestry")
+    >>> [c.id for c in forestry.get_collections()]
+    ['sentinel-2-l2a']
+    >>> items = forestry.search(datetime="2024").items()
+
+:meth:`~pystac_client.Client.search` on a ``CatalogClient`` searches every collection
+below that catalog. It needs the ``MULTI_TENANT_CATALOGS_SEARCH`` conformance class.
+
+APIs that advertise ``MULTI_TENANT_CATALOGS_TRANSACTION`` also allow clients to
+organize catalogs. None of these methods delete collections or items:
+
+* :meth:`~pystac_client.catalogs.CatalogsMixin.create_catalog` creates a top-level
+  catalog on the API root, or a sub-catalog on a ``CatalogClient``.
+* :meth:`~pystac_client.catalogs.CatalogsMixin.update_catalog` replaces a catalog's
+  metadata and keeps its place in the hierarchy.
+* :meth:`~pystac_client.catalogs.CatalogsMixin.delete_catalog` disbands a catalog.
+  Its children are unlinked, and those left without a parent are adopted by the API
+  root.
+* :meth:`~pystac_client.CatalogClient.link_catalog` and
+  :meth:`~pystac_client.CatalogClient.link_collection` add an existing catalog or
+  collection to a catalog.
+* :meth:`~pystac_client.CatalogClient.unlink_catalog` and
+  :meth:`~pystac_client.CatalogClient.unlink_collection` remove one from it.
+
+.. code-block:: python
+
+    >>> catalog = Client.open(
+    ...     "https://stac.example.com",
+    ...     headers={"Authorization": "Bearer <token>"},
+    ... )
+    >>> fire = catalog.create_catalog(pystac.Catalog("fire", "Wildfire data"))
+    >>> fire.link_collection("sentinel-2-l2a")
+    >>> fire.create_collection(pystac.Collection.from_file("collection.json"))
+    >>> fire.unlink_collection("sentinel-2-l2a")
+
+On a ``CatalogClient``, :meth:`~pystac_client.Client.create_collection` and
+:meth:`~pystac_client.Client.update_collection` use
+``/catalogs/{catalogId}/collections``.
+:meth:`~pystac_client.CatalogClient.patch_collection` and
+:meth:`~pystac_client.CatalogClient.delete_collection` use
+``/collections/{collectionId}`` of the API root and need ``COLLECTION_TRANSACTION``,
+so ``delete_collection`` deletes the collection from every catalog. Item writes on a
+collection from a ``CatalogClient`` also use ``/collections/{collectionId}/items``.
+
+To return your own class from
+:meth:`~pystac_client.catalogs.CatalogsMixin.get_catalog` and
+:meth:`~pystac_client.catalogs.CatalogsMixin.get_catalogs`, e.g. for a subclass of
+:class:`~pystac_client.Client`, set
+:attr:`~pystac_client.catalogs.CatalogsMixin.catalog_client_class`:
+
+.. code-block:: python
+
+    >>> from pystac_client import CatalogClient, Client
+    >>> class MyClient(Client): ...
+    >>> class MyCatalogClient(CatalogClient, MyClient): ...
+    >>> MyClient.catalog_client_class = MyCatalogClient
+
 CollectionSearch
 ++++++++++++++++
 

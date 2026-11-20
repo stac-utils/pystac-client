@@ -38,6 +38,7 @@ logger = logging.getLogger(__name__)
 Timeout = Union[float, tuple[float, float], tuple[float, None]]
 
 _BODY_METHODS = ("POST", "PUT", "PATCH")
+_PAGE_RESULT_KEYS = ("features", "collections", "catalogs")
 
 
 class StacApiIO(DefaultStacIO):
@@ -236,7 +237,11 @@ class StacApiIO(DefaultStacIO):
                 "CollectionClient.create_item, update_item, patch_item, or "
                 "delete_item. To write collections on an API that supports the "
                 "Collection Transaction extension, use Client.create_collection, "
-                "update_collection, patch_collection, or delete_collection."
+                "update_collection, patch_collection, or delete_collection. To "
+                "write catalogs on an API that supports the Multi-Tenant Catalogs "
+                "extension, use Client.create_catalog, update_catalog, or "
+                "delete_catalog, or CatalogClient.link_catalog, unlink_catalog, "
+                "link_collection, or unlink_collection."
             )
         else:
             return super().write_text_to_href(href, *args, **kwargs)
@@ -313,13 +318,13 @@ class StacApiIO(DefaultStacIO):
         parameters: dict[str, Any] | None = None,
     ) -> Iterator[dict[str, Any]]:
         """Iterator that yields dictionaries for each page at a STAC paging
-        endpoint, e.g., /collections, /search
+        endpoint, e.g., /collections, /catalogs, /search
 
         Return:
             Dict[str, Any] : JSON content from a single page
         """
         page = self.read_json(url, method=method, parameters=parameters)
-        if not (page.get("features") or page.get("collections")):
+        if not _has_results(page):
             return None
         yield page
 
@@ -329,7 +334,7 @@ class StacApiIO(DefaultStacIO):
         while next_link:
             link = Link.from_dict(next_link)
             page = self.read_json(link, parameters=parameters)
-            if not (page.get("features") or page.get("collections")):
+            if not _has_results(page):
                 return None
             yield page
 
@@ -337,6 +342,10 @@ class StacApiIO(DefaultStacIO):
             next_link = next(
                 (link for link in page.get("links", []) if link["rel"] == "next"), None
             )
+
+
+def _has_results(page: dict[str, Any]) -> bool:
+    return any(page.get(key) for key in _PAGE_RESULT_KEYS)
 
 
 def _is_url(href: str) -> bool:

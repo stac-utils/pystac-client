@@ -55,6 +55,15 @@ class TestConformanceClasses:
                 ConformanceClasses.COLLECTION_SEARCH,
                 "v1.0.0-rc.1/collection-search#free-text",
             ),
+            (ConformanceClasses.MULTI_TENANT_CATALOGS, "v1.0.0/multi-tenant-catalogs"),
+            (
+                ConformanceClasses.MULTI_TENANT_CATALOGS_TRANSACTION,
+                "v1.0.0/multi-tenant-catalogs/transaction",
+            ),
+            (
+                ConformanceClasses.MULTI_TENANT_CATALOGS_SEARCH,
+                "v1.0.0/multi-tenant-catalogs/search",
+            ),
         ],
     )
     def test_pattern_matches(
@@ -82,6 +91,18 @@ class TestConformanceClasses:
             (ConformanceClasses.ITEM_SEARCH, "v1.0.0/item-searching"),
             (ConformanceClasses.FILTER, "v1.0.0/item-search"),
             (ConformanceClasses.CORE, "v1.1.0/core"),
+            (
+                ConformanceClasses.MULTI_TENANT_CATALOGS,
+                "v1.0.0/multi-tenant-catalogs/transaction",
+            ),
+            (
+                ConformanceClasses.MULTI_TENANT_CATALOGS,
+                "v1.0.0/multi-tenant-catalogs/search",
+            ),
+            (
+                ConformanceClasses.MULTI_TENANT_CATALOGS_SEARCH,
+                "v1.0.0/multi-tenant-catalogs",
+            ),
         ],
     )
     def test_pattern_does_not_match(

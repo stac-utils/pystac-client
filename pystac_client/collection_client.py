@@ -21,7 +21,7 @@ from pystac_client.exceptions import APIError
 from pystac_client.item_search import ItemSearch
 from pystac_client.mixins import QueryablesMixin
 from pystac_client.stac_api_io import StacApiIO
-from pystac_client.warnings import DoesNotConformTo, FallbackToPystac
+from pystac_client.warnings import FallbackToPystac
 
 if TYPE_CHECKING:
     from pystac.item import Item as Item_Type
@@ -137,7 +137,7 @@ class CollectionClient(pystac.Collection, QueryablesMixin):
         else:
             root = self.get_root()
             if root.conforms_to(ConformanceClasses.ITEM_SEARCH):
-                url = root._search_href() if ids else self._items_href()
+                url = root._items_search_href() if ids else self._items_href()
 
                 search = ItemSearch(
                     url=url,
@@ -188,7 +188,7 @@ class CollectionClient(pystac.Collection, QueryablesMixin):
                         raise err
             elif root.conforms_to(ConformanceClasses.ITEM_SEARCH) and self._stac_io:
                 item_search = ItemSearch(
-                    url=root._search_href(),
+                    url=root._items_search_href(),
                     method="GET",
                     client=root,
                     ids=[id],
@@ -286,9 +286,7 @@ class CollectionClient(pystac.Collection, QueryablesMixin):
         self._stac_io.request(url, method="DELETE")
 
     def _transaction_items_href(self) -> str:
-        if not self.conforms_to(ConformanceClasses.TRANSACTION):
-            raise DoesNotConformTo(ConformanceClasses.TRANSACTION.name)
-        return self._items_href()
+        return self.get_root()._transaction_items_href(self)
 
     def _item_body(self, item: pystac.Item | dict[str, Any]) -> dict[str, Any]:
         if isinstance(item, pystac.Item):
